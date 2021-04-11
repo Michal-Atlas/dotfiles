@@ -1,0 +1,17 @@
+powerline-daemon -q
+
+. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+. /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+. /usr/share/autojump/autojump.zsh
+
+export TERM="screen-256color"
+export EDITOR=/usr/bin/vim
+export PATH=$PATH:~/source/scripts
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
+autoload -Uz compinit
+compinit
+# Completion for kitty
+kitty + complete setup zsh | source /dev/stdin
+
