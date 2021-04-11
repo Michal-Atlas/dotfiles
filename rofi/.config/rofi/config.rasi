@@ -1,0 +1,6 @@
+configuration{
+	show-icons: true;
+	combi-modi: "drun,run,ssh";
+	modi: "window,run,ssh,drun,combi";
+}
+@import "/usr/share/rofi/themes/Monokai.rasi"
