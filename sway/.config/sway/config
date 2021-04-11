@@ -218,7 +218,7 @@ bar {
     }
 }
 
-font pango:JetBrains Mono 9.5
+font pango:Iosevka 9.5
 gaps inner 5
 gaps outer 5
 #border pixel 3
