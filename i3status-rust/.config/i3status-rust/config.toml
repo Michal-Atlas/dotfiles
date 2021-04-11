@@ -1,0 +1,70 @@
+theme = "solarized-dark"
+icons = "awesome"
+
+[[block]]
+block = "disk_space"
+path = "/"
+alias = "/"
+info_type = "available"
+unit = "GB"
+interval = 20
+warning = 20.0
+alert = 10.0
+
+[[block]]
+block= "keyboard_layout"
+driver="setxkbmap"
+format="{layout} {variant}"
+
+[[block]]
+block = "networkmanager"
+on_click = "kitty -e nmtui"
+
+[[block]]
+interval=10
+block = "nvidia_gpu"
+
+[[block]]
+block = "pacman"
+interval = 6000
+format = "{pacman} updates available"
+format_singular = "{pacman} update available"
+format_up_to_date = "system up to date"
+critical_updates_regex = "(linux |linux-lts|linux-zen)"
+
+[[block]]
+block = "memory"
+display_type = "memory"
+format_mem = "{Mup}%"
+format_swap = "{SUp}%"
+
+[[block]]
+block = "cpu"
+interval = 1
+
+[[block]]
+block = "load"
+interval = 1
+format = "{1m}"
+
+[[block]]
+block = "music"
+player="mpd"
+buttons = ["play", "next"]
+
+[[block]]
+block = "sound"
+
+[[block]]
+block = "backlight"
+device = "intel_backlight"
+
+[[block]]
+block = "battery"
+interval = 10
+format = "{percentage}% {time}"
+
+[[block]]
+block = "time"
+interval = 60
+format = "%a %d/%m %R"
