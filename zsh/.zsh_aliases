@@ -9,8 +9,8 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-#alias ll='ls -alF'
-#alias la='ls -A'
+alias ll='ls -alF'
+alias la='ls -A'
 #alias l='ls -CF'
 alias q="exit"
 alias l='k -hA'
@@ -43,4 +43,7 @@ export PATH=$PATH:/home/michal-atlas/.local/bin
 export PATH=$PATH:/home/michal-atlas/bin
 
 alias tmux='tmux -2'
+alias rustdc='firefox $(rustup docs --path)'
+alias cat=bat
+alias cbr="cargo b --release"
 
