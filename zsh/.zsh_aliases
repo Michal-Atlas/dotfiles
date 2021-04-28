@@ -1,14 +1,3 @@
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
 alias ll='ls -alF'
 alias la='ls -A'
 #alias l='ls -CF'
@@ -30,6 +19,9 @@ surfmd() {
 mpvmp() {
 	mpv --mute --playlist=$1
 }
+mpvm() {
+	mpv --mute $@
+}
 
 qe() {
 	devour $@ && exit
@@ -37,13 +29,7 @@ qe() {
 
 alias ip='ip -color=auto'
 
-export PATH=$PATH:~/.dotnet/tools
-export PATH=$PATH:/home/michal-atlas/.cargo/bin
-export PATH=$PATH:/home/michal-atlas/.local/bin
-export PATH=$PATH:/home/michal-atlas/bin
-
 alias tmux='tmux -2'
 alias rustdc='firefox $(rustup docs --path)'
-alias cat=bat
 alias cbr="cargo b --release"
 

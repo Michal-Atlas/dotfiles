@@ -23,6 +23,13 @@ powerline-daemon -q
 export TERM="screen-256color"
 export EDITOR=/usr/bin/vim
 export PATH=$PATH:~/source/scripts
+export PATH=$PATH:~/bin
+export PATH=$PATH:~/Sync/bin
+export PATH=$PATH:~/.dotnet/tools
+export PATH=$PATH:~/.cargo/bin
+export PATH=$PATH:~/.local/bin
+
+
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 autoload -Uz compinit
