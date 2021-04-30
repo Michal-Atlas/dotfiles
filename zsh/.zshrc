@@ -5,7 +5,7 @@ SPACESHIP_CHAR_SUFFIX=' '
 SPACESHIP_VI_MODE_SHOW=false
 SPACESHIP_EXIT_CODE_SHOW=true
 
-#source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.zsh
+source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.zsh
 source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/k/k.plugin.zsh
