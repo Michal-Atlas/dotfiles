@@ -37,3 +37,4 @@ compinit
 # Completion for kitty
 kitty + complete setup zsh | source /dev/stdin
 
+export MPD_HOST="Zakzakzak0!@localhost"

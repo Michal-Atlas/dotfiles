@@ -1,8 +1,9 @@
+alias ls='ls --color'
 alias ll='ls -alF'
 alias la='ls -A'
-#alias l='ls -CF'
+alias l='ls -CF'
 alias q="exit"
-alias l='k -hA'
+alias k='k -hA'
 
 rmd () {
         pandoc $1 | lynx -stdin
@@ -32,4 +33,7 @@ alias ip='ip -color=auto'
 alias tmux='tmux -2'
 alias rustdc='firefox $(rustup docs --path)'
 alias cbr="cargo b --release"
+alias cb="cargo b"
+alias cr="cargo run"
+alias rd="xdg-open $(rustup doc --path)"
 
