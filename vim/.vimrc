@@ -18,7 +18,6 @@ set cursorline
 set title
 set background=dark
 set history=1000
-set spell
 
 let g:rainbow_active = 1
 
