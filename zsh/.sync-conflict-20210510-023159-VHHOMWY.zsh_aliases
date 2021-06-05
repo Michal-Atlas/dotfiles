@@ -1,8 +1,9 @@
-alias ls='exa -a'
-alias ll='ls -lF'
+alias ls='ls --color'
+alias ll='ls -alF'
 alias la='ls -A'
-alias l='ll'
+alias l='ls -CF'
 alias q="exit"
+alias k='k -hA'
 
 rmd () {
         pandoc $1 | lynx -stdin
@@ -16,15 +17,12 @@ surfmd() {
 	surf /tmp/surfmd.html;
 }
 
-mpvmp() {
-	mpv --mute --playlist=$1
-}
-mpvm() {
-	mpv --mute $@
-}
-
 qe() {
 	devour $@ && exit
+}
+
+mpvd() {
+	mpv --mute $1 &
 }
 
 alias ip='ip -color=auto'
@@ -35,4 +33,6 @@ alias cbr="cargo b --release"
 alias cb="cargo b"
 alias cr="cargo run"
 alias rd="xdg-open $(rustup doc --path)"
+alias rdg="cargo doc --open"
+alias dec="tmux detach && fg && exit"
 

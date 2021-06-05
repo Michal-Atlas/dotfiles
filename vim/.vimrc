@@ -24,6 +24,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'dense-analysis/ale'
 Plug 'neoclide/coc-rls'
+Plug 'ap/vim-css-color'
 
 call plug#end()
 
