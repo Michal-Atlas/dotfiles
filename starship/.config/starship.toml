@@ -1,0 +1,5 @@
+[status]
+disabled = false
+
+[character]
+success_symbol = "[❯](#fe8019)"
