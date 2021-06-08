@@ -71,17 +71,8 @@ interval = 1
 format = "{1m}"
 
 [[block]]
-block = "battery"
-interval = 10
-format = "{percentage}% - {time}"
-
-[[block]]
 block = "sound"
 on_click = "kitty -e rsmixer"
-
-[[block]]
-block = "backlight"
-device = "intel_backlight"
 
 [[block]]
 block = "custom"
