@@ -3,4 +3,4 @@ configuration{
 	combi-modi: "drun,run,ssh";
 	modi: "window,run,ssh,drun,combi";
 }
-@import "/usr/share/rofi/themes/sidebar.rasi"
+@import "/usr/share/rofi/themes/gruvbox-dark.rasi"
