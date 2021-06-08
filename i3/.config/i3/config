@@ -233,8 +233,8 @@ bindsym Control+$mod+Left move workspace to output left
 #exec_always picom
 #exec_always ~/.config/polybar/launch.sh --cuts &
 #exec kdeconnect-app
-exec syncthing
-exec keepassxc
+#exec syncthing
+#exec keepassxc
 #exec ~/.screenlayout/main.sh
 
 for_window [class=".*"] border pixel 1

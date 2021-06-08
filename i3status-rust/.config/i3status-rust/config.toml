@@ -1,6 +1,10 @@
-theme = "native"
-icons = "awesome"
+icons = "awesome5"
 scrolling = "reverse"
+
+[theme]
+name = "gruvbox-dark"
+[theme.overrides]
+good_bg = "#123456"
 
 [[block]]
 block = "disk_space"
@@ -78,6 +82,10 @@ on_click = "kitty -e rsmixer"
 [[block]]
 block = "backlight"
 device = "intel_backlight"
+
+[[block]]
+block = "custom"
+command = "decimal-clock.rs"
 
 [[block]]
 block = "time"
