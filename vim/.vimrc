@@ -25,6 +25,9 @@ Plug 'romgrk/barbar.nvim'
 Plug 'alec-gibson/nvim-tetris'
 Plug 'ThePrimeagen/vim-be-good'
 Plug 'tjdevries/train.nvim'
+Plug 'jceb/vim-orgmode'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 
 call plug#end()
 
@@ -45,6 +48,7 @@ let g:coc_global_extensions = [
 	\ 'coc-json',
 	\ 'coc-html',
 	\ 'coc-css',
+	\ 'coc-vimtex',
 	\ ]
 
 set laststatus=2
