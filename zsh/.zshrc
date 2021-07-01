@@ -1,40 +1,21 @@
-source /usr/local/share/zsh/site-functions/prompt_spaceship_setup
-SPACESHIP_CHAR_SYMBOL=⟩
-SPACESHIP_CHAR_SUFFIX=' '
-#SPACESHIP_TIME_SHOW=true
-SPACESHIP_VI_MODE_SHOW=false
-SPACESHIP_EXIT_CODE_SHOW=true
-
-source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.zsh
-source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/k/k.plugin.zsh
-source /usr/share/zsh/plugins/zsh-directory-history/zsh-directory-history.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/autojump/autojump.zsh
-
-. ~/.zsh_aliases
-
 setopt NO_HUP
-export LC_COLLATE=C
-
-powerline-daemon -q
 
 export TERM="screen-256color"
-export EDITOR=/usr/bin/vim
-export PATH=$PATH:~/source/scripts
-export PATH=$PATH:~/bin
-export PATH=$PATH:~/Sync/bin
-export PATH=$PATH:~/.dotnet/tools
-export PATH=$PATH:~/.cargo/bin
-export PATH=$PATH:~/.local/bin
 
+alias ls='exa -a'
+alias ll='ls -lF'
+alias l='ls'
+alias q="exit"
+alias sk="sk -e"
+alias rm="rip"
+alias vim="nvim"
+alias ec="emacsclient"
+alias crontab="crontab -i"
 
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+alias rdc='xdg-open $(cargo doc --open)'
+alias cr="cargo run"
+alias rd="xdg-open $(rustup doc --path)"
 
-autoload -Uz compinit
-compinit
-# Completion for kitty
-kitty + complete setup zsh | source /dev/stdin
+eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"
 
-export MPD_HOST="Zakzakzak0!@localhost"
