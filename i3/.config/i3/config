@@ -247,7 +247,4 @@ bindsym XF86AudioLowerVolume exec pulseaudio-ctl down 5
 bindsym XF86AudioMute exec pulseaudio-ctl mute
 bindsym XF86MonBrightnessUp exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
-
-exec pulseaudio
-exec emacs --daemon
-exec doas networkmgr
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
