@@ -18,7 +18,7 @@ set $sup Mod1
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:Fira Code 9.5 
+font pango:Jetbrians Mono 12 
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -199,7 +199,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         #status_command SCRIPT_DIR=~/source/extern/i3blocks-contrib i3blocks -c ~/.config/i3/i3blocks.conf
-	status_command i3status-rs
+	status_command i3status
 	position top
 }
 
@@ -248,3 +248,6 @@ bindsym XF86AudioMute exec pulseaudio-ctl mute
 bindsym XF86MonBrightnessUp exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
 
+exec pulseaudio
+exec emacs --daemon
+exec doas networkmgr
