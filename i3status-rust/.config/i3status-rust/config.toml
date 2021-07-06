@@ -1,4 +1,4 @@
-icons = "awesome5"
+icons = "awesome"
 scrolling = "reverse"
 
 [theme]
@@ -48,12 +48,12 @@ command_on = "tmux new-session -d picom"
 interval=10
 block = "nvidia_gpu"
 
-[[block]]
-block = "pacman"
-interval = 6000
-format = "{pacman}"
-format_up_to_date = ""
-critical_updates_regex = "(linux |linux-lts|linux-zen)"
+#[[block]]
+#block = "pacman"
+#interval = 6000
+#format = "{pacman}"
+#format_up_to_date = ""
+#critical_updates_regex = "(linux |linux-lts|linux-zen)"
 
 #[[block]]
 #block = "memory"
