@@ -8,7 +8,7 @@ set PATH "$PATH:$HOME/.dotnet/bin"
 set PATH "$PATH:$HOME/Sync/bin"
 set PATH "$PATH:$HOME/source/scripts"
 set PATH "$PATH:$HOME/.emacs.d/bin"
-set -gx EDITOR "/usr/bin/emacsclient"
+set -gx EDITOR "/usr/bin/emacsclient -c -n --alternate-editor=\"\""
 set -gx XDG_RUNTIME_DIR /run/user/1000
 set -gx RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/library 
 
@@ -32,8 +32,7 @@ alias sk "sk -e"
 alias rm rip
 alias l ls
 alias ls "exa -a"
-alias ec emacsclient
-alias ecn "ec -nc"
+alias e "/usr/bin/emacsclient --alternate-editor=\"\""
 alias crontab "crontab -i"
 alias paru "paru --sudoloop --skipreview --bottomup"
 
