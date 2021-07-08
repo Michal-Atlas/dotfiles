@@ -28,6 +28,7 @@ Plug 'tjdevries/train.nvim'
 Plug 'jceb/vim-orgmode'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+Plug 'georgewitteman/vim-fish'
 
 call plug#end()
 
