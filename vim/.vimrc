@@ -1,6 +1,6 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'morhetz/gruvbox'
+Plug 'sickill/vim-monokai'
 Plug 'bling/vim-airline'
 Plug 'jiangmiao/auto-pairs'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -11,24 +11,17 @@ Plug 'luochen1990/rainbow'
 Plug 'rust-lang/rust.vim'
 Plug 'preservim/tagbar'
 Plug 'lervag/vimtex'
-Plug 'mileszs/ack.vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'dense-analysis/ale'
-Plug 'neoclide/coc-rls'
 Plug 'ap/vim-css-color'
 Plug 'kien/ctrlp.vim'
-Plug 'rafamadriz/friendly-snippets'
-Plug 'hrsh7th/vim-vsnip'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'romgrk/barbar.nvim'
-Plug 'alec-gibson/nvim-tetris'
-Plug 'ThePrimeagen/vim-be-good'
-Plug 'tjdevries/train.nvim'
 Plug 'jceb/vim-orgmode'
-Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'georgewitteman/vim-fish'
+Plug 'easymotion/vim-easymotion'
+Plug 'universal-ctags/ctags'
+Plug 'vim-syntastic/syntastic'
 
 call plug#end()
 
@@ -43,7 +36,6 @@ let g:coc_global_extensions = [
 	\ 'coc-clangd',
 	\ 'coc-markdownlint',
 	\ 'coc-xml',
-	\ 'coc-tabnine',
 	\ 'coc-sh',
 	\ 'coc-yaml',
 	\ 'coc-json',
@@ -54,7 +46,7 @@ let g:coc_global_extensions = [
 
 set laststatus=2
 
-colorscheme gruvbox
+colorscheme monokai
 syntax on
 set mouse=a
 set number

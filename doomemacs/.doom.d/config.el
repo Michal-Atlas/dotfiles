@@ -57,3 +57,8 @@
  "C-q" 'avy-goto-word-0)
 (add-hook 'company-mode-hook 'company-box-mode)
 (add-hook 'prog-mode-hook 'auto-save-visited-mode)
+
+(add-to-list 'company-backends #'company-tabnine)
+(setq racer-rust-src-path '/usr/lib/rustlib/src)
+(add-hook 'company-mode-hook 'company-box-mode)
+(add-hook 'prog-mode-hook 'auto-save-visited-mode)
