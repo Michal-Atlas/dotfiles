@@ -8,7 +8,7 @@ set PATH "$PATH:$HOME/.dotnet/bin"
 set PATH "$PATH:$HOME/Sync/bin"
 set PATH "$PATH:$HOME/source/scripts"
 set PATH "$PATH:$HOME/.emacs.d/bin"
-set -gx EDITOR "/usr/bin/emacsclient -a=\"\""
+set -gx EDITOR "emacsclient -a=\"\""
 set -gx XDG_RUNTIME_DIR /run/user/1000
 set -gx RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/library 
 
@@ -32,18 +32,6 @@ alias sk "sk -e"
 alias rm rip
 alias l ls
 alias ls "exa -a"
-alias e "/usr/bin/emacsclient -a=\"\""
+alias e "$EDITOR -t"
 alias crontab "crontab -i"
-alias paru "paru --sudoloop --skipreview --bottomup"
-
-function vterm_printf;
-    if begin; [  -n "$TMUX" ]  ; and  string match -q -r "screen|tmux" "$TERM"; end
-        # tell tmux to pass the escape sequences through
-        printf "\ePtmux;\e\e]%s\007\e\\" "$argv"
-    else if string match -q -- "screen*" "$TERM"
-        # GNU screen (screen, screen-256color, screen-256color-bce)
-        printf "\eP\e]%s\007\e\\" "$argv"
-    else
-        printf "\e]%s\e\\" "$argv"
-    end
-end
+alias vim 'e'

@@ -2,4 +2,4 @@
 disabled = false
 
 [character]
-success_symbol = "[❯](#fe8019)"
+success_symbol = "[❯](green)"
