@@ -57,3 +57,4 @@
  "C-q" 'avy-goto-word-0)
 (add-hook 'company-mode-hook 'company-box-mode)
 (add-hook 'prog-mode-hook 'auto-save-visited-mode)
+(setq org-agenda-files "~/org/agenda.list")
