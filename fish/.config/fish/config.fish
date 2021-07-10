@@ -13,6 +13,7 @@ set -gx XDG_RUNTIME_DIR /run/user/1000
 set -gx RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/library 
 
 function fish_greeting
+         cat ~/dotfiles/logo.txt | dotacat
 end
 
 abbr -a cr 'cargo run'
