@@ -50,3 +50,4 @@
 ;(unpin! t)
 (package! company-box)
 (package! crux)
+(package! v-mode)
