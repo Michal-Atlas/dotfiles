@@ -51,3 +51,4 @@
 (package! company-box)
 (package! crux)
 (package! v-mode)
+(package! xkcd)
