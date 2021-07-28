@@ -37,3 +37,4 @@ alias ls "exa -a"
 alias e "$EDITOR -t"
 alias crontab "crontab -i"
 alias cs 'cargo script'
+alias paru "paru --sudoloop --skipreview --bottomup"
