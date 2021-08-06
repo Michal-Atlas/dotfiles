@@ -11,7 +11,9 @@ set PATH "$PATH:$HOME/.emacs.d/bin"
 set -gx PATH "$PATH:$HOME/progs"
 set -gx EDITOR "emacsclient -a=\"\""
 set -gx XDG_RUNTIME_DIR /run/user/1000
-set -gx RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/library 
+set -gx RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/library
+
+fish_vi_key_bindings
 
 function fish_greeting
          cat ~/dotfiles/logo.txt | dotacat
@@ -38,3 +40,8 @@ alias e "$EDITOR -t"
 alias crontab "crontab -i"
 alias cs 'cargo script'
 alias paru "paru --sudoloop --skipreview --bottomup"
+
+if [ -z "$SSH_AUTH_SOCK" ]
+   bass (ssh-agent -s) > /dev/null
+   ssh-add > /dev/null
+end
