@@ -9,7 +9,7 @@ set PATH "$PATH:$HOME/Sync/bin"
 set PATH "$PATH:$HOME/source/scripts"
 set PATH "$PATH:$HOME/.emacs.d/bin"
 set -gx PATH "$PATH:$HOME/progs"
-set -gx EDITOR "emacsclient -a=\"\""
+set -gx EDITOR "emacs"
 set -gx XDG_RUNTIME_DIR /run/user/1000
 set -gx RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/library
 
