@@ -52,3 +52,4 @@
 (package! crux)
 (package! v-mode)
 (package! xkcd)
+(package! org-fragtog)

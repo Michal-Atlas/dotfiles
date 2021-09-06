@@ -57,6 +57,7 @@
  "C-q" 'avy-goto-word-0)
 (add-hook 'company-mode-hook 'company-box-mode)
 (add-hook 'prog-mode-hook 'auto-save-visited-mode)
+(add-hook 'org-mode-hook 'org-fragtog-mode)
 (setq org-agenda-files "~/org/agenda.list")
 
 (setq doom-font (font-spec :family "JetBrains Mono" :size 12)
