@@ -13,8 +13,6 @@ set -gx EDITOR "emacs"
 set -gx XDG_RUNTIME_DIR /run/user/1000
 set -gx RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/library
 
-fish_vi_key_bindings
-
 function fish_greeting
          cat ~/dotfiles/logo.txt | dotacat
 end
