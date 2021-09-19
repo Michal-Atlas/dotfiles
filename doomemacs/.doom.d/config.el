@@ -54,7 +54,7 @@
 (map!
  "C-;" '+vterm/toggle)
 (map!
- "C-q" 'avy-goto-word-0)
+ "M-q" 'avy-goto-word-0)
 (add-hook 'company-mode-hook 'company-box-mode)
 (add-hook 'prog-mode-hook 'auto-save-visited-mode)
 (add-hook 'org-mode-hook 'org-fragtog-mode)
