@@ -60,6 +60,8 @@
 (add-hook 'org-mode-hook 'org-fragtog-mode)
 (setq org-agenda-files "~/org/agenda.list")
 (setq projectile-project-search-path (list "~/Documents" "~/source" "~/org"))
+(setq calendar-week-start-day 1)
+(setq org-agenda-start-on-weekday 1)
 
 (setq doom-font (font-spec :family "JetBrains Mono" :size 14)
       doom-big-font (font-spec :family "JetBrains Mono" :size 16)
