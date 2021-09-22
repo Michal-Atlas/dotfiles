@@ -53,3 +53,4 @@
 (package! v-mode)
 (package! xkcd)
 (package! org-fragtog)
+(package! anzu)

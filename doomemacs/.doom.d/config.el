@@ -67,3 +67,8 @@
       doom-big-font (font-spec :family "JetBrains Mono" :size 16)
       doom-variable-pitch-font (font-spec :family "Overpass" :size 14)
       doom-serif-font (font-spec :family "IBM Plex Mono" :weight 'light))
+
+;; ANZU - Replace Highlighting
+(global-anzu-mode +1)
+(global-set-key (kbd "M-%") 'anzu-query-replace)
+(global-set-key (kbd "C-M-%") 'anzu-query-replace-regexp)
