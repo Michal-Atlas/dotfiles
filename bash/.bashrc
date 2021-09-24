@@ -87,10 +87,49 @@ if ! shopt -oq posix; then
 fi
 
 export LC_ALL=C
+
 export PATH=$PATH:/usr/sbin
 
+export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="$PATH:$HOME/.npm-global/bin"
+export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/.dotnet/bin"
+export PATH="$PATH:$HOME/Sync/bin"
+export PATH="$PATH:$HOME/source/scripts"
+export PATH="$PATH:$HOME/.emacs.d/bin"
+export PATH="$PATH:$HOME/progs"
+export EDITOR=emacs
+export XDG_RUNTIME_DIR=/run/user/1000
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/library"
+
+cat ~/dotfiles/logo.txt | dotacat
+
+alias cr='cargo run'
+alias crd='cargo doc --open'
+alias rd='xdg-open (rustup doc --path)'
+
+alias IDDQD='sudo su'
+alias IDDT='neofetch'
+alias IDMUS='mpv --no-video "https://www.youtube.com/watch?v=Jly9qp40rfw"'
+
+eval "$(starship init bash)"
+eval "$(zoxide init --cmd j bash)"
+
 alias q=exit
-alias doom="dosbox ~/Games/dos/doom/DOOM.EXE"
+alias vim=nvim
+alias sk="sk -e"
+alias rm=rip
+alias l=ls
+alias ls="exa -a"
+alias e="$EDITOR -nw"
+alias crontab="crontab -i"
+alias cs='cargo script'
+alias paru="paru --sudoloop --skipreview --bottomup"
+
+
+alias q=exit
+
 
 [[ $- == *i* ]] && source /usr/share/blesh/ble.sh --noattach
 [[ ${BLE_VERSION-} ]] && ble-attach
