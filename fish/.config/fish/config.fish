@@ -40,8 +40,3 @@ alias e "$EDITOR -nw"
 alias crontab "crontab -i"
 alias cs 'cargo script'
 alias paru "paru --sudoloop --skipreview --bottomup"
-
-if [ -z "$SSH_AUTH_SOCK" ]
-    bass (ssh-agent -s) >/dev/null
-    ssh-add >/dev/null
-end
