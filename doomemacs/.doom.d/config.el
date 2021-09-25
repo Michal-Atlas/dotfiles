@@ -25,7 +25,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-1337)
+(setq doom-theme 'doom-monokai-classic)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -55,6 +55,8 @@
  "C-;" '+vterm/toggle)
 (map!
  "M-q" 'avy-goto-word-0)
+(map!
+  "C-c o t" 'cfw:open-org-calendar)
 (add-hook 'company-mode-hook 'company-box-mode)
 (add-hook 'prog-mode-hook 'auto-save-visited-mode)
 (add-hook 'org-mode-hook 'org-fragtog-mode)

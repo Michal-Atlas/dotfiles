@@ -54,3 +54,4 @@
 (package! xkcd)
 (package! org-fragtog)
 (package! anzu)
+(package! htmlize)
