@@ -74,3 +74,4 @@
 (global-anzu-mode +1)
 (global-set-key (kbd "M-%") 'anzu-query-replace)
 (global-set-key (kbd "C-M-%") 'anzu-query-replace-regexp)
+(setq find-function-C-source-directory "~/source/emacs")
