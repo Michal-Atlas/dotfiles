@@ -33,6 +33,17 @@ if [ -z $SSH_TTY ]; then
     antigen bundle hlissner/zsh-autopair
     antigen bundle command-not-found
     antigen bundle common-aliases
+    antigen bundle history-substring-search
+    antigen bundle per-directory-history
+    antigen bundle rust
+    antigen bundle cargo
+    antigen bundle git-auto-fetch
+    antigen bundle rsync
+    antigen bundle shrink-path
+    antigen bundle ssh-agent
+    antigen bundle systemd
+    antigen bundle tmux
+    antigen bundle zsh-interactive-cd
 
     antigen apply
 
