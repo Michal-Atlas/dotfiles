@@ -13,6 +13,31 @@ export EDITOR="emacs -q"
 export XDG_RUNTIME_DIR=/run/user/1000
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/library"
 
+if [ -z $SSH_TTY ]; then
+    cat ~/dotfiles/logo.txt | dotacat
+    . /usr/share/zsh/share/antigen.zsh
+
+    antigen use oh-my-zsh
+
+    antigen bundle zsh-users/zsh-syntax-highlighting
+    antigen bundle git
+    antigen bundle zsh-users/zsh-autosuggestions
+    antigen bundle web-search
+    antigen bundle dirhistory
+    antigen bundle zsh_reload
+    antigen bundle history
+    antigen bundle emacs
+    antigen bundle forgit
+    antigen bundle 'wfxr/forgit'
+    antigen bundle "MichaelAquilina/zsh-you-should-use"
+    antigen bundle hlissner/zsh-autopair
+    antigen bundle command-not-found
+    antigen bundle common-aliases
+
+    antigen apply
+
+    eval "$(starship init zsh)"
+fi;
 
 alias cr='cargo run'
 alias crd='cargo doc --open'
@@ -30,15 +55,8 @@ alias rm=rip
 alias l=ls
 alias ll='ls -l'
 alias ls="exa -a"
-alias e="emacsclient -nw -c -a=\"\""
+#alias e="emacsclient -nw -c -a=\"\""
 alias crontab="crontab -i"
 alias paru="paru --sudoloop --skipreview --bottomup"
 
 alias q=exit
-
-if [ -z $SSH_TTY ]; then
-    cat ~/dotfiles/logo.txt | dotacat
-    . /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-    . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    eval "$(starship init zsh)"
-fi;
