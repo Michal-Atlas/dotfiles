@@ -4,7 +4,6 @@ export PATH="$PATH:$HOME/source/bin"
 export PATH="$PATH:$HOME/.emacs.d/bin"
 export PATH="$PATH:$HOME/.npm-global/bin"
 export EDITOR="emacs"
-export XDG_RUNTIME_DIR=/run/user/1000
 
 if type rustc >/dev/null; then
     RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/library"
