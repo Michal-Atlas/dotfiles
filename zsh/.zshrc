@@ -3,7 +3,6 @@ export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/source/bin"
 export PATH="$PATH:$HOME/.emacs.d/bin"
 export PATH="$PATH:$HOME/.npm-global/bin"
-export EDITOR="emacs"
 
 if type rustc >/dev/null; then
     RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/library"
