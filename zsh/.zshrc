@@ -12,38 +12,59 @@ if type rustc >/dev/null; then
     alias rd='xdg-open (rustup doc --path)'
 fi
 
-type zoxide >/dev/null && eval "$(zoxide init --cmd j zsh)"
-
 if [ -z "$SSH_TTY" ]; then
     # shellcheck disable=SC1094
     . /usr/share/zsh/share/antigen.zsh && {
         antigen use oh-my-zsh
 
-        antigen bundle zsh-users/zsh-syntax-highlighting
-        antigen bundle git
-        antigen bundle zsh-users/zsh-autosuggestions
-        antigen bundle web-search
-        antigen bundle dirhistory
-        antigen bundle zsh_reload
-        antigen bundle history
-        antigen bundle emacs
-        antigen bundle forgit
-        antigen bundle "MichaelAquilina/zsh-you-should-use"
-        antigen bundle hlissner/zsh-autopair
-        antigen bundle command-not-found
-        antigen bundle common-aliases
-        antigen bundle history-substring-search
-        antigen bundle per-directory-history
-        antigen bundle rust
-        antigen bundle cargo
-        antigen bundle git-auto-fetch
-        antigen bundle rsync
-        antigen bundle shrink-path
-        antigen bundle ssh-agent
-        antigen bundle systemd
-        antigen bundle tmux
-        antigen bundle zsh-interactive-cd
-        antigen bundle fzf
+        plugins=(
+            "MichaelAquilina/zsh-you-should-use"
+            "RitchieS/zsh-exa"
+            aliases
+            archlinux
+            cargo
+            colored-man-pages
+            command-not-found
+            common-aliases
+            dirhistory
+            emacs
+            emoji
+            fasd
+            forgit
+            fzf
+            git
+            git-auto-fetch
+            gpg-agent
+            history
+            history-substring-search
+            hitchhiker
+            hlissner/zsh-autopair
+            jsontools
+            keychain
+            nmap
+            per-directory-history
+            ripgrep
+            rsync
+            rust
+            rustup
+            safe-paste
+            shrink-path
+            ssh-agent
+            systemd
+            thefuck
+            tmux
+            transfer
+            web-search
+            zoxide
+            zsh-interactive-cd
+            zsh-users/zsh-autosuggestions
+            zsh_reload
+            zsh-users/zsh-syntax-highlighting
+        )
+
+        for p in $plugins; do
+            antigen bundle $p;
+        done;
 
         antigen theme romkatv/powerlevel10k
 
@@ -56,12 +77,7 @@ alias IDDQD='sudo su'
 alias IDDT='neofetch'
 alias IDMUS='mpv --no-video "https://www.youtube.com/watch?v=Jly9qp40rfw"'
 
-alias q=exit
-alias sk="sk -e"
 alias rm=rip
-alias l=ls
-alias ll='ls -l'
-type exa >/dev/null && alias ls="exa -a"
 alias crontab="crontab -i"
 alias paru="paru --sudoloop --skipreview --bottomup"
 
