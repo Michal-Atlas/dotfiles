@@ -6,18 +6,18 @@ export PATH="$PATH:$HOME/.npm-global/bin"
 
 if type rustc >/dev/null; then
     RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/library"
-	export RUST_SRC_PATH
-	alias cr='cargo run'
-	alias crd='cargo doc --open'
-	alias rd='xdg-open (rustup doc --path)'
-fi;
+    export RUST_SRC_PATH
+    alias cr='cargo run'
+    alias crd='cargo doc --open'
+    alias rd='xdg-open (rustup doc --path)'
+fi
 
 type zoxide >/dev/null && eval "$(zoxide init --cmd j zsh)"
 
 if [ -z "$SSH_TTY" ]; then
-	# shellcheck disable=SC1094
-	. /usr/share/zsh/share/antigen.zsh && {
-	    antigen use oh-my-zsh
+    # shellcheck disable=SC1094
+    . /usr/share/zsh/share/antigen.zsh && {
+        antigen use oh-my-zsh
 
         antigen bundle zsh-users/zsh-syntax-highlighting
         antigen bundle git
@@ -48,10 +48,9 @@ if [ -z "$SSH_TTY" ]; then
         antigen theme romkatv/powerlevel10k
 
         antigen apply
-    };
+    }
 
-fi;
-
+fi
 
 alias IDDQD='sudo su'
 alias IDDT='neofetch'
