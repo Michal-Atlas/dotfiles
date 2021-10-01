@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 #!/usr/bin/env bash
 
 export PATH="$PATH:$HOME/.cargo/bin"
@@ -19,8 +26,6 @@ fi;
 type zoxide >/dev/null && eval "$(zoxide init --cmd j zsh)"
 
 if [ -z "$SSH_TTY" ]; then
-	type dotacat >/dev/null && dotacat < ~/dotfiles/logo.txt
-
 	# shellcheck disable=SC1094
 	. /usr/share/zsh/share/antigen.zsh && {
 	    antigen use oh-my-zsh
@@ -49,11 +54,15 @@ if [ -z "$SSH_TTY" ]; then
         antigen bundle systemd
         antigen bundle tmux
         antigen bundle zsh-interactive-cd
+        antigen bundle fzf
+
+        antigen theme romkatv/powerlevel10k
 
         antigen apply
+
+        export EDITOR="e"
     };
 
-    type starship >/dev/null && eval "$(starship init zsh)"
 fi;
 
 
@@ -67,8 +76,11 @@ alias rm=rip
 alias l=ls
 alias ll='ls -l'
 type exa >/dev/null && alias ls="exa -a"
-#alias e="emacsclient -nw -c -a=\"\""
 alias crontab="crontab -i"
 alias paru="paru --sudoloop --skipreview --bottomup"
 
 alias q=exit
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# shellcheck disable=1090
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
