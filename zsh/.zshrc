@@ -49,8 +49,6 @@ if [ -z "$SSH_TTY" ]; then
         antigen theme romkatv/powerlevel10k
 
         antigen apply
-
-        export EDITOR="e"
     };
 
 fi;
