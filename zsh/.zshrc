@@ -19,7 +19,7 @@ if [ -z "$SSH_TTY" ]; then
 
         plugins=(
             "MichaelAquilina/zsh-you-should-use"
-            "RitchieS/zsh-exa"
+            "RitchieS/zsh-exa@main"
             aliases
             archlinux
             cargo
