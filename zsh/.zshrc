@@ -1,14 +1,10 @@
 #!/usr/bin/env bash
 
 export PATH="$PATH:$HOME/.cargo/bin"
-export PATH="$PATH:$HOME/.npm-global/bin"
-export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:$HOME/.local/bin"
-export PATH="$PATH:$HOME/.dotnet/bin"
-export PATH="$PATH:$HOME/Sync/bin"
-export PATH="$PATH:$HOME/source/scripts"
+export PATH="$PATH:$HOME/source/bin"
 export PATH="$PATH:$HOME/.emacs.d/bin"
-export PATH="$PATH:$HOME/progs"
+export PATH="$PATH:$HOME/.npm-global/bin"
 export EDITOR="emacs -q"
 export XDG_RUNTIME_DIR=/run/user/1000
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/library"
