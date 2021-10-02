@@ -29,6 +29,7 @@ if [ -z "$SSH_TTY" ]; then
             dirhistory
             emacs
             emoji
+            extract
             fasd
             forgit
             fzf
