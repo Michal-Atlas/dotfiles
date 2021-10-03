@@ -41,6 +41,7 @@ fi
         hlissner/zsh-autopair
         jsontools
         keychain
+        mosh
         nmap
         per-directory-history
         ripgrep
@@ -78,6 +79,7 @@ alias IDMUS='mpv --no-video "https://www.youtube.com/watch?v=Jly9qp40rfw"'
 alias rm=rip
 alias crontab="crontab -i"
 alias paru="paru --sudoloop --skipreview --bottomup"
+alias ssh="mosh"
 
 alias q=exit
 
