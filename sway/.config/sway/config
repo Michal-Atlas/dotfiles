@@ -35,7 +35,7 @@ output DP-1 resolution 1920x1080 position 1920,0
 exec swayidle -w \
          timeout 300 'swaylock -f -c 000000' \
          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-          before-sleep 'swaylock -f -c 000000'
+         before-sleep 'swaylock -f -c 000000'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -211,10 +211,10 @@ bar {
     }
 }
 
-font pango:Fira Code 9.5
+font pango:Fira Code 10
 gaps inner 3
 gaps outer 3
-default_border pixel 3
+default_border pixel 1
 
 input * {
 	xkb_layout	"us, cz"
