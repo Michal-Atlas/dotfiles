@@ -17,6 +17,7 @@ fi
     antigen use oh-my-zsh
 
     plugins=(
+        common-aliases
         "MichaelAquilina/zsh-you-should-use"
         "RitchieS/zsh-exa@main"
         aliases
@@ -24,7 +25,6 @@ fi
         cargo
         colored-man-pages
         command-not-found
-        common-aliases
         dirhistory
         emacs
         emoji
