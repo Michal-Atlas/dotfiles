@@ -65,10 +65,7 @@
 (setq calendar-week-start-day 1)
 (setq org-agenda-start-on-weekday 1)
 
-(setq doom-font (font-spec :family "JetBrains Mono" :size 14)
-      doom-big-font (font-spec :family "JetBrains Mono" :size 16)
-      doom-variable-pitch-font (font-spec :family "Overpass" :size 14)
-      doom-serif-font (font-spec :family "IBM Plex Mono" :weight 'light))
+(setq doom-font (font-spec :family "Fira Code" :size 15))
 
 ;; ANZU - Replace Highlighting
 (global-anzu-mode +1)
