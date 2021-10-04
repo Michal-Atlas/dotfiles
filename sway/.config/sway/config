@@ -237,3 +237,5 @@ input 1739:32382:DELL0740:00_06CB:7E7E_Touchpad {
 }
 
 include /etc/sway/config.d/*
+
+exec_always /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
