@@ -202,19 +202,19 @@ bindsym $mod+r mode "resize"
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
-#bar {
-#    position top
+bar {
+    position top
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-	#status_command while i3status; do sleep 1; done
+    status_command while i3status; do sleep 1; done
 
-    #colors {
-    #    statusline #ffffff
-    #    background #323232
-    #    inactive_workspace #32323200 #32323200 #5c5c5c
-    #}
-#}
+    colors {
+        statusline #ffffff
+        background #323232
+        inactive_workspace #32323200 #32323200 #5c5c5c
+    }
+}
 
 font pango:Fira Code 10
 gaps inner 3
@@ -238,4 +238,3 @@ input 1739:32382:DELL0740:00_06CB:7E7E_Touchpad {
 include /etc/sway/config.d/*
 
 exec_always /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec nwg-panel
