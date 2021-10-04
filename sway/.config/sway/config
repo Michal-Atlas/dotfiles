@@ -230,7 +230,7 @@ input * {
 	xkb_options	"grp:caps_switch"
 }
 input * xkb_numlock enable
-input * xkb_options compose:Control_R
+
 input 1739:32382:DELL0740:00_06CB:7E7E_Touchpad {
       dwt enabled
       tap enabled
