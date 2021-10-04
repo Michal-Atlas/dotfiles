@@ -13,7 +13,7 @@ set $term alacritty -e tmux
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 #set $menu dmenu_path | dmenu | xargs swaymsg exec --
-set $menu dmenu_path | dmenu | xargs swaymsg exec --
+set $menu dmenu_path | wofi -c ~/.config/wofi/config -s ~/.config/wofi/style.css | xargs swaymsg exec --
 
 ### Output configuration
 #
@@ -207,13 +207,14 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while i3status; do sleep 1; done
+    swaybar_command waybar
+	#status_command while i3status; do sleep 1; done
 
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
+    #colors {
+    #    statusline #ffffff
+    #    background #323232
+    #    inactive_workspace #32323200 #32323200 #5c5c5c
+    #}
 }
 
 font pango:Fira Code 10
@@ -227,6 +228,7 @@ input * {
 	xkb_options	"grp:caps_switch"
 }
 input * xkb_numlock enable
+input * xkb_options compose:Control_R
 input 1739:32382:DELL0740:00_06CB:7E7E_Touchpad {
       dwt enabled
       tap enabled
@@ -235,4 +237,3 @@ input 1739:32382:DELL0740:00_06CB:7E7E_Touchpad {
 }
 
 include /etc/sway/config.d/*
-
