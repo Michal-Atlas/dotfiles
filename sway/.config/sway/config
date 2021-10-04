@@ -71,6 +71,7 @@ exec swayidle -w \
     bindsym $mod+i exec firefox
     bindsym $mod+o exec nautilus
     bindsym $mod+p exec discord
+    bindsym $mod+t exec /home/michal-atlas/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/emacs/emacsclient.sh
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
