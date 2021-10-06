@@ -247,9 +247,6 @@
         <to>4</to>
       </action>
     </keybind>
-    <keybind key="W-d">
-      <action name="ToggleShowDesktop"/>
-    </keybind>
     <!-- Keybindings for windows -->
     <keybind key="A-F4">
       <action name="Close"/>
@@ -328,15 +325,15 @@
     <!-- Keybinds for snaps -->
     <keybind key="W-Left">        # HalfLeftScreen
         <action name="UnmaximizeFull"/>
-	    <action name="MoveResizeTo"><x>0</x><y>0</y><height>97%</height><width>50%</width></action>
+	    <action name="MoveResizeTo"><x>0</x><y>0</y><height>100%</height><width>50%</width></action>
     </keybind>
     <keybind key="W-Right">       # HalfRightScreen
         <action name="UnmaximizeFull"/>
-	    <action name="MoveResizeTo"><x>-0</x><y>0</y><height>97%</height><width>50%</width></action>
+	    <action name="MoveResizeTo"><x>-0</x><y>0</y><height>100%</height><width>50%</width></action>
     </keybind>
     <keybind key="W-Up">          # HalfUpperScreen
         <action name="UnmaximizeFull"/>
-	    <action name="MoveResizeTo"><x>0</x><y>0</y><width>100%</width><height>50%</height></action>
+	    <action name="MoveResizeTo"><x>0</x><y>0</y><width>100%</width><height>100%</height></action>
     </keybind>
     <keybind key="W-Down">        # HalfLowerScreen
         <action name="UnmaximizeFull"/>
