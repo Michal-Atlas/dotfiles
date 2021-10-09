@@ -13,7 +13,7 @@ if type rustc >/dev/null; then
 fi
 
 # shellcheck disable=SC1094
-. /usr/share/zsh/share/antigen.zsh && {
+. /usr/local/share/zsh-antigen/antigen.zsh && {
     antigen use oh-my-zsh
 
     plugins=(
@@ -59,7 +59,6 @@ fi
         zoxide
         zsh-interactive-cd
         zsh-users/zsh-autosuggestions
-        zsh_reload
         zsh-users/zsh-syntax-highlighting
     )
 
@@ -79,7 +78,6 @@ alias IDMUS='mpv --no-video "https://www.youtube.com/watch?v=Jly9qp40rfw"'
 alias rm=rip
 alias crontab="crontab -i"
 alias paru="paru --sudoloop --skipreview --bottomup"
-alias ssh="mosh"
 
 alias q=exit
 
