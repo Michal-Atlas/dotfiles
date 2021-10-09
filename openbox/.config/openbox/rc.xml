@@ -3,11 +3,7 @@
         Copy the file to $HOME/.config/openbox/ instead. -->
 <openbox_config xmlns="http://openbox.org/3.4/rc" xmlns:xi="http://www.w3.org/2001/XInclude">
   <resistance>
-<<<<<<< HEAD
-    <strength>10</strength>
-=======
     <strength>20</strength>
->>>>>>> origin/freebsd
     <screen_edge_strength>20</screen_edge_strength>
   </resistance>
   <focus>
@@ -19,11 +15,7 @@
     <focusLast>yes</focusLast>
     <!-- focus the last used window when changing desktops, instead of the one
        under the mouse pointer. when followMouse is enabled -->
-<<<<<<< HEAD
-    <underMouse>no</underMouse>
-=======
     <underMouse>yes</underMouse>
->>>>>>> origin/freebsd
     <!-- move focus under the mouse, even when the mouse is not moving -->
     <focusDelay>0</focusDelay>
     <!-- when followMouse is enabled, the mouse must be inside the window for
@@ -51,11 +43,7 @@
   </placement>
   <theme>
     <name>Artwiz-boxed</name>
-<<<<<<< HEAD
-    <titleLayout>NLIMC</titleLayout>
-=======
     <titleLayout>NLDIMC</titleLayout>
->>>>>>> origin/freebsd
     <!--
       available characters are NDSLIMC, each can occur at most once.
       N: window icon
