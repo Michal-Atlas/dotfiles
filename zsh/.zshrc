@@ -17,14 +17,14 @@ fi
     antigen use oh-my-zsh
 
     plugins=(
-        common-aliases
         "MichaelAquilina/zsh-you-should-use"
-        "RitchieS/zsh-exa@main"
         aliases
         archlinux
         cargo
         colored-man-pages
         command-not-found
+        common-aliases
+        desyncr/auto-ls
         dirhistory
         emacs
         emoji
@@ -57,6 +57,7 @@ fi
         transfer
         web-search
         zoxide
+        zpm-zsh/ls
         zsh-interactive-cd
         zsh-users/zsh-autosuggestions
         zsh-users/zsh-syntax-highlighting
@@ -78,6 +79,7 @@ alias IDMUS='mpv --no-video "https://www.youtube.com/watch?v=Jly9qp40rfw"'
 alias rm=rip
 alias crontab="crontab -i"
 alias paru="paru --sudoloop --skipreview --bottomup"
+alias cat=bat
 
 alias q=exit
 
