@@ -20,7 +20,6 @@ fi
         marlonrichert/zsh-autocomplete@main
         MichaelAquilina/zsh-you-should-use
         RitchieS/zsh-exa@main
-        Valiev/almostontop
         aliases
         colored-man-pages
         common-aliases
@@ -39,6 +38,7 @@ fi
         ssh-agent
         unixorn/autoupdate-antigen.zshplugin
         web-search
+        wfxr/forgit
         zoxide
         zpm-zsh/colorize
         zsh-users/zsh-syntax-highlighting
