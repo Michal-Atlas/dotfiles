@@ -17,9 +17,11 @@ fi
     antigen use oh-my-zsh
 
     plugins=(
-        "MichaelAquilina/zsh-you-should-use"
+        # mafredri/zsh-async
+        MichaelAquilina/zsh-you-should-use
+        Valiev/almostontop
+        Vifon/deer
         aliases
-        archlinux
         cargo
         colored-man-pages
         command-not-found
@@ -41,6 +43,7 @@ fi
         hlissner/zsh-autopair
         jsontools
         keychain
+        marlonrichert/zsh-autocomplete
         mosh
         nmap
         per-directory-history
@@ -55,8 +58,10 @@ fi
         thefuck
         tmux
         transfer
+        unixorn/autoupdate-antigen.zshplugin
         web-search
         zoxide
+        zpm-zsh/colorize
         zpm-zsh/ls
         zsh-interactive-cd
         zsh-users/zsh-autosuggestions
