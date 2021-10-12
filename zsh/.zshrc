@@ -17,54 +17,30 @@ fi
     antigen use oh-my-zsh
 
     plugins=(
-        # mafredri/zsh-async
+        marlonrichert/zsh-autocomplete@main
         MichaelAquilina/zsh-you-should-use
+        RitchieS/zsh-exa@main
         Valiev/almostontop
-        Vifon/deer
         aliases
-        cargo
         colored-man-pages
-        command-not-found
         common-aliases
-        desyncr/auto-ls
         dirhistory
         emacs
-        emoji
         extract
-        fasd
-        forgit
-        fzf
         git
         git-auto-fetch
-        gpg-agent
         history
-        history-substring-search
-        hitchhiker
         hlissner/zsh-autopair
-        jsontools
-        keychain
-        marlonrichert/zsh-autocomplete
-        mosh
-        nmap
         per-directory-history
-        ripgrep
         rsync
         rust
         rustup
-        safe-paste
         shrink-path
         ssh-agent
-        systemd
-        thefuck
-        tmux
-        transfer
         unixorn/autoupdate-antigen.zshplugin
         web-search
         zoxide
         zpm-zsh/colorize
-        zpm-zsh/ls
-        zsh-interactive-cd
-        zsh-users/zsh-autosuggestions
         zsh-users/zsh-syntax-highlighting
     )
 
