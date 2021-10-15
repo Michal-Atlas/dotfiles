@@ -1,4 +1,5 @@
 export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="$PATH:$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/source/bin"
 export PATH="$PATH:$HOME/.emacs.d/bin"
@@ -13,17 +14,15 @@ if type rustc >/dev/null; then
 fi
 
 # shellcheck disable=SC1094
-. /usr/local/share/zsh-antigen/antigen.zsh && {
+. ~/dotfiles/antigen.zsh && {
     antigen use oh-my-zsh
 
     plugins=(
-        marlonrichert/zsh-autocomplete@main
         MichaelAquilina/zsh-you-should-use
         RitchieS/zsh-exa@main
         aliases
         colored-man-pages
         common-aliases
-        dirhistory
         emacs
         extract
         git
