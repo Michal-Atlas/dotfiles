@@ -29,7 +29,7 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
+(setq org-directory "~/Documents/")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -60,7 +60,7 @@
 (add-hook 'company-mode-hook 'company-box-mode)
 (add-hook 'prog-mode-hook 'auto-save-visited-mode)
 (add-hook 'org-mode-hook 'org-fragtog-mode)
-(setq org-agenda-files "~/org/agenda.list")
+(setq org-agenda-files "~/Documents/agenda.list")
 (setq projectile-project-search-path (list "~/Documents" "~/source" "~/org"))
 (setq calendar-week-start-day 1)
 (setq org-agenda-start-on-weekday 1)
