@@ -60,7 +60,9 @@ alias rm=rip
 alias crontab="crontab -i"
 alias paru="paru --sudoloop --skipreview --bottomup"
 alias cat=bat
-alias pkg="sudo zypper"
+alias pkg="zypper"
+alias pkg-s="pkg search"
+alias pkg-i="sudo zypper install"
 
 alias q=exit
 
