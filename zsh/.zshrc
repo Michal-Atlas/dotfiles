@@ -64,6 +64,7 @@ alias cat=bat
 alias pkg="zypper"
 alias pkg-s="pkg search"
 alias pkg-i="sudo zypper install"
+alias emacs='emacs -nw'
 
 alias q=exit
 
