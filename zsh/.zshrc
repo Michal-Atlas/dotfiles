@@ -67,7 +67,7 @@ alias emacs='emacs -nw'
 
 alias q=exit
 
-alias emacs="DISPLAY= emacs"
+alias e="te"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # shellcheck disable=1090
