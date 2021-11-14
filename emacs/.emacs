@@ -1,3 +1,22 @@
+(setq user-full-name "Michal Atlas"
+  user-mail-address "michal.z.atlas@gmail.com")
+
+(setq org-directory "~/Documents/")
+(global-set-key (kbd "M-q") 'avy-goto-word-0)
+(add-hook 'company-mode-hook 'company-box-mode)
+(add-hook 'org-mode-hook 'org-fragtog-mode)
+(setq projectile-project-search-path (list "~/Documents" "~/source"))
+(setq org-agenda-files "~/Documents/agenda.list")
+(setq calendar-week-start-day 1)
+(setq org-agenda-start-on-weekday 1)
+;; ANZU - Replace Highlighting
+(global-anzu-mode +1)
+(global-set-key (kbd "M-%") 'anzu-query-replace)
+(global-set-key (kbd "C-M-%") 'anzu-query-replace-regexp)
+(setq find-function-C-source-directory "~/source/emacs")
+
+
+
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
@@ -175,9 +194,27 @@
 (use-package marginalia)
 (use-package ranger)
 (use-package all-the-icons-dired)
+(use-package crux)
+(use-package xkcd)
+(use-package org-fragtog)
+(use-package anzu)
 
 (global-display-line-numbers-mode)
 (global-hl-line-mode 1)
 
 (provide '.emacs)
 ;;; .emacs ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(delete-selection-mode nil)
+ '(package-selected-packages
+   '(all-the-icons-dired ranger marginalia consult kurecolor pdf-tools magit-todos magit quickrun which-key vterm vimish-fold vertico use-package undo-tree solaire-mode org-msg orderless mu4e-alert lsp-ui ibuffer-vc ibuffer-projectile git-timemachine format-all flycheck elfeed-org doom-themes doom-modeline diredfl dired-rsync diff-hl dap-mode company calfw-org calfw adaptive-wrap)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
