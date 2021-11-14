@@ -7,6 +7,7 @@
 (setq calendar-week-start-day 1)
 (setq org-agenda-start-on-weekday 1)
 (setq find-function-C-source-directory "~/source/emacs")
+(setq rmh-elfeed-org-files (list "~/.elfeed.org"))
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
@@ -196,7 +197,7 @@
   (global-anzu-mode +1)
   :bind
   (("M-%" . anzu-query-replace)
-  ("C-M-%") . anzu-query-replace-regexp))
+  ("C-M-%" . anzu-query-replace-regexp)))
 (use-package company-box
   :hook (company-mode . company-box-mode))
 
