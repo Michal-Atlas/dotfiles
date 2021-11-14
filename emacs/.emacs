@@ -185,6 +185,9 @@
 (use-package all-the-icons-dired)
 (use-package crux)
 (use-package xkcd)
+(use-package git-gutter
+  :config
+  (global-git-gutter-mode +1))
 (use-package org-fragtog
   :config
   (add-hook 'org-mode-hook 'org-fragtog-mode))
@@ -200,6 +203,12 @@
   ("C-M-%" . anzu-query-replace-regexp)))
 (use-package company-box
   :hook (company-mode . company-box-mode))
+
+(use-package org-present)
+(use-package ob-async)
+(use-package org-cliplink)
+(use-package org-superstar
+  :hook (org-mode-hook . (lambda () (org-superstar-mode 1))))
 
 (global-display-line-numbers-mode)
 (global-hl-line-mode 1)
