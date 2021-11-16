@@ -210,7 +210,10 @@
 (use-package ibuffer-vc)
 (use-package undo-tree)
 (use-package git-timemachine)
-(use-package mu4e-alert)
+(use-package mu4e-alert
+  :hook
+  ((after-init-hook . mu4e-alert-enable-notifications)
+   (after-init-hook . mu4e-alert-enable-modeline-display)))
 (use-package org-msg)
 (use-package vterm)
 (use-package quickrun)
@@ -219,15 +222,15 @@
 (use-package pdf-tools)
 (use-package kurecolor)
 (use-package ranger)
-(use-package all-the-icons-dired)
+(use-package all-the-icons-dired
+  :hook (dired-mode-hook . all-the-icons-dired-mode))
 (use-package crux)
 (use-package xkcd)
 (use-package git-gutter
   :config
   (global-git-gutter-mode +1))
 (use-package org-fragtog
-  :config
-  (add-hook 'org-mode-hook 'org-fragtog-mode))
+  :hook (org-mode-hook . org-fragtog-mode))
 (use-package avy
   :bind
   ("M-q" . avy-goto-word-0))
@@ -245,10 +248,10 @@
 (use-package ob-async)
 (use-package org-cliplink)
 (use-package org-superstar
-  :hook (org-mode-hook . (lambda () (org-superstar-mode 1))))
+  :hook (org-mode-hook . org-superstar-mode))
 
 (global-display-line-numbers-mode)
 (global-hl-line-mode 1)
 
+(setq default-frame-alist '((set-frame-font "Fira Code 13" nil t))
 (provide '.emacs)
-;;; .emacs ends here
