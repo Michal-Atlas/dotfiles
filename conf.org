@@ -599,19 +599,9 @@ Host Fray2
        :ensure t)
    #+END_SRC
 
-** Ement
-#+BEGIN_SRC emacs-lisp
-  ;; Install `plz' HTTP library (not on MELPA yet).
-  (use-package plz
-    :quelpa (plz :fetcher github :repo "alphapapa/plz.el"))
-
-  ;; Install Ement.
-  (use-package ement
-    :quelpa (ement :fetcher github :repo "alphapapa/ement.el"))
-#+END_SRC
 ** Personal
 *** Hackles
     #+BEGIN_SRC emacs-lisp
       (use-package hackles
-	:quelpa (hackles :fetcher github :repo "Michal-Atlas/emacs-hackles")
+	:quelpa (hackles :fetcher github :repo "Michal-Atlas/emacs-hackles"))
     #+END_SRC
