@@ -2,7 +2,8 @@
 #+TITLE: CONF.ORG
 #+AUTHOR: Michal Atlas
 
-#+PROPERTY: HEADER-ARGS :comments both :tangle-mode (identity #o444)
+#+PROPERTY: HEADER-ARGS :comments both :tangle-mode (identity #o444) :mkdirp yes
+#+STARTUP: overview
 
 * ZSH
   :PROPERTIES:
@@ -109,7 +110,7 @@ Host Fray2
 #+end_src
 * Emacs
   :PROPERTIES:
-  :HEADER-ARGS+: :tangle emacs/.emacs.d/init.el
+  :HEADER-ARGS+: :tangle emacs/.emacs.d/init.el :tangle-mode (identity #o644)
   :END:
 ** Variable Init
   #+BEGIN_SRC emacs-lisp
@@ -571,4 +572,10 @@ Host Fray2
 	      (irony-mode-hook . irony-cdb-autosetup-compile-options)))
      (use-package irony-eldoc
        :hook (irony-mode-hook . irony-eldoc))
+   #+END_SRC
+
+** Rust
+   #+BEGIN_SRC emacs-lisp
+     (use-package rust-mode
+       :ensure t)
    #+END_SRC
