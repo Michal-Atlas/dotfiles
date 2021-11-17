@@ -157,6 +157,12 @@ Host Fray2
     (setq auto-package-update-hide-results t)
     (auto-package-update-maybe))
 #+END_SRC
+*** Quelpa
+    #+BEGIN_SRC emacs-lisp
+      ;; Install and load `quelpa-use-package'.
+      (package-install 'quelpa-use-package)
+      (require 'quelpa-use-package)
+    #+END_SRC
 ** Theming
 #+BEGIN_SRC emacs-lisp
   ;; in ~/.doom.d/config.el
@@ -593,9 +599,19 @@ Host Fray2
        :ensure t)
    #+END_SRC
 
+** Ement
+#+BEGIN_SRC emacs-lisp
+  ;; Install `plz' HTTP library (not on MELPA yet).
+  (use-package plz
+    :quelpa (plz :fetcher github :repo "alphapapa/plz.el"))
+
+  ;; Install Ement.
+  (use-package ement
+    :quelpa (ement :fetcher github :repo "alphapapa/ement.el"))
+#+END_SRC
 ** Personal
 *** Hackles
     #+BEGIN_SRC emacs-lisp
-      (add-to-list 'load-path "~/source/emacs-hackles")
-      (require 'hackles)
+      (use-package hackles
+	:quelpa (hackles :fetcher github :repo "Michal-Atlas/emacs-hackles")
     #+END_SRC
