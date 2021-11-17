@@ -194,8 +194,12 @@ Host Fray2
   (global-display-line-numbers-mode)
   (global-hl-line-mode 1)
 
-  (use-package color-identifiers-mode
-    :config (global-color-identifiers-mode))
+  (use-package rainbow-identifiers
+    :hook (prog-mode-hook . rainbow-identifiers-mode))
+  (use-package rainbow-delimiters
+    :hook (prog-mode-hook . rainbow-delimiters-mode))
+  (use-package rainbow-blocks
+    :hook (prog-mode-hook . rainbow-blocks-mode))
 #+END_SRC
 ** Formatting
 #+BEGIN_SRC emacs-lisp
