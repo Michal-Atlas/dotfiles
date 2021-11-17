@@ -568,7 +568,7 @@ Host Fray2
      (use-package irony
        :hook ((c-mode-hook . irony-mode)
 	      (c++-mode-hook . irony-mode)
-	      (irony-mode-hook . irony-cdb-autosetup-compile-options))
-       (use-package irony-eldoc
-	 :hook (irony-mode-hook . irony-eldoc))
+	      (irony-mode-hook . irony-cdb-autosetup-compile-options)))
+     (use-package irony-eldoc
+       :hook (irony-mode-hook . irony-eldoc))
    #+END_SRC
