@@ -616,6 +616,7 @@ Host Fray2
      (use-package racer
        :init (setq racer-rust-src-path "~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library")
        :hook ((rust-mode . racer-mode)
+	      (rust-mode . lsp)
 	      (racer-mode . eldoc-mode)))
    #+END_SRC
 
