@@ -160,8 +160,7 @@ Host Fray2
 *** Quelpa
     #+BEGIN_SRC emacs-lisp
       ;; Install and load `quelpa-use-package'.
-      (package-install 'quelpa-use-package)
-      (require 'quelpa-use-package)
+      (use-package quelpa-use-package)
     #+END_SRC
 ** Built-in Keybinds
    #+BEGIN_SRC emacs-lisp
@@ -218,7 +217,7 @@ Host Fray2
     :hook (prog-mode . rainbow-delimiters-mode))
   (use-package rainbow-blocks
     :hook ((lisp-mode . rainbow-blocks-mode)
-	   (emacs-list-mode . rainbow-blocks-mode))
+	   (emacs-list-mode . rainbow-blocks-mode)))
 #+END_SRC
 ** Formatting
 #+BEGIN_SRC emacs-lisp
