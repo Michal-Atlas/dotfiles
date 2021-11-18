@@ -446,7 +446,7 @@ Host Fray2
       ;; enabled right away. Note that this forces loading the package.
       (marginalia-mode))
     (use-package all-the-icons-completion
-      :hook (marginalia-mode . all-the-icons-completion-marginalia-setup))
+      :hook (marginalia-mode . all-the-icons-completion-mode))
 #+END_SRC
 ** Embark and Consult
 #+BEGIN_SRC emacs-lisp
