@@ -357,8 +357,9 @@ Host Fray2
    #+BEGIN_SRC emacs-lisp
      (use-package magit
        :bind (
-	     ("C-c v S" . magit-stage)
-	     ("C-c v P" . magit-push)
+	     ("C-c v s" . magit-stage)
+	     ("C-c v p" . magit-push)
+	     ("C-c v f" . magit-pull)
 	     ("C-c v c" . magit-commit)
 	     ))
      (use-package magit-todos)
