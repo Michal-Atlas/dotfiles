@@ -172,6 +172,7 @@ Host Fray2
   (setq doom-theme 'doom-monokai-classic)
   (tool-bar-mode -1)
   (menu-bar-mode -1)
+  (scroll-bar-mode -1)
   (setq default-frame-alist '((set-frame-font "Fira Code 13" nil t)))
 
   (use-package doom-themes
