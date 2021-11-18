@@ -7,7 +7,7 @@
 
 * ZSH
   :PROPERTIES:
-  :HEADER-ARGS+: :tangle zsh/.zshrc
+  :HEADER-ARGS+: :tangle ~/.zshrc
   :END:
   #+BEGIN_SRC sh
 export PATH="$PATH:$HOME/.cargo/bin"
@@ -85,7 +85,7 @@ alias q=exit
   #+END_SRC
 * SSH
   :PROPERTIES:
-:HEADER-ARGS+: :tangle ssh/.ssh/config
+:HEADER-ARGS+: :tangle ~/.ssh/config
   :END:
   #+begin_src conf
 Host *
@@ -110,7 +110,7 @@ Host Fray2
 #+end_src
 * Emacs
   :PROPERTIES:
-  :HEADER-ARGS+: :tangle emacs/.emacs.d/init.el :tangle-mode (identity #o644)
+  :HEADER-ARGS+: :tangle ~/.emacs.d/init.el :tangle-mode (identity #o644)
   :END:
 ** Variable Init
   #+BEGIN_SRC emacs-lisp
