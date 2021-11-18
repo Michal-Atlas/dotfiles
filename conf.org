@@ -157,6 +157,12 @@ Host Fray2
     (setq auto-package-update-hide-results t)
     (auto-package-update-maybe))
 #+END_SRC
+*** Quelpa
+    #+BEGIN_SRC emacs-lisp
+      ;; Install and load `quelpa-use-package'.
+      (package-install 'quelpa-use-package)
+      (require 'quelpa-use-package)
+    #+END_SRC
 ** Built-in Keybinds
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "C-c o t") 'vterm)
@@ -613,6 +619,6 @@ Host Fray2
 ** Personal
 *** Hackles
     #+BEGIN_SRC emacs-lisp
-      (add-to-list 'load-path "~/source/emacs-hackles")
-      (require 'hackles)
+      (use-package hackles
+	:quelpa (hackles :fetcher github :repo "Michal-Atlas/emacs-hackles"))
     #+END_SRC
