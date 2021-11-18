@@ -213,26 +213,27 @@ Host Fray2
   (global-hl-line-mode 1)
 
   (use-package rainbow-identifiers
-    :hook (prog-mode-hook . rainbow-identifiers-mode))
+    :hook (prog-mode . rainbow-identifiers-mode))
   (use-package rainbow-delimiters
-    :hook (prog-mode-hook . rainbow-delimiters-mode))
+    :hook (prog-mode . rainbow-delimiters-mode))
   (use-package rainbow-blocks
-    :hook (prog-mode-hook . rainbow-blocks-mode))
+    :hook (prog-mode . rainbow-blocks-mode))
 #+END_SRC
 ** Formatting
 #+BEGIN_SRC emacs-lisp
   (use-package format-all
-    :hook (prog-mode-hook . format-all-mode))
+    :hook (prog-mode . format-all-mode))
 #+END_SRC
 ** Company
 #+BEGIN_SRC emacs-lisp
-    (use-package company
-      :config
-      (company-mode)
-      (add-hook 'after-init-hook 'global-company-mode))
-    (use-package flycheck
-      :config
-      (global-flycheck-mode))
+  (use-package company
+    :config
+    (company-mode)
+    :hook
+    (after-init . global-company-mode))
+  (use-package flycheck
+    :config
+    (global-flycheck-mode))
 #+END_SRC
 ** Projectile
 #+BEGIN_SRC emacs-lisp
@@ -363,8 +364,9 @@ Host Fray2
    #+BEGIN_SRC emacs-lisp
      (use-package magit
        :bind (
-	     ("C-c v S" . magit-stage)
-	     ("C-c v P" . magit-push)
+	     ("C-c v s" . magit-stage)
+	     ("C-c v p" . magit-push)
+	     ("C-c v f" . magit-pull)
 	     ("C-c v c" . magit-commit)
 	     ))
      (use-package magit-todos)
@@ -390,8 +392,8 @@ Host Fray2
   (use-package git-timemachine)
   (use-package mu4e-alert
     :hook
-    ((after-init-hook . mu4e-alert-enable-notifications)
-     (after-init-hook . mu4e-alert-enable-modeline-display)))
+    ((after-init . mu4e-alert-enable-notifications)
+     (after-init . mu4e-alert-enable-modeline-display)))
   (use-package org-msg)
   (use-package vterm)
   (use-package quickrun)
@@ -399,14 +401,14 @@ Host Fray2
   (use-package kurecolor)
   (use-package ranger)
   (use-package all-the-icons-dired
-    :hook (dired-mode-hook . all-the-icons-dired-mode))
+    :hook (dired-mode . all-the-icons-dired-mode))
   (use-package crux)
   (use-package xkcd)
   (use-package git-gutter
     :config
     (global-git-gutter-mode +1))
   (use-package org-fragtog
-    :hook (org-mode-hook . org-fragtog-mode))
+    :hook (org-mode . org-fragtog-mode))
   (use-package avy
     :bind
     ("M-q" . avy-goto-word-0))
@@ -424,7 +426,7 @@ Host Fray2
     (use-package ob-async)
     (use-package org-cliplink)
     (use-package org-superstar
-      :hook (org-mode-hook . org-superstar-mode))
+      :hook (org-mode . org-superstar-mode))
 
 #+END_SRC
 ** Marginalia
@@ -444,7 +446,7 @@ Host Fray2
       ;; enabled right away. Note that this forces loading the package.
       (marginalia-mode))
     (use-package all-the-icons-completion
-      :hook (marginalia-mode-hook . all-the-icons-completion-marginalia-setup))
+      :hook (marginalia-mode . all-the-icons-completion-marginalia-setup))
 #+END_SRC
 ** Embark and Consult
 #+BEGIN_SRC emacs-lisp
@@ -600,11 +602,11 @@ Host Fray2
 ** C
    #+BEGIN_SRC emacs-lisp
      (use-package irony
-       :hook ((c-mode-hook . irony-mode)
-	      (c++-mode-hook . irony-mode)
-	      (irony-mode-hook . irony-cdb-autosetup-compile-options)))
+       :hook ((c-mode . irony-mode)
+	      (c++-mode . irony-mode)
+	      (irony-mode . irony-cdb-autosetup-compile-options)))
      (use-package irony-eldoc
-       :hook (irony-mode-hook . irony-eldoc))
+       :hook (irony-mode . irony-eldoc))
    #+END_SRC
 
 ** Rust
@@ -612,8 +614,8 @@ Host Fray2
      (use-package rust-mode
        :ensure t)
      (use-package racer
-       :hook ((rust-mode-hook . racer-mode)
-	      (racer-mode-hook . eldoc-mode)))
+       :hook ((rust-mode . racer-mode)
+	      (racer-mode . eldoc-mode)))
    #+END_SRC
 
 ** Personal
