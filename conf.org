@@ -217,7 +217,8 @@ Host Fray2
   (use-package rainbow-delimiters
     :hook (prog-mode . rainbow-delimiters-mode))
   (use-package rainbow-blocks
-    :hook (prog-mode . rainbow-blocks-mode))
+    :hook ((lisp-mode . rainbow-blocks-mode)
+	   (emacs-list-mode . rainbow-blocks-mode))
 #+END_SRC
 ** Formatting
 #+BEGIN_SRC emacs-lisp
