@@ -157,12 +157,10 @@ Host Fray2
     (setq auto-package-update-hide-results t)
     (auto-package-update-maybe))
 #+END_SRC
-*** Quelpa
-    #+BEGIN_SRC emacs-lisp
-      ;; Install and load `quelpa-use-package'.
-      (package-install 'quelpa-use-package)
-      (require 'quelpa-use-package)
-    #+END_SRC
+** Built-in Keybinds
+   #+BEGIN_SRC emacs-lisp
+     (global-set-key (kbd "C-c o t") 'vterm)
+   #+END_SRC
 ** Theming
 #+BEGIN_SRC emacs-lisp
   ;; in ~/.doom.d/config.el
@@ -355,13 +353,25 @@ Host Fray2
   (use-package dap-mode)
   ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
 #+END_SRC
+** Magit
+   #+BEGIN_SRC emacs-lisp
+     (use-package magit
+       :bind (
+	     ("C-c v S" . magit-stage)
+	     ("C-c v P" . magit-push)
+	     ("C-c v c" . magit-commit)
+	     ))
+     (use-package magit-todos)
+   #+END_SRC
 ** Misc.
 #+BEGIN_SRC emacs-lisp
   (use-package undo-tree
     :ensure t)
   (use-package adaptive-wrap)
-  (use-package calfw)
-  (use-package calfw-org)
+  (use-package calfw
+    :ensure t)
+  (use-package calfw-org
+    :ensure t)
   (use-package elfeed)
   (use-package elfeed-org)
   (use-package vimish-fold)
@@ -379,8 +389,6 @@ Host Fray2
   (use-package org-msg)
   (use-package vterm)
   (use-package quickrun)
-  (use-package magit)
-  (use-package magit-todos)
   (use-package pdf-tools)
   (use-package kurecolor)
   (use-package ranger)
@@ -597,11 +605,14 @@ Host Fray2
    #+BEGIN_SRC emacs-lisp
      (use-package rust-mode
        :ensure t)
+     (use-package racer
+       :hook ((rust-mode-hook . racer-mode)
+	      (racer-mode-hook . eldoc-mode)))
    #+END_SRC
 
 ** Personal
 *** Hackles
     #+BEGIN_SRC emacs-lisp
-      (use-package hackles
-	:quelpa (hackles :fetcher github :repo "Michal-Atlas/emacs-hackles"))
+      (add-to-list 'load-path "~/source/emacs-hackles")
+      (require 'hackles)
     #+END_SRC
