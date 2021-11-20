@@ -128,7 +128,7 @@ Host Fray2
     bindsym $mod+Ctrl+s exec ~/suspend.sh
     bindsym $mod+Ctrl+l exec swaylock -Ff -c 000000 -i ~/Sync/wallpaper.jpg
     bindsym $mod+i exec firefox
-    bindsym $mod+Ctrl+e exec emacs
+    bindsym $mod+Shift+f exec emacs
     exec keepassxc
     exec swayidle -w \
 	 timeout 300 'swaylock -Ff -c 000000 -i ~/Sync/wallpaper.jpg' \
