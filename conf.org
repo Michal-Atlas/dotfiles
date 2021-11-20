@@ -127,6 +127,8 @@ Host Fray2
     }
     bindsym $mod+Ctrl+s exec ~/suspend.sh
     bindsym $mod+Ctrl+l exec swaylock -Ff -c 000000 -i ~/Sync/wallpaper.jpg
+    bindsym $mod+i exec firefox
+    bindsym $mod+Ctrl+e exec emacs
     exec keepassxc
     exec swayidle -w \
 	 timeout 300 'swaylock -Ff -c 000000 -i ~/Sync/wallpaper.jpg' \
@@ -674,58 +676,93 @@ Host Fray2
 
 * Mu4e
   #+BEGIN_SRC conf :tangle ~/.mbsyncrc
-# mbsyncrc based on
-# http://www.ict4g.net/adolfo/notes/2014/12/27/EmacsIMAP.html
-# ACCOUNT INFORMATION
-IMAPAccount gmail
-# Address to connect to
-Host imap.gmail.com
-User michal.z.atlas@gmail.com
-PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.emacs.d/mu4e/.mbsyncpass-EM.gpg"
-AuthMechs LOGIN
-SSLType IMAPS
-SSLVersions TLSv1.3
-CertificateFile /etc/ssl/certs/ca-certificates.crt
+    # mbsyncrc based on
+    # http://www.ict4g.net/adolfo/notes/2014/12/27/EmacsIMAP.html
+    # ACCOUNT INFORMATION
+    IMAPAccount gmail
+    # Address to connect to
+    Host imap.gmail.com
+    User michal.z.atlas@gmail.com
+    PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.emacs.d/mu4e/.mbsyncpass-EM.gpg"
+    AuthMechs LOGIN
+    SSLType IMAPS
+    CertificateFile /etc/ssl/certs/ca-certificates.crt
 
-# THEN WE SPECIFY THE LOCAL AND REMOTE STORAGE
-# - THE REMOTE STORAGE IS WHERE WE GET THE MAIL FROM (E.G., THE
-#   SPECIFICATION OF AN IMAP ACCOUNT)
-# - THE LOCAL STORAGE IS WHERE WE STORE THE EMAIL ON OUR COMPUTER
+    # THEN WE SPECIFY THE LOCAL AND REMOTE STORAGE
+    # - THE REMOTE STORAGE IS WHERE WE GET THE MAIL FROM (E.G., THE
+    #   SPECIFICATION OF AN IMAP ACCOUNT)
+    # - THE LOCAL STORAGE IS WHERE WE STORE THE EMAIL ON OUR COMPUTER
 
-# REMOTE STORAGE (USE THE IMAP ACCOUNT SPECIFIED ABOVE)
-IMAPStore gmail-remote
-Account gmail
+    # REMOTE STORAGE (USE THE IMAP ACCOUNT SPECIFIED ABOVE)
+    IMAPStore gmail-remote
+    Account gmail
 
-# LOCAL STORAGE (CREATE DIRECTORIES with mkdir -p ~/Maildir/gmail)
-MaildirStore gmail-local
-Path ~/Maildir/gmail/
-Inbox ~/Maildir/gmail/INBOX
-# REQUIRED ONLY IF YOU WANT TO DOWNLOAD ALL SUBFOLDERS; SYNCING SLOWS DOWN
-# SubFolders Verbatim
+    # LOCAL STORAGE (CREATE DIRECTORIES with mkdir -p ~/Maildir/gmail)
+    MaildirStore gmail-local
+    Path ~/Maildir/gmail/
+    Inbox ~/Maildir/gmail/INBOX
+    # REQUIRED ONLY IF YOU WANT TO DOWNLOAD ALL SUBFOLDERS; SYNCING SLOWS DOWN
+    # SubFolders Verbatim
 
-# CONNECTIONS SPECIFY LINKS BETWEEN REMOTE AND LOCAL FOLDERS
-#
-# CONNECTIONS ARE SPECIFIED USING PATTERNS, WHICH MATCH REMOTE MAIl
-# FOLDERS. SOME COMMONLY USED PATTERS INCLUDE:
-#
-# 1 "*" TO MATCH EVERYTHING
-# 2 "!DIR" TO EXCLUDE "DIR"
-# 3 "DIR" TO MATCH DIR
+    # CONNECTIONS SPECIFY LINKS BETWEEN REMOTE AND LOCAL FOLDERS
+    #
+    # CONNECTIONS ARE SPECIFIED USING PATTERNS, WHICH MATCH REMOTE MAIl
+    # FOLDERS. SOME COMMONLY USED PATTERS INCLUDE:
+    #
+    # 1 "*" TO MATCH EVERYTHING
+    # 2 "!DIR" TO EXCLUDE "DIR"
+    # 3 "DIR" TO MATCH DIR
 
-Channel gmail-inbox
-Far :gmail-remote:
-Near :gmail-local:
-Patterns "INBOX"
-Create Both
-Expunge Both
-SyncState *
+    Channel gmail-inbox
+    Far :gmail-remote:
+    Near :gmail-local:
+    Patterns "INBOX"
+    Create Both
+    Expunge Both
+    SyncState *
 
-# GROUPS PUT TOGETHER CHANNELS, SO THAT WE CAN INVOKE
-# MBSYNC ON A GROUP TO SYNC ALL CHANNELS
-#
-# FOR INSTANCE: "mbsync gmail" GETS MAIL FROM
-# "gmail-inbox", "gmail-sent", and "gmail-trash"
-#
-Group gmail
-Channel gmail-inbox
+    # GROUPS PUT TOGETHER CHANNELS, SO THAT WE CAN INVOKE
+    # MBSYNC ON A GROUP TO SYNC ALL CHANNELS
+    #
+    # FOR INSTANCE: "mbsync gmail" GETS MAIL FROM
+    # "gmail-inbox", "gmail-sent", and "gmail-trash"
+    #
+    Group gmail
+    Channel gmail-inbox
+
+    IMAPAccount fit
+    # Address to connect to
+    Host outlook.office365.com
+    User zacekmi2@cvut.cz
+    PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.emacs.d/mu4e/.mbsyncpass-FT.gpg"
+    AuthMechs LOGIN
+    SSLType IMAPS
+    CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+
+    # REMOTE STORAGE (USE THE IMAP ACCOUNT SPECIFIED ABOVE)
+    IMAPStore fit-remote
+    Account fit
+
+    # LOCAL STORAGE (CREATE DIRECTORIES with mkdir -p ~/Maildir/gmail)
+    MaildirStore fit-local
+    Path ~/Maildir/fit/
+    Inbox ~/Maildir/fit/INBOX
+
+    Channel fit-inbox
+    Far :fit-remote:
+    Near :fit-local:
+    Patterns "INBOX"
+    Create Both
+    Expunge Both
+    SyncState *
+
+    # GROUPS PUT TOGETHER CHANNELS, SO THAT WE CAN INVOKE
+    # MBSYNC ON A GROUP TO SYNC ALL CHANNELS
+    #
+    # FOR INSTANCE: "mbsync gmail" GETS MAIL FROM
+    # "gmail-inbox", "gmail-sent", and "gmail-trash"
+    #
+    Group fit
+    Channel fit-inbox
   #+END_SRC
