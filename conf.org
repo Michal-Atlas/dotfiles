@@ -404,9 +404,10 @@ Host Fray2
      (global-set-key (kbd "C-c M M") 'mu4e)
      (require 'mu4e)
      (use-package mu4e-alert
+       :config (mu4e-alert-set-default-style 'libnotify)
        :hook
        ((after-init . mu4e-alert-enable-notifications)
-	(after-init . mu4e-alert-enable-modeline-display)))
+	(after-init . mu4e-alert-enable-mode-line-display)))
    #+END_SRC
 ** Misc.
 #+BEGIN_SRC emacs-lisp
