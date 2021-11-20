@@ -408,6 +408,8 @@ Host Fray2
        :hook
        ((after-init . mu4e-alert-enable-notifications)
 	(after-init . mu4e-alert-enable-mode-line-display)))
+     (use-package org-msg
+       :init (setq mail-user-agent 'mu4e-user-agent))
    #+END_SRC
 ** Misc.
 #+BEGIN_SRC emacs-lisp
@@ -428,7 +430,6 @@ Host Fray2
   (use-package ibuffer-vc)
   (use-package undo-tree)
   (use-package git-timemachine)
-  (use-package org-msg)
   (use-package vterm)
   (use-package quickrun)
   (use-package pdf-tools)
