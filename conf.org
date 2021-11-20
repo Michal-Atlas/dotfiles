@@ -125,6 +125,14 @@ Host Fray2
 	xkb_variant ",qwerty"
 	xkb_options "rp:caps_switch,lv3:ralt_switch,compose:rctrl-altgr"
     }
+    bindsym $mod+Ctrl+s exec ~/suspend.sh
+    bindsym $mod+Ctrl+l exec swaylock -Ff -c 000000 -i ~/Sync/wallpaper.jpg
+    exec keepassxc
+    exec swayidle -w \
+	 timeout 300 'swaylock -Ff -c 000000 -i ~/Sync/wallpaper.jpg' \
+	 timeout 600 'swaymsg "output * dpms off"' \
+	 resume 'swaymsg "output * dpms on"' \
+	 before-sleep 'swaylock -Ff -c 000000 -i ~/Sync/wallpaper.jpg'
   #+END_SRC
 * Emacs
   :PROPERTIES:
