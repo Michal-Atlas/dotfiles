@@ -114,16 +114,16 @@ Host Fray2
   :END:
   #+BEGIN_SRC conf
     output * bg ~/Sync/wallpaper.jpg fill
-    input "2:14:SynPS/2_Synaptics_TouchPad" {
+    input 1739:32382:DELL0740:00_06CB:7E7E_Touchpad {
 	 dwt enabled
 	 tap enabled
 	 natural_scroll enabled
 	 middle_emulation enabled
     }
-    input * {
+    input 1:1:AT_Translated_Set_2_keyboard {
 	xkb_layout "us,cz"
 	xkb_variant ",qwerty"
-	xkb_options "rp:caps_switch,lv3:ralt_switch,compose:rctrl-altgr"
+	xkb_options "grp:caps_switch,lv3:ralt_switch,compose:rctrl-altgr"
     }
     bindsym $mod+Ctrl+s exec ~/suspend.sh
     bindsym $mod+Ctrl+l exec swaylock -Ff -c 000000 -i ~/Sync/wallpaper.jpg
