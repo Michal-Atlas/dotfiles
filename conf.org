@@ -113,6 +113,9 @@ Host Fray2
   :HEADER-ARGS+: :tangle ~/.config/sway/config.d/main
   :END:
   #+BEGIN_SRC conf
+    font "Fira Code 10"
+    default_border normal 1
+    smart_borders on
     output * bg ~/Sync/wallpaper.jpg fill
     input 1739:32382:DELL0740:00_06CB:7E7E_Touchpad {
 	 dwt enabled
@@ -126,9 +129,11 @@ Host Fray2
 	xkb_options "grp:caps_switch,lv3:ralt_switch,compose:rctrl-altgr"
     }
     bindsym $mod+Ctrl+s exec ~/suspend.sh
+    bindswitch lid:on exec ~/suspend.sh
     bindsym $mod+Ctrl+l exec swaylock -Ff -c 000000 -i ~/Sync/wallpaper.jpg
     bindsym $mod+i exec firefox
     bindsym $mod+Shift+f exec emacs
+    exec swaymsg border normal 3
     exec keepassxc
     exec swayidle -w \
 	 timeout 300 'swaylock -Ff -c 000000 -i ~/Sync/wallpaper.jpg' \
