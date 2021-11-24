@@ -130,16 +130,17 @@ Host Fray2
     }
     bindsym $mod+Ctrl+s exec ~/suspend.sh
     bindswitch lid:on exec ~/suspend.sh
-    bindsym $mod+Ctrl+l exec swaylock -Ff -c 000000 -i ~/Sync/wallpaper.jpg
+    bindsym $mod+Ctrl+l exec swaylock -Ff -i ~/Sync/wallpaper.jpg
     bindsym $mod+i exec firefox
     bindsym $mod+Shift+f exec emacs
     exec swaymsg border normal 3
     exec keepassxc
+    exec pkill swayidle
     exec swayidle -w \
-	 timeout 300 'swaylock -Ff -c 000000 -i ~/Sync/wallpaper.jpg' \
+	 timeout 300 'swaylock -Ff -i ~/Sync/wallpaper.jpg' \
 	 timeout 600 'swaymsg "output * dpms off"' \
 	 resume 'swaymsg "output * dpms on"' \
-	 before-sleep 'swaylock -Ff -c 000000 -i ~/Sync/wallpaper.jpg'
+	 before-sleep 'swaylock -Ff -i ~/Sync/wallpaper.jpg'
   #+END_SRC
 * Emacs
   :PROPERTIES:
@@ -391,6 +392,7 @@ Host Fray2
   ;; optionally if you want to use debugger
   (use-package dap-mode)
   ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
+  (require' dap-gdb-lldb)
 #+END_SRC
 ** Magit
    #+BEGIN_SRC emacs-lisp
