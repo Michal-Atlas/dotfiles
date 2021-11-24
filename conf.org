@@ -151,7 +151,7 @@ Host Fray2
     (setq calendar-week-start-day 1)
     (setq org-agenda-start-on-weekday 1)
     (setq find-function-C-source-directory "~/source/emacs")
-    (setq rmh-elfeed-org-files (list "~/.elfeed.org"))
+    (setq rmh-elfeed-org-files (list "~/.emacs.d/.elfeed.org"))
 
 #+END_SRC
 ** Package Bootstrap
