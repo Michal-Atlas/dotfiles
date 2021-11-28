@@ -411,6 +411,23 @@ Host Fray2
      (use-package org-msg
        :init (setq mail-user-agent 'mu4e-user-agent))
    #+END_SRC
+** Elfeed
+#+begin_src emacs-lisp
+     (use-package elfeed)
+     (use-package elfeed-org)
+     (elfeed-org)
+#+end_src
+** Bongo
+   #+begin_src emacs-lisp
+     (use-package bongo
+       :ensure t)
+   #+end_src
+** Resize Window
+   #+begin_src emacs-lisp
+     (use-package resize-window
+       :ensure t
+       :bind ("C-S-r" . resize-window))
+   #+end_src
 ** Misc.
 #+BEGIN_SRC emacs-lisp
   (use-package undo-tree
@@ -420,8 +437,6 @@ Host Fray2
     :ensure t)
   (use-package calfw-org
     :ensure t)
-  (use-package elfeed)
-  (use-package elfeed-org)
   (use-package vimish-fold)
   (use-package diff-hl)
   (use-package diredfl)
