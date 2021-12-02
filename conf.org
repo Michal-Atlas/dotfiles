@@ -481,11 +481,19 @@ Host Fray2
 #+END_SRC
 ** Org Mode
 #+BEGIN_SRC emacs-lisp
-    (use-package org-present)
-    (use-package ob-async)
-    (use-package org-cliplink)
-    (use-package org-superstar
-      :hook (org-mode . org-superstar-mode))
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '(
+     (dot . t)
+     (C . t)
+     (shell . t)
+     ))
+
+  (use-package org-present)
+  (use-package ob-async)
+  (use-package org-cliplink)
+  (use-package org-superstar
+    :hook (org-mode . org-superstar-mode))
 
 #+END_SRC
 ** Marginalia
