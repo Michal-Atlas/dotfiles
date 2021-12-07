@@ -180,6 +180,7 @@ Host Fray2
     exec --no-startup-id nm-applet
 
     exec /usr/libexec/polkit-gnome-authentication-agent-1
+    exec ~/.screenlayout/main.sh
 
     # Use pactl to adjust volume in PulseAudio.
     set $refresh_i3status killall -SIGUSR1 i3status
