@@ -676,6 +676,31 @@ Host Fray2
       (use-package jedi
 	:hook (python-mode . jedi:setup))
     #+END_SRC
+*** Clojure
+    #+BEGIN_SRC emacs-lisp
+      (use-package clojure-mode
+	:ensure t
+	:hook (clojure-mode . prog-mode))
+      (use-package cider
+	:ensure t
+	:hook (clojure-mode . cider))
+    #+END_SRC
+*** Scala
+    #+BEGIN_SRC emacs-lisp
+(use-package lsp-metals
+  :ensure t
+  :custom
+  ;; Metals claims to support range formatting by default but it supports range
+  ;; formatting of multiline strings only. You might want to disable it so that
+  ;; emacs can use indentation provided by scala-mode.
+  (lsp-metals-server-args '("-J-Dmetals.allow-multiline-string-formatting=off"))
+  :hook (scala-mode . lsp))
+    #+END_SRC
+*** LaTeX
+    #+BEGIN_SRC emacs-lisp
+      (use-package lsp-latex
+	:hook (latex-mode . prog-mode))
+    #+END_SRC
 ** Personal
 *** Hackles
     #+BEGIN_SRC emacs-lisp
