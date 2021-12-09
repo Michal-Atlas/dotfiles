@@ -127,6 +127,21 @@ Section "InputClass"
 EndSection
 
     #+END_SRC
+*** Touchpad
+    :PROPERTIES:
+    :HEADER-ARGS+: :tangle /sudo::/etc/X11/xorg.conf.d/70-touchpad.conf
+    :END:
+    #+BEGIN_SRC conf
+      Section "InputClass"
+	      Identifier "touchpad"
+	      Driver "libinput"
+	      MatchIsTouchpad "on"
+	      Option "DisableWhileTyping" "on"
+	      Option "Tapping" "1"
+	      Option "NaturalScrolling" "1"
+	      Option "Emulate3Buttons" "yes"
+      EndSection
+    #+END_SRC
 ** Sway
    :PROPERTIES:
    :HEADER-ARGS+: :tangle ~/.config/sway/config.d/main
