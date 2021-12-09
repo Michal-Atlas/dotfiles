@@ -403,6 +403,16 @@ configuration {
 }
 @import "/usr/share/rofi/themes/Arc-Dark.rasi"
    #+END_SRC
+** LightDM
+   :PROPERTIES:
+   :HEADER-ARGS+: :tangle /sudo::/etc/lightdm/lightdm-gtk-greeter.conf
+   :END:
+   #+BEGIN_SRC conf
+[greeter]
+background=/usr/share/themes/DOOM/wallpaper.jpg
+theme-name=Greybird-Geeko-Dark
+indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~power;
+   #+END_SRC
 * Emacs
   :PROPERTIES:
   :HEADER-ARGS+: :tangle ~/.emacs.d/init.el :tangle-mode (identity #o644)
