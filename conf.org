@@ -109,6 +109,24 @@ Host Fray2
 	HostName fray2.fit.cvut.cz
 #+end_src
 * DE
+** X11
+*** Keyboard
+    :PROPERTIES:
+    :HEADER-ARGS+: :tangle /sudo::/etc/X11/xorg.conf.d/00-keyboard.conf
+    :END:
+    #+BEGIN_SRC conf
+# Written by systemd-localed(8), read by systemd-localed and Xorg. It's
+# probably wise not to edit this file manually. Use localectl(1) to
+# instruct systemd-localed to update it.
+Section "InputClass"
+        Identifier "system-keyboard"
+        MatchIsKeyboard "on"
+        Option "XkbLayout" "us,cz"
+	Option "XkbVariant" ",qwerty"
+	Option "XkbOptions" "grp:caps_switch,lv3:ralt_switch,compose:rctrl-altgr"
+EndSection
+
+    #+END_SRC
 ** Sway
    :PROPERTIES:
    :HEADER-ARGS+: :tangle ~/.config/sway/config.d/main
