@@ -370,7 +370,7 @@ Host Fray2
 		}
      }
 
-     exec feh --bg-fill ~/Sync/wallpaper.png
+     exec_always feh --bg-fill ~/Sync/wallpaper.png
    #+END_SRC
 ** Rofi
    :PROPERTIES:
