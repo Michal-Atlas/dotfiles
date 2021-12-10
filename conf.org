@@ -441,7 +441,7 @@ configuration {
 	font: "Fira Code 12";
 	show-icons: true;	
 }
-@import "/usr/share/rofi/themes/Arc-Dark.rasi"
+@import "/usr/share/rofi/themes/gruvbox-dark-hard.rasi"
    #+END_SRC
 ** LightDM
    :PROPERTIES:
@@ -509,7 +509,7 @@ indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~powe
     #+END_SRC
 ** Built-in Keybinds
    #+BEGIN_SRC emacs-lisp
-     (global-set-key (kbd "C-c o t") 'vterm)
+
    #+END_SRC
 ** Theming
 #+BEGIN_SRC emacs-lisp
@@ -763,7 +763,6 @@ indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~powe
   (use-package ibuffer-vc)
   (use-package undo-tree)
   (use-package git-timemachine)
-  (use-package vterm)
   (use-package quickrun)
   (use-package pdf-tools)
   (use-package kurecolor)
