@@ -518,6 +518,12 @@ indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~powe
   (tool-bar-mode -1)
   (menu-bar-mode -1)
   (scroll-bar-mode -1)
+  (show-paren-mode 1)
+
+  (use-package indent-guide)
+  (indent-guide-global-mode 1)
+  (global-display-fill-column-indicator-mode 1)
+
   (setq default-frame-alist '((set-frame-font "Fira Code 13" nil t)))
 
   (use-package doom-themes
