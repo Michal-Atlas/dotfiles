@@ -88,25 +88,30 @@ alias q=exit
 :HEADER-ARGS+: :tangle ~/.ssh/config
   :END:
   #+begin_src conf
-Host *
-	AddKeysToAgent yes
-Host Elite
-	HostName Phoenix-Elite.local
-Host Port
-	HostName Phoenix-Port.local
-Host ZmioSem
-	User michal_zacek
-	HostName hiccup.mazim.cz
-	Port 10169 
-Host Myst
-	HostName 34.122.2.188
-Host Fray1
-	User zacekmi2
-	HostName fray1.fit.cvut.cz
-
-Host Fray2
-	User zacekmi2
-	HostName fray2.fit.cvut.cz
+    Host *
+	    AddKeysToAgent yes
+    Host Elite
+	    HostName Phoenix-Elite.local
+    Host Port
+	    HostName Phoenix-Port.local
+    Host ZmioSem
+	    User michal_zacek
+	    HostName hiccup.mazim.cz
+	    Port 10169 
+    Host Myst
+	    HostName 34.122.2.188
+    Host Fray1
+	    User zacekmi2
+	    HostName fray1.fit.cvut.cz
+	    ControlMaster auto
+	    PubkeyAcceptedAlgorithms +ssh-rsa
+	    HostkeyAlgorithms +ssh-rsa
+    Host Fray2
+	    User zacekmi2
+	    HostName fray2.fit.cvut.cz
+	    ControlMaster auto
+	    PubkeyAcceptedAlgorithms +ssh-rsa
+	    HostkeyAlgorithms +ssh-rsa
 #+end_src
 * Alacritty
   :PROPERTIES:
