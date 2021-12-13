@@ -1002,6 +1002,10 @@ indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~powe
       (use-package irony-eldoc
 	:hook (irony-mode . irony-eldoc))
     #+END_SRC
+*** Bash
+    #+BEGIN_SRC emacs-lisp
+      (add-hook 'shell-script-mode 'prog-mode)
+    #+END_SRC
 *** Rust
     #+BEGIN_SRC emacs-lisp
       (use-package rust-mode
