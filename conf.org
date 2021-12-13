@@ -477,7 +477,7 @@ indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~powe
     (setq org-agenda-start-on-weekday 1)
     (setq find-function-C-source-directory "~/source/emacs")
     (setq rmh-elfeed-org-files (list "~/.emacs.d/.elfeed.org"))
-
+    (global-auto-revert-mode 1)
 #+END_SRC
 ** Package Bootstrap
 #+BEGIN_SRC emacs-lisp
