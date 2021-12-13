@@ -422,7 +422,7 @@ EndSection
   bar {
       status_command bumblebee-status \
 		     -t gruvbox-powerline \
-		     -m nic disk:root git progress memory cpu battery pasink pasource time date
+		     -m nic disk:root progress memory cpu battery pasink pasource time date git
 	colors {
 	       background #000000
 	       statusline #FFFFFF
