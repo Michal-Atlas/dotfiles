@@ -422,7 +422,19 @@ EndSection
   bar {
       status_command bumblebee-status \
 		     -t gruvbox-powerline \
-		     -m nic disk:root git arandr playerctl progress sun memory cpu battery pasink pasource time date
+		     -m nic disk:root git progress memory cpu battery pasink pasource time date
+	colors {
+	       background #000000
+	       statusline #FFFFFF
+	       separator  #666666
+
+	       # workspaces section            
+	       #                    border  backgr. text
+	       focused_workspace    $aqua $aqua $darkgray
+	       inactive_workspace   $darkgray $darkgray $yellow
+	       active_workspace     $darkgray $darkgray $yellow
+	       urgent_workspace     $red $red $bg
+	       }
   }
 
   exec light-locker
