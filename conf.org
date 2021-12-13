@@ -26,7 +26,7 @@ if type rustc >/dev/null; then
 fi
 
 # shellcheck disable=SC1094
-. ~/dotfiles/antigen.zsh && {
+. ~/dotfiles/antigen/antigen.zsh && {
     antigen use oh-my-zsh
 
     plugins=(
