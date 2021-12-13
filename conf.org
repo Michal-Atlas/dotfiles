@@ -1157,3 +1157,25 @@ indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~powe
     Group fit
     Channel fit-inbox
   #+END_SRC
+
+* TMUX
+  :PROPERTIES:
+  :HEADER-ARGS+: :tangle ~/.tmux.conf
+  :END:
+  #+BEGIN_SRC conf
+set -g mouse on
+
+set -g default-shell "/bin/zsh"
+
+bind '"' split-window -c "#{pane_current_path}"
+bind % split-window -h -c "#{pane_current_path}"
+bind c new-window -c "#{pane_current_path}"
+
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+
+set -g @plugin 'jimeh/tmux-themepack'
+set -g @themepack 'basic'
+
+run '~/.tmux/plugins/tpm/tpm'
+  #+END_SRC
