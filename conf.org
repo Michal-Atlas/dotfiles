@@ -478,7 +478,6 @@ indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~powe
     (setq calendar-week-start-day 1)
     (setq org-agenda-start-on-weekday 1)
     (setq find-function-C-source-directory "~/source/emacs")
-    (setq rmh-elfeed-org-files (list "~/.emacs.d/.elfeed.org"))
     (global-auto-revert-mode 1)
     (recentf-mode 1)
     (setq recentf-max-menu-items 25)
@@ -750,12 +749,6 @@ indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~powe
      (use-package org-msg
        :init (setq mail-user-agent 'mu4e-user-agent))
    #+END_SRC
-** Elfeed
-#+begin_src emacs-lisp
-     (use-package elfeed)
-     (use-package elfeed-org)
-     (elfeed-org)
-#+end_src
 ** Bongo
    #+begin_src emacs-lisp
      (use-package bongo
@@ -1179,3 +1172,27 @@ set -g @themepack 'basic'
 
 run '~/.tmux/plugins/tpm/tpm'
   #+END_SRC
+
+* Elfeed
+:PROPERTIES:
+:HEADER-ARGS+: :tangle ~/.emacs.d/init.el
+:END:
+#+BEGIN_SRC emacs-lisp
+  (use-package elfeed)
+  (setq elfeed-feeds
+	'(("https://xkcd.com/rss.xml" comics)
+	  ("https://www.smbc-comics.com/comic/rss" comics)
+	  ("https://www.giantitp.com/comics/oots.rss" comics)
+	  ("https://feeds.feedburner.com/LookingForGroup" comics)
+	  ("https://www.oglaf.com/" comics)
+	  ("http://phdcomics.com/gradfeed.php" comics)
+	  ("https://blog.tecosaur.com/tmio/rss.xml" emacs)
+	  ("https://akce.cvut.cz/?node=rss&group=7" ctu)
+	  ("https://akce.cvut.cz/?node=rss&group=11" ctu)
+	  ("https://aktualne.cvut.cz/rss/newsflashes" ctu)
+	  ("https://gitlab.fit.cvut.cz/zacekmi2.atom?feed_token=aVNtRA3xYzqwpkQBoM3z" fit)
+	  ("http://feeds.bbci.co.uk/news/world/rss.xml" news)
+	  ("http://feeds.bbci.co.uk/news/technology/rss.xml" news)
+	  ("http://feeds.bbci.co.uk/news/video_and_audio/world/rss.xml" podcast)
+	  ("http://festivalofthespokennerd.libsyn.com/rss" podcast)))
+#+END_SRC
