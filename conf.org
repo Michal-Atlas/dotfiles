@@ -559,7 +559,7 @@ indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~powe
     :hook (prog-mode . indent-guide-global-mode))
   (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
 
-  (setq default-frame-alist '((set-frame-font "Fira Code 13" nil t)))
+  ;;(setq default-frame-alist '((set-frame-font "Fira Code 13" nil t)))
 
   (use-package doom-themes
     :ensure t
@@ -611,7 +611,7 @@ indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~powe
   (use-package format-all
     :hook (prog-mode . format-all-ensure-formatter))
   (use-package aggressive-indent
-    :hook ( global-aggressive-indent-mode 1))
+    :config (global-aggressive-indent-mode 1))
 #+END_SRC
 ** Crux
 #+BEGIN_SRC emacs-lisp
