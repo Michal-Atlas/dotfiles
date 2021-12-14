@@ -611,6 +611,10 @@ indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~powe
   (use-package format-all
     :hook (prog-mode . format-all-mode))
 #+END_SRC
+** Crux
+#+BEGIN_SRC emacs-lisp
+(use-package crux)
+#+END_SRC
 ** Company
 #+BEGIN_SRC emacs-lisp
   (use-package company
