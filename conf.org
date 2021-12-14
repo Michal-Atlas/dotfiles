@@ -618,6 +618,11 @@ indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~powe
     (company-mode)
     :hook
     (after-init . global-company-mode))
+  (use-package company-tabnine
+    :config
+    (add-to-list 'company-backends #'company-tabnine)
+    (setq company-idle-delay 0)
+    (setq company-show-numbers t))
   (use-package flycheck
     :config
     (global-flycheck-mode))
