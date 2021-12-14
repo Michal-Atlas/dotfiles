@@ -609,9 +609,9 @@ indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~powe
 ** Formatting
 #+BEGIN_SRC emacs-lisp
   (use-package format-all
-    :hook (prog-mode . format-all-mode))
+    :hook (prog-mode . format-all-ensure-formatter))
   (use-package aggressive-indent
-    :config (global-aggressive-indent-mode 1))
+    :hook ( global-aggressive-indent-mode 1))
 #+END_SRC
 ** Crux
 #+BEGIN_SRC emacs-lisp
