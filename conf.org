@@ -610,6 +610,8 @@ indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~powe
 #+BEGIN_SRC emacs-lisp
   (use-package format-all
     :hook (prog-mode . format-all-mode))
+  (use-package aggressive-indent
+    :config (global-aggressive-indent-mode 1))
 #+END_SRC
 ** Crux
 #+BEGIN_SRC emacs-lisp
@@ -640,6 +642,11 @@ indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~powe
     :config
     (global-flycheck-mode))
 #+END_SRC
+*** Snippets
+    #+BEGIN_SRC emacs-lisp
+      (use-package yasnippet
+	:config (yas-global-mode 1))
+    #+END_SRC
 ** Projectile
 #+BEGIN_SRC emacs-lisp
     (use-package projectile
