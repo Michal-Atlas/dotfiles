@@ -557,7 +557,7 @@ indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~powe
 
   (use-package indent-guide
     :hook (prog-mode . indent-guide-global-mode))
-  (global-display-fill-column-indicator-mode 1)
+  (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
 
   (setq default-frame-alist '((set-frame-font "Fira Code 13" nil t)))
 
