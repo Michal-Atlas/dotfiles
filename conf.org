@@ -617,14 +617,10 @@ indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~powe
 #+BEGIN_SRC emacs-lisp
 (use-package crux)
 #+END_SRC
-** Undo-fu
+** Undo-tree
    #+BEGIN_SRC emacs-lisp
-     (use-package undo-fu
-       :bind
-       (("C-_" . undo-fu-only-undo)
-       ("M-_" . undo-fu-only-redo)))
-     (use-package undo-fu-session
-       :config (global-undo-fu-session-mode))
+     (use-package undo-tree
+       :config (global-undo-tree-mode 1))
    #+END_SRC
 ** Company
 #+BEGIN_SRC emacs-lisp
@@ -803,8 +799,6 @@ indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~powe
    #+end_src
 ** Misc.
 #+BEGIN_SRC emacs-lisp
-  (use-package undo-tree
-    :ensure t)
   (use-package adaptive-wrap)
   (use-package calfw
     :ensure t)
@@ -816,7 +810,6 @@ indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~powe
   (use-package dired-rsync)
   (use-package ibuffer-projectile)
   (use-package ibuffer-vc)
-  (use-package undo-tree)
   (use-package git-timemachine)
   (use-package quickrun)
   (use-package pdf-tools)
