@@ -802,10 +802,8 @@ indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~powe
 ** Misc.
 #+BEGIN_SRC emacs-lisp
   (use-package adaptive-wrap)
-  (use-package calfw
-    :ensure t)
-  (use-package calfw-org
-    :ensure t)
+  (use-package calfw-cal)
+  (use-package calfw-org)
   (use-package vimish-fold)
   (use-package diff-hl)
   (use-package diredfl)
