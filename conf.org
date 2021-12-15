@@ -493,18 +493,32 @@ indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~powe
 #+END_SRC
 *** Quelpa
     #+BEGIN_SRC emacs-lisp
-      (unless (package-installed-p 'quelpa)
-	(with-temp-buffer
-	  (url-insert-file-contents "https://raw.githubusercontent.com/quelpa/quelpa/master/quelpa.el")
-	  (eval-buffer)
-	  (quelpa-self-upgrade)))
-      ;; Install and load `quelpa-use-package'.
-      (quelpa
-       '(quelpa-use-package
-	 :fetcher git
-	 :url "https://github.com/quelpa/quelpa-use-package.git"))
-      (require 'quelpa-use-package)
-      (quelpa-use-package-activate-advice)
+      (setq quelpa-build-explicit-tar-format-p t)
+	    (unless (package-installed-p 'quelpa)
+	      (with-temp-buffer
+		(url-insert-file-contents "https://raw.githubusercontent.com/quelpa/quelpa/master/quelpa.el")
+		(eval-buffer)
+		(quelpa-self-upgrade)))
+	    ;; Install and load `quelpa-use-package'.
+	    (quelpa
+	     '(quelpa-use-package
+	       :fetcher git
+	       :url "https://github.com/quelpa/quelpa-use-package.git"))
+	    (require 'quelpa-use-package)
+	    (quelpa-use-package-activate-advice)
+    #+END_SRC
+*** Use-Package
+    #+BEGIN_SRC emacs-lisp
+      (require 'bind-key)
+      (setq use-package-always-ensure t)
+
+      (require 'use-package-ensure)
+	(setq use-package-always-ensure t)
+	(use-package auto-package-update
+	  :config
+	  (setq auto-package-update-delete-old-versions t)
+	  (setq auto-package-update-hide-results t)
+	  (auto-package-update-maybe))
     #+END_SRC
 ** Built-in Keybinds
    #+BEGIN_SRC emacs-lisp
@@ -809,6 +823,7 @@ indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~powe
 ** Misc.
 #+BEGIN_SRC emacs-lisp
   (use-package adaptive-wrap)
+  (use-package calfw)
   (use-package calfw-cal)
   (use-package calfw-org)
   (use-package vimish-fold)
