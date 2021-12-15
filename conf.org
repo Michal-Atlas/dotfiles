@@ -10,77 +10,81 @@
   :HEADER-ARGS+: :tangle ~/.zshrc
   :END:
   #+BEGIN_SRC sh
-export PATH="$PATH:$HOME/.cargo/bin"
-export PATH="$PATH:$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin"
-export PATH="$PATH:$HOME/.local/bin"
-export PATH="$PATH:$HOME/source/bin"
-export PATH="$PATH:$HOME/.emacs.d/bin"
-export PATH="$PATH:$HOME/.npm-global/bin"
+    GUIX_PROFILE="/home/michal-atlas/.config/guix/current"
+    . "$GUIX_PROFILE/etc/profile"
+    GUIX_PROFILE="/home/michal-atlas/.guix-profile"
+    . "$GUIX_PROFILE/etc/profile"
+    export PATH="$PATH:$HOME/.cargo/bin"
+    export PATH="$PATH:$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin"
+    export PATH="$PATH:$HOME/.local/bin"
+    export PATH="$PATH:$HOME/source/bin"
+    export PATH="$PATH:$HOME/.emacs.d/bin"
+    export PATH="$PATH:$HOME/.npm-global/bin"
 
-if type rustc >/dev/null; then
-    RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/library"
-    export RUST_SRC_PATH
-    alias cr='cargo run'
-    alias crd='cargo doc --open'
-    alias rd='xdg-open (rustup doc --path)'
-fi
+    if type rustc >/dev/null; then
+	RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/library"
+	export RUST_SRC_PATH
+	alias cr='cargo run'
+	alias crd='cargo doc --open'
+	alias rd='xdg-open (rustup doc --path)'
+    fi
 
-# shellcheck disable=SC1094
-. ~/dotfiles/antigen/antigen.zsh && {
-    antigen use oh-my-zsh
+    # shellcheck disable=SC1094
+    . ~/dotfiles/antigen/antigen.zsh && {
+	antigen use oh-my-zsh
 
-    plugins=(
-        MichaelAquilina/zsh-you-should-use
-        RitchieS/zsh-exa@main
-        aliases
-        colored-man-pages
-        common-aliases
-        emacs
-        extract
-        git
-        git-auto-fetch
-        history
-        hlissner/zsh-autopair
-        per-directory-history
-        rsync
-        rust
-        rustup
-        shrink-path
-        ssh-agent
-        unixorn/autoupdate-antigen.zshplugin
-        web-search
-        wfxr/forgit
-        zoxide
-        zpm-zsh/colorize
-        zsh-users/zsh-syntax-highlighting
-    )
+	plugins=(
+	    MichaelAquilina/zsh-you-should-use
+	    RitchieS/zsh-exa@main
+	    aliases
+	    colored-man-pages
+	    common-aliases
+	    emacs
+	    extract
+	    git
+	    git-auto-fetch
+	    history
+	    hlissner/zsh-autopair
+	    per-directory-history
+	    rsync
+	    rust
+	    rustup
+	    shrink-path
+	    ssh-agent
+	    unixorn/autoupdate-antigen.zshplugin
+	    web-search
+	    wfxr/forgit
+	    zoxide
+	    zpm-zsh/colorize
+	    zsh-users/zsh-syntax-highlighting
+	)
 
-    for p in $plugins; do
-        antigen bundle $p;
-    done;
+	for p in $plugins; do
+	    antigen bundle $p;
+	done;
 
-    antigen theme romkatv/powerlevel10k
+	antigen theme romkatv/powerlevel10k
 
-    antigen apply
-}
+	antigen apply
+    }
 
-alias IDDQD='sudo su'
-alias IDDT='neofetch'
-alias IDMUS='mpv --no-video "https://www.youtube.com/watch?v=Jly9qp40rfw"'
+    alias IDDQD='sudo su'
+    alias IDDT='neofetch'
+    alias IDMUS='mpv --no-video "https://www.youtube.com/watch?v=Jly9qp40rfw"'
 
-alias rm=rip
-alias crontab="crontab -i"
-alias paru="paru --sudoloop --skipreview --bottomup"
-alias cat=bat
-alias pkg="zypper"
-alias pkg-s="pkg search"
-alias pkg-i="sudo zypper install"
+    alias rm=rip
+    alias crontab="crontab -i"
+    alias paru="paru --sudoloop --skipreview --bottomup"
+    alias cat=bat
+    alias pkg="zypper"
+    alias pkg-s="pkg search"
+    alias pkg-i="sudo zypper install"
 
-alias q=exit
+    alias q=exit
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# shellcheck disable=1090
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+    # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+    # shellcheck disable=1090
+    [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
   #+END_SRC
 * SSH
@@ -420,9 +424,8 @@ EndSection
   client.urgent           $red $red $white $red $red
 
   bar {
-      status_command bumblebee-status \
-		     -t gruvbox-powerline \
-		     -m nic disk:root progress memory cpu battery pasink pasource time date git
+      status_command i3status
+
 	colors {
 	       background #000000
 	       statusline #FFFFFF
@@ -466,36 +469,36 @@ indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~powe
    #+END_SRC
 ** KMonad
    :PROPERTIES:
-   :HEADER-ARGS+: :tangle ~/.hmod.kbd
+   :HEADER-ARGS+: :tangle ~/.hmod.kbd :comments none
    :END:
    [[https://precondition.github.io/home-row-mods#1-defcfg][Home Row Mods]]
    #+BEGIN_SRC conf
-(defcfg
-  ;; For Linux
-  input  (device-file "/dev/input/by-path/platform-i8042-serio-0-event-kbd")
-  output (uinput-sink "My KMonad output")
-  fallthrough true
-)
+     (defcfg
+       ;; For Linux
+       input  (device-file "/dev/input/by-path/platform-i8042-serio-0-event-kbd")
+       output (uinput-sink "My KMonad output")
+       fallthrough true
+     )
 
-(defsrc
-    a    s    d    f    g    h    j    k    l    ;
-)
+     (defsrc
+	 a    s    d    f    g    h    j    k    l    ;
+     )
 
-(defalias
-    met_a (tap-hold-next-release 200 a lmet)
-    alt_s (tap-hold-next-release 200 s lalt)
-    ctl_d (tap-hold-next-release 200 d lctl)
-    sft_f (tap-hold-next-release 200 f lsft)
+     (defalias
+	 met_a (tap-hold-next-release 200 a lmet)
+	 alt_s (tap-hold-next-release 200 s lalt)
+	 ctl_d (tap-hold-next-release 200 d lctl)
+	 sft_f (tap-hold-next-release 200 f lsft)
 
-    sft_j (tap-hold-next-release 200 j rsft)
-    ctl_k (tap-hold-next-release 200 k rctl)
-    alt_l (tap-hold-next-release 200 l lalt)
-    met_; (tap-hold-next-release 200 ; rmet)
-)
+	 sft_j (tap-hold-next-release 200 j rsft)
+	 ctl_k (tap-hold-next-release 200 k rctl)
+	 alt_l (tap-hold-next-release 200 l lalt)
+	 met_; (tap-hold-next-release 200 ; rmet)
+     )
 
-(deflayer homerowmods
-    @met_a   @alt_s   @ctl_d   @sft_f   g   h   @sft_j   @ctl_k   @alt_l   @met_;
-)
+     (deflayer homerowmods
+	 @met_a   @alt_s   @ctl_d   @sft_f   g   h   @sft_j   @ctl_k   @alt_l   @met_;
+     )
    #+END_SRC
 * Emacs
   :PROPERTIES:
