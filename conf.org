@@ -438,6 +438,7 @@ EndSection
   }
 
   exec light-locker
+  exec kmonad ~/.hmod.kbd
   exec_always feh --bg-fill ~/Sync/wallpaper.png
    #+END_SRC
 ** Rofi
@@ -462,6 +463,39 @@ configuration {
 background=/usr/share/themes/DOOM/wallpaper.jpg
 theme-name=Greybird-Geeko-Dark
 indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~power;
+   #+END_SRC
+** KMonad
+   :PROPERTIES:
+   :HEADER-ARGS+: :tangle ~/.hmod.kbd
+   :END:
+   [[https://precondition.github.io/home-row-mods#1-defcfg][Home Row Mods]]
+   #+BEGIN_SRC conf
+(defcfg
+  ;; For Linux
+  input  (device-file "/dev/input/by-path/platform-i8042-serio-0-event-kbd")
+  output (uinput-sink "My KMonad output")
+  fallthrough true
+)
+
+(defsrc
+    a    s    d    f    g    h    j    k    l    ;
+)
+
+(defalias
+    met_a (tap-hold-next-release 200 a lmet)
+    alt_s (tap-hold-next-release 200 s lalt)
+    ctl_d (tap-hold-next-release 200 d lctl)
+    sft_f (tap-hold-next-release 200 f lsft)
+
+    sft_j (tap-hold-next-release 200 j rsft)
+    ctl_k (tap-hold-next-release 200 k rctl)
+    alt_l (tap-hold-next-release 200 l lalt)
+    met_; (tap-hold-next-release 200 ; rmet)
+)
+
+(deflayer homerowmods
+    @met_a   @alt_s   @ctl_d   @sft_f   g   h   @sft_j   @ctl_k   @alt_l   @met_;
+)
    #+END_SRC
 * Emacs
   :PROPERTIES:
@@ -779,11 +813,6 @@ indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~powe
 
   (use-package lsp-ui :commands lsp-ui-mode)
   (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
-
-  ;; optionally if you want to use debugger
-  (use-package dap-mode)
-  ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
-  (require' dap-gdb-lldb)
 #+END_SRC
 ** Magit
    #+BEGIN_SRC emacs-lisp
