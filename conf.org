@@ -560,8 +560,8 @@ indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~powe
     :hook (prog-mode . indent-guide-global-mode))
   (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
 
-
-  (set-frame-font "Jetbrains Mono 10" nil t)
+  (set-frame-font "Jetbrains Mono 11" nil t)
+  (add-to-list 'default-frame-alist '(font . "Jetbrains Mono 11"))
 
   (use-package doom-themes
     :ensure t
