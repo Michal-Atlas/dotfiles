@@ -1,19 +1,15 @@
-# -*- after-save-hook: org-babel-tangle -*-
 #+TITLE: CONF.ORG
+# -*- after-save-hook: org-babel-tangle -*-
 #+AUTHOR: Michal Atlas
 
 #+PROPERTY: HEADER-ARGS :comments both :tangle-mode (identity #o444) :mkdirp yes
 #+STARTUP: overview
 
 * ZSH
-  :PROPERTIES:
-  :HEADER-ARGS+: :tangle ~/.zshrc
-  :END:
-  #+BEGIN_SRC sh
-    GUIX_PROFILE="/home/michal-atlas/.config/guix/current"
-    . "$GUIX_PROFILE/etc/profile"
-    GUIX_PROFILE="/home/michal-atlas/.guix-profile"
-    . "$GUIX_PROFILE/etc/profile"
+#+BEGIN_SRC sh :tangle ~/.zshenv
+. ~/.profile
+#+END_SRC
+  #+BEGIN_SRC sh :tangle ~/.zshrc
     export PATH="$PATH:$HOME/.cargo/bin"
     export PATH="$PATH:$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin"
     export PATH="$PATH:$HOME/.local/bin"
@@ -164,39 +160,6 @@ colors:
 theme: Gruvbox-Dark
 #+END_SRC
 * DE
-** X11
-*** Keyboard
-    :PROPERTIES:
-    :HEADER-ARGS+: :tangle /sudo::/etc/X11/xorg.conf.d/00-keyboard.conf
-    :END:
-    #+BEGIN_SRC conf
-# Written by systemd-localed(8), read by systemd-localed and Xorg. It's
-# probably wise not to edit this file manually. Use localectl(1) to
-# instruct systemd-localed to update it.
-Section "InputClass"
-        Identifier "system-keyboard"
-        MatchIsKeyboard "on"
-        Option "XkbLayout" "us,cz"
-	Option "XkbVariant" ",qwerty"
-	Option "XkbOptions" "grp:caps_switch,lv3:ralt_switch,compose:rctrl-altgr"
-EndSection
-
-    #+END_SRC
-*** Touchpad
-    :PROPERTIES:
-    :HEADER-ARGS+: :tangle /sudo::/etc/X11/xorg.conf.d/70-touchpad.conf
-    :END:
-    #+BEGIN_SRC conf
-      Section "InputClass"
-	      Identifier "touchpad"
-	      Driver "libinput"
-	      MatchIsTouchpad "on"
-	      Option "DisableWhileTyping" "on"
-	      Option "Tapping" "1"
-	      Option "NaturalScrolling" "1"
-	      Option "Emulate3Buttons" "yes"
-      EndSection
-    #+END_SRC
 ** I3
    :PROPERTIES:
    :HEADER-ARGS+: :tangle ~/.config/i3/config
@@ -217,7 +180,7 @@ EndSection
      # Font for window titles. Will also be used by the bar unless a different font
      # is used in the bar {} block below.
 
-     font pango:Fira Code 9
+     font pango:Fira Code 6
 
   # This font is widely installed, provides lots of unicode glyphs, right-to-left
   # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -425,7 +388,6 @@ EndSection
 
   bar {
       status_command i3status
-
 	colors {
 	       background #000000
 	       statusline #FFFFFF
@@ -440,7 +402,6 @@ EndSection
 	       }
   }
 
-  exec light-locker
   exec kmonad ~/.hmod.kbd
   exec_always feh --bg-fill ~/Sync/wallpaper.png
    #+END_SRC
@@ -455,17 +416,6 @@ configuration {
 	font: "Fira Code 12";
 	show-icons: true;	
 }
-@import "/usr/share/rofi/themes/gruvbox-dark-hard.rasi"
-   #+END_SRC
-** LightDM
-   :PROPERTIES:
-   :HEADER-ARGS+: :tangle /sudo::/etc/lightdm/lightdm-gtk-greeter.conf
-   :END:
-   #+BEGIN_SRC conf
-[greeter]
-background=/usr/share/themes/DOOM/wallpaper.jpg
-theme-name=Greybird-Geeko-Dark
-indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~power;
    #+END_SRC
 ** KMonad
    :PROPERTIES:
@@ -595,8 +545,8 @@ indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~powe
     :hook (prog-mode . indent-guide-global-mode))
   (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
 
-  (set-frame-font "Jetbrains Mono-11" nil t)
-  (add-to-list 'default-frame-alist '(font . "Jetbrains Mono-11"))
+  (set-frame-font "Jetbrains Mono-8" nil t)
+  (add-to-list 'default-frame-alist '(font . "Jetbrains Mono-8"))
 
   (use-package doom-themes
     :ensure t
@@ -828,19 +778,6 @@ indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~powe
 	     ))
      (use-package magit-todos)
    #+END_SRC
-** Mu4e
-   #+BEGIN_SRC emacs-lisp
-     (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu/mu4e")
-     (global-set-key (kbd "C-c M M") 'mu4e)
-     (require 'mu4e)
-     (use-package mu4e-alert
-       :config (mu4e-alert-set-default-style 'libnotify)
-       :hook
-       ((after-init . mu4e-alert-enable-notifications)
-	(after-init . mu4e-alert-enable-mode-line-display)))
-     (use-package org-msg
-       :init (setq mail-user-agent 'mu4e-user-agent))
-   #+END_SRC
 ** Bongo
    #+begin_src emacs-lisp
      (use-package bongo
@@ -854,6 +791,7 @@ indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~powe
    #+end_src
 ** Misc.
 #+BEGIN_SRC emacs-lisp
+  (use-package guix)
   (use-package adaptive-wrap)
   (use-package calfw)
   (use-package calfw-cal)
@@ -1094,17 +1032,6 @@ indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~powe
     #+BEGIN_SRC emacs-lisp
       (add-hook 'shell-script-mode 'prog-mode)
     #+END_SRC
-*** Rust
-    #+BEGIN_SRC emacs-lisp
-      (use-package rust-mode
-	:ensure t)
-      (use-package rustic
-	:ensure t
-	:init (setq racer-rust-src-path "~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library")
-	:hook ((rust-mode . rustic-mode)
-	       (rust-mode . lsp)
-	       (rustic-mode . eldoc-mode)))
-    #+END_SRC
 *** Haskell
     #+BEGIN_SRC emacs-lisp
       (use-package lsp-haskell
@@ -1149,99 +1076,6 @@ indicators = ~host;~spacer;~clock;~spacer;~language;~layout;~session;~a11y;~powe
       (use-package hackles
 	:quelpa (hackles :fetcher github :repo "Michal-Atlas/emacs-hackles"))
     #+END_SRC
-
-* Mu4e
-  #+BEGIN_SRC conf :tangle ~/.mbsyncrc
-    # mbsyncrc based on
-    # http://www.ict4g.net/adolfo/notes/2014/12/27/EmacsIMAP.html
-    # ACCOUNT INFORMATION
-    IMAPAccount gmail
-    # Address to connect to
-    Host imap.gmail.com
-    User michal.z.atlas@gmail.com
-    PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.emacs.d/mu4e/.mbsyncpass-EM.gpg"
-    AuthMechs LOGIN
-    SSLType IMAPS
-    CertificateFile /etc/ssl/certs/ca-certificates.crt
-
-    # THEN WE SPECIFY THE LOCAL AND REMOTE STORAGE
-    # - THE REMOTE STORAGE IS WHERE WE GET THE MAIL FROM (E.G., THE
-    #   SPECIFICATION OF AN IMAP ACCOUNT)
-    # - THE LOCAL STORAGE IS WHERE WE STORE THE EMAIL ON OUR COMPUTER
-
-    # REMOTE STORAGE (USE THE IMAP ACCOUNT SPECIFIED ABOVE)
-    IMAPStore gmail-remote
-    Account gmail
-
-    # LOCAL STORAGE (CREATE DIRECTORIES with mkdir -p ~/Maildir/gmail)
-    MaildirStore gmail-local
-    Path ~/Maildir/gmail/
-    Inbox ~/Maildir/gmail/INBOX
-    # REQUIRED ONLY IF YOU WANT TO DOWNLOAD ALL SUBFOLDERS; SYNCING SLOWS DOWN
-    # SubFolders Verbatim
-
-    # CONNECTIONS SPECIFY LINKS BETWEEN REMOTE AND LOCAL FOLDERS
-    #
-    # CONNECTIONS ARE SPECIFIED USING PATTERNS, WHICH MATCH REMOTE MAIl
-    # FOLDERS. SOME COMMONLY USED PATTERS INCLUDE:
-    #
-    # 1 "*" TO MATCH EVERYTHING
-    # 2 "!DIR" TO EXCLUDE "DIR"
-    # 3 "DIR" TO MATCH DIR
-
-    Channel gmail-inbox
-    Far :gmail-remote:
-    Near :gmail-local:
-    Patterns "INBOX"
-    Create Both
-    Expunge Both
-    SyncState *
-
-    # GROUPS PUT TOGETHER CHANNELS, SO THAT WE CAN INVOKE
-    # MBSYNC ON A GROUP TO SYNC ALL CHANNELS
-    #
-    # FOR INSTANCE: "mbsync gmail" GETS MAIL FROM
-    # "gmail-inbox", "gmail-sent", and "gmail-trash"
-    #
-    Group gmail
-    Channel gmail-inbox
-
-    IMAPAccount fit
-    # Address to connect to
-    Host outlook.office365.com
-    User zacekmi2@cvut.cz
-    PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.emacs.d/mu4e/.mbsyncpass-FT.gpg"
-    AuthMechs LOGIN
-    SSLType IMAPS
-    CertificateFile /etc/ssl/certs/ca-certificates.crt
-
-
-    # REMOTE STORAGE (USE THE IMAP ACCOUNT SPECIFIED ABOVE)
-    IMAPStore fit-remote
-    Account fit
-
-    # LOCAL STORAGE (CREATE DIRECTORIES with mkdir -p ~/Maildir/gmail)
-    MaildirStore fit-local
-    Path ~/Maildir/fit/
-    Inbox ~/Maildir/fit/INBOX
-
-    Channel fit-inbox
-    Far :fit-remote:
-    Near :fit-local:
-    Patterns "INBOX"
-    Create Both
-    Expunge Both
-    SyncState *
-
-    # GROUPS PUT TOGETHER CHANNELS, SO THAT WE CAN INVOKE
-    # MBSYNC ON A GROUP TO SYNC ALL CHANNELS
-    #
-    # FOR INSTANCE: "mbsync gmail" GETS MAIL FROM
-    # "gmail-inbox", "gmail-sent", and "gmail-trash"
-    #
-    Group fit
-    Channel fit-inbox
-  #+END_SRC
 
 * TMUX
   :PROPERTIES:
