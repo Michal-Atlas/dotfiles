@@ -1,0 +1,127 @@
+(use-modules (gnu)
+	     (nongnu packages linux)
+	     (nongnu system linux-initrd)
+	     (nongnu services vpn)
+	     (nongnu packages mozilla))
+(use-service-modules
+ desktop
+ networking
+ ssh
+ xorg
+ pm
+ virtualization
+ cups
+ syncthing)
+(use-package-modules
+ emacs
+ emacs-xyz
+ vim
+ gnuzilla
+ shells
+ wm
+ suckless
+ xdisorg
+ terminals
+ certs
+ version-control
+ pdf
+ image-viewers
+ gnome
+ web-browsers
+ fonts
+ kde
+ lxqt
+ cups
+ cinnamon
+ commencement)
+
+(operating-system
+ (kernel linux)
+ (initrd microcode-initrd)
+ (firmware (list linux-firmware))
+ (locale "en_GB.utf8")
+ (timezone "Europe/Prague")
+ (keyboard-layout
+  (keyboard-layout "us,cz" ",qwerty" #:options '("grp:caps_switch" "lv3:ralt_switch" "compose:rctrl-altgr")))
+ (host-name "Phoenix-Port")
+ (users (cons* (user-account
+		(name "michal-atlas")
+		(comment "Michal Atlas")
+		(group "users")
+		(home-directory "/home/michal-atlas")
+		(shell (file-append zsh "/bin/zsh"))
+		(supplementary-groups
+		 '("wheel" "netdev" "audio" "video")))
+	       %base-user-accounts))
+ (packages
+  (cons* emacs vim zsh git
+	 icecat qutebrowser
+	 i3-wm i3status
+	 emacs-exwm cinnamon-desktop
+	 feh shotwell
+	 font-fira-code font-jetbrains-mono
+	 dmenu rofi
+	 alacritty st
+	 nautilus okular
+	 gcc-toolchain
+	 nss-certs
+	 %base-packages))
+ (services
+  (cons*
+   (service openssh-service-type)
+   ;;(service zerotier-one-service)
+   (set-xorg-configuration
+    (xorg-configuration
+     (keyboard-layout keyboard-layout)))
+   (service tlp-service-type
+            (tlp-configuration
+             (cpu-boost-on-ac? #t)
+             (wifi-pwr-on-bat? #t)))
+   (service thermald-service-type)
+   (service libvirt-service-type
+            (libvirt-configuration
+             (unix-sock-group "libvirt")
+             (tls-port "16555")))
+   (service syncthing-service-type
+	    (syncthing-configuration (user "michal-atlas")))
+   (service cups-service-type
+            (cups-configuration
+             (web-interface? #t)
+             (extensions
+              (list cups-filters hplip-minimal))))
+   (bluetooth-service #:auto-enable? #t)
+   (modify-services %desktop-services
+		    (guix-service-type config =>
+				       (guix-configuration
+					(inherit config)
+					(substitute-urls
+					 (append (list "https://substitutes.nonguix.org")
+						 %default-substitute-urls))
+					(authorized-keys
+					 (append (list (plain-file "non-guix.pub"
+								   "(public-key (ecc (curve Ed25519)(q #C1FD53E5D4CE971933EC50C9F307AE2171A2D3B52C804642A7A35F84F3A4EA98#)))"))
+						 %default-authorized-guix-keys)))))))
+ (bootloader
+  (bootloader-configuration
+   (bootloader grub-efi-bootloader)
+   (target "/boot/efi")))
+ (swap-devices
+  (list (uuid "5fa1e03e-b1ff-4116-b7e9-2e400775d485")))
+ (file-systems
+  (cons* (file-system
+	  (mount-point "/")
+	  (device
+	   (uuid "90040b9b-7b69-489f-b587-06e0c84387e5"
+		 'ext4))
+	  (type "ext4"))
+	 (file-system
+	  (mount-point "/boot/efi")
+	  (type "vfat")
+	  (device "/dev/sda1"))
+	 (file-system
+	  (mount-point "/home")
+	  (type "btrfs")
+	  (options "subvol=@/home")
+	  (device "/dev/sda4"))
+	 %base-file-systems))
+ (name-service-switch %mdns-host-lookup-nss))
