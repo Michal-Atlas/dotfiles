@@ -73,15 +73,29 @@
  (services
   (cons*
    (service openssh-service-type)
-   ;;(service zerotier-one-service)
+					; (service zerotier-one-service-type)
    (set-xorg-configuration
     (xorg-configuration
-     (keyboard-layout keyboard-layout)))
+     (keyboard-layout keyboard-layout)
+     (extra-config (list "
+# Touchpad
+Section \"InputClass\"
+	Identifier \"touchpad\"
+        Driver \"libinput\"
+	MatchIsTouchpad \"on\"
+	Option \"DisableWhileTyping\" \"on\"
+	Option \"Tapping\" \"1\"
+	Option \"NaturalScrolling\" \"1\"
+	Option \"Emulate3Buttons\" \"yes\"
+EndSection
+# Touchpad:1 ends here
+"))))
    (service tlp-service-type
             (tlp-configuration
              (cpu-boost-on-ac? #t)
              (wifi-pwr-on-bat? #t)))
    (service thermald-service-type)
+   (service inputattach-service-type)
    (service libvirt-service-type
             (libvirt-configuration
              (unix-sock-group "libvirt")
@@ -93,11 +107,6 @@
              (web-interface? #t)
              (extensions
               (list cups-filters hplip-minimal))))
-   (service postgresql-service-type)
-   (service mpd-service-type
-            (mpd-configuration
-             (user "michal-atlas")
-             (port "6600")))
    (service guix-publish-service-type
 	    (guix-publish-configuration
 	     (advertise? #t)))
