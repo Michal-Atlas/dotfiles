@@ -8,7 +8,7 @@
 * ZSH
 #+BEGIN_SRC sh :tangle ~/.zshenv
   . ~/.profile
-  [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env" || true
+  [ -xf "$HOME/.cargo/env" ] && . "$HOME/.cargo/env" || true
 #+END_SRC
   #+BEGIN_SRC sh :tangle ~/.zshrc
     export PATH="$PATH:$HOME/.cargo/bin"
@@ -1105,21 +1105,22 @@ run '~/.tmux/plugins/tpm/tpm'
 :HEADER-ARGS+: :tangle ~/.emacs.d/init.el
 :END:
 #+BEGIN_SRC emacs-lisp
-  (use-package elfeed)
-  (setq elfeed-feeds
-	'(("https://xkcd.com/rss.xml" comics)
-	  ("https://www.smbc-comics.com/comic/rss" comics)
-	  ("https://www.giantitp.com/comics/oots.rss" comics)
-	  ("https://feeds.feedburner.com/LookingForGroup" comics)
-	  ("https://www.oglaf.com/" comics)
-	  ("http://phdcomics.com/gradfeed.php" comics)
-	  ("https://blog.tecosaur.com/tmio/rss.xml" emacs)
-	  ("https://akce.cvut.cz/?node=rss&group=7" ctu)
-	  ("https://akce.cvut.cz/?node=rss&group=11" ctu)
-	  ("https://aktualne.cvut.cz/rss/newsflashes" ctu)
-	  ("https://gitlab.fit.cvut.cz/zacekmi2.atom?feed_token=aVNtRA3xYzqwpkQBoM3z" fit)
-	  ("http://feeds.bbci.co.uk/news/world/rss.xml" news)
-	  ("http://feeds.bbci.co.uk/news/technology/rss.xml" news)
-	  ("http://feeds.bbci.co.uk/news/video_and_audio/world/rss.xml" podcast)
-	  ("http://festivalofthespokennerd.libsyn.com/rss" podcast)))
+    (use-package elfeed)
+    (setq elfeed-feeds
+	  '(("https://xkcd.com/rss.xml" comics)
+	    ("https://www.smbc-comics.com/comic/rss" comics)
+	    ("https://www.giantitp.com/comics/oots.rss" comics)
+	    ("https://feeds.feedburner.com/LookingForGroup" comics)
+	    ("https://www.oglaf.com/" comics)
+	    ("http://phdcomics.com/gradfeed.php" comics)
+	    ("https://blog.tecosaur.com/tmio/rss.xml" emacs)
+	    ("https://akce.cvut.cz/?node=rss&group=7" ctu)
+	    ("https://akce.cvut.cz/?node=rss&group=11" ctu)
+	    ("https://aktualne.cvut.cz/rss/newsflashes" ctu)
+	    ("https://gitlab.fit.cvut.cz/zacekmi2.atom?feed_token=aVNtRA3xYzqwpkQBoM3z" fit)
+	    ("http://feeds.bbci.co.uk/news/world/rss.xml" news)
+	    ("http://feeds.bbci.co.uk/news/technology/rss.xml" news)
+	    ("http://feeds.bbci.co.uk/news/video_and_audio/world/rss.xml" podcast)
+	    ("http://festivalofthespokennerd.libsyn.com/rss" podcast)
+	    ("https://konfery.cz/rss/")))
 #+END_SRC
