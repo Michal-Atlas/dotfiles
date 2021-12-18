@@ -1,5 +1,5 @@
 #+TITLE: CONF.ORG
--*- after-save-hook: org-babel-tangle -*-
+# -*- after-save-hook: org-babel-tangle -*-
 #+AUTHOR: Michal Atlas
 
 #+PROPERTY: HEADER-ARGS :comments both :tangle-mode (identity #o444) :mkdirp yes
@@ -7,7 +7,8 @@
 
 * ZSH
 #+BEGIN_SRC sh :tangle ~/.zshenv
-. ~/.profile
+  . ~/.profile
+  [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env" || true
 #+END_SRC
   #+BEGIN_SRC sh :tangle ~/.zshrc
     export PATH="$PATH:$HOME/.cargo/bin"
