@@ -98,6 +98,9 @@
             (mpd-configuration
              (user "michal-atlas")
              (port "6600")))
+   (service guix-publish-service-type
+	    (guix-publish-configuration
+	     (advertise? #t)))
    (service unattended-upgrade-service-type
 	    (unattended-upgrade-configuration
 	     (channels "/run/current-system/channels.scm")))
@@ -106,6 +109,7 @@
 		    (guix-service-type config =>
 				       (guix-configuration
 					(inherit config)
+					(discover? #t)
 					(substitute-urls
 					 (append (list "https://substitutes.nonguix.org")
 						 %default-substitute-urls))
