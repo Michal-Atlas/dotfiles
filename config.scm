@@ -10,6 +10,9 @@
  xorg
  pm
  virtualization
+ admin
+ audio
+ databases
  cups
  syncthing)
 (use-package-modules
@@ -89,6 +92,14 @@
              (web-interface? #t)
              (extensions
               (list cups-filters hplip-minimal))))
+   (service postgresql-service-type)
+   (service mpd-service-type
+            (mpd-configuration
+             (user "michal-atlas")
+             (port "6666")))
+   (service unattended-upgrade-service-type
+	    (unattended-upgrade-configuration
+	     (channels "/run/current-system/channels.scm")))
    (bluetooth-service #:auto-enable? #t)
    (modify-services %desktop-services
 		    (guix-service-type config =>
@@ -98,8 +109,11 @@
 					 (append (list "https://substitutes.nonguix.org")
 						 %default-substitute-urls))
 					(authorized-keys
-					 (append (list (plain-file "non-guix.pub"
-								   "(public-key (ecc (curve Ed25519)(q #C1FD53E5D4CE971933EC50C9F307AE2171A2D3B52C804642A7A35F84F3A4EA98#)))"))
+					 (append (list
+						  (plain-file "non-guix.pub"
+							      "(public-key (ecc (curve Ed25519)(q #C1FD53E5D4CE971933EC50C9F307AE2171A2D3B52C804642A7A35F84F3A4EA98#)))")
+						  (plain-file "phoenix-elite.pub"
+							      "(public-key (ecc (curve Ed25519)	(q #4D9C8E904BAA7AD5C01C6D1227A7C83C70EB614CDF7E71A00460555A1C713E4C#)))"))
 						 %default-authorized-guix-keys)))))))
  (bootloader
   (bootloader-configuration
