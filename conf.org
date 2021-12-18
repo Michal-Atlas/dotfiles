@@ -1,5 +1,5 @@
 #+TITLE: CONF.ORG
-# -*- after-save-hook: org-babel-tangle -*-
+-*- after-save-hook: org-babel-tangle -*-
 #+AUTHOR: Michal Atlas
 
 #+PROPERTY: HEADER-ARGS :comments both :tangle-mode (identity #o444) :mkdirp yes

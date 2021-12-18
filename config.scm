@@ -33,6 +33,7 @@
  web-browsers
  fonts
  kde
+ rust
  lxqt
  cups
  cinnamon
@@ -59,14 +60,14 @@
  (packages
   (cons* emacs vim zsh git
 	 icecat qutebrowser
-	 i3-wm i3status
+	 i3-wm i3status i3lock i3lock-fancy
 	 emacs-exwm cinnamon-desktop
 	 feh shotwell
 	 font-fira-code font-jetbrains-mono
 	 dmenu rofi
 	 alacritty st
 	 nautilus okular
-	 gcc-toolchain
+	 gcc-toolchain rust
 	 nss-certs
 	 %base-packages))
  (services
@@ -96,7 +97,7 @@
    (service mpd-service-type
             (mpd-configuration
              (user "michal-atlas")
-             (port "6666")))
+             (port "6600")))
    (service unattended-upgrade-service-type
 	    (unattended-upgrade-configuration
 	     (channels "/run/current-system/channels.scm")))
@@ -111,7 +112,7 @@
 					(authorized-keys
 					 (append (list
 						  (plain-file "non-guix.pub"
-							      "(public-key (ecc (curve Ed25519)(q #C1FD53E5D4CE971933EC50C9F307AE2171A2D3B52C804642A7A35F84F3A4EA98#)))")
+							      "(public-key (ecc (curve Ed25519) (q #C1FD53E5D4CE971933EC50C9F307AE2171A2D3B52C804642A7A35F84F3A4EA98#)))")
 						  (plain-file "phoenix-elite.pub"
 							      "(public-key (ecc (curve Ed25519)	(q #4D9C8E904BAA7AD5C01C6D1227A7C83C70EB614CDF7E71A00460555A1C713E4C#)))"))
 						 %default-authorized-guix-keys)))))))
