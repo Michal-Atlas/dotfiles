@@ -47,7 +47,6 @@
  (timezone "Europe/Prague")
  (keyboard-layout
   (keyboard-layout "us,cz" ",qwerty" #:options '("grp:caps_switch" "lv3:ralt_switch" "compose:rctrl-altgr")))
- (host-name "Phoenix-Port")
  (users (cons* (user-account
 		(name "michal-atlas")
 		(comment "Michal Atlas")
@@ -135,21 +134,4 @@ EndSection
    (target "/boot/efi")))
  (swap-devices
   (list (uuid "5fa1e03e-b1ff-4116-b7e9-2e400775d485")))
- (file-systems
-  (cons* (file-system
-	  (mount-point "/")
-	  (device
-	   (uuid "90040b9b-7b69-489f-b587-06e0c84387e5"
-		 'ext4))
-	  (type "ext4"))
-	 (file-system
-	  (mount-point "/boot/efi")
-	  (type "vfat")
-	  (device "/dev/sda1"))
-	 (file-system
-	  (mount-point "/home")
-	  (type "btrfs")
-	  (options "subvol=@/home")
-	  (device "/dev/sda4"))
-	 %base-file-systems))
  (name-service-switch %mdns-host-lookup-nss))
