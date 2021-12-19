@@ -3,8 +3,7 @@
   #:use-module (nongnu packages linux)
   #:use-module (nongnu system linux-initrd)
   #:use-module (nongnu services vpn)
-  #:use-module (nongnu packages mozilla)
-  #:export (guix-system))
+  #:use-module (nongnu packages mozilla))
 (use-service-modules
  desktop
  networking
@@ -21,6 +20,7 @@
  emacs
  emacs-xyz
  vim
+ admin
  gnuzilla
  shells
  wm
@@ -61,10 +61,10 @@
 		   '("wheel" "netdev" "audio" "video")))
 		 %base-user-accounts))
    (packages
-    (cons* emacs vim zsh git
+    (cons* emacs vim zsh git htop
 	   icecat qutebrowser
 	   i3-wm i3status i3lock i3lock-fancy
-	   emacs-exwm cinnamon-desktop
+	   emacs-exwm
 	   feh shotwell
 	   font-fira-code font-jetbrains-mono
 	   dmenu rofi
