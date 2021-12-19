@@ -534,8 +534,6 @@ configuration {
    #+END_SRC
 ** Theming
 #+BEGIN_SRC emacs-lisp
-  ;; in ~/.doom.d/config.el
-  (setq doom-theme 'doom-gruvbox)
   (tool-bar-mode -1)
   (menu-bar-mode -1)
   (scroll-bar-mode -1)
@@ -561,7 +559,7 @@ configuration {
     ;; Enable custom neotree theme (all-the-icons must be installed!)
     (doom-themes-neotree-config)
     ;; or for treemacs users
-    (setq doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
+    (setq doom-themes-treemacs-theme "doom-gruvbox") ; use "doom-colors" for less minimal icon theme
     (doom-themes-treemacs-config)
     ;; Corrects (and improves) org-mode's native fontification.
     (doom-themes-org-config))
@@ -591,29 +589,8 @@ configuration {
     :hook (prog-mode . rainbow-delimiters-mode))
   (use-package rainbow-blocks
     :hook ((lisp-mode . rainbow-blocks-mode)
-	   (emacs-list-mode . rainbow-blocks-mode)))
+	   (emacs-lisp-mode . rainbow-blocks-mode)))
 #+END_SRC
-*** Ligatures
-    #+BEGIN_SRC emacs-lisp
-(use-package ligature
-  :quelpa (ligature :fetcher github :repo "mickeynp/ligature.el")
-  :config
-  ;; Enable all JetBrains Mono ligatures in programming modes
-  (ligature-set-ligatures 'prog-mode '("-|" "-~" "---" "-<<" "-<" "--" "->" "->>" "-->" "///" "/=" "/=="
-                                      "/>" "//" "/*" "*>" "***" "*/" "<-" "<<-" "<=>" "<=" "<|" "<||"
-                                      "<|||" "<|>" "<:" "<>" "<-<" "<<<" "<==" "<<=" "<=<" "<==>" "<-|"
-                                      "<<" "<~>" "<=|" "<~~" "<~" "<$>" "<$" "<+>" "<+" "</>" "</" "<*"
-                                      "<*>" "<->" "<!--" ":>" ":<" ":::" "::" ":?" ":?>" ":=" "::=" "=>>"
-                                      "==>" "=/=" "=!=" "=>" "===" "=:=" "==" "!==" "!!" "!=" ">]" ">:"
-                                      ">>-" ">>=" ">=>" ">>>" ">-" ">=" "&&&" "&&" "|||>" "||>" "|>" "|]"
-                                      "|}" "|=>" "|->" "|=" "||-" "|-" "||=" "||" ".." ".?" ".=" ".-" "..<"
-                                      "..." "+++" "+>" "++" "[||]" "[<" "[|" "{|" "??" "?." "?=" "?:" "##"
-                                      "###" "####" "#[" "#{" "#=" "#!" "#:" "#_(" "#_" "#?" "#(" ";;" "_|_"
-                                      "__" "~~" "~~>" "~>" "~-" "~@" "$>" "^=" "]#"))
-  ;; Enables ligature checks globally in all buffers. You can also do it
-  ;; per mode with `ligature-mode'.
-  (global-ligature-mode t))
-    #+END_SRC
 ** Formatting
 #+BEGIN_SRC emacs-lisp
   (use-package format-all
