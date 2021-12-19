@@ -4,7 +4,7 @@
 
 (operating-system
  (inherit guix-system)
- (host-name "Phoenix-Dagon")
+ (host-name "Dagon")
  (swap-devices
   (list (uuid "5fa1e03e-b1ff-4116-b7e9-2e400775d485")))
  (file-systems
