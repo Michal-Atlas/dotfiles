@@ -7,7 +7,6 @@
 
 * ZSH
 #+BEGIN_SRC sh :tangle ~/.zshenv
-  . ~/.profile
   [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env" || true
 #+END_SRC
   #+BEGIN_SRC sh :tangle ~/.zshrc
