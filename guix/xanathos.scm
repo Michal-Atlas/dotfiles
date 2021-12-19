@@ -4,7 +4,7 @@
 
 (operating-system
  (inherit guix-system)
- (host-name "Phoenix-Xanathos")
+ (host-name "Xanathos")
 
  (file-systems
   (cons* (file-system
