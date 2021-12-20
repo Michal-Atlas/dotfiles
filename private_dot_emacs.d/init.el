@@ -100,8 +100,8 @@
   :hook (prog-mode . indent-guide-global-mode))
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
 
-(set-frame-font "Jetbrains Mono-10" nil t)
-(add-to-list 'default-frame-alist '(font . "Jetbrains Mono-10"))
+(set-frame-font "Jetbrains Mono-8" nil t)
+(add-to-list 'default-frame-alist '(font . "Jetbrains Mono-8"))
 
 (use-package doom-themes
   :ensure t
