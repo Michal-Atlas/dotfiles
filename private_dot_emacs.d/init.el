@@ -3,7 +3,6 @@
 ;;; Code:
 ;; Variable Init
 
-;; [[file:../dotfiles/conf.org::*Variable Init][Variable Init:1]]
 (setq user-full-name "Michal Atlas"
       user-mail-address "michal.z.atlas@gmail.com")
 
@@ -49,8 +48,9 @@
 (column-number-mode 1)
 
 (require 'highlight-indent-guides)
-(add-hook 'prog-mode-hook #'indent-guide-global-mode)
+(add-hook 'prog-mode-hook #'highlight-indent-guides-mode)
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
+(setq highlight-indent-guides-method 'bitmap)
 
 (set-frame-font "Jetbrains Mono-8" nil t)
 (add-to-list 'default-frame-alist '(font . "Jetbrains Mono-8"))
@@ -213,7 +213,7 @@
 
 (require 'embark)
 (global-set-key (kbd "C-.") 'embark-act)
-(global-set-key (kbd "C-;") 'embark-dwim)
+(global-set-key (kbd "C-\"") 'embark-dwim)
 (global-set-key (kbd "C-h B") 'embark-bindings)
 
 ;; Optionally replace the key help with a completing-read interface
@@ -341,11 +341,10 @@
 
 ;; Guile
 
-(ac-config-default)
 (require 'ac-geiser)
+(ac-config-default)
 (add-hook 'geiser-mode-hook 'ac-geiser-setup)
 (add-hook 'geiser-repl-mode-hook 'ac-geiser-setup)
-(eval-after-load "auto-complete")
 (add-to-list 'ac-modes' geiser-repl-mode)
 
 (require 'paredit)

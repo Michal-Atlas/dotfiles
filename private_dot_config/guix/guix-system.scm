@@ -63,7 +63,7 @@
 		   '("wheel" "netdev" "audio" "video")))
 		 %base-user-accounts))
    (packages
-    (cons* emacs vim zsh git htop
+    (cons* emacs-next vim zsh git htop
 	   firefox qutebrowser
 	   i3-wm i3status i3lock i3lock-fancy
 	   emacs-exwm
@@ -91,6 +91,9 @@
 	   emacs-consult
 	   emacs-irony-mode emacs-irony-eldoc
 	   emacs-elfeed emacs-frames-only-mode
+	   emacs-ac-geiser emacs-paredit emacs-iedit
+	   emacs-multiple-cursors
+	   emacs-gruvbox-theme
 	   feh shotwell
 	   font-fira-code font-jetbrains-mono
 	   dmenu rofi
