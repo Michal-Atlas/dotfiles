@@ -1,0 +1,6 @@
+# ZSH
+
+# [[file:dotfiles/conf.org::*ZSH][ZSH:1]]
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env" || true
+. ~/.profile
+# ZSH:1 ends here

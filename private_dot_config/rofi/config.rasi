@@ -1,0 +1,6 @@
+configuration {
+	modi: [combi];
+	combi-modi: [drun,run,ssh,window];
+	font: "Fira Code 12";
+	show-icons: true;	
+}
