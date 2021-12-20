@@ -62,16 +62,40 @@
 		 %base-user-accounts))
    (packages
     (cons* emacs vim zsh git htop
-	   icecat qutebrowser
+	   firefox qutebrowser
 	   i3-wm i3status i3lock i3lock-fancy
 	   emacs-exwm
+	   emacs-all-the-icons
+	   emacs-dashboard emacs-highlight-indent-guides
+	   emacs-doom-themes emacs-doom-line
+	   emacs-solaire-mode
+	   emacs-which-key
+	   emacs-company emacs-company-box
+	   emacs-rainbow-delimiters emacs-rainbow-identifiers
+	   emacs-helpful
+	   emacs-clang-format emacs-aggressive-indent
+	   emacs-crux emacs-undo-tree
+	   emacs-flycheck emacs-yasnippet
+	   emacs-projectile emacs-vertico
+	   emacs-orderless
+	   emacs-lsp-ui emacs-lsp-mode
+	   emacs-magit emacs-magit-todos
+	   emacs-guix emacs-adaptive-wrap
+	   emacs-calfw emacs-pdf-tools
+	   emacs-all-the-icons-dired emacs-git-gutter
+	   emacs-org-fragtog emacs-avy
+	   emacs-anzu org-present emacs-org-superstar
+	   emacs-marginalia emacs-embark
+	   emacs-consult
+	   emacs-irony-mode emacs-irony-eldoc
+	   emacs-elfeed emacs-frames-only-mode
 	   feh shotwell
 	   font-fira-code font-jetbrains-mono
 	   dmenu rofi
 	   alacritty st
 	   nautilus okular
 	   gcc-toolchain rust
-	   nss-certs
+	   nss-certs xdg-utils
 	   %base-packages))
    (services
     (cons*
