@@ -391,8 +391,9 @@
 	("https://konfery.cz/rss/")
 	("https://guix.gnu.org/feeds/blog.atom")))
 
+(custom-set-variables
+ '(custom-safe-themes
+   '("1436d643b98844555d56c59c74004eb158dc85fc55d2e7205f8d9b8c860e177f" default)))
+
 (provide 'init)
 ;;; init.el ends here
-
-(require 'frames-only-mode)
-(frames-only-mode 1)
