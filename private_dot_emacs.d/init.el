@@ -1,3 +1,6 @@
+;;; package --- Summary
+;;; Commentary:
+;;; Code:
 ;; Variable Init
 
 ;; [[file:../dotfiles/conf.org::*Variable Init][Variable Init:1]]
@@ -576,8 +579,31 @@
   ;; (setq consult-project-root-function #'vc-root-dir)
   ;;;; 4. locate-dominating-file
   ;; (setq consult-project-root-function (lambda () (locate-dominating-file "." ".git")))
-)
+  )
 ;; Embark and Consult:1 ends here
+
+;; Langs
+
+;; Guile
+
+(ac-config-default)
+(require 'ac-geiser)
+(add-hook 'geiser-mode-hook 'ac-geiser-setup)
+(add-hook 'geiser-repl-mode-hook 'ac-geiser-setup)
+(eval-after-load "auto-complete")
+(add-to-list 'ac-modes' geiser-repl-mode)
+
+(require 'paredit)
+(autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
+(add-hook 'scheme-mode-hook #'enable-paredit-mode)
+
+(require 'iedit)
+
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 ;; C
 
