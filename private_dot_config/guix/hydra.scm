@@ -18,4 +18,10 @@
 	  (device
 	   (uuid "10835a8b-b8b3-482d-a2bf-64974e2de9e4"))
 	  (type "ext4"))
+	 (file-system
+	  (mount-point "/home")
+	  (device
+	   (uuid "bc1de881-5fec-4a9f-a2e7-4fc1db8e6404"))
+	  (type "btrfs")
+	  (options "subvol=@/home"))
 	 %base-file-systems)))
