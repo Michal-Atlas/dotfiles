@@ -1,6 +1,5 @@
 (define-module (dagon)
   #:use-module (guix-system)
-  #:use-module (guix scripts system)
   #:use-module (gnu))
 
 (operating-system

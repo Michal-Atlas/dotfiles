@@ -20,8 +20,10 @@
  emacs
  emacs-xyz
  vim
+ freedesktop
  admin
  gnuzilla
+ llvm
  shells
  wm
  suckless
@@ -67,7 +69,7 @@
 	   emacs-exwm
 	   emacs-all-the-icons
 	   emacs-dashboard emacs-highlight-indent-guides
-	   emacs-doom-themes emacs-doom-line
+	   emacs-doom-themes emacs-doom-modeline
 	   emacs-solaire-mode
 	   emacs-which-key
 	   emacs-company emacs-company-box
@@ -84,7 +86,7 @@
 	   emacs-calfw emacs-pdf-tools
 	   emacs-all-the-icons-dired emacs-git-gutter
 	   emacs-org-fragtog emacs-avy
-	   emacs-anzu org-present emacs-org-superstar
+	   emacs-anzu emacs-org-present emacs-org-superstar
 	   emacs-marginalia emacs-embark
 	   emacs-consult
 	   emacs-irony-mode emacs-irony-eldoc

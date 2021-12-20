@@ -46,6 +46,7 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (show-paren-mode 1)
+(column-number-mode 1)
 
 (require 'highlight-indent-guides)
 (add-hook 'prog-mode-hook #'indent-guide-global-mode)
