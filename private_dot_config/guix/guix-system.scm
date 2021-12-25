@@ -3,7 +3,8 @@
   #:use-module (nongnu packages linux)
   #:use-module (nongnu system linux-initrd)
   #:use-module (nongnu services vpn)
-  #:use-module (nongnu packages mozilla))
+  #:use-module (nongnu packages mozilla)
+  #:use-module (nongnu packages steam-client))
 (use-service-modules
  desktop
  networking
@@ -21,7 +22,14 @@
  emacs-xyz
  vim
  freedesktop
+ pulseaudio
  admin
+ disk
+ password-utils
+ rust-apps
+ xorg
+ ncurses
+ game-development
  gnuzilla
  llvm
  shells
@@ -66,7 +74,7 @@
     (cons* emacs-next vim zsh git htop
 	   firefox qutebrowser
 	   i3-wm i3status i3lock i3lock-fancy
-	   emacs-exwm
+	   emacs-exwm cinnamon-desktop
 	   emacs-all-the-icons
 	   emacs-dashboard emacs-highlight-indent-guides
 	   emacs-doom-themes emacs-doom-modeline
@@ -96,10 +104,15 @@
 	   emacs-gruvbox-theme
 	   feh shotwell
 	   font-fira-code font-jetbrains-mono
+	   pavucontrol
+	   gparted keepassxc
+	   xrandr arandr
+	   steam ;; openmw
+	   ncurses
 	   dmenu rofi
-	   alacritty st
+	   alacritty st bat
 	   nautilus okular
-	   gcc-toolchain rust
+	   gcc-toolchain clang-toolchain rust
 	   nss-certs xdg-utils
 	   %base-packages))
    (services

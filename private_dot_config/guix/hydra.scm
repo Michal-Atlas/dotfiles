@@ -11,13 +11,13 @@
   (cons* (file-system
 	  (mount-point "/")
 	  (device
-	   (uuid "cf61d583-01b3-4988-90c0-624d69f1d790"))
+	   (uuid "ef7f6173-e33e-423d-973c-b782ff2e94e9"))
 	  (type "ext4"))
 	 (file-system
 	  (mount-point "/boot/efi")
 	  (device
-	   (uuid "10835a8b-b8b3-482d-a2bf-64974e2de9e4"))
-	  (type "ext4"))
+	   (uuid "E87D-0473" 'fat32))
+	  (type "vfat"))
 	 (file-system
 	  (mount-point "/home")
 	  (device
