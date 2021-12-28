@@ -96,6 +96,8 @@
 	   emacs-gruvbox-theme
 	   feh shotwell
 	   font-fira-code font-jetbrains-mono
+	   font-awesome font-tamzen
+	   
 	   dmenu rofi
 	   alacritty st
 	   nautilus okular
