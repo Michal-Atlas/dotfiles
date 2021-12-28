@@ -112,14 +112,14 @@
 	   devilutionx
 	   supertuxkart cataclysm-dda falltergeist
 	   opensurge gnushogi nethack retux angband
-	   taisei wesnoth
+	   wesnoth
 	   feh shotwell
 	   font-fira-code font-jetbrains-mono
 	   font-awesome font-tamzen
+	   font-sil-charis
 	   pavucontrol
 	   gparted keepassxc
 	   xrandr arandr
-	   nvidia-driver
 	   steam ;; openmw
 	   ncurses
 	   dmenu rofi
@@ -134,11 +134,20 @@
 					; (service zerotier-one-service-type)
      (set-xorg-configuration
       (xorg-configuration
-       (modules (cons* nvidia-driver %default-xorg-modules))
-       (drivers '("nvidia"))
-       (keyboard-layout keyboard-layout)
-       ))
-     (simple-service 'custom-udev-rules udev-service-type (list nvidia-driver))
+       (extra-config (list "
+# Touchpad
+Section \"InputClass\"
+Identifier \"touchpad\"
+        Driver \"libinput\"
+MatchIsTouchpad \"on\"
+Option \"DisableWhileTyping\" \"on\"
+Option \"Tapping\" \"1\"
+Option \"NaturalScrolling\" \"1\"
+Option \"Emulate3Buttons\" \"yes\"
+EndSection
+# Touchpad:1 ends here
+"))
+       (keyboard-layout keyboard-layout)))
      (service tlp-service-type
               (tlp-configuration
                (cpu-boost-on-ac? #t)
