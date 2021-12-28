@@ -3,7 +3,10 @@
   #:use-module (nongnu packages linux)
   #:use-module (nongnu system linux-initrd)
   #:use-module (nongnu services vpn)
-  #:use-module (nongnu packages mozilla))
+  #:use-module (nongnu packages mozilla)
+  #:use-module (nongnu packages nvidia)
+  #:use-module (games packages diablo)
+  #:use-module (nongnu packages steam-client))
 (use-service-modules
  desktop
  networking
@@ -21,7 +24,15 @@
  emacs-xyz
  vim
  freedesktop
+ pulseaudio
  admin
+ disk
+ password-utils
+ rust-apps
+ xorg
+ ncurses
+ game-development
+ games
  gnuzilla
  llvm
  shells
@@ -37,6 +48,8 @@
  web-browsers
  fonts
  kde
+ mail
+ gnupg
  rust
  lxqt
  cups
@@ -66,7 +79,7 @@
     (cons* emacs-next vim zsh git htop
 	   firefox qutebrowser
 	   i3-wm i3status i3lock i3lock-fancy
-	   emacs-exwm
+	   emacs-exwm cinnamon-desktop
 	   emacs-all-the-icons
 	   emacs-dashboard emacs-highlight-indent-guides
 	   emacs-doom-themes emacs-doom-modeline
@@ -94,14 +107,25 @@
 	   emacs-ac-geiser emacs-paredit emacs-iedit
 	   emacs-multiple-cursors
 	   emacs-gruvbox-theme
+	   emacs-on-screen
+	   mu isync gnupg
+	   devilutionx
+	   supertuxkart cataclysm-dda falltergeist
+	   opensurge gnushogi nethack retux angband
+	   taisei wesnoth
 	   feh shotwell
 	   font-fira-code font-jetbrains-mono
 	   font-awesome font-tamzen
-	   
+	   pavucontrol
+	   gparted keepassxc
+	   xrandr arandr
+	   nvidia-driver
+	   steam ;; openmw
+	   ncurses
 	   dmenu rofi
-	   alacritty st
+	   alacritty st bat
 	   nautilus okular
-	   gcc-toolchain rust
+	   gcc-toolchain clang-toolchain rust
 	   nss-certs xdg-utils
 	   %base-packages))
    (services
@@ -110,20 +134,11 @@
 					; (service zerotier-one-service-type)
      (set-xorg-configuration
       (xorg-configuration
+       (modules (cons* nvidia-driver %default-xorg-modules))
+       (drivers '("nvidia"))
        (keyboard-layout keyboard-layout)
-       (extra-config (list "
-# Touchpad
-Section \"InputClass\"
-	Identifier \"touchpad\"
-        Driver \"libinput\"
-	MatchIsTouchpad \"on\"
-	Option \"DisableWhileTyping\" \"on\"
-	Option \"Tapping\" \"1\"
-	Option \"NaturalScrolling\" \"1\"
-	Option \"Emulate3Buttons\" \"yes\"
-EndSection
-# Touchpad:1 ends here
-"))))
+       ))
+     (simple-service 'custom-udev-rules udev-service-type (list nvidia-driver))
      (service tlp-service-type
               (tlp-configuration
                (cpu-boost-on-ac? #t)
