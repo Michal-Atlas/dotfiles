@@ -83,6 +83,7 @@
 
 (require 'company-box)
 (add-hook 'company-mode-hook #'company-box-mode)
+(setq company-box-icons-alist 'company-box-icons-all-the-icons)
 
 (global-display-line-numbers-mode)
 (global-hl-line-mode 1)
