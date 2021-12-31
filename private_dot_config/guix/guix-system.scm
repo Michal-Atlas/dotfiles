@@ -5,8 +5,9 @@
   #:use-module (nongnu services vpn)
   #:use-module (nongnu packages mozilla)
   #:use-module (nongnu packages nvidia)
-  #:use-module (games packages diablo)
-  #:use-module (nongnu packages steam-client))
+  #:use-module (nongnu packages gog)
+  #:use-module (games packages the-dark-mod)
+  #:use-module (games packages diablo))
 (use-service-modules
  desktop
  networking
@@ -29,6 +30,8 @@
  disk
  password-utils
  rust-apps
+ wine
+ image
  xorg
  ncurses
  game-development
@@ -36,6 +39,12 @@
  gnuzilla
  llvm
  shells
+ inkscape
+ gimp
+ video
+ libreoffice
+ linux
+ music
  wm
  suckless
  xdisorg
@@ -50,7 +59,14 @@
  kde
  mail
  gnupg
+ graphviz
+ algebra
+ audio
+ compression
+ bittorrent
+ cmake
  rust
+ tex
  lxqt
  cups
  cinnamon
@@ -108,10 +124,16 @@
 	   emacs-multiple-cursors
 	   emacs-gruvbox-theme
 	   emacs-on-screen
-	   mu isync gnupg
-	   devilutionx
-	   supertuxkart cataclysm-dda falltergeist
-	   opensurge gnushogi nethack retux angband
+	   mu isync gnupg pinentry
+	   diablo ;; devilutionx
+	   graphviz xdot
+	   xdotool tree
+	   bc unzip
+	   pavucontrol
+	   transmission
+	   lgogdownloader the-dark-mod
+	   supertuxkart cataclysm-dda ;; falltergeist
+	   gnushogi nethack retux angband opensurge
 	   wesnoth
 	   feh shotwell
 	   font-fira-code font-jetbrains-mono
@@ -120,12 +142,20 @@
 	   pavucontrol
 	   gparted keepassxc
 	   xrandr arandr
-	   steam ;; openmw
+	   texlive
 	   ncurses
 	   dmenu rofi
 	   alacritty st bat
 	   nautilus okular
+	   inkscape gimp
+	   audacity
 	   gcc-toolchain clang-toolchain rust
+	   cmake
+	   wine64
+	   icedove
+	   grim vlc
+	   libreoffice
+	   xnotify brightnessctl pamixer playerctl
 	   nss-certs xdg-utils
 	   %base-packages))
    (services
