@@ -46,6 +46,7 @@
  linux
  music
  wm
+ graphics
  suckless
  xdisorg
  terminals
@@ -147,7 +148,7 @@
 	   dmenu rofi
 	   alacritty st bat
 	   nautilus okular
-	   inkscape gimp
+	   inkscape gimp blender kdenlive
 	   audacity
 	   gcc-toolchain clang-toolchain rust
 	   cmake
