@@ -21,7 +21,7 @@ zplug 'plugins/zoxide', from:oh-my-zsh
 zplug 'zpm-zsh/colorize'
 zplug 'zsh-users/zsh-syntax-highlighting', defer:2
 
-zplug 'romkatv/powerlevel10k', from:oh-my-zsh, as:theme
+zplug 'romkatv/powerlevel10k', as:theme
 
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
@@ -30,7 +30,7 @@ if ! zplug check --verbose; then
     fi
 fi
 
-zplug load --verbose
+zplug load
 
 alias crontab="crontab -i"
 alias cat=bat
