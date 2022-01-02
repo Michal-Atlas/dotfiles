@@ -8,37 +8,35 @@ source "${zi_home}/bin/zi.zsh"
 autoload -Uz _zi
 (( ${+_comps} )) && _comps[zi]=_zi
 
-zi snippet for \
-   snippet \
+zi wait lucid for \
    OMZP::common-aliases \
    OMZP::extract \
    OMZP::git-auto-fetch \
    OMZP::shrink-path \
    OMZP::ssh-agent \
    OMZP::dirhistory \
-   OMZP::colored-man-pages
-zi load for \
    b4b4r07/enhancd \
    zpm-zsh/colorize \
    Flinner/zsh-emacs \
    birdhackor/zsh-exa-ls-plugin \
    arzzen/calc.plugin.zsh \
    wfxr/forgit \
-   hlissner/zsh-autopair
-
-# diff-so-fancy
-zi ice wait"2" lucid as"program" pick"bin/git-dsf"
-zi load z-shell/zsh-diff-so-fancy
+   hlissner/zsh-autopair \
+   wait"2" lucid as"program" pick"bin/git-dsf" z-shell/zsh-diff-so-fancy \
+   OMZP::colored-man-pages
 
 zi light-mode for \
-   annexes \
    z-shell/z-a-meta-plugins \
+   @annexes \
    @zsh-users+fast \
    @romkatv \
-   @sharkdp \
+   @console-tools \
    @ext-git
 
-zi pack for dircolors-material
+zi ice atclone"dircolors -b LS_COLORS > clrs.zsh" \
+   atpull'%atclone' pick"clrs.zsh" nocompile'!' \
+   atload'zstyle ":completion:*" list-colors “${(s.:.)LS_COLORS}”'
+zi light trapd00r/LS_COLORS
 
 alias crontab="crontab -i"
 alias cat=bat
