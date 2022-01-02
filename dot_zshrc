@@ -26,7 +26,7 @@ zi wait lucid for \
    OMZP::colored-man-pages \
    Michal-Atlas/zsh-guix
 
-zi light-mode for \
+zi for \
    z-shell/z-a-meta-plugins \
    @annexes \
    @zsh-users+fast \
