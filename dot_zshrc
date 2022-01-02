@@ -24,7 +24,8 @@ zi wait lucid for \
    hlissner/zsh-autopair \
    wait"2" lucid as"program" pick"bin/git-dsf" z-shell/zsh-diff-so-fancy \
    OMZP::colored-man-pages \
-   Michal-Atlas/zsh-guix
+   Michal-Atlas/zsh-guix \
+   marlonrichert/zsh-autocomplete
 
 zi for \
    z-shell/z-a-meta-plugins \
