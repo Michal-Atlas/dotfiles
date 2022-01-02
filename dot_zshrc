@@ -2,32 +2,26 @@ alias rscr='cargo run'
 alias rscrd='cargo doc --open'
 alias rssd='xdg-open (rustup doc --path)'
 
-source ~/.zplug/init.zsh
+. ~/.zplug/init.zsh || \
+    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
-plugins=(
-    aliases
-    common-aliases
-    emacs
-    extract
-    git
-    git-auto-fetch
-    hlissner/zsh-autopair
-    shrink-path
-    ssh-agent
-    wfxr/forgit
-    zoxide
-    zpm-zsh/colorize
-    zsh-users/zsh-syntax-highlighting
+zplug 'plugins/aliases', from:oh-my-zsh
+zplug 'plugins/common-aliases', from:oh-my-zsh
+zplug 'plugins/emacs', from:oh-my-zsh
+zplug 'plugins/extract', from:oh-my-zsh
+zplug 'plugins/git', from:oh-my-zsh
+zplug 'plugins/git-auto-fetch', from:oh-my-zsh
+zplug 'hlissner/zsh-autopair'
+zplug 'plugins/shrink-path', from:oh-my-zsh
+zplug 'plugins/ssh-agent', from:oh-my-zsh
+zplug 'wfxr/forgit'
+zplug 'plugins/zoxide', from:oh-my-zsh
+zplug 'zpm-zsh/colorize'
+zplug 'zsh-users/zsh-syntax-highlighting', defer:2
 
-    antigen theme romkatv/powerlevel10k
-
-    antigen apply
-)
-for pl in plugins; do
-    zplug "$pl"
-done;
+zplug 'romkatv/powerlevel10k', from:oh-my-zsh, as:theme
 
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "

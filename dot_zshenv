@@ -1,12 +1,5 @@
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env" || true
 
-export PATH+="$HOME/.cargo/bin"
-export PATH+="$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin"
-export PATH+="$HOME/.local/bin"
-export PATH+="$HOME/source/bin"
-export PATH+="$HOME/.emacs.d/bin"
-export PATH+="$HOME/.npm-global/bin"
-
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/library"
 
 set -w0U
