@@ -8,44 +8,37 @@ source "${zi_home}/bin/zi.zsh"
 autoload -Uz _zi
 (( ${+_comps} )) && _comps[zi]=_zi
 
-zi for snippet OMZP::common-aliases \
+zi snippet for \
+   snippet \
+   OMZP::common-aliases \
    OMZP::extract \
    OMZP::git-auto-fetch \
    OMZP::shrink-path \
    OMZP::ssh-agent \
    OMZP::dirhistory \
-   OMZP::colored-man-pages \
-   load \
+   OMZP::colored-man-pages
+zi load for \
    b4b4r07/enhancd \
    zpm-zsh/colorize \
    Flinner/zsh-emacs \
    birdhackor/zsh-exa-ls-plugin \
-   arzzen/calc.plugin.zsh
+   arzzen/calc.plugin.zsh \
+   wfxr/forgit \
+   hlissner/zsh-autopair
 
-# zsh-completions
-zi ice blockf atpull'zi creinstall -q .'
-zi light zsh-users/zsh-completions
-# forgit
-zi ice wait lucid
-zi load 'wfxr/forgit'
 # diff-so-fancy
 zi ice wait"2" lucid as"program" pick"bin/git-dsf"
 zi load z-shell/zsh-diff-so-fancy
-# zsh-autopair
-zi ice wait lucid
-zi load hlissner/zsh-autopair
-# Autosuggestions & fast-syntax-highlighting
-zi ice wait lucid atinit"ZPLGM[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay"
-zi light z-shell/F-Sy-H
-# zsh-autosuggestions
-zi ice wait lucid atload"!_zsh_autosuggest_start"
-zi load zsh-users/zsh-autosuggestions
+
+zi light-mode for \
+   annexes \
+   z-shell/z-a-meta-plugins \
+   @zsh-users+fast \
+   @romkatv \
+   @sharkdp \
+   @ext-git
 
 zi pack for dircolors-material
-
-# Load the pure theme, with the zsh-async library that's bundled with it.
-zi ice pick"async.zsh" src"pure.zsh"
-zi light sindresorhus/pure
 
 alias crontab="crontab -i"
 alias cat=bat
