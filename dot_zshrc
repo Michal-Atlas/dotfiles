@@ -43,7 +43,4 @@ alias crontab="crontab -i"
 alias cat=bat
 alias q=exit
 
-recon () {
-    sudo guix system reconfigure "$HOME/.local/share/chezmoi/private_dot_config/guix/$1.scm" -L "$HOME/.local/share/chezmoi/private_dot_config/guix/"
-}
-
+GUIX_CDIR="$HOME/.local/share/chezmoi/private_dot_config/guix"
