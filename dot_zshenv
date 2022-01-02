@@ -2,7 +2,7 @@
 
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/library"
 
-set -w0U
-# set auto_continue
-# set no_hup
-# set pipe_fail
+setopt -w0U
+setopt auto_continue
+setopt no_hup
+setopt pipe_fail
