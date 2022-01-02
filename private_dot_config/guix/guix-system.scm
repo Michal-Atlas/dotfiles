@@ -148,7 +148,7 @@
 	   dmenu rofi
 	   alacritty st bat zoxide exa fzf
 	   nautilus okular
-	   inkscape gimp blender kdenlive
+	   inkscape gimp blender kdenlive krita
 	   audacity
 	   gcc-toolchain clang-toolchain rust
 	   cmake
