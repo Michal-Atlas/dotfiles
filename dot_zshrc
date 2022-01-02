@@ -66,6 +66,7 @@ alias pkg-s="pkg search"
 alias pkg-i="sudo zypper install"
 
 alias q=exit
+alias recon="sudo guix system reconfigure -L ~/.local/share/chezmoi/private_dot_config"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # shellcheck disable=1090

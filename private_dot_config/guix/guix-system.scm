@@ -146,7 +146,7 @@
 	   texlive
 	   ncurses
 	   dmenu rofi
-	   alacritty st bat
+	   alacritty st bat zoxide exa fzf
 	   nautilus okular
 	   inkscape gimp blender kdenlive
 	   audacity
