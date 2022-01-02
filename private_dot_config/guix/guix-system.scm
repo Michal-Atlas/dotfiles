@@ -42,6 +42,7 @@
  inkscape
  gimp
  video
+ databases
  libreoffice
  linux
  music
@@ -65,6 +66,10 @@
  audio
  compression
  bittorrent
+ haskell-xyz
+ ssh
+ lua
+ perl
  cmake
  rust
  tex
@@ -139,7 +144,8 @@
 	   feh shotwell
 	   font-fira-code font-jetbrains-mono
 	   font-awesome font-tamzen
-	   font-sil-charis
+	   font-sil-charis font-adobe-source-han-sans
+	   font-wqy-zenhei font-wqy-microhei
 	   pavucontrol
 	   gparted keepassxc
 	   xrandr arandr
@@ -151,7 +157,8 @@
 	   inkscape gimp blender kdenlive krita
 	   audacity
 	   gcc-toolchain clang-toolchain rust
-	   cmake
+	   cmake recutils ncurses pandoc tealdeer
+	   mosh luajit perl
 	   wine64
 	   icedove
 	   grim vlc
