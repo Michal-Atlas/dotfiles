@@ -2,38 +2,50 @@ alias rscr='cargo run'
 alias rscrd='cargo doc --open'
 alias rssd='xdg-open (rustup doc --path)'
 
-if [ ! -e $HOME/.zplug ]; then
-    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh;
-fi;
-    
-. ~/.zplug/init.zsh
+zi_home="${HOME}/.zi"
+if [ ! -e $zi_home ]; then sh -c "$(curl -fsSL https://git.io/get-zi)" --; fi;
+source "${zi_home}/bin/zi.zsh"
+autoload -Uz _zi
+(( ${+_comps} )) && _comps[zi]=_zi
 
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+zi for snippet OMZP::common-aliases \
+   OMZP::extract \
+   OMZP::git-auto-fetch \
+   OMZP::shrink-path \
+   OMZP::ssh-agent \
+   OMZP::dirhistory \
+   OMZP::colored-man-pages \
+   load \
+   b4b4r07/enhancd \
+   zpm-zsh/colorize \
+   Flinner/zsh-emacs \
+   birdhackor/zsh-exa-ls-plugin \
+   arzzen/calc.plugin.zsh
 
-zplug 'plugins/aliases', from:oh-my-zsh
-zplug 'plugins/common-aliases', from:oh-my-zsh
-zplug 'plugins/emacs', from:oh-my-zsh
-zplug 'plugins/extract', from:oh-my-zsh
-zplug 'plugins/git', from:oh-my-zsh
-zplug 'plugins/git-auto-fetch', from:oh-my-zsh
-zplug 'hlissner/zsh-autopair'
-zplug 'plugins/shrink-path', from:oh-my-zsh
-zplug 'plugins/ssh-agent', from:oh-my-zsh
-zplug 'wfxr/forgit'
-zplug 'plugins/zoxide', from:oh-my-zsh
-zplug 'zpm-zsh/colorize'
-zplug 'zsh-users/zsh-syntax-highlighting', defer:2
+# zsh-completions
+zi ice blockf atpull'zi creinstall -q .'
+zi light zsh-users/zsh-completions
+# forgit
+zi ice wait lucid
+zi load 'wfxr/forgit'
+# diff-so-fancy
+zi ice wait"2" lucid as"program" pick"bin/git-dsf"
+zi load z-shell/zsh-diff-so-fancy
+# zsh-autopair
+zi ice wait lucid
+zi load hlissner/zsh-autopair
+# Autosuggestions & fast-syntax-highlighting
+zi ice wait lucid atinit"ZPLGM[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay"
+zi light z-shell/F-Sy-H
+# zsh-autosuggestions
+zi ice wait lucid atload"!_zsh_autosuggest_start"
+zi load zsh-users/zsh-autosuggestions
 
-zplug 'romkatv/powerlevel10k', as:theme
+zi pack for dircolors-material
 
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-	echo; zplug install
-    fi
-fi
-
-zplug load
+# Load the pure theme, with the zsh-async library that's bundled with it.
+zi ice pick"async.zsh" src"pure.zsh"
+zi light sindresorhus/pure
 
 alias crontab="crontab -i"
 alias cat=bat
@@ -43,7 +55,3 @@ recon () {
     sudo guix system reconfigure "$HOME/.local/share/chezmoi/private_dot_config/guix/$1.scm" -L "$HOME/.local/share/chezmoi/private_dot_config/guix/"
 }
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# shellcheck disable=1090
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-# ZSH:2 ends here
