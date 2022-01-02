@@ -172,6 +172,8 @@
 (require 'guix)
 (require 'adaptive-wrap)
 (require 'calfw)
+(require 'calfw-org)
+(global-set-key (kbd "C-c o c") 'cfw:open-calendar-buffer)
 (require 'pdf-tools)
 (require 'all-the-icons-dired)
 (add-hook 'dired-mode-hook #'all-the-icons-dired-mode)
