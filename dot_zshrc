@@ -11,6 +11,7 @@ autoload -Uz _zi
 zi wait lucid for \
    OMZP::common-aliases \
    OMZP::extract \
+   OMZP::git \
    OMZP::git-auto-fetch \
    OMZP::shrink-path \
    OMZP::ssh-agent \
@@ -20,7 +21,7 @@ zi wait lucid for \
    Flinner/zsh-emacs \
    birdhackor/zsh-exa-ls-plugin \
    arzzen/calc.plugin.zsh \
-   wfxr/forgit \
+   wait'1' wfxr/forgit \
    hlissner/zsh-autopair \
    OMZP::colored-man-pages \
    Michal-Atlas/zsh-guix
@@ -30,7 +31,9 @@ zi for \
    @annexes \
    @zsh-users+fast \
    @romkatv \
-   @console-tools \
+   @dircolors-material \
+   @z-shell \
+   @z-shell2 \
    @ext-git
 
 zi ice atclone"dircolors -b LS_COLORS > clrs.zsh" \
@@ -43,5 +46,6 @@ zstyle ':completion:*' menu select
 alias crontab="crontab -i"
 alias cat=bat
 alias q=exit
+alias ls=k
 
 GUIX_CDIR="$HOME/.local/share/chezmoi/private_dot_config/guix"
