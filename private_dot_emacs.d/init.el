@@ -31,7 +31,7 @@
 			(registers . 5)))
 (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
 (setq dashboard-banner-logo-title "Atlas Emacs")
-(setq dashboard-startup-banner 'logo)
+(setq dashboard-startup-banner "~/.guix-profile/share/emacs-guix/images/guix-logo.svg")
 (setq dashboard-set-heading-icons t)
 (setq dashboard-set-file-icons t)
 (setq dashboard-set-navigator t)
@@ -82,10 +82,6 @@
 (which-key-mode)
 (setq which-key-popup-type 'minibuffer)
 
-(require 'company-box)
-(add-hook 'company-mode-hook #'company-box-mode)
-(setq company-box-icons-alist 'company-box-icons-all-the-icons)
-
 (global-display-line-numbers-mode)
 (global-hl-line-mode 1)
 
@@ -112,9 +108,13 @@
 
 ;; Company
 
-(require 'company)
-(company-mode)
-(add-hook 'after-init-hook #'global-company-mode)
+;; (require 'company)
+;; (company-mode)
+;; (add-hook 'after-init-hook #'global-company-mode)
+
+;; (require 'company-box)
+;; (add-hook 'company-mode-hook #'company-box-mode)
+;; (setq company-box-icons-alist 'company-box-icons-all-the-icons)
 
 (require 'flycheck)
 (global-flycheck-mode)
@@ -152,7 +152,7 @@
 (global-set-key (kbd "C-c c") 'compile)
 (require 'lsp-mode)
 (setq lsp-keymap-prefix "C-c l")
-(add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
+(add-hook 'lsp-mode-hook       #'lsp-enable-which-key-integration)
 
 (require 'lsp-ui)
 
@@ -228,118 +228,6 @@
 	     '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
 	       nil
 	       (window-parameters (mode-line-format . none))))
-
-(require 'consult)
-
-(global-set-key (kbd "C-c h") 'consult-history)
-(global-set-key (kbd "C-c m") 'consult-mode-command)
-(global-set-key (kbd "C-c b") 'consult-bookmark)
-(global-set-key (kbd "C-c k") 'consult-kmacro)
-;; C-x bindings (ctl-x-map)
-(global-set-key (kbd "C-x M-:") 'consult-complex-command)     ;; orig. repeat-complex-command
-(global-set-key (kbd "C-x b") 'consult-buffer)                ;; orig. switch-to-buffer
-(global-set-key (kbd "C-x 4 b") 'consult-buffer-other-window) ;; orig. switch-to-buffer-other-window
-(global-set-key (kbd "C-x 5 b") 'consult-buffer-other-frame)  ;; orig. switch-to-buffer-other-frame
-;; Custom M-# bindings for fast register access
-(global-set-key (kbd "M-#") 'consult-register-load)
-(global-set-key (kbd "M-'") 'consult-register-store)          ;; orig. abbrev-prefix-mark (unrelated)
-(global-set-key (kbd "C-M-#") 'consult-register)
-;; Other custom bindings
-(global-set-key (kbd "M-y") 'consult-yank-pop)                ;; orig. yank-pop
-(global-set-key (kbd "<help> a") 'consult-apropos)            ;; orig. apropos-command
-;; M-g bindings (goto-map)
-(global-set-key (kbd "M-g e") 'consult-compile-error)
-(global-set-key (kbd "M-g f") 'consult-flymake)               ;; Alternative: consult-flycheck
-(global-set-key (kbd "M-g g") 'consult-goto-line)             ;; orig. goto-line
-(global-set-key (kbd "M-g M-g") 'consult-goto-line)           ;; orig. goto-line
-(global-set-key (kbd "M-g o") 'consult-outline)               ;; Alternative: consult-org-heading
-(global-set-key (kbd "M-g m") 'consult-mark)
-(global-set-key (kbd "M-g k") 'consult-global-mark)
-(global-set-key (kbd "M-g i") 'consult-imenu)
-(global-set-key (kbd "M-g I") 'consult-imenu-multi)
-;; M-s bindings (search-map)
-(global-set-key (kbd "M-s f") 'consult-find)
-(global-set-key (kbd "M-s F") 'consult-locate)
-(global-set-key (kbd "M-s g") 'consult-grep)
-(global-set-key (kbd "M-s G") 'consult-git-grep)
-(global-set-key (kbd "M-s r") 'consult-ripgrep)
-(global-set-key (kbd "M-s l") 'consult-line)
-(global-set-key (kbd "M-s L") 'consult-line-multi)
-(global-set-key (kbd "M-s m") 'consult-multi-occur)
-(global-set-key (kbd "M-s k") 'consult-keep-lines)
-(global-set-key (kbd "M-s u") 'consult-focus-lines)
-;; Isearch integration
-(global-set-key (kbd "M-s e") 'consult-isearch-history)
-:map isearch-mode-map
-(global-set-key (kbd "M-e") 'consult-isearch-history)         ;; orig. isearch-edit-string
-(global-set-key (kbd "M-s e") 'consult-isearch-history)       ;; orig. isearch-edit-string
-(global-set-key (kbd "M-s l") 'consult-line)                  ;; needed by consult-line to detect isearch
-(global-set-key (kbd "M-s L") 'consult-line-multi)           ;; needed by consult-line to detect isearch
-
-;; Enable automatic preview at point in the *Completions* buffer.
-;; This is relevant when you use the default completion UI,
-;; and not necessary for Vertico, Selectrum, etc.
-(add-hook 'completion-list-mode #'consult-preview-at-point-mode)
-
-;; Optionally configure the register formatting. This improves the register
-;; preview for `consult-register', `consult-register-load',
-;; `consult-register-store' and the Emacs built-ins.
-(setq register-preview-delay 0
-      register-preview-function #'consult-register-format)
-
-;; Optionally tweak the register preview window.
-;; This adds thin lines, sorting and hides the mode line of the window.
-(advice-add #'register-preview :override #'consult-register-window)
-
-;; Optionally replace `completing-read-multiple' with an enhanced version.
-(advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
-
-;; Use Consult to select xref locations with preview
-(setq xref-show-xrefs-function #'consult-xref
-      xref-show-definitions-function #'consult-xref)
-
-;; Configure other variables and modes in the :config section,
-;; after lazily loading the package.
-
-;; Optionally configure preview. The default value
-;; is 'any, such that any key triggers the preview.
-;; (setq consult-preview-key 'any)
-;; (setq consult-preview-key (kbd "M-."))
-;; (setq consult-preview-key (list (kbd "<S-down>") (kbd "<S-up>")))
-;; For some commands and buffer sources it is useful to configure the
-;; :preview-key on a per-command basis using the `consult-customize' macro.
-(consult-customize
- consult-theme
- :preview-key '(:debounce 0.2 any)
- consult-ripgrep consult-git-grep consult-grep
- consult-bookmark consult-recent-file consult-xref
- consult--source-file consult--source-project-file consult--source-bookmark
- :preview-key (kbd "M-."))
-
-;; Optionally configure the narrowing key.
-;; Both < and C-+ work reasonably well.
-(setq consult-narrow-key "<") ;; (kbd "C-+")
-
-;; Optionally make narrowing help available in the minibuffer.
-;; You may want to use `embark-prefix-help-command' or which-key instead.
-;; (define-key consult-narrow-map (vconcat consult-narrow-key "?") #'consult-narrow-help)
-
-;; Optionally configure a function which returns the project root directory.
-;; There are multiple reasonable alternatives to chose from.
-  ;;;; 1. project.el (project-roots)
-(setq consult-project-root-function
-      (lambda ()
-	(when-let (project (project-current))
-	  (car (project-roots project)))))
-  ;;;; 2. projectile.el (projectile-project-root)
-;; (autoload 'projectile-project-root "projectile")
-;; (setq consult-project-root-function #'projectile-project-root)
-  ;;;; 3. vc.el (vc-root-dir)
-;; (setq consult-project-root-function #'vc-root-dir)
-  ;;;; 4. locate-dominating-file
-;; (setq consult-project-root-function (lambda () (locate-dominating-file "." ".git")))
-
-;; Embark and Consult:1 ends here
 
 ;; Langs
 
