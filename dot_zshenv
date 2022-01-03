@@ -6,3 +6,6 @@ setopt -w0U
 setopt auto_continue
 setopt no_hup
 setopt pipe_fail
+
+GUIX_PROFILE="/home/michal-atlas/.guix-profile"
+. "$GUIX_PROFILE/etc/profile"
