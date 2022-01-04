@@ -49,3 +49,8 @@ alias q=exit
 alias ls=k
 
 GUIX_CDIR="$HOME/.local/share/chezmoi/private_dot_config/guix"
+
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=1000
+setopt INC_APPEND_HISTORY_TIME
