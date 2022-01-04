@@ -50,6 +50,8 @@ alias q=exit
 alias ls=k
 
 GUIX_CDIR="$HOME/.local/share/chezmoi/private_dot_config/guix"
+GUIX_PROFILE="/home/michal-atlas/.guix-profile"
+. "$GUIX_PROFILE/etc/profile"
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
