@@ -36,7 +36,6 @@ zi for \
    z-shell/z-a-meta-plugins \
    @annexes \
    @zsh-users+fast \
-   #   @romkatv \
    @dircolors-material \
    @z-shell \
    @ext-git
