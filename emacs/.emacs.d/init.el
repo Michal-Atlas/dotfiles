@@ -57,20 +57,11 @@
 (set-frame-font "Jetbrains Mono-8" nil t)
 (add-to-list 'default-frame-alist '(font . "Jetbrains Mono-8"))
 
-(require 'doom-themes)
-;; Global settings (defaults)
-(setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-      doom-themes-enable-italic t) ; if nil, italics is universally disabled
-(load-theme 'doom-gruvbox t)
+(require 'spacemacs-dark-theme)
+(load-theme 'spacemacs-dark t)
 
 ;; Enable flashing mode-line on errors
 (doom-themes-visual-bell-config)
-;; Enable custom neotree theme (all-the-icons must be installed!)
-(doom-themes-neotree-config)
-;; or for treemacs users
-(setq doom-themes-treemacs-theme "doom-gruvbox") ; use "doom-colors" for less minimal icon theme
-(doom-themes-treemacs-config)
-;; Corrects (and improves) org-mode's native fontification.
 (doom-themes-org-config)
 
 (require 'doom-modeline)
@@ -285,8 +276,18 @@
 	("https://guix.gnu.org/feeds/blog.atom")))
 
 (custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("1436d643b98844555d56c59c74004eb158dc85fc55d2e7205f8d9b8c860e177f" default)))
+   '("2b9dc43b786e36f68a9fd4b36dd050509a0e32fe3b0a803310661edb7402b8b6" "1436d643b98844555d56c59c74004eb158dc85fc55d2e7205f8d9b8c860e177f" default)))
 
 (provide 'init)
 ;;; init.el ends here
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

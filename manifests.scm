@@ -18,7 +18,7 @@
     "emacs-exwm"
     "emacs-all-the-icons"
     "emacs-dashboard" "emacs-highlight-indent-guides"
-    "emacs-doom-themes" "emacs-doom-modeline"
+    "emacs-spacemacs-theme" "emacs-doom-modeline"
     "emacs-solaire-mode"
     "emacs-which-key"
     "emacs-company" "emacs-company-box"
