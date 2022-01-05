@@ -8,6 +8,11 @@ source "${zi_home}/bin/zi.zsh"
 autoload -Uz _zi
 (( ${+_comps} )) && _comps[zi]=_zi
 
+GEOMETRY_STATUS_SYMBOL='λ'
+GEOMETRY_STATUS_SYMBOL_ERROR='△'
+zi ice wait"0" lucid atload"geometry::prompt"
+zi light geometry-zsh/geometry
+
 zi wait lucid for \
    OMZP::common-aliases \
    OMZP::extract \
@@ -31,10 +36,9 @@ zi for \
    z-shell/z-a-meta-plugins \
    @annexes \
    @zsh-users+fast \
-   @romkatv \
+   #   @romkatv \
    @dircolors-material \
    @z-shell \
-   @z-shell2 \
    @ext-git
 
 zi ice atclone"dircolors -b LS_COLORS > clrs.zsh" \
