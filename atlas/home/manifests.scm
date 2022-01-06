@@ -77,7 +77,7 @@
     "audacity"
     
     ;; Libs
-    "ncurses" "curl"
+    "ncurses" "curl" "virt-manager"
 
     ;; Shell utils
     "dmenu" "rofi" "file"
