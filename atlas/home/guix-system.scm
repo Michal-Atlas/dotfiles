@@ -15,6 +15,7 @@
  ssh
  xorg
  pm
+ mcron
  nix
  virtualization
  admin
@@ -22,6 +23,12 @@
  databases
  cups
  syncthing)
+
+(define mbsync-job
+  #~(job
+     "0 * * * *"
+     "mbsync --all"
+     #:user "michal-atlas"))
 
 (define-public atlas-guix-system
   (operating-system
@@ -66,6 +73,8 @@ EndSection
 "))
        (keyboard-layout keyboard-layout)))
      (service gnome-desktop-service-type)
+     (simple-service 'cron-jobs mcron-service-type
+		     (list mbsync-job))
      (service tlp-service-type
               (tlp-configuration
 	       (cpu-boost-on-ac? #t)

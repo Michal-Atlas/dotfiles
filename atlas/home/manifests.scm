@@ -80,7 +80,7 @@
     "ncurses" "curl"
 
     ;; Shell utils
-    "dmenu" "rofi"
+    "dmenu" "rofi" "file"
     "alacritty" "st" "bat" "zoxide" "exa" "fzf"
     "pandoc" "tealdeer" "tmux"
     "vim" "zsh" "git" "htop"
