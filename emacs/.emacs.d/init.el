@@ -60,10 +60,6 @@
 (require 'spacemacs-dark-theme)
 (load-theme 'spacemacs-dark t)
 
-;; Enable flashing mode-line on errors
-(doom-themes-visual-bell-config)
-(doom-themes-org-config)
-
 (require 'doom-modeline)
 (doom-modeline-mode 1)
 
