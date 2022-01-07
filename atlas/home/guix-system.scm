@@ -98,29 +98,32 @@ EndSection
 		(list cups-filters hplip-minimal))))
      (service guix-publish-service-type
 	      (guix-publish-configuration
+	       (host "0.0.0.0")
 	       (advertise? #t)))
      (service nix-service-type)
      (service unattended-upgrade-service-type
 	      (unattended-upgrade-configuration
 	       (channels "/run/current-system/channels.scm")))
      (bluetooth-service #:auto-enable? #t)
-     (modify-services %desktop-services
-		      (guix-service-type config =>
-					 (guix-configuration
-					  (inherit config)
-					  (discover? #t)
-					  (substitute-urls
-					   (append (list "https://substitutes.nonguix.org")
-						   %default-substitute-urls))
-					  (authorized-keys
-					   (append (list
-						    (plain-file "non-guix.pub"
-								"(public-key (ecc (curve Ed25519) (q #C1FD53E5D4CE971933EC50C9F307AE2171A2D3B52C804642A7A35F84F3A4EA98#)))")
-						    (plain-file "phoenix-elite.pub"
-								"(public-key (ecc (curve Ed25519) (q #4D9C8E904BAA7AD5C01C6D1227A7C83C70EB614CDF7E71A00460555A1C713E4C#)))")
-						    (plain-file "hydra.pub"
-								"(public-key (ecc (curve Ed25519) (q #7C49484F9CCF50147D7BF1DFFD0F22B2AF424B0CD4228F57CA0C34F80D3A9BDD#)))"))
-						   %default-authorized-guix-keys)))))))
+     (modify-services
+      %desktop-services
+      (guix-service-type
+       config =>
+       (guix-configuration
+	(inherit config)
+	(discover? #t)
+	(substitute-urls
+	 (append (list "https://substitutes.nonguix.org")
+		 %default-substitute-urls))
+	(authorized-keys
+	 (append (list
+		  (plain-file "non-guix.pub"
+			      "(public-key (ecc (curve Ed25519) (q #C1FD53E5D4CE971933EC50C9F307AE2171A2D3B52C804642A7A35F84F3A4EA98#)))")
+		  (plain-file "phoenix-elite.pub"
+			      "(public-key (ecc (curve Ed25519) (q #4D9C8E904BAA7AD5C01C6D1227A7C83C70EB614CDF7E71A00460555A1C713E4C#)))")
+		  (plain-file "hydra.pub"
+			      "(public-key (ecc (curve Ed25519) (q #7C49484F9CCF50147D7BF1DFFD0F22B2AF424B0CD4228F57CA0C34F80D3A9BDD#)))"))
+		 %default-authorized-guix-keys)))))))
    (bootloader
     (bootloader-configuration
      (bootloader grub-efi-bootloader)
