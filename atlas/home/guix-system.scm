@@ -7,6 +7,7 @@
   #:use-module (nongnu services vpn)
   #:use-module (nongnu packages linux)
   #:use-module (nongnu system linux-initrd)
+  #:use-module (gnu packages hurd)
   #:export (atlas-guix-system))
 
 (use-service-modules
@@ -36,7 +37,7 @@
    (kernel linux)
    (initrd microcode-initrd)
    (firmware (list linux-firmware))
-   (locale "en_GB.utf8")
+   (locale "en_US.utf8")
    (timezone "Europe/Prague")
    (keyboard-layout
     (keyboard-layout "us,cz" ",qwerty" #:options '("grp:caps_switch" "lv3:ralt_switch" "compose:rctrl-altgr")))
@@ -47,7 +48,7 @@
 		  (home-directory "/home/michal-atlas")
 		  (shell (file-append (specification->package "zsh") "/bin/zsh"))
 		  (supplementary-groups
-		   '("wheel" "netdev" "audio" "video" "libvirt")))
+		   '("wheel" "netdev" "audio" "video" "libvirt" "kvm")))
 		 %base-user-accounts))
    (packages
     (append %home-desktop-manifest
@@ -55,7 +56,6 @@
    (services
     (cons*
      (service openssh-service-type)
-					; (service zerotier-one-service-type)
      (set-xorg-configuration
       (xorg-configuration
        (extra-config (list "
