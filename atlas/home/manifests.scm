@@ -49,11 +49,13 @@
     "mu" "isync" "gnupg" "pinentry"
 
     ;; Games
-    ;; "diablo" ;; "devilutionx"
+    "diablo" "devilutionx"
     "lgogdownloader" "the-dark-mod"
-    "supertuxkart" "cataclysm-dda" ;; "falltergeist"
+    "supertuxkart" "cataclysm-dda" "falltergeist"
     "gnushogi" "nethack" "retux" "angband" "opensurge"
-    "wesnoth"
+    "wesnoth" "steam" "retroarch" "7kaa" "sky" "lure"
+    "marble-marcher" "arx-libertatis" "endless-sky"
+    "gzdoom" "tintin++" "taisei" "kobodeluxe"
 
     ;; Graphics
     "feh" "shotwell"
