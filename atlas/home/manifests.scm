@@ -12,6 +12,13 @@
     "nautilus" "okular"
     "pavucontrol"
     "transmission" "stow"
+
+    ;; DE/Gnome
+    "gnome-shell-extension-topicons-redux"
+    "gnome-shell-extension-paperwm"
+    "gnome-shell-extension-gsconnect"
+    "gnome-shell-extension-clipboard-indicator"
+    "gnome-shell-extension-appindicator"
     
     ;; Emacs
     "emacs-next"
@@ -49,12 +56,12 @@
     "mu" "isync" "gnupg" "pinentry"
 
     ;; Games
-    "diablo" "devilutionx"
+    "devilutionx"
     "lgogdownloader" "the-dark-mod"
     "supertuxkart" "cataclysm-dda" "falltergeist"
-    "gnushogi" "nethack" "retux" "angband" "opensurge"
+    "gnushogi" "nethack" "retux" "angband"
     "wesnoth" "steam" "retroarch" "7kaa" "sky" "lure"
-    "marble-marcher" "arx-libertatis" "endless-sky"
+    "marble-marcher" "arx-libertatis" "endless-sky" "naev"
     "gzdoom" "tintin++" "taisei" "kobodeluxe"
 
     ;; Graphics
