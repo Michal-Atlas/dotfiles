@@ -36,16 +36,30 @@ zi for \
    z-shell/z-a-meta-plugins \
    @annexes \
    @zsh-users+fast \
-   @dircolors-material \
    @z-shell \
    @ext-git
 
-zi ice atclone"dircolors -b LS_COLORS > clrs.zsh" \
-   atpull'%atclone' pick"clrs.zsh" nocompile'!' \
-   atload'zstyle ":completion:*" list-colors “${(s.:.)LS_COLORS}”'
-zi light trapd00r/LS_COLORS
+zi ice atload'zsh-startify'
+zi load z-shell/zsh-startify
+
+#zi ice atclone"dircolors -b LS_COLORS > clrs.zsh" \
+    #   atpull'%atclone' pick"clrs.zsh" nocompile'!' \
+    #   atload'zstyle ":completion:*" list-colors “${(s.:.)LS_COLORS}”'
+#zi light trapd00r/LS_COLORS
+zi pack for ls_colors
 
 zstyle ':completion:*' menu select
+
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# formatting and messages
+# http://www.masterzen.fr/2009/04/19/in-love-with-zsh-part-one/
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*:descriptions' format "$fg[yellow]%B--- %d%b"
+zstyle ':completion:*:messages' format '%d'
+zstyle ':completion:*:warnings' format "$fg[red]No matches for:$reset_color %d"
+zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
+zstyle ':completion:*' group-name ''
 
 alias crontab="crontab -i"
 alias cat=bat
