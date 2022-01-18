@@ -1,5 +1,5 @@
 (define-module (atlas home dagon)
-  #:use-module (atlas home guix-system)
+  #:use-module (atlas system guix-system)
   #:use-module (gnu))
 
 (define-public dagon-system

@@ -1,4 +1,4 @@
-(define-module (atlas home manifests)
+(define-module (atlas packages manifests)
   #:use-module (gnu packages)
   #:use-module (nongnu packages mozilla)
   #:export (%home-desktop-manifest))
@@ -81,12 +81,13 @@
     ;; Multimedia
     "wine64"
     "icedove"
-    "grim" "vlc"
+    "grim" "vlc" "mpv"
     "libreoffice"
     "audacity"
     
     ;; Libs
     "ncurses" "curl" "virt-manager"
+    "ntfs-3g"
 
     ;; Shell utils
     "dmenu" "rofi" "file"

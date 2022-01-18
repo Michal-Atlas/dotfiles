@@ -1,9 +1,15 @@
-(define-module (atlas home guix-system)
-  #:use-module (atlas home manifests)
+(define-module (atlas system guix-system)
+  #:use-module (atlas packages manifests)
   #:use-module (gnu)
   #:use-module (gnu packages)
   #:use-module (gnu packages shells)
   #:use-module (gnu packages cups)
+  #:use-module (gnu packages emacs)
+  #:use-module (gnu home)
+  #:use-module (gnu home services)
+  #:use-module (gnu home services mcron)
+  #:use-module (gnu home services shells)
+  #:use-module (gnu home services shepherd)
   #:use-module (nongnu services vpn)
   #:use-module (nongnu packages linux)
   #:use-module (nongnu system linux-initrd)
@@ -18,6 +24,7 @@
  pm
  mcron
  nix
+ shepherd
  virtualization
  admin
  audio
@@ -79,6 +86,10 @@ EndSection
               (tlp-configuration
 	       (cpu-boost-on-ac? #t)
 	       (wifi-pwr-on-bat? #t)))
+     (service hurd-vm-service-type
+              (hurd-vm-configuration
+               (disk-size (* 10000 (expt 2 20))) ; 5G
+               (memory-size 2048)))              ; 1024MiB
      (service thermald-service-type)
      (service inputattach-service-type)
      (zerotier-one-service)

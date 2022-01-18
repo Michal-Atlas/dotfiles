@@ -1,5 +1,5 @@
-(define-module (atlas home hydra)
-  #:use-module (atlas home guix-system)
+(define-module (atlas system hydra)
+  #:use-module (atlas system guix-system)
   #:use-module (gnu))
 
 (define-public hydra-system
