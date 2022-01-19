@@ -65,4 +65,5 @@ SAVEHIST=1000
 setopt INC_APPEND_HISTORY_TIME
 
 echo "[\e[0;90m$(hostname)\e[0m]"
-[[ -z $STY ]] && screen && exit
+#[[ -z $STY ]] && screen && exit
+alias s=screen
