@@ -1,4 +1,4 @@
-(define-module (atlas home dagon)
+(define-module (atlas system dagon)
   #:use-module (atlas system guix-system)
   #:use-module (gnu))
 

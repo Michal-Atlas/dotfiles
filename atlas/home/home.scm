@@ -1,5 +1,5 @@
 (define-module (atlas home home)
-  #:use-module (atlas packages manifests)
+  ;;#:use-module (atlas packages manifests)
   #:use-module (gnu home)
   #:use-module (gnu home services)
   #:use-module (gnu home services shells)
@@ -10,7 +10,7 @@
   #:use-module (guix gexp))
 
 (home-environment
- ;; (packages %home-desktop-manifest)
+ ;;(packages %home-desktop-manifest)
  (services
   (list
    (service

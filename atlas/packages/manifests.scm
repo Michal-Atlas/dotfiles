@@ -96,9 +96,11 @@
     "vim" "zsh" "git" "htop"
     
     ;; Toolchains
-    "gcc-toolchain" "clang-toolchain" "rust"
+    "gcc-toolchain" "clang-toolchain" `("clang" "extra") "rust"
     "cmake" "make" "recutils" "python" "python-ipython"
     "mosh" "luajit" "perl" "nix"
+
+    "openvpn" "network-manager-openvpn"
     
     "nss-certs" "xdg-utils"))
 
