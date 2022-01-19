@@ -64,5 +64,5 @@ HISTSIZE=10000
 SAVEHIST=1000
 setopt INC_APPEND_HISTORY_TIME
 
-if [ -z WINDOW ]; then screen; fi
 echo "[\e[0;90m$(hostname)\e[0m]"
+[[ -z $STY ]] && screen && exit
