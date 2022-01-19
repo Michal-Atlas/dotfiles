@@ -1,6 +1,6 @@
 (define-module (atlas packages manifests)
   #:use-module (gnu packages)
-  #:use-module (nongnu packages mozilla)
+  #:use-module (gnu packages llvm)
   #:export (%home-desktop-manifest))
 
 (define %home-desktop-manifest-list
@@ -105,6 +105,6 @@
     "nss-certs" "xdg-utils"))
 
 (define %home-desktop-manifest
-  (map specification->package %home-desktop-manifest-list))
+  (cons (list clang "extra") (map specification->package %home-desktop-manifest-list)))
 
-(specifications->manifest %home-desktop-manifest-list)
+  (specifications->manifest (cons "clang:extra" %home-desktop-manifest-list))
