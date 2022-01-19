@@ -96,7 +96,7 @@
     "vim" "zsh" "git" "htop"
     
     ;; Toolchains
-    "gcc-toolchain" "clang-toolchain" `("clang" "extra") "rust"
+    "gcc-toolchain" "clang-toolchain" "rust"
     "cmake" "make" "recutils" "python" "python-ipython"
     "mosh" "luajit" "perl" "nix"
 

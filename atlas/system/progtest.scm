@@ -1,4 +1,4 @@
-(define-module (atlas home guix-system)
+(define-module (atlas system progtest)
   #:use-module (gnu)
   #:use-module (gnu packages))
 
