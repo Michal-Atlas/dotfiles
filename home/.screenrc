@@ -1,1 +1,3 @@
 termcapinfo xterm* ti@:te@
+startup_message off
+

@@ -39,13 +39,6 @@ zi for \
    @z-shell \
    @ext-git
 
-zi ice atload'zsh-startify'
-zi load z-shell/zsh-startify
-
-#zi ice atclone"dircolors -b LS_COLORS > clrs.zsh" \
-    #   atpull'%atclone' pick"clrs.zsh" nocompile'!' \
-    #   atload'zstyle ":completion:*" list-colors “${(s.:.)LS_COLORS}”'
-#zi light trapd00r/LS_COLORS
 zi pack for ls_colors
 
 zstyle ':completion:*' menu select
@@ -70,3 +63,6 @@ HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=1000
 setopt INC_APPEND_HISTORY_TIME
+
+if [ -z WINDOW ]; then screen; fi
+echo "[\e[0;90m$(hostname)\e[0m]"
