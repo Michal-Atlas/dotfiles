@@ -10,7 +10,7 @@
     "firefox" "qutebrowser"
     "i3-wm" "i3status" "i3lock" "i3lock-fancy"
     "nautilus" "okular"
-    "pavucontrol"
+    "pavucontrol" "screen"
     "transmission" "stow"
 
     ;; DE/Gnome
