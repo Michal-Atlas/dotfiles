@@ -89,7 +89,7 @@ EndSection
      (service hurd-vm-service-type
               (hurd-vm-configuration
                (disk-size (* 10000 (expt 2 20))) ; 5G
-               (memory-size 2048)))              ; 1024MiB
+               (memory-size 1024)))              ; 1024MiB
      (service thermald-service-type)
      (service inputattach-service-type)
      (zerotier-one-service)
@@ -124,14 +124,17 @@ EndSection
 	(inherit config)
 	(discover? #t)
 	(substitute-urls
-	 (append (list "https://substitutes.nonguix.org")
+	 (append (list
+		  "http://hydra.local"
+		  "http://dagon.local"
+		  "https://substitutes.nonguix.org")
 		 %default-substitute-urls))
 	(authorized-keys
 	 (append (list
 		  (plain-file "non-guix.pub"
 			      "(public-key (ecc (curve Ed25519) (q #C1FD53E5D4CE971933EC50C9F307AE2171A2D3B52C804642A7A35F84F3A4EA98#)))")
 		  (plain-file "phoenix-elite.pub"
-			      "(public-key (ecc (curve Ed25519) (q #4D9C8E904BAA7AD5C01C6D1227A7C83C70EB614CDF7E71A00460555A1C713E4C#)))")
+			      "(public-key (ecc (curve Ed25519) (q #19FD6C3936AD23997CDFDF149700856074B44B3215B68E9145E3690503E89514#)))")
 		  (plain-file "hydra.pub"
 			      "(public-key (ecc (curve Ed25519) (q #7C49484F9CCF50147D7BF1DFFD0F22B2AF424B0CD4228F57CA0C34F80D3A9BDD#)))"))
 		 %default-authorized-guix-keys)))))))

@@ -105,6 +105,6 @@
     "nss-certs" "xdg-utils"))
 
 (define %home-desktop-manifest
-  (cons (list clang "extra") (map specification->package %home-desktop-manifest-list)))
+  (cons (list clang-13 "extra") (map specification->package %home-desktop-manifest-list)))
 
-  (specifications->manifest (cons "clang:extra" %home-desktop-manifest-list))
+(specifications->manifest (cons "clang:extra" %home-desktop-manifest-list))
