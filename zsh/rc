@@ -1,4 +1,4 @@
-# -*- mode: shell-script -*-
+# -*- mode: zsh -*-
 
 ang_home="${HOME}/.antigen"
 if [ ! -e $ang_home ]; then
@@ -21,23 +21,21 @@ PLUGINS=(
     shrink-path 
     ssh-agent 
     dirhistory 
-    rust
     screen
     b4b4r07/enhancd 
     zpm-zsh/colorize 
     emacs 
     DarrinTisdale/zsh-aliases-exa
-    arzzen/calc.plugin.zsh 
     wfxr/forgit 
     hlissner/zsh-autopair 
     colored-man-pages 
     Michal-Atlas/zsh-guix 
     djui/alias-tips
-    zsh-users/zsh-syntax-highlighting
     zsh-users/zsh-history-substring-search
     zsh-users/zsh-autosuggestions
     zsh-users/zsh-completions
-    paulirish/git-open 
+    paulirish/git-open
+    zsh-users/zsh-syntax-highlighting
 )
 
 for f in "${PLUGINS[@]}"; do

@@ -1,4 +1,4 @@
-# -*- mode: shell-script -*-
+# -*- mode: zsh -*-
 
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env" || true
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/library"
