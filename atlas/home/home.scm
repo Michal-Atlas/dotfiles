@@ -7,12 +7,21 @@
   #:use-module (gnu services)
   #:use-module (gnu packages admin)
   #:use-module (gnu packages emacs)
+  #:use-module (gnu home services mcron)
   #:use-module (guix gexp))
 
 (home-environment
  (packages %home-desktop-manifest)
  (services
   (list
+   (service
+    home-mcron-service-type
+    (home-mcron-configuration
+     (jobs
+      (list
+       #~(job
+	  '(next-minute '(5))
+	  "mbsync --all")))))
    (service
     home-shepherd-service-type
     (home-shepherd-configuration
