@@ -43,6 +43,16 @@
 	(stop #~(make-system-destructor
 		 "emacsclient -e '(save-buffers-kill-emacs)'"))
 	(respawn? #t))))))
+   (service home-bash-service-type
+	    (home-bash-configuration
+	     (guix-defaults? #t)))
+   (simple-service
+    'dotfiles
+    home-files-service-type
+    (list `("ssh/config" ,(local-file "../../ssh"))
+	  `("emacs.d/init.el" ,(local-file "../../emacs.el"))
+	  `("guile" ,(local-file "../../guile"))
+	  `("screenrc" ,(local-file "../../screen"))))
    (service
     home-zsh-service-type
     (home-zsh-configuration
