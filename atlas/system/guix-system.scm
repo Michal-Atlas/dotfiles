@@ -14,6 +14,9 @@
   #:use-module (nongnu packages linux)
   #:use-module (nongnu system linux-initrd)
   #:use-module (gnu packages hurd)
+  #:use-module (gnu packages xorg)
+  #:use-module (nongnu packages nvidia)
+  #:use-module (guix transformations)
   #:export (atlas-guix-system))
 
 (use-service-modules
@@ -21,6 +24,7 @@
  networking
  ssh
  xorg
+ linux
  pm
  mcron
  nix
@@ -32,11 +36,18 @@
  cups
  syncthing)
 
+(define transform
+  (options->transformation
+   '((with-graft . "mesa=nvda"))))
 
 (define-public atlas-guix-system
   (operating-system
    (host-name "Phoenix-Phantom")
    (kernel linux)
+   (kernel-arguments (append 
+                      '("modprobe.blacklist=nouveau")
+                      %default-kernel-arguments))
+   (kernel-loadable-modules (list nvidia-driver))
    (initrd microcode-initrd)
    (firmware (list linux-firmware))
    (locale "en_US.utf8")
@@ -57,9 +68,20 @@
 	    %base-packages))
    (services
     (cons*
+     (simple-service 
+      'custom-udev-rules udev-service-type 
+      (list nvidia-driver))
+     (service kernel-module-loader-service-type
+              '("ipmi_devintf"
+                "nvidia"
+                "nvidia_modeset"
+                "nvidia_uvm"))
      (service openssh-service-type)
      (set-xorg-configuration
       (xorg-configuration
+       (modules (cons* nvidia-driver %default-xorg-modules))
+       (server (transform xorg-server))
+       (drivers '("nvidia"))
        (extra-config (list "
 # Touchpad
 Section \"InputClass\"
