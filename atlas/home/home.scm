@@ -43,18 +43,16 @@
 	(stop #~(make-system-destructor
 		 "emacsclient -e '(save-buffers-kill-emacs)'"))
 	(respawn? #t))))))
-   ;; (service
-   ;;  home-zsh-service-type
-   ;;  (home-zsh-configuration
-   ;;   (zshenv
-   ;;    '("/home/michal-atlas/dotfiles/home/.zshenv"
-   ;; 	;; "[ -f \"$HOME/.cargo/env\" ] && . \"$HOME/.cargo/env\" || true"
-   ;; 	;; "export RUST_SRC_PATH=\"$(rustc --print sysroot)/lib/rustlib/src/rust/library\""
-   ;; 	;; "setopt -w0U"
-   ;; 	;; "setopt auto_continue"
-   ;; 	;; "setopt no_hup"
-   ;; 	;; "setopt pipe_fail"
-   ;; 	;; "GUIX_PROFILE=\"/home/michal-atlas/.guix-profile\""
-   ;; 	;; ". \"$GUIX_PROFILE/etc/profile\""
-   ;; 	))))
-   )))
+   (service
+    home-zsh-service-type
+    (home-zsh-configuration
+     (environment-variables
+      `(("BROWSER" . "firefox")
+	("SHELL" . "zsh")
+	("EDITOR" . "\"emacsclient -c\"")
+	("XCURSOR_THEME" . "Adwaita")
+        ("XCURSOR_SIZE" . "36")))
+     (zshenv
+      (list (local-file "../../zsh/env")))
+     (zshrc
+      (list (local-file "../../zsh/rc"))))))))
