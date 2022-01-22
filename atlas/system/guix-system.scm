@@ -121,8 +121,6 @@ EndSection
 	(discover? #t)
 	(substitute-urls
 	 (append (list
-		  "http://hydra.local"
-		  "http://dagon.local"
 		  "https://substitutes.nonguix.org")
 		 %default-substitute-urls))
 	(authorized-keys
