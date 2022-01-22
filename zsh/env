@@ -1,11 +1,14 @@
-[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env" || true
+# -*- mode: shell-script -*-
 
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env" || true
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/library"
+
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=1000
+setopt INC_APPEND_HISTORY_TIME
 
 setopt -w0U
 setopt auto_continue
 setopt no_hup
 setopt pipe_fail
-
-GUIX_PROFILE="/home/michal-atlas/.guix-profile"
-. "$GUIX_PROFILE/etc/profile"
