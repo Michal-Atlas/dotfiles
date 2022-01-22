@@ -1,5 +1,5 @@
 (define-module (atlas system guix-system)
-  #:use-module (atlas packages manifests)
+  #:use-module (atlas packages system)
   #:use-module (gnu)
   #:use-module (gnu packages)
   #:use-module (gnu packages shells)
@@ -32,11 +32,6 @@
  cups
  syncthing)
 
-(define mbsync-job
-  #~(job
-     "0 * * * *"
-     "mbsync --all"
-     #:user "michal-atlas"))
 
 (define-public atlas-guix-system
   (operating-system
@@ -58,7 +53,7 @@
 		   '("wheel" "netdev" "audio" "video" "libvirt" "kvm")))
 		 %base-user-accounts))
    (packages
-    (append %home-desktop-manifest
+    (append %system-desktop-manifest
 	    %base-packages))
    (services
     (cons*
@@ -80,8 +75,9 @@ EndSection
 "))
        (keyboard-layout keyboard-layout)))
      (service gnome-desktop-service-type)
-     (simple-service 'cron-jobs mcron-service-type
-		     (list mbsync-job))
+     (pam-limits-service
+      (list
+       (pam-limits-entry "*" 'both 'nofile 524288)))
      (service tlp-service-type
               (tlp-configuration
 	       (cpu-boost-on-ac? #t)

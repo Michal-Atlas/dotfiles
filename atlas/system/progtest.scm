@@ -46,7 +46,7 @@
 		   (name "progtest")
 		   (comment "Progtest")
 		   (group "users")
-		   (password (crypt "progtest" "$6a8$"))
+		   (password (crypt "progtest" "salt"))
 		   (shell (file-append (specification->package "bash") "/bin/bash"))
 		   (supplementary-groups
 		    '("netdev" "audio" "video")))
@@ -80,7 +80,7 @@
      (bootloader-configuration
       (bootloader grub-efi-bootloader)
       (targets `("/boot/efi"))))
-    (file-systems (list %base-file-systems))
+    (file-systems %base-file-systems)
     (name-service-switch %mdns-host-lookup-nss)))
 
 %progtest-system
