@@ -7,6 +7,7 @@
   #:use-module (gnu services)
   #:use-module (gnu packages admin)
   #:use-module (gnu packages emacs)
+  #:use-module (gnu packages password-utils)
   #:use-module (gnu home services mcron)
   #:use-module (guix gexp))
 
@@ -42,7 +43,23 @@
 		   (default-environment-variables))))
 	(stop #~(make-system-destructor
 		 "emacsclient -e '(save-buffers-kill-emacs)'"))
-	(respawn? #t))))))
+	(respawn? #t))
+       (shepherd-service
+	(provision  '(keepass))
+	(documentation "Run `keepass' on startup")
+	(start #~(make-forkexec-constructor
+		  (list
+		   #$(file-append keepassxc "/bin/keepassxc")
+		   "/home/michal-atlas/Documents/Passwords.kdbx")
+		  #:user "michal-atlas"
+		  #:environment-variables
+		  (cons*
+		   (default-environment-variables))))
+	(stop #~(make-system-destructor
+		 "pkill keepassxc"))
+	(respawn? #t)
+	))
+       )))
    (service home-bash-service-type
 	    (home-bash-configuration
 	     (guix-defaults? #t)))
