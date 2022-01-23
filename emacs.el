@@ -110,6 +110,7 @@
 
 (require 'yasnippet)
 (yas-global-mode 1)
+(add-to-list 'yas-snippet-dirs "~/source/guix/etc/snippets")
 
 (require 'projectile)
 (projectile-mode +1)
