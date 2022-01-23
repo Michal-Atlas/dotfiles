@@ -6,7 +6,6 @@
 (setq user-full-name "Michal Atlas"
       user-mail-address "michal.z.atlas@gmail.com")
 
-(add-to-list 'load-path "~/.guix-profile/share/emacs/site-lisp")
 (setq backup-directory-alist '((".*" . "~/.emacs.d/bkp")))
 (setq org-directory "~/Documents/")
 (setq projectile-project-search-path (list "~/Documents" "~/source"))
