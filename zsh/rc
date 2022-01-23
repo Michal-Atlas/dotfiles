@@ -1,4 +1,4 @@
-# -*- mode: zsh -*-
+# -*- mode: shell-script -*-
 
 ang_home="${HOME}/.antigen"
 if [ ! -e $ang_home ]; then
@@ -22,7 +22,6 @@ PLUGINS=(
     ssh-agent 
     dirhistory 
     screen
-    b4b4r07/enhancd 
     zpm-zsh/colorize 
     emacs 
     DarrinTisdale/zsh-aliases-exa
