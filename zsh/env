@@ -2,6 +2,7 @@
 
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env" || true
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/library"
+export EMACSLOADPATH="$EMACSLOADPATH:$HOME/.guix-home/profile/share/emacs/site-lisp"
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
