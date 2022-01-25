@@ -22,7 +22,14 @@
       (list
        #~(job
 	  '(next-minute '(5))
-	  "mbsync --all")))))
+	  "mbsync --all")
+       #~ (job
+	   '(next-hour '(0))
+	   "guix gc -F 10G")
+       #~ (job
+	   '(next-hour '(0))
+	   "guix gc -d 2w")
+       ))))
    (service
     home-shepherd-service-type
     (home-shepherd-configuration
@@ -43,23 +50,8 @@
 		   (default-environment-variables))))
 	(stop #~(make-system-destructor
 		 "emacsclient -e '(save-buffers-kill-emacs)'"))
-	(respawn? #t))
-       (shepherd-service
-	(provision  '(keepass))
-	(documentation "Run `keepass' on startup")
-	(start #~(make-forkexec-constructor
-		  (list
-		   #$(file-append keepassxc "/bin/keepassxc")
-		   "/home/michal-atlas/Documents/Passwords.kdbx")
-		  #:user "michal-atlas"
-		  #:environment-variables
-		  (cons*
-		   (default-environment-variables))))
-	(stop #~(make-system-destructor
-		 "pkill keepassxc"))
-	(respawn? #t)
-	))
-       )))
+	(respawn? #t)))
+      )))
    (service home-bash-service-type
 	    (home-bash-configuration
 	     (guix-defaults? #t)))
