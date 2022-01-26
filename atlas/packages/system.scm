@@ -16,7 +16,7 @@
     
     ;; Libs
     "ncurses" "curl" "virt-manager"
-    "ntfs-3g"
+    "ntfs-3g" "btrfs-progs"
 
     ;; Shell utils
     "file"
