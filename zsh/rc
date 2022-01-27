@@ -8,8 +8,6 @@ source $ZPLUG_HOME/init.zsh
 
 zplug 'geometry-zsh/geometry', as:theme
 
-antigen use oh-my-zsh
-
 PLUGINS_OMZ=(
     common-aliases 
     extract 
@@ -54,7 +52,7 @@ if ! zplug check --verbose; then
 fi
 
 # Then, source plugins and add commands to $PATH
-zplug load --verbose
+zplug load
 
 GEOMETRY_STATUS_SYMBOL='λ'
 GEOMETRY_STATUS_SYMBOL_ERROR='△'
