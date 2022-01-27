@@ -26,9 +26,6 @@
        #~ (job
 	   '(next-hour '(0))
 	   "guix gc -F 10G")
-       #~ (job
-	   '(next-hour '(0))
-	   "guix gc -d 2w")
        ))))
    (service
     home-shepherd-service-type
