@@ -1,19 +1,18 @@
 # -*- mode: shell-script -*-
 
-ang_home="${HOME}/.antigen"
-if [ ! -e $ang_home ]; then
-    mkdir "$ang_home"
-    curl -L git.io/antigen > $ang_home/antigen.zsh;
+export ZPLUG_HOME="${HOME}/.zplug"
+if [ ! -e $ZPLUG_HOME ]; then
+    git clone https://github.com/zplug/zplug $ZPLUG_HOME
 fi;
-source $ang_home/antigen.zsh
+source $ZPLUG_HOME/init.zsh
 
 GEOMETRY_STATUS_SYMBOL='λ'
 GEOMETRY_STATUS_SYMBOL_ERROR='△'
-antigen theme geometry-zsh/geometry geometry
+zplug 'geometry-zsh/geometry', as:theme
 
 antigen use oh-my-zsh
 
-PLUGINS=(
+PLUGINS_OMZ=(
     common-aliases 
     extract 
     git 
@@ -22,12 +21,19 @@ PLUGINS=(
     ssh-agent 
     dirhistory 
     screen
+    colored-man-pages     
+    emacs
+)
+
+for f in "${PLUGINS_OMZ[@]}"; do
+    zplug "plugins/$f", from:oh-my-zsh
+done;
+
+PLUGINS=(
     zpm-zsh/colorize 
-    emacs 
     DarrinTisdale/zsh-aliases-exa
     wfxr/forgit 
     hlissner/zsh-autopair 
-    colored-man-pages 
     Michal-Atlas/zsh-guix 
     djui/alias-tips
     zsh-users/zsh-history-substring-search
@@ -38,10 +44,19 @@ PLUGINS=(
 )
 
 for f in "${PLUGINS[@]}"; do
-    antigen bundle $f;
+    zplug "$f";
 done;
 
-antigen apply
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+	echo; zplug install
+    fi
+fi
+
+# Then, source plugins and add commands to $PATH
+zplug load --verbose
 
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
