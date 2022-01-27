@@ -76,8 +76,6 @@ EndSection
        (keyboard-layout keyboard-layout)))
      (service gnome-desktop-service-type)
      (service mate-desktop-service-type)
-     (service lxqt-desktop-service-type)
-     (service xfce-desktop-service-type)
      (pam-limits-service
       (list
        (pam-limits-entry "*" 'both 'nofile 524288)))
