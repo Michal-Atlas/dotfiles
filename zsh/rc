@@ -6,8 +6,6 @@ if [ ! -e $ZPLUG_HOME ]; then
 fi;
 source $ZPLUG_HOME/init.zsh
 
-GEOMETRY_STATUS_SYMBOL='λ'
-GEOMETRY_STATUS_SYMBOL_ERROR='△'
 zplug 'geometry-zsh/geometry', as:theme
 
 antigen use oh-my-zsh
@@ -58,6 +56,9 @@ fi
 # Then, source plugins and add commands to $PATH
 zplug load --verbose
 
+GEOMETRY_STATUS_SYMBOL='λ'
+GEOMETRY_STATUS_SYMBOL_ERROR='△'
+
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
@@ -65,5 +66,4 @@ alias cat=bat
 alias q=exit
 
 alias s=screen
-echo "[\e[0;90m$(hostname)\e[0m]"
 #[[ -z $STY ]] && screen && exit
