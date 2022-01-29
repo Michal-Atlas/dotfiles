@@ -111,7 +111,7 @@ EndSection
      (service nix-service-type)
      (service unattended-upgrade-service-type
 	      (unattended-upgrade-configuration
-	       (channels "/run/current-system/channels.scm")))
+	       (channels "/home/michal-atlas/.config/guix/channels.scm")))
      (bluetooth-service #:auto-enable? #t)
      (modify-services
       %desktop-services
