@@ -4,6 +4,22 @@
 
 (define %home-desktop-manifest-list
   `(
+    ;; Emacs
+    "emacs-next"
+    
+     ;; Shell utils
+    "file"
+    "kitty" "fzf"
+    "pandoc"
+    "vim" "zsh" "git" "htop"
+    
+    ;; Toolchains
+    "gcc-toolchain" "clang-toolchain" "rust"
+    "cmake" "make" "recutils" "python" "python-ipython"
+    "mosh"
+
+    "gnupg"
+    
     ;; Shell utils
     "bat" "zoxide" "exa"
     "tealdeer"
