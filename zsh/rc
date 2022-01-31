@@ -28,7 +28,6 @@ done;
 PLUGINS=(
     zpm-zsh/colorize 
     DarrinTisdale/zsh-aliases-exa
-    wfxr/forgit 
     hlissner/zsh-autopair 
     Michal-Atlas/zsh-guix 
     djui/alias-tips
@@ -42,6 +41,8 @@ PLUGINS=(
 for f in "${PLUGINS[@]}"; do
     zplug "$f";
 done;
+
+zplug wfxr/forgit, defer:1
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
