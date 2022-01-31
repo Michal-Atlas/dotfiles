@@ -7,7 +7,7 @@
     ;; Emacs
     "emacs-next"
     
-     ;; Shell utils
+    ;; Shell utils
     "file"
     "kitty" "fzf"
     "pandoc"
@@ -86,16 +86,17 @@
     "emacs-multiple-cursors"
     "emacs-gruvbox-theme"
     "emacs-on-screen"
+    "emacs-notmuch" "notmuch"
     
     ;; DE/Gnome
     "gnome-shell-extension-topicons-redux"
     "gnome-shell-extension-paperwm"
     "gnome-shell-extension-gsconnect"
     "gnome-shell-extension-clipboard-indicator"
-    "gnome-shell-extension-appindicator"
+    "gnome-shell-extension-appindicator" 
 
     ;; DE
-    "transmission" "stow"
+    "transmission" "stow" "quaternion"
     "i3-wm" "i3status" "i3lock" "i3lock-fancy"
     "nautilus" "okular"  "qutebrowser"
     ))

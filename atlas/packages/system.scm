@@ -5,9 +5,11 @@
 
 (define %system-desktop-manifest-list
   `(
+    "nvi"
+    
     ;; DE
     "xnotify" "brightnessctl" "pamixer" "playerctl"
-    "firefox"
+    "firefox" "xscreensaver"
     "pavucontrol" "screen"
     
     ;; Emacs
@@ -19,7 +21,7 @@
     "ntfs-3g" "btrfs-progs"
 
     ;; Shell utils
-    "file"
+    "file" "screen"
     "kitty" "fzf"
     "pandoc"
     "vim" "zsh" "git" "htop"
