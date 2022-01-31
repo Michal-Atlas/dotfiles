@@ -79,14 +79,11 @@ EndSection
      (pam-limits-service
       (list
        (pam-limits-entry "*" 'both 'nofile 524288)))
+     (gpm-service-type)
      (service tlp-service-type
               (tlp-configuration
 	       (cpu-boost-on-ac? #t)
 	       (wifi-pwr-on-bat? #t)))
-     (service hurd-vm-service-type
-              (hurd-vm-configuration
-               (disk-size (* 10000 (expt 2 20))) ; 5G
-               (memory-size 1024)))              ; 1024MiB
      (service thermald-service-type)
      (service inputattach-service-type)
      (zerotier-one-service)
