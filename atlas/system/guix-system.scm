@@ -79,7 +79,7 @@ EndSection
      (pam-limits-service
       (list
        (pam-limits-entry "*" 'both 'nofile 524288)))
-     (gpm-service-type)
+     (service gpm-service-type)
      (service tlp-service-type
               (tlp-configuration
 	       (cpu-boost-on-ac? #t)
