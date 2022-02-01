@@ -21,11 +21,6 @@
 	    (mount-point "/boot/efi")
 	    (type "vfat")
 	    (device "/dev/sda1"))
-	   (file-system
-	    (mount-point "/home")
-	    (type "btrfs")
-	    (options "subvol=@/home")
-	    (device "/dev/sda4"))
 	   %base-file-systems))))
 
 dagon-system
