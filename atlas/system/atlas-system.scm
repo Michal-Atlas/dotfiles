@@ -134,5 +134,17 @@ EndSection
     (bootloader-configuration
      (bootloader grub-efi-bootloader)
      (targets `("/boot/efi"))))
-   (file-systems (list))
+   (file-systems (cons*
+	(file-system
+	    (mount-point "/boot/efi")
+	    (type "vfat")
+	    (device (file-system-label "EFI")))
+	(file-system
+	    (mount-point "/")
+	    (type "ext4")
+	    (device (file-system-label "guix")))
+	%base-file-system))
+   (swap-devices
+    (list (swap-space
+      (target (file-system-label "swap")))))
    (name-service-switch %mdns-host-lookup-nss)))
