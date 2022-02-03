@@ -1,4 +1,4 @@
-(define-module (atlas system guix-system)
+(define-module (atlas system atlas-system)
   #:use-module (atlas packages system)
   #:use-module (gnu)
   #:use-module (gnu packages)
@@ -143,8 +143,10 @@ EndSection
 	    (mount-point "/")
 	    (type "ext4")
 	    (device (file-system-label "guix")))
-	%base-file-system))
+	%base-file-systems))
    (swap-devices
     (list (swap-space
       (target (file-system-label "swap")))))
    (name-service-switch %mdns-host-lookup-nss)))
+
+atlas-guix-system
