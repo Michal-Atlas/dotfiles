@@ -13,8 +13,7 @@
   #:use-module (nongnu services vpn)
   #:use-module (nongnu packages linux)
   #:use-module (nongnu system linux-initrd)
-  #:use-module (gnu packages hurd)
-  #:export (atlas-guix-system))
+  #:use-module (gnu packages hurd))
 
 (use-service-modules
  desktop
@@ -105,6 +104,7 @@ EndSection
 	      (guix-publish-configuration
 	       (host "0.0.0.0")
 	       (advertise? #t)))
+     (service postgresql-service-type)
      (service nix-service-type)
      (service unattended-upgrade-service-type
 	      (unattended-upgrade-configuration
@@ -125,8 +125,8 @@ EndSection
 	 (append (list
 		  (plain-file "non-guix.pub"
 			      "(public-key (ecc (curve Ed25519) (q #C1FD53E5D4CE971933EC50C9F307AE2171A2D3B52C804642A7A35F84F3A4EA98#)))")
-		  (plain-file "phoenix-elite.pub"
-			      "(public-key (ecc (curve Ed25519) (q #19FD6C3936AD23997CDFDF149700856074B44B3215B68E9145E3690503E89514#)))")
+		  (plain-file "dagon.pub"
+			      "(public-key (ecc (curve Ed25519) (q #33173AD94F3854CD3642E21B59802C275A1742C5D0FFC59EE076EDC23FDDFFC6#)))")
 		  (plain-file "hydra.pub"
 			      "(public-key (ecc (curve Ed25519) (q #7C49484F9CCF50147D7BF1DFFD0F22B2AF424B0CD4228F57CA0C34F80D3A9BDD#)))"))
 		 %default-authorized-guix-keys)))))))
@@ -135,18 +135,18 @@ EndSection
      (bootloader grub-efi-bootloader)
      (targets `("/boot/efi"))))
    (file-systems (cons*
-	(file-system
-	    (mount-point "/boot/efi")
-	    (type "vfat")
-	    (device (file-system-label "EFI")))
-	(file-system
-	    (mount-point "/")
-	    (type "ext4")
-	    (device (file-system-label "guix")))
-	%base-file-systems))
+		  (file-system
+		   (mount-point "/boot/efi")
+		   (type "vfat")
+		   (device (file-system-label "EFI")))
+		  (file-system
+		   (mount-point "/")
+		   (type "ext4")
+		   (device (file-system-label "guix")))
+		  %base-file-systems))
    (swap-devices
     (list (swap-space
-      (target (file-system-label "swap")))))
+	   (target (file-system-label "swap")))))
    (name-service-switch %mdns-host-lookup-nss)))
 
 atlas-guix-system
