@@ -67,3 +67,4 @@ alias q=exit
 alias s=screen
 #[[ -z $STY ]] && screen && exit
 eval "$(direnv hook zsh)"
+eval "$(zoxide init zsh)"
