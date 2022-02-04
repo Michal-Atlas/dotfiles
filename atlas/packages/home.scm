@@ -10,7 +10,7 @@
     ;; Shell utils
     "file"
     "kitty" "fzf"
-    "pandoc"
+    "pandoc" "direnv"
     "vim" "zsh" "git" "htop"
     
     ;; Toolchains
