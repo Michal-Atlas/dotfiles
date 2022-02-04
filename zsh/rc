@@ -19,7 +19,6 @@ PLUGINS_OMZ=(
     screen
     colored-man-pages     
     emacs
-    direnv
 )
 
 for f in "${PLUGINS_OMZ[@]}"; do
@@ -67,3 +66,4 @@ alias q=exit
 
 alias s=screen
 #[[ -z $STY ]] && screen && exit
+eval "$(direnv hook zsh)"

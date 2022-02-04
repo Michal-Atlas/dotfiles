@@ -12,6 +12,7 @@
     "kitty" "fzf"
     "pandoc" "direnv"
     "vim" "zsh" "git" "htop"
+    "xclip"
     
     ;; Toolchains
     "gcc-toolchain" "clang-toolchain" "rust"
