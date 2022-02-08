@@ -3,8 +3,10 @@
 ;;; Code:
 ;; Variable Init
 
-(setq user-full-name "Michal Atlas"
-      user-mail-address "michal.z.atlas@gmail.com")
+;; (setq user-full-name "Michal Atlas"
+;;       user-mail-address "michal.z.atlas@gmail.com")
+(setq user-full-name "Michal Žáček"
+      user-mail-address "zacekmi2@fit.cvut.cz")
 
 (setq backup-directory-alist '((".*" . "~/.emacs.d/bkp")))
 (setq org-directory "~/Documents/")
@@ -31,7 +33,6 @@
 			(registers . 5)))
 (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
 (setq dashboard-banner-logo-title "Atlas Emacs")
-(setq dashboard-startup-banner "~/.guix-profile/share/emacs-guix/images/guix-logo.svg")
 (setq dashboard-set-heading-icons t)
 (setq dashboard-set-file-icons t)
 (setq dashboard-set-navigator t)
