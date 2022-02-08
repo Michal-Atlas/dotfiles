@@ -69,6 +69,9 @@
 
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
+(plist-put org-format-latex-options :scale 1.8)
+(set-default 'preview-scale-function 1.5)
+
 ;; Formatting
 
 (global-aggressive-indent-mode 1)
