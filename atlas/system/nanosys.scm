@@ -24,6 +24,14 @@
 		  (shell (file-append (specification->package "bash") "/bin/bash"))
 		  (supplementary-groups
 		   '("netdev" "audio" "video")))
+		 (user-account
+		  (name "admin")
+		  (comment "Progtest")
+		  (group "users")
+		  (password (crypt "progtest" "salt"))
+		  (shell (file-append (specification->package "bash") "/bin/bash"))
+		  (supplementary-groups
+		   '("wheel" "netdev" "audio" "video")))
 		 %base-user-accounts))
    (packages
     (cons

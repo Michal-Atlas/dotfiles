@@ -59,7 +59,7 @@
     "mu" "isync"
 
     ;; Emacs
-    "emacs-all-the-icons"
+    "emacs-all-the-icons" "emacs-auctex"
     "emacs-dashboard" "emacs-highlight-indent-guides"
     "emacs-spacemacs-theme" "emacs-doom-modeline"
     "emacs-solaire-mode"

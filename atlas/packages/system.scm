@@ -9,7 +9,7 @@
     
     ;; DE
     "xnotify" "brightnessctl" "pamixer" "playerctl"
-    "firefox" "xscreensaver"
+    "firefox" "xscreensaver" "gparted"
     "pavucontrol" "screen"
     
     ;; Emacs
