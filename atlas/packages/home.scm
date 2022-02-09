@@ -61,7 +61,7 @@
     ;; Emacs
     "emacs-all-the-icons" "emacs-auctex"
     "emacs-dashboard" "emacs-highlight-indent-guides"
-    "emacs-spacemacs-theme" "emacs-doom-modeline"
+    "emacs-doom-modeline"
     "emacs-solaire-mode"
     "emacs-which-key"
     "emacs-company" "emacs-company-box"
@@ -88,6 +88,11 @@
     "emacs-gruvbox-theme"
     "emacs-on-screen"
     "emacs-notmuch" "notmuch"
+    "emacs-tldr" "emacs-direnv"
+    "emacs-kana" "emacs-circe"
+    "emacs-vterm" "emacs-nix-mode"
+    "emacs-monokai-theme" "emacs-ement"
+    "emacs-pg"
     
     ;; DE/Gnome
     "gnome-shell-extension-topicons-redux"

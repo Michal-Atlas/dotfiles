@@ -56,7 +56,7 @@
 (set-frame-font "Jetbrains Mono-8" nil t)
 (add-to-list 'default-frame-alist '(font . "Jetbrains Mono-8"))
 
-(load-theme 'spacemacs-dark t)
+(load-theme 'gruvbox t)
 (doom-modeline-mode 1)
 (solaire-global-mode +1)
 (which-key-mode)
@@ -69,7 +69,6 @@
 
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
-(plist-put org-format-latex-options :scale 1.8)
 (set-default 'preview-scale-function 1.5)
 
 ;; Formatting
