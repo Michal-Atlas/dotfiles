@@ -104,7 +104,7 @@
     ;; DE
     "transmission" "stow" "quaternion"
     "i3-wm" "i3status" "i3lock" "i3lock-fancy"
-    "nautilus" "okular"  "qutebrowser"
+    "nautilus" "okular"
     ))
 
 (define %home-desktop-manifest

@@ -23,7 +23,7 @@
     ;; Shell utils
     "file" "screen"
     "kitty" "fzf"
-    "pandoc"
+    "pandoc" "zutils"
     "vim" "zsh" "git" "htop"
     
     ;; Toolchains

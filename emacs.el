@@ -17,6 +17,7 @@
 (setq find-function-C-source-directory "~/source/emacs")
 (global-auto-revert-mode 1)
 (recentf-mode 1)
+(setq visible-bell t)
 (setq recentf-max-menu-items 25)
 (setq recentf-max-saved-items 25)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
@@ -53,8 +54,8 @@
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
 (setq highlight-indent-guides-method 'bitmap)
 
-(set-frame-font "Jetbrains Mono-8" nil t)
-(add-to-list 'default-frame-alist '(font . "Jetbrains Mono-8"))
+(set-frame-font "Fira Code-8" nil t)
+(add-to-list 'default-frame-alist '(font . "Fira Code-8"))
 
 (load-theme 'gruvbox t)
 (doom-modeline-mode 1)
