@@ -55,6 +55,7 @@ fi
 # Then, source plugins and add commands to $PATH
 zplug load
 
+GEOMETRY_PROMPT='λ'
 GEOMETRY_STATUS_SYMBOL='λ'
 GEOMETRY_STATUS_SYMBOL_ERROR='△'
 

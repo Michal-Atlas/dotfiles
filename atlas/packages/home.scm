@@ -26,7 +26,7 @@
     "tealdeer"
 
     ;; Multimedia
-    "wine64"
+    "wine"
     "icedove"
     "grim" "vlc" "mpv"
     "libreoffice"
@@ -50,10 +50,10 @@
     "devilutionx"
     "lgogdownloader" "the-dark-mod"
     "supertuxkart" "cataclysm-dda" "falltergeist"
-    "gnushogi" "nethack" "retux" "angband"
+    "gnushogi" "nethack" "retux" "angband" "crawl" "crawl-tiles"
     "wesnoth" "steam" "retroarch" "7kaa" "sky" "lure"
     "marble-marcher" "arx-libertatis" "endless-sky" "naev"
-    "gzdoom" "tintin++" "taisei" "kobodeluxe"
+    "gzdoom" "tintin++" "taisei" "kobodeluxe" "dwarf-fortress"
 
     ;; Email
     "mu" "isync"
