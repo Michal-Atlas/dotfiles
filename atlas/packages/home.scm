@@ -26,7 +26,6 @@
     "tealdeer"
 
     ;; Multimedia
-    "wine"
     "icedove"
     "grim" "vlc" "mpv"
     "libreoffice"
