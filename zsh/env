@@ -9,7 +9,7 @@ HISTSIZE=10000
 SAVEHIST=1000
 setopt INC_APPEND_HISTORY_TIME
 
-setopt -w0U
+setopt -wU
 setopt auto_continue
 setopt no_hup
 setopt pipe_fail
