@@ -23,9 +23,12 @@
        #~(job
 	  '(next-minute '(5))
 	  "mbsync --all")
+       #~(job
+	  '(next-hour '(0))
+	  "guix gc -F 10G")
        #~ (job
-	   '(next-hour '(0))
-	   "guix gc -F 10G")
+	   '(next-minute '(0))
+	   "find $HOME/tmp -atime +2 -empty -delete -mindepth 1")
        ))))
    (service
     home-shepherd-service-type
