@@ -26,9 +26,9 @@
        #~(job
 	  '(next-hour '(0))
 	  "guix gc -F 10G")
-       #~ (job
-	   '(next-minute '(0))
-	   "find $HOME/tmp -atime +2 -empty -delete -mindepth 1")
+       #~(job
+	  '(next-minute '(0))
+	  "find $HOME/tmp -mindepth 1 -ctime +2 -empty -delete | xargs rm -r")
        ))))
    (service
     home-shepherd-service-type
