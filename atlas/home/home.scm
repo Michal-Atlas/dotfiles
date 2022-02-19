@@ -66,7 +66,8 @@
 	  `("emacs.d/init.el" ,(local-file "../../emacs.el"))
 	  `("guile" ,(local-file "../../guile"))
 	  `("screenrc" ,(local-file "../../screen"))
-	  `("config/kitty/kitty.conf" ,(local-file "../../kitty.conf"))))
+	  `("config/kitty/kitty.conf" ,(local-file "../../kitty.conf"))
+	  `("config/guix/channels.scm" ,(local-file "../../channels.scm"))))
    (service
     home-zsh-service-type
     (home-zsh-configuration
