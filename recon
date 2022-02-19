@@ -1,0 +1,10 @@
+#!/usr/bin/env -S guile -s
+!#
+;; -*- mode: scheme -*-
+
+(use-modules (ice-9 match))
+
+(match (cadr (command-line))
+  ("home" (system* "guix" "home" "reconfigure" "atlas/home/home.scm"))
+  ("system" (system* "sudo" "guix" "system" "reconfigure" "atlas/system/atlas-system.scm" "-L."))
+  (_ (display "enter either `home` or `system`")))
