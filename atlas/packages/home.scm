@@ -1,8 +1,9 @@
 (define-module (atlas packages home)
   #:use-module (gnu packages)
-  #:export (%home-desktop-manifest))
+  #:use-module (ice-9 hash-table)
+  #:export (%packages-by-host))
 
-(define %home-desktop-manifest-list
+(define home-desktop
   `(
     ;; Emacs
     "emacs-next"
@@ -89,8 +90,8 @@
     "emacs-kana" "emacs-circe"
     "emacs-vterm" "emacs-nix-mode"
     "emacs-monokai-theme" "emacs-ement"
-    "emacs-pg"
-    "emacs-yaml-mode"
+    "emacs-pg" "emacs-browse-kill-ring"
+    "emacs-yaml-mode" "emacs-multi-term"
     
     ;; DE/Gnome
     "gnome-shell-extension-topicons-redux"
@@ -107,6 +108,17 @@
     ;; Lib
     "artanis"
     ))
+(define big-games
+  '(
+    ;; Big Games
+    "the-dark-mod" "falltergeist"
+    "gnushogi" "nethack" "retux" "angband"
+    "crawl" "crawl-tiles" "retroarch" "7kaa"
+    "marble-marcher" "arx-libertatis"
+    ))
 
-(define %home-desktop-manifest
-  (map specification->package %home-desktop-manifest-list))
+(define %packages-by-host
+  (alist->hash-table
+   `(("Dagon" . ,home-desktop)
+     ("Hydra" . ,(append home-desktop big-games)))))
+

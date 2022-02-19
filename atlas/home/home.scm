@@ -9,10 +9,12 @@
   #:use-module (gnu packages emacs)
   #:use-module (gnu packages password-utils)
   #:use-module (gnu home services mcron)
+  #:use-module (ice-9 hash-table)
   #:use-module (guix gexp))
 
 (home-environment
- (packages %home-desktop-manifest)
+ (packages
+  (hash-ref %packages-by-host (vector-ref (uname) 1)))
  (services
   (list
    (service

@@ -34,7 +34,7 @@
 
 (define-public atlas-guix-system
   (operating-system
-   (host-name "Phoenix-Phantom")
+   (host-name (vector-ref (uname) 1))
    (kernel linux)
    (initrd microcode-initrd)
    (firmware (list linux-firmware))
