@@ -46,16 +46,14 @@
     "bc" "unzip"
 
     ;; Games
-    "devilutionx"
-    "lgogdownloader" "the-dark-mod"
-    "supertuxkart" "cataclysm-dda" "falltergeist"
-    "gnushogi" "nethack" "retux" "angband" "crawl" "crawl-tiles"
-    "wesnoth" "steam" "retroarch" "7kaa" "sky" "lure"
-    "marble-marcher" "arx-libertatis" "endless-sky" "naev"
+    "lgogdownloader"
+    "supertuxkart" "cataclysm-dda"
+    "wesnoth" "steam" "sky" "lure"
+    "endless-sky" "naev"
     "gzdoom" "tintin++" "taisei" "kobodeluxe" "dwarf-fortress"
 
     ;; Email
-    "mu" "isync"
+    "mu" "isync" "pinentry"
 
     ;; Emacs
     "emacs-all-the-icons" "emacs-auctex"
@@ -92,6 +90,7 @@
     "emacs-vterm" "emacs-nix-mode"
     "emacs-monokai-theme" "emacs-ement"
     "emacs-pg"
+    "emacs-yaml-mode"
     
     ;; DE/Gnome
     "gnome-shell-extension-topicons-redux"
@@ -104,6 +103,9 @@
     "transmission" "stow" "quaternion"
     "i3-wm" "i3status" "i3lock" "i3lock-fancy"
     "nautilus" "okular"
+
+    ;; Lib
+    "artanis"
     ))
 
 (define %home-desktop-manifest

@@ -1,6 +1,7 @@
 (define-module (atlas packages system)
   #:use-module (gnu packages)
   #:use-module (gnu packages llvm)
+  #:use-module (gnu packages gcc)
   #:export (%system-desktop-manifest))
 
 (define %system-desktop-manifest-list
@@ -18,7 +19,7 @@
     
     ;; Libs
     "ncurses" "curl" "virt-manager"
-    "ntfs-3g" "btrfs-progs"
+    "ntfs-3g" "btrfs-progs" ;; "artanis"
 
     ;; Shell utils
     "file" "screen"
@@ -36,5 +37,7 @@
     "nss-certs" "xdg-utils"))
 
 (define %system-desktop-manifest
-  (cons (list clang-13 "extra") (map specification->package %system-desktop-manifest-list)))
+  (cons
+   (list clang-13 "extra")
+   (map specification->package %system-desktop-manifest-list)))
 

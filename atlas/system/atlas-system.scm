@@ -49,7 +49,8 @@
 		  (home-directory "/home/michal-atlas")
 		  (shell (file-append (specification->package "zsh") "/bin/zsh"))
 		  (supplementary-groups
-		   '("wheel" "netdev" "audio" "video" "libvirt" "kvm")))
+		   '("wheel" "netdev" "audio"
+		     "video" "libvirt" "kvm")))
 		 %base-user-accounts))
    (packages
     (append %system-desktop-manifest
@@ -93,6 +94,7 @@ EndSection
      (service virtlog-service-type
               (virtlog-configuration
                (max-clients 1000)))
+     (service hurd-vm-service-type)
      (service syncthing-service-type
 	      (syncthing-configuration (user "michal-atlas")))
      (service cups-service-type
