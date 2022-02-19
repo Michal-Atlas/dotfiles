@@ -1,10 +1,9 @@
 (define-module (atlas packages home)
-  #:use-module (gnu packages)
   #:use-module (ice-9 hash-table)
   #:export (%packages-by-host))
 
 (define home-desktop
-  `(
+  '(
     ;; Emacs
     "emacs-next"
     
@@ -119,6 +118,5 @@
 
 (define %packages-by-host
   (alist->hash-table
-   `(("Dagon" . ,home-desktop)
+   `(("Dagon" . ,(append home-desktop))
      ("Hydra" . ,(append home-desktop big-games)))))
-

@@ -5,6 +5,7 @@
   #:use-module (gnu home services shells)
   #:use-module (gnu home services shepherd)
   #:use-module (gnu services)
+  #:use-module (gnu packages)
   #:use-module (gnu packages admin)
   #:use-module (gnu packages emacs)
   #:use-module (gnu packages password-utils)
@@ -13,8 +14,9 @@
   #:use-module (guix gexp))
 
 (home-environment
- (packages
-  (hash-ref %packages-by-host (vector-ref (uname) 1)))
+ (packages 
+  (map specification->package
+       (hash-ref %packages-by-host (vector-ref (uname) 1))))
  (services
   (list
    (service
