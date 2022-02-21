@@ -2,36 +2,35 @@
   #:use-module (ice-9 hash-table)
   #:export (%packages-by-host))
 
-(define home-desktop
+(define shell-utils
   '(
-    ;; Emacs
-    "emacs-next"
-    
-    ;; Shell utils
     "file"
     "kitty" "fzf"
     "pandoc" "direnv"
     "vim" "zsh" "git" "htop"
     "xclip"
-    
-    ;; Toolchains
+
+    "bat" "zoxide" "exa"
+    "tealdeer"
+    ))
+(define toolchains
+  '(
     "gcc-toolchain" "clang-toolchain" "rust"
     "cmake" "make" "recutils" "python" "python-ipython"
     "mosh"
 
     "gnupg"
     
-    ;; Shell utils
-    "bat" "zoxide" "exa"
-    "tealdeer"
-
-    ;; Multimedia
+    ))
+(define multimedia
+  '(
     "icedove"
     "grim" "vlc" "mpv"
     "libreoffice"
     "audacity"
-
-    ;; Graphics
+    ))
+(define graphics
+  '(
     "feh" "shotwell"
     "inkscape" "gimp" "blender" "kdenlive" "krita"
     "font-fira-code" "font-jetbrains-mono"
@@ -45,17 +44,24 @@
     "xdotool" "tree"
     "bc" "unzip"
 
-    ;; Games
+    ))
+(define games
+  '(
     "lgogdownloader"
     "supertuxkart" "cataclysm-dda"
     "wesnoth" "steam" "sky" "lure"
     "endless-sky" "naev"
     "gzdoom" "tintin++" "taisei" "kobodeluxe" "dwarf-fortress"
 
-    ;; Email
+    ))
+(define e-mail
+  '(
     "mu" "isync" "pinentry"
-
-    ;; Emacs
+    ))
+(define emacs+xyz
+  '(
+    "emacs-next"
+    
     "emacs-all-the-icons" "emacs-auctex"
     "emacs-dashboard" "emacs-highlight-indent-guides"
     "emacs-doom-modeline"
@@ -91,20 +97,25 @@
     "emacs-monokai-theme" "emacs-ement"
     "emacs-pg" "emacs-browse-kill-ring"
     "emacs-yaml-mode" "emacs-multi-term"
+    "emacs-hackles" "emacs-xkcd"
     
-    ;; DE/Gnome
+    ))
+(define desktop/gnome
+  '(
     "gnome-shell-extension-topicons-redux"
     "gnome-shell-extension-paperwm"
     "gnome-shell-extension-gsconnect"
     "gnome-shell-extension-clipboard-indicator"
     "gnome-shell-extension-appindicator" 
-
-    ;; DE
+    ))
+(define desktop
+  '(
     "transmission" "stow" "quaternion"
     "i3-wm" "i3status" "i3lock" "i3lock-fancy"
     "nautilus" "okular"
-
-    ;; Lib
+    ))
+(define libs
+  '(
     "artanis"
     ))
 (define big-games
@@ -118,5 +129,5 @@
 
 (define %packages-by-host
   (alist->hash-table
-   `(("Dagon" . ,(append home-desktop))
-     ("Hydra" . ,(append home-desktop big-games)))))
+   `(("Dagon" . ,(append shell-utils toolchains multimedia graphics games e-mail emacs+xyz desktop libs))
+     ("Hydra" . ,(append shell-utils toolchains multimedia graphics games e-mail emacs+xyz desktop libs big-games)))))
