@@ -19,7 +19,6 @@
        (hash-ref %packages-by-host (vector-ref (uname) 1))))
  (services
   (list
-   (service home-provenance-service-type)
    (service
     home-mcron-service-type
     (home-mcron-configuration
