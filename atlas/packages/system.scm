@@ -36,9 +36,6 @@
     "gnupg" "pinentry"    
     "nss-certs" "xdg-utils"))
 
-(define (package-with-version original ver)
-  (package (inherit original) (version ver)))
-
 (define %system-desktop-manifest
-   (map specification->package %system-desktop-manifest-list))
+  (map specification->package %system-desktop-manifest-list))
 

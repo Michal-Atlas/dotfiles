@@ -31,13 +31,8 @@
  audio
  databases
  cups
+ linux
  syncthing)
-
-(define (package-with-version original ver)
-  (package (inherit original) (version ver)))
-
-(define nvidia-driver-510.54
-  (package-with-version nvidia-driver "510.54"))
 
 (define-public atlas-guix-system
   (operating-system
@@ -60,30 +55,16 @@
 		     "video" "libvirt" "kvm")))
 		 %base-user-accounts))
    (packages
-    (cons nvidia-driver-510.54
-	  (append %system-desktop-manifest
-		  %base-packages)))
+    (append %system-desktop-manifest
+	    %base-packages))
    (services
     (cons*
      (service openssh-service-type)
-     (simple-service 'custom-udev-rules udev-service-type (list nvidia-driver))
      (set-xorg-configuration
       (xorg-configuration
-       (modules (cons* nvidia-driver-510.54 %default-xorg-modules))
-       (drivers '("nvidia"))
-       (extra-config (list "
-# Touchpad
-Section \"InputClass\"
-Identifier \"touchpad\"
-        Driver \"libinput\"
-MatchIsTouchpad \"on\"
-Option \"DisableWhileTyping\" \"on\"
-Option \"Tapping\" \"1\"
-Option \"NaturalScrolling\" \"1\"
-Option \"Emulate3Buttons\" \"yes\"
-EndSection
-# Touchpad:1 ends here
-"))
+       (extra-config
+	(list
+	 (local-file "../../xorg/touchpad")))
        (keyboard-layout keyboard-layout)))
      (service gnome-desktop-service-type)
      (service mate-desktop-service-type)
