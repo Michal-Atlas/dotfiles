@@ -12,8 +12,10 @@
   #:use-module (gnu home services shepherd)
   #:use-module (nongnu services vpn)
   #:use-module (nongnu packages linux)
+  #:use-module (nongnu packages nvidia)
   #:use-module (nongnu system linux-initrd)
-  #:use-module (gnu packages hurd))
+  #:use-module (gnu packages hurd)
+  #:use-module (guix packages))
 
 (use-service-modules
  desktop
@@ -31,6 +33,11 @@
  cups
  syncthing)
 
+(define (package-with-version original ver)
+  (package (inherit original) (version ver)))
+
+(define nvidia-driver-510.54
+  (package-with-version nvidia-driver "510.54"))
 
 (define-public atlas-guix-system
   (operating-system
@@ -53,16 +60,17 @@
 		     "video" "libvirt" "kvm")))
 		 %base-user-accounts))
    (packages
-    (append %system-desktop-manifest
-	    %base-packages))
+    (cons nvidia-driver-510.54
+	  (append %system-desktop-manifest
+		  %base-packages)))
    (services
     (cons*
      (service openssh-service-type)
-     ;;(simple-service 'custom-udev-rules udev-service-type (list nvidia-driver))
+     (simple-service 'custom-udev-rules udev-service-type (list nvidia-driver))
      (set-xorg-configuration
       (xorg-configuration
-       ;;(modules (cons* nvidia-driver %default-xorg-modules))
-       ;;(drivers '("nvidia"))
+       (modules (cons* nvidia-driver-510.54 %default-xorg-modules))
+       (drivers '("nvidia"))
        (extra-config (list "
 # Touchpad
 Section \"InputClass\"
@@ -84,23 +92,23 @@ EndSection
        (pam-limits-entry "*" 'both 'nofile 524288)))
      (service gpm-service-type)
      (service tlp-service-type
-              (tlp-configuration
+	      (tlp-configuration
 	       (cpu-boost-on-ac? #t)
 	       (wifi-pwr-on-bat? #t)))
      (service inputattach-service-type)
      (zerotier-one-service)
      (service libvirt-service-type
-              (libvirt-configuration
+	      (libvirt-configuration
 	       (unix-sock-group "libvirt")
 	       (tls-port "16555")))
      (service virtlog-service-type
-              (virtlog-configuration
-               (max-clients 1000)))
+	      (virtlog-configuration
+	       (max-clients 1000)))
      (service hurd-vm-service-type)
      (service syncthing-service-type
 	      (syncthing-configuration (user "michal-atlas")))
      (service cups-service-type
-              (cups-configuration
+	      (cups-configuration
 	       (web-interface? #t)
 	       (extensions
 		(list cups-filters hplip-minimal))))

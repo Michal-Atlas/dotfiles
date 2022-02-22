@@ -2,7 +2,6 @@
   #:use-module (gnu packages)
   #:use-module (gnu packages llvm)
   #:use-module (gnu packages gcc)
-  ;;#:use-module (nonguix packages nvidia)
   #:export (%system-desktop-manifest))
 
 (define %system-desktop-manifest-list
@@ -37,12 +36,9 @@
     "gnupg" "pinentry"    
     "nss-certs" "xdg-utils"))
 
-;;(define (package-with-version original ver)
-  ;;(package (inherit original) (version ver)))
+(define (package-with-version original ver)
+  (package (inherit original) (version ver)))
 
 (define %system-desktop-manifest
-  (cons
-   ;;(list clang-13 "extra")
-   ;;(package-with-version nvidia-driver "510.54")
-   (map specification->package %system-desktop-manifest-list)))
+   (map specification->package %system-desktop-manifest-list))
 
