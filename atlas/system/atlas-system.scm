@@ -58,8 +58,11 @@
    (services
     (cons*
      (service openssh-service-type)
+     (simple-service 'custom-udev-rules udev-service-type (list nvidia-driver))
      (set-xorg-configuration
       (xorg-configuration
+       (modules (cons* nvidia-driver %default-xorg-modules))
+       (drivers '(\"nvidia\"))
        (extra-config (list "
 # Touchpad
 Section \"InputClass\"

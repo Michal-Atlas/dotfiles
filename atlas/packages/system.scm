@@ -6,6 +6,7 @@
 
 (define %system-desktop-manifest-list
   `(
+    "nvidia-driver"
     "nvi"
     
     ;; DE
