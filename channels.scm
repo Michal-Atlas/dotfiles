@@ -1,3 +1,6 @@
+(define-module (channels)
+  #:use-module (guix channels))
+
 (append (list (channel
 	       (name 'nonguix)
 	       (url "https://gitlab.com/nonguix/nonguix")
