@@ -120,7 +120,6 @@
     ))
 (define big-games
   '(
-    ;; Big Games
     "the-dark-mod" "falltergeist"
     "gnushogi" "nethack" "retux" "angband"
     "crawl" "crawl-tiles" "retroarch" "7kaa"
