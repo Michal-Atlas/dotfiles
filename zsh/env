@@ -13,3 +13,5 @@ setopt -wU
 setopt auto_continue
 setopt no_hup
 setopt pipe_fail
+autoload -Uz compinit
+compinit
