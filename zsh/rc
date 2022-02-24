@@ -1,60 +1,11 @@
 # -*- mode: shell-script -*-
 
-export ZPLUG_HOME="${HOME}/.zplug"
-if [ ! -e $ZPLUG_HOME ]; then
-    git clone https://github.com/zplug/zplug $ZPLUG_HOME
-fi;
-source $ZPLUG_HOME/init.zsh
+. ~/.guix-home/share/zsh/themes/zsh-theme-geometry/gemotry.zsh-theme
+. $(find ~/${GUIX_ENVIRONMENT:-$HOME/.guix-home}/share/zsh/plugins/ -name "*.plugin.zsh")
+. ~/.guix-home/share/zsh/plugins/zsh-syntax-highlughting/zsh-syntax-highlighting.zsh
+. ~/.guix-home/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-zplug 'geometry-zsh/geometry', as:theme
-
-PLUGINS_OMZ=(
-    common-aliases 
-    extract 
-    git 
-    git-auto-fetch 
-    shrink-path 
-    ssh-agent 
-    dirhistory 
-    screen
-    colored-man-pages     
-    emacs
-)
-
-for f in "${PLUGINS_OMZ[@]}"; do
-    zplug "plugins/$f", from:oh-my-zsh
-done;
-
-PLUGINS=(
-    zpm-zsh/colorize 
-    DarrinTisdale/zsh-aliases-exa
-    hlissner/zsh-autopair 
-    Michal-Atlas/zsh-guix 
-    djui/alias-tips
-    zsh-users/zsh-history-substring-search
-    zsh-users/zsh-autosuggestions
-    zsh-users/zsh-completions
-    paulirish/git-open
-    zsh-users/zsh-syntax-highlighting
-)
-
-for f in "${PLUGINS[@]}"; do
-    zplug "$f";
-done;
-
-zplug wfxr/forgit, defer:1
-
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-	echo; zplug install
-    fi
-fi
-
-# Then, source plugins and add commands to $PATH
-zplug load
-
+GRC_ALIASES=true
 GEOMETRY_PROMPT='λ'
 GEOMETRY_STATUS_SYMBOL='λ'
 GEOMETRY_STATUS_SYMBOL_ERROR='△'
