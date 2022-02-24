@@ -129,7 +129,10 @@
   '(
     "zsh-syntax-highlighting"
     "zsh-autosuggestions"
-    "gcr"
+    "grc"
+    "zsh-git"
+    "zsh-forgit"
+    "zsh-exa"
     "zsh-common-aliases"
     "zsh-extract"
     "zsh-git-auto-fetch"

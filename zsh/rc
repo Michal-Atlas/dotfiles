@@ -1,14 +1,15 @@
 # -*- mode: shell-script -*-
 
-. ~/.guix-home/share/zsh/themes/zsh-theme-geometry/gemotry.zsh-theme
-. $(find ~/${GUIX_ENVIRONMENT:-$HOME/.guix-home}/share/zsh/plugins/ -name "*.plugin.zsh")
-. ~/.guix-home/share/zsh/plugins/zsh-syntax-highlughting/zsh-syntax-highlighting.zsh
-. ~/.guix-home/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 GRC_ALIASES=true
-GEOMETRY_PROMPT='λ'
 GEOMETRY_STATUS_SYMBOL='λ'
 GEOMETRY_STATUS_SYMBOL_ERROR='△'
+
+. ~/.guix-home/profile/share/zsh/themes/zsh-theme-geometry/geometry.zsh-theme
+find -L ${GUIX_ENVIRONMENT:-$HOME/.guix-home/profile}/share/zsh/plugins/ -name "*.plugin.zsh" | while read -r l; do;											   	source "$l";		
+done;
+. ~/.guix-home/profile/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+. ~/.guix-home/profile/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+. ~/.guix-home/profile/etc/profile.d/grc.sh
 
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
