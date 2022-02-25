@@ -35,15 +35,15 @@
  linux
  syncthing)
 
-(define %cuirass-specs
-  #~(list (specification
-	   (name "Atlas Channel")
-	   (build '(channels atlas))
-	   (channels
-	    (cons (channel
-		   (name 'atlas)
-		   (url "https://git.sr.ht/~michal_atlas/guix-channel"))
-		  %default-channels)))))
+;; (define %cuirass-specs
+;;   #~(list (specification
+;; 	   (name "Atlas Channel")
+;; 	   (build '(channels atlas))
+;; 	   (channels
+;; 	    (cons (channel
+;; 		   (name 'atlas)
+;; 		   (url "https://git.sr.ht/~michal_atlas/guix-channel"))
+;; 		  %default-channels)))))
 
 (define-public atlas-guix-system
   (operating-system
@@ -70,10 +70,10 @@
 	     %base-packages))
     (services
      (cons*
-      (service cuirass-service-type
-	       (cuirass-configuration
-		(interval 3600)
-		(specifications %cuirass-specs)))
+      ;; (service cuirass-service-type
+      ;; 	       (cuirass-configuration
+      ;; 		(interval 3600)
+      ;; 		(specifications %cuirass-specs)))
       (service openssh-service-type)
       (set-xorg-configuration
        (xorg-configuration
