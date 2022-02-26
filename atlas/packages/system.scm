@@ -1,7 +1,5 @@
 (define-module (atlas packages system)
   #:use-module (gnu packages)
-  #:use-module (gnu packages llvm)
-  #:use-module (gnu packages gcc)
   #:export (%system-desktop-manifest))
 
 (define %system-desktop-manifest-list
@@ -12,6 +10,7 @@
     "xnotify" "brightnessctl" "pamixer" "playerctl"
     "firefox" "xscreensaver" "gparted"
     "pavucontrol" "screen"
+    "i3-wm" "i3status" "i3lock" "i3lock-fancy"
     
     ;; Emacs
     "emacs-next"
