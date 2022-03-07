@@ -18,4 +18,3 @@ autoload -Uz compinit
 compinit
 . /run/current-system/profile/etc/profile.d/nix.sh
 . /run/current-system/profile/etc/profile.d/flatpak.sh
-. /run/current-system/profile/etc/profile.d/PackageKit.sh
