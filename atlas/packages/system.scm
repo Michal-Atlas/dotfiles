@@ -4,7 +4,7 @@
 
 (define %system-desktop-manifest-list
   `(
-    "nvi"
+    "nvi" "patchelf"
     
     ;; DE
     "xnotify" "brightnessctl" "pamixer" "playerctl"
