@@ -16,3 +16,4 @@ setopt no_hup
 setopt pipe_fail
 autoload -Uz compinit
 compinit
+. /run/current-system/profile/etc/profile.d/nix.sh
