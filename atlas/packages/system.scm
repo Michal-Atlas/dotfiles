@@ -19,7 +19,8 @@
     
     ;; Libs
     "ncurses" "curl" "virt-manager"
-    "ntfs-3g" "btrfs-progs" ;; "artanis"
+    "ntfs-3g" "btrfs-progs"
+    "cifs-utils"
 
     ;; Shell utils
     "file" "screen"
