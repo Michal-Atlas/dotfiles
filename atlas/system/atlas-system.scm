@@ -33,7 +33,7 @@
    (keyboard-layout
     (keyboard-layout "us,cz" ",qwerty" #:options '("grp:caps_switch" "lv3:ralt_switch" "compose:rctrl-altgr")))
    (users (cons* (user-account
-		  (name "michal-atlas")
+		  (name "michal_atlas")
 		  (comment "Michal Atlas")
 		  (group "users")
 		  (home-directory "/home/michal-atlas")
