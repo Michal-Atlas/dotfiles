@@ -36,7 +36,7 @@
 		  (name "michal_atlas")
 		  (comment "Michal Atlas")
 		  (group "users")
-		  (home-directory "/home/michal-atlas")
+		  (home-directory "/home/michal_atlas")
 		  (shell (file-append (specification->package "zsh") "/bin/zsh"))
 		  (supplementary-groups
 		   '("wheel" "netdev" "audio"

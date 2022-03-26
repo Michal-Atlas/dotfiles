@@ -11,7 +11,7 @@
     "firefox" "xscreensaver" "gparted"
     "pavucontrol" "screen"
     "i3-wm" "i3status" "i3lock" "i3lock-fancy"
-    "flatpak"
+    "flatpak" "font-fira-code"
     
     ;; Emacs
     "emacs-next"

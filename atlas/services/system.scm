@@ -55,7 +55,7 @@
 	     (max-clients 1000)))
    (service hurd-vm-service-type)
    (service syncthing-service-type
-	    (syncthing-configuration (user "michal-atlas")))
+	    (syncthing-configuration (user "michal_atlas")))
    (service cups-service-type
 	    (cups-configuration
 	     (web-interface? #t)
