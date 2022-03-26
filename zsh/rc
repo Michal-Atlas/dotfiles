@@ -16,7 +16,7 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 alias cat=bat
 alias q=exit
-
+alias e="emacsclient -a=\"\""
 alias s=screen
 #[[ -z $STY ]] && screen && exit
 eval "$(direnv hook zsh)"

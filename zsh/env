@@ -1,7 +1,5 @@
 # -*- mode: shell-script -*-
 
-[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env" || true
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/library"
 export EMACSLOADPATH="$EMACSLOADPATH:$HOME/.guix-home/profile/share/emacs/site-lisp"
 export XDG_DATA_DIRS="$XDG_DATE_DIRS:/var/lib/flatpak/exports/share:/home/michal-atlas/.local/share/flatpak/exports/share"
 

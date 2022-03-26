@@ -64,7 +64,6 @@
     
     "emacs-all-the-icons" "emacs-auctex"
     "emacs-dashboard" "emacs-highlight-indent-guides"
-    "emacs-doom-modeline"
     "emacs-solaire-mode"
     "emacs-which-key"
     "emacs-company" "emacs-company-box"
@@ -72,7 +71,7 @@
     "emacs-helpful"
     "emacs-aggressive-indent"
     "emacs-crux" "emacs-undo-tree"
-    "emacs-flycheck" "emacs-yasnippet"
+    "emacs-flycheck"
     "emacs-projectile" "emacs-vertico"
     "emacs-orderless"
     "emacs-lsp-ui" "emacs-lsp-mode"
@@ -97,8 +96,7 @@
     "emacs-monokai-theme" "emacs-ement"
     "emacs-pg" "emacs-browse-kill-ring"
     "emacs-yaml-mode" "emacs-multi-term"
-    "emacs-hackles" "emacs-xkcd"
-    
+    "emacs-hackles" "emacs-xkcd"    
     ))
 (define desktop/gnome
   '(
@@ -141,7 +139,6 @@
     "zsh-dirhistory"
     "zsh-screen"
     "zsh-colored-man-pages"
-    "zsh-emacs"
     "zsh-guix"
     "zsh-alias-tips"
     "zsh-theme-geometry"

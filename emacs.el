@@ -9,9 +9,7 @@
       user-mail-address "zacekmi2@fit.cvut.cz")
 
 (setq backup-directory-alist '((".*" . "~/.emacs.d/bkp")))
-(setq org-directory "~/Documents/")
 (setq projectile-project-search-path (list "~/Documents" "~/source"))
-(setq org-agenda-files "~/Documents/agenda.list")
 (setq calendar-week-start-day 1)
 (setq org-agenda-start-on-weekday 1)
 (setq find-function-C-source-directory "~/source/emacs")
@@ -24,24 +22,6 @@
 (run-at-time nil (* 10 60) 'recentf-save-list)
 ;; Variable Init:1 ends here
 
-;; Dashboard
-
-(setq dashboard-projects-backend 'projectile)
-(setq dashboard-items '((recents  . 7)
-			(bookmarks . 5)
-			(projects . 7)
-			(agenda . 5)
-			(registers . 5)))
-(setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
-(setq dashboard-banner-logo-title "Atlas Emacs")
-(setq dashboard-set-heading-icons t)
-(setq dashboard-set-file-icons t)
-(setq dashboard-set-navigator t)
-(setq dashboard-set-init-info t)
-(setq dashboard-week-agenda t)
-(setq dashboard-center-content t)
-(dashboard-setup-startup-hook)
-
 ;; Theming
 
 (tool-bar-mode -1)
@@ -51,14 +31,12 @@
 (column-number-mode 1)
 
 (add-hook 'prog-mode-hook #'highlight-indent-guides-mode)
-(add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
 (setq highlight-indent-guides-method 'bitmap)
 
 (set-frame-font "Fira Code-8" nil t)
 (add-to-list 'default-frame-alist '(font . "Fira Code-8"))
 
 (load-theme 'gruvbox t)
-(doom-modeline-mode 1)
 (solaire-global-mode +1)
 (which-key-mode)
 (setq which-key-popup-type 'minibuffer)
@@ -67,34 +45,13 @@
 (global-hl-line-mode 1)
 
 (add-hook 'prog-mode-hook #'rainbow-identifiers-mode)
-
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 (set-default 'preview-scale-function 1.5)
 
-;; Formatting
-
-(global-aggressive-indent-mode 1)
-
 (global-undo-tree-mode 1)
 (setq undo-tree-auto-save-history t)
 (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
-
-;; Company
-
-;; 
-;; (company-mode)
-;; (add-hook 'after-init-hook #'global-company-mode)
-
-;; 
-;; (add-hook 'company-mode-hook #'company-box-mode)
-;; (setq company-box-icons-alist 'company-box-icons-all-the-icons)
-
-(global-flycheck-mode)
-
-(projectile-mode +1)
-(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 ;; Vertico
 
@@ -128,6 +85,7 @@
 (global-git-gutter-mode +1)
 
 (add-hook 'org-mode-hook #'org-fragtog-mode)
+(add-hook 'org-mode-hook #'org-superstar-mode)
 
 (global-set-key (kbd "M-q") 'avy-goto-word-0)
 
@@ -145,8 +103,6 @@
    (shell . t)
    (scheme . t)
    ))
-
-(add-hook 'org-mode-hook #'org-superstar-mode)
 
 (marginalia-mode)
 
