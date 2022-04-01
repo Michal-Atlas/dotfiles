@@ -31,10 +31,10 @@
 	  '(next-hour '(0))
 	  "guix gc -F 10G")
        #~(job
-	  '(next-minute '(0))
-	  "find $HOME/tmp -mindepth 1 -ctime +2 -empty -delete | xargs rm -r")
+	  '(next-hour '(0))
+	  "mkdir -p ~/tmp-log; mv ~/tmp ~/tmp-log/$(date -I); mkdir ~/tmp")
        ))))
-    (service home-bash-service-type
+   (service home-bash-service-type
 	    (home-bash-configuration
 	     (guix-defaults? #t)))
    (simple-service
