@@ -22,6 +22,8 @@
 (run-at-time nil (* 10 60) 'recentf-save-list)
 ;; Variable Init:1 ends here
 
+(defun yes-or-no-p (prompt) (y-or-n-p prompt))
+
 ;; Theming
 
 (tool-bar-mode -1)
