@@ -66,7 +66,6 @@
     "emacs-dashboard" "emacs-highlight-indent-guides"
     "emacs-solaire-mode"
     "emacs-which-key"
-    "emacs-company" "emacs-company-box"
     "emacs-rainbow-delimiters" "emacs-rainbow-identifiers"
     "emacs-helpful"
     "emacs-aggressive-indent"
