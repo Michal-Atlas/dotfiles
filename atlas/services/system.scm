@@ -34,8 +34,6 @@
      (extra-config
       (list
        (readfile "xorg/touchpad")))))
-   (service gnome-desktop-service-type)
-   (service mate-desktop-service-type)
    (pam-limits-service
     (list
      (pam-limits-entry "*" 'both 'nofile 524288)))
@@ -71,17 +69,6 @@
 	    (unattended-upgrade-configuration
  	     (channels "/home/michal-atlas/.config/guix/channels.scm")))
    (bluetooth-service #:auto-enable? #f)
-   ;;CTU
-   (service openvpn-client-service-type
-	    (openvpn-client-configuration
-	     (ca 'disabled)
-	     (cert 'disabled)
-	     (key 'disabled)
-	     (auth-user-pass "/root/openvpn")
-	     (remote (list
-		      (openvpn-remote-configuration
-		       (name "vpn.fit.cvut.cz")
-		       )))))
    (modify-services
     %desktop-services
     (wpa-supplicant-service-type
