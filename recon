@@ -1,0 +1,15 @@
+#!/usr/bin/env -S guile -s
+!#
+
+(use-modules (ice-9 match))
+
+(unless (= 2 (length (command-line))) (display "this script takes one argument") (newline) (primitive-exit))
+
+(match (cadr (command-line))
+  ("home" (system* "guix" "home" "reconfigure" "-L." "atlas/home/home.scm"))
+  ("system" (system* "sudo" "guix" "system" "reconfigure" "atlas/system/atlas-system.scm" "-L."))
+  (_ (display "enter either `home` or `system`") (newline)))
+
+;; Local Variables:
+;; mode: scheme
+;; End:
