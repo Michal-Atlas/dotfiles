@@ -81,7 +81,7 @@
     "emacs-org-fragtog" "emacs-avy"
     "emacs-anzu" "emacs-org-present" "emacs-org-superstar"
     "emacs-marginalia" "emacs-embark"
-    "emacs-consult"
+    "emacs-consult" "emacs-elpher"
     "emacs-irony-mode" "emacs-irony-eldoc"
     "emacs-elfeed" "emacs-frames-only-mode"
     "emacs-ac-geiser" "emacs-paredit" "emacs-iedit"
@@ -108,6 +108,7 @@
 (define desktop
   '(
     "transmission" "stow" "quaternion"
+    "dmenu" "sway" "swaylock" "swayidle" "swaybg"
     "i3-wm" "i3status" "i3lock" "i3lock-fancy"
     "nautilus" "okular"
     ))

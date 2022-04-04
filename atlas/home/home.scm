@@ -46,7 +46,8 @@
       ("screenrc" ,(local-file "../../screen"))
       ("config/kitty/kitty.conf" ,(local-file "../../kitty.conf"))
       ("config/guix/channels.scm" ,(local-file "../../channels.scm"))
-      ("mbsyncrc" ,(local-file "../../mbsyncrc"))))
+      ("mbsyncrc" ,(local-file "../../mbsyncrc"))
+      ("config/sway/config" ,(local-file "../../sway.cfg"))))
    (service
     home-zsh-service-type
     (home-zsh-configuration
@@ -54,10 +55,10 @@
       `(("BROWSER" . "firefox")
 	("SHELL" . "zsh")
 	("EDITOR" . "\"emacsclient -a=\"\"\"")
-	("XCURSOR_THEME" . "Adwaita")
-        ("XCURSOR_SIZE" . "36")
 	("TERM" . "xterm-256color")))
      (zshenv
       (list (local-file "../../zsh/env")))
      (zshrc
-      (list (local-file "../../zsh/rc"))))))))
+      (list (local-file "../../zsh/rc")))
+     (zlogin
+      (list "sway")))))))
