@@ -55,7 +55,8 @@
       `(("BROWSER" . "firefox")
 	("SHELL" . "zsh")
 	("EDITOR" . "\"emacsclient -a=\"\"\"")
-	("TERM" . "xterm-256color")))
+	("TERM" . "xterm-256color")
+	("MOZ_ENABLE_WAYLAND" . "1")))
      (zshenv
       (list (local-file "../../zsh/env")))
      (zshrc
