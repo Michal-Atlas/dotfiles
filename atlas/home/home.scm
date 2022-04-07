@@ -62,4 +62,4 @@
      (zshrc
       (list (local-file "../../zsh/rc")))
      (zlogin
-      (list (plain-file "zlogin" "sway"))))))))
+      (list (local-file "../../zsh/login"))))))))
