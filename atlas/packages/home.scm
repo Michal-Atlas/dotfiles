@@ -108,7 +108,7 @@
 (define desktop
   '(
     "transmission" "stow" "quaternion"
-    "dmenu" "sway" "swaylock" "swayidle" "swaybg"
+    "dmenu" "sway" "swayidle" "swaybg"
     "i3-wm" "i3status" "i3lock" "i3lock-fancy"
     "nautilus" "okular"
     ))
