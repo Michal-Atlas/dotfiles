@@ -2,6 +2,7 @@
   #:use-module (gnu)
   #:use-module (nongnu services vpn)
   #:use-module (gnu packages cups)
+  #:use-module (gnu packages wm)
   #:use-module (ice-9 textual-ports))
 
 
@@ -29,15 +30,11 @@
 (define-public %system-services-manifest
   (cons*
    (service openssh-service-type)
-   (set-xorg-configuration
-    (xorg-configuration
-     (extra-config
-      (list
-       (readfile "xorg/touchpad")))))
    (pam-limits-service
     (list
      (pam-limits-entry "*" 'both 'nofile 524288)))
    (service gpm-service-type)
+   (screen-locker-service swaylock)
    (service tlp-service-type
 	    (tlp-configuration
 	     (cpu-boost-on-ac? #t)
@@ -71,6 +68,7 @@
    (bluetooth-service #:auto-enable? #f)
    (modify-services
     %desktop-services
+    (delete gdm-service-type)
     (wpa-supplicant-service-type
      config =>
      (wpa-supplicant-configuration
