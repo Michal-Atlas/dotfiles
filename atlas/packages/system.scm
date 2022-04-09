@@ -10,6 +10,7 @@
     "xnotify" "brightnessctl" "pamixer" "playerctl"
     "firefox" "xscreensaver" "gparted"
     "pavucontrol" "screen"
+    "sway"
     "i3-wm" "i3status" "i3lock" "i3lock-fancy"
     "flatpak" "font-fira-code"
     
