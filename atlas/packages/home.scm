@@ -15,7 +15,7 @@
     ))
 (define toolchains
   '(
-    "gcc-toolchain" "clang-toolchain" "rust"
+    "gcc-toolchain" "gdb" "clang-toolchain" "rust"
     "cmake" "make" "recutils" "python" "python-ipython"
     "mosh"
 
