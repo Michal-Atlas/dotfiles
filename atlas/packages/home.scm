@@ -111,6 +111,7 @@
   '(
     "transmission" "stow" "quaternion"
     "bemenu" "sway" "swayidle" "swaybg"
+    "grim" "slurp"
     "i3-wm" "i3status" "i3lock" "i3lock-fancy"
     "nautilus" "okular"
     ))

@@ -56,7 +56,8 @@
 	("SHELL" . "zsh")
 	("EDITOR" . "\"emacsclient -a=\"\"\"")
 	("TERM" . "xterm-256color")
-	("MOZ_ENABLE_WAYLAND" . "1")))
+	("MOZ_ENABLE_WAYLAND" . "1")
+	("GRIM_DEFAULT_DIR" . "~/tmp")))
      (zshenv
       (list (local-file "../../zsh/env")))
      (zshrc
