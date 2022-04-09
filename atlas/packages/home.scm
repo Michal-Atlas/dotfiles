@@ -96,7 +96,8 @@
     "emacs-monokai-theme" "emacs-ement"
     "emacs-pg" "emacs-browse-kill-ring"
     "emacs-yaml-mode" "emacs-multi-term"
-    "emacs-hackles" "emacs-xkcd"    
+    "emacs-hackles" "emacs-xkcd"
+    "emacs-realgud"
     ))
 (define desktop/gnome
   '(
