@@ -32,7 +32,7 @@
 (define graphics
   '(
     "feh" "shotwell"
-    "inkscape" "gimp" "blender" "kdenlive" "krita"
+    "inkscape" "gimp" "blender" "krita"
     "font-fira-code" "font-jetbrains-mono"
     "font-awesome" "font-tamzen"
     "font-sil-charis" "font-adobe-source-han-sans"
