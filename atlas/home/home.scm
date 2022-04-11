@@ -38,16 +38,20 @@
 	    (home-bash-configuration
 	     (guix-defaults? #t)))
    (simple-service
+    'run-sway-on-login
+    home-run-on-first-login-service-type
+    #~(system "sway"))
+   (simple-service
     'dotfiles
     home-files-service-type
     `(("ssh/config" ,(local-file "../../ssh"))
       ("emacs.d/init.el" ,(local-file "../../emacs.el"))
       ("guile" ,(local-file "../../guile"))
       ("screenrc" ,(local-file "../../screen"))
-      ("config/kitty/kitty.conf" ,(local-file "../../kitty.conf"))
       ("config/guix/channels.scm" ,(local-file "../../channels.scm"))
       ("mbsyncrc" ,(local-file "../../mbsyncrc"))
-      ("config/sway/config" ,(local-file "../../sway.cfg"))))
+      ("config/sway/config" ,(local-file "../../sway.cfg"))
+      ("config/foot/foot.ini" ,(local-file "../../foot.ini"))))
    (service
     home-zsh-service-type
     (home-zsh-configuration
@@ -61,6 +65,4 @@
      (zshenv
       (list (local-file "../../zsh/env")))
      (zshrc
-      (list (local-file "../../zsh/rc")))
-     (zlogin
-      (list (local-file "../../zsh/login"))))))))
+      (list (local-file "../../zsh/rc"))))))))
