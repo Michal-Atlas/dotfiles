@@ -13,7 +13,8 @@
     "sway"
     "i3-wm" "i3status" "i3lock" "i3lock-fancy"
     "flatpak" "font-fira-code"
-    
+    "breeze-icons" "hicolor-icon-theme"
+    "adwaita-icon-theme"
     ;; Emacs
     "emacs-next"
     "emacs-exwm"
