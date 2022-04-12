@@ -99,18 +99,11 @@
     "emacs-hackles" "emacs-xkcd"
     "emacs-realgud"
     ))
-(define desktop/gnome
-  '(
-    "gnome-shell-extension-topicons-redux"
-    "gnome-shell-extension-paperwm"
-    "gnome-shell-extension-gsconnect"
-    "gnome-shell-extension-clipboard-indicator"
-    "gnome-shell-extension-appindicator" 
-    ))
 (define desktop
   '(
     "transmission" "stow" "quaternion"
-    "bemenu" "sway" "swayidle" "swaybg"
+    "bemenu" "sway" "swayidle" "swaybg" "swayhide"
+    "wdisplays" "wl-clipboard"
     "grim" "slurp"
     "i3-wm" "i3status" "i3lock" "i3lock-fancy"
     "nautilus" "okular"
