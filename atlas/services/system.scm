@@ -24,9 +24,6 @@
  linux
  syncthing)
 
-(define (readfile f)
-  (call-with-input-file f get-string-all))
-
 (define-public %system-services-manifest
   (cons*
    (service openssh-service-type)

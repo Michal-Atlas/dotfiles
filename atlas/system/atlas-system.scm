@@ -19,9 +19,6 @@
   #:use-module (ice-9 textual-ports)
   #:use-module (guix packages))
 
-(define (readfile f)
-  (call-with-input-file f get-string-all))
-
 (define-public atlas-guix-system
   (operating-system
    (host-name (vector-ref (uname) 1))
