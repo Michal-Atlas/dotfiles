@@ -28,7 +28,7 @@
    (locale "en_US.utf8")
    (timezone "Europe/Prague")
    (keyboard-layout
-    (keyboard-layout "us,cz" ",qwerty" #:options '("grp:caps_switch" "lv3:ralt_switch" "compose:rctrl-altgr")))
+    (keyboard-layout "us,cz" ",ucw" #:options '("grp:caps_switch" "lv3:ralt_switch" "compose:rctrl-altgr")))
    (users (cons* (user-account
 		  (name "michal_atlas")
 		  (comment "Michal Atlas")
