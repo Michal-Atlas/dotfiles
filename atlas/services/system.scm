@@ -61,7 +61,7 @@
    (service nix-service-type)
    (service unattended-upgrade-service-type
 	    (unattended-upgrade-configuration
- 	     (channels "/home/michal-atlas/.config/guix/channels.scm")))
+ 	     (channels "/home/michal_atlas/.config/guix/channels.scm")))
    (bluetooth-service #:auto-enable? #f)
    (modify-services
     %desktop-services
@@ -70,7 +70,7 @@
      config =>
      (wpa-supplicant-configuration
       (inherit config)
-      (config-file "/home/michal-atlas/.cat_installer/cat_installer.conf")))
+      (config-file "/home/michal_atlas/.cat_installer/cat_installer.conf")))
     (guix-service-type
      config =>
      (guix-configuration
