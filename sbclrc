@@ -8,7 +8,7 @@
 
 (ql:quickload "linedit")
 
-(linedit:install-repl :eof-quits t)
+(linedit:install-repl :wrap-current t :eof-quits t)
 
 ;; Local Variables:
 ;; mode: common-lisp
