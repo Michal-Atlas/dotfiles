@@ -51,7 +51,8 @@
       (".config/guix/channels.scm" ,(local-file "../../channels.scm"))
       (".mbsyncrc" ,(local-file "../../mbsyncrc"))
       (".config/sway/config" ,(local-file "../../sway.cfg"))
-      (".config/foot/foot.ini" ,(local-file "../../foot.ini"))))
+      (".config/foot/foot.ini" ,(local-file "../../foot.ini"))
+      (".sbclrc" ,(local-file "../../sbclrc"))))
    (service
     home-zsh-service-type
     (home-zsh-configuration

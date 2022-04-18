@@ -1,0 +1,15 @@
+
+;;; The following lines added by ql:add-to-init-file:
+#-quicklisp
+(let ((quicklisp-init (merge-pathnames "common-lisp/setup.lisp"
+                                       (user-homedir-pathname))))
+  (when (probe-file quicklisp-init)
+    (load quicklisp-init)))
+
+(ql:quickload "linedit")
+
+(linedit:install-repl :eof-quits t)
+
+;; Local Variables:
+;; mode: common-lisp
+;; End:

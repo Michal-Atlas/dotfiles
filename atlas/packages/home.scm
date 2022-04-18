@@ -18,7 +18,7 @@
     "gcc-toolchain" "gdb" "clang-toolchain" "rust"
     "cmake" "make" "recutils" "python" "python-ipython"
     "mosh"
-
+    "sbcl"
     "gnupg"
     
     ))
@@ -61,7 +61,7 @@
 (define emacs+xyz
   '(
     "emacs-next"
-    
+    "emacs-slime"
     "emacs-all-the-icons" "emacs-auctex"
     "emacs-dashboard" "emacs-highlight-indent-guides"
     "emacs-solaire-mode"
@@ -98,6 +98,7 @@
     "emacs-yaml-mode" "emacs-multi-term"
     "emacs-hackles" "emacs-xkcd"
     "emacs-realgud"
+    "emacs-gdscript-mode"
     ))
 (define desktop
   '(
