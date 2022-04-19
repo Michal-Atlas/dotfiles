@@ -125,17 +125,22 @@
 
 ;; Langs
 
-;; Guile
+;; Lisps
+
+(autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
 
 (ac-config-default)
 (add-hook 'geiser-mode-hook 'ac-geiser-setup)
 (add-hook 'geiser-repl-mode-hook 'ac-geiser-setup)
 (add-to-list 'ac-modes' geiser-repl-mode)
 
-(autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
-(add-hook 'scheme-mode-hook #'enable-paredit-mode)
+(load (expand-file-name "~/common-lisp/slime-helper.el"))
+
 (add-hook 'lisp-mode-hook #'enable-paredit-mode)
 (add-hook 'common-lisp-mode-hook #'enable-paredit-mode)
+(add-hook 'common-lisp-mode-hook #'slime-mode)
+(add-hook 'scheme-mode-hook #'enable-paredit-mode)
+(add-hook 'scheme-mode-hook #'geiser-mode)
 
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
