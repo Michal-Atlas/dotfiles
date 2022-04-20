@@ -34,9 +34,6 @@
 	  '(next-hour '(0))
 	  "mkdir -p ~/tmp-log; mv ~/tmp ~/tmp-log/$(date -I); mkdir ~/tmp")
        ))))
-   (service home-bash-service-type
-	    (home-bash-configuration
-	     (guix-defaults? #t)))
    (simple-service
     'run-sway-on-login
     home-run-on-first-login-service-type
@@ -54,8 +51,9 @@
       (".config/foot/foot.ini" ,(local-file "../../foot.ini"))
       (".sbclrc" ,(local-file "../../sbclrc"))))
    (service
-    home-zsh-service-type
-    (home-zsh-configuration
+    home-bash-service-type
+    (home-bash-configuration
+     (guix-defaults? #t)
      (environment-variables
       `(("BROWSER" . "firefox")
 	("SHELL" . "zsh")
@@ -64,8 +62,4 @@
 	("MOZ_ENABLE_WAYLAND" . "1")
 	("GRIM_DEFAULT_DIR" . "~/tmp")
 	("_JAVA_AWT_WM_NONREPARENTING" . "1")
-	("XDG_CURRENT_DESKTOP" . "sway")))
-     (zshenv
-      (list (local-file "../../zsh/env")))
-     (zshrc
-      (list (local-file "../../zsh/rc"))))))))
+	("XDG_CURRENT_DESKTOP" . "sway"))))))))
