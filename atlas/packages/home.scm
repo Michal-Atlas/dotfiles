@@ -120,28 +120,8 @@
     "crawl" "crawl-tiles" "retroarch" "7kaa"
     "marble-marcher" "arx-libertatis"
     ))
-(define zsh-plugins
-  '(
-    "zsh-syntax-highlighting"
-    "zsh-autosuggestions"
-    "grc"
-    "zsh-git"
-    "zsh-forgit"
-    "zsh-exa"
-    "zsh-common-aliases"
-    "zsh-extract"
-    "zsh-git-auto-fetch"
-    "zsh-shrink-path"
-    "zsh-ssh-agent"
-    "zsh-dirhistory"
-    "zsh-screen"
-    "zsh-colored-man-pages"
-    "zsh-guix"
-    "zsh-alias-tips"
-    "zsh-theme-geometry"
-    ))
 
 (define %packages-by-host
   (alist->hash-table
-   `(("Dagon" . ,(append shell-utils zsh-plugins toolchains multimedia graphics games e-mail emacs+xyz desktop libs))
-     ("Hydra" . ,(append shell-utils zsh-plugins toolchains multimedia graphics games e-mail emacs+xyz desktop libs big-games)))))
+   `(("Dagon" . ,(append shell-utils toolchains multimedia graphics games e-mail emacs+xyz desktop libs))
+     ("Hydra" . ,(append shell-utils toolchains multimedia graphics games e-mail emacs+xyz desktop libs big-games)))))

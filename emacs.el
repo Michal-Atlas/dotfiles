@@ -24,6 +24,11 @@
 
 (defun yes-or-no-p (prompt) (y-or-n-p prompt))
 
+(defun eshell-new()
+  "Open a new instance of eshell."
+  (interactive)
+  (eshell 'N))
+
 ;; Theming
 
 (tool-bar-mode -1)
