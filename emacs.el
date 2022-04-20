@@ -40,8 +40,8 @@
 (add-hook 'prog-mode-hook #'highlight-indent-guides-mode)
 (setq highlight-indent-guides-method 'bitmap)
 
-(set-frame-font "Fira Code-8" nil t)
-(add-to-list 'default-frame-alist '(font . "Fira Code-8"))
+(set-frame-font "Fira Code-11" nil t)
+(add-to-list 'default-frame-alist '(font . "Fira Code-11"))
 
 (load-theme 'gruvbox t)
 (solaire-global-mode +1)
@@ -139,9 +139,10 @@
 (add-hook 'geiser-repl-mode-hook 'ac-geiser-setup)
 (add-to-list 'ac-modes' geiser-repl-mode)
 
-(load (expand-file-name "~/common-lisp/slime-helper.el"))
+(load (expand-file-name "~/quicklisp/slime-helper.el"))
 
 (add-hook 'lisp-mode-hook #'enable-paredit-mode)
+(add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
 (add-hook 'common-lisp-mode-hook #'enable-paredit-mode)
 (add-hook 'common-lisp-mode-hook #'slime-mode)
 (add-hook 'scheme-mode-hook #'enable-paredit-mode)

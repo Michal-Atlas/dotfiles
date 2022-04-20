@@ -7,7 +7,7 @@
 
 (match (cadr (command-line))
   ("home" (system* "guix" "time-machine" "-C" "channels.lock" "--" "home" "reconfigure" "-L." "atlas/home/home.scm"))
-  ("system" (system* "sudo" "guix" "time-machine" "-C" "channels.lock" "--" "system" "reconfigure" "atlas/system/atlas-system.scm" "-L."))
+  ("system" (system* "sudo" "guix" "time-machine" "-C" "channels.lock" "--" "system" "reconfigure" "atlas/system/system.scm" "-L."))
   (_ (display "enter either `home` or `system`") (newline)))
 
 ;; Local Variables:

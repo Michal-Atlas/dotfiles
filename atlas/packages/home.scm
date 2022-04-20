@@ -99,6 +99,7 @@
     "emacs-hackles" "emacs-xkcd"
     "emacs-realgud"
     "emacs-gdscript-mode"
+    "emacs-emms"
     ))
 (define desktop
   '(
