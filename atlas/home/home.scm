@@ -62,7 +62,9 @@
 	("EDITOR" . "\"emacsclient -a=\"\"\"")
 	("TERM" . "xterm-256color")
 	("MOZ_ENABLE_WAYLAND" . "1")
-	("GRIM_DEFAULT_DIR" . "~/tmp")))
+	("GRIM_DEFAULT_DIR" . "~/tmp")
+	("_JAVA_AWT_WM_NONREPARENTING" . "1")
+	("XDG_CURRENT_DESKTOP" . "sway")))
      (zshenv
       (list (local-file "../../zsh/env")))
      (zshrc
