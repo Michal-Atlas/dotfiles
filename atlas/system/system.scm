@@ -1,4 +1,4 @@
-(define-module (atlas system atlas-system)
+(define-module (atlas system system)
   #:use-module (atlas packages system)
   #:use-module (atlas services system)
   #:use-module (gnu)
