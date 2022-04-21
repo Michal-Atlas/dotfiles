@@ -43,7 +43,8 @@
 (set-frame-font "Fira Code-11" nil t)
 (add-to-list 'default-frame-alist '(font . "Fira Code-11"))
 
-(load-theme 'gruvbox t)
+(load-theme 'zerodark t)
+(zerodark-setup-modeline-format)
 (solaire-global-mode +1)
 (which-key-mode)
 (setq which-key-popup-type 'minibuffer)

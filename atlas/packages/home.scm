@@ -88,7 +88,7 @@
     "emacs-elfeed" "emacs-frames-only-mode"
     "emacs-ac-geiser" "emacs-paredit" "emacs-iedit"
     "emacs-multiple-cursors"
-    "emacs-gruvbox-theme"
+    "emacs-zerodark-theme"
     "emacs-on-screen"
     "emacs-notmuch" "notmuch"
     "emacs-tldr" "emacs-direnv"
