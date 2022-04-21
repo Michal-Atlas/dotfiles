@@ -60,6 +60,20 @@
 (setq undo-tree-auto-save-history t)
 (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 
+;; Eshell
+
+(with-eval-after-load "esh-opt"
+  (autoload 'epe-theme-lambda "eshell-prompt-extras")
+  (setq eshell-highlight-prompt nil
+        eshell-prompt-function 'epe-theme-lambda))
+
+(require 'eshell)
+(require 'em-smart)
+(add-hook 'eshell-mode-hook 'eshell-smart-initialize)
+(eshell-syntax-highlighting-global-mode 1)
+(require 'esh-module) ; require modules
+(add-to-list 'eshell-modules-list 'eshell-tramp)
+
 ;; Vertico
 
 (vertico-mode)
@@ -132,8 +146,6 @@
 
 ;; Lisps
 
-(autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
-
 (ac-config-default)
 (add-hook 'geiser-mode-hook 'ac-geiser-setup)
 (add-hook 'geiser-repl-mode-hook 'ac-geiser-setup)
@@ -141,12 +153,20 @@
 
 (load (expand-file-name "~/quicklisp/slime-helper.el"))
 
-(add-hook 'lisp-mode-hook #'enable-paredit-mode)
-(add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
-(add-hook 'common-lisp-mode-hook #'enable-paredit-mode)
 (add-hook 'common-lisp-mode-hook #'slime-mode)
-(add-hook 'scheme-mode-hook #'enable-paredit-mode)
 (add-hook 'scheme-mode-hook #'geiser-mode)
+
+(autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
+(add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
+(add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
+(add-hook 'ielm-mode-hook             #'enable-paredit-mode)
+(add-hook 'lisp-mode-hook             #'enable-paredit-mode)
+(add-hook 'lisp-mode-hook             #'aggressive-indent-mode)
+(add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
+(add-hook 'scheme-mode-hook           #'enable-paredit-mode)
+(add-hook 'common-lisp-mode-hook           #'enable-paredit-mode)
+
+(add-hook 'slime-repl-mode-hook (lambda () (paredit-mode +1)))
 
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)

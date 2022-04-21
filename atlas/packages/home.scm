@@ -20,8 +20,8 @@
     "mosh"
     "sbcl"
     "gnupg"
-    
-    ))
+))
+
 (define multimedia
   '(
     "icedove"
@@ -29,6 +29,7 @@
     "libreoffice"
     "audacity"
     ))
+
 (define graphics
   '(
     "feh" "shotwell"
@@ -100,6 +101,11 @@
     "emacs-realgud"
     "emacs-gdscript-mode"
     "emacs-emms"
+    "emacs-eshell-z"
+    ;; "emacs-equake"
+    "emacs-eshell-syntax-highlighting"
+    "emacs-eshell-prompt-extras"
+    ;; "emacs-esh-autosuggest"
     ))
 (define desktop
   '(

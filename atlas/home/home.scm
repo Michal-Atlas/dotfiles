@@ -49,11 +49,15 @@
       (".mbsyncrc" ,(local-file "../../mbsyncrc"))
       (".config/sway/config" ,(local-file "../../sway.cfg"))
       (".config/foot/foot.ini" ,(local-file "../../foot.ini"))
-      (".sbclrc" ,(local-file "../../sbclrc"))))
+      (".sbclrc" ,(local-file "../../sbclrc"))
+      (".emacs.d/eshell/alias" ,(local-file "../../eshell-alias"))))
    (service
     home-bash-service-type
     (home-bash-configuration
-     (guix-defaults? #t)
+     (guix-defaults? #t)))
+   (service
+    home-zsh-service-type
+    (home-zsh-configuration
      (environment-variables
       `(("BROWSER" . "firefox")
 	("SHELL" . "zsh")

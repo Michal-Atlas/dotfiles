@@ -57,6 +57,10 @@
 	    (guix-publish-configuration
 	     (host "0.0.0.0")
 	     (advertise? #t)))
+   (service mpd-service-type
+	    (mpd-configuration
+	     (user "michal_atlas")
+	     (music-dir "~/music")))
    ;; (service postgresql-service-type)
    (service nix-service-type)
    (service unattended-upgrade-service-type
