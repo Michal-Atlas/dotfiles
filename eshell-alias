@@ -2,4 +2,3 @@ alias e find-file $*
 alias d dired $*
 alias g magit $*
 alias l ls -l $*
-alias z (eshell-z "$*")

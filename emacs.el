@@ -24,11 +24,6 @@
 
 (defun yes-or-no-p (prompt) (y-or-n-p prompt))
 
-(defun eshell-new()
-  "Open a new instance of eshell."
-  (interactive)
-  (eshell 'N))
-
 ;; Theming
 
 (tool-bar-mode -1)
@@ -61,6 +56,8 @@
 (setq undo-tree-auto-save-history t)
 (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 
+(guix-prettify-global-mode +1)
+
 ;; Eshell
 
 (with-eval-after-load "esh-opt"
@@ -68,12 +65,24 @@
   (setq eshell-highlight-prompt nil
         eshell-prompt-function 'epe-theme-lambda))
 
+(defun eshell-new()
+  "Open a new instance of eshell."
+  (interactive)
+  (eshell 'N))
+
+(add-hook 'eshell-mode-hook
+	  (defun my-eshell-mode-hook ()
+	    (require 'eshell-z)))
+
 (require 'eshell)
-(require 'em-smart)
-(add-hook 'eshell-mode-hook 'eshell-smart-initialize)
 (eshell-syntax-highlighting-global-mode 1)
+(setq eshell-review-quick-commands nil)
 (require 'esh-module) ; require modules
 (add-to-list 'eshell-modules-list 'eshell-tramp)
+(require 'equake)
+(advice-add #'save-buffers-kill-terminal :before-while #'equake-kill-emacs-advice)
+(require 'esh-autosuggest)
+(add-hook 'eshell-mode-hook #'esh-autosuggest-mode)
 
 ;; Vertico
 
@@ -109,7 +118,8 @@
 (add-hook 'org-mode-hook #'org-fragtog-mode)
 (add-hook 'org-mode-hook #'org-superstar-mode)
 
-(global-set-key (kbd "M-q") 'avy-goto-word-0)
+(avy-setup-default)
+(global-set-key (kbd "C-:") 'avy-goto-char-timer)
 
 (global-anzu-mode +1)
 (global-set-key (kbd "M-%") 'anzu-query-replace)

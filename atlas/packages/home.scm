@@ -102,10 +102,10 @@
     "emacs-gdscript-mode"
     "emacs-emms"
     "emacs-eshell-z"
-    ;; "emacs-equake"
+    "emacs-equake"
     "emacs-eshell-syntax-highlighting"
     "emacs-eshell-prompt-extras"
-    ;; "emacs-esh-autosuggest"
+    "emacs-esh-autosuggest"
     ))
 (define desktop
   '(
