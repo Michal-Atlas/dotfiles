@@ -56,6 +56,13 @@
 (setq undo-tree-auto-save-history t)
 (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 
+;; (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
+;; (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling 
+;; (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+;; (setq scroll-conservatively 10000)
+;; (setq auto-window-vscroll nil)
+;; (setq scroll-conservatively 10000)
+
 (guix-prettify-global-mode +1)
 
 ;; Eshell
