@@ -11,7 +11,7 @@
     "firefox" "xscreensaver" "gparted"
     "pavucontrol" "screen"
     "sway"
-    "i3-wm" "i3status" "i3lock" "i3lock-fancy"
+    "i3status" "i3lock"
     "flatpak" "font-fira-code"
     "breeze-icons" "hicolor-icon-theme"
     "adwaita-icon-theme"

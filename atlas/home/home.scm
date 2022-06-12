@@ -41,27 +41,24 @@
    (simple-service
     'dotfiles
     home-files-service-type
-    `((".ssh/config" ,(local-file "../../ssh"))
-      (".emacs.d/init.el" ,(local-file "../../emacs.el"))
-      (".guile" ,(local-file "../../guile"))
-      (".screenrc" ,(local-file "../../screen"))
-      (".config/guix/channels.scm" ,(local-file "../../channels.scm"))
-      (".mbsyncrc" ,(local-file "../../mbsyncrc"))
-      (".config/sway/config" ,(local-file "../../sway.cfg"))
-      (".config/foot/foot.ini" ,(local-file "../../foot.ini"))
-      (".sbclrc" ,(local-file "../../sbclrc"))
-      (".emacs.d/eshell/alias" ,(local-file "../../eshell-alias"))))
+    `((".ssh/config" ,(local-file "ssh"))
+      (".emacs.d/init.el" ,(local-file "init.el"))
+      (".emacs.d/early-init.el" ,(local-file "early-init.el"))
+      (".guile" ,(local-file "guile"))
+      (".screenrc" ,(local-file "screen"))
+      (".config/guix/channels.scm" ,(local-file "channels.scm"))
+      (".mbsyncrc" ,(local-file "mbsyncrc"))
+      (".config/sway/config" ,(local-file "sway.cfg"))
+      (".config/foot/foot.ini" ,(local-file "foot.ini"))
+      (".sbclrc" ,(local-file "sbclrc"))
+      (".emacs.d/eshell/alias" ,(local-file "eshell-alias"))))
    (service
     home-bash-service-type
     (home-bash-configuration
-     (guix-defaults? #t)))
-   (service
-    home-zsh-service-type
-    (home-zsh-configuration
+     (guix-defaults? #t)
      (environment-variables
       `(("BROWSER" . "firefox")
-	("SHELL" . "zsh")
-	("EDITOR" . "\"emacsclient -a=\"\"\"")
+	("EDITOR" . "\"emacsclient -nw -a=\"\"")
 	("TERM" . "xterm-256color")
 	("MOZ_ENABLE_WAYLAND" . "1")
 	("GRIM_DEFAULT_DIR" . "~/tmp")

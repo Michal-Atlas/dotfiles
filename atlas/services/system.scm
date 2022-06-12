@@ -45,7 +45,7 @@
    (service virtlog-service-type
 	    (virtlog-configuration
 	     (max-clients 1000)))
-   (service hurd-vm-service-type)
+   ;; (service hurd-vm-service-type)
    (service syncthing-service-type
 	    (syncthing-configuration (user "michal_atlas")))
    (service cups-service-type
@@ -70,11 +70,6 @@
    (modify-services
     %desktop-services
     (delete gdm-service-type)
-    (wpa-supplicant-service-type
-     config =>
-     (wpa-supplicant-configuration
-      (inherit config)
-      (config-file "/home/michal_atlas/.cat_installer/cat_installer.conf")))
     (guix-service-type
      config =>
      (guix-configuration
