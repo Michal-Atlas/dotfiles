@@ -20,14 +20,6 @@
 		 (openpgp-fingerprint
 		  "50F3 3E2E 5B0C 3D90 0424  ABE8 9BDC F497 A4BB CC7F"))))
 	      (channel
-	       (name 'guixrus)
-	       (url "https://git.sr.ht/~whereiseveryone/guixrus")
-	       (introduction
-		(make-channel-introduction
-		 "7c67c3a9f299517bfc4ce8235628657898dd26b2"
-		 (openpgp-fingerprint
-		  "CD2D 5EAA A98C CB37 DA91  D6B0 5F58 1664 7F8B E551"))))
-	      (channel
 	       (name 'atlas)
 	       (url "https://git.sr.ht/~michal_atlas/guix-channel")))
 	%default-channels)
