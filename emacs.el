@@ -1,22 +1,3 @@
-;; Packaging Bootstrap
-
-;; [[file:../dotmas/init.org::*Packaging Bootstrap][Packaging Bootstrap:1]]
-(setq straight-use-package-by-default t)
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 5))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-	(url-retrieve-synchronously
-	 "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-	 'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-(straight-use-package 'use-package)
-;; Packaging Bootstrap:1 ends here
-
 ;; Variable Init
 
 ;; [[file:../dotmas/init.org::*Variable Init][Variable Init:1]]
@@ -62,7 +43,7 @@
   :config (solaire-global-mode +1))
 					; (set-frame-font "Fira Code-11" nil t)
 					; (add-to-list 'default-frame-alist '(font . "Fira Code-11"))
-(use-package all-the-icons)
+
 ;; (use-package mode-icons :config (mode-icons-mode 1))
 ;; Theming:1 ends here
 
@@ -70,7 +51,6 @@
 
 ;; [[file:../dotmas/init.org::*Theme][Theme:1]]
 (use-package gruvbox-theme
-  :straight (:host github :repo "greduan/emacs-theme-gruvbox")
   :config (load-theme 'gruvbox-dark-hard t))
 ;; Theme:1 ends here
 
@@ -84,7 +64,7 @@
 
 ;; [[file:../dotmas/init.org::*Completion][Completion:1]]
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
-(use-package yasnippet-snippets)
+
 (use-package yasnippet
   :config (yas-global-mode 1))
 ;; Completion:1 ends here
@@ -111,7 +91,7 @@
 (use-package ace-window
   :bind ("M-o" . ace-window))
 
-(use-package system-packages)
+
 
 ;; (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
 ;; (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling 
@@ -120,9 +100,9 @@
 ;; (setq auto-window-vscroll nil)
 ;; (setq scroll-conservatively 10000)
 
-;; (guix-prettify-global-mode +1)
+(guix-prettify-global-mode +1)
 
-(use-package aggressive-indent)
+
 ;; Packages:1 ends here
 
 ;; Eshell
@@ -140,7 +120,7 @@
   (interactive)
   (eshell 'N))
 
-(use-package eshell-z)
+
 (add-hook 'eshell-mode-hook
 	  (defun my-eshell-mode-hook ()
 	    (require 'eshell-z)))
@@ -242,8 +222,6 @@
 ;; Org-mode
 
 ;; [[file:../dotmas/init.org::*Org-mode][Org-mode:1]]
-(use-package org)
-
 (org-babel-do-load-languages
  'org-babel-load-languages
  '(
@@ -252,11 +230,10 @@
    (shell . t)
    (scheme . t)
    ))
-(use-package org-present)
 ;; (use-package org-fragtog
 ;; :hook (org-mode org-fragtog-mode))
 (use-package org-modern
-  :config (global-org-modern-mode))
+  :hook (org-mode . org-modern-mode))
 (use-package marginalia
   :config (marginalia-mode))
 
@@ -298,8 +275,6 @@
   ;; If using org-roam-protocol
   (require 'org-roam-protocol))
 (use-package org-roam-ui
-  :straight
-  (:host github :repo "org-roam/org-roam-ui" :branch "main" :files ("*.el" "out"))
   :after org-roam
   ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
   ;;         a hookable mode anymore, you're advised to pick something yourself
@@ -310,15 +285,12 @@
 	org-roam-ui-follow t
 	org-roam-ui-update-on-save t
 	org-roam-ui-open-on-start t))
-(use-package org-drill)
+
 ;; Roam:1 ends here
 
 ;; Calfw
 
 ;; [[file:../dotmas/init.org::*Calfw][Calfw:1]]
-(use-package calfw)
-(use-package calfw-org
-  :bind ("C-c d" . cfw:open-org-calendar))
 ;; Calfw:1 ends here
 
 ;; Langs
@@ -352,8 +324,6 @@
 
 ;; C
 
-(use-package irony)
-(use-package irony-eldoc)
 (add-hook 'c-mode-hook #'irony-mode)
 (add-hook 'c-mode-hook #'lsp)
 (add-hook 'c++-mode-hook #'irony-mode)
@@ -368,7 +338,6 @@
 ;; Elfeed
 
 ;; [[file:../dotmas/init.org::*Elfeed][Elfeed:1]]
-(use-package elfeed)
 (setq elfeed-feeds
       '(("https://xkcd.com/rss.xml" comics)
 	("https://www.smbc-comics.com/comic/rss" comics)
@@ -387,7 +356,6 @@
 
 ;; [[file:../dotmas/init.org::*Misc][Misc:1]]
 (use-package equake
-  :straight (equake :fetcher gitlab :repo "emacsomancer/equake")
   ;; some examples of optional settings follow:
   :custom
   ;; set width a bit less than full-screen (prevent 'overflow' on multi-monitor):
@@ -414,47 +382,22 @@
 	 ("C-x g" . magit))
   :init (if (not (boundp 'project-switch-commands)) 
 	    (setq project-switch-commands nil)))
-(use-package flycheck)
 (use-package helpful
   :bind (("C-h f" . helpful-function)
 	 ("C-h k" . helpful-key)))
 
-(use-package crux)
-(use-package lsp-ui)
-(use-package magit-todos)
-(use-package adaptive-wrap)
-(use-package pdf-tools)
 (use-package avy
   :bind ("C-c q" . avy-goto-char-timer))
 (use-package embark)
-(use-package consult)
-(use-package elpher)
-(use-package multiple-cursors)
-(use-package on-screen)
-(use-package notmuch)
-(use-package tldr)
-(use-package direnv)
-(use-package kana
-  :straight
-  (:repo "chenyanming/kana" :fetcher github))
-(use-package circe)
 (use-package browse-kill-ring
   :config (browse-kill-ring-default-keybindings))
-(use-package realgud)
-(use-package gdscript-mode)
-(use-package gemini-mode :straight (:repo "http://git.carcosa.net/jmcbray/gemini.el.git" :files ("*.el")))
 
-(use-package xkcd :straight (xkcd :fetcher github :repo "vibhavp/emacs-xkcd"))
-(use-package hackles
-  :straight (:host github :repo "Michal-Atlas/emacs-hackles"))
 ;; Misc:1 ends here
 
 ;; Embark
 
 ;; [[file:../dotmas/init.org::*Embark][Embark:1]]
 (use-package embark
-  :ensure t
-
   :bind
   (("C-." . embark-act)         ;; pick some comfortable binding
    ("C-;" . embark-dwim)        ;; good alternative: M-.
@@ -515,8 +458,6 @@
 ;; Matrix
 
 ;; [[file:../dotmas/init.org::*Matrix][Matrix:1]]
-(straight-use-package '(plz :host github :repo "alphapapa/plz.el"))
-(straight-use-package '(ement :host github :repo "alphapapa/ement.el"))
 ;; Matrix:1 ends here
 
 ;; Evil
