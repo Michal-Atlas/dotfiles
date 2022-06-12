@@ -34,31 +34,31 @@
 	  '(next-hour '(0))
 	  "mkdir -p ~/tmp-log; mv ~/tmp ~/tmp-log/$(date -I); mkdir ~/tmp")
        ))))
-   (simple-service
+   #;(simple-service
     'run-sway-on-login
     home-run-on-first-login-service-type
     #~(system "sway"))
    (simple-service
     'dotfiles
     home-files-service-type
-    `((".ssh/config" ,(local-file "ssh"))
-      (".emacs.d/init.el" ,(local-file "init.el"))
-      (".emacs.d/early-init.el" ,(local-file "early-init.el"))
-      (".guile" ,(local-file "guile"))
-      (".screenrc" ,(local-file "screen"))
-      (".config/guix/channels.scm" ,(local-file "channels.scm"))
-      (".mbsyncrc" ,(local-file "mbsyncrc"))
-      (".config/sway/config" ,(local-file "sway.cfg"))
-      (".config/foot/foot.ini" ,(local-file "foot.ini"))
-      (".sbclrc" ,(local-file "sbclrc"))
-      (".emacs.d/eshell/alias" ,(local-file "eshell-alias"))))
+    `((".ssh/config" ,(local-file "../../ssh"))
+      (".emacs.d/init.el" ,(local-file "../../init.el"))
+      (".emacs.d/early-init.el" ,(local-file "../../early-init.el"))
+      (".guile" ,(local-file "../../guile"))
+      (".screenrc" ,(local-file "../../screen"))
+      (".config/guix/channels.scm" ,(local-file "../../channels.scm"))
+      (".mbsyncrc" ,(local-file "../../mbsyncrc"))
+      (".config/sway/config" ,(local-file "../../sway.cfg"))
+      (".config/foot/foot.ini" ,(local-file "../../foot.ini"))
+      (".sbclrc" ,(local-file "../../sbclrc"))
+      (".emacs.d/eshell/alias" ,(local-file "../../eshell-alias"))))
    (service
     home-bash-service-type
     (home-bash-configuration
      (guix-defaults? #t)
      (environment-variables
       `(("BROWSER" . "firefox")
-	("EDITOR" . "\"emacsclient -nw -a=\"\"")
+	("EDITOR" . "\"emacsclient -nw -a=\"\"\"")
 	("TERM" . "xterm-256color")
 	("MOZ_ENABLE_WAYLAND" . "1")
 	("GRIM_DEFAULT_DIR" . "~/tmp")
