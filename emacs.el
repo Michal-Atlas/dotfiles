@@ -91,17 +91,7 @@
 (use-package ace-window
   :bind ("M-o" . ace-window))
 
-
-
-;; (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
-;; (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling 
-;; (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
-;; (setq scroll-conservatively 10000)
-;; (setq auto-window-vscroll nil)
-;; (setq scroll-conservatively 10000)
-
 (guix-prettify-global-mode +1)
-
 
 ;; Packages:1 ends here
 
@@ -221,15 +211,6 @@
 
 ;; Org-mode
 
-;; [[file:../dotmas/init.org::*Org-mode][Org-mode:1]]
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '(
-   (dot . t)
-   (C . t)
-   (shell . t)
-   (scheme . t)
-   ))
 ;; (use-package org-fragtog
 ;; :hook (org-mode org-fragtog-mode))
 (use-package org-modern
@@ -274,24 +255,19 @@
   (org-roam-db-autosync-mode)
   ;; If using org-roam-protocol
   (require 'org-roam-protocol))
-(use-package org-roam-ui
-  :after org-roam
-  ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
-  ;;         a hookable mode anymore, you're advised to pick something yourself
-  ;;         if you don't care about startup time, use
-  ;; :hook (after-init . org-roam-ui-mode)
-  :config
-  (setq org-roam-ui-sync-theme t
-	org-roam-ui-follow t
-	org-roam-ui-update-on-save t
-	org-roam-ui-open-on-start t))
+;; (use-package org-roam-ui
+;;   :after org-roam
+;;   ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+;;   ;;         a hookable mode anymore, you're advised to pick something yourself
+;;   ;;         if you don't care about startup time, use
+;;   ;; :hook (after-init . org-roam-ui-mode)
+;;   :config
+;;   (setq org-roam-ui-sync-theme t
+;; 	org-roam-ui-follow t
+;; 	org-roam-ui-update-on-save t
+;; 	org-roam-ui-open-on-start t))
 
 ;; Roam:1 ends here
-
-;; Calfw
-
-;; [[file:../dotmas/init.org::*Calfw][Calfw:1]]
-;; Calfw:1 ends here
 
 ;; Langs
 
@@ -306,8 +282,8 @@
 
 (use-package slime
   :hook (common-lisp-mode slime-mode))
-(use-package geiser
-  :hook (scheme-mode geiser-mode))
+;; (use-package geiser
+;;   :hook (scheme-mode geiser-mode))
 
 (use-package paredit
   :config (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
@@ -348,9 +324,6 @@
 	("https://blog.tecosaur.com/tmio/rss.xml" emacs)
 	("http://festivalofthespokennerd.libsyn.com/rss" podcast)
 	("https://guix.gnu.org/feeds/blog.atom")))
-
-(provide 'init)
-;; Elfeed:1 ends here
 
 ;; Misc
 
@@ -393,39 +366,6 @@
   :config (browse-kill-ring-default-keybindings))
 
 ;; Misc:1 ends here
-
-;; Embark
-
-;; [[file:../dotmas/init.org::*Embark][Embark:1]]
-(use-package embark
-  :bind
-  (("C-." . embark-act)         ;; pick some comfortable binding
-   ("C-;" . embark-dwim)        ;; good alternative: M-.
-   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
-
-  :init
-
-  ;; Optionally replace the key help with a completing-read interface
-  (setq prefix-help-command #'embark-prefix-help-command)
-
-  :config
-
-  ;; Hide the mode line of the Embark live/completions buffers
-  (add-to-list 'display-buffer-alist
-	       '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-		 nil
-		 (window-parameters (mode-line-format . none)))))
-
-;; Consult users will also want the embark-consult package.
-(use-package embark-consult
-  :ensure t
-  :after (embark consult)
-  :demand t ; only necessary if you have the hook below
-  ;; if you want to have consult previews as you move around an
-  ;; auto-updating embark collect buffer
-  :hook
-  (embark-collect-mode . consult-preview-at-point-mode))
-;; Embark:1 ends here
 
 ;; EMMS
 

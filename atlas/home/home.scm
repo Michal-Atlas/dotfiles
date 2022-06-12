@@ -29,7 +29,6 @@
 				   (list
 				    #$(file-append emacs-next "/bin/emacs")
 				    "--fg-daemon")
-				   #:user "michal_atlas"
 				   #:environment-variables
 				   (cons*
 				    "GDK_SCALE=2"
@@ -39,9 +38,9 @@
 				  "emacsclient -e '(save-buffers-kill-emacs)'")))
 			(shepherd-service
 			 (provision '(sway))
+			 (respawn? #f)
 			 (start #~(make-forkexec-constructor
-				   (list #$(file-append sway "/bin/sway"))
-				   #:user "michal_atlas"))
+				   (list #$(file-append sway "/bin/sway"))))
 			 (stop #~(make-kill-destructor)))))))
    (service
     home-mcron-service-type
@@ -66,7 +65,7 @@
     'dotfiles
     home-files-service-type
     `((".ssh/config" ,(local-file "../../ssh"))
-      #;(".emacs.d/init.el" ,(local-file "../../emacs.el"))
+      (".emacs.d/init.el" ,(local-file "../../emacs.el"))
       (".guile" ,(local-file "../../guile"))
       (".screenrc" ,(local-file "../../screen"))
       (".config/guix/channels.scm" ,(local-file "../../channels.scm"))
@@ -81,7 +80,7 @@
      (guix-defaults? #t)
      (environment-variables
       `(("BROWSER" . "firefox")
-	("EDITOR" . "\"emacsclient -nw -a=\"\"\"")
+	("EDITOR" . "\"emacsclient -nw\"")
 	("TERM" . "xterm-256color")
 	("MOZ_ENABLE_WAYLAND" . "1")
 	("GRIM_DEFAULT_DIR" . "~/tmp")
