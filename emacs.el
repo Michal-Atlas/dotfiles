@@ -361,7 +361,6 @@
 
 (use-package avy
   :bind ("C-c q" . avy-goto-char-timer))
-(use-package embark)
 (use-package browse-kill-ring
   :config (browse-kill-ring-default-keybindings))
 
