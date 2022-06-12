@@ -9,6 +9,7 @@
   #:use-module (gnu packages admin)
   #:use-module (gnu packages emacs)
   #:use-module (gnu packages password-utils)
+  #:use-module (gnu packages wm)
   #:use-module (gnu home services mcron)
   #:use-module (ice-9 hash-table)
   #:use-module (guix gexp))
@@ -19,6 +20,29 @@
        (hash-ref %packages-by-host (vector-ref (uname) 1))))
  (services
   (list
+   (service home-shepherd-service-type
+	    (home-shepherd-configuration
+	     (services (list
+			(shepherd-service
+			 (provision '(emacs))
+			 (start #~(make-forkexec-constructor
+				   (list
+				    #$(file-append emacs-next "/bin/emacs")
+				    "--fg-daemon")
+				   #:user "michal_atlas"
+				   #:environment-variables
+				   (cons*
+				    "GDK_SCALE=2"
+				    "GDK_DPI_SCALE=0.41"
+				    (default-environment-variables))))
+			 (stop #~(make-system-destructor
+				  "emacsclient -e '(save-buffers-kill-emacs)'")))
+			(shepherd-service
+			 (provision '(sway))
+			 (start #~(make-forkexec-constructor
+				   (list #$(file-append sway "/bin/sway"))
+				   #:user "michal_atlas"))
+			 (stop #~(make-kill-destructor)))))))
    (service
     home-mcron-service-type
     (home-mcron-configuration
@@ -35,14 +59,14 @@
 	  "mkdir -p ~/tmp-log; mv ~/tmp ~/tmp-log/$(date -I); mkdir ~/tmp")
        ))))
    #;(simple-service
-    'run-sway-on-login
-    home-run-on-first-login-service-type
-    #~(system "sway"))
+   'run-sway-on-login
+   home-run-on-first-login-service-type
+   #~(system "sway"))
    (simple-service
     'dotfiles
     home-files-service-type
     `((".ssh/config" ,(local-file "../../ssh"))
-      (".emacs.d/init.el" ,(local-file "../../emacs.el"))
+      #;(".emacs.d/init.el" ,(local-file "../../emacs.el"))
       (".guile" ,(local-file "../../guile"))
       (".screenrc" ,(local-file "../../screen"))
       (".config/guix/channels.scm" ,(local-file "../../channels.scm"))

@@ -34,7 +34,6 @@
 		  (comment "Michal Atlas")
 		  (group "users")
 		  (home-directory "/home/michal_atlas")
-		  (shell (file-append (specification->package "zsh") "/bin/zsh"))
 		  (supplementary-groups
 		   '("wheel" "netdev" "audio"
 		     "video" "libvirt" "kvm")))
