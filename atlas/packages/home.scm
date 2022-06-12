@@ -134,13 +134,13 @@
 	 "yasnippet"
 	 "yasnippet-snippets"
 	 "zerodark-theme"
-	 #;"hackles"
-	 #;"xkcd"
+	 "hackles"
+	 "xkcd"
 	 )))
 (define desktop
   '(
     "bemenu" "sway" "swayidle" "swaybg" "swayhide"
-    "wl-clipboard"
+    "wl-clipboard" "lagrange"
     "grim" "slurp" "foot"
     "nautilus" "okular"
     ))
