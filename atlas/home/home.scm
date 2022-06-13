@@ -37,6 +37,11 @@
 			 (stop #~(make-system-destructor
 				  "emacsclient -e '(save-buffers-kill-emacs)'")))
 			(shepherd-service
+			 (provision '(avizo))
+			 (start #~(make-forkexec-constructor
+				   (list #$(file-append sway "/bin/avizo-service"))))
+			 (stop #~(make-kill-destructor)))
+			(shepherd-service
 			 (provision '(sway))
 			 (respawn? #f)
 			 (start #~(make-forkexec-constructor
@@ -83,6 +88,7 @@
 	("EDITOR" . "\"emacsclient -nw\"")
 	("TERM" . "xterm-256color")
 	("MOZ_ENABLE_WAYLAND" . "1")
+	("MOZ_USE_XINPUT2" . "1")
 	("GRIM_DEFAULT_DIR" . "~/tmp")
 	("_JAVA_AWT_WM_NONREPARENTING" . "1")
 	("XDG_CURRENT_DESKTOP" . "sway"))))))))

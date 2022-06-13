@@ -140,7 +140,7 @@
 (define desktop
   '(
     "bemenu" "sway" "swayidle" "swaybg" "swayhide"
-    "wl-clipboard" "lagrange"
+    "wl-clipboard" "lagrange" "avizo"
     "grim" "slurp" "foot"
     "nautilus" "okular"
     ))
