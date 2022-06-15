@@ -143,6 +143,7 @@
     "wl-clipboard" "lagrange" "avizo"
     "grim" "slurp" "foot"
     "nautilus" "gvfs" "youtube-dl" "okular" "pulseaudio"
+    "wob"
     ))
 (define big-games
   '(
