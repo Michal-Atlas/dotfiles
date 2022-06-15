@@ -142,7 +142,7 @@
     "bemenu" "sway" "swayidle" "swaybg" "swayhide"
     "wl-clipboard" "lagrange" "avizo"
     "grim" "slurp" "foot"
-    "nautilus" "okular"
+    "nautilus" "gvfs" "youtube-dl" "okular" "pulseaudio"
     ))
 (define big-games
   '(

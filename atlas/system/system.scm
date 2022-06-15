@@ -6,6 +6,7 @@
   #:use-module (gnu packages shells)
   #:use-module (gnu packages emacs)
   #:use-module (gnu packages samba)
+  #:use-module (gnu packages linux)
   #:use-module (gnu system setuid)
   #:use-module (gnu services desktop)
   #:use-module (gnu home)
@@ -43,7 +44,9 @@
 	    %base-packages))
    (setuid-programs
     (append (list (setuid-program
-                   (program (file-append cifs-utils "/sbin/mount.cifs"))))
+                   (program (file-append cifs-utils "/sbin/mount.cifs")))
+		  (setuid-program
+		   (program (file-append light "/bin/light"))))
             %setuid-programs))
    (services
     %system-services-manifest)

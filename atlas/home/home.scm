@@ -10,6 +10,7 @@
   #:use-module (gnu packages emacs)
   #:use-module (gnu packages password-utils)
   #:use-module (gnu packages wm)
+  #:use-module (atlas packages desktop)
   #:use-module (gnu home services mcron)
   #:use-module (ice-9 hash-table)
   #:use-module (guix gexp))
@@ -36,11 +37,6 @@
 				    (default-environment-variables))))
 			 (stop #~(make-system-destructor
 				  "emacsclient -e '(save-buffers-kill-emacs)'")))
-			(shepherd-service
-			 (provision '(avizo))
-			 (start #~(make-forkexec-constructor
-				   (list #$(file-append sway "/bin/avizo-service"))))
-			 (stop #~(make-kill-destructor)))
 			(shepherd-service
 			 (provision '(sway))
 			 (respawn? #f)
