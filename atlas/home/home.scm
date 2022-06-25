@@ -10,39 +10,43 @@
   #:use-module (gnu packages emacs)
   #:use-module (gnu packages password-utils)
   #:use-module (gnu packages wm)
-  #:use-module (atlas packages desktop)
+  #:use-module (gnu packages xdisorg)
   #:use-module (gnu home services mcron)
   #:use-module (ice-9 hash-table)
   #:use-module (guix gexp))
 
 (home-environment
- (packages 
-  (map specification->package
+ (packages
+  (map (λ (f)
+	 (if (list? f)
+	     (apply specification->package+output f)
+	     (specification->package f)))
        (hash-ref %packages-by-host (vector-ref (uname) 1))))
  (services
   (list
    (service home-shepherd-service-type
 	    (home-shepherd-configuration
-	     (services (list
-			(shepherd-service
-			 (provision '(emacs))
-			 (start #~(make-forkexec-constructor
-				   (list
-				    #$(file-append emacs-next "/bin/emacs")
-				    "--fg-daemon")
-				   #:environment-variables
-				   (cons*
-				    "GDK_SCALE=2"
-				    "GDK_DPI_SCALE=0.41"
-				    (default-environment-variables))))
-			 (stop #~(make-system-destructor
-				  "emacsclient -e '(save-buffers-kill-emacs)'")))
-			(shepherd-service
-			 (provision '(sway))
-			 (respawn? #f)
-			 (start #~(make-forkexec-constructor
-				   (list #$(file-append sway "/bin/sway"))))
-			 (stop #~(make-kill-destructor)))))))
+	     (services
+	      (list
+	       (shepherd-service
+		(provision '(emacs))
+		(start #~(make-forkexec-constructor
+			  (list
+			   #$(file-append emacs-next "/bin/emacs")
+			   "--fg-daemon")
+			  #:environment-variables
+			  (cons*
+			   "GDK_SCALE=2"
+			   "GDK_DPI_SCALE=0.41"
+			   (default-environment-variables))))
+		(stop #~(make-system-destructor
+			 "emacsclient -e '(save-buffers-kill-emacs)'")))
+	       (shepherd-service
+		(provision '(sway))
+		(respawn? #f)
+		(start #~(make-forkexec-constructor
+			  (list #$(file-append sway "/bin/sway"))))
+		(stop #~(make-kill-destructor)))))))
    (service
     home-mcron-service-type
     (home-mcron-configuration
@@ -58,10 +62,6 @@
 	  '(next-hour '(0))
 	  "mkdir -p ~/tmp-log; mv ~/tmp ~/tmp-log/$(date -I); mkdir ~/tmp")
        ))))
-   #;(simple-service
-   'run-sway-on-login
-   home-run-on-first-login-service-type
-   #~(system "sway"))
    (simple-service
     'dotfiles
     home-files-service-type
@@ -79,6 +79,15 @@
     home-bash-service-type
     (home-bash-configuration
      (guix-defaults? #t)
+     (aliases
+      `(("gx" . "guix")
+	("gxi" . "gx install")
+	("gxb" . "gx build")
+	("gxsh" . "gx shell")
+	("gxtm" . "gx time-machine")
+	("e" . "$EDITOR")))
+     (bashrc
+      (list (local-file "../../bashrc")))
      (environment-variables
       `(("BROWSER" . "firefox")
 	("EDITOR" . "\"emacsclient -nw\"")
@@ -87,4 +96,5 @@
 	("MOZ_USE_XINPUT2" . "1")
 	("GRIM_DEFAULT_DIR" . "~/tmp")
 	("_JAVA_AWT_WM_NONREPARENTING" . "1")
-	("XDG_CURRENT_DESKTOP" . "sway"))))))))
+	("XDG_CURRENT_DESKTOP" . "sway")
+	("PATH" . "\"$PATH:$HOME/.nix-profile/bin/\""))))))))
