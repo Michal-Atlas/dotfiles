@@ -36,7 +36,7 @@
 		  (group "users")
 		  (home-directory "/home/michal_atlas")
 		  (supplementary-groups
-		   '("wheel" "netdev" "audio"
+		   '("wheel" "netdev" "audio" "docker"
 		     "video" "libvirt" "kvm")))
 		 %base-user-accounts))
    (packages

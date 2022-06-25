@@ -9,6 +9,7 @@
 (use-service-modules
  desktop
  networking
+ docker
  ssh
  xorg
  pm
@@ -31,6 +32,7 @@
     (list
      (pam-limits-entry "*" 'both 'nofile 524288)))
    (service gpm-service-type)
+   (service docker-service-type)
    (screen-locker-service swaylock)
    (service tlp-service-type
 	    (tlp-configuration
@@ -57,13 +59,13 @@
 	    (guix-publish-configuration
 	     (host "0.0.0.0")
 	     (advertise? #t)))
-   (service mpd-service-type
+   #;(service mpd-service-type
 	    (mpd-configuration
 	     (user "michal_atlas")
 	     (music-dir "~/music")))
    ;; (service postgresql-service-type)
    (service nix-service-type)
-   (service unattended-upgrade-service-type
+   #;(service unattended-upgrade-service-type
 	    (unattended-upgrade-configuration
  	     (channels "/home/michal_atlas/.config/guix/channels.scm")))
    (bluetooth-service #:auto-enable? #f)
@@ -86,8 +88,6 @@
 		(plain-file "dagon.pub"
 			    "(public-key (ecc (curve Ed25519) (q #33173AD94F3854CD3642E21B59802C275A1742C5D0FFC59EE076EDC23FDDFFC6#)))")
 		(plain-file "hydra.pub"
-			    "(public-key (ecc (curve Ed25519) (q #7C49484F9CCF50147D7BF1DFFD0F22B2AF424B0CD4228F57CA0C34F80D3A9BDD#)))")
-		(plain-file "hydra.pub"
-			    "(public-key (ecc (curve Ed25519) (q #9B884798A567CE37ABD37D80ECC104A453D5272989A945C5079335D8E8595DB6#)))"))
+			    "(public-key (ecc (curve Ed25519) (q #DC2683ED525F2960A216D9EECA3C1B5E2F6AE41ECBA17827C749A7F03ECE2FC2#)))"))
 	       %default-authorized-guix-keys)))))
    ))
