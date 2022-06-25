@@ -355,9 +355,9 @@
 	 ("C-x g" . magit))
   :init (if (not (boundp 'project-switch-commands)) 
 	    (setq project-switch-commands nil)))
-(use-package helpful
-  :bind (("C-h f" . helpful-function)
-	 ("C-h k" . helpful-key)))
+					; (use-package helpful
+					;   :bind (("C-h f" . helpful-function)
+					;	 ("C-h k" . helpful-key)))
 
 (use-package avy
   :bind ("C-c q" . avy-goto-char-timer))
@@ -405,6 +405,15 @@
 ;; (use-package evil
 ;;   :config (evil-mode 1))
 ;; Evil:1 ends here
+
+(connection-local-set-profile-variables
+ 'guix-system
+ '((tramp-remote-path . (tramp-own-remote-path))))
+
+(connection-local-set-profiles
+ `(:application tramp :protocol "sudo" :machine ,(system-name))
+ 'guix-system)
+
 (defun guix/recon-home ()
   (interactive)
   (async-shell-command
