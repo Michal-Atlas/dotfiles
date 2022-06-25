@@ -405,3 +405,24 @@
 ;; (use-package evil
 ;;   :config (evil-mode 1))
 ;; Evil:1 ends here
+(defun guix/recon-home ()
+  (interactive)
+  (async-shell-command
+   (concat "guix time-machine -C " (getenv "HOME")
+	   "/dotfiles/channels.lock -- home reconfigure -L " (getenv "HOME") "/dotfiles "
+	   (getenv "HOME") "/dotfiles/atlas/home/home.scm")))
+
+(defun guix/recon-system ()
+  (interactive)
+  (async-shell-command
+   (concat "sudo guix time-machine -C " (getenv "HOME")
+	   "/dotfiles/channels.lock -- system reconfigure -L " (getenv "HOME") "/dotfiles "
+	   (getenv "HOME") "/dotfiles/atlas/system/system.scm")))
+
+(defun guix/update-locks ()
+  (interactive)
+  (async-shell-command
+   (concat "guix pull && guix describe --format=channels > "
+	   (getenv "HOME") "/dotfiles/channels.lock")))
+
+
