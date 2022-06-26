@@ -86,8 +86,6 @@
 	("gxsh" . "gx shell")
 	("gxtm" . "gx time-machine")
 	("e" . "$EDITOR")))
-     (bashrc
-      (list (local-file "../../bashrc")))
      (environment-variables
       `(("BROWSER" . "firefox")
 	("EDITOR" . "\"emacsclient -nw\"")

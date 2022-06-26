@@ -393,4 +393,18 @@
    (concat "guix pull && guix describe --format=channels > "
 	   (getenv "HOME") "/dotfiles/channels.lock")))
 
-
+(defun guix/patch (path)
+  (interactive "f")
+  (shell-command (concat "patchelf " path " --set-rpath "
+			 "\"/run/current-system/profile/lib:/home/$USER/.guix-home/profile/lib"
+			 (apply #'concat
+				(mapcar (lambda (x) (concat ":" x "/lib"))
+					(split-string
+			 		 (shell-command-to-string "guix package --list-profiles"))))
+			 "\""))
+  (shell-command (concat
+		  "patchelf " path
+		  " --set-interpreter \"/run/current-system/profile/lib/ld-linux-x86-64.so.2\""))
+  (message (format "RPATH: %sLD: %s"
+		   (shell-command-to-string (concat "patchelf " path " --print-rpath"))
+		   (shell-command-to-string (concat "patchelf " path " --print-interpreter")))))
