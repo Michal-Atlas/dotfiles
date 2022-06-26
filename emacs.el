@@ -142,7 +142,8 @@
   :custom
   ((ivy-use-virtual-buffers t)
    (enable-recursive-minibuffers t)
-   (ivy-use-selectable-prompt t))
+   (ivy-use-selectable-prompt t)
+   (ivy-initial-inputs-alist '((counsel-M-x . ""))))
   :init
   (ivy-mode)
   (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
@@ -159,6 +160,17 @@
 
 (use-package counsel
   :init (counsel-mode))
+
+(use-package orderless
+  :custom
+  ;; Configure a custom style dispatcher (see the Consult wiki)
+  ;; (setq orderless-style-dispatchers '(+orderless-dispatch)
+  ;;       orderless-component-separator #'orderless-escapable-split-on-space)
+  ((completion-styles '(orderless basic))
+   (completion-category-defaults nil)
+   (ivy-re-builders-alist '((t . orderless-ivy-re-builder))))
+  :init
+  (add-to-list 'ivy-highlight-functions-alist '(orderless-ivy-re-builder . orderless-ivy-highlight)))
 
 ;; Persist history over Emacs restarts. Vertico sorts by history position.
 (use-package savehist
