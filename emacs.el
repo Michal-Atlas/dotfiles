@@ -1,6 +1,5 @@
 ;; Variable Init
 
-;; [[file:../dotmas/init.org::*Variable Init][Variable Init:1]]
 ;; (setq user-full-name "Michal Atlas"
 ;;       user-mail-address "michal.z.atlas@gmail.com")
 (setq user-full-name "Michal Žáček"
@@ -18,15 +17,12 @@
 (setq recentf-max-saved-items 25)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
 (run-at-time nil (* 10 60) 'recentf-save-list)
-;; Variable Init:1 ends here
 
 (defun yes-or-no-p (prompt) (y-or-n-p prompt))
 (windmove-default-keybindings)
-;; Variable Init:1 ends here
 
 ;; Theming 
 
-;; [[file:../dotmas/init.org::*Theming][Theming:1]]
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
@@ -44,34 +40,40 @@
 					; (set-frame-font "Fira Code-11" nil t)
 					; (add-to-list 'default-frame-alist '(font . "Fira Code-11"))
 
+(setq custom-file (locate-user-emacs-file "custom-vars.el"))
+(load custom-file 'noerror 'nomessage)
+
 ;; (use-package mode-icons :config (mode-icons-mode 1))
-;; Theming:1 ends here
 
 ;; Theme
 
-;; [[file:../dotmas/init.org::*Theme][Theme:1]]
-(use-package gruvbox-theme
-  :config (load-theme 'gruvbox-dark-hard t))
-;; Theme:1 ends here
+(setq modus-themes-subtle-line-numbers t
+      modus-themes-mode-line '(accented)
+      modus-themes-syntax '(yellow-comments)
+      modus-themes-paren-match '(bold intense)
+      modus-themes-prompts '(intense)
+      modus-themes-region '(no-extend bg-only accented)
+      modus-themes-bold-constructs t
+      modus-themes-hl-line '(accented intense))
+(load-theme 'modus-vivendi t)
 
 ;; Modeline
 
-;; [[file:../dotmas/init.org::*Modeline][Modeline:1]]
 (use-package doom-modeline :init (doom-modeline-mode 1))
-;; Modeline:1 ends here
 
 ;; Completion
 
-;; [[file:../dotmas/init.org::*Completion][Completion:1]]
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
 
 (use-package yasnippet
   :config (yas-global-mode 1))
-;; Completion:1 ends here
+
+;; Tramp
+
+(setq tramp-default-method "ssh")
 
 ;; Packages 
 
-;; [[file:../dotmas/init.org::*Packages][Packages:1]]
 (use-package which-key
   :config (which-key-mode))
 (setq which-key-popup-type 'minibuffer)
@@ -93,11 +95,9 @@
 
 (guix-prettify-global-mode +1)
 
-;; Packages:1 ends here
 
 ;; Eshell
 
-;; [[file:../dotmas/init.org::*Eshell][Eshell:1]]
 (use-package eshell-prompt-extras
   :config
   (with-eval-after-load "esh-opt"
@@ -123,11 +123,9 @@
 (add-to-list 'eshell-modules-list 'eshell-tramp)
 (use-package esh-autosuggest
   :hook (eshell-mode . esh-autosuggest-mode))
-;; Eshell:1 ends here
 
 ;; LSP
 
-;; [[file:../dotmas/init.org::*LSP][LSP:1]]
 (use-package lsp-mode
   :bind ("C-c c" . compile)
   :custom (lsp-keymap-prefix "C-c l")
@@ -137,69 +135,35 @@
 
 (use-package git-gutter
   :config (global-git-gutter-mode +1))
-;; LSP:1 ends here
 
-;; Vertico
+;; Ivy
 
-;; [[file:../dotmas/init.org::*Vertico][Vertico:1]]
-(use-package vertico
+(use-package ivy
+  :custom
+  ((ivy-use-virtual-buffers t)
+   (enable-recursive-minibuffers t)
+   (ivy-use-selectable-prompt t))
   :init
-  (vertico-mode)
+  (ivy-mode)
+  (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+  ;; enable this if you want `swiper' to use it
+  ;; (setq search-default-mode #'char-fold-to-regexp)
+  :bind
+  (("C-s" . swiper)
+   ("C-c C-r" . ivy-resume)
+   ("C-x C-f" . counsel-find-file)
+   ("C-c g" . counsel-git)
+   ("C-c j" . counsel-git-grep)
+   ("C-c k" . counsel-ag)
+   ("C-x l" . counsel-locate)))
 
-  ;; Different scroll margin
-  (setq vertico-scroll-margin 0)
-
-  ;; Show more candidates
-  (setq vertico-count 20)
-
-  ;; Grow and shrink the Vertico minibuffer
-  (setq vertico-resize t)
-
-  ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
-  (setq vertico-cycle t)
-  )
+(use-package counsel
+  :init (counsel-mode))
 
 ;; Persist history over Emacs restarts. Vertico sorts by history position.
 (use-package savehist
   :init
   (savehist-mode))
-
-;; A few more useful configurations...
-(use-package emacs
-  :init
-  ;; Add prompt indicator to `completing-read-multiple'.
-  ;; We display [CRM<separator>], e.g., [CRM,] if the separator is a comma.
-  (defun crm-indicator (args)
-    (cons (format "[CRM%s] %s"
-		  (replace-regexp-in-string
-		   "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" ""
-		   crm-separator)
-		  (car args))
-	  (cdr args)))
-  (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
-
-  ;; Do not allow the cursor in the minibuffer prompt
-  (setq minibuffer-prompt-properties
-	'(read-only t cursor-intangible t face minibuffer-prompt))
-  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
-
-  ;; Emacs 28: Hide commands in M-x which do not work in the current mode.
-  ;; Vertico commands are hidden in normal buffers.
-  ;; (setq read-extended-command-predicate
-  ;;       #'command-completion-default-include-p)
-
-  ;; Enable recursive minibuffers
-  (setq enable-recursive-minibuffers t))
-
-;; Optionally use the `orderless' completion style.
-(use-package orderless
-  :init
-  ;; Configure a custom style dispatcher (see the Consult wiki)
-  ;; (setq orderless-style-dispatchers '(+orderless-dispatch)
-  ;;       orderless-component-separator #'orderless-escapable-split-on-space)
-  (setq completion-styles '(orderless basic)
-	completion-category-defaults nil
-	completion-category-overrides '((file (styles partial-completion)))))
 
 ;; Configure directory extension.
 
@@ -207,7 +171,6 @@
   :config (global-anzu-mode +1)
   :bind (("M-%" . anzu-query-replace)
 	 ("C-M-%" . anzu-query-replace-regexp)))
-;; Vertico:1 ends here
 
 ;; Org-mode
 
@@ -219,11 +182,9 @@
   :config (marginalia-mode))
 
 (setq org-agenda-files '("~/roam/todo.org"))
-;; Org-mode:1 ends here
 
 ;; Roam
 
-;; [[file:../dotmas/init.org::*Roam][Roam:1]]
 (use-package org-roam
   :custom
   (org-roam-directory (file-truename "~/roam/"))
@@ -267,11 +228,9 @@
 ;; 	org-roam-ui-update-on-save t
 ;; 	org-roam-ui-open-on-start t))
 
-;; Roam:1 ends here
 
 ;; Langs
 
-;; [[file:../dotmas/init.org::*Langs][Langs:1]]
 ;; Lisps
 
 (use-package auto-complete
@@ -309,11 +268,9 @@
 (add-hook 'irony-mode-hook #'irony-eldoc)
 
 (add-hook 'shell-script-mode 'prog-mode)
-;; Langs:1 ends here
 
 ;; Elfeed
 
-;; [[file:../dotmas/init.org::*Elfeed][Elfeed:1]]
 (setq elfeed-feeds
       '(("https://xkcd.com/rss.xml" comics)
 	("https://www.smbc-comics.com/comic/rss" comics)
@@ -327,7 +284,6 @@
 
 ;; Misc
 
-;; [[file:../dotmas/init.org::*Misc][Misc:1]]
 (use-package equake
   ;; some examples of optional settings follow:
   :custom
@@ -364,11 +320,9 @@
 (use-package browse-kill-ring
   :config (browse-kill-ring-default-keybindings))
 
-;; Misc:1 ends here
 
 ;; EMMS
 
-;; [[file:../dotmas/init.org::*EMMS][EMMS:1]]
 (use-package emms
   :config
   (require 'emms-setup)
@@ -386,25 +340,18 @@
    emms-player-list '(emms-player-mpv)
    emms-player-mpv-environment '("PULSE_PROP_media.role=music")
    emms-player-mpv-parameters '("--quiet" "--really-quiet" "--no-video" "--no-audio-display" "--force-window=no" "--vo=null")))
-;; EMMS:1 ends here
 
 ;; Thaumiel 
 
-;; [[file:../dotmas/init.org::*Thaumiel][Thaumiel:1]]
 ;      (straight-use-package '(thaumiel :local-repo "thaumiel" :repo "michal_atlas/thaumiel"))
-;; Thaumiel:1 ends here
 
 ;; Matrix
 
-;; [[file:../dotmas/init.org::*Matrix][Matrix:1]]
-;; Matrix:1 ends here
 
 ;; Evil
 
-;; [[file:../dotmas/init.org::*Evil][Evil:1]]
 ;; (use-package evil
 ;;   :config (evil-mode 1))
-;; Evil:1 ends here
 
 (connection-local-set-profile-variables
  'guix-system
