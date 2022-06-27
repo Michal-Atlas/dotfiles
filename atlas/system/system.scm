@@ -60,6 +60,19 @@
 	       (default-user "michal_atlas")
 	       (auto-login? #t)
 	       (xorg-configuration (xorg-configuration
+				    (extra-config (list "
+# Touchpad
+Section \"InputClass\"
+Identifier \"touchpad\"
+        Driver \"libinput\"
+MatchIsTouchpad \"on\"
+Option \"DisableWhileTyping\" \"on\"
+Option \"Tapping\" \"1\"
+Option \"NaturalScrolling\" \"1\"
+Option \"Emulate3Buttons\" \"yes\"
+EndSection
+# Touchpad:1 ends here
+"))
 		 (keyboard-layout keyboard-layout)))))
      %system-services-manifest))
    (bootloader

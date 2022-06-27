@@ -144,8 +144,9 @@
 	  ))))
 (define desktop
   '(
+    "blueman" "pasystray"
     "bemenu" "sway" "swayidle" "swaybg" "swayhide"
-    "wl-clipboard" "lagrange" "volumeicon"
+    "wl-clipboard" "lagrange"
     "grim" "slurp" "foot"
     "nautilus" "gvfs" "youtube-dl" "okular" "pulseaudio"
     "wob"

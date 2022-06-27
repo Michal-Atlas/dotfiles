@@ -3,6 +3,7 @@
   #:use-module (nongnu services vpn)
   #:use-module (gnu packages cups)
   #:use-module (gnu packages wm)
+  #:use-module (gnu packages display-managers)
   #:use-module (ice-9 textual-ports))
 
 
@@ -34,6 +35,7 @@
      (pam-limits-entry "*" 'both 'nofile 524288)))
    (service gpm-service-type)
    (service docker-service-type)
+   (screen-locker-service slim "slimlock")
    (service tlp-service-type
 	    (tlp-configuration
 	     (cpu-boost-on-ac? #t)
