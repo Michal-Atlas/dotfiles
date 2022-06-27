@@ -20,6 +20,13 @@
 
 (defun yes-or-no-p (prompt) (y-or-n-p prompt))
 
+;; Scrolling
+
+(setq scroll-step 1
+      scroll-conservatively 10000
+      auto-window-vscroll nil
+      scroll-margin 8)
+
 ;; WindMove
 
 (windmove-default-keybindings)
@@ -36,6 +43,7 @@
 (show-paren-mode 1)
 (column-number-mode 1)
 (display-battery-mode 1)
+(setq display-time-24hr-format t)
 (display-time-mode 1)
 (setq inhibit-startup-screen t)
 (global-display-line-numbers-mode)
