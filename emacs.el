@@ -416,26 +416,28 @@
   (interactive)
   (shell-command "playerctl previous"))
 
-(global-set-key (kbd "<XF86AudioPlay>") #'player/play)
-(global-set-key (kbd "<XF86AudioNext>") #'player/next)
-(global-set-key (kbd "<XF86AudioPrev>") #'player/prev)
-(global-set-key (kbd "<XF86AudioRaiseVolume>") #'volume/up)
-(global-set-key (kbd "<XF86AudioLowerVolume>") #'volume/down)
-(global-set-key (kbd "<XF86AudioMute>") #'volume/mute)
-(global-set-key (kbd "<XF86MonBrightnessUp>") #'light/up)
-(global-set-key (kbd "<XF86MonBrightnessDown>") #'light/down)
+(global-set-key (kbd "s-<return>") (lambda () (interactive)
+				     (start-process-shell-command "kitty" nil "kitty")))
 
 (defhydra hydra-system (global-map "C-c s")
   "system"
-  ("p" player/play)
-  ("o" player/next)
-  ("i" player/prev)
-  ("e" light/up)
-  ("d" light/down)
-  ("r" volume/up)
-  ("f" volume/down)
-  ("m" volume/mute))
+  ("p" player/play "Play")
+  ("o" player/next "Next")
+  ("i" player/prev "Prev")
+  ("e" light/up "Br. Up")
+  ("d" light/down "Br. Down")
+  ("r" volume/up "Vol. Up")
+  ("f" volume/down "Vol. Down")
+  ("m" volume/mute "Mute"))
 
+(defhydra hydra-launcher (global-map "C-c r" :color purple)
+  "Launch"
+   ("r" (browse-url "http://www.reddit.com/r/emacs/") "reddit")
+   ("w" (browse-url "http://www.emacswiki.org/") "emacswiki")
+   ("s" shell "shell")
+   ("e" eshell "eshell")
+   ("l" (start-process-shell-command "lagrange" nil "lagrange") "lagrange")
+   ("q" nil "cancel"))
 
 ;; EXWM
 
@@ -448,6 +450,7 @@
   (require 'exwm-systemtray)
   (exwm-systemtray-enable)
   (start-process-shell-command "nm-applet" nil "nm-applet")
+  (start-process-shell-command "volumeicon" nil "volumeicon")
   (setq
    exwm-input-prefix-keys
    `(?\C-x
@@ -462,6 +465,15 @@
    `(([?\s-&] . (lambda (command) (interactive (list (read-shell-command "$ ")))
 		  (start-process-shell-command command nil command)))
      ([?\s-w] . exwm-workspace-switch)
+     (,(kbd "<XF86AudioPlay>") . player/play)
+     (,(kbd "<XF86AudioNext>") . player/next)
+     (,(kbd "<XF86AudioPrev>") . player/prev)
+     (,(kbd "<XF86AudioRaiseVolume>") . volume/up)
+     (,(kbd "<XF86AudioLowerVolume>") . volume/down)
+     (,(kbd "<XF86AudioMute>") . volume/mute)
+     (,(kbd "<XF86MonBrightnessUp>") . light/up)
+     (,(kbd "<XF86MonBrightnessDown>") . light/down)
+
      ,@(mapcar (lambda (i)
 		 `(,(kbd (format "s-%d" i)) .
 		   (lambda ()
@@ -491,4 +503,7 @@
 
 (use-package consult
   :bind (("C-x b" . consult-buffer)
-	 ("M-y" . consult-yank-from-kill-ring)))
+	 ("C-t" . consult-goto-line)
+	 ("C-r l" . consult-register)
+	 ("C-r s" . consult-register-store)
+	 ("M-y" . consult-yank-from-kill-ring))) 
