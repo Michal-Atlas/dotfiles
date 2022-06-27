@@ -430,27 +430,38 @@
   ("f" volume/down "Vol. Down")
   ("m" volume/mute "Mute"))
 
-(defhydra hydra-launcher (global-map "C-c r" :color purple)
+(defhydra hydra-launcher (global-map "C-c r" :color purple :exit t)
   "Launch"
-   ("r" (browse-url "http://www.reddit.com/r/emacs/") "reddit")
-   ("w" (browse-url "http://www.emacswiki.org/") "emacswiki")
-   ("s" shell "shell")
-   ("e" eshell "eshell")
-   ("l" (start-process-shell-command "lagrange" nil "lagrange") "lagrange")
-   ("q" nil "cancel"))
+  ("r" (browse-url "http://www.reddit.com/r/emacs/") "reddit")
+  ("w" (browse-url "http://www.emacswiki.org/") "emacswiki")
+  ("f" (start-process-shell-command "firefox" nil "firefox") "firefox")
+  ("d" (start-process-shell-command "discord" nil "flatpak run com.discordapp.Discord") "discord")
+  ("s" shell "shell")
+  ("e" eshell "eshell")
+  ("l" (start-process-shell-command "lagrange" nil "lagrange") "lagrange")
+  ("q" nil "cancel"))
 
 ;; EXWM
 
 (use-package exwm
   :custom
   (exwm-workspace-number 5)
+  :bind
+  ("C-M-l" . (lambda () (interactive) (shell-command "slimlock")))
   :config
   (add-hook 'exwm-update-class-hook
 	    (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
   (require 'exwm-systemtray)
   (exwm-systemtray-enable)
-  (start-process-shell-command "nm-applet" nil "nm-applet")
-  (start-process-shell-command "volumeicon" nil "volumeicon")
+  (set-frame-parameter (selected-frame) 'alpha '(85 . 85))
+  (add-to-list 'default-frame-alist '(alpha . (85 . 85)))
+  (dolist (cmd '("nm-applet" "pasystray"
+		 "picom" ("feh" . "feh -z --recursive --bg-fill ~/documents/Wallpapers/")))
+    (if (listp cmd)
+	(start-process-shell-command (car cmd) nil (cdr cmd))
+      	(start-process-shell-command (file-name-nondirectory cmd) nil cmd)))
+  (call-process-shell-command "picom")
+  (call-process-shell-command )
   (setq
    exwm-input-prefix-keys
    `(?\C-x
@@ -460,6 +471,18 @@
      ?\M-`
      ?\M-&
      ?\M-:)
+
+   exwm-input-simulation-keys
+   '(([?\C-b] . [left])
+     ([?\C-f] . [right])
+     ([?\C-p] . [up])
+     ([?\C-n] . [down])
+     ([?\C-a] . [home])
+     ([?\C-e] . [end])
+     ([?\M-v] . [prior])
+     ([?\C-v] . [next])
+     ([?\C-d] . [delete])
+     ([?\C-k] . [S-end delete]))
    
    exwm-input-global-keys
    `(([?\s-&] . (lambda (command) (interactive (list (read-shell-command "$ ")))
@@ -473,23 +496,20 @@
      (,(kbd "<XF86AudioMute>") . volume/mute)
      (,(kbd "<XF86MonBrightnessUp>") . light/up)
      (,(kbd "<XF86MonBrightnessDown>") . light/down)
-
      ,@(mapcar (lambda (i)
 		 `(,(kbd (format "s-%d" i)) .
 		   (lambda ()
 		     (interactive)
 		     (exwm-workspace-switch-create ,i))))
 	       (number-sequence 0 9))))
-  (require 'exwm-config)
-  (exwm-config-default)
-  (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key))
+  (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
+  (exwm-enable))
 
 ;; Vertico
 
 (use-package vertico
   :init
   (vertico-mode)
-  (ido-mode 0)
   :custom
   (vertico-count 20)
   (vertico-resize t)
@@ -501,9 +521,11 @@
         completion-category-defaults nil
         completion-category-overrides '((file (styles partial-completion)))))
 
+(global-unset-key (kbd "C-r"))
 (use-package consult
   :bind (("C-x b" . consult-buffer)
 	 ("C-t" . consult-goto-line)
+	 ("C-s" . consult-line)
 	 ("C-r l" . consult-register)
 	 ("C-r s" . consult-register-store)
-	 ("M-y" . consult-yank-from-kill-ring))) 
+	 ("M-y" . consult-yank-from-kill-ring)))
