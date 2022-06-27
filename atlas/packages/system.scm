@@ -16,7 +16,7 @@
     "breeze-icons" "hicolor-icon-theme"
     "adwaita-icon-theme"
     ;; Emacs
-    "emacs-next"
+    "emacs"
     "emacs-exwm"
     
     ;; Libs

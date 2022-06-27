@@ -19,7 +19,14 @@
 (run-at-time nil (* 10 60) 'recentf-save-list)
 
 (defun yes-or-no-p (prompt) (y-or-n-p prompt))
+
+;; WindMove
+
 (windmove-default-keybindings)
+(global-set-key (kbd "s-<up>") #'windmove-swap-states-up)
+(global-set-key (kbd "s-<down>") #'windmove-swap-states-down)
+(global-set-key (kbd "s-<left>") #'windmove-swap-states-left)
+(global-set-key (kbd "s-<right>") #'windmove-swap-states-right)
 
 ;; Theming 
 
@@ -28,6 +35,8 @@
 (scroll-bar-mode -1)
 (show-paren-mode 1)
 (column-number-mode 1)
+(display-battery-mode 1)
+(display-time-mode 1)
 (setq inhibit-startup-screen t)
 (global-display-line-numbers-mode)
 (global-hl-line-mode 1)
@@ -64,9 +73,6 @@
 ;; Completion
 
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
-
-(use-package yasnippet
-  :config (yas-global-mode 1))
 
 ;; Tramp
 
@@ -135,42 +141,6 @@
 
 (use-package git-gutter
   :config (global-git-gutter-mode +1))
-
-;; Ivy
-
-(use-package ivy
-  :custom
-  ((ivy-use-virtual-buffers t)
-   (enable-recursive-minibuffers t)
-   (ivy-use-selectable-prompt t)
-   (ivy-initial-inputs-alist '((counsel-M-x . ""))))
-  :init
-  (ivy-mode)
-  (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
-  ;; enable this if you want `swiper' to use it
-  ;; (setq search-default-mode #'char-fold-to-regexp)
-  :bind
-  (("C-s" . swiper)
-   ("C-c C-r" . ivy-resume)
-   ("C-x C-f" . counsel-find-file)
-   ("C-c g" . counsel-git)
-   ("C-c j" . counsel-git-grep)
-   ("C-c k" . counsel-ag)
-   ("C-x l" . counsel-locate)))
-
-(use-package counsel
-  :init (counsel-mode))
-
-(use-package orderless
-  :custom
-  ;; Configure a custom style dispatcher (see the Consult wiki)
-  ;; (setq orderless-style-dispatchers '(+orderless-dispatch)
-  ;;       orderless-component-separator #'orderless-escapable-split-on-space)
-  ((completion-styles '(orderless basic))
-   (completion-category-defaults nil)
-   (ivy-re-builders-alist '((t . orderless-ivy-re-builder))))
-  :init
-  (add-to-list 'ivy-highlight-functions-alist '(orderless-ivy-re-builder . orderless-ivy-highlight)))
 
 ;; Persist history over Emacs restarts. Vertico sorts by history position.
 (use-package savehist
@@ -296,25 +266,6 @@
 
 ;; Misc
 
-(use-package equake
-  ;; some examples of optional settings follow:
-  :custom
-  ;; set width a bit less than full-screen (prevent 'overflow' on multi-monitor):
-  (equake-size-width 0.99)
-  ;; set distinct face for Equake: white foreground with dark blue background, and different font:
-  :config
-  ;; prevent accidental frame closure:
-  (advice-add #'save-buffers-kill-terminal :before-while #'equake-kill-emacs-advice)
-  ;; binding to restore last Equake tab when viewing a non-Equake buffer
-  (global-set-key (kbd "C-M-^") #'equake-restore-last-etab)
-  ;; set default shell
-  (setq equake-default-shell 'eshell)
-  ;; set list of available shells
-  (setq equake-available-shells
-	'("shell"
-	  "vterm"
-	  "rash"
-	  "eshell")))
 (use-package magit
   :bind (("C-c v s" . magit-stage)
 	 ("C-c v p" . magit-push)
@@ -373,30 +324,34 @@
  `(:application tramp :protocol "sudo" :machine ,(system-name))
  'guix-system)
 
-(defun guix/recon-home ()
+(defun guix/recon/home ()
   (interactive)
   (async-shell-command
-   (concat "guix time-machine -C " (getenv "HOME")
-	   "/dotfiles/channels.lock -- home reconfigure -L " (getenv "HOME") "/dotfiles "
-	   (getenv "HOME") "/dotfiles/atlas/home/home.scm")))
+   (concat "guix time-machine -C "
+	   (expand-file-name "~/dotfiles/channels.lock") " -- home reconfigure -L "
+	   (expand-file-name "~/dotfiles") " "
+	   (expand-file-name "~/dotfiles/atlas/home/home.scm"))
+   ))
 
-(defun guix/recon-system ()
+(defun guix/recon/system ()
   (interactive)
   (async-shell-command
    (concat "sudo guix time-machine -C " (getenv "HOME")
-	   "/dotfiles/channels.lock -- system reconfigure -L " (getenv "HOME") "/dotfiles "
-	   (getenv "HOME") "/dotfiles/atlas/system/system.scm")))
+	   "/dotfiles/channels.lock -- system reconfigure -L " (expand-file-name "~/dotfiles") " "
+	   (expand-file-name "~/dotfiles/atlas/system/system.scm"))))
 
 (defun guix/update-locks ()
   (interactive)
   (async-shell-command
    (concat "guix pull && guix describe --format=channels > "
-	   (getenv "HOME") "/dotfiles/channels.lock")))
+	   (expand-file-name "~/dotfiles/channels.lock"))))
 
 (defun guix/patch (path)
   (interactive "f")
   (shell-command (concat "patchelf " path " --set-rpath "
-			 "\"/run/current-system/profile/lib:/home/$USER/.guix-home/profile/lib"
+			 "\"/run/current-system/profile/lib:/home/"
+			 (getenv "USER")
+			 "/.guix-home/profile/lib"
 			 (apply #'concat
 				(mapcar (lambda (x) (concat ":" x "/lib"))
 					(split-string
@@ -408,3 +363,118 @@
   (message (format "RPATH: %sLD: %s"
 		   (shell-command-to-string (concat "patchelf " path " --print-rpath"))
 		   (shell-command-to-string (concat "patchelf " path " --print-interpreter")))))
+
+(defun light/up ()
+  (interactive)
+  (shell-command "light -A 10")
+  (light/show))
+
+(defun light/down ()
+  (interactive)
+  (shell-command "light -U 10")
+  (light/show))
+
+(defun light/show ()
+  (princ
+   (concat
+    "Brightness..." (string-trim (shell-command-to-string "light -G")) "%")))
+
+(defun volume/up ()
+  (interactive)
+  (shell-command "pactl set-sink-volume @DEFAULT_SINK@ +5%")
+  (volume/show))
+
+(defun volume/down ()
+  (interactive)
+  (shell-command "pactl set-sink-volume @DEFAULT_SINK@ -5%")
+  (volume/show))
+
+(defun volume/mute ()
+  (interactive)
+  (shell-command "pactl set-sink-mute @DEFAULT_SINK@ toggle")
+  (volume/show))
+
+(defun volume/show ()
+  (princ
+   (string-trim (shell-command-to-string "pactl get-sink-volume @DEFAULT_SINK@"))))
+
+(defun player/play ()
+  (shell-command "playerctl play-pause"))
+(defun player/next ()
+  (shell-command "playerctl next"))
+(defun player/prev ()
+  (shell-command "playerctl previous"))
+
+(global-set-key (kbd "<XF86AudioPlay>") #'player/play)
+(global-set-key (kbd "<XF86AudioNext>") #'player/next)
+(global-set-key (kbd "<XF86AudioPrev>") #'player/prev)
+(global-set-key (kbd "<XF86AudioRaiseVolume>") #'volume/up)
+(global-set-key (kbd "<XF86AudioLowerVolume>") #'volume/down)
+(global-set-key (kbd "<XF86AudioMute>") #'volume/mute)
+(global-set-key (kbd "<XF86MonBrightnessUp>") #'light/up)
+(global-set-key (kbd "<XF86MonBrightnessDown>") #'light/down)
+
+;; EXWM
+
+(use-package exwm
+  :custom
+  (exwm-workspace-number 5)
+  :config
+  (add-hook 'exwm-update-class-hook
+	    (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
+  (require 'exwm-systemtray)
+  (exwm-systemtray-enable)
+  (start-process-shell-command "nm-applet" nil "nm-applet")
+  (setq
+   exwm-input-prefix-keys
+   `(?\C-x
+     ?\C-u
+     ?\C-h
+     ?\M-x
+     ?\M-`
+     ?\M-&
+     ?\M-:
+     ?\C-\ 
+     ,(kbd "<XF86AudioPlay>")
+     ,(kbd "<XF86AudioNext>")
+     ,(kbd "<XF86AudioPrev>")
+     ,(kbd "<XF86AudioRaiseVolume>")
+     ,(kbd "<XF86AudioLowerVolume>")
+     ,(kbd "<XF86AudioMute>")
+     ,(kbd "<XF86MonBrightnessUp>")
+     ,(kbd "<XF86MonBrightnessDown>"))
+   
+   exwm-input-global-keys
+   `(([?\s-&] . (lambda (command) (interactive (list (read-shell-command "$ ")))
+		  (start-process-shell-command command nil command)))
+     ([?\s-w] . exwm-workspace-switch)
+     ,@(mapcar (lambda (i)
+		 `(,(kbd (format "s-%d" i)) .
+		   (lambda ()
+		     (interactive)
+		     (exwm-workspace-switch-create ,i))))
+	       (number-sequence 0 9))))
+  (require 'exwm-config)
+  (exwm-config-default)
+  (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key))
+
+;; Vertico
+
+(use-package vertico
+  :init
+  (vertico-mode)
+  (ido-mode 0)
+  :custom
+  (vertico-count 20)
+  (vertico-resize t)
+  (enable-recursive-minibuffers t))
+
+(use-package orderless
+  :init
+  (setq completion-styles '(orderless basic)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles partial-completion)))))
+
+(use-package consult
+  :bind (("C-x b" . consult-buffer)
+	 ("M-y" . consult-yank-from-kill-ring)))

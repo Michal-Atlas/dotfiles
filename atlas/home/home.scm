@@ -27,26 +27,7 @@
    (service home-shepherd-service-type
 	    (home-shepherd-configuration
 	     (services
-	      (list
-	       (shepherd-service
-		(provision '(emacs))
-		(start #~(make-forkexec-constructor
-			  (list
-			   #$(file-append emacs-next "/bin/emacs")
-			   "--fg-daemon")
-			  #:environment-variables
-			  (cons*
-			   "GDK_SCALE=2"
-			   "GDK_DPI_SCALE=0.41"
-			   (default-environment-variables))))
-		(stop #~(make-system-destructor
-			 "emacsclient -e '(save-buffers-kill-emacs)'")))
-	       (shepherd-service
-		(provision '(sway))
-		(respawn? #f)
-		(start #~(make-forkexec-constructor
-			  (list #$(file-append sway "/bin/sway"))))
-		(stop #~(make-kill-destructor)))))))
+	      (list))))
    (service
     home-mcron-service-type
     (home-mcron-configuration

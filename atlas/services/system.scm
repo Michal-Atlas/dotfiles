@@ -13,6 +13,7 @@
  ssh
  xorg
  pm
+ sddm
  mcron
  nix
  shepherd
@@ -32,8 +33,11 @@
     (list
      (pam-limits-entry "*" 'both 'nofile 524288)))
    (service gpm-service-type)
+   (service sddm-service-type
+	    (sddm-configuration
+	     (auto-login-user "michal_atlas")
+	     (auto-login-session "exwm.desktop")))
    (service docker-service-type)
-   (screen-locker-service swaylock)
    (service tlp-service-type
 	    (tlp-configuration
 	     (cpu-boost-on-ac? #t)
