@@ -9,6 +9,7 @@
   #:use-module (gnu packages linux)
   #:use-module (gnu system setuid)
   #:use-module (gnu services desktop)
+  #:use-module (gnu services xorg)
   #:use-module (gnu home)
   #:use-module (gnu home services)
   #:use-module (gnu home services mcron)
@@ -30,7 +31,8 @@
    (timezone "Europe/Prague")
    (keyboard-layout
     (keyboard-layout "us,cz" ",ucw" #:options
-		     '("grp:caps_switch" "ctrl:swapcaps" "lv3:ralt_switch" "compose:rctrl-altgr")))
+		     '("grp:switch" "ctrl:nocaps" "grp_led"
+		       "lv3:ralt_switch" "compose:rctrl-altgr")))
    (users (cons* (user-account
 		  (name "michal_atlas")
 		  (comment "Michal Atlas")
@@ -50,7 +52,16 @@
 		   (program (file-append light "/bin/light"))))
             %setuid-programs))
    (services
-    %system-services-manifest)
+    (cons
+     (service slim-service-type
+   	      (slim-configuration
+	       (display ":0")
+	       (vt "vt7")
+	       (default-user "michal_atlas")
+	       (auto-login? #t)
+	       (xorg-configuration (xorg-configuration
+		 (keyboard-layout keyboard-layout)))))
+     %system-services-manifest))
    (bootloader
     (bootloader-configuration
      (bootloader grub-efi-bootloader)
@@ -101,8 +112,8 @@
 		  %base-file-systems))
    (swap-devices
     (list (swap-space
-     (target "/home/michal_atlas/swapfile")
-     (dependencies (filter (file-system-mount-point-predicate "/home") file-systems)))))
+	   (target "/home/michal_atlas/swapfile")
+	   (dependencies (filter (file-system-mount-point-predicate "/home") file-systems)))))
    (name-service-switch %mdns-host-lookup-nss)))
 
 atlas-guix-system

@@ -145,7 +145,7 @@
 (define desktop
   '(
     "bemenu" "sway" "swayidle" "swaybg" "swayhide"
-    "wl-clipboard" "lagrange"
+    "wl-clipboard" "lagrange" "volumeicon"
     "grim" "slurp" "foot"
     "nautilus" "gvfs" "youtube-dl" "okular" "pulseaudio"
     "wob"
