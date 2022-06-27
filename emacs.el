@@ -399,10 +399,13 @@
    (string-trim (shell-command-to-string "pactl get-sink-volume @DEFAULT_SINK@"))))
 
 (defun player/play ()
+  (interactive)
   (shell-command "playerctl play-pause"))
 (defun player/next ()
+  (interactive)
   (shell-command "playerctl next"))
 (defun player/prev ()
+  (interactive)
   (shell-command "playerctl previous"))
 
 (global-set-key (kbd "<XF86AudioPlay>") #'player/play)
@@ -413,6 +416,18 @@
 (global-set-key (kbd "<XF86AudioMute>") #'volume/mute)
 (global-set-key (kbd "<XF86MonBrightnessUp>") #'light/up)
 (global-set-key (kbd "<XF86MonBrightnessDown>") #'light/down)
+
+(defhydra hydra-system (global-map "C-c s")
+  "system"
+  ("p" player/play)
+  ("o" player/next)
+  ("i" player/prev)
+  ("e" light/up)
+  ("d" light/down)
+  ("r" volume/up)
+  ("f" volume/down)
+  ("m" volume/mute))
+
 
 ;; EXWM
 
@@ -433,16 +448,7 @@
      ?\M-x
      ?\M-`
      ?\M-&
-     ?\M-:
-     ?\C-\ 
-     ,(kbd "<XF86AudioPlay>")
-     ,(kbd "<XF86AudioNext>")
-     ,(kbd "<XF86AudioPrev>")
-     ,(kbd "<XF86AudioRaiseVolume>")
-     ,(kbd "<XF86AudioLowerVolume>")
-     ,(kbd "<XF86AudioMute>")
-     ,(kbd "<XF86MonBrightnessUp>")
-     ,(kbd "<XF86MonBrightnessDown>"))
+     ?\M-:)
    
    exwm-input-global-keys
    `(([?\s-&] . (lambda (command) (interactive (list (read-shell-command "$ ")))
