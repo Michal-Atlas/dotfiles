@@ -50,7 +50,7 @@
     "supertuxkart" "cataclysm-dda"
     "wesnoth" "steam" "sky" "lure"
     "endless-sky" "naev"
-    "gzdoom" "tintin++" "taisei" "kobodeluxe" "dwarf-fortress"
+    "gzdoom" "tintin++" "taisei" "kobodeluxe" ; "dwarf-fortress"
 
     ))
 (define e-mail
@@ -115,12 +115,14 @@
 	  "notmuch"
 	  "on-screen"
 	  "org-fragtog"
-	  "org-modern"
+	  #;"org-modern"
 	  "org-present"
 	  "org-roam"
 	  "org-superstar"
 	  "ox-gemini"
-	  "paredit"
+	  #;"paredit"
+	  "parinfer-mode"
+	  "adaptive-wrap"
 	  "pdf-tools"
 	  "pg"
 	  "vertico"
@@ -153,7 +155,7 @@
     ))
 (define big-games
   '(
-    "the-dark-mod" "falltergeist"
+    #;"the-dark-mod" "falltergeist"
     "gnushogi" "nethack" "retux" "angband"
     "crawl" "crawl-tiles" "retroarch" "7kaa"
     "marble-marcher" "arx-libertatis"
@@ -162,4 +164,4 @@
 (define %packages-by-host
   (alist->hash-table
    `(("dagon" . ,(append shell-utils toolchains multimedia graphics e-mail emacs+xyz desktop))
-     ("hydra" . ,(append shell-utils toolchains multimedia graphics games e-mail emacs+xyz desktop big-games)))))
+     ("hydra" . ,(append shell-utils toolchains multimedia graphics e-mail emacs+xyz desktop)))))
