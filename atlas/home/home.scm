@@ -27,7 +27,27 @@
    (service home-shepherd-service-type
 	    (home-shepherd-configuration
 	     (services
-	      (list))))
+	      (list
+	       (shepherd-service
+		(provision '(emacs))
+		(start #~(make-forkexec-constructor
+			  (list
+			   #$(file-append emacs-next "/bin/emacs")
+			   "--fg-daemon")
+			  #:environment-variables
+			  (cons*
+			   "GDK_SCALE=2"
+			   "GDK_DPI_SCALE=0.41"
+			   (default-environment-variables))))
+		(stop #~(make-system-destructor
+			 "emacsclient -e '(save-buffers-kill-emacs)'")))
+
+	       (shepherd-service
+		(provision '(sway))
+		(respawn? #f)
+		(start #~(make-forkexec-constructor
+			  (list #$(file-append sway "/bin/sway"))))
+		(stop #~(make-kill-destructor)))))))
    (service
     home-mcron-service-type
     (home-mcron-configuration
@@ -60,20 +80,25 @@
     home-bash-service-type
     (home-bash-configuration
      (guix-defaults? #t)
+     (bashrc
+      (list
+       (plain-file "bashrc" "eval \"$(direnv hook bash)\"")))
      (aliases
       `(("gx" . "guix")
 	("gxi" . "gx install")
 	("gxb" . "gx build")
 	("gxsh" . "gx shell")
 	("gxtm" . "gx time-machine")
-	("e" . "$EDITOR")))
+	("e" . "$EDITOR")
+	("sw" . "swayhide")))
      (environment-variables
       `(("BROWSER" . "firefox")
-	("EDITOR" . "\"emacsclient -nw\"")
+	("EDITOR" . "emacsclient")
 	("TERM" . "xterm-256color")
 	("MOZ_ENABLE_WAYLAND" . "1")
 	("MOZ_USE_XINPUT2" . "1")
 	("GRIM_DEFAULT_DIR" . "~/tmp")
 	("_JAVA_AWT_WM_NONREPARENTING" . "1")
 	("XDG_CURRENT_DESKTOP" . "sway")
-	("PATH" . "\"$PATH:$HOME/.nix-profile/bin/\""))))))))
+	("PATH" . "$PATH:$HOME/.nix-profile/bin/")
+	("XDG_DATA_DIRS" . "$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:/home/michal_atlas/.local/share/flatpak/exports/share"))))))))

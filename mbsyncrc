@@ -1,11 +1,11 @@
 # mbsyncrc based on
 # http://www.ict4g.net/adolfo/notes/2014/12/27/EmacsIMAP.html
 # ACCOUNT INFORMATION
-IMAPAccount gmail
+IMAPAccount posteo
 # Address to connect to
-Host imap.gmail.com
-User michal.z.atlas@gmail.com
-PassCmd "gpg -q --for-your-eyes-only --no-tty -d ~/mail/.mbsyncpass-EM.gpg"
+Host posteo.de
+User michal_atlas@posteo.net
+PassCmd "gpg -q --for-your-eyes-only --no-tty -d ~/mail/.mbsyncpass.gpg"
 AuthMechs LOGIN
 SSLType IMAPS
 SSLVersions TLSv1.3
@@ -17,13 +17,13 @@ CertificateFile /etc/ssl/certs/ca-certificates.crt
 # - THE LOCAL STORAGE IS WHERE WE STORE THE EMAIL ON OUR COMPUTER
 
 # REMOTE STORAGE (USE THE IMAP ACCOUNT SPECIFIED ABOVE)
-IMAPStore gmail-remote
-Account gmail
+IMAPStore mail-remote
+Account posteo
 
 # LOCAL STORAGE (CREATE DIRECTORIES with mkdir -p ~/Maildir/gmail)
-MaildirStore gmail-local
-Path ~/mail/gmail/
-Inbox ~/mail/gmail/INBOX
+MaildirStore mail-local
+Path ~/mail/
+Inbox ~/mail/INBOX
 # REQUIRED ONLY IF YOU WANT TO DOWNLOAD ALL SUBFOLDERS; SYNCING SLOWS DOWN
 # SubFolders Verbatim
 
@@ -36,9 +36,9 @@ Inbox ~/mail/gmail/INBOX
 # 2 "!DIR" TO EXCLUDE "DIR"
 # 3 "DIR" TO MATCH DIR
 
-Channel gmail-inbox
-Far :gmail-remote:
-Near :gmail-local:
+Channel mail-inbox
+Far :mail-remote:
+Near :mail-local:
 Patterns "INBOX"
 Create Both
 Expunge Both

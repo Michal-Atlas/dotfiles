@@ -33,9 +33,10 @@
    (pam-limits-service
     (list
      (pam-limits-entry "*" 'both 'nofile 524288)))
+   ;;(service gnome-desktop-service-type)
    (service gpm-service-type)
    (service docker-service-type)
-   (screen-locker-service slim "slimlock")
+   (screen-locker-service swaylock "swaylock")
    (service tlp-service-type
 	    (tlp-configuration
 	     (cpu-boost-on-ac? #t)
@@ -49,7 +50,7 @@
    (service virtlog-service-type
 	    (virtlog-configuration
 	     (max-clients 1000)))
-   ;; (service hurd-vm-service-type)
+   (service hurd-vm-service-type)
    (service syncthing-service-type
 	    (syncthing-configuration (user "michal_atlas")))
    (service cups-service-type
@@ -87,9 +88,9 @@
        (append (list
 		(plain-file "non-guix.pub"
 			    "(public-key (ecc (curve Ed25519) (q #C1FD53E5D4CE971933EC50C9F307AE2171A2D3B52C804642A7A35F84F3A4EA98#)))")
-		(plain-file "dagon.pub"
-			    "(public-key (ecc (curve Ed25519) (q #33173AD94F3854CD3642E21B59802C275A1742C5D0FFC59EE076EDC23FDDFFC6#)))")
 		(plain-file "hydra.pub"
-			    "(public-key (ecc (curve Ed25519) (q #DC2683ED525F2960A216D9EECA3C1B5E2F6AE41ECBA17827C749A7F03ECE2FC2#)))"))
+			    "(public-key (ecc (curve Ed25519) (q #BF0EF95C0C737FC88417CB38FA582D70E53FCE542AA89D8A11D9DA1A2A33A5BA#)))")
+		(plain-file "dagon.pub"
+			    "(public-key (ecc (curve Ed25519) (q #6C56CDDAABA765DA1E5137011B33B219941DFAD26E2D823F69DA50F8C888A384#)))"))
 	       %default-authorized-guix-keys)))))
    ))

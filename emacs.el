@@ -1,9 +1,9 @@
 ;; Variable Init
 
-;; (setq user-full-name "Michal Atlas"
-;;       user-mail-address "michal.z.atlas@gmail.com")
-(setq user-full-name "Michal Žáček"
-      user-mail-address "zacekmi2@fit.cvut.cz")
+(setq user-full-name "Michal Atlas"
+      user-mail-address "michal_atlas+emacs@posteo.net")
+;; (setq user-full-name "Michal Žáček"
+;;       user-mail-address "zacekmi2@fit.cvut.cz"
 
 (setq backup-directory-alist '((".*" . "~/.emacs.d/bkp")))
 (setq projectile-project-search-path (list "~/Documents" "~/source"))
@@ -17,8 +17,11 @@
 (setq recentf-max-saved-items 25)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
 (run-at-time nil (* 10 60) 'recentf-save-list)
+(global-prettify-symbols-mode +1)
 
 (defun yes-or-no-p (prompt) (y-or-n-p prompt))
+(dired-async-mode 1)
+(setq auth-sources '("~/.authinfo.gpg"))
 
 ;; Scrolling
 
@@ -26,6 +29,18 @@
       scroll-conservatively 10000
       auto-window-vscroll nil
       scroll-margin 8)
+
+;;; Scrolling.
+;; Good speed and allow scrolling through large images (pixel-scroll).
+;; Note: Scroll lags when point must be moved but increasing the number
+;;       of lines that point moves in pixel-scroll.el ruins large image
+;;       scrolling. So unfortunately I think we'll just have to live with
+;;       this.
+;; (pixel-scroll-mode 0)
+;; (setq pixel-dead-time 0 ; Never go back to the old scrolling behaviour.
+;;       pixel-resolution-fine-flag t ; Scroll by number of pixels instead of lines (t = frame-char-height pixels).
+;;       mouse-wheel-scroll-amount '(1) ; Distance in pixel-resolution to scroll each mouse wheel event.
+;;       mouse-wheel-progressive-speed nil) ; Progressive speed is too fast for me.
 
 ;; WindMove
 
@@ -234,18 +249,18 @@
 ;; (use-package geiser
 ;;   :hook (scheme-mode geiser-mode))
 
-(use-package paredit
-  :config (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
-  :hook ((emacs-lisp-mode . enable-paredit-mode)
-	 (eval-expression-minibuffer-setup . enable-paredit-mode)
-	 (lisp-mode . enable-paredit-mode)
-	 (lisp-mode . aggressive-indent-mode)))
-(add-hook 'slime-repl-mode-hook (lambda () (paredit-mode +1)))
+(use-package paredit-mode
+  :hook ((emacs-lisp-mode . paredit-mode)
+	 (emacs-lisp-mode . aggressive-indent-mode)
+	 (eval-expression-minibuffer-setup . paredit-mode)
+	 (scheme-mode . paredit-mode)
+	 (scheme-mode . aggressive-indent-mode)))
 
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+(use-package multiple-cursors
+  :bind (("C-S-c C-S-c" . mc/edit-lines)
+	 ("C->" . mc/mark-next-like-this)
+	 ("C-<" . mc/mark-previous-like-this)
+	 ("C-c C-<" . mc/mark-all-like-this)))
 
 ;; C
 
@@ -270,7 +285,12 @@
 	("http://phdcomics.com/gradfeed.php" comics)
 	("https://blog.tecosaur.com/tmio/rss.xml" emacs)
 	("http://festivalofthespokennerd.libsyn.com/rss" podcast)
-	("https://guix.gnu.org/feeds/blog.atom")))
+	("https://guix.gnu.org/feeds/blog.atom" tech linux)
+	("https://vkc.sh/feed/" tech linux)
+	("https://www.youtube.com/feeds/videos.xml?channel_id=UCMiyV_Ib77XLpzHPQH_q0qQ") ;; Veronica
+	("https://www.youtube.com/feeds/videos.xml?channel_id=UCQ6fPy9wr7qnMxAbFOGBaLw") ;; Computer Clan
+	("https://lexfridman.com/feed/podcast/")
+	))
 
 ;; Misc
 
@@ -439,71 +459,95 @@
   ("s" shell "shell")
   ("e" eshell "eshell")
   ("l" (start-process-shell-command "lagrange" nil "lagrange") "lagrange")
+  ("g" guix-packages-by-name "find package")
   ("q" nil "cancel"))
+
+(defhydra hydra-buffer (global-map "C-x")
+  ("<right>" next-buffer)
+  ("<left>" previous-buffer))
+
+(global-set-key (kbd "C-.") #'embark-act)
+(global-set-key (kbd "C-c p") #'paredit-mode)
+(global-set-key (kbd "C-c a") #'aggressive-indent-mode)
 
 ;; EXWM
 
-(use-package exwm
-  :custom
-  (exwm-workspace-number 5)
-  :bind
-  ("C-M-l" . (lambda () (interactive) (shell-command "slimlock")))
-  :config
-  (add-hook 'exwm-update-class-hook
-	    (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
-  (require 'exwm-systemtray)
-  (exwm-systemtray-enable)
-  (set-frame-parameter (selected-frame) 'alpha '(85 . 85))
-  (add-to-list 'default-frame-alist '(alpha . (85 . 85)))
-  (dolist (cmd '("nm-applet" "pasystray"
-		 "picom" ("feh" . "feh -z --recursive --bg-fill ~/documents/Wallpapers/")))
-    (if (listp cmd)
-	(start-process-shell-command (car cmd) nil (cdr cmd))
-      	(start-process-shell-command (file-name-nondirectory cmd) nil cmd)))
-  (call-process-shell-command "picom")
-  (call-process-shell-command )
-  (setq
-   exwm-input-prefix-keys
-   `(?\C-x
-     ?\C-u
-     ?\C-h
-     ?\M-x
-     ?\M-`
-     ?\M-&
-     ?\M-:)
+;; (use-package exwm
+;;   :custom
+;;   (exwm-workspace-number 5)
+;;   :bind
+;;   ("C-M-l" . (lambda () (interactive) (shell-command "slimlock")))
+;;   :config
+;;   (add-hook 'exwm-update-class-hook
+;; 	    (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
+;;   (require 'exwm-systemtray)
+;;   (exwm-systemtray-enable)
+;;   (set-frame-parameter (selected-frame) 'alpha '(85 . 85))
+;;   (add-to-list 'default-frame-alist '(alpha . (85 . 85)))
+;;   (dolist (cmd '("nm-applet" "pasystray"
+;; 		 "picom" ("feh" . "feh -z --recursive --bg-fill ~/documents/Wallpapers/Gnu_wallpaper.png")
+;; 		 ("xsslock" . "xsslock -- slimlock")))
+;;     (if (listp cmd)
+;; 	(start-process-shell-command (car cmd) nil (cdr cmd))
+;;       	(start-process-shell-command (file-name-nondirectory cmd) nil cmd)))
+;;   (setq
+;;    exwm-workspace-show-all-buffers t
+;;    ;; exwm-workspace-minibuffer-position 'top
 
-   exwm-input-simulation-keys
-   '(([?\C-b] . [left])
-     ([?\C-f] . [right])
-     ([?\C-p] . [up])
-     ([?\C-n] . [down])
-     ([?\C-a] . [home])
-     ([?\C-e] . [end])
-     ([?\M-v] . [prior])
-     ([?\C-v] . [next])
-     ([?\C-d] . [delete])
-     ([?\C-k] . [S-end delete]))
-   
-   exwm-input-global-keys
-   `(([?\s-&] . (lambda (command) (interactive (list (read-shell-command "$ ")))
-		  (start-process-shell-command command nil command)))
-     ([?\s-w] . exwm-workspace-switch)
-     (,(kbd "<XF86AudioPlay>") . player/play)
-     (,(kbd "<XF86AudioNext>") . player/next)
-     (,(kbd "<XF86AudioPrev>") . player/prev)
-     (,(kbd "<XF86AudioRaiseVolume>") . volume/up)
-     (,(kbd "<XF86AudioLowerVolume>") . volume/down)
-     (,(kbd "<XF86AudioMute>") . volume/mute)
-     (,(kbd "<XF86MonBrightnessUp>") . light/up)
-     (,(kbd "<XF86MonBrightnessDown>") . light/down)
-     ,@(mapcar (lambda (i)
-		 `(,(kbd (format "s-%d" i)) .
-		   (lambda ()
-		     (interactive)
-		     (exwm-workspace-switch-create ,i))))
-	       (number-sequence 0 9))))
-  (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
-  (exwm-enable))
+;;    exwm-input-prefix-keys
+;;    `(?\C-x
+;;      ?\C-u
+;;      ?\C-h
+;;      ?\M-x
+;;      ?\M-`
+;;      ?\M-&
+;;      ?\M-:)
+
+;;    exwm-input-simulation-keys
+;;    '(([?\C-b] . [left])
+;;      ([?\C-f] . [right])
+;;      ([?\C-p] . [up])
+;;      ([?\C-n] . [down])
+;;      ([?\C-a] . [home])
+;;      ([?\C-e] . [end])
+;;      ([?\M-v] . [prior])
+;;      ([?\C-v] . [next])
+;;      ([?\C-d] . [delete])
+;;      ([?\C-k] . [S-end delete]))
+
+;;    exwm-input-global-keys
+;;    `(([?\s-&] . (lambda (command) (interactive (list (read-shell-command "$ ")))
+;; 		  (start-process-shell-command command nil command)))
+;;      ([?\s-w] . exwm-workspace-switch)
+;;      (,(kbd "<XF86AudioPlay>") . player/play)
+;;      (,(kbd "<XF86AudioNext>") . player/next)
+;;      (,(kbd "<XF86AudioPrev>") . player/prev)
+;;      (,(kbd "<XF86AudioRaiseVolume>") . volume/up)
+;;      (,(kbd "<XF86AudioLowerVolume>") . volume/down)
+;;      (,(kbd "<XF86AudioMute>") . volume/mute)
+;;      (,(kbd "<XF86MonBrightnessUp>") . light/up)
+;;      (,(kbd "<XF86MonBrightnessDown>") . light/down)
+;;      ,@(mapcar (lambda (i)
+;; 		 `(,(kbd (format "s-%d" i)) .
+;; 		   (lambda ()
+;; 		     (interactive)
+;; 		     (exwm-workspace-switch-create ,i))))
+;; 	       (number-sequence 0 9))
+;;      ,@(mapcar (lambda (i)
+;; 		 `(,(kbd (format "M-s-%d" i)) .
+;; 		   (lambda ()
+;; 		     (interactive)
+;; 		     (eshell ,i))))
+;; 	       (number-sequence 0 9))))
+;;   (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
+
+;; (defun efs/configure-window-by-class () (interactive)
+;; 	 (pcase exwm-class-name
+;; 	   ("Firefox" (exwm-workspace-move-window 3))
+;; 	   ("mpv" (exwm-workspace-move-window 7))))
+;; (add-hook 'exwm-manage-finish-hook #'efs/configure-window-by-class)
+
+;; (exwm-enable))
 
 ;; Vertico
 

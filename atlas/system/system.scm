@@ -31,7 +31,7 @@
    (timezone "Europe/Prague")
    (keyboard-layout
     (keyboard-layout "us,cz" ",ucw" #:options
-		     '("grp:switch" "ctrl:nocaps" "grp_led"
+		     '("grp:caps_switch" #;"ctrl:nocaps" "grp_led"
 		       "lv3:ralt_switch" "compose:rctrl-altgr")))
    (users (cons* (user-account
 		  (name "michal_atlas")
@@ -52,29 +52,7 @@
 		   (program (file-append light "/bin/light"))))
             %setuid-programs))
    (services
-    (cons
-     (service slim-service-type
-   	      (slim-configuration
-	       (display ":0")
-	       (vt "vt7")
-	       (default-user "michal_atlas")
-	       (auto-login? #t)
-	       (xorg-configuration (xorg-configuration
-				    (extra-config (list "
-# Touchpad
-Section \"InputClass\"
-Identifier \"touchpad\"
-        Driver \"libinput\"
-MatchIsTouchpad \"on\"
-Option \"DisableWhileTyping\" \"on\"
-Option \"Tapping\" \"1\"
-Option \"NaturalScrolling\" \"1\"
-Option \"Emulate3Buttons\" \"yes\"
-EndSection
-# Touchpad:1 ends here
-"))
-		 (keyboard-layout keyboard-layout)))))
-     %system-services-manifest))
+    %system-services-manifest)
    (bootloader
     (bootloader-configuration
      (bootloader grub-efi-bootloader)

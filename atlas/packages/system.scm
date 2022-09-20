@@ -9,6 +9,7 @@
     ;; DE
     "xnotify" "brightnessctl" "pamixer" "playerctl"
     "firefox" "xscreensaver" "gparted"
+    "nautilus" "gvfs" "samba"
     "pavucontrol" "screen"
     "sway"
     "i3status" "i3lock"
@@ -17,7 +18,7 @@
     "adwaita-icon-theme"
     ;; Emacs
     "emacs"
-    "emacs-exwm"
+    #;"emacs-exwm"
     
     ;; Libs
     "ncurses" "curl" "virt-manager"

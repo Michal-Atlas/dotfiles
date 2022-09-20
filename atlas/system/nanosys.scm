@@ -5,33 +5,25 @@
 (use-package-modules
  text-editors
  shells
+ hurd
  emacs
  linux)
 
 (define-public %nano-system
   (operating-system
-   (host-name "Progtest")
-   (kernel linux-libre)
+   (host-name "NanoSys")
+   (kernel gnumach)
+   (hurd hurd)
    (locale "en_US.utf8")
    (timezone "Europe/Prague")
    (keyboard-layout
     (keyboard-layout "us,cz" ",qwerty" #:options '("grp:caps_switch" "lv3:ralt_switch" "compose:rctrl-altgr")))
    (users (cons* (user-account
-		  (name "progtest")
-		  (comment "Progtest")
+		  (name "michal_atlas")
 		  (group "users")
-		  (password (crypt "progtest" "salt"))
-		  (shell (file-append (specification->package "bash") "/bin/bash"))
+		  (password (crypt "12345678" "salt"))
 		  (supplementary-groups
 		   '("netdev" "audio" "video")))
-		 (user-account
-		  (name "admin")
-		  (comment "Progtest")
-		  (group "users")
-		  (password (crypt "progtest" "salt"))
-		  (shell (file-append (specification->package "bash") "/bin/bash"))
-		  (supplementary-groups
-		   '("wheel" "netdev" "audio" "video")))
 		 %base-user-accounts))
    (packages
     (cons
