@@ -159,6 +159,7 @@
 	 )))
 (define desktop
   '(
+    "i3-autotiling"
     "blueman" "pasystray" "xss-lock"
     "bemenu" "sway" "swayidle" "swaybg" "swayhide"
     "wl-clipboard" "lagrange"
