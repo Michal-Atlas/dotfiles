@@ -573,3 +573,19 @@
 	 ("C-r l" . consult-register)
 	 ("C-r s" . consult-register-store)
 	 ("M-y" . consult-yank-from-kill-ring)))
+
+(defun close-program ()
+  (interactive)
+  (kill-buffer)
+  (delete-frame))
+
+(global-set-key (kbd "C-s-q") #'close-program)
+
+(setq vterm-new--i 0)
+(defun vterm-new ()
+  (interactive)
+  (vterm (setq vterm-new--i (1+ vterm-new--i))))
+
+(defun cheat (name)
+  (interactive "s")
+  (eww (concat "https://cheat.sh/" name)))
