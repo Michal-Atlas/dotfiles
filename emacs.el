@@ -352,21 +352,29 @@
  `(:application tramp :protocol "sudo" :machine ,(system-name))
  'guix-system)
 
+(defun guix/offload-y-or-n-p ()
+  (if (y-or-n-p "Enable offloads?") "" " --no-offload "))
+
 (defun guix/recon/home ()
   (interactive)
-  (async-shell-command
-   (concat "guix time-machine -C "
-	   (expand-file-name "~/dotfiles/channels.lock") " -- home reconfigure -L "
-	   (expand-file-name "~/dotfiles") " "
-	   (expand-file-name "~/dotfiles/atlas/home/home.scm"))
-   ))
+  (let ((offl (guix/offload-y-or-n-p)))
+    (async-shell-command
+     (concat "guix time-machine"
+	     offl
+	     " -C " (expand-file-name "~/dotfiles/channels.lock")
+	     " -- home reconfigure"
+	     offl" -L "
+	     (expand-file-name "~/dotfiles") " "
+	     (expand-file-name "~/dotfiles/atlas/home/home.scm")))))
 
 (defun guix/recon/system ()
   (interactive)
-  (async-shell-command
-   (concat "sudo guix time-machine -C " (getenv "HOME")
-	   "/dotfiles/channels.lock -- system reconfigure -L " (expand-file-name "~/dotfiles") " "
-	   (expand-file-name "~/dotfiles/atlas/system/system.scm"))))
+  (let ((ofl (guix/offload-y-or-n-p)))
+    (async-shell-command
+     (concat "sudo guix time-machine" offl " -C " (getenv "HOME")
+	     "/dotfiles/channels.lock -- system reconfigure"
+	     offl " -L " (expand-file-name "~/dotfiles") " "
+	     (expand-file-name "~/dotfiles/atlas/system/system.scm")))))
 
 (defun guix/update-locks ()
   (interactive)
@@ -589,3 +597,7 @@
 (defun cheat (name)
   (interactive "s")
   (eww (concat "https://cheat.sh/" name)))
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages '((C . t)
+			     (dot . t)))
