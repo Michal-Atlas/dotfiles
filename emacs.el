@@ -374,7 +374,7 @@
      (concat "sudo guix time-machine" offl " -C " (getenv "HOME")
 	     "/dotfiles/channels.lock -- system reconfigure"
 	     offl " -L " (expand-file-name "~/dotfiles") " "
-	     (expand-file-name "~/dotfiles/atlas/system/system.scm")))))
+	     (expand-file-name (concat "~/dotfiles/atlas/system/machines/" system-name ".scm"))))))
 
 (defun guix/update-locks ()
   (interactive)
