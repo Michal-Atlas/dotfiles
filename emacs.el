@@ -1,3 +1,24 @@
+(unless (executable-find "guix")
+  (defvar bootstrap-version)
+  (defvar straight-use-package-by-default t)
+  (let ((bootstrap-file
+	 (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+	(bootstrap-version 6))
+    (unless (file-exists-p bootstrap-file)
+      (with-current-buffer
+	  (url-retrieve-synchronously
+	   "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+	   'silent 'inhibit-cookies)
+	(goto-char (point-max))
+	(eval-print-last-sexp)))
+    (load bootstrap-file nil 'nomessage))
+  (defmacro decpack ()
+    `(progn ,@(mapcar (lambda (q) `(use-package ,q))
+		      (with-current-buffer (find-file-noselect "~/.emacs-pkgs")
+			(goto-char (point-min))
+			(read (current-buffer))))))
+  (decpack))
+
 ;; Variable Init
 
 (setq user-full-name "Michal Atlas"
@@ -6,7 +27,7 @@
 ;;       user-mail-address "zacekmi2@fit.cvut.cz"
 
 (setq backup-directory-alist '((".*" . "~/.emacs.d/bkp")))
-(setq projectile-project-search-path (list "~/Documents" "~/source"))
+(setq projectile-project-search-path (list "~/Documents" "~/source" "~/cl"))
 (setq calendar-week-start-day 1)
 (setq org-agenda-start-on-weekday 1)
 (setq find-function-C-source-directory "~/source/emacs")
