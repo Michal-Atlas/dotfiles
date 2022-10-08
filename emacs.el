@@ -390,7 +390,7 @@
 
 (defun guix/recon/system ()
   (interactive)
-  (let ((ofl (guix/offload-y-or-n-p)))
+  (let ((offl (guix/offload-y-or-n-p)))
     (async-shell-command
      (concat "sudo guix time-machine" offl " -C " (getenv "HOME")
 	     "/dotfiles/channels.lock -- system reconfigure"
@@ -399,9 +399,10 @@
 
 (defun guix/update-locks ()
   (interactive)
-  (async-shell-command
-   (concat "guix pull && guix describe --format=channels > "
-	   (expand-file-name "~/dotfiles/channels.lock"))))
+  (let ((offl (guix/offload-y-or-n-p)))
+    (async-shell-command
+     (concat "guix pull " offl " && guix describe --format=channels > "
+	     (expand-file-name "~/dotfiles/channels.lock")))))
 
 (defun guix/patch (path)
   (interactive "f")
