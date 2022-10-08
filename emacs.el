@@ -622,3 +622,7 @@
 (org-babel-do-load-languages
  'org-babel-load-languages '((C . t)
 			     (dot . t)))
+(use-package xah-fly-mode
+  :init
+  (xah-fly-keys-set-layout "qwerty")
+  (xah-fly-keys 1))
