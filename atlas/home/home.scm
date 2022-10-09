@@ -1,5 +1,5 @@
 (define-module (atlas home home)
-  #:use-module (atlas packages home)
+  #:use-module (atlas home packages)
   #:use-module (gnu home)
   #:use-module (gnu home services)
   #:use-module (gnu home services shells)

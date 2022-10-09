@@ -1,6 +1,6 @@
 (define-module (atlas system base)
-  #:use-module (atlas packages system)
-  #:use-module (atlas services system)
+  #:use-module (atlas system packages)
+  #:use-module (atlas system services)
   #:use-module (gnu)
   #:use-module (gnu packages)
   #:use-module (gnu packages shells)
@@ -23,6 +23,8 @@
 
 (define-public atlas-system-base
   (operating-system
+   (host-name #f)
+   (file-systems #f)
    (kernel linux)
    (initrd microcode-initrd)
    (firmware (list linux-firmware))

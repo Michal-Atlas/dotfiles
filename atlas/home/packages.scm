@@ -1,4 +1,4 @@
-(define-module (atlas packages home)
+(define-module (atlas home packages)
   #:use-module (ice-9 hash-table)
   #:export (%packages-by-host))
 
@@ -32,7 +32,7 @@
 (define graphics
   '(
     "feh" "shotwell"
-    "inkscape" "gimp" "krita"
+    "inkscape" "gimp" ; "krita"
     "font-fira-code" "font-jetbrains-mono"
     "font-awesome" "font-tamzen"
     "font-sil-charis" "font-adobe-source-han-sans"

@@ -1,4 +1,4 @@
-(define-module (atlas system nanosys)
+(define-module (atlas system machines nanosys)
   #:use-module (gnu)
   #:use-module (gnu packages))
 

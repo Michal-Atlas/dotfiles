@@ -1,4 +1,4 @@
-(define-module (atlas services system)
+(define-module (atlas system services)
   #:use-module (gnu)
   #:use-module (nongnu services vpn)
   #:use-module (gnu packages cups)

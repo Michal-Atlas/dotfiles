@@ -1,4 +1,4 @@
-(define-module (atlas packages system)
+(define-module (atlas system packages)
   #:use-module (gnu packages)
   #:export (%system-desktop-manifest))
 
