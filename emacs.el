@@ -386,7 +386,8 @@
 	     " -- home reconfigure"
 	     offl" -L "
 	     (expand-file-name "~/dotfiles") " "
-	     (expand-file-name "~/dotfiles/atlas/home/home.scm")))))
+	     (expand-file-name "~/dotfiles/atlas/home/home.scm"))
+     "guix/recon/home:out" "guix/recon/home:err")))
 
 (defun guix/recon/system ()
   (interactive)
@@ -395,14 +396,16 @@
      (concat "sudo guix time-machine" offl " -C " (getenv "HOME")
 	     "/dotfiles/channels.lock -- system reconfigure"
 	     offl " -L " (expand-file-name "~/dotfiles") " "
-	     (expand-file-name (concat "~/dotfiles/atlas/system/machines/" system-name ".scm"))))))
+	     (expand-file-name (concat "~/dotfiles/atlas/system/machines/" system-name ".scm")))
+     "guix/recon/system:out" "guix/recon/system:err")))
 
 (defun guix/update-locks ()
   (interactive)
   (let ((offl (guix/offload-y-or-n-p)))
     (async-shell-command
      (concat "guix pull " offl " && guix describe --format=channels > "
-	     (expand-file-name "~/dotfiles/channels.lock")))))
+	     (expand-file-name "~/dotfiles/channels.lock"))
+     "guix/update-locks:out" "guix/update-locks:err")))
 
 (defun guix/patch (path)
   (interactive "f")
