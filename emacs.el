@@ -1,23 +1,27 @@
-(unless (executable-find "guix")
-  (defvar bootstrap-version)
-  (defvar straight-use-package-by-default t)
-  (let ((bootstrap-file
-	 (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-	(bootstrap-version 6))
-    (unless (file-exists-p bootstrap-file)
-      (with-current-buffer
-	  (url-retrieve-synchronously
-	   "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-	   'silent 'inhibit-cookies)
-	(goto-char (point-max))
-	(eval-print-last-sexp)))
-    (load bootstrap-file nil 'nomessage))
-  (defmacro decpack ()
-    `(progn ,@(mapcar (lambda (q) `(use-package ,q))
-		      (with-current-buffer (find-file-noselect "~/.emacs-pkgs")
-			(goto-char (point-min))
-			(read (current-buffer))))))
-  (decpack))
+(defvar bootstrap-version)
+(defvar straight-use-package-by-default t)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 6))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+	(url-retrieve-synchronously
+	 "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+	 'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+(straight-use-package 'use-package)
+;; (defmacro decpack ()
+;;   `(progn ,@(mapcar (lambda (q) `(use-package ,q))
+;; 		      (with-current-buffer (find-file-noselect "~/.emacs-pkgs")
+;; 			(goto-char (point-min))
+;; 			(read (current-buffer))))))
+;; (decpack)
+
+
+(straight-use-package 'org)
+(use-package hydra)
 
 ;; Variable Init
 
@@ -41,7 +45,7 @@
 (global-prettify-symbols-mode +1)
 
 (defun yes-or-no-p (prompt) (y-or-n-p prompt))
-(dired-async-mode 1)
+;(dired-async-mode 1)
 (setq auth-sources '("~/.authinfo.gpg"))
 
 ;; Scrolling
@@ -84,6 +88,7 @@
 (setq inhibit-startup-screen t)
 (global-display-line-numbers-mode)
 (global-hl-line-mode 1)
+
 
 (use-package highlight-indentation
   :hook (prog-mode . highlight-indentation-mode)
@@ -143,7 +148,7 @@
 (use-package ace-window
   :bind ("M-o" . ace-window))
 
-(guix-prettify-global-mode +1)
+;(guix-prettify-global-mode +1)
 
 
 ;; Eshell
@@ -261,21 +266,23 @@
 
 (use-package auto-complete
   :config (ac-config-default))
-(add-hook 'geiser-mode-hook 'ac-geiser-setup)
-(add-hook 'geiser-repl-mode-hook 'ac-geiser-setup)
-(add-to-list 'ac-modes' geiser-repl-mode)
+(use-package geiser-racket)
+(use-package adaptive-wrap)
+(use-package geiser-guile
+  :config
+  (add-hook 'geiser-mode-hook 'ac-geiser-setup)
+  (add-hook 'geiser-repl-mode-hook 'ac-geiser-setup)
+  (add-to-list 'ac-modes' geiser-repl-mode))
 
 (use-package slime
   :hook (common-lisp-mode slime-mode))
 ;; (use-package geiser
 ;;   :hook (scheme-mode geiser-mode))
 
-(use-package paredit-mode
+(use-package paredit
   :hook ((emacs-lisp-mode . paredit-mode)
-	 (emacs-lisp-mode . aggressive-indent-mode)
 	 (eval-expression-minibuffer-setup . paredit-mode)
-	 (scheme-mode . paredit-mode)
-	 (scheme-mode . aggressive-indent-mode)))
+	 (scheme-mode . paredit-mode)))
 
 (use-package multiple-cursors
   :bind (("C-S-c C-S-c" . mc/edit-lines)
@@ -501,7 +508,6 @@
 
 (global-set-key (kbd "C-.") #'embark-act)
 (global-set-key (kbd "C-c p") #'paredit-mode)
-(global-set-key (kbd "C-c a") #'aggressive-indent-mode)
 
 ;; EXWM
 
@@ -626,7 +632,66 @@
 (org-babel-do-load-languages
  'org-babel-load-languages '((C . t)
 			     (dot . t)))
-(use-package xah-fly-mode
-  :init
-  (xah-fly-keys-set-layout "qwerty")
-  (xah-fly-keys 1))
+;; (use-package xah-fly-keys
+  ;; :config
+  ;; (xah-fly-keys-set-layout "qwerty"))
+
+(use-package hydra)
+(use-package ac-geiser)
+(use-package all-the-icons)
+(use-package all-the-icons-dired)
+;(use-package auctex)
+(use-package calfw)
+(use-package circe)
+(use-package company)
+(use-package company-box)
+(use-package crux)
+(use-package csv)
+(use-package csv-mode)
+(use-package dashboard)
+(use-package debbugs)
+(use-package direnv)
+(use-package ediprolog)
+(use-package elfeed)
+(use-package elpher)
+(use-package embark)
+(use-package ement)
+(use-package eshell-z)
+(use-package flycheck)
+(use-package flycheck-haskell)
+(use-package frames-only-mode)
+(use-package gdscript-mode)
+(use-package guix)
+(use-package haskell-mode)
+(use-package highlight-indent-guides)
+(use-package htmlize)
+(use-package iedit)
+;(use-package irony-eldoc)
+;(use-package irony-mode)
+(use-package lsp-ui)
+(use-package magit-todos)
+(use-package monokai-theme)
+(use-package multi-term)
+(use-package nix-mode)
+(use-package on-screen)
+(use-package org-superstar)
+(use-package ox-gemini)
+(use-package parinfer)
+(use-package pdf-tools)
+(use-package pg)
+(use-package projectile)
+(use-package racket-mode)
+(use-package realgud)
+(use-package rustic)
+(use-package swiper)
+(use-package tldr)
+;(use-package vterm)
+(use-package xkcd)
+(use-package yaml-mode)
+(use-package yasnippet)
+(use-package yasnippet-snippets)
+(use-package zerodark-theme)
+(use-package gemini-mode)
+(use-package nov)
+(use-package dockerfile-mode)
+(use-package docker)
