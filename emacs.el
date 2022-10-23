@@ -30,6 +30,7 @@
 ;; (setq user-full-name "Michal Žáček"
 ;;       user-mail-address "zacekmi2@fit.cvut.cz"
 
+(set-language-environment "UTF-8")
 (setq backup-directory-alist '((".*" . "~/.emacs.d/bkp")))
 (setq projectile-project-search-path (list "~/Documents" "~/source" "~/cl"))
 (setq calendar-week-start-day 1)
@@ -695,3 +696,21 @@
 (use-package nov)
 (use-package dockerfile-mode)
 (use-package docker)
+
+(defun flatpak-run ()
+  (interactive)
+  (async-shell-command
+   (concat "flatpak run "
+	   (completing-read
+	    "Run Flatpak: "
+	    (mapcar #'(lambda (q)
+			(let ((stf
+			       (-take 2 (split-string q "\t"))))
+			  `(,(cadr stf) . ,(car stf)))
+			)
+		    (delete "" (split-string
+				(shell-command-to-string "flatpak list --app")
+				"\n")))))
+   "flatpaks"))
+
+(frames-only-mode 1)
