@@ -1,27 +1,33 @@
-(defvar bootstrap-version)
-(defvar straight-use-package-by-default t)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 6))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-	(url-retrieve-synchronously
-	 "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-	 'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-(straight-use-package 'use-package)
-;; (defmacro decpack ()
-;;   `(progn ,@(mapcar (lambda (q) `(use-package ,q))
-;; 		      (with-current-buffer (find-file-noselect "~/.emacs-pkgs")
-;; 			(goto-char (point-min))
-;; 			(read (current-buffer))))))
-;; (decpack)
+(declare-function elpaca-generate-autoloads "elpaca")
+(defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
+(defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
+(when-let ((elpaca-repo (expand-file-name "repos/elpaca/" elpaca-directory))
+           (elpaca-build (expand-file-name "elpaca/" elpaca-builds-directory))
+           (elpaca-target (if (file-exists-p elpaca-build) elpaca-build elpaca-repo))
+           (elpaca-url  "https://www.github.com/progfolio/elpaca.git")
+           ((add-to-list 'load-path elpaca-target))
+           ((not (file-exists-p elpaca-repo)))
+           (buffer (get-buffer-create "*elpaca-bootstrap*")))
+  (condition-case-unless-debug err
+      (progn
+        (unless (zerop (call-process "git" nil buffer t "clone" elpaca-url elpaca-repo))
+          (error "%s" (list (with-current-buffer buffer (buffer-string)))))
+        (byte-recompile-directory elpaca-repo 0 'force)
+        (require 'elpaca)
+        (elpaca-generate-autoloads "elpaca" elpaca-repo)
+        (kill-buffer buffer))
+    ((error)
+     (delete-directory elpaca-directory 'recursive)
+     (with-current-buffer buffer
+       (goto-char (point-max))
+       (insert (format "\n%S" err))
+       (display-buffer buffer)))))
+(require 'elpaca-autoloads)
+(add-hook 'after-init-hook #'elpaca-process-queues)
+(elpaca (elpaca :host github :repo "progfolio/elpaca"))
 
-
-(straight-use-package 'org)
-(use-package hydra)
+(elpaca use-package)
+(elpaca-use-package hydra)
 
 ;; Variable Init
 
@@ -30,7 +36,6 @@
 ;; (setq user-full-name "Michal Žáček"
 ;;       user-mail-address "zacekmi2@fit.cvut.cz"
 
-(set-language-environment "UTF-8")
 (setq backup-directory-alist '((".*" . "~/.emacs.d/bkp")))
 (setq projectile-project-search-path (list "~/Documents" "~/source" "~/cl"))
 (setq calendar-week-start-day 1)
@@ -91,10 +96,10 @@
 (global-hl-line-mode 1)
 
 
-(use-package highlight-indentation
+(elpaca-use-package highlight-indentation
   :hook (prog-mode . highlight-indentation-mode)
   :custom (highlight-indent-guides-method 'bitmap))
-(use-package solaire-mode
+(elpaca-use-package solaire-mode
   :config (solaire-global-mode +1))
 					; (set-frame-font "Fira Code-11" nil t)
 					; (add-to-list 'default-frame-alist '(font . "Fira Code-11"))
@@ -102,7 +107,7 @@
 (setq custom-file (locate-user-emacs-file "custom-vars.el"))
 (load custom-file 'noerror 'nomessage)
 
-;; (use-package mode-icons :config (mode-icons-mode 1))
+;; (elpaca-use-package mode-icons :config (mode-icons-mode 1))
 
 ;; Theme
 
@@ -118,7 +123,7 @@
 
 ;; Modeline
 
-(use-package doom-modeline :init (doom-modeline-mode 1))
+(elpaca-use-package doom-modeline :init (doom-modeline-mode 1))
 
 ;; Completion
 
@@ -130,23 +135,23 @@
 
 ;; Packages 
 
-(use-package which-key
+(elpaca-use-package which-key
   :config (which-key-mode))
 (setq which-key-popup-type 'minibuffer)
 
-(use-package rainbow-identifiers
+(elpaca-use-package rainbow-identifiers
   :hook (prog-mode . rainbow-identifiers-mode))
-(use-package rainbow-delimiters
+(elpaca-use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
 (set-default 'preview-scale-function 1.5)
 
-(use-package undo-tree
+(elpaca-use-package undo-tree
   :config (global-undo-tree-mode 1)
   (setq undo-tree-auto-save-history t)
   (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo"))))
 
-(use-package ace-window
+(elpaca-use-package ace-window
   :bind ("M-o" . ace-window))
 
 ;(guix-prettify-global-mode +1)
@@ -154,7 +159,7 @@
 
 ;; Eshell
 
-(use-package eshell-prompt-extras
+(elpaca-use-package eshell-prompt-extras
   :config
   (with-eval-after-load "esh-opt"
     (autoload 'epe-theme-lambda "eshell-prompt-extras")
@@ -172,52 +177,51 @@
 	    (require 'eshell-z)))
 
 (require 'eshell)
-(use-package eshell-syntax-highlighting
+(elpaca-use-package eshell-syntax-highlighting
   :config (eshell-syntax-highlighting-global-mode 1))
 (setq eshell-review-quick-commands nil)
 (require 'esh-module) ; require modules
 (add-to-list 'eshell-modules-list 'eshell-tramp)
-(use-package esh-autosuggest
+(elpaca-use-package esh-autosuggest
   :hook (eshell-mode . esh-autosuggest-mode))
 
 ;; LSP
 
-(use-package lsp-mode
+(elpaca-use-package lsp-mode
   :bind ("C-c c" . compile)
   :custom (lsp-keymap-prefix "C-c l")
   :hook (lsp-mode . lsp-enable-which-key-integration))
 
 (global-set-key (kbd "C-c o c") 'cfw:open-calendar-buffer)
 
-(use-package git-gutter
+(elpaca-use-package git-gutter
   :config (global-git-gutter-mode +1))
 
 ;; Persist history over Emacs restarts. Vertico sorts by history position.
-(use-package savehist
-  :init
-  (savehist-mode))
+
+;(elpaca-use-package savehist :init (savehist-mode))
 
 ;; Configure directory extension.
 
-(use-package anzu
+(elpaca-use-package anzu
   :config (global-anzu-mode +1)
   :bind (("M-%" . anzu-query-replace)
 	 ("C-M-%" . anzu-query-replace-regexp)))
 
 ;; Org-mode
 
-;; (use-package org-fragtog
+;; (elpaca-use-package org-fragtog
 ;; :hook (org-mode org-fragtog-mode))
-(use-package org-modern
+(elpaca-use-package org-modern
   :hook (org-mode . org-modern-mode))
-(use-package marginalia
+(elpaca-use-package marginalia
   :config (marginalia-mode))
 
 (setq org-agenda-files '("~/roam/todo.org"))
 
 ;; Roam
 
-(use-package org-roam
+(elpaca-use-package org-roam
   :custom
   (org-roam-directory (file-truename "~/roam/"))
   (org-roam-capture-templates
@@ -248,7 +252,7 @@
   (org-roam-db-autosync-mode)
   ;; If using org-roam-protocol
   (require 'org-roam-protocol))
-;; (use-package org-roam-ui
+;; (elpaca-use-package org-roam-ui
 ;;   :after org-roam
 ;;   ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
 ;;   ;;         a hookable mode anymore, you're advised to pick something yourself
@@ -265,27 +269,27 @@
 
 ;; Lisps
 
-(use-package auto-complete
+(elpaca-use-package auto-complete
   :config (ac-config-default))
-(use-package geiser-racket)
-(use-package adaptive-wrap)
-(use-package geiser-guile
+(elpaca-use-package geiser-racket)
+(elpaca-use-package adaptive-wrap)
+(elpaca-use-package geiser-guile
   :config
   (add-hook 'geiser-mode-hook 'ac-geiser-setup)
   (add-hook 'geiser-repl-mode-hook 'ac-geiser-setup)
   (add-to-list 'ac-modes' geiser-repl-mode))
 
-(use-package slime
+(elpaca-use-package slime
   :hook (common-lisp-mode slime-mode))
-;; (use-package geiser
+;; (elpaca-use-package geiser
 ;;   :hook (scheme-mode geiser-mode))
 
-(use-package paredit
+(elpaca-use-package paredit
   :hook ((emacs-lisp-mode . paredit-mode)
 	 (eval-expression-minibuffer-setup . paredit-mode)
 	 (scheme-mode . paredit-mode)))
 
-(use-package multiple-cursors
+(elpaca-use-package multiple-cursors
   :bind (("C-S-c C-S-c" . mc/edit-lines)
 	 ("C->" . mc/mark-next-like-this)
 	 ("C-<" . mc/mark-previous-like-this)
@@ -323,7 +327,7 @@
 
 ;; Misc
 
-(use-package magit
+(elpaca-use-package magit
   :bind (("C-c v s" . magit-stage)
 	 ("C-c v p" . magit-push)
 	 ("C-c v f" . magit-pull)
@@ -331,19 +335,19 @@
 	 ("C-x g" . magit))
   :init (if (not (boundp 'project-switch-commands)) 
 	    (setq project-switch-commands nil)))
-					; (use-package helpful
+					; (elpaca-use-package helpful
 					;   :bind (("C-h f" . helpful-function)
 					;	 ("C-h k" . helpful-key)))
 
-(use-package avy
+(elpaca-use-package avy
   :bind ("C-c q" . avy-goto-char-timer))
-(use-package browse-kill-ring
+(elpaca-use-package browse-kill-ring
   :config (browse-kill-ring-default-keybindings))
 
 
 ;; EMMS
 
-(use-package emms
+(elpaca-use-package emms
   :config
   (require 'emms-setup)
   (emms-all)
@@ -363,14 +367,14 @@
 
 ;; Thaumiel 
 
-;      (straight-use-package '(thaumiel :local-repo "thaumiel" :repo "michal_atlas/thaumiel"))
+;      (straight-elpaca-use-package '(thaumiel :local-repo "thaumiel" :repo "michal_atlas/thaumiel"))
 
 ;; Matrix
 
 
 ;; Evil
 
-;; (use-package evil
+;; (elpaca-use-package evil
 ;;   :config (evil-mode 1))
 
 (connection-local-set-profile-variables
@@ -512,7 +516,7 @@
 
 ;; EXWM
 
-;; (use-package exwm
+;; (elpaca-use-package exwm
 ;;   :custom
 ;;   (exwm-workspace-number 5)
 ;;   :bind
@@ -591,7 +595,7 @@
 
 ;; Vertico
 
-(use-package vertico
+(elpaca-use-package vertico
   :init
   (vertico-mode)
   :custom
@@ -599,14 +603,14 @@
   (vertico-resize t)
   (enable-recursive-minibuffers t))
 
-(use-package orderless
+(elpaca-use-package orderless
   :init
   (setq completion-styles '(orderless basic)
         completion-category-defaults nil
         completion-category-overrides '((file (styles partial-completion)))))
 
 (global-unset-key (kbd "C-r"))
-(use-package consult
+(elpaca-use-package consult
   :bind (("C-x b" . consult-buffer)
 	 ("C-t" . consult-goto-line)
 	 ("C-s" . consult-line)
@@ -633,69 +637,68 @@
 (org-babel-do-load-languages
  'org-babel-load-languages '((C . t)
 			     (dot . t)))
-;; (use-package xah-fly-keys
+;; (elpaca-use-package xah-fly-keys
   ;; :config
   ;; (xah-fly-keys-set-layout "qwerty"))
 
-(use-package hydra)
-(use-package ac-geiser)
-(use-package all-the-icons)
-(use-package all-the-icons-dired)
-;(use-package auctex)
-(use-package calfw)
-(use-package circe)
-(use-package company)
-(use-package company-box)
-(use-package crux)
-(use-package csv)
-(use-package csv-mode)
-(use-package dashboard)
-(use-package debbugs)
-(use-package direnv)
-(use-package ediprolog)
-(use-package elfeed)
-(use-package elpher)
-(use-package embark)
-(use-package ement)
-(use-package eshell-z)
-(use-package flycheck)
-(use-package flycheck-haskell)
-(use-package frames-only-mode)
-(use-package gdscript-mode)
-(use-package guix)
-(use-package haskell-mode)
-(use-package highlight-indent-guides)
-(use-package htmlize)
-(use-package iedit)
-;(use-package irony-eldoc)
-;(use-package irony-mode)
-(use-package lsp-ui)
-(use-package magit-todos)
-(use-package monokai-theme)
-(use-package multi-term)
-(use-package nix-mode)
-(use-package on-screen)
-(use-package org-superstar)
-(use-package ox-gemini)
-(use-package parinfer)
-(use-package pdf-tools)
-(use-package pg)
-(use-package projectile)
-(use-package racket-mode)
-(use-package realgud)
-(use-package rustic)
-(use-package swiper)
-(use-package tldr)
-;(use-package vterm)
-(use-package xkcd)
-(use-package yaml-mode)
-(use-package yasnippet)
-(use-package yasnippet-snippets)
-(use-package zerodark-theme)
-(use-package gemini-mode)
-(use-package nov)
-(use-package dockerfile-mode)
-(use-package docker)
+(elpaca-use-package ac-geiser)
+(elpaca-use-package all-the-icons)
+(elpaca-use-package all-the-icons-dired)
+;(elpaca-use-package auctex)
+(elpaca-use-package calfw)
+(elpaca-use-package circe)
+(elpaca-use-package company)
+(elpaca-use-package company-box)
+(elpaca-use-package crux)
+(elpaca-use-package csv)
+(elpaca-use-package csv-mode)
+(elpaca-use-package dashboard)
+(elpaca-use-package debbugs)
+(elpaca-use-package direnv)
+(elpaca-use-package ediprolog)
+(elpaca-use-package elfeed)
+(elpaca-use-package elpher)
+(elpaca-use-package embark)
+(elpaca-use-package ement)
+(elpaca-use-package eshell-z)
+(elpaca-use-package flycheck)
+(elpaca-use-package flycheck-haskell)
+(elpaca-use-package frames-only-mode)
+(elpaca-use-package gdscript-mode)
+(elpaca-use-package guix)
+(elpaca-use-package haskell-mode)
+(elpaca-use-package highlight-indent-guides)
+(elpaca-use-package htmlize)
+(elpaca-use-package iedit)
+;(elpaca-use-package irony-eldoc)
+;(elpaca-use-package irony-mode)
+(elpaca-use-package lsp-ui)
+(elpaca-use-package magit-todos)
+(elpaca-use-package monokai-theme)
+(elpaca-use-package multi-term)
+(elpaca-use-package nix-mode)
+(elpaca-use-package on-screen)
+(elpaca-use-package org-superstar)
+(elpaca-use-package ox-gemini)
+;(elpaca-use-package parinfer)
+(elpaca-use-package pdf-tools)
+(elpaca-use-package pg)
+(elpaca-use-package projectile)
+(elpaca-use-package racket-mode)
+(elpaca-use-package realgud)
+(elpaca-use-package rustic)
+(elpaca-use-package swiper)
+(elpaca-use-package tldr)
+;(elpaca-use-package vterm)
+(elpaca-use-package xkcd)
+(elpaca-use-package yaml-mode)
+(elpaca-use-package yasnippet)
+(elpaca-use-package yasnippet-snippets)
+(elpaca-use-package zerodark-theme)
+(elpaca-use-package gemini-mode)
+(elpaca-use-package nov)
+(elpaca-use-package dockerfile-mode)
+(elpaca-use-package docker)
 
 (defun flatpak-run ()
   (interactive)
@@ -714,3 +717,5 @@
    "flatpaks"))
 
 (frames-only-mode 1)
+(elpaca-use-package org)
+(elpaca-use-package dmenu)
