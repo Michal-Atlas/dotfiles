@@ -27,7 +27,18 @@
 (elpaca (elpaca :host github :repo "progfolio/elpaca"))
 
 (elpaca use-package)
-(elpaca-use-package hydra)
+;; Org-mode
+
+(elpaca
+ org
+ (elpaca-use-package org-fragtog
+   :hook (org-mode org-fragtog-mode))
+ (elpaca-use-package org-modern
+   :hook (org-mode . org-modern-mode))
+ (org-babel-do-load-languages
+ 'org-babel-load-languages '((C . t)
+			     (dot . t)))
+ (elpaca-use-package org-superstar))
 
 ;; Variable Init
 
@@ -185,13 +196,6 @@
 (elpaca-use-package esh-autosuggest
   :hook (eshell-mode . esh-autosuggest-mode))
 
-;; LSP
-
-(elpaca-use-package lsp-mode
-  :bind ("C-c c" . compile)
-  :custom (lsp-keymap-prefix "C-c l")
-  :hook (lsp-mode . lsp-enable-which-key-integration))
-
 (global-set-key (kbd "C-c o c") 'cfw:open-calendar-buffer)
 
 (elpaca-use-package git-gutter
@@ -208,12 +212,6 @@
   :bind (("M-%" . anzu-query-replace)
 	 ("C-M-%" . anzu-query-replace-regexp)))
 
-;; Org-mode
-
-;; (elpaca-use-package org-fragtog
-;; :hook (org-mode org-fragtog-mode))
-(elpaca-use-package org-modern
-  :hook (org-mode . org-modern-mode))
 (elpaca-use-package marginalia
   :config (marginalia-mode))
 
@@ -221,37 +219,37 @@
 
 ;; Roam
 
-(elpaca-use-package org-roam
-  :custom
-  (org-roam-directory (file-truename "~/roam/"))
-  (org-roam-capture-templates
-   '(
-     ("d" "default" plain "%?" :target
-      (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}
-  ")
-      :unnarrowed t)
-     ("p" "people" plain "%?" :target
-      (file+head "people/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}
-  ")
-      :unnarrowed t)
-     ("f" "food" plain "%?" :target
-      (file+head "food/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}
-  ")
-      :unnarrowed nil)
-     ))
-  :bind (("C-c n l" . org-roam-buffer-toggle)
-	 ("C-c n f" . org-roam-node-find)
-	 ("C-c n g" . org-roam-graph)
-	 ("C-c n i" . org-roam-node-insert)
-	 ("C-c n c" . org-roam-capture)
-	 ;; Dailies
-	 ("C-c n j" . org-roam-dailies-capture-today))
-  :config
-  ;; If you're using a vertical completion framework, you might want a more informative completion interface
-  (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
-  (org-roam-db-autosync-mode)
-  ;; If using org-roam-protocol
-  (require 'org-roam-protocol))
+;; (elpaca-use-package org-roam
+;;   :custom
+;;   (org-roam-directory (file-truename "~/roam/"))
+;;   (org-roam-capture-templates
+;;    '(
+;;      ("d" "default" plain "%?" :target
+;;       (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}
+;;   ")
+;;       :unnarrowed t)
+;;      ("p" "people" plain "%?" :target
+;;       (file+head "people/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}
+;;   ")
+;;       :unnarrowed t)
+;;      ("f" "food" plain "%?" :target
+;;       (file+head "food/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}
+;;   ")
+;;       :unnarrowed nil)
+;;      ))
+;;   :bind (("C-c n l" . org-roam-buffer-toggle)
+;; 	 ("C-c n f" . org-roam-node-find)
+;; 	 ("C-c n g" . org-roam-graph)
+;; 	 ("C-c n i" . org-roam-node-insert)
+;; 	 ("C-c n c" . org-roam-capture)
+;; 	 ;; Dailies
+;; 	 ("C-c n j" . org-roam-dailies-capture-today))
+;;   :config
+;;   ;; If you're using a vertical completion framework, you might want a more informative completion interface
+;;   (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+;;   (org-roam-db-autosync-mode)
+;;   ;; If using org-roam-protocol
+;;   (require 'org-roam-protocol))
 ;; (elpaca-use-package org-roam-ui
 ;;   :after org-roam
 ;;   ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
@@ -284,7 +282,8 @@
 ;; (elpaca-use-package geiser
 ;;   :hook (scheme-mode geiser-mode))
 
-(elpaca-use-package paredit
+(elpaca-use-package (paredit
+		     :depth nil)
   :hook ((emacs-lisp-mode . paredit-mode)
 	 (eval-expression-minibuffer-setup . paredit-mode)
 	 (scheme-mode . paredit-mode)))
@@ -484,33 +483,6 @@
 (global-set-key (kbd "s-<return>") (lambda () (interactive)
 				     (start-process-shell-command "kitty" nil "kitty")))
 
-(defhydra hydra-system (global-map "C-c s")
-  "system"
-  ("p" player/play "Play")
-  ("o" player/next "Next")
-  ("i" player/prev "Prev")
-  ("e" light/up "Br. Up")
-  ("d" light/down "Br. Down")
-  ("r" volume/up "Vol. Up")
-  ("f" volume/down "Vol. Down")
-  ("m" volume/mute "Mute"))
-
-(defhydra hydra-launcher (global-map "C-c r" :color purple :exit t)
-  "Launch"
-  ("r" (browse-url "http://www.reddit.com/r/emacs/") "reddit")
-  ("w" (browse-url "http://www.emacswiki.org/") "emacswiki")
-  ("f" (start-process-shell-command "firefox" nil "firefox") "firefox")
-  ("d" (start-process-shell-command "discord" nil "flatpak run com.discordapp.Discord") "discord")
-  ("s" shell "shell")
-  ("e" eshell "eshell")
-  ("l" (start-process-shell-command "lagrange" nil "lagrange") "lagrange")
-  ("g" guix-packages-by-name "find package")
-  ("q" nil "cancel"))
-
-(defhydra hydra-buffer (global-map "C-x")
-  ("<right>" next-buffer)
-  ("<left>" previous-buffer))
-
 (global-set-key (kbd "C-.") #'embark-act)
 (global-set-key (kbd "C-c p") #'paredit-mode)
 
@@ -634,9 +606,6 @@
   (interactive "s")
   (eww (concat "https://cheat.sh/" name)))
 
-(org-babel-do-load-languages
- 'org-babel-load-languages '((C . t)
-			     (dot . t)))
 ;; (elpaca-use-package xah-fly-keys
   ;; :config
   ;; (xah-fly-keys-set-layout "qwerty"))
@@ -653,7 +622,7 @@
 (elpaca-use-package csv)
 (elpaca-use-package csv-mode)
 (elpaca-use-package dashboard)
-(elpaca-use-package debbugs)
+;(elpaca-use-package debbugs)
 (elpaca-use-package direnv)
 (elpaca-use-package ediprolog)
 (elpaca-use-package elfeed)
@@ -663,22 +632,21 @@
 (elpaca-use-package eshell-z)
 (elpaca-use-package flycheck)
 (elpaca-use-package flycheck-haskell)
-(elpaca-use-package frames-only-mode)
+(elpaca-use-package frames-only-mode
+  :config (frames-only-mode 1))
 (elpaca-use-package gdscript-mode)
 (elpaca-use-package guix)
 (elpaca-use-package haskell-mode)
 (elpaca-use-package highlight-indent-guides)
 (elpaca-use-package htmlize)
 (elpaca-use-package iedit)
-;(elpaca-use-package irony-eldoc)
+(elpaca-use-package irony-eldoc)
 ;(elpaca-use-package irony-mode)
-(elpaca-use-package lsp-ui)
 (elpaca-use-package magit-todos)
 (elpaca-use-package monokai-theme)
 (elpaca-use-package multi-term)
 (elpaca-use-package nix-mode)
 (elpaca-use-package on-screen)
-(elpaca-use-package org-superstar)
 (elpaca-use-package ox-gemini)
 ;(elpaca-use-package parinfer)
 (elpaca-use-package pdf-tools)
@@ -689,7 +657,7 @@
 (elpaca-use-package rustic)
 (elpaca-use-package swiper)
 (elpaca-use-package tldr)
-;(elpaca-use-package vterm)
+(elpaca-use-package vterm)
 (elpaca-use-package xkcd)
 (elpaca-use-package yaml-mode)
 (elpaca-use-package yasnippet)
@@ -716,6 +684,39 @@
 				"\n")))))
    "flatpaks"))
 
-(frames-only-mode 1)
-(elpaca-use-package org)
 (elpaca-use-package dmenu)
+;; (elpaca
+;;     (hackles
+;;      :host "git.sr.ht"
+;;      :repo "~michal_atlas/emacs-hackles"))
+
+(elpaca-queue
+ (elpaca-use-package hydra)
+ (defhydra hydra-system (global-map "C-c s")
+   "system"
+   ("p" player/play "Play")
+   ("o" player/next "Next")
+   ("i" player/prev "Prev")
+   ("e" light/up "Br. Up")
+   ("d" light/down "Br. Down")
+   ("r" volume/up "Vol. Up")
+   ("f" volume/down "Vol. Down")
+   ("m" volume/mute "Mute"))
+
+ (defhydra hydra-launcher (global-map "C-c r" :color purple :exit t)
+   "Launch"
+   ("r" (browse-url "http://www.reddit.com/r/emacs/") "reddit")
+   ("w" (browse-url "http://www.emacswiki.org/") "emacswiki")
+   ("f" (start-process-shell-command "firefox" nil "firefox") "firefox")
+   ("d" (start-process-shell-command "discord" nil "flatpak run com.discordapp.Discord") "discord")
+   ("s" shell "shell")
+   ("e" eshell "eshell")
+   ("l" (start-process-shell-command "lagrange" nil "lagrange") "lagrange")
+   ("g" guix-packages-by-name "find package")
+   ("q" nil "cancel"))
+
+ (defhydra hydra-buffer (global-map "C-x")
+   ("<right>" next-buffer)
+   ("<left>" previous-buffer)))
+
+(elpaca-use-package eglot)
