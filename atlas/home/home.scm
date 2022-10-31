@@ -16,6 +16,19 @@
   #:use-module (ice-9 hash-table)
   #:use-module (guix gexp))
 
+(define environment-variables
+  `(("BROWSER" . "firefox")
+    ("EDITOR" . "emacsclient -c")
+    ("TERM" . "xterm-256color")
+    ("MOZ_ENABLE_WAYLAND" . "1")
+    ("GDK_BACKEND" . "wayland")
+    ("MOZ_USE_XINPUT2" . "1")
+    ("GRIM_DEFAULT_DIR" . "~/tmp")
+    ("_JAVA_AWT_WM_NONREPARENTING" . "1")
+    ("XDG_CURRENT_DESKTOP" . "sway")
+    ("PATH" . "$PATH:$HOME/.nix-profile/bin/")
+    ("XDG_DATA_DIRS" . "$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:/home/michal_atlas/.local/share/flatpak/exports/share")))
+
 (home-environment
  (packages
   (map (λ (f)
@@ -53,6 +66,10 @@
 		(provision '(sway))
 		(respawn? #f)
 		(start #~(make-forkexec-constructor
+			  #:environment-variables
+			  (cons* (map (λ (q) (string-append (car q) "=" (cdr q)))
+					#$ environment-variables)
+			     (default-environment-variables))
 			  (list #$(file-append sway "/bin/sway"))))
 		(stop #~(make-kill-destructor)))))))
    (service
@@ -81,8 +98,9 @@
       (".mbsyncrc" ,(local-file "../../mbsyncrc"))
       (".config/sway/config" ,(local-file "../../sway.cfg"))
       (".config/foot/foot.ini" ,(local-file "../../foot.ini"))
-      (".sbclrc" ,(local-file "../../sbclrc"))
-      (".emacs.d/eshell/alias" ,(local-file "../../eshell-alias"))))
+					;(".sbclrc" ,(local-file "../../sbclrc"))
+					;(".emacs.d/eshell/alias" ,(local-file "../../eshell-alias"))
+      ))
    (service
     home-bash-service-type
     (home-bash-configuration
@@ -99,13 +117,4 @@
 	("e" . "$EDITOR")
 	("sw" . "swayhide")))
      (environment-variables
-      `(("BROWSER" . "firefox")
-	("EDITOR" . "emacsclient")
-	("TERM" . "xterm-256color")
-	("MOZ_ENABLE_WAYLAND" . "1")
-	("MOZ_USE_XINPUT2" . "1")
-	("GRIM_DEFAULT_DIR" . "~/tmp")
-	("_JAVA_AWT_WM_NONREPARENTING" . "1")
-	("XDG_CURRENT_DESKTOP" . "sway")
-	("PATH" . "$PATH:$HOME/.nix-profile/bin/")
-	("XDG_DATA_DIRS" . "$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:/home/michal_atlas/.local/share/flatpak/exports/share"))))))))
+      environment-variables))))))

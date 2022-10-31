@@ -15,7 +15,7 @@
     ))
 (define toolchains
   '(
-    "gdb" "clang-toolchain" "rust"
+    "gdb" "clang-toolchain" "rust" "ccls"
     "cmake" "make" "recutils" "python" "python-ipython"
     "mosh"
     "sbcl" "chicken" "racket"
@@ -130,8 +130,6 @@
 "highlight-indent-guides"
 "htmlize"
 "iedit"
-"irony-eldoc"
-"irony-mode"
 "magit-todos"
 "monokai-theme"
 "multi-term"
@@ -144,7 +142,7 @@
 "projectile"
 "racket-mode"
 "realgud"
-"rustic"
+;"rustic"
 "swiper"
 "tldr"
 "vterm"
