@@ -77,7 +77,9 @@
      (guix-defaults? #t)
      (bashrc
       (list
-       (plain-file "bashrc-direnv" "eval \"$(direnv hook bash)\"")))
+       (plain-file "bashrc-direnv" "eval \"$(direnv hook bash)\"")
+       (plain-file "bashrc-ignoredups" "export HISTCONTROL=ignoredups")
+       (plain-file "bashrc-run" "function run { guix shell $1 -- $@ || nix-shell -p $1 --run $@; }")))
      (aliases
       `(("gx" . "guix")
 	("gxi" . "gx install")
