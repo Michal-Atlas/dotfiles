@@ -1,5 +1,6 @@
 (define-module (atlas home home)
   #:use-module (atlas home packages)
+  #:use-module (atlas home scripts)
   #:use-module (gnu home)
   #:use-module (gnu home services)
   #:use-module (gnu home services shells)
@@ -16,6 +17,7 @@
   #:use-module (gnu packages wm)
   #:use-module (gnu packages xdisorg)
   #:use-module (gnu packages python-xyz)
+  #:use-module (gnu packages freedesktop)
   #:use-module (gnu home services mcron)
   #:use-module (ice-9 hash-table)
   #:use-module (guix gexp))
@@ -33,6 +35,11 @@
 	    (home-shepherd-configuration
 	     (services
 	      (list
+	       (shepherd-service
+		(provision '(disk-automount))
+		(start #~(make-system-constructor
+			  #$(file-append udiskie "/bin/udiskie")))
+		(stop #~(make-kill-destructor)))
 	       (shepherd-service
 		(provision '(emacs))
 		(start #~(make-forkexec-constructor
@@ -62,15 +69,16 @@
    (simple-service
     'dotfiles
     home-files-service-type
-    `((".emacs.d/init.el" ,(local-file "../../emacs.el"))
-      (".guile" ,(local-file "../../guile"))
-      (".screenrc" ,(local-file "../../screen"))
-      (".mbsyncrc" ,(local-file "../../mbsyncrc"))
-      (".config/sway/config" ,(local-file "../../sway.cfg"))
-      (".config/foot/foot.ini" ,(local-file "../../foot.ini"))
+    (append `(
+       (".emacs.d/init.el" ,(local-file "../../emacs.el"))
+       (".guile" ,(local-file "../../guile"))
+       (".screenrc" ,(local-file "../../screen"))
+       (".mbsyncrc" ,(local-file "../../mbsyncrc"))
+       (".config/sway/config" ,(local-file "../../sway.cfg"))
+       (".config/foot/foot.ini" ,(local-file "../../foot.ini"))
 					;(".sbclrc" ,(local-file "../../sbclrc"))
 					;(".emacs.d/eshell/alias" ,(local-file "../../eshell-alias"))
-      ))
+       ) (scripts)))
    (service
     home-bash-service-type
     (home-bash-configuration
@@ -84,6 +92,7 @@
       `(("gx" . "guix")
 	("gxi" . "gx install")
 	("gxb" . "gx build")
+	("gxs" . "gx search")
 	("gxsh" . "gx shell")
 	("gxtm" . "gx time-machine")
 	("e" . "$EDITOR")
@@ -98,6 +107,7 @@
 	("_JAVA_AWT_WM_NONREPARENTING" . "1")
 	("XDG_CURRENT_DESKTOP" . "sway")
 	("PATH" . "$PATH:$HOME/.nix-profile/bin/")
+	("PATH" . "$PATH:$HOME/bin/")
 	("XDG_DATA_DIRS" . "$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:/home/michal_atlas/.local/share/flatpak/exports/share")))))
    ;(service home-fontconfig-service-type)
    (service home-channels-service-type

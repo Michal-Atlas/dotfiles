@@ -42,6 +42,9 @@
 	     (cpu-boost-on-ac? #t)
 	     (wifi-pwr-on-bat? #t)))
    (service inputattach-service-type)
+   (service qemu-binfmt-service-type
+         (qemu-binfmt-configuration
+           (platforms (lookup-qemu-platforms "arm" "aarch64" "riscv64"))))
    (zerotier-one-service)
    (service libvirt-service-type
 	    (libvirt-configuration
