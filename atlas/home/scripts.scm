@@ -7,7 +7,13 @@
 (define scripts (make-parameter '()))
 
 (define-syntax-rule (define-script name body ...)
-  (scripts (cons `(,(format #f "bin/~a" 'name) ,(program-file (symbol->string 'name) #~(begin body ...) #:guile guile-3.0-latest)) (scripts))))
+  (scripts (cons `(,(format #f "bin/guix/scripts/~a.scm" 'name)
+		   ,(program-file
+		     (symbol->string 'name)
+		     #~(begin
+			 (define-module (guix scripts #$ 'name))
+			 body ...)
+		     #:guile guile-3.0-latest)) (scripts))))
 
 (define-script test
   (display (+ 2 3)))
@@ -18,7 +24,7 @@
 (define home-config (string-append home "/dotfiles/atlas/home/home.scm"))
 (define base-config (string-append home "/dotfiles/atlas/system/base.scm"))
 
-(define-script guix-recon-home
+(define-script recon-home
   (system*
    "guix" "time-machine"
    "-C" #$channel-lock-file
@@ -26,14 +32,14 @@
    #$dotfile-dir
    #$home-config))
 
-(define-script guix-recon-system
+(define-script recon-system
   (system*
    "sudo" "guix" "time-machine" "-C" #$channel-lock-file
    "--" "system" "reconfigure" "-L"
    #$dotfile-dir
    #$base-config))
 
-(define-script guix-update-locks
+(define-script update-locks
   (system*
    "guix" "pull")
   (with-output-to-file #$channel-lock-file
@@ -42,7 +48,7 @@
 	    ((@ (ice-9 popen) open-pipe*)
 	     OPEN_READ "guix" "describe" "--format=channels"))))))
 
-(define-script guix-patch
+(define-script patch
   (use-modules (srfi srfi-26))
   (let ([target (cadr (command-line))])
    (system* "patchelf" target "--set-rpath"
