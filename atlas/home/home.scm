@@ -107,7 +107,7 @@
 	("_JAVA_AWT_WM_NONREPARENTING" . "1")
 	("XDG_CURRENT_DESKTOP" . "sway")
 	("PATH" . "$PATH:$HOME/.nix-profile/bin/")
-	("GUILE_LOAD_PATH" . "$HOME/bin")
+	("GUILE_LOAD_PATH" . "$GUILE_LOAD_PATH:$HOME/bin")
 	("XDG_DATA_DIRS" . "$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:/home/michal_atlas/.local/share/flatpak/exports/share")))))
    ;(service home-fontconfig-service-type)
    (service home-channels-service-type

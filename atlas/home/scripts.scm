@@ -1,22 +1,29 @@
 (define-module (atlas home scripts)
   #:use-module (guix gexp)
   #:use-module (srfi srfi-98)
+  #:use-module (srfi srfi-1)
   #:use-module (gnu packages guile)
   #:export (scripts))
 
 (define scripts (make-parameter '()))
 
-(define-syntax-rule (define-script name body ...)
+(define-syntax-rule (define-script name (deps ...) body ...)
   (scripts (cons `(,(format #f "bin/guix/scripts/~a.scm" 'name)
 		   ,(program-file
 		     (symbol->string 'name)
-		     #~(begin
-			 (define-module (guix scripts #$ 'name))
-			 body ...)
+		     (let ([method (symbol-append 'guix- 'name)])
+		       #~(begin
+			   (define-module (guix scripts #$ 'name)
+			     #$@(fold (lambda (q acc) (cons* #:use-module q acc)) '()
+				      '(deps ...))
+			     #:export (#$ method))
+			   (define (#$ method  . args)
+			     body ...)))
 		     #:guile guile-3.0-latest)) (scripts))))
 
-(define-script test
-  (display (+ 2 3)))
+(define-script test ()
+  (display (+ 2 3))
+  (display args))
 
 (define home (get-environment-variable "HOME"))
 (define channel-lock-file (string-append home "/dotfiles/channels.lock"))
@@ -24,7 +31,7 @@
 (define home-config (string-append home "/dotfiles/atlas/home/home.scm"))
 (define base-config (string-append home "/dotfiles/atlas/system/base.scm"))
 
-(define-script recon-home
+(define-script recon-home ()
   (system*
    "guix" "time-machine"
    "-C" #$channel-lock-file
@@ -32,7 +39,7 @@
    #$dotfile-dir
    #$home-config))
 
-(define-script recon-system
+(define-script recon-system ()
   (system*
    "sudo" "guix" "time-machine" "-C" #$channel-lock-file
    "--" "system" "reconfigure" "-L"
@@ -40,16 +47,14 @@
    #$base-config))
 
 (define-script update-locks
-  (system*
-   "guix" "pull")
+  ((guix scripts describe)
+   (guix scripts pull))
+  (guix-pull)
   (with-output-to-file #$channel-lock-file
-    (lambda () (display
-	   ((@ (ice-9 textual-ports) get-string-all)
-	    ((@ (ice-9 popen) open-pipe*)
-	     OPEN_READ "guix" "describe" "--format=channels"))))))
+    (lambda () (guix-describe "--format=channels"))))
 
 (define-script patch
-  (use-modules (srfi srfi-26))
+  ((srfi srfi-26))
   (let ([target (cadr (command-line))])
    (system* "patchelf" target "--set-rpath"
 	    (string-append
