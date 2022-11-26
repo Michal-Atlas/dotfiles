@@ -31,9 +31,9 @@
 (define home-config (string-append home "/dotfiles/atlas/home/home.scm"))
 (define base-config (string-append home "/dotfiles/atlas/system/base.scm"))
 
-(define-script recon-home ()
-  (system*
-   "guix" "time-machine"
+(define-script recon-home
+  ((guix scripts time-machine))
+  (guix-time-machine
    "-C" #$channel-lock-file
    "--" "home" "reconfigure" "-L"
    #$dotfile-dir
@@ -54,29 +54,31 @@
     (lambda () (guix-describe "--format=channels"))))
 
 (define-script patch
-  ((srfi srfi-26))
-  (let ([target (cadr (command-line))])
-   (system* "patchelf" target "--set-rpath"
-	    (string-append
-	     "\"/run/current-system/profile/lib:/home/"
-	     (getlogin)
-	     "/.guix-home/profile/lib"
-	     (apply string-append
-		    (map (cut string-append ":" <> "/lib")
-			 (string-split
+  ((srfi srfi-26) (srfi srfi-1))
+  (map (lambda (target)
+	 (system* "patchelf" target "--set-rpath"
+		  (string-append
+		   "/run/current-system/profile/lib:/home/"
+		   (getlogin)
+		   "/.guix-home/profile/lib"
+		   (apply string-append
+			  (map (cut string-append ":" <> "/lib")
+			       (drop-right (string-split
+				 ((@ (ice-9 textual-ports) get-string-all)
+				  ((@ (ice-9 popen) open-pipe*)
+				   OPEN_READ "guix" "package" "--list-profiles"))
+				 #\newline) 1)))))
+	 
+	 (system*
+	  "patchelf" target
+	  "--set-interpreter"
+	  "/run/current-system/profile/lib/ld-linux-x86-64.so.2")
+	 
+	 (display (format #t "RPATH: ~aLD: ~a"
 			  ((@ (ice-9 textual-ports) get-string-all)
 			   ((@ (ice-9 popen) open-pipe*)
-			    OPEN_READ "guix" "package" "--list-profiles"))
-			  #\newline)))
-	     "\""))
-   (system*
-    "patchelf" target
-    "--set-interpreter"
-    "\"/run/current-system/profile/lib/ld-linux-x86-64.so.2\"")
-   (display (format #t "RPATH: ~aLD: ~a"
-		    ((@ (ice-9 textual-ports) get-string-all)
-		     ((@ (ice-9 popen) open-pipe*)
-		      OPEN_READ "patchelf" target "--print-rpath"))
-		    ((@ (ice-9 textual-ports) get-string-all)
-		     ((@ (ice-9 popen) open-pipe*)
-		      OPEN_READ "patchelf" target "--print-interpreter"))))))
+			    OPEN_READ "patchelf" target "--print-rpath"))
+			  ((@ (ice-9 textual-ports) get-string-all)
+			   ((@ (ice-9 popen) open-pipe*)
+			    OPEN_READ "patchelf" target "--print-interpreter")))))
+       args))
