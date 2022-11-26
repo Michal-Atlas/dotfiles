@@ -1,0 +1,16 @@
+#!/usr/bin/env -S guix repl --
+!#
+
+(use-modules
+ (guix scripts time-machine)
+ (scripts utils))
+
+(guix-time-machine
+ "-C" #$channel-lock-file
+ "--" "system" "reconfigure" "-L"
+ dotfile-dir
+ base-config)
+
+;; Local Variables:
+;; mode: scheme
+;; End:

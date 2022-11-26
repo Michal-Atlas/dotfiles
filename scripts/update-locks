@@ -1,0 +1,14 @@
+#!/usr/bin/env -S guix repl --
+!#
+
+(use-modules (guix scripts describe)
+   (guix scripts pull)
+   (scripts utils))
+
+  (guix-pull)
+  (with-output-to-file channel-lock-file
+    (lambda () (guix-describe "--format=channels")))
+
+;; Local Variables:
+;; mode: scheme
+;; End:

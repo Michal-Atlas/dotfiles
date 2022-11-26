@@ -1,6 +1,5 @@
 (define-module (atlas home home)
   #:use-module (atlas home packages)
-  #:use-module (atlas home scripts)
   #:use-module (gnu home)
   #:use-module (gnu home services)
   #:use-module (gnu home services shells)
@@ -69,16 +68,16 @@
    (simple-service
     'dotfiles
     home-files-service-type
-    (append `(
-       (".emacs.d/init.el" ,(local-file "../../emacs.el"))
-       (".guile" ,(local-file "../../guile"))
-       (".screenrc" ,(local-file "../../screen"))
-       (".mbsyncrc" ,(local-file "../../mbsyncrc"))
-       (".config/sway/config" ,(local-file "../../sway.cfg"))
-       (".config/foot/foot.ini" ,(local-file "../../foot.ini"))
+    `(
+      (".emacs.d/init.el" ,(local-file "../../emacs.el"))
+      (".guile" ,(local-file "../../guile"))
+      (".screenrc" ,(local-file "../../screen"))
+      (".mbsyncrc" ,(local-file "../../mbsyncrc"))
+      (".config/sway/config" ,(local-file "../../sway.cfg"))
+      (".config/foot/foot.ini" ,(local-file "../../foot.ini"))
 					;(".sbclrc" ,(local-file "../../sbclrc"))
 					;(".emacs.d/eshell/alias" ,(local-file "../../eshell-alias"))
-       ) (scripts)))
+      ))
    (service
     home-bash-service-type
     (home-bash-configuration

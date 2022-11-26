@@ -1,6 +1,5 @@
 (define-module (atlas home packages)
-  #:use-module (ice-9 hash-table)
-  #:export (%packages-by-host))
+  #:use-module (ice-9 hash-table))
 
 (define shell-utils
   '(
@@ -11,7 +10,10 @@
     "xclip" "telescope" "agate"
 
     "bat" "zoxide" "exa"
-    "tealdeer"
+					;"tealdeer"
+    "password-store"
+    "pass-otp"
+    "guile-filesystem"
     ))
 (define toolchains
   '(
@@ -61,6 +63,8 @@
   (map (lambda (q) (string-append "emacs-" q))
        `("next"
 	 "use-package"
+	 "password-store"
+	 "password-store-otp"
 "org-fragtog"
 "org-modern"
 "org-superstar"
@@ -76,7 +80,6 @@
 "eshell-prompt-extras"
 "eshell-syntax-highlighting"
 "esh-autosuggest"
-"lsp-mode"
 "git-gutter"
 ;"savehist"
 "anzu"
@@ -159,6 +162,12 @@
 "eglot"
 "org"
 "hackles"
+"yasnippet-snippets"
+"consult-yasnippet"
+"yasnippet"
+"tramp"
+"ssh-agency"
+"password-generator"
 	 )))
 (define desktop
   '(
@@ -168,7 +177,7 @@
     "wl-clipboard" "lagrange"
     "grim" "slurp" "foot"
     "nautilus" "gvfs" "youtube-dl" "okular" "pulseaudio"
-    "wob" "font-iosevka"
+    "wob" "font-iosevka" "browserpass-native"
     ))
 (define big-games
   '(
@@ -178,7 +187,7 @@
     "marble-marcher" "arx-libertatis"
     ))
 
-(define %packages-by-host
+(define-public %packages-by-host
   (alist->hash-table
    `(("dagon" . ,(append shell-utils toolchains multimedia graphics e-mail emacs+xyz desktop))
      ("hydra" . ,(append shell-utils toolchains multimedia graphics e-mail emacs+xyz desktop)))))
