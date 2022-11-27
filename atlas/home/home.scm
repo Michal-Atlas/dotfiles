@@ -154,6 +154,6 @@
 			     (extra-content "  ControlMaster auto")))
 			  '("1" "2")))
 		    )
-	     (authorized-keys (list (local-file "../../../keys/hydra.pub")
-				    (local-file "../../../keys/dagon.pub")))))
+	     (authorized-keys (list (local-file "../../keys/hydra.pub")
+				    (local-file "../../keys/dagon.pub")))))
    )))
