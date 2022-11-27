@@ -3,7 +3,7 @@
 
 (use-modules (guix scripts describe)
    (guix scripts pull)
-   (scripts utils))
+   (scripts config))
 
   (guix-pull)
   (with-output-to-file channel-lock-file

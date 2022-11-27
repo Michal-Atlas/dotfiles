@@ -1,7 +1,7 @@
 #!/usr/bin/env -S guix repl --
 !#
 (use-modules (guix scripts time-machine)
-(scripts utils))
+	     (scripts config))
 
 (guix-time-machine
    "-C" channel-lock-file

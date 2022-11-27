@@ -1,15 +1,16 @@
 #!/usr/bin/env -S guix repl --
 !#
 
+(add-to-load-path (getcwd))
 (use-modules
  (guix scripts time-machine)
- (scripts utils))
+ (scripts config))
 
 (guix-time-machine
- "-C" #$channel-lock-file
+ "-C" channel-lock-file
  "--" "system" "reconfigure" "-L"
  dotfile-dir
- base-config)
+ system-config)
 
 ;; Local Variables:
 ;; mode: scheme
