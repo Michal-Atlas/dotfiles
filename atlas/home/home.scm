@@ -36,8 +36,8 @@
 	      (list
 	       (shepherd-service
 		(provision '(disk-automount))
-		(start #~(make-system-constructor
-			  #$(file-append udiskie "/bin/udiskie")))
+		(start #~(make-forkexec-constructor
+			  (list #$(file-append udiskie "/bin/udiskie"))))
 		(stop #~(make-kill-destructor)))
 	       (shepherd-service
 		(provision '(emacs))
