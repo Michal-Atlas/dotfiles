@@ -60,47 +60,6 @@
      (targets `("/boot/efi"))))
    (name-service-switch %mdns-host-lookup-nss)))
 
-(operating-system
- (inherit atlas-system-base)
- (host-name "dagon")
- (mapped-devices
-  (list (mapped-device
-	 (source
-	  (uuid "24276371-36b5-4d74-8376-8fc0b32f86cf"))
-	 (target "cryptroot")
-	 (type luks-device-mapping))))
- (file-systems (cons*
-	 	(file-system
-		 (mount-point "/boot/efi")
-		 (device (uuid "317C-0555" 'fat32))
-		 (type "vfat"))
-		(file-system
-		 (mount-point "/")
-		 (device "/dev/mapper/cryptroot")
-		 (type "btrfs")
-		 (dependencies mapped-devices))
-		;; (file-system
-		;;  (mount-point "/boot/efi")
-		;;  (type "vfat")
-		;;  (device (file-system-label "EFI")))
-		;; (file-system
-		;;  (mount-point "/")
-		;;  (type "ext4")
-		;;  (device (file-system-label "guix")))
-		;; CTU
-		;; (file-system
-		;;  (device "//drive.fit.cvut.cz/home/zacekmi2")
-		;;  (mount-point "/fit")
-		;;  (title 'fit-cifs)
-		;;  (options "sec=ntlmv2i,fsc,file_mode=0700,dir_mode=0700,uid=1000,user=zacekmi2")
-		;;  (type "cifs")
-		;;  (mount? #f)
-		;;  (create-mount-point? #t))
-		%base-file-systems))
- (swap-devices
-  (list (swap-space
-	 (target (uuid "6d46a910-394b-45e0-8a41-1e9f716c3864"))))))
-
 (define dagon
   (operating-system
  (inherit atlas-system-base)
@@ -143,4 +102,48 @@
   (list (swap-space
 	 (target (uuid "6d46a910-394b-45e0-8a41-1e9f716c3864")))))))
 
-dagon
+(define hydra
+  (operating-system
+ (inherit atlas-system-base)
+ (host-name "hydra")
+ (mapped-devices
+  (list (mapped-device
+	 (source
+	  (uuid "736b8145-cb48-4581-84a5-55bfe47b5d6d"))
+	 (target "cryptroot")
+	 (type luks-device-mapping))))
+ (file-systems (cons*
+	 	(file-system
+		 (mount-point "/boot/efi")
+		 (device (uuid "D7BD-12CE" 'fat32))
+		 (type "vfat"))
+		(file-system
+		 (mount-point "/")
+		 (device "/dev/mapper/cryptroot")
+		 (type "btrfs")
+		 (dependencies mapped-devices))
+		;; (file-system
+		;;  (mount-point "/boot/efi")
+		;;  (type "vfat")
+		;;  (device (file-system-label "EFI")))
+		;; (file-system
+		;;  (mount-point "/")
+		;;  (type "ext4")
+		;;  (device (file-system-label "guix")))
+		;; CTU
+		;; (file-system
+		;;  (device "//drive.fit.cvut.cz/home/zacekmi2")
+		;;  (mount-point "/fit")
+		;;  (title 'fit-cifs)
+		;;  (options "sec=ntlmv2i,fsc,file_mode=0700,dir_mode=0700,uid=1000,user=zacekmi2")
+		;;  (type "cifs")
+		;;  (mount? #f)
+		;;  (create-mount-point? #t))
+		%base-file-systems))
+ (swap-devices
+  (list (swap-space
+	 (target (uuid "e85e8826-9652-4e93-a135-5645ea1558fb")))))))
+
+(assoc (vector-ref (uname) 1)
+       `(("dagon" . dagon)
+	 ("hydra" . hydra)))
