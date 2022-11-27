@@ -353,58 +353,6 @@
  `(:application tramp :protocol "sudo" :machine ,(system-name))
  'guix-system)
 
-(defun guix/offload-y-or-n-p ()
-  (if (y-or-n-p "Enable offloads?") "" " --no-offload "))
-
-(defun guix/recon/home ()
-  (interactive)
-  (let ((offl (guix/offload-y-or-n-p)))
-    (async-shell-command
-     (concat "guix time-machine"
-	     offl
-	     " -C " (expand-file-name "~/dotfiles/channels.lock")
-	     " -- home reconfigure"
-	     offl" -L "
-	     (expand-file-name "~/dotfiles") " "
-	     (expand-file-name "~/dotfiles/atlas/home/home.scm"))
-     "guix/recon/home:out" "guix/recon/home:err")))
-
-(defun guix/recon/system ()
-  (interactive)
-  (let ((offl (guix/offload-y-or-n-p)))
-    (async-shell-command
-     (concat "sudo guix time-machine" offl " -C " (getenv "HOME")
-	     "/dotfiles/channels.lock -- system reconfigure"
-	     offl " -L " (expand-file-name "~/dotfiles") " "
-	     (expand-file-name (concat "~/dotfiles/atlas/system/machines/" system-name ".scm")))
-     "guix/recon/system:out" "guix/recon/system:err")))
-
-(defun guix/update-locks ()
-  (interactive)
-  (let ((offl (guix/offload-y-or-n-p)))
-    (async-shell-command
-     (concat "guix pull " offl " && guix describe --format=channels > "
-	     (expand-file-name "~/dotfiles/channels.lock"))
-     "guix/update-locks:out" "guix/update-locks:err")))
-
-(defun guix/patch (path)
-  (interactive "f")
-  (shell-command (concat "patchelf " path " --set-rpath "
-			 "\"/run/current-system/profile/lib:/home/"
-			 (getenv "USER")
-			 "/.guix-home/profile/lib"
-			 (apply #'concat
-				(mapcar (lambda (x) (concat ":" x "/lib"))
-					(split-string
-			 		 (shell-command-to-string "guix package --list-profiles"))))
-			 "\""))
-  (shell-command (concat
-		  "patchelf " path
-		  " --set-interpreter \"/run/current-system/profile/lib/ld-linux-x86-64.so.2\""))
-  (message (format "RPATH: %sLD: %s"
-		   (shell-command-to-string (concat "patchelf " path " --print-rpath"))
-		   (shell-command-to-string (concat "patchelf " path " --print-interpreter")))))
-
 (defun light/up ()
   (interactive)
   (shell-command "light -A 10")
