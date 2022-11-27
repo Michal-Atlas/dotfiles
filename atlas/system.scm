@@ -127,6 +127,7 @@
   (list (swap-space
 	 (target (uuid "e85e8826-9652-4e93-a135-5645ea1558fb")))))))
 
-(assoc (vector-ref (uname) 1)
+(assoc-ref
        `(("dagon" . ,dagon)
-	 ("hydra" . ,hydra)))
+	 ("hydra" . ,hydra))
+        (vector-ref (uname) 1))
