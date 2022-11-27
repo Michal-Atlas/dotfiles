@@ -80,23 +80,6 @@
 		 (device "/dev/mapper/cryptroot")
 		 (type "btrfs")
 		 (dependencies mapped-devices))
-		;; (file-system
-		;;  (mount-point "/boot/efi")
-		;;  (type "vfat")
-		;;  (device (file-system-label "EFI")))
-		;; (file-system
-		;;  (mount-point "/")
-		;;  (type "ext4")
-		;;  (device (file-system-label "guix")))
-		;; CTU
-		;; (file-system
-		;;  (device "//drive.fit.cvut.cz/home/zacekmi2")
-		;;  (mount-point "/fit")
-		;;  (title 'fit-cifs)
-		;;  (options "sec=ntlmv2i,fsc,file_mode=0700,dir_mode=0700,uid=1000,user=zacekmi2")
-		;;  (type "cifs")
-		;;  (mount? #f)
-		;;  (create-mount-point? #t))
 		%base-file-systems))
  (swap-devices
   (list (swap-space
@@ -145,5 +128,5 @@
 	 (target (uuid "e85e8826-9652-4e93-a135-5645ea1558fb")))))))
 
 (assoc (vector-ref (uname) 1)
-       `(("dagon" . dagon)
-	 ("hydra" . hydra)))
+       `(("dagon" . ,dagon)
+	 ("hydra" . ,hydra)))
