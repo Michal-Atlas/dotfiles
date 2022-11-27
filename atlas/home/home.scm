@@ -153,5 +153,7 @@
 			     (accepted-key-types (list "+ssh-rsa"))
 			     (extra-content "  ControlMaster auto")))
 			  '("1" "2")))
-		      )))
+		    )
+	     (authorized-keys (list (local-file "../../../keys/hydra.pub")
+				    (local-file "../../../keys/dagon.pub")))))
    )))
