@@ -349,6 +349,10 @@
  'guix-system
  '((tramp-remote-path . (tramp-own-remote-path))))
 
+(setq tramp-remote-path
+      (append tramp-remote-path
+              '(tramp-own-remote-path)))
+
 (connection-local-set-profiles
  `(:application tramp :protocol "sudo" :machine ,(system-name))
  'guix-system)
