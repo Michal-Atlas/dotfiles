@@ -3,24 +3,46 @@
         (url "https://git.savannah.gnu.org/git/guix.git")
         (branch "master")
         (commit
-          "14afaa5381b1185bf9e3701ff09c5bab12dacfab")
+          "26e1f39888eaf2723353f20950d936d102c6bd6a")
         (introduction
           (make-channel-introduction
             "9edb3f66fd807b096b48283debdcddccfea34bad"
             (openpgp-fingerprint
               "BBB0 2DDF 2CEA F6A8 0D1D  E643 A2A0 6DF2 A33A 54FA"))))
       (channel
+        (name 'emacs)
+        (url "https://github.com/babariviere/guix-emacs")
+        (branch "master")
+        (commit
+          "dbca20c72d22323881bbfe9589f5b69350f17b16")
+        (introduction
+          (make-channel-introduction
+            "72ca4ef5b572fea10a4589c37264fa35d4564783"
+            (openpgp-fingerprint
+              "261C A284 3452 FB01 F6DF  6CF4 F9B7 864F 2AB4 6F18"))))
+      (channel
+        (name 'guix-gaming-games)
+        (url "https://gitlab.com/guix-gaming-channels/games.git")
+        (branch "master")
+        (commit
+          "f4d3dea3584fbeb73dccf23b94b3c0e9fc7e78f8")
+        (introduction
+          (make-channel-introduction
+            "c23d64f1b8cc086659f8781b27ab6c7314c5cca5"
+            (openpgp-fingerprint
+              "50F3 3E2E 5B0C 3D90 0424  ABE8 9BDC F497 A4BB CC7F"))))
+      (channel
         (name 'atlas)
         (url "https://git.sr.ht/~michal_atlas/guix-channel")
         (branch "master")
         (commit
-          "3de442e8e833e87acc3ca1973bd66175cb46094f"))
+          "10f0a6f81577f3cf987992333c6473d6ead5268a"))
       (channel
         (name 'guixrus)
         (url "https://git.sr.ht/~whereiseveryone/guixrus")
         (branch "master")
         (commit
-          "94cb4126275e76989ac97c43cd6956d47c528ca3")
+          "d37fe3b22497f1eedaf01ed405bdfe48d233137e")
         (introduction
           (make-channel-introduction
             "7c67c3a9f299517bfc4ce8235628657898dd26b2"
@@ -31,7 +53,7 @@
         (url "https://gitlab.com/nonguix/nonguix")
         (branch "master")
         (commit
-          "174eded3dc6ee9edc0d7f213fa9d225d7dc473f2")
+          "2e166ea5d25f2d8dbcf10c87b7d4aa74f3274754")
         (introduction
           (make-channel-introduction
             "897c1a470da759236cc11798f4e0a5f7d4d59fbc"
