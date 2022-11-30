@@ -134,12 +134,19 @@
 	     (channel
               (name 'guix-gaming-games)
               (url "https://gitlab.com/guix-gaming-channels/games.git")
-              ;; Enable signature verification:
               (introduction
                (make-channel-introduction
 		"c23d64f1b8cc086659f8781b27ab6c7314c5cca5"
 		(openpgp-fingerprint
 		 "50F3 3E2E 5B0C 3D90 0424  ABE8 9BDC F497 A4BB CC7F"))))
+	     (channel
+	      (name 'emacs)
+	      (url "https://github.com/babariviere/guix-emacs")
+	      (introduction
+	       (make-channel-introduction
+		"72ca4ef5b572fea10a4589c37264fa35d4564783"
+		(openpgp-fingerprint
+		 "261C A284 3452 FB01 F6DF  6CF4 F9B7 864F 2AB4 6F18"))))
 	     %default-channels))
    (service home-openssh-service-type
 	    (home-openssh-configuration
