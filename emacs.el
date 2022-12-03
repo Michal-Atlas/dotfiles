@@ -78,8 +78,6 @@
 (use-package highlight-indentation
   :hook (prog-mode . highlight-indentation-mode)
   :custom (highlight-indent-guides-method 'bitmap))
-(use-package solaire-mode
-  :config (solaire-global-mode +1))
 					; (set-frame-font "Fira Code-11" nil t)
 					; (add-to-list 'default-frame-alist '(font . "Fira Code-11"))
 

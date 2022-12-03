@@ -42,7 +42,7 @@
 	       (shepherd-service
 		(provision '(emacs))
 		(start #~(make-forkexec-constructor
-			  (list #$(file-append emacs-next "/bin/emacs") "--fg-daemon")
+			  (list #$(file-append emacs "/bin/emacs") "--fg-daemon")
 			  #:environment-variables
 			  (cons*
 			   "GDK_SCALE=2"
