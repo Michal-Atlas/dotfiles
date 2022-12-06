@@ -86,7 +86,8 @@
       (list
        (plain-file "bashrc-direnv" "eval \"$(direnv hook bash)\"")
        (plain-file "bashrc-ignoredups" "export HISTCONTROL=ignoredups")
-       (plain-file "bashrc-run" "function run { guix shell $1 -- $@ || nix-shell -p $1 --run $@; }")))
+       (plain-file "bashrc-run" "function run { guix shell $1 -- $@; }")
+       (plain-file "bashrc-valgrind" "alias valgrind=\"guix shell -CF valgrind -- valgrind \"")))
      (aliases
       `(("gx" . "guix")
 	("gxi" . "gx install")
