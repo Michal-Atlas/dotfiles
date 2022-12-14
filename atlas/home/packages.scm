@@ -8,7 +8,7 @@
     "pandoc" "direnv"
     "vim" "zsh" "git" ("git" "send-email") "htop"
     "xclip" "telescope" "agate"
-
+    "fasd"
     "bat" "zoxide" "exa"
 					;"tealdeer"
     "password-store"
