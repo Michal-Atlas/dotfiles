@@ -8,24 +8,25 @@
 
 
 (use-service-modules
+ admin
+ audio
+ cups
+ databases
  desktop
- networking
  docker
- ssh
- xorg
+ file-sharing
+ linux
+ mcron
+ networking
+ nix
  pm
  sddm
- mcron
- nix
  shepherd
+ ssh
+ syncthing
  virtualization
- admin
  vpn
- audio
- databases
- cups
- linux
- syncthing)
+ xorg)
 
 (define-public %system-services-manifest
   (cons*
