@@ -65,9 +65,13 @@
 	    (guix-publish-configuration
 	     (host "0.0.0.0")
 	     (advertise? #t)))
+   (service transmission-daemon-service-type
+	    (transmission-daemon-configuration
+	     (rpc-bind-address "127.0.0.1")
+	     (ratio-limit-enabled? #t)))
    #;(service mpd-service-type
-   (mpd-configuration
-   (user "michal_atlas")
+   (mpd-configuration			;
+   (user "michal_atlas")		;
    (music-dir "~/music")))
    ;; (service postgresql-service-type)
    (service nix-service-type)
