@@ -14,10 +14,13 @@
     "password-store"
     "pass-otp"
     "guile-filesystem"
+    "transmission-remote-gtk"
+    "transmission"
+    "pkg-config"
     ))
 (define toolchains
   '(
-    "gdb" "clang-toolchain" "rust" "ccls"
+    "gdb" "clang-toolchain" "go" "ccls"
     "cmake" "make" "recutils" "python" "python-ipython"
     "mosh"
     "sbcl" "chicken" "racket"
@@ -62,7 +65,7 @@
 (define emacs+xyz
   (cons "emacs"
    (map (lambda (q) (string-append "emacs-" q))
-	`(
+	`("go-mode" "gore-mode"
 	  "use-package"
 	  "password-store"
 	  "password-store-otp"
