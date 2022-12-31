@@ -1,13 +1,17 @@
-#!/usr/bin/env -S guix repl --
+#! /bin/sh
+# -*- mode: scheme; coding: utf-8 -*-
+exec guix repl -- "$0" "$@"
 !#
+
 (use-modules (guix scripts time-machine)
 	     (scripts config))
 
-(guix-time-machine
-   "-C" channel-lock-file
-   "--" "home" "reconfigure" "-L"
-   dotfile-dir
-   home-config)
+(apply guix-time-machine
+       "-C" channel-lock-file
+       "--" "home" "reconfigure" "-L"
+       dotfile-dir
+       home-config
+       (cdr (command-line)))
 
 ;; Local Variables:
 ;; mode: scheme

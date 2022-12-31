@@ -1,4 +1,6 @@
-#!/usr/bin/env -S guix repl --
+#! /bin/sh
+# -*- mode: scheme; coding: utf-8 -*-
+exec guix repl -- "$0" "$@"
 !#
 
 (add-to-load-path (getcwd))
@@ -6,11 +8,12 @@
  (guix scripts time-machine)
  (scripts config))
 
-(guix-time-machine
- "-C" channel-lock-file
- "--" "system" "reconfigure" "-L"
- dotfile-dir
- system-config)
+(apply guix-time-machine
+       "-C" channel-lock-file
+       "--" "system" "reconfigure" "-L"
+       dotfile-dir
+       system-config
+       (cdr (command-line)))
 
 ;; Local Variables:
 ;; mode: scheme
