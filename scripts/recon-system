@@ -9,11 +9,11 @@ exec guix repl -- "$0" "$@"
  (scripts config))
 
 (apply guix-time-machine
-       "-C" channel-lock-file
-       "--" "system" "reconfigure" "-L"
-       dotfile-dir
-       system-config
-       (cdr (command-line)))
+       `("-C" ,channel-lock-file ,@(cdr (command-line))
+	 "--" "system" "reconfigure" "-L"
+	 ,dotfile-dir
+	 ,system-config
+	 ,@(cdr (command-line))))
 
 ;; Local Variables:
 ;; mode: scheme
