@@ -65,7 +65,7 @@
 (define emacs+xyz
   (cons "emacs"
    (map (lambda (q) (string-append "emacs-" q))
-	`("go-mode" "gore-mode"
+	`("go-mode"
 	  "use-package"
 	  "password-store"
 	  "password-store-otp"
