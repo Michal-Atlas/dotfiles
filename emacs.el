@@ -529,8 +529,8 @@
   ;; :config
   ;; (xah-fly-keys-set-layout "qwerty"))
 
-(use-package frames-only-mode
-  :config (frames-only-mode 1))
+;; (use-package frames-only-mode
+;;   :config (frames-only-mode 1))
 
 (defun flatpak-run ()
   (interactive)
