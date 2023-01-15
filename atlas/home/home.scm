@@ -88,7 +88,8 @@
        (plain-file "bashrc-ignoredups" "export HISTCONTROL=ignoredups")
        (plain-file "bashrc-run" "function run { guix shell $1 -- $@; }")
        (plain-file "bashrc-valgrind" "alias valgrind=\"guix shell -CF valgrind -- valgrind \"")
-       (plain-file "bashrc-fasd" "eval \"$(fasd --init auto)\"")))
+       (plain-file "bashrc-fasd" "eval \"$(fasd --init auto)\"")
+       (plain-file "bashrc-cheat" "function cheat { curl \"cheat.sh/$@\"; }")))
      (aliases
       `(("gx" . "guix")
 	("gxi" . "gx install")
