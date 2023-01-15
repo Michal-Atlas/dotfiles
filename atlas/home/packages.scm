@@ -65,7 +65,11 @@
 (define emacs+xyz
   (cons "emacs"
    (map (lambda (q) (string-append "emacs-" q))
-	`("go-mode"
+	`("org-roam"
+	  "org-roam-ui"
+	  "consult-org-roam"
+					;	  "org-roam-timestamps"
+	  "go-mode"
 	  "use-package"
 	  "password-store"
 	  "password-store-otp"

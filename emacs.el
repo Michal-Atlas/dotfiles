@@ -17,6 +17,8 @@
 
 (setq backup-directory-alist '((".*" . "~/.emacs.d/bkp")))
 (setq projectile-project-search-path (list "~/Documents" "~/source" "~/cl"))
+(setq org-roam-directory "/home/michal_atlas/roam")
+(setq enable-local-variables :all)
 (setq calendar-week-start-day 1)
 (setq org-agenda-start-on-weekday 1)
 (setq find-function-C-source-directory "~/source/emacs")
