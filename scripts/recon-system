@@ -3,6 +3,10 @@
 exec guix repl -- "$0" "$@"
 !#
 
+(when (not (= 0 (getuid)))
+  (format #t "Please run as root.~%")
+  (exit))
+
 (add-to-load-path (getcwd))
 (use-modules
  (guix scripts time-machine)
