@@ -90,6 +90,10 @@
        (plain-file "bashrc-valgrind" "alias valgrind=\"guix shell -CF valgrind -- valgrind \"")
        (plain-file "bashrc-fasd" "eval \"$(fasd --init auto)\"")
        (plain-file "bashrc-cheat" "function cheat { curl \"cheat.sh/$@\"; }")))
+     (bash-profile
+      (list
+       (plain-file "bash-profile-sway" "# If running from tty1 start sway
+[ \"$(tty)\" = \"/dev/tty1\" ] && exec sway")))
      (aliases
       `(("gx" . "guix")
 	("gxi" . "gx install")
