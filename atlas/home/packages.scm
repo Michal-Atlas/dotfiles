@@ -44,11 +44,13 @@
     "font-wqy-zenhei" "font-wqy-microhei"
     "gparted"
     "xrandr" "arandr"
-    ; "texlive"
     "graphviz" "xdot"
     "xdotool" "tree"
     "bc" "unzip"
     ))
+(define latex
+  '("texlive"
+    "texlive-tcolorbox"))
 (define games
   '(
     "lgogdownloader"
@@ -69,6 +71,7 @@
 	  "org-roam-ui"
 	  "consult-org-roam"
 					;	  "org-roam-timestamps"
+	  "engrave-faces"
 	  "go-mode"
 	  "use-package"
 	  "password-store"
