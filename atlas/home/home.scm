@@ -17,6 +17,7 @@
   #:use-module (gnu packages xdisorg)
   #:use-module (gnu packages python-xyz)
   #:use-module (gnu packages freedesktop)
+  #:use-module (gnu services xorg)
   #:use-module (gnu home services mcron)
   #:use-module (ice-9 hash-table)
   #:use-module (guix gexp))
@@ -40,6 +41,7 @@
 			  (list #$(file-append udiskie "/bin/udiskie"))))
 		(stop #~(make-kill-destructor)))
 	       (shepherd-service
+		(auto-start? #f)
 		(provision '(emacs))
 		(start #~(make-forkexec-constructor
 			  (list #$(file-append emacs "/bin/emacs") "--fg-daemon")
@@ -68,16 +70,18 @@
    (simple-service
     'dotfiles
     home-files-service-type
-    `(
-      (".emacs.d/init.el" ,(local-file "../../emacs.el"))
+    `((".emacs.d/init.el" ,(local-file "../../emacs.el"))
       (".guile" ,(local-file "../../guile"))
       (".screenrc" ,(local-file "../../screen"))
-      (".mbsyncrc" ,(local-file "../../mbsyncrc"))
-      (".config/sway/config" ,(local-file "../../sway.cfg"))
-      (".config/foot/foot.ini" ,(local-file "../../foot.ini"))
+      (".mbsyncrc" ,(local-file "../../mbsyncrc"))))
+   (simple-service
+    'dotfiles-xdg
+    home-xdg-configuration-files-service-type
+    `(("sway/config" ,(local-file "../../sway.cfg"))
+      ("foot/foot.ini" ,(local-file "../../foot.ini"))))
 					;(".sbclrc" ,(local-file "../../sbclrc"))
 					;(".emacs.d/eshell/alias" ,(local-file "../../eshell-alias"))
-      ))
+      
    (service
     home-bash-service-type
     (home-bash-configuration
@@ -90,10 +94,6 @@
        (plain-file "bashrc-valgrind" "alias valgrind=\"guix shell -CF valgrind -- valgrind \"")
        (plain-file "bashrc-fasd" "eval \"$(fasd --init auto)\"")
        (plain-file "bashrc-cheat" "function cheat { curl \"cheat.sh/$@\"; }")))
-     (bash-profile
-      (list
-       (plain-file "bash-profile-sway" "# If running from tty1 start sway
-[ \"$(tty)\" = \"/dev/tty1\" ] && exec sway")))
      (aliases
       `(("gx" . "guix")
 	("gxi" . "gx install")
@@ -115,7 +115,6 @@
 	("PATH" . "$PATH:$HOME/.nix-profile/bin/")
 	("GUILE_LOAD_PATH" . "$GUILE_LOAD_PATH:$HOME/bin")
 	("XDG_DATA_DIRS" . "$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:/home/michal_atlas/.local/share/flatpak/exports/share")))))
-   ;(service home-fontconfig-service-type)
    (service home-channels-service-type
 	    (cons*
 	     (channel
