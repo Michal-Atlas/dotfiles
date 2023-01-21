@@ -182,7 +182,9 @@
 	  "password-generator"
 	  ))))
 (define desktop
-  '(
+  '("fontconfig" "font-ghostscript" "font-dejavu" "font-gnu-freefont"
+    "font-adobe-source-han-sans" "font-wqy-zenhei"
+    "guix-icons" "breeze-icons" "oxygen-icons"
     "i3-autotiling"
     "blueman" "pasystray" "xss-lock"
     "bemenu" "sway" "swayidle" "swaybg" "swayhide"

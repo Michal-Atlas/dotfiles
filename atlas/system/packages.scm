@@ -7,6 +7,9 @@
     "nvi" "patchelf"
     
     ;; DE
+    "fontconfig" "font-ghostscript" "font-dejavu" "font-gnu-freefont"
+    "font-adobe-source-han-sans" "font-wqy-zenhei"
+    "guix-icons" "breeze-icons" "oxygen-icons"
     "xnotify" "brightnessctl" "pamixer" "playerctl"
     "firefox" "xscreensaver" "gparted"
     "nautilus" "gvfs" "samba"
