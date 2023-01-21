@@ -37,7 +37,6 @@
    ;;(service gnome-desktop-service-type)
    (service gpm-service-type)
    (service docker-service-type)
-   (screen-locker-service swaylock "swaylock")
    (service tlp-service-type
 	    (tlp-configuration
 	     (cpu-boost-on-ac? #t)
@@ -82,7 +81,30 @@
    (bluetooth-service #:auto-enable? #f)
    (modify-services
     %desktop-services
-    (delete gdm-service-type)
+    ;; (delete gdm-service-type)
+    (gdm-service-type
+     config =>
+     (gdm-configuration
+      (auto-login? #t)
+      (default-user "michal_atlas")
+      (wayland? #t)
+      (xorg-configuration
+       (xorg-configuration
+	(extra-config (list "# Touchpad
+Section \"InputClass\"
+Identifier \"touchpad\"
+        Driver \"libinput\"
+MatchIsTouchpad \"on\"
+Option \"DisableWhileTyping\" \"on\"
+Option \"Tapping\" \"1\"
+Option \"NaturalScrolling\" \"1\"
+Option \"Emulate3Buttons\" \"yes\"
+EndSection
+# Touchpad:1 ends here"))
+	(keyboard-layout
+	 (keyboard-layout "us,cz" ",ucw" #:options
+			  '("grp:caps_switch" #;"ctrl:nocaps" "grp_led"
+			    "lv3:ralt_switch" "compose:rctrl-altgr")))))))
     (guix-service-type
      config =>
      (guix-configuration
