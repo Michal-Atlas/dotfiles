@@ -3,7 +3,7 @@
         (url "https://git.savannah.gnu.org/git/guix.git")
         (branch "master")
         (commit
-          "8e883dc8210d4a7c3f09961994685ed54942fd73")
+          "eb5e0f2865fb837f3de00bd3aaec4ac636b2dd25")
         (introduction
           (make-channel-introduction
             "9edb3f66fd807b096b48283debdcddccfea34bad"
@@ -14,7 +14,7 @@
         (url "https://gitlab.com/guix-gaming-channels/games.git")
         (branch "master")
         (commit
-          "f4d3dea3584fbeb73dccf23b94b3c0e9fc7e78f8")
+          "e87c83788aaf07aab054d64aaf9e0605e3d588b7")
         (introduction
           (make-channel-introduction
             "c23d64f1b8cc086659f8781b27ab6c7314c5cca5"
@@ -31,7 +31,7 @@
         (url "https://git.sr.ht/~whereiseveryone/guixrus")
         (branch "master")
         (commit
-          "b72dbabc2c40122609fd92b4c52bdf8ae9e16426")
+          "f084697a6722bd6121d03f7c561f621e1c5a56cf")
         (introduction
           (make-channel-introduction
             "7c67c3a9f299517bfc4ce8235628657898dd26b2"
@@ -42,7 +42,7 @@
         (url "https://gitlab.com/nonguix/nonguix")
         (branch "master")
         (commit
-          "ee2826e22be82ebd624b4daeadc6de97eaa69d02")
+          "748ec7f8d3f86d27e3bad50987771200230e49be")
         (introduction
           (make-channel-introduction
             "897c1a470da759236cc11798f4e0a5f7d4d59fbc"
