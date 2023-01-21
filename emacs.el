@@ -6,6 +6,7 @@
    :hook (org-mode . org-modern-mode))
  (org-babel-do-load-languages
  'org-babel-load-languages '((C . t)
+			     (scheme . t)
 			     (dot . t)))
 
 ;; Variable Init
@@ -87,6 +88,7 @@
 (load custom-file 'noerror 'nomessage)
 
 ;; (use-package mode-icons :config (mode-icons-mode 1))
+(use-package direnv :config (direnv-mode t))
 
 ;; Theme
 
@@ -389,7 +391,11 @@
 
 (defun volume/show ()
   (princ
-   (string-trim (shell-command-to-string "pactl get-sink-volume @DEFAULT_SINK@"))))
+   (funcall
+    (-cut string-join <> (string ?\n))
+    (mapcar (-compose #'string-trim #'shell-command-to-string)
+	    '("pactl get-sink-mute @DEFAULT_SINK@"
+	      "pactl get-sink-volume @DEFAULT_SINK@")))))
 
 (defun player/play ()
   (interactive)
@@ -409,82 +415,80 @@
 
 ;; EXWM
 
-;; (use-package exwm
-;;   :custom
-;;   (exwm-workspace-number 5)
-;;   :bind
-;;   ("C-M-l" . (lambda () (interactive) (shell-command "slimlock")))
-;;   :config
-;;   (add-hook 'exwm-update-class-hook
-;; 	    (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
-;;   (require 'exwm-systemtray)
-;;   (exwm-systemtray-enable)
-;;   (set-frame-parameter (selected-frame) 'alpha '(85 . 85))
-;;   (add-to-list 'default-frame-alist '(alpha . (85 . 85)))
-;;   (dolist (cmd '("nm-applet" "pasystray"
-;; 		 "picom" ("feh" . "feh -z --recursive --bg-fill ~/documents/Wallpapers/Gnu_wallpaper.png")
-;; 		 ("xsslock" . "xsslock -- slimlock")))
-;;     (if (listp cmd)
-;; 	(start-process-shell-command (car cmd) nil (cdr cmd))
-;;       	(start-process-shell-command (file-name-nondirectory cmd) nil cmd)))
-;;   (setq
-;;    exwm-workspace-show-all-buffers t
-;;    ;; exwm-workspace-minibuffer-position 'top
+(use-package exwm
+  :custom
+  (exwm-workspace-number 5)
+  :bind
+  ("C-M-l" . (lambda () (interactive) (shell-command "slock")))
+  :config
+  (add-hook 'exwm-update-class-hook
+	    (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
+  (require 'exwm-systemtray)
+  (exwm-systemtray-enable)
+  (set-frame-parameter (selected-frame) 'alpha '(85 . 85))
+  (add-to-list 'default-frame-alist '(alpha . (85 . 85)))
+  (dolist (cmd '("nm-applet" "pasystray" ("xsslock" . "xsslock -- slock")))
+    (if (listp cmd)
+	(start-process-shell-command (car cmd) nil (cdr cmd))
+      	(start-process-shell-command (file-name-nondirectory cmd) nil cmd)))
+  (setq
+   exwm-workspace-show-all-buffers t
+   ;; exwm-workspace-minibuffer-position 'top
 
-;;    exwm-input-prefix-keys
-;;    `(?\C-x
-;;      ?\C-u
-;;      ?\C-h
-;;      ?\M-x
-;;      ?\M-`
-;;      ?\M-&
-;;      ?\M-:)
+   exwm-input-prefix-keys
+   `(?\C-x
+     ?\C-u
+     ?\C-h
+     ?\M-x
+     ?\M-`
+     ?\M-&
+     ?\M-:)
 
-;;    exwm-input-simulation-keys
-;;    '(([?\C-b] . [left])
-;;      ([?\C-f] . [right])
-;;      ([?\C-p] . [up])
-;;      ([?\C-n] . [down])
-;;      ([?\C-a] . [home])
-;;      ([?\C-e] . [end])
-;;      ([?\M-v] . [prior])
-;;      ([?\C-v] . [next])
-;;      ([?\C-d] . [delete])
-;;      ([?\C-k] . [S-end delete]))
+   exwm-input-simulation-keys
+   '(([?\C-b] . [left])
+     ([?\C-f] . [right])
+     ([?\C-p] . [up])
+     ([?\C-n] . [down])
+     ([?\C-a] . [home])
+     ([?\C-e] . [end])
+     ([?\M-v] . [prior])
+     ([?\C-v] . [next])
+     ([?\C-d] . [delete])
+     ([?\C-k] . [S-end delete]))
 
-;;    exwm-input-global-keys
-;;    `(([?\s-&] . (lambda (command) (interactive (list (read-shell-command "$ ")))
-;; 		  (start-process-shell-command command nil command)))
-;;      ([?\s-w] . exwm-workspace-switch)
-;;      (,(kbd "<XF86AudioPlay>") . player/play)
-;;      (,(kbd "<XF86AudioNext>") . player/next)
-;;      (,(kbd "<XF86AudioPrev>") . player/prev)
-;;      (,(kbd "<XF86AudioRaiseVolume>") . volume/up)
-;;      (,(kbd "<XF86AudioLowerVolume>") . volume/down)
-;;      (,(kbd "<XF86AudioMute>") . volume/mute)
-;;      (,(kbd "<XF86MonBrightnessUp>") . light/up)
-;;      (,(kbd "<XF86MonBrightnessDown>") . light/down)
-;;      ,@(mapcar (lambda (i)
-;; 		 `(,(kbd (format "s-%d" i)) .
-;; 		   (lambda ()
-;; 		     (interactive)
-;; 		     (exwm-workspace-switch-create ,i))))
-;; 	       (number-sequence 0 9))
-;;      ,@(mapcar (lambda (i)
-;; 		 `(,(kbd (format "M-s-%d" i)) .
-;; 		   (lambda ()
-;; 		     (interactive)
-;; 		     (eshell ,i))))
-;; 	       (number-sequence 0 9))))
-;;   (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
+   exwm-input-global-keys
+   `(([?\s-&] . (lambda (command) (interactive (list (read-shell-command "$ ")))
+		  (start-process-shell-command command nil command)))
+     ([?\s-w] . exwm-workspace-switch)
+     (,(kbd "<XF86AudioPlay>") . player/play)
+     (,(kbd "<XF86AudioNext>") . player/next)
+     (,(kbd "<XF86AudioPrev>") . player/prev)
+     (,(kbd "<XF86AudioRaiseVolume>") . volume/up)
+     (,(kbd "<XF86AudioLowerVolume>") . volume/down)
+     (,(kbd "<XF86AudioMute>") . volume/mute)
+     (,(kbd "<XF86MonBrightnessUp>") . light/up)
+     (,(kbd "<XF86MonBrightnessDown>") . light/down)
+     ,@(mapcar (lambda (i)
+		 `(,(kbd (format "s-%d" i)) .
+		   (lambda ()
+		     (interactive)
+		     (exwm-workspace-switch-create ,i))))
+	       (number-sequence 0 9))
+     ,@(mapcar (lambda (i)
+		 `(,(kbd (format "M-s-%d" i)) .
+		   (lambda ()
+		     (interactive)
+		     (eshell ,i))))
+	       (number-sequence 0 9))))
+  (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
 
-;; (defun efs/configure-window-by-class () (interactive)
-;; 	 (pcase exwm-class-name
-;; 	   ("Firefox" (exwm-workspace-move-window 3))
-;; 	   ("mpv" (exwm-workspace-move-window 7))))
-;; (add-hook 'exwm-manage-finish-hook #'efs/configure-window-by-class)
+(defun efs/configure-window-by-class () (interactive)
+	 (pcase exwm-class-name
+	   ("Firefox" (exwm-workspace-move-window 3))
+	   ("mpv" (exwm-workspace-move-window 7))))
+(add-hook 'exwm-manage-finish-hook #'efs/configure-window-by-class)
 
-;; (exwm-enable))
+(exwm-enable))
 
 ;; Vertico
 
@@ -576,3 +580,26 @@
  (defhydra hydra-buffer (global-map "C-x")
    ("<right>" next-buffer)
    ("<left>" previous-buffer))
+
+;; Guile scripts
+
+(setq guile-script-path '("~/dotfiles/scripts"))
+
+(defun guile/script-launcher ()
+  (interactive)
+  (print
+   (let* ((script-list
+	     (peek (mapcar (lambda (q) `(,(f-filename q) . ,q))
+		      (apply #'append
+			     (mapcar
+			      (lambda (q) (directory-files q t directory-files-no-dot-files-regexp))
+			      guile-script-path)))))
+	  (comp (completing-read "Run Script: " script-list)))
+     (async-shell-command (alist-get comp script-list nil nil #'equal)
+			  (concat "guile:" comp)))))
+
+(defun peek (x) (print x) x)
+
+(use-package frame
+       :bind
+       ("C-z" . nil))
