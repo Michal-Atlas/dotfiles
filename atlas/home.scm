@@ -1,4 +1,4 @@
-(define-module (atlas home home)
+(define-module (atlas home)
   #:use-module (atlas home packages)
   #:use-module (gnu home)
   #:use-module (gnu home services)
@@ -20,6 +20,7 @@
   #:use-module (gnu services xorg)
   #:use-module (gnu home services mcron)
   #:use-module (ice-9 hash-table)
+  #:use-module (gnu system keyboard)
   #:use-module (guix gexp))
 
 (home-environment
@@ -41,7 +42,6 @@
 			  (list #$(file-append udiskie "/bin/udiskie"))))
 		(stop #~(make-kill-destructor)))
 	       (shepherd-service
-		(auto-start? #f)
 		(provision '(emacs))
 		(start #~(make-forkexec-constructor
 			  (list #$(file-append emacs "/bin/emacs") "--fg-daemon")
@@ -70,17 +70,17 @@
    (simple-service
     'dotfiles
     home-files-service-type
-    `((".emacs.d/init.el" ,(local-file "../../emacs.el"))
-      (".guile" ,(local-file "../../guile"))
-      (".screenrc" ,(local-file "../../screen"))
-      (".mbsyncrc" ,(local-file "../../mbsyncrc"))))
+    `((".emacs.d/init.el" ,(local-file "../emacs.el"))
+      (".guile" ,(local-file "../guile"))
+      (".screenrc" ,(local-file "../screen"))
+      (".mbsyncrc" ,(local-file "../mbsyncrc"))
+      (".sbclrc" ,(local-file "../sbclrc"))))
    (simple-service
     'dotfiles-xdg
     home-xdg-configuration-files-service-type
-    `(("sway/config" ,(local-file "../../sway.cfg"))
-      ("foot/foot.ini" ,(local-file "../../foot.ini"))))
-					;(".sbclrc" ,(local-file "../../sbclrc"))
-					;(".emacs.d/eshell/alias" ,(local-file "../../eshell-alias"))
+    `(("sway/config" ,(local-file "../sway.cfg"))
+      ("foot/foot.ini" ,(local-file "../foot.ini"))))
+					;(".emacs.d/eshell/alias" ,(local-file "../eshell-alias"))
       
    (service
     home-bash-service-type
@@ -113,7 +113,9 @@
 	("_JAVA_AWT_WM_NONREPARENTING" . "1")
 	("XDG_CURRENT_DESKTOP" . "sway")
 	("PATH" . "$PATH:$HOME/.nix-profile/bin/")
+	("PATH" . "$PATH:$HOME/bin/")
 	("GUILE_LOAD_PATH" . "$GUILE_LOAD_PATH:$HOME/bin")
+	("GUILE_LOAD_PATH" . "$GUILE_LOAD_PATH:$HOME/dotfiles")
 	("XDG_DATA_DIRS" . "$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:/home/michal_atlas/.local/share/flatpak/exports/share")))))
    (service home-channels-service-type
 	    (cons*
@@ -177,6 +179,6 @@
 			     (extra-content "  ControlMaster auto")))
 			  '("1" "2")))
 		    )
-	     (authorized-keys (list (local-file "../../keys/hydra.pub")
-				    (local-file "../../keys/dagon.pub")))))
+	     (authorized-keys (list (local-file "../keys/hydra.pub")
+				    (local-file "../keys/dagon.pub")))))
    )))
