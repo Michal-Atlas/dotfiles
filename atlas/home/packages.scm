@@ -180,6 +180,7 @@
 	  "tramp"
 	  "ssh-agency"
 	  "password-generator"
+	  "mastodon"
 	  ))))
 (define desktop
   '("fontconfig" "font-ghostscript" "font-dejavu" "font-gnu-freefont"

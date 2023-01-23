@@ -16,6 +16,9 @@
 ;; (setq user-full-name "Michal Žáček"
 ;;       user-mail-address "zacekmi2@fit.cvut.cz"
 
+(setq mastodon-instance-url "https://lgbtcz.social")
+(setq mastodon-active-user "michal_atlas")
+
 (setq backup-directory-alist '((".*" . "~/.emacs.d/bkp")))
 (setq projectile-project-search-path (list "~/Documents" "~/source" "~/cl"))
 (setq org-roam-directory "/home/michal_atlas/roam")
