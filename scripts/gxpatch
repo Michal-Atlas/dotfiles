@@ -1,0 +1,50 @@
+#!/bin/sh
+exec guix repl -- "$0" "$@"
+!#
+
+(use-modules (srfi srfi-26) (srfi srfi-1) (ice-9 getopt-long))
+
+(define option-spec
+  '((origin (single-char #\o) (value #f))))
+
+(define options (getopt-long (command-line) option-spec))
+
+(define (main . args)
+  (map (lambda (target)
+	 (format #t "Target: ~a~%" target)
+	 (format #t "Patching out rpath...~%")
+	 (system* "patchelf" target "--set-rpath"
+		  ((if (option-ref options 'origin #f) (lambda (q) (string-append "$ORIGIN:" q)) identity)
+		   (string-append
+		    "/run/current-system/profile/lib:/home/"
+		    (getlogin)
+		    "/.guix-home/profile/lib"
+		    (apply string-append
+			   (map (cut string-append ":" <> "/lib")
+				(drop-right (string-split
+					     ((@ (ice-9 textual-ports) get-string-all)
+					      ((@ (ice-9 popen) open-pipe*)
+					       OPEN_READ "guix" "package" "--list-profiles"))
+					     #\newline) 1))))))
+
+	 (format #t "Patching out interpreter...~%")
+	 (system*
+	  "patchelf" target
+	  "--set-interpreter"
+	  "/run/current-system/profile/lib/ld-linux-x86-64.so.2")
+
+	 (format #t "done~%")
+	 (display (format #t "RPATH: ~aLD: ~a"
+			  ((@ (ice-9 textual-ports) get-string-all)
+			   ((@ (ice-9 popen) open-pipe*)
+			    OPEN_READ "patchelf" target "--print-rpath"))
+			  ((@ (ice-9 textual-ports) get-string-all)
+			   ((@ (ice-9 popen) open-pipe*)
+			    OPEN_READ "patchelf" target "--print-interpreter")))))
+       args))
+
+(apply main (option-ref options '() '()))
+
+;; Local Variables:
+;; mode: scheme
+;; End:
