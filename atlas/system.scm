@@ -41,7 +41,7 @@
 		  (home-directory "/home/michal_atlas")
 		  (supplementary-groups
 		   '("wheel" "netdev" "audio" "docker"
-		     "video" "libvirt" "kvm")))
+		     "video" "libvirt" "kvm" "tty")))
 		 %base-user-accounts))
    (packages
     (append %system-desktop-manifest
