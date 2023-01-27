@@ -5,7 +5,7 @@
 (define %system-desktop-manifest-list
   `(
     "nvi" "patchelf"
-    "emacs-exwm"
+    
     ;; DE
     "fontconfig" "font-ghostscript" "font-dejavu" "font-gnu-freefont"
     "font-adobe-source-han-sans" "font-wqy-zenhei"
