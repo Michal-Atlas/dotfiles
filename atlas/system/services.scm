@@ -36,6 +36,7 @@
      (pam-limits-entry "*" 'both 'nofile 524288)))
    ;;(service gnome-desktop-service-type)
    (service gpm-service-type)
+   (screen-locker-service swaylock "swaylock")
    (service docker-service-type)
    (service tlp-service-type
 	    (tlp-configuration
