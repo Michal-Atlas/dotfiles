@@ -65,7 +65,14 @@
 	  "guix gc -F 10G")
        #~(job
 	  '(next-hour '(0))
-	  "mkdir -p ~/tmp-log; mv ~/tmp ~/tmp-log/$(date -I); mkdir ~/tmp")
+	  "
+mkdir -p ~/tmp-log;
+mkdir -p ~/tmp;
+if [ ! \"$(ls -A ~/tmp)\" ]; then 
+    mv ~/tmp ~/tmp-log/$(date -I);
+    mkdir ~/tmp;
+fi;
+")
        ))))
    (simple-service
     'dotfiles
