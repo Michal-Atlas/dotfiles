@@ -80,15 +80,17 @@
    (unattended-upgrade-configuration
    (channels "/home/michal_atlas/.config/guix/channels.scm")))
    (bluetooth-service #:auto-enable? #f)
+   (service mate-desktop-service-type)
    (modify-services
     %desktop-services
     ;; (delete gdm-service-type)
     (gdm-service-type
      config =>
      (gdm-configuration
-      (auto-login? #t)
+      #; (auto-login? #t)
       (default-user "michal_atlas")
       (wayland? #t)
+      (auto-suspend? #f)
       (xorg-configuration
        (xorg-configuration
 	(extra-config (list "# Touchpad
