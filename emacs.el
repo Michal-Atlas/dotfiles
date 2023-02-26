@@ -268,7 +268,10 @@
 (use-package paredit
   :hook ((emacs-lisp-mode . paredit-mode)
 	 (eval-expression-minibuffer-setup . paredit-mode)
-	 (scheme-mode . paredit-mode)))
+	 (scheme-mode . paredit-mode)
+	 (lisp-mode . paredit-mode)))
+
+(add-hook 'lisp-mode-hook 'slime-editing-mode)
 
 (use-package multiple-cursors
   :bind (("C-S-c C-S-c" . mc/edit-lines)
