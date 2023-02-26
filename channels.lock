@@ -3,7 +3,7 @@
         (url "https://git.savannah.gnu.org/git/guix.git")
         (branch "master")
         (commit
-          "eb5e0f2865fb837f3de00bd3aaec4ac636b2dd25")
+          "aed385e18ec7b68a0bc1bb4b173aeadc9cd97245")
         (introduction
           (make-channel-introduction
             "9edb3f66fd807b096b48283debdcddccfea34bad"
@@ -31,7 +31,7 @@
         (url "https://git.sr.ht/~whereiseveryone/guixrus")
         (branch "master")
         (commit
-          "f084697a6722bd6121d03f7c561f621e1c5a56cf")
+          "2c1183b8bfd5e0cb9a69958444708fd5603e0bf2")
         (introduction
           (make-channel-introduction
             "7c67c3a9f299517bfc4ce8235628657898dd26b2"
