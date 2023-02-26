@@ -54,7 +54,11 @@
    (service virtlog-service-type
 	    (virtlog-configuration
 	     (max-clients 1000)))
-   (service hurd-vm-service-type)
+   #;
+   (service hurd-vm-service-type
+	    (hurd-vm-configuration
+	     (disk-size (* 16 (expt 2 30)))
+	     (memory-size 2048)))
    (service syncthing-service-type
 	    (syncthing-configuration (user "michal_atlas")))
    (service cups-service-type
