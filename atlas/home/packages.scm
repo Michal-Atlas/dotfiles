@@ -101,7 +101,7 @@
 	  "geiser-racket"
 	  "adaptive-wrap"
 	  "geiser-guile"
-	  "slime"
+	  "sly"
 	  "geiser"
 	  "multiple-cursors"
 	  "magit"
