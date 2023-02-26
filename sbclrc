@@ -1,3 +1,11 @@
+(require :asdf)
+(setf asdf:*central-registry*
+  (list* '*default-pathname-defaults*
+	 #p"/home/michal_atlas/.guix-profile/etc/common-lisp/"
+	 #p"/home/michal_atlas/.guix-home/profile/etc/common-lisp/"
+	 #p"/run/current-system/profile/etc/common-lisp/"
+	 asdf:*central-registry*))
+
 (require "linedit")
 
 ;;; Check for --no-linedit command-line option.
