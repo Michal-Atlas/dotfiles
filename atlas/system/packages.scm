@@ -14,7 +14,7 @@
     "firefox" "xscreensaver" "gparted"
     "nautilus" "gvfs" "samba"
     "pavucontrol" "screen"
-    "sway"
+    "sway" "stumpwm"
     "i3status" "i3lock"
     "flatpak" "font-fira-code"
     "breeze-icons" "hicolor-icon-theme"
