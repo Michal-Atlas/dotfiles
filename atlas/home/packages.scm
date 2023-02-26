@@ -25,6 +25,7 @@
     "mosh"
     "sbcl" "chicken" "racket"
     "gnupg" "swi-prolog"
+    "sbcl-linedit"
     ))
 
 (define multimedia
@@ -181,6 +182,7 @@
 	  "ssh-agency"
 	  "password-generator"
 	  "mastodon"
+	  "stumpwm-mode"
 	  ))))
 (define desktop
   '("fontconfig" "font-ghostscript" "font-dejavu" "font-gnu-freefont"
