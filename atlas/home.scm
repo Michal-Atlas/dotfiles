@@ -85,7 +85,8 @@ fi;
    (simple-service
     'dotfiles-xdg
     home-xdg-configuration-files-service-type
-    `(("sway/config" ,(local-file "../sway.cfg"))
+    `(("common-lisp/source-registry.conf" ,(local-file "../cl-src-registry.conf"))
+      ("sway/config" ,(local-file "../sway.cfg"))
       ("foot/foot.ini" ,(local-file "../foot.ini"))))
 					;(".emacs.d/eshell/alias" ,(local-file "../eshell-alias"))
       
