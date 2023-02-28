@@ -174,6 +174,7 @@
 	  "dmenu"
 	  "eglot"
 	  "org"
+	  "stumpwm-mode"
 	  "hackles"
 	  "yasnippet-snippets"
 	  "consult-yasnippet"

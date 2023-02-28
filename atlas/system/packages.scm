@@ -14,13 +14,35 @@
     "firefox" "xscreensaver" "gparted"
     "nautilus" "gvfs" "samba"
     "pavucontrol" "screen"
-    "sway" "stumpwm"
+    "sway"
     "i3status" "i3lock"
     "flatpak" "font-fira-code"
     "breeze-icons" "hicolor-icon-theme"
     "adwaita-icon-theme"
-    ;; Emacs
-    "emacs"
+
+    ;; StumpWM
+     "stumpwm"
+     "sbcl-stumpwm-winner-mode"
+     "sbcl-stumpwm-swm-gaps"
+     "sbcl-stumpwm-screenshot"
+     "sbcl-stumpwm-pass"
+     "sbcl-stumpwm-pamixer"
+     "sbcl-stumpwm-numpad-layouts"
+     "sbcl-stumpwm-notify"
+     "sbcl-stumpwm-kbd-layouts"
+     "sbcl-stumpwm-disk"
+     "sbcl-stumpwm-battery-portable"
+     "sbcl-stumpwm-globalwindows"
+     "sbcl-stumpwm-wifi"
+     "sbcl-stumpwm-ttf-fonts"
+     "sbcl-stumpwm-stumptray"
+     "sbcl-stumpwm-net"
+     "sbcl-stumpwm-mem"
+     "sbcl-stumpwm-cpu"
+     "stumpish"
+    
+     ;; Emacs
+     "emacs"
     #;"emacs-exwm"
     
     ;; Libs
