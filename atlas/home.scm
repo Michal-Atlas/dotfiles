@@ -81,7 +81,8 @@ fi;
       (".guile" ,(local-file "../guile"))
       (".screenrc" ,(local-file "../screen"))
       (".mbsyncrc" ,(local-file "../mbsyncrc"))
-      (".sbclrc" ,(local-file "../sbclrc"))))
+      (".sbclrc" ,(local-file "../sbclrc"))
+      (".stumpwm.d/init.lisp" ,(local-file "../stumpwm.lisp"))))
    (simple-service
     'dotfiles-xdg
     home-xdg-configuration-files-service-type
