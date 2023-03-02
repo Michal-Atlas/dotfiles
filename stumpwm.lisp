@@ -2,7 +2,6 @@
 (setf *default-package* :stumpwm)
 
 (add-to-load-path #p"/run/current-system/profile/share/common-lisp/sbcl/stumpwm-battery-portable/")
-
 (add-to-load-path #p"/run/current-system/profile/share/common-lisp/sbcl/stumpwm-winner-mode/")
 (add-to-load-path #p"/run/current-system/profile/share/common-lisp/sbcl/stumpwm-swm-gaps/")
 (add-to-load-path #p"/run/current-system/profile/share/common-lisp/sbcl/stumpwm-screenshot/")
@@ -20,6 +19,9 @@
 (add-to-load-path #p"/run/current-system/profile/share/common-lisp/sbcl/stumpwm-net/")
 (add-to-load-path #p"/run/current-system/profile/share/common-lisp/sbcl/stumpwm-mem/")
 (add-to-load-path #p"/run/current-system/profile/share/common-lisp/sbcl/stumpwm-cpu/")
+
+(add-to-load-path #p"/home/michal_atlas/.guix-profile/share/common-lisp/sbcl/zpng/")
+(add-to-load-path #p"/home/michal_atlas/.guix-profile/share/common-lisp/sbcl/salza2/")
 
 ;; (setf *altgr-offset* 4)
 
@@ -168,10 +170,31 @@
 
 (defconstant *book-dir* "/home/michal_atlas/Documents/Books/")
 (defcommand open-book () ()
-	    (
-	     (mapcar
-	      #'pathname-name
-	      (directory
-	       #p"/home/michal_atlas/Documents/Books/*.pdf"))))
+	    (let ((book 
+		   (completing-read
+		    (current-screen)
+		    "Which Book?: "
+		    (mapcar
+		     #'pathname-name
+		     (directory
+		      #p"/home/michal_atlas/Documents/Books/*.pdf")))))
+	      (sb-thread:make-thread
+	       (lambda ()
+		 (run-shell-command
+		  (list "okular"
+			(concat 'string
+				#p"/home/michal_atlas/Documents/Books/" book ".pdf")))))))
 
 (define-key *root-map* (kbd "B") "open-book")
+
+(load-module "screenshot")
+
+(defcommand scrt-datewrap (&optional area) ((:rest "Area?: "))
+	    (let ((f (if (equal area "t")
+			 #'screenshot:screenshot-area
+			 #'screenshot:screenshot)))
+	      (funcall f (format nil "~~/tmp/shot-~a.png"
+				 (get-universal-time)))))
+
+(define-key *top-map* (kbd "s-S") "scrt-datewrap t")
+(define-key *top-map* (kbd "s-s") "scrt-datewrap n")
