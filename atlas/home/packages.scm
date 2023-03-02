@@ -102,6 +102,7 @@
 	  "adaptive-wrap"
 	  "geiser-guile"
 	  "sly"
+	  "slime"
 	  "geiser"
 	  "multiple-cursors"
 	  "magit"
