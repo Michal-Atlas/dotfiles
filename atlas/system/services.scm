@@ -34,7 +34,7 @@
    (pam-limits-service
     (list
      (pam-limits-entry "*" 'both 'nofile 524288)))
-   ;;(service gnome-desktop-service-type)
+   (service gnome-desktop-service-type)
    (service gpm-service-type)
    (screen-locker-service swaylock "swaylock")
    (service docker-service-type)
@@ -78,7 +78,7 @@
    (mpd-configuration			;
    (user "michal_atlas")		;
    (music-dir "~/music")))
-   ;; (service postgresql-service-type)
+   (service postgresql-service-type)
    (service nix-service-type)
    #;(service unattended-upgrade-service-type
    (unattended-upgrade-configuration
