@@ -1,28 +1,7 @@
 (in-package :stumpwm)
 (setf *default-package* :stumpwm)
 
-(add-to-load-path #p"/run/current-system/profile/share/common-lisp/sbcl/stumpwm-battery-portable/")
-(add-to-load-path #p"/run/current-system/profile/share/common-lisp/sbcl/stumpwm-winner-mode/")
-(add-to-load-path #p"/run/current-system/profile/share/common-lisp/sbcl/stumpwm-swm-gaps/")
-(add-to-load-path #p"/run/current-system/profile/share/common-lisp/sbcl/stumpwm-screenshot/")
-(add-to-load-path #p"/run/current-system/profile/share/common-lisp/sbcl/stumpwm-pass/")
-(add-to-load-path #p"/run/current-system/profile/share/common-lisp/sbcl/stumpwm-pamixer/")
-(add-to-load-path #p"/run/current-system/profile/share/common-lisp/sbcl/stumpwm-numpad-layouts/")
-(add-to-load-path #p"/run/current-system/profile/share/common-lisp/sbcl/stumpwm-notify/")
-(add-to-load-path #p"/run/current-system/profile/share/common-lisp/sbcl/stumpwm-kbd-layouts/")
-(add-to-load-path #p"/run/current-system/profile/share/common-lisp/sbcl/stumpwm-disk/")
-(add-to-load-path #p"/run/current-system/profile/share/common-lisp/sbcl/stumpwm-battery-portable/")
-(add-to-load-path #p"/run/current-system/profile/share/common-lisp/sbcl/stumpwm-globalwindows/")
-(add-to-load-path #p"/run/current-system/profile/share/common-lisp/sbcl/stumpwm-wifi/")
-(add-to-load-path #p"/run/current-system/profile/share/common-lisp/sbcl/stumpwm-ttf-fonts/")
-(add-to-load-path #p"/run/current-system/profile/share/common-lisp/sbcl/stumpwm-stumptray/")
-(add-to-load-path #p"/run/current-system/profile/share/common-lisp/sbcl/stumpwm-net/")
-(add-to-load-path #p"/run/current-system/profile/share/common-lisp/sbcl/stumpwm-mem/")
-(add-to-load-path #p"/run/current-system/profile/share/common-lisp/sbcl/stumpwm-cpu/")
-
-(add-to-load-path #p"/home/michal_atlas/.guix-profile/share/common-lisp/sbcl/zpng/")
-(add-to-load-path #p"/home/michal_atlas/.guix-profile/share/common-lisp/sbcl/salza2/")
-
+(load #p"/home/michal_atlas/quicklisp/setup.lisp")
 ;; (setf *altgr-offset* 4)
 
 ;; (run-shell-command "xmodmap -e 'clear mod4'" t)
@@ -30,12 +9,12 @@
 ;; (stumpwm:set-prefix-key (stumpwm:kbd "F20"))
 (stumpwm:set-prefix-key (stumpwm:kbd "C-z"))
 
-;; (load-module :stumptray)
-(load-module :battery-portable)
-;; (load-module "mode-line")
-;; (load-module "stump-backlight")
-;; (load-module "battery-portable")
-;; (load-module "swm-gaps")
+;; (ql:quickload :stumptray)
+(ql:quickload :battery-portable)
+;; (ql:quickload :mode-line)
+;; (ql:quickload :stump-backlight)
+;; (ql:quickload :battery-portable)
+;; (ql:quickload :swm-gaps)
 
 (setf *mouse-focus-policy* :sloppy
       *float-window-modifier* :SUPER
@@ -55,8 +34,8 @@
   (run-commands
    "exec feh --bg-center /home/michal_atlas/Documents/Wallpapers/wallpaper.png"
    "gkill Default"
-   "gnew-dynamic Alpha"
-   "gnew-dynamic Lambda"
+   "gnew Alpha"
+   "gnew Lambda"
    "gnew-dynamic Fire")
   (loop for i from 0 to 9 do
 	(define-key *top-map*
@@ -105,8 +84,8 @@
 
 ;; Gapps
 
-(load-module "swm-gaps")
-(load-module "net")
+(ql:quickload :swm-gaps)
+(ql:quickload :net)
 (setf swm-gaps:*inner-gaps-size* 13
       swm-gaps:*outer-gaps-size* 7
       swm-gaps:*head-gaps-size* 0)
@@ -117,7 +96,7 @@
 ;; Modeline
 (when *initializing*
   (defconstant backlightfile "/sys/class/backlight/intel_backlight/brightness"))
-(load-module "pamixer")
+(ql:quickload :pamixer)
 (setf *time-modeline-string* "%a, %b %d %I:%M%p"
       *screen-mode-line-format*
       (list
@@ -168,7 +147,9 @@
 (define-key *top-map* (kbd "XF86AudioPlay") 
   "exec playerctl play-pause")
 
-(defconstant *book-dir* "/home/michal_atlas/Documents/Books/")
+(when *initializing*
+  (run-shell-command "xsetroot -cursor_name left_ptr")
+  (defconstant *book-dir* "/home/michal_atlas/Documents/Books/"))
 (defcommand open-book () ()
 	    (let ((book 
 		   (completing-read
@@ -182,19 +163,29 @@
 	       (lambda ()
 		 (run-shell-command
 		  (list "okular"
-			(concat 'string
-				#p"/home/michal_atlas/Documents/Books/" book ".pdf")))))))
+			(concat
+			 "/home/michal_atlas/Documents/Books/"
+			 book
+			 ".pdf")))))))
 
 (define-key *root-map* (kbd "B") "open-book")
 
-(load-module "screenshot")
+(ql:quickload :screenshot)
 
 (defcommand scrt-datewrap (&optional area) ((:rest "Area?: "))
 	    (let ((f (if (equal area "t")
 			 #'screenshot:screenshot-area
 			 #'screenshot:screenshot)))
-	      (funcall f (format nil "~~/tmp/shot-~a.png"
+	      (funcall f (format nil "/home/michal_atlas/shot-~a.png"
 				 (get-universal-time)))))
 
 (define-key *top-map* (kbd "s-S") "scrt-datewrap t")
 (define-key *top-map* (kbd "s-s") "scrt-datewrap n")
+
+;; (ql:quickload "xembed")
+;; (ql:quickload :stumptray)
+;; (stumptray::stumptray)
+
+(define-key *top-map* (kbd "s-n") "rotate-windows forward")
+
+(define-key *top-map* (kbd "s-l") "exec xlock")
