@@ -197,6 +197,7 @@
     "grim" "slurp" "foot"
     "nautilus" "gvfs" "youtube-dl" "okular" "pulseaudio"
     "wob" "font-iosevka" "browserpass-native"
+    "xsetroot"
     ))
 (define big-games
   '(
