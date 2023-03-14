@@ -6,8 +6,8 @@
 
 {
   imports = [ # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-    ./home.nix
+    ./hardware-configuration-hydra.nix
+    #./home.nix
   ];
 
   fileSystems."/GAMES" = {
@@ -258,6 +258,7 @@
       vlc
       mpv
       libreoffice
+      vscode
       audacity
       feh
       shotwell
@@ -381,7 +382,7 @@
       dockerCompat = true;
 
       # Required for containers under podman-compose to be able to talk to each other.
-      defaultNetwork.dnsname.enable = true;
+      defaultNetwork.settings.dns_enabled = true;
       extraPackages = [ pkgs.zfs ];
     };
   };

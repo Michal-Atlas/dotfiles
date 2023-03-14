@@ -24,14 +24,13 @@
   };
 
   outputs = { self, nixpkgs, flake-utils, emacs-overlay, nix-alien, home-manager
-    , hyprland, hyprland-contrib, ... }@attrs:
-    flake-utils.lib.eachDefaultSystem (system: {
+    , hyprland, hyprland-contrib, ... }@attrs: {
       nixosConfigurations = {
         hydra = nixpkgs.lib.nixosSystem {
-          inherit system;
+          system = "x86_64-linux";
           specialArgs = attrs;
           modules = [ ./configuration.nix ];
         };
       };
-    });
+    };
 }

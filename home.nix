@@ -1,8 +1,8 @@
-{ config, pkgs, ... }:
+{ config, pkgs, home-manager, ... }:
 
 {
-  imports = [ (import "${home-manager}/nixos") ];
-  nixpkgs.overlays = [ (import self.inputs.emacs-overlay) ];
+  imports = [ home-manager ];
+  #nixpkgs.overlays = [ (self: super: emacs-overlay) ];
   home-manager.users.michal_atlas = {
     # The home.stateVersion option does not have a default and must be set
     home.stateVersion = "22.11";
