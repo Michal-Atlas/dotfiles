@@ -24,13 +24,22 @@
   };
 
   outputs = { self, nixpkgs, flake-utils, emacs-overlay, nix-alien, home-manager
-    , hyprland, hyprland-contrib, ... }@attrs: {
+    , hyprland, hyprland-contrib, ... }@attrs:
+    let
+      sys = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${sys};
+    in {
       nixosConfigurations = {
         hydra = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
+          system = sys;
           specialArgs = attrs;
           modules = [ ./configuration.nix ];
         };
       };
+      homeConfigurations.michal_atlas =
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [ ./home.nix ];
+        };
     };
 }

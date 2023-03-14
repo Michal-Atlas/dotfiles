@@ -7,7 +7,6 @@
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration-hydra.nix
-    #./home.nix
   ];
 
   fileSystems."/GAMES" = {
@@ -386,4 +385,7 @@
       extraPackages = [ pkgs.zfs ];
     };
   };
+
+  nixpkgs.config.permittedInsecurePackages = [ "python-2.7.18.6" ];
+
 }
