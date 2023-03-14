@@ -1,5 +1,0 @@
-alias e find-file $1
-alias d dired $1
-alias g magit $1
-alias l ls -l $*
-alias run guix shell $1 -- $*
