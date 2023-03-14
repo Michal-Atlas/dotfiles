@@ -6,9 +6,14 @@
 
 {
   imports = [ # Include the results of the hardware scan.
-    /etc/nixos/hardware-configuration.nix
+    ./hardware-configuration.nix
     ./home.nix
   ];
+
+  fileSystems."/GAMES" = {
+    device = "/dev/disk/by-label/Games-Z";
+    fsType = "ntfs";
+  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -18,7 +23,7 @@
   # Setup keyfile
   boot.initrd.secrets = { "/crypto_keyfile.bin" = null; };
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "hydra"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -328,7 +333,6 @@
   #     "user=zacekmi2"
   #   ];
   # };
-
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

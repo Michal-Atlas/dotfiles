@@ -1,21 +1,36 @@
 {
 
-  description = "NixOS configuration";
+  description = "Atlas' NixOS configuration";
 
-  inputs.nixpkgs.url = github:NixOS/nixpkgs/nixos-21.11;
-  inputs.flake-utils.url = github:numtide/flake-utils;
-  inputs.emacs-overlay.url = "github:nix-community/emacs-overlay/da2f552d133497abd434006e0cae996c0a282394";
+  inputs = {
+    nixpkgs.url = "github:NixOs/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-22.11";
+    flake-utils.url = "github:numtide/flake-utils";
+    emacs-overlay.url =
+      "github:nix-community/emacs-overlay/da2f552d133497abd434006e0cae996c0a282394";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-alien = {
+      url = "github:thiagokokada/nix-alien";
+      inputs = {
+        nixpkgs.follows = "nixpkgs-stable";
+        flake-utils.follows = "flake-utils";
+      };
+    };
+    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland-contrib.url = "github:hyprwm/contrib";
+  };
 
-   outputs = inputs @ { self, nixpkgs, flake-utils, emacs-overlay, ... }:
-   flake-utils.lib.eachDefaultSystem (system:
-      {
+  outputs = { self, nixpkgs, flake-utils, emacs-overlay, nix-alien, home-manager
+    , hyprland, hyprland-contrib, ... }@attrs:
+    flake-utils.lib.eachDefaultSystem (system: {
       nixosConfigurations = {
         hydra = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./configuration.nix
-          ];
+          specialArgs = attrs;
+          modules = [ ./configuration.nix ];
         };
       };
     });
