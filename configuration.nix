@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, emacs-overlay, ... }:
+{ self, config, pkgs, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
@@ -81,6 +81,13 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+
+  # system.nssModules = pkgs.lib.optional true pkgs.nssmdns;
+  # system.nssDatabases.hosts = pkgs.lib.optionals true (pkgs.lib.mkMerge [
+  #   (pkgs.lib.mkBefore [ "mdns4_minimal [NOTFOUND=return]" ]) # before resolve
+  #   (pkgs.lib.mkAfter [ "mdns4" ]) # after dns
+  # ]);
+
   services.avahi = {
     enable = true;
     nssmdns = true;
@@ -242,5 +249,4 @@
   };
 
   nixpkgs.config.permittedInsecurePackages = [ "python-2.7.18.6" ];
-
 }
