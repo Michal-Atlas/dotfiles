@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, emacs-overlay, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
@@ -92,91 +92,8 @@
     isNormalUser = true;
     description = "Michal Atlas";
     extraGroups = [ "networkmanager" "wheel" "libvirt" "kvm" "transmission" ];
-    packages = with pkgs; [
-      emacs
-      # (pkgs.emacsWithPackagesFromUsePackage {
-      #   package = pkgs.emacs;
-      #   config = ./emacs.el;
-      #   extraEmacsPackages = epkgs: [ epkgs.use-package ];
-      # })
-      rare
-      legendary-gl
-      nixfmt
-      firefox
-      thunderbird
-      gparted
-      jetbrains.clion
-      steam
-      sbcl
-      patchelf
-      cifs-utils
-      btrfs-progs
-      file
-      fzf
-      pandoc
-      texlive.combined.scheme-minimal
-      htop
-      gcc
-      clang
-      gnumake
-      cmake
-      meson
-      python
-      python39Packages.ipython
-      mosh
-      gnupg
-      direnv
-      xclip
-      fasd
-      bat
-      exa
-      pkg-config
-      gdb
-      chicken
-      racket
-      swiProlog
-      lispPackages_new.sbclPackages.linedit
-      vlc
-      mpv
-      libreoffice
-      vscode
-      audacity
-      feh
-      shotwell
-      inkscape
-      gimp
-      fira-code
-      jetbrains-mono
-      xorg.xrandr
-      arandr
-      graphviz
-      xdot
-      tree
-      bc
-      unzip
-      superTuxKart
-      wesnoth
-      gzdoom
-      taisei
-      kobodeluxe
-      mu
-      isync
-      lagrange
-      youtube-dl
-      okular
-      discord
-      xonotic
-      wine
-      nix-output-monitor
-      minecraft
-      # mathematica
-      cryptsetup
-      keepassxc
-      valgrind
-    ];
   };
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  services.emacs = { enable = true; };
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user = "michal_atlas";

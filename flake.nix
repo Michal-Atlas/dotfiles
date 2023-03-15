@@ -36,13 +36,12 @@
           modules = [
             ./configuration.nix
 
-            # home-manager.nixosModules.home-manager
-
-            # {
-            #  home-manager.useGlobalPkgs = true;
-            #       home-manager.useUserPackages = true;
-            #       home-manager.users.michal_atlas = import ./home.nix;
-            #   } 
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.michal_atlas = import ./home.nix;
+            }
           ];
         };
       };
