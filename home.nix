@@ -110,7 +110,7 @@
     okular
     discord
     xonotic
-    wine
+    wineWowPackages.stable
     nix-output-monitor
     minecraft
     # mathematica
