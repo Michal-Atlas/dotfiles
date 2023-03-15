@@ -1,3 +1,4 @@
+(require 'use-package)
 ;; Org-mode
 
  ;; (use-package org-fragtog

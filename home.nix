@@ -1,8 +1,15 @@
-{ config, pkgs, home-manager, ... }:
+{ self, config, pkgs, home-manager, ... }:
 
 {
-  imports = [ home-manager ];
-  #nixpkgs.overlays = [ (self: super: emacs-overlay) ];
+  home.username = "michal_atlas";
+  home.homeDirectory = "/home/michal_atlas";
+  programs.git = {
+    enable = true;
+    userName = "Michal Atlas";
+    userEmail = "michal_atlas+git@posteo.net";
+  };
+  # nixpkgs.overlays = [ (self: super: emacs-overlay) ];
+  nixpkgs.overlays = [ (import self.inputs.emacs-overlay) ];
   home-manager.users.michal_atlas = {
     # The home.stateVersion option does not have a default and must be set
     home.stateVersion = "22.11";
@@ -26,5 +33,10 @@
 
     home.file.".config/sway/config".source = ./sway.cfg;
     xsession.numlock.enable = true;
+    programs.home-manager.enable = true;
+    home.packages = with pkgs;
+      [
+
+      ];
   };
 }

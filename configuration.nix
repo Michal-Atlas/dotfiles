@@ -92,136 +92,18 @@
     isNormalUser = true;
     description = "Michal Atlas";
     extraGroups = [ "networkmanager" "wheel" "libvirt" "kvm" "transmission" ];
-    packages = let
-      emacsPackages = with pkgs.emacsPackages; [
-        use-package
-        org-roam
-        org-roam-ui
-        consult-org-roam
-        #org-roam-timestamps
-        engrave-faces
-        go-mode
-        use-package
-        password-store
-        password-store-otp
-        org-fragtog
-        org-modern
-        org-superstar
-        highlight-indentation
-        #mode-icons
-        doom-modeline
-        which-key
-        rainbow-identifiers
-        rainbow-delimiters
-        undo-tree
-        ace-window
-        eshell-prompt-extras
-        eshell-syntax-highlighting
-        esh-autosuggest
-        git-gutter
-        #savehist
-        anzu
-        marginalia
-        #org-roam
-        #org-roam-ui
-        auto-complete
-        geiser-racket
-        adaptive-wrap
-        geiser-guile
-        sly
-        slime
-        geiser
-        multiple-cursors
-        magit
-        helpful
-        avy
-        browse-kill-ring
-        emms
-        evil
-        exwm
-        vertico
-        orderless
-        consult
-        xah-fly-keys
-        ac-geiser
-        all-the-icons
-        all-the-icons-dired
-        auctex
-        calfw
-        circe
-        company
-        company-box
-        crux
-        csv
-        csv-mode
-        dashboard
-        debbugs
-        direnv
-        ediprolog
-        elfeed
-        elpher
-        embark
-        ement
-        lsp-mode
-        lsp-ui
-        rustic
-        eshell-z
-        hydra
-        flycheck
-        flycheck-haskell
-        frames-only-mode
-        gdscript-mode
-        haskell-mode
-        highlight-indent-guides
-        htmlize
-        iedit
-        magit-todos
-        monokai-theme
-        multi-term
-        nix-mode
-        on-screen
-        ox-gemini
-        #parinfer
-        pdf-tools
-        pg
-        projectile
-        racket-mode
-        realgud
-        swiper
-        tldr
-        vterm
-        xkcd
-        yaml-mode
-        yasnippet
-        yasnippet-snippets
-        zerodark-theme
-        gemini-mode
-        nov
-        dockerfile-mode
-        docker
-        dmenu
-        eglot
-        org
-        stumpwm-mode
-        #hackles
-        yasnippet-snippets
-        consult-yasnippet
-        yasnippet
-        tramp
-        ssh-agency
-        password-generator
-        mastodon
-        stumpwm-mode
-      ];
-    in with pkgs;
-    [
+    packages = with pkgs; [
+      emacs
+      # (pkgs.emacsWithPackagesFromUsePackage {
+      #   package = pkgs.emacs;
+      #   config = ./emacs.el;
+      #   extraEmacsPackages = epkgs: [ epkgs.use-package ];
+      # })
       rare
       legendary-gl
       nixfmt
       firefox
       thunderbird
-      emacs
-      git
       gparted
       jetbrains.clion
       steam
@@ -291,15 +173,7 @@
       cryptsetup
       keepassxc
       valgrind
-
-      # (pkgs.emacsWithPackagesFromUsePackage {
-      # 					    package = pkgs.emacs;
-      # 					   config = ./emacs.el;
-      # 					   extraEmacsPackages = epkgs: [ epkgs.use-package ];
-      # 					   })
-
-    ] ++ emacsPackages;
-
+    ];
   };
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   services.emacs = { enable = true; };

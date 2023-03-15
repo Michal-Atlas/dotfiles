@@ -33,13 +33,18 @@
         hydra = nixpkgs.lib.nixosSystem {
           system = sys;
           specialArgs = attrs;
-          modules = [ ./configuration.nix ];
+          modules = [
+            ./configuration.nix
+
+            # home-manager.nixosModules.home-manager
+
+            # {
+            #  home-manager.useGlobalPkgs = true;
+            #       home-manager.useUserPackages = true;
+            #       home-manager.users.michal_atlas = import ./home.nix;
+            #   } 
+          ];
         };
       };
-      homeConfigurations.michal_atlas =
-        home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [ ./home.nix ];
-        };
     };
 }
