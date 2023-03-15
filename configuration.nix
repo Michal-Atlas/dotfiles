@@ -52,6 +52,21 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+  services.xserver.videoDrivers = [ "amdgpu" ];
+  # https://nixos.wiki/wiki/AMD_GPU
+  systemd.tmpfiles.rules =
+    [ "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.hip}" ];
+  hardware.opengl.driSupport = true;
+  # For 32 bit applications
+  hardware.opengl.driSupport32Bit = true;
+  hardware.opengl.extraPackages = with pkgs; [
+    rocm-opencl-icd
+    rocm-opencl-runtime
+    amdvlk
+  ];
+  # For 32 bit applications 
+  # Only available on unstable
+  hardware.opengl.extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
@@ -66,6 +81,54 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+  };
+
+  services.zerotierone = {
+    enable = true;
+    joinNetworks = [ "c7c8172af19f63d7" ];
+  };
+
+  services.syncthing = {
+    enable = true;
+    user = "michal_atlas";
+    dataDir =
+      "/home/michal_atlas/Documents"; # Default folder for new synced folders
+    configDir =
+      "/home/michal_atlas/.config/syncthing"; # Folder for Syncthing's settings and keys
+    overrideDevices =
+      true; # overrides any devices added or deleted through the WebUI
+    overrideFolders =
+      true; # overrides any folders added or deleted through the WebUI
+    devices = {
+      "Nox" = {
+        id = "JBRYVQP-2GYSCCK-2M37T6I-KSETJHC-UY7ZUQ5-GW56FMG-LDRDFQC-YUH5EAY";
+      };
+      "Hydra" = {
+        id = "OQAFX4X-3AWLM54-YHMTL6E-O6VGWE7-TPCJM4Y-PVCIDVE-FK6RFHU-EWCMMQJ";
+      };
+    };
+    folders = {
+      "documents" = {
+        path = "/home/michal_atlas/Documents";
+        devices = [ "Nox" ];
+      };
+      "sync" = {
+        path = "/home/michal_atlas/Sync";
+        devices = [ "Nox" ];
+      };
+      "cl" = {
+        path = "/home/michal_atlas/cl";
+        devices = [ "Nox" ];
+      };
+      "roam" = {
+        path = "/home/michal_atlas/roam";
+        devices = [ "Nox" ];
+      };
+    };
+  };
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -131,8 +194,9 @@
     [
       #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
       #  wget
-      virt-manager
+      gnomeExtensions.appindicator
     ];
+  services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

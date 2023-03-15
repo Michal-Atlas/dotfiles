@@ -25,7 +25,7 @@
   home.sessionVariables = { EDITOR = "emacs"; };
   home.shellAliases.gx = "nix-env";
   programs.bash.initExtra = ''
-    recon () { sudo sh -c 'nixos-rebuild switch -I nixos-config=$HOME/dotfiles/configuration.nix |& nom'; }
+    recon () { sudo nixos-rebuild switch --flake .#hydra; }
   '';
   programs.bat = {
     enable = true;
@@ -73,6 +73,7 @@
     xclip
     fasd
     bat
+    zotero
     exa
     pkg-config
     gdb
@@ -117,5 +118,6 @@
     cryptsetup
     keepassxc
     valgrind
+    virt-manager
   ];
 }
