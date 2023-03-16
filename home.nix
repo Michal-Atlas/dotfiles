@@ -137,9 +137,16 @@ in {
   # Here goes the rest of your home-manager config, e.g. home.packages = [ pkgs.foo ];
   home.sessionVariables = { EDITOR = "emacs"; };
   home.shellAliases.gx = "nix-env";
-  programs.bash.initExtra = ''
-    recon () { sudo nixos-rebuild switch --flake .#hydra; }
+  programs.bash = {
+    enable = true;
+    initExtra = ''
+    recon () { sudo nixos-rebuild switch --flake .#$(hostname); }
+    cheat () { curl "cheat.sh/$@"; }
   '';
+  };
+  programs.direnv.enable = true;
+  programs.autojump.enable = true;
+  
   programs.bat = {
     enable = true;
     extraPackages = with pkgs.bat-extras; [ batdiff batman batgrep batwatch ];
