@@ -8,4 +8,9 @@
 
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" ];
+
+  fileSystems."/GAMES" = {
+    device = "/dev/disk/by-label/Games-Z";
+    fsType = "ntfs";
+  };
 }

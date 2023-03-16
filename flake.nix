@@ -19,34 +19,31 @@
         flake-utils.follows = "flake-utils";
       };
     };
-    hyprland.url = "github:hyprwm/Hyprland";
-    hyprland-contrib.url = "github:hyprwm/contrib";
   };
 
   outputs = { self, nixpkgs, flake-utils, emacs-overlay, nix-alien, home-manager
-    , hyprland, hyprland-contrib, ... }@attrs:
+    , ... }@attrs:
     let sys = "x86_64-linux";
     in {
-      nixosConfigurations = builtins.foldl'
-        (acc: hostname:
-          {
-            ${hostname} = nixpkgs.lib.nixosSystem {
-              system = sys;
-              specialArgs = attrs;
-              modules = [
-                ./configuration.nix
-                ./machines/${hostname}.nix
-                ./hardware/${hostname}.nix
-                home-manager.nixosModules.home-manager
-                {
-                  home-manager = {
-                    useGlobalPkgs = true;
-                    useUserPackages = true;
-                    users.michal_atlas = import ./home.nix;
-                  };
-                }
-              ];
-            };
-          } // acc) { } [ "hydra" "dagon" ];
+      nixosConfigurations = builtins.foldl' (acc: hostname:
+        {
+          ${hostname} = nixpkgs.lib.nixosSystem {
+            system = sys;
+            specialArgs = attrs;
+            modules = [
+              ./configuration.nix
+              ./machines/${hostname}.nix
+              ./hardware/${hostname}.nix
+              home-manager.nixosModules.home-manager
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  users.michal_atlas = import ./home.nix;
+                };
+              }
+            ];
+          };
+        } // acc) { } [ "hydra" "dagon" ];
     };
 }

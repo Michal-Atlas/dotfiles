@@ -112,23 +112,26 @@
       "Hydra" = {
         id = "OQAFX4X-3AWLM54-YHMTL6E-O6VGWE7-TPCJM4Y-PVCIDVE-FK6RFHU-EWCMMQJ";
       };
+      "Dagon" = {
+        id = "7E2VZAO-XITSGIJ-LRHC6BQ-QUO6FA6-NPT5Q5P-4I7HTOR-PPW5757-GQMXZAL";
+      };
     };
     folders = {
       "documents" = {
         path = "/home/michal_atlas/Documents";
-        devices = [ "Nox" ];
+        devices = [ "Nox" "Hydra" "Dagon" ];
       };
       "sync" = {
         path = "/home/michal_atlas/Sync";
-        devices = [ "Nox" ];
+        devices = [ "Nox" "Hydra" "Dagon" ];
       };
       "cl" = {
         path = "/home/michal_atlas/cl";
-        devices = [ "Nox" ];
+        devices = [ "Nox" "Hydra" "Dagon" ];
       };
       "roam" = {
         path = "/home/michal_atlas/roam";
-        devices = [ "Nox" ];
+        devices = [ "Nox" "Hydra" "Dagon" ];
       };
     };
   };
@@ -195,14 +198,16 @@
   #   ];
   # };
 
+  nixpkgs.overlays = [ self.inputs.nix-alien.overlays.default ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs;
-    [
-      #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-      #  wget
-      gnomeExtensions.appindicator
-    ];
+  environment.systemPackages = with pkgs; [
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
+    gnomeExtensions.appindicator
+    nix-alien
+  ];
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
   # Some programs need SUID wrappers, can be configured further or are
