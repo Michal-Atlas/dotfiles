@@ -162,7 +162,6 @@ in {
   home.packages = with pkgs; [
     myEm
     dotnet-sdk
-    dotnet-runtime
     rare
     legendary-gl
     nixfmt
