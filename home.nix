@@ -1,6 +1,7 @@
-{ self, config, pkgs, emacs-overlay, ... }:
+{ pkgs, lib, ... }:
 
 let
+  mkTuple = lib.hm.gvariant.mkTuple;
   myEm = (pkgs.emacsPackagesFor pkgs.emacs).emacsWithPackages (epkgs:
     with epkgs; [
       use-package
@@ -281,7 +282,7 @@ in {
       });
     };
     "org/gnome/desktop/input-sources" = {
-      sources = [ "('xkb', 'us')" "('xkb', 'cz+ucw')" ];
+      sources = [ (mkTuple [ "xkb" "us" ]) (mkTuple [ "xkb" "cz+ucw" ]) ];
       xkb-options =
         [ "grp:caps_switch" "lv3:ralt_switch" "compose:rctrl-altgr" ];
     };
