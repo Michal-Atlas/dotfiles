@@ -5,7 +5,7 @@
 
 {
   networking.hostName = "hydra";
-
+  nix.settings.trusted-users = [ "michal_atlas" ];
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" ];
 

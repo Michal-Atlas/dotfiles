@@ -16,6 +16,9 @@
     speedFactor = 2;
     supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
     mandatoryFeatures = [ ];
+    sshUser = "michal_atlas";
+    sshKey = "/home/michal_atlas/.ssh/id_rsa";
+    publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUFDLytHQ0F1RFNxMmt5U3c0K3lCMVUzVjk1Z0YrdjdNOUE1cTE4YXQrWVogcm9vdEBuaXhvcwo=";
   }];
   nix.distributedBuilds = true;
   # optional, useful when the builder has a faster internet connection than yours
