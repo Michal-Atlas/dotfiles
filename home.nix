@@ -193,8 +193,9 @@ in {
     gnumake
     cmake
     meson
-    python3
-    python39Packages.ipython
+    python310Packages.python
+    python310Packages.ipython
+    python310Packages.dbus-python
     mosh
     gnupg
     direnv
