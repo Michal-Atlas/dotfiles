@@ -5,24 +5,20 @@
 { self, config, pkgs, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
-    ./hardware-configuration-hydra.nix
-  ];
-
-  fileSystems."/GAMES" = {
-    device = "/dev/disk/by-label/Games-Z";
-    fsType = "ntfs";
-  };
-
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
+  networking.extraHosts = ''
+    192.168.0.100 hydra
+    192.168.0.101 dagon
+  '';
+
   # Setup keyfile
   boot.initrd.secrets = { "/crypto_keyfile.bin" = null; };
 
-  networking.hostName = "hydra"; # Define your hostname.
+  # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -162,6 +158,10 @@
     isNormalUser = true;
     description = "Michal Atlas";
     extraGroups = [ "networkmanager" "wheel" "libvirt" "kvm" "transmission" ];
+    openssh.authorizedKeys.keys = [
+      (builtins.readFile ./keys/hydra.pub)
+      (builtins.readFile ./keys/dagon.pub)
+    ];
   };
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Enable automatic login for the user.
