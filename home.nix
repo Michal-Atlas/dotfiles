@@ -140,13 +140,13 @@ in {
   programs.bash = {
     enable = true;
     initExtra = ''
-    recon () { sudo nixos-rebuild switch --flake .#$(hostname); }
-    cheat () { curl "cheat.sh/$@"; }
-  '';
+      recon () { sudo nixos-rebuild switch --flake .#$(hostname); }
+      cheat () { curl "cheat.sh/$@"; }
+    '';
   };
   programs.direnv.enable = true;
   programs.autojump.enable = true;
-  
+
   programs.bat = {
     enable = true;
     extraPackages = with pkgs.bat-extras; [ batdiff batman batgrep batwatch ];
@@ -249,4 +249,41 @@ in {
     valgrind
     virt-manager
   ];
+
+  dconf.settings = {
+    "org/gnome/shell" = {
+      enabled-extensions = [
+        "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
+        "drive-menu@gnome-shell-extensions.gcampax.github.com"
+        "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
+      ];
+    };
+    "org/gnome/shell/peripherals/touchpad" = { tap-to-click = true; };
+    "org/gnome/shell/settings-daemon/plugins/media-keys" = {
+      custom-keybindings = [
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+      ];
+    };
+    "org/gnome/shell/settings-daemon/plugins/media-keys/custom-keybindings/custom0" =
+      {
+        binding = "<Super>Return";
+        command = "kgx";
+        name = "TERM";
+      };
+    "org/gnome/desktop/background" = {
+      picture-uri = (builtins.fetchurl {
+        url = "https://pbs.twimg.com/media/EaOkegwX0Aww2WW.jpg";
+        sha256 = "sha256:0972r5d7k70ls87pjrx0s4jqmd2kmhc7f9r9ypa0d8ikqgwpnfhx";
+      });
+      picture-uri-dark = (builtins.fetchurl {
+        url = "https://i.imgur.com/LdaFp48.jpeg";
+        sha256 = "sha256:1h12bzll6wfwna3nswdi50cnmcrdx0gl6irgzxg60yvc7izz4kk3";
+      });
+    };
+    "org/gnome/desktop/input-sources" = {
+      sources = [ "('xkb', 'us')" "('xkb', 'cz+ucw')" ];
+      xkb-options =
+        [ "grp:caps_switch" "lv3:ralt_switch" "compose:rctrl-altgr" ];
+    };
+  };
 }
