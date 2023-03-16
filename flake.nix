@@ -21,8 +21,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, flake-utils, emacs-overlay, nix-alien, home-manager
-    , ... }@attrs:
+  outputs = { self, nixpkgs, flake-utils, nix-alien, home-manager, ... }@attrs:
     let sys = "x86_64-linux";
     in {
       nixosConfigurations = builtins.foldl' (acc: hostname:
@@ -44,7 +43,8 @@
               }
             ];
           };
-        } // acc) { } (builtins.map (f: builtins.head (builtins.match "(.*).nix" f))
+        } // acc) { }
+        (builtins.map (f: builtins.head (builtins.match "(.*).nix" f))
           (builtins.attrNames (builtins.readDir ./machines)));
     };
 }
