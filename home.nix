@@ -161,6 +161,8 @@ in {
   };
   home.packages = with pkgs; [
     myEm
+    dotnet-sdk
+    dotnet-runtime
     rare
     legendary-gl
     nixfmt
@@ -168,6 +170,8 @@ in {
     thunderbird
     gparted
     jetbrains.clion
+    jetbrains.datagrip
+    jetbrains.rider
     steam
     sbcl
     patchelf
@@ -183,7 +187,7 @@ in {
     gnumake
     cmake
     meson
-    python
+    python3
     python39Packages.ipython
     mosh
     gnupg
