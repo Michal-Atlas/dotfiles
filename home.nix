@@ -257,10 +257,13 @@ in {
 
   dconf.settings = {
     "org/gnome/shell" = {
+      disable-user-extensions = false;
       enabled-extensions = [
         "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
         "drive-menu@gnome-shell-extensions.gcampax.github.com"
         "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
+        "appindicatorsupport@rgcjonas.gmail.com"
+        "nightthemeswitcher@romainvigier.fr"
       ];
     };
     "org/gnome/shell/peripherals/touchpad" = { tap-to-click = true; };
@@ -289,6 +292,10 @@ in {
       sources = [ (mkTuple [ "xkb" "us" ]) (mkTuple [ "xkb" "cz+ucw" ]) ];
       xkb-options =
         [ "grp:caps_switch" "lv3:ralt_switch" "compose:rctrl-altgr" ];
+    };
+    "org/gnome/system/location" = { enabled = true; };
+    "org/gnome/shell/extensions/nightthemeswitcher/time" = {
+      manual-schedule = false;
     };
   };
 }
