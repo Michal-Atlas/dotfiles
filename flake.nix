@@ -44,6 +44,7 @@
               }
             ];
           };
-        } // acc) { } [ "hydra" "dagon" ];
+        } // acc) { } (builtins.map (f: builtins.head (builtins.match "(.*).nix" f))
+          (builtins.attrNames (builtins.readDir ./machines)));
     };
 }

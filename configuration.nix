@@ -161,10 +161,9 @@
     isNormalUser = true;
     description = "Michal Atlas";
     extraGroups = [ "networkmanager" "wheel" "libvirt" "kvm" "transmission" ];
-    openssh.authorizedKeys.keys = [
-      (builtins.readFile ./keys/hydra.pub)
-      (builtins.readFile ./keys/dagon.pub)
-    ];
+    openssh.authorizedKeys.keys =
+      builtins.map (f: builtins.readFile ./keys/${f})
+      (builtins.attrNames (builtins.readDir ./keys));
   };
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Enable automatic login for the user.
