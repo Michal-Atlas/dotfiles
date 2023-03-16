@@ -177,11 +177,14 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # services.openvpn.servers.vpn = {
-  #   config = "config ${(builtins.fetchurl "https://help.fit.cvut.cz/vpn/media/fit-vpn.ovpn")}";
+  # services.openvpn.servers.ctu-fit = {
+  #   config = "config ${(builtins.fetchurl {
+  #     url = "https://help.fit.cvut.cz/vpn/media/fit-vpn.ovpn";
+  #     sha256 = "8d784a956ac10c81bcdf3e84f440c1a7802e80627dabe9a1fbec75278a190459";
+  # })}";
   #   autoStart = false;
-  #   authUserPass.password = "";
-  #   authUserPass.username = "zacekmi2";
+  #   # authUserPass.password = "";
+  #   # authUserPass.username = "zacekmi2";
   #   updateResolvConf = true;
   # };
 
@@ -206,15 +209,18 @@
     #  wget
     gnomeExtensions.appindicator
     nix-alien
+    pinentry-curses
   ];
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.mtr.enable = true;
+  services.pcscd.enable = true;
   programs.gnupg.agent = {
     enable = true;
-    #   enableSSHSupport = true;
+    pinentryFlavor = "gtk2";
+    enableSSHSupport = true;
   };
 
   # List services that you want to enable:
