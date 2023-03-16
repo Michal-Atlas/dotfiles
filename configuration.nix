@@ -202,15 +202,6 @@
 
   nixpkgs.overlays = [ self.inputs.nix-alien.overlays.default ];
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #  wget
-    gnomeExtensions.appindicator
-    nix-alien
-    pinentry-curses
-  ];
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
   # Some programs need SUID wrappers, can be configured further or are

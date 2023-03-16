@@ -4,125 +4,125 @@ let
   mkTuple = lib.hm.gvariant.mkTuple;
   myEm = (pkgs.emacsPackagesFor pkgs.emacs).emacsWithPackages (epkgs:
     with epkgs; [
-      use-package
-      org-roam
-      org-roam-ui
-      consult-org-roam
-      #org-roam-timestamps
-      engrave-faces
-      go-mode
-      use-package
-      password-store
-      password-store-otp
-      org-fragtog
-      org-modern
-      org-superstar
-      highlight-indentation
+      #hackles
       #mode-icons
-      doom-modeline
-      which-key
-      rainbow-identifiers
-      rainbow-delimiters
-      undo-tree
-      ace-window
-      eshell-prompt-extras
-      eshell-syntax-highlighting
-      esh-autosuggest
-      git-gutter
-      #savehist
-      anzu
-      marginalia
       #org-roam
+      #org-roam-timestamps
       #org-roam-ui
-      auto-complete
-      geiser-racket
-      adaptive-wrap
-      geiser-guile
-      sly
-      slime
-      geiser
-      multiple-cursors
-      magit
-      helpful
-      avy
-      browse-kill-ring
-      emms
-      evil
-      exwm
-      vertico
-      orderless
-      consult
-      xah-fly-keys
+      #parinfer
+      #savehist
       ac-geiser
+      ace-window
+      adaptive-wrap
       all-the-icons
       all-the-icons-dired
+      anzu
       auctex
+      auto-complete
+      avy
+      browse-kill-ring
       calfw
       circe
       company
       company-box
+      consult
+      consult-org-roam
+      consult-yasnippet
       crux
       csv
       csv-mode
       dashboard
       debbugs
       direnv
+      dmenu
+      docker
+      dockerfile-mode
+      doom-modeline
       ediprolog
+      eglot
       elfeed
       elpher
       embark
       ement
-      lsp-mode
-      lsp-ui
-      rustic
+      emms
+      engrave-faces
+      esh-autosuggest
+      eshell-prompt-extras
+      eshell-syntax-highlighting
       eshell-z
-      hydra
+      evil
+      exwm
       flycheck
       flycheck-haskell
       frames-only-mode
       gdscript-mode
+      geiser
+      geiser-guile
+      geiser-racket
+      gemini-mode
+      git-gutter
+      go-mode
       haskell-mode
+      helpful
       highlight-indent-guides
+      highlight-indentation
       htmlize
+      hydra
       iedit
+      lsp-mode
+      lsp-ui
+      magit
       magit-todos
+      marginalia
+      mastodon
       monokai-theme
       multi-term
+      multiple-cursors
       nix-mode
+      nov
       on-screen
+      orderless
+      org
+      org-fragtog
+      org-modern
+      org-roam
+      org-roam-ui
+      org-superstar
       ox-gemini
-      #parinfer
       paredit
+      password-generator
+      password-store
+      password-store-otp
       pdf-tools
       pg
       projectile
       racket-mode
+      rainbow-delimiters
+      rainbow-identifiers
       realgud
+      rustic
+      slime
+      sly
+      ssh-agency
+      stumpwm-mode
+      stumpwm-mode
       swiper
       tldr
+      tramp
+      undo-tree
+      use-package
+      use-package
+      vertico
       vterm
+      which-key
+      xah-fly-keys
       xkcd
       yaml-mode
       yasnippet
+      yasnippet
+      yasnippet-snippets
       yasnippet-snippets
       zerodark-theme
-      gemini-mode
-      nov
-      dockerfile-mode
-      docker
-      dmenu
-      eglot
-      org
-      stumpwm-mode
-      #hackles
-      yasnippet-snippets
-      consult-yasnippet
-      yasnippet
-      tramp
-      ssh-agency
-      password-generator
-      mastodon
-      stumpwm-mode
     ]);
 in {
   home.username = "michal_atlas";
@@ -169,86 +169,90 @@ in {
   };
   home.packages = with pkgs; [
     myEm
+    # clang
+    # mathematica
+    arandr
+    audacity
+    bat
+    bc
+    btrfs-progs
+    chicken
+    cifs-utils
+    cmake
+    cryptsetup
+    direnv
+    discord
     dotnet-sdk
-    rare
-    legendary-gl
-    nixfmt
+    exa
+    fasd
+    feh
+    file
+    fira-code
     firefox
-    thunderbird
+    fzf
+    gcc
+    gdb
+    gimp
+    gnomeExtensions.appindicator
+    gnomeExtensions.night-theme-switcher
+    gnumake
+    gnupg
     gparted
+    graphviz
+    gzdoom
+    htop
+    inkscape
+    isync
+    jetbrains-mono
     jetbrains.clion
     jetbrains.datagrip
     jetbrains.rider
-    steam
-    sbcl
-    patchelf
-    cifs-utils
-    btrfs-progs
-    file
-    fzf
-    pandoc
-    texlive.combined.scheme-minimal
-    htop
-    gcc
-    # clang
-    gnumake
-    cmake
-    meson
-    python310Packages.python
-    python310Packages.ipython
-    python310Packages.dbus-python
-    mosh
-    gnupg
-    direnv
-    xclip
-    fasd
-    bat
-    zotero
-    exa
-    pkg-config
-    gdb
-    chicken
-    racket
-    swiProlog
-    lispPackages_new.sbclPackages.linedit
-    vlc
-    mpv
-    libreoffice
-    vscode
-    audacity
-    feh
-    shotwell
-    inkscape
-    gimp
-    fira-code
-    jetbrains-mono
-    xorg.xrandr
-    arandr
-    graphviz
-    xdot
-    tree
-    bc
-    unzip
-    superTuxKart
-    wesnoth
-    gzdoom
-    taisei
-    kobodeluxe
-    mu
-    isync
-    lagrange
-    youtube-dl
-    okular
-    discord
-    xonotic
-    wineWowPackages.stable
-    nix-output-monitor
-    minecraft
-    # mathematica
-    cryptsetup
     keepassxc
+    kobodeluxe
+    lagrange
+    legendary-gl
+    libreoffice
+    lispPackages_new.sbclPackages.linedit
+    meson
+    minecraft
+    mosh
+    mpv
+    mu
+    nix-alien
+    nix-output-monitor
+    nixfmt
+    okular
+    pandoc
+    patchelf
+    pinentry-curses
+    pkg-config
+    python310Packages.dbus-python
+    python310Packages.ipython
+    python310Packages.python
+    racket
+    rare
+    sbcl
+    shotwell
+    steam
+    superTuxKart
+    swiProlog
+    taisei
+    texlive.combined.scheme-minimal
+    thunderbird
+    tree
+    unzip
     valgrind
     virt-manager
+    vlc
+    vscode
+    wesnoth
+    wineWowPackages.stable
+    xclip
+    xdot
+    xonotic
+    xorg.xrandr
+    youtube-dl
+    zotero
   ];
 
   dconf.settings = {
