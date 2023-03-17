@@ -6,7 +6,6 @@
     (load quicklisp-init)))
 
 (defconstant default-packages '(:serapeum :alexandria :linedit))
-(ql-dist:install-dist "http://dist.ultralisp.org/" :prompt nil)
 (mapcar #'ql:quickload default-packages)
 (mapcar #'use-package default-packages)
 
