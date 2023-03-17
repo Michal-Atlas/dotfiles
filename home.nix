@@ -297,5 +297,8 @@ in {
     "org/gnome/shell/extensions/nightthemeswitcher/time" = {
       manual-schedule = false;
     };
+    "org/gnome/desktop/wm/preferences" = {
+      focus-mode = "sloppy";
+    };
   };
 }
