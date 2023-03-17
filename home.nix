@@ -222,6 +222,8 @@ in {
     nix-output-monitor
     nixfmt
     okular
+    openmw
+    #openmw-tes3mp.override
     pandoc
     patchelf
     pinentry-curses
@@ -234,6 +236,7 @@ in {
     sbcl
     shotwell
     steam
+    superTux
     superTuxKart
     swiProlog
     taisei
