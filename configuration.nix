@@ -262,41 +262,48 @@
   };
   nix.settings.auto-optimise-store = true;
 
-  systemd.user.timers."tmp-log" = {
-    wantedBy = [ "timers.target" ];
-    timerConfig = {
-      OnBootSec = "1d";
-      onUnitActiveSec = "1d";
-      Unit = "tmp-log.service";
-    };
-  };
-  systemd.user.services."tmp-log" = {
-    script = ''
-      mkdir -p "$HOME/tmp-log";
-      if [ "$(ls -A "$HOME/tmp")" ]; then 
-          mv "$HOME/tmp" "$HOME/tmp-log/$(date -I)";
-          mkdir -p "$HOME/tmp";
-      fi;
-      if [ "$(ls -A "$HOME/Downloads")" ]; then 
-          mv "$HOME/Downloads" "$HOME/tmp-log/$(date -I)-down";
-          mkdir -p "$HOME/Downloads";
-      fi;
-    '';
-    serviceConfig = { Type = "oneshot"; };
-  };
+  systemd.user = {
+    timers = {
+      "tmp-log" = {
+        wantedBy = [ "timers.target" ];
+        timerConfig = {
+          OnBootSec = "1d";
+          onUnitActiveSec = "1d";
+          Unit = "tmp-log.service";
+        };
+      };
 
-  systemd.user.timers."mailsync" = {
-    wantedBy = [ "timers.target" ];
-    timerConfig = {
-      OnBootSec = "20m";
-      onUnitActiveSec = "20m";
-      Unit = "mailsync.service";
+      "mailsync" = {
+        wantedBy = [ "timers.target" ];
+        timerConfig = {
+          OnBootSec = "20m";
+          onUnitActiveSec = "20m";
+          Unit = "mailsync.service";
+        };
+      };
     };
-  };
-  systemd.user.services."mailsync" = {
-    script = "mbsync --all";
-    serviceConfig = { Type = "oneshot"; };
-    path = with pkgs; [ isync ];
+
+    services = {
+      "mailsync" = {
+        script = "mbsync --all";
+        serviceConfig = { Type = "oneshot"; };
+        path = with pkgs; [ isync ];
+      };
+      "tmp-log" = {
+        script = ''
+          mkdir -p "$HOME/tmp-log";
+          if [ "$(ls -A "$HOME/tmp")" ]; then
+              mv "$HOME/tmp" "$HOME/tmp-log/$(date -I)";
+              mkdir -p "$HOME/tmp";
+          fi;
+          if [ "$(ls -A "$HOME/Downloads")" ]; then
+              mv "$HOME/Downloads" "$HOME/tmp-log/$(date -I)-down";
+              mkdir -p "$HOME/Downloads";
+          fi;
+        '';
+        serviceConfig = { Type = "oneshot"; };
+      };
+    };
   };
 
   services.transmission = {
