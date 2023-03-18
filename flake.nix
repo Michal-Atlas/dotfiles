@@ -43,8 +43,8 @@
               }
             ];
           };
-        } // acc) { }
-        (builtins.map (f: builtins.head (builtins.match "(.*).nix" f))
-          (builtins.attrNames (builtins.readDir ./machines)));
+        } // acc) { } (with builtins;
+          (map (f: head (match "(.*).nix" f))
+            (attrNames (readDir ./machines))));
     };
 }
