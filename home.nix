@@ -147,7 +147,6 @@ in
     zsh = {
       enable = true;
       initExtra = ''
-        recon () { sudo nixos-rebuild switch --flake .#$(hostname); }
         cheat () { curl "cheat.sh/$@"; }
       '';
     };

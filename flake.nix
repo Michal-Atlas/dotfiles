@@ -58,7 +58,13 @@
         (with builtins;
         (map (f: head (match "(.*).nix" f))
           (attrNames (readDir ./machines))));
-    } // (flake-utils.lib.eachDefaultSystem (system: {
+    } // (flake-utils.lib.eachDefaultSystem (system:
+    let
+      pkgs = (import nixpkgs) {
+        inherit system;
+      };
+    in
+    {
       checks = {
         pre-commit-check = pre-commit-hooks.lib.${system}.run {
           src = ./.;
@@ -66,6 +72,11 @@
         };
       };
       devShell = nixpkgs.legacyPackages.${system}.mkShell {
+
+        nativeBuildInputs = [
+          (pkgs.writeShellScriptBin "recon"
+            ''sudo nixos-rebuild switch --flake .#$(hostname);'')
+        ];
         inherit (self.checks.${system}.pre-commit-check) shellHook;
       };
     }));
