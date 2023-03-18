@@ -165,8 +165,8 @@
     description = "Michal Atlas";
     extraGroups = [ "networkmanager" "wheel" "libvirt" "kvm" "transmission" ];
     openssh.authorizedKeys.keys =
-      builtins.map (f: builtins.readFile ./keys/${f})
-        (builtins.attrNames (builtins.readDir ./keys));
+      with builtins; (map (f: readFile ./keys/${f})
+        (attrNames (readDir ./keys)));
   };
   programs.zsh = {
     enable = true;
