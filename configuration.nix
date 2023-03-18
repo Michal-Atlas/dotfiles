@@ -161,11 +161,12 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.michal_atlas = {
     isNormalUser = true;
+    shell = pkgs.zsh;
     description = "Michal Atlas";
     extraGroups = [ "networkmanager" "wheel" "libvirt" "kvm" "transmission" ];
     openssh.authorizedKeys.keys =
       builtins.map (f: builtins.readFile ./keys/${f})
-      (builtins.attrNames (builtins.readDir ./keys));
+        (builtins.attrNames (builtins.readDir ./keys));
   };
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Enable automatic login for the user.

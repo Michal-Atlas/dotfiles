@@ -125,7 +125,8 @@ let
       yasnippet-snippets
       zerodark-theme
     ]);
-in {
+in
+{
   home.username = "michal_atlas";
   home.homeDirectory = "/home/michal_atlas";
   programs.git = {
@@ -139,29 +140,35 @@ in {
   # Here goes the rest of your home-manager config, e.g. home.packages = [ pkgs.foo ];
   home.sessionVariables = { EDITOR = "emacs"; };
   home.shellAliases.gx = "nix-env";
-  programs.bash = {
-    enable = true;
-    initExtra = ''
-      recon () { sudo nixos-rebuild switch --flake .#$(hostname); }
-      cheat () { curl "cheat.sh/$@"; }
-    '';
+  programs = {
+    direnv.enable = true;
+    autojump.enable = true;
+    bash.enable = true;
+    zsh = {
+      enable = true;
+      initExtra = ''
+        recon () { sudo nixos-rebuild switch --flake .#$(hostname); }
+        cheat () { curl "cheat.sh/$@"; }
+      '';
+    };
+    starship = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+    };
+    bat = {
+      enable = true;
+      extraPackages = with pkgs.bat-extras; [ batdiff batman batgrep batwatch ];
+    };
   };
-  programs.direnv.enable = true;
-  programs.autojump.enable = true;
-
-  programs.bat = {
-    enable = true;
-    extraPackages = with pkgs.bat-extras; [ batdiff batman batgrep batwatch ];
+  home.file = {
+    ".emacs.d/init.el".source = ./emacs.el;
+    ".guile".source = ./guile;
+    ".mbsyncrc".source = ./mbsyncrc;
+    ".sbclrc".source = ./sbclrc;
+    ".config/common-lisp/source-registry.conf".source = ./cl-src-registry.conf;
+    ".config/sway/config".source = ./sway.cfg;
   };
-  home.file.".emacs.d/init.el".source = ./emacs.el;
-
-  home.file.".guile".source = ./guile;
-  home.file.".mbsyncrc".source = ./mbsyncrc;
-  home.file.".sbclrc".source = ./sbclrc;
-  home.file.".config/common-lisp/source-registry.conf".source =
-    ./cl-src-registry.conf;
-
-  home.file.".config/sway/config".source = ./sway.cfg;
   xsession.numlock.enable = true;
   programs.home-manager.enable = true;
   services.emacs = {
@@ -184,8 +191,6 @@ in {
     direnv
     discord
     dotnet-sdk
-    exa
-    fasd
     feh
     file
     fira-code
