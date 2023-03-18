@@ -79,6 +79,7 @@ let
       multi-term
       multiple-cursors
       nix-mode
+      nixos-options
       nov
       on-screen
       orderless
@@ -300,8 +301,6 @@ in {
     "org/gnome/shell/extensions/nightthemeswitcher/time" = {
       manual-schedule = false;
     };
-    "org/gnome/desktop/wm/preferences" = {
-      focus-mode = "sloppy";
-    };
+    "org/gnome/desktop/wm/preferences" = { focus-mode = "sloppy"; };
   };
 }
