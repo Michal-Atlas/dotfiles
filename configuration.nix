@@ -35,15 +35,17 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
-    LC_ADDRESS = "cs_CZ.UTF-8";
-    LC_IDENTIFICATION = "cs_CZ.UTF-8";
-    LC_MEASUREMENT = "cs_CZ.UTF-8";
-    LC_MONETARY = "cs_CZ.UTF-8";
-    LC_NAME = "cs_CZ.UTF-8";
-    LC_NUMERIC = "cs_CZ.UTF-8";
-    LC_PAPER = "cs_CZ.UTF-8";
-    LC_TELEPHONE = "cs_CZ.UTF-8";
-    LC_TIME = "cs_CZ.UTF-8";
+    LANGUAGE = "en_US.UTF-8";
+    LC_ALL = "en_US.UTF-8";
+    #   LC_ADDRESS = "cs_CZ.UTF-8";
+    #   LC_IDENTIFICATION = "cs_CZ.UTF-8";
+    #   LC_MEASUREMENT = "cs_CZ.UTF-8";
+    #   LC_MONETARY = "cs_CZ.UTF-8";
+    #   LC_NAME = "cs_CZ.UTF-8";
+    #   LC_NUMERIC = "cs_CZ.UTF-8";
+    #   LC_PAPER = "cs_CZ.UTF-8";
+    #   LC_TELEPHONE = "cs_CZ.UTF-8";
+    #   LC_TIME = "cs_CZ.UTF-8";
   };
 
   # Enable the X11 windowing system.
@@ -52,17 +54,17 @@
   # https://nixos.wiki/wiki/AMD_GPU
   systemd.tmpfiles.rules =
     [ "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.hip}" ];
-  hardware.opengl.driSupport = true;
-  # For 32 bit applications
-  hardware.opengl.driSupport32Bit = true;
-  hardware.opengl.extraPackages = with pkgs; [
-    rocm-opencl-icd
-    rocm-opencl-runtime
-    amdvlk
-  ];
-  # For 32 bit applications 
-  # Only available on unstable
-  hardware.opengl.extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
+
+  hardware.opengl = {
+    driSupport = true;
+    # For 32 bit applications
+    driSupport32Bit = true;
+    extraPackages = with pkgs; [ rocm-opencl-icd rocm-opencl-runtime amdvlk ];
+    # For 32 bit applications 
+    # Only available on unstable
+    extraPackages32 = with pkgs; [ driversi686Linux.amdvlk libva ];
+    setLdLibraryPath = true;
+  };
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
