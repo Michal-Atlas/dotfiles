@@ -263,10 +263,13 @@
   systemd.user.services."tmp-log" = {
     script = ''
       mkdir -p "$HOME/tmp-log";
-      mkdir -p "$HOME/tmp";
       if [ "$(ls -A "$HOME/tmp")" ]; then 
           mv "$HOME/tmp" "$HOME/tmp-log/$(date -I)";
-          mkdir "$HOME/tmp";
+          mkdir -p "$HOME/tmp";
+      fi;
+      if [ "$(ls -A "$HOME/Downloads")" ]; then 
+          mv "$HOME/Downloads" "$HOME/tmp-log/$(date -I)-down";
+          mkdir -p "$HOME/Downloads";
       fi;
     '';
     serviceConfig = { Type = "oneshot"; };
