@@ -168,15 +168,7 @@
       with builtins; (map (f: readFile ./keys/${f})
         (attrNames (readDir ./keys)));
   };
-  programs.zsh = {
-    enable = true;
-    syntaxHighlighting = {
-      enable = true;
-      highlighters = [ "main" "brackets" "root" ];
-    };
-    vteIntegration = true;
-    autosuggestions.enable = true;
-  };
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = true;

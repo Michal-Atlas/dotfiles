@@ -141,23 +141,47 @@ in
   home.sessionVariables = { EDITOR = "emacs"; };
   home.shellAliases.gx = "nix-env";
   programs = {
-    direnv.enable = true;
-    autojump.enable = true;
-    bash.enable = true;
+    dircolors = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+    direnv = {
+      nix-direnv.enable = true;
+      enable = true;
+    };
+    autojump = {
+      enable = true;
+      enableZshIntegration = true;
+    };
     zsh = {
       enable = true;
       initExtra = ''
         cheat () { curl "cheat.sh/$@"; }
       '';
+      enableVteIntegration = true;
+      enableAutosuggestions = true;
+      enableSyntaxHighlighting = true;
+      enableCompletion = true;
+      autocd = true;
+      history.ignoreDups = true;
     };
     starship = {
       enable = true;
-      enableBashIntegration = true;
       enableZshIntegration = true;
     };
     bat = {
       enable = true;
       extraPackages = with pkgs.bat-extras; [ batdiff batman batgrep batwatch ];
+    };
+    nix-index = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+    exa = {
+      enable = true;
+      enableAliases = true;
+      git = true;
+      icons = true;
     };
   };
   home.file = {
@@ -170,29 +194,30 @@ in
   };
   xsession.numlock.enable = true;
   programs.home-manager.enable = true;
+
   services.emacs = {
     enable = true;
     package = myEm;
   };
   home.packages = with pkgs; [
-    (pkgs.stdenv.mkDerivation
-      (
-        let version = "0.3"; in {
-          buildInputs = [ autoconf automake readline texinfo ];
-          pname = "mystic";
-          version = version;
-          src = fetchFromSourcehut {
-            owner = "~michal_atlas";
-            repo = "mystic";
-            rev = "v${version}";
-            sha256 = "sha256-1492bbgYfgbiRd3ahUFlaFFHrk1Scx+oTIjQamQ+m5o=";
-          };
-          preConfigurePhases = [ "autogen" ];
-          autogen = ''
-            ./autogen.sh
-          '';
-        }
-      ))
+    (pkgs.stdenv.mkDerivation (
+      let version = "0.3";
+      in {
+        buildInputs = [ autoconf automake readline texinfo ];
+        pname = "mystic";
+        version = version;
+        src = fetchFromSourcehut {
+          owner = "~michal_atlas";
+          repo = "mystic";
+          rev = "v${version}";
+          sha256 = "sha256-1492bbgYfgbiRd3ahUFlaFFHrk1Scx+oTIjQamQ+m5o=";
+        };
+        preConfigurePhases = [ "autogen" ];
+        autogen = ''
+          ./autogen.sh
+        '';
+      }
+    ))
     myEm
     # clang
     # mathematica
