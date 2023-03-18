@@ -173,8 +173,8 @@
     syntaxHighlighting = {
       enable = true;
       highlighters = [ "main" "brackets" "root" ];
-      vteIntegration = true;
     };
+    vteIntegration = true;
     autosuggestions.enable = true;
   };
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
