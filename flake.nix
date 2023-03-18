@@ -19,32 +19,54 @@
         flake-utils.follows = "flake-utils";
       };
     };
+    pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
   };
 
-  outputs = { self, nixpkgs, flake-utils, nix-alien, home-manager, ... }@attrs:
+  outputs =
+    { self
+    , nixpkgs
+    , flake-utils
+    , nix-alien
+    , home-manager
+    , pre-commit-hooks
+    , ...
+    }@attrs:
     let sys = "x86_64-linux";
     in {
-      nixosConfigurations = builtins.foldl' (acc: hostname:
-        {
-          ${hostname} = nixpkgs.lib.nixosSystem {
-            system = sys;
-            specialArgs = attrs;
-            modules = [
-              ./configuration.nix
-              ./machines/${hostname}.nix
-              ./hardware/${hostname}.nix
-              home-manager.nixosModules.home-manager
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  users.michal_atlas = import ./home.nix;
-                };
-              }
-            ];
-          };
-        } // acc) { } (with builtins;
-          (map (f: head (match "(.*).nix" f))
-            (attrNames (readDir ./machines))));
-    };
+      nixosConfigurations = builtins.foldl'
+        (acc: hostname:
+          {
+            ${hostname} = nixpkgs.lib.nixosSystem {
+              system = sys;
+              specialArgs = attrs;
+              modules = [
+                ./configuration.nix
+                ./machines/${hostname}.nix
+                ./hardware/${hostname}.nix
+                home-manager.nixosModules.home-manager
+                {
+                  home-manager = {
+                    useGlobalPkgs = true;
+                    useUserPackages = true;
+                    users.michal_atlas = import ./home.nix;
+                  };
+                }
+              ];
+            };
+          } // acc)
+        { }
+        (with builtins;
+        (map (f: head (match "(.*).nix" f))
+          (attrNames (readDir ./machines))));
+    } // (flake-utils.lib.eachDefaultSystem (system: {
+      checks = {
+        pre-commit-check = pre-commit-hooks.lib.${system}.run {
+          src = ./.;
+          hooks = { nixpkgs-fmt.enable = true; };
+        };
+      };
+      devShell = nixpkgs.legacyPackages.${system}.mkShell {
+        inherit (self.checks.${system}.pre-commit-check) shellHook;
+      };
+    }));
 }
