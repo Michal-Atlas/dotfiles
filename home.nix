@@ -284,12 +284,12 @@ in {
       };
     "org/gnome/desktop/background" = {
       picture-uri = (builtins.fetchurl {
-        url = "https://pbs.twimg.com/media/EaOkegwX0Aww2WW.jpg";
-        sha256 = "sha256:0972r5d7k70ls87pjrx0s4jqmd2kmhc7f9r9ypa0d8ikqgwpnfhx";
+        url = "https://ift.tt/2UDuBqa";
+        sha256 = "sha256:1nj5kj4dcxnzazf46dczfvcj8svhv1lhfa8rxn0q418s3j1w5dcb";
       });
       picture-uri-dark = (builtins.fetchurl {
-        url = "https://i.imgur.com/LdaFp48.jpeg";
-        sha256 = "sha256:1h12bzll6wfwna3nswdi50cnmcrdx0gl6irgzxg60yvc7izz4kk3";
+        url = "https://images.alphacoders.com/923/923968.jpg";
+        sha256 = "sha256:0z0awasi0cljvvnbkn9kfvjx7rdr3n68xa5vj3a6y9z9rxxyv1hc";
       });
     };
     "org/gnome/desktop/input-sources" = {
@@ -302,5 +302,6 @@ in {
       manual-schedule = false;
     };
     "org/gnome/desktop/wm/preferences" = { focus-mode = "sloppy"; };
+    "org/gnome/settings-daemon/plugins/color" = { night-light-enabled = true; };
   };
 }
