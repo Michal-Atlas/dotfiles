@@ -243,6 +243,7 @@ in {
     taisei
     texlive.combined.scheme-minimal
     thunderbird
+    transmission-remote-gtk
     tree
     unzip
     valgrind
