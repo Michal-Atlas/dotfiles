@@ -70,11 +70,15 @@
       checks = {
         pre-commit-check = pre-commit-hooks.lib.${system}.run {
           src = ./.;
-          hooks = { nixpkgs-fmt.enable = true; };
+          hooks = {
+            nixpkgs-fmt.enable = true;
+            # statix.enable = true;
+            # shellcheck.enable = true;
+            # shfmt.enable = true;
+          };
         };
       };
       devShell = nixpkgs.legacyPackages.${system}.mkShell {
-
         nativeBuildInputs = [
           (pkgs.writeShellScriptBin "recon"
             "sudo nixos-rebuild switch --flake .#$(hostname);")
