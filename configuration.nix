@@ -289,7 +289,7 @@
       "mailsync" = {
         script = "mbsync --all";
         serviceConfig = { Type = "oneshot"; };
-        path = with pkgs; [ isync ];
+        path = with pkgs; [ isync gnupg ];
       };
       "tmp-log" = {
         script = ''
