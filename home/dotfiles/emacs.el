@@ -1,19 +1,17 @@
 (require 'use-package)
 ;; Org-mode
 
- ;; (use-package org-fragtog
- ;;   :hook (org-mode org-fragtog-mode))
- (use-package org-modern
-   :hook (org-mode . org-modern-mode))
- (org-babel-do-load-languages
- 'org-babel-load-languages '((C . t)
-			     (scheme . t)
-			     (dot . t)))
+;; (use-package org-fragtog
+;;   :hook (org-mode org-fragtog-mode))
+(use-package org-modern :hook (org-mode . org-modern-mode))
+(org-babel-do-load-languages
+ 'org-babel-load-languages '((C . t) (scheme . t) (dot . t)))
 
 ;; Variable Init
 
-(setq user-full-name "Michal Atlas"
-      user-mail-address "michal_atlas+emacs@posteo.net")
+(setq
+ user-full-name "Michal Atlas"
+ user-mail-address "michal_atlas+emacs@posteo.net")
 ;; (setq user-full-name "Michal Žáček"
 ;;       user-mail-address "zacekmi2@fit.cvut.cz"
 
@@ -21,7 +19,8 @@
 (setq mastodon-active-user "michal_atlas")
 
 (setq backup-directory-alist '((".*" . "~/.emacs.d/bkp")))
-(setq projectile-project-search-path (list "~/Documents" "~/source" "~/cl"))
+(setq projectile-project-search-path
+      (list "~/Documents" "~/source" "~/cl"))
 (setq org-roam-directory "/home/michal_atlas/roam")
 (setq enable-local-variables :all)
 (setq calendar-week-start-day 1)
@@ -36,16 +35,18 @@
 (run-at-time nil (* 10 60) 'recentf-save-list)
 (global-prettify-symbols-mode +1)
 
-(defun yes-or-no-p (prompt) (y-or-n-p prompt))
+(defun yes-or-no-p (prompt)
+  (y-or-n-p prompt))
 ;(dired-async-mode 1)
 (setq auth-sources '("~/.authinfo.gpg"))
 
 ;; Scrolling
 
-(setq scroll-step 1
-      scroll-conservatively 10000
-      auto-window-vscroll nil
-      scroll-margin 8)
+(setq
+ scroll-step 1
+ scroll-conservatively 10000
+ auto-window-vscroll nil
+ scroll-margin 8)
 
 ;;; Scrolling.
 ;; Good speed and allow scrolling through large images (pixel-scroll).
@@ -82,11 +83,12 @@
 (global-hl-line-mode 1)
 
 
-(use-package highlight-indentation
-  :hook (prog-mode . highlight-indentation-mode)
-  :custom (highlight-indent-guides-method 'bitmap))
-					; (set-frame-font "Fira Code-11" nil t)
-					; (add-to-list 'default-frame-alist '(font . "Fira Code-11"))
+(use-package
+ highlight-indentation
+ :hook (prog-mode . highlight-indentation-mode)
+ :custom (highlight-indent-guides-method 'bitmap))
+; (set-frame-font "Fira Code-11" nil t)
+; (add-to-list 'default-frame-alist '(font . "Fira Code-11"))
 
 (setq custom-file (locate-user-emacs-file "custom-vars.el"))
 (load custom-file 'noerror 'nomessage)
@@ -96,14 +98,15 @@
 
 ;; Theme
 
-(setq modus-themes-subtle-line-numbers t
-      modus-themes-mode-line '(accented)
-      modus-themes-syntax '(yellow-comments)
-      modus-themes-paren-match '(bold intense)
-      modus-themes-prompts '(intense)
-      modus-themes-region '(no-extend bg-only accented)
-      modus-themes-bold-constructs t
-      modus-themes-hl-line '(accented intense))
+(setq
+ modus-themes-subtle-line-numbers t
+ modus-themes-mode-line '(accented)
+ modus-themes-syntax '(yellow-comments)
+ modus-themes-paren-match '(bold intense)
+ modus-themes-prompts '(intense)
+ modus-themes-region '(no-extend bg-only accented)
+ modus-themes-bold-constructs t
+ modus-themes-hl-line '(accented intense))
 (load-theme 'modus-vivendi t)
 
 ;; Modeline
@@ -120,70 +123,79 @@
 
 ;; Packages 
 
-(use-package which-key
-  :config (which-key-mode))
+(use-package which-key :config (which-key-mode))
 (setq which-key-popup-type 'minibuffer)
 
-(use-package rainbow-identifiers
-  :hook (prog-mode . rainbow-identifiers-mode))
-(use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode))
+(use-package
+ rainbow-identifiers
+ :hook (prog-mode . rainbow-identifiers-mode))
+(use-package
+ rainbow-delimiters
+ :hook (prog-mode . rainbow-delimiters-mode))
 
 (set-default 'preview-scale-function 1.5)
 
-(use-package undo-tree
-  :config (global-undo-tree-mode 1)
-  (setq undo-tree-auto-save-history t)
-  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo"))))
+(use-package
+ undo-tree
+ :config
+ (global-undo-tree-mode 1)
+ (setq undo-tree-auto-save-history t)
+ (setq undo-tree-history-directory-alist
+       '(("." . "~/.emacs.d/undo"))))
 
-(use-package ace-window
-  :bind ("M-o" . ace-window))
+(use-package ace-window :bind ("M-o" . ace-window))
 
 ;(guix-prettify-global-mode +1)
 
 
 ;; Eshell
 
-(use-package eshell-prompt-extras
-  :config
-  (with-eval-after-load "esh-opt"
-    (autoload 'epe-theme-lambda "eshell-prompt-extras")
-    (setq eshell-highlight-prompt nil
-	  eshell-prompt-function 'epe-theme-lambda)))
+(use-package
+ eshell-prompt-extras
+ :config
+ (with-eval-after-load "esh-opt"
+   (autoload 'epe-theme-lambda "eshell-prompt-extras")
+   (setq
+    eshell-highlight-prompt nil
+    eshell-prompt-function 'epe-theme-lambda)))
 
-(defun eshell-new()
+(defun eshell-new ()
   "Open a new instance of eshell."
   (interactive)
   (eshell 'N))
 
 
-(add-hook 'eshell-mode-hook
-	  (defun my-eshell-mode-hook ()
-	    (require 'eshell-z)))
+(add-hook
+ 'eshell-mode-hook
+ (defun my-eshell-mode-hook ()
+   (require 'eshell-z)))
 
 (require 'eshell)
-(use-package eshell-syntax-highlighting
-  :config (eshell-syntax-highlighting-global-mode 1))
+(use-package
+ eshell-syntax-highlighting
+ :config (eshell-syntax-highlighting-global-mode 1))
 (setq eshell-review-quick-commands nil)
 (require 'esh-module) ; require modules
 (add-to-list 'eshell-modules-list 'eshell-tramp)
-(use-package esh-autosuggest
-  :hook (eshell-mode . esh-autosuggest-mode))
+(use-package
+ esh-autosuggest
+ :hook (eshell-mode . esh-autosuggest-mode))
 
 ;; LSP
 
-(use-package lsp-mode
-  :bind ("C-c c" . compile)
-  :custom (lsp-keymap-prefix "C-c l")
-  :hook (lsp-mode . lsp-enable-which-key-integration)
-  (c-mode . lsp)
-  (c++-mode . lsp))
+(use-package
+ lsp-mode
+ :bind ("C-c c" . compile)
+ :custom (lsp-keymap-prefix "C-c l")
+ :hook
+ (lsp-mode . lsp-enable-which-key-integration)
+ (c-mode . lsp)
+ (c++-mode . lsp))
 
 
 (global-set-key (kbd "C-c o c") 'cfw:open-calendar-buffer)
 
-(use-package git-gutter
-  :config (global-git-gutter-mode +1))
+(use-package git-gutter :config (global-git-gutter-mode +1))
 
 ;; Persist history over Emacs restarts. Vertico sorts by history position.
 
@@ -191,13 +203,13 @@
 
 ;; Configure directory extension.
 
-(use-package anzu
-  :config (global-anzu-mode +1)
-  :bind (("M-%" . anzu-query-replace)
-	 ("C-M-%" . anzu-query-replace-regexp)))
+(use-package
+ anzu
+ :config (global-anzu-mode +1)
+ :bind
+ (("M-%" . anzu-query-replace) ("C-M-%" . anzu-query-replace-regexp)))
 
-(use-package marginalia
-  :config (marginalia-mode))
+(use-package marginalia :config (marginalia-mode))
 
 (setq org-agenda-files '("~/roam/todo.org"))
 
@@ -251,34 +263,34 @@
 
 ;; Lisps
 
-(use-package auto-complete
-  :config (ac-config-default))
+(use-package auto-complete :config (ac-config-default))
 
 
-(use-package geiser-guile
-  :config
-  (add-hook 'geiser-mode-hook 'ac-geiser-setup)
-  (add-hook 'geiser-repl-mode-hook 'ac-geiser-setup)
-  (add-to-list 'ac-modes' geiser-repl-mode))
+(use-package
+ geiser-guile
+ :config
+ (add-hook 'geiser-mode-hook 'ac-geiser-setup)
+ (add-hook 'geiser-repl-mode-hook 'ac-geiser-setup)
+ (add-to-list 'ac-modes' geiser-repl-mode))
 
-(use-package slime
-  :hook (common-lisp-mode slime-mode))
 ;; (use-package geiser
 ;;   :hook (scheme-mode geiser-mode))
 
-(use-package paredit
-  :hook ((emacs-lisp-mode . paredit-mode)
-	 (eval-expression-minibuffer-setup . paredit-mode)
-	 (scheme-mode . paredit-mode)
-	 (lisp-mode . paredit-mode)))
+(use-package
+ paredit
+ :hook
+ ((emacs-lisp-mode . paredit-mode)
+  (eval-expression-minibuffer-setup . paredit-mode)
+  (scheme-mode . paredit-mode)
+  (lisp-mode . paredit-mode)))
 
-(add-hook 'lisp-mode-hook 'slime-editing-mode)
-
-(use-package multiple-cursors
-  :bind (("C-S-c C-S-c" . mc/edit-lines)
-	 ("C->" . mc/mark-next-like-this)
-	 ("C-<" . mc/mark-previous-like-this)
-	 ("C-c C-<" . mc/mark-all-like-this)))
+(use-package
+ multiple-cursors
+ :bind
+ (("C-S-c C-S-c" . mc/edit-lines)
+  ("C->" . mc/mark-next-like-this)
+  ("C-<" . mc/mark-previous-like-this)
+  ("C-c C-<" . mc/mark-all-like-this)))
 
 ;; C
 
@@ -286,61 +298,71 @@
 
 ;; Elfeed
 
-(setq elfeed-feeds
-      '(("https://xkcd.com/rss.xml" comics)
-	("https://www.smbc-comics.com/comic/rss" comics)
-	("https://www.giantitp.com/comics/oots.rss" comics)
-	("https://feeds.feedburner.com/LookingForGroup" comics)
-	("https://www.oglaf.com/" comics)
-	("http://phdcomics.com/gradfeed.php" comics)
-	("https://blog.tecosaur.com/tmio/rss.xml" emacs)
-	("http://festivalofthespokennerd.libsyn.com/rss" podcast)
-	("https://guix.gnu.org/feeds/blog.atom" tech linux)
-	("https://vkc.sh/feed/" tech linux)
-	("https://www.youtube.com/feeds/videos.xml?channel_id=UCMiyV_Ib77XLpzHPQH_q0qQ") ;; Veronica
-	("https://www.youtube.com/feeds/videos.xml?channel_id=UCQ6fPy9wr7qnMxAbFOGBaLw") ;; Computer Clan
-	("https://lexfridman.com/feed/podcast/")
-	))
+(setq
+ elfeed-feeds
+ '(("https://xkcd.com/rss.xml" comics)
+   ("https://www.smbc-comics.com/comic/rss" comics)
+   ("https://www.giantitp.com/comics/oots.rss" comics)
+   ("https://feeds.feedburner.com/LookingForGroup" comics)
+   ("https://www.oglaf.com/" comics)
+   ("http://phdcomics.com/gradfeed.php" comics)
+   ("https://blog.tecosaur.com/tmio/rss.xml" emacs)
+   ("http://festivalofthespokennerd.libsyn.com/rss" podcast)
+   ("https://guix.gnu.org/feeds/blog.atom" tech linux)
+   ("https://vkc.sh/feed/" tech linux)
+   ("https://www.youtube.com/feeds/videos.xml?channel_id=UCMiyV_Ib77XLpzHPQH_q0qQ") ;; Veronica
+   ("https://www.youtube.com/feeds/videos.xml?channel_id=UCQ6fPy9wr7qnMxAbFOGBaLw") ;; Computer Clan
+   ("https://lexfridman.com/feed/podcast/")))
 
 ;; Misc
 
-(use-package magit
-  :bind (("C-c v s" . magit-stage)
-	 ("C-c v p" . magit-push)
-	 ("C-c v f" . magit-pull)
-	 ("C-c v c" . magit-commit)
-	 ("C-x g" . magit))
-  :init (if (not (boundp 'project-switch-commands)) 
-	    (setq project-switch-commands nil)))
-					; (use-package helpful
-					;   :bind (("C-h f" . helpful-function)
-					;	 ("C-h k" . helpful-key)))
+(use-package
+ magit
+ :bind
+ (("C-c v s" . magit-stage)
+  ("C-c v p" . magit-push)
+  ("C-c v f" . magit-pull)
+  ("C-c v c" . magit-commit)
+  ("C-x g" . magit))
+ :init
+ (if (not (boundp 'project-switch-commands))
+     (setq project-switch-commands nil)))
+; (use-package helpful
+;   :bind (("C-h f" . helpful-function)
+;	 ("C-h k" . helpful-key)))
 
-(use-package avy
-  :bind ("C-c q" . avy-goto-char-timer))
-(use-package browse-kill-ring
-  :config (browse-kill-ring-default-keybindings))
+(use-package avy :bind ("C-c q" . avy-goto-char-timer))
+(use-package
+ browse-kill-ring
+ :config (browse-kill-ring-default-keybindings))
 
 
 ;; EMMS
 
-(use-package emms
-  :config
-  (require 'emms-setup)
-  (emms-all)
-  (emms-default-players)
-  (setq emms-source-file-default-directory "~/Music/")
-  (setq-default
-   emms-source-file-default-directory "~/Music/"
+(use-package
+ emms
+ :config
+ (require 'emms-setup)
+ (emms-all)
+ (emms-default-players)
+ (setq emms-source-file-default-directory "~/Music/")
+ (setq-default
+  emms-source-file-default-directory "~/Music/"
 
-   emms-source-playlist-default-format 'native
-   emms-playlist-mode-center-when-go t
-   emms-playlist-default-major-mode 'emms-playlist-mode
-   emms-show-format "NP: %s"
+  emms-source-playlist-default-format 'native
+  emms-playlist-mode-center-when-go t
+  emms-playlist-default-major-mode 'emms-playlist-mode
+  emms-show-format "NP: %s"
 
-   emms-player-list '(emms-player-mpv)
-   emms-player-mpv-environment '("PULSE_PROP_media.role=music")
-   emms-player-mpv-parameters '("--quiet" "--really-quiet" "--no-video" "--no-audio-display" "--force-window=no" "--vo=null")))
+  emms-player-list '(emms-player-mpv)
+  emms-player-mpv-environment '("PULSE_PROP_media.role=music")
+  emms-player-mpv-parameters
+  '("--quiet"
+    "--really-quiet"
+    "--no-video"
+    "--no-audio-display"
+    "--force-window=no"
+    "--vo=null")))
 
 ;; Thaumiel 
 
@@ -359,11 +381,13 @@
  '((tramp-remote-path . (tramp-own-remote-path))))
 
 (setq tramp-remote-path
-      (append tramp-remote-path
-              '(tramp-own-remote-path)))
+      (append tramp-remote-path '(tramp-own-remote-path)))
 
 (connection-local-set-profiles
- `(:application tramp :protocol "sudo" :machine ,(system-name))
+ `(:application
+   tramp
+   :protocol "sudo"
+   :machine ,(system-name))
  'guix-system)
 
 (defun light/up ()
@@ -379,7 +403,9 @@
 (defun light/show ()
   (princ
    (concat
-    "Brightness..." (string-trim (shell-command-to-string "light -G")) "%")))
+    "Brightness..."
+    (string-trim (shell-command-to-string "light -G"))
+    "%")))
 
 (defun volume/up ()
   (interactive)
@@ -398,11 +424,11 @@
 
 (defun volume/show ()
   (princ
-   (funcall
-    (-cut string-join <> (string ?\n))
-    (mapcar (-compose #'string-trim #'shell-command-to-string)
-	    '("pactl get-sink-mute @DEFAULT_SINK@"
-	      "pactl get-sink-volume @DEFAULT_SINK@")))))
+   (funcall (-cut string-join <> (string ?\n))
+            (mapcar
+             (-compose #'string-trim #'shell-command-to-string)
+             '("pactl get-sink-mute @DEFAULT_SINK@"
+               "pactl get-sink-volume @DEFAULT_SINK@")))))
 
 (defun player/play ()
   (interactive)
@@ -414,8 +440,11 @@
   (interactive)
   (shell-command "playerctl previous"))
 
-(global-set-key (kbd "s-<return>") (lambda () (interactive)
-				     (start-process-shell-command "kitty" nil "kitty")))
+(global-set-key
+ (kbd "s-<return>")
+ (lambda ()
+   (interactive)
+   (start-process-shell-command "kitty" nil "kitty")))
 
 (global-set-key (kbd "C-.") #'embark-act)
 (global-set-key (kbd "C-c p") #'paredit-mode)
@@ -500,28 +529,32 @@
 
 ;; Vertico
 
-(use-package vertico
-  :init
-  (vertico-mode)
-  :custom
-  (vertico-count 20)
-  (vertico-resize t)
-  (enable-recursive-minibuffers t))
+(use-package
+ vertico
+ :init (vertico-mode)
+ :custom
+ (vertico-count 20)
+ (vertico-resize t)
+ (enable-recursive-minibuffers t))
 
-(use-package orderless
-  :init
-  (setq completion-styles '(orderless basic)
-        completion-category-defaults nil
-        completion-category-overrides '((file (styles partial-completion)))))
+(use-package
+ orderless
+ :init
+ (setq
+  completion-styles '(orderless basic)
+  completion-category-defaults nil
+  completion-category-overrides '((file (styles partial-completion)))))
 
 (global-unset-key (kbd "C-r"))
-(use-package consult
-  :bind (("C-x b" . consult-buffer)
-	 ("C-t" . consult-goto-line)
-	 ("C-s" . consult-line)
-	 ("C-r l" . consult-register)
-	 ("C-r s" . consult-register-store)
-	 ("M-y" . consult-yank-from-kill-ring)))
+(use-package
+ consult
+ :bind
+ (("C-x b" . consult-buffer)
+  ("C-t" . consult-goto-line)
+  ("C-s" . consult-line)
+  ("C-r l" . consult-register)
+  ("C-r s" . consult-register-store)
+  ("M-y" . consult-yank-from-kill-ring)))
 
 (defun close-program ()
   (interactive)
@@ -540,54 +573,67 @@
   (eww (concat "https://cheat.sh/" name)))
 
 ;; (use-package xah-fly-keys
-  ;; :config
-  ;; (xah-fly-keys-set-layout "qwerty"))
+;; :config
+;; (xah-fly-keys-set-layout "qwerty"))
 
 ;; (use-package frames-only-mode
 ;;   :config (frames-only-mode 1))
 
 (defun flatpak-run ()
   (interactive)
-  (async-shell-command
-   (concat "flatpak run "
-	   (completing-read
-	    "Run Flatpak: "
-	    (mapcar #'(lambda (q)
-			(let ((stf
-			       (-take 2 (split-string q "\t"))))
-			  `(,(cadr stf) . ,(car stf)))
-			)
-		    (delete "" (split-string
-				(shell-command-to-string "flatpak list --app")
-				"\n")))))
-   "flatpaks"))
+  (async-shell-command (concat
+                        "flatpak run "
+                        (completing-read
+                         "Run Flatpak: "
+                         (mapcar
+                          #'(lambda (q)
+                              (let ((stf
+                                     (-take 2 (split-string q "\t"))))
+                                `(,(cadr stf) . ,(car stf))))
+                          (delete
+                           ""
+                           (split-string (shell-command-to-string
+                                          "flatpak list --app")
+                                         "\n")))))
+                       "flatpaks"))
 
- (defhydra hydra-system (global-map "C-c s")
-   "system"
-   ("p" player/play "Play")
-   ("o" player/next "Next")
-   ("i" player/prev "Prev")
-   ("e" light/up "Br. Up")
-   ("d" light/down "Br. Down")
-   ("r" volume/up "Vol. Up")
-   ("f" volume/down "Vol. Down")
-   ("m" volume/mute "Mute"))
+(use-package hydra)
+(defhydra
+ hydra-system
+ (global-map "C-c s")
+ "system"
+ ("p" player/play "Play")
+ ("o" player/next "Next")
+ ("i" player/prev "Prev")
+ ("e" light/up "Br. Up")
+ ("d" light/down "Br. Down")
+ ("r" volume/up "Vol. Up")
+ ("f" volume/down "Vol. Down")
+ ("m" volume/mute "Mute"))
 
- (defhydra hydra-launcher (global-map "C-c r" :color purple :exit t)
-   "Launch"
-   ("r" (browse-url "http://www.reddit.com/r/emacs/") "reddit")
-   ("w" (browse-url "http://www.emacswiki.org/") "emacswiki")
-   ("f" (start-process-shell-command "firefox" nil "firefox") "firefox")
-   ("d" (start-process-shell-command "discord" nil "flatpak run com.discordapp.Discord") "discord")
-   ("s" shell "shell")
-   ("e" eshell "eshell")
-   ("l" (start-process-shell-command "lagrange" nil "lagrange") "lagrange")
-   ("g" guix-packages-by-name "find package")
-   ("q" nil "cancel"))
+(defhydra
+ hydra-launcher
+ (global-map "C-c r" :color purple :exit t)
+ "Launch"
+ ("r" (browse-url "http://www.reddit.com/r/emacs/") "reddit")
+ ("w" (browse-url "http://www.emacswiki.org/") "emacswiki")
+ ("f" (start-process-shell-command "firefox" nil "firefox") "firefox")
+ ("d" (start-process-shell-command
+   "discord" nil "flatpak run com.discordapp.Discord")
+  "discord")
+ ("s" shell "shell")
+ ("e" eshell "eshell")
+ ("l"
+  (start-process-shell-command "lagrange" nil "lagrange")
+  "lagrange")
+ ("g" guix-packages-by-name "find package")
+ ("q" nil "cancel"))
 
- (defhydra hydra-buffer (global-map "C-x")
-   ("<right>" next-buffer)
-   ("<left>" previous-buffer))
+(defhydra
+ hydra-buffer
+ (global-map "C-x")
+ ("<right>" next-buffer)
+ ("<left>" previous-buffer))
 
 ;; Guile scripts
 
@@ -597,17 +643,85 @@
   (interactive)
   (print
    (let* ((script-list
-	     (peek (mapcar (lambda (q) `(,(f-filename q) . ,q))
-		      (apply #'append
-			     (mapcar
-			      (lambda (q) (directory-files q t directory-files-no-dot-files-regexp))
-			      guile-script-path)))))
-	  (comp (completing-read "Run Script: " script-list)))
+           (peek
+            (mapcar
+             (lambda (q) `(,(f-filename q) . ,q))
+             (apply #'append
+                    (mapcar
+                     (lambda (q)
+                       (directory-files
+                        q
+                        t directory-files-no-dot-files-regexp))
+                     guile-script-path)))))
+          (comp (completing-read "Run Script: " script-list)))
      (async-shell-command (alist-get comp script-list nil nil #'equal)
-			  (concat "guile:" comp)))))
+                          (concat "guile:" comp)))))
 
-(defun peek (x) (print x) x)
+(defun peek (x)
+  (print x)
+  x)
 
-(use-package frame
-       :bind
-       ("C-z" . nil))
+(use-package frame :bind ("C-z" . nil))
+
+(use-package adaptive-wrap)
+(use-package all-the-icons)
+(use-package all-the-icons-dired)
+; (use-package auctex)
+(use-package calfw)
+(use-package circe)
+(use-package company)
+(use-package company-box)
+(use-package consult-org-roam)
+(use-package consult-yasnippet)
+(use-package crux)
+(use-package csv)
+(use-package csv-mode)
+(use-package dashboard)
+(use-package debbugs)
+(use-package dmenu)
+(use-package docker)
+(use-package dockerfile-mode)
+(use-package ediprolog)
+(use-package eglot)
+(use-package elpher)
+(use-package ement)
+(use-package engrave-faces)
+(use-package flycheck)
+(use-package flycheck-haskell)
+(use-package gdscript-mode)
+(use-package geiser-racket)
+(use-package gemini-mode)
+(use-package go-mode)
+(use-package haskell-mode)
+(use-package htmlize)
+(use-package iedit)
+(use-package lsp-ui)
+(use-package magit-todos)
+(use-package monokai-theme)
+(use-package multi-term)
+(use-package nix-mode)
+(use-package nixos-options)
+(use-package nov)
+(use-package on-screen)
+(use-package org-superstar)
+(use-package ox-gemini)
+(use-package password-generator)
+(use-package password-store)
+(use-package password-store-otp)
+(use-package pdf-tools)
+(use-package racket-mode)
+(use-package realgud)
+(use-package rustic)
+(use-package sly)
+(use-package ssh-agency)
+(use-package stumpwm-mode)
+(use-package stumpwm-mode)
+(use-package swiper)
+(use-package tldr)
+(use-package yaml-mode)
+(use-package yasnippet)
+(use-package yasnippet)
+(use-package yasnippet-snippets)
+(use-package yasnippet-snippets)
+(use-package zerodark-theme)
+(use-package elisp-autofmt)
