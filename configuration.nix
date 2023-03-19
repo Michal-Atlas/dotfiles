@@ -1,10 +1,9 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ self, config, pkgs, agenix, ... }:
-
-{
+{ self, config, pkgs, agenix, ... }: {
+  # Should resolve double-prints
+  nix.package = pkgs.nixUnstable;
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -60,7 +59,7 @@
     # For 32 bit applications
     driSupport32Bit = true;
     extraPackages = with pkgs; [ rocm-opencl-icd rocm-opencl-runtime amdvlk ];
-    # For 32 bit applications 
+    # For 32 bit applications
     # Only available on unstable
     extraPackages32 = with pkgs; [ driversi686Linux.amdvlk libva ];
     setLdLibraryPath = true;
@@ -191,7 +190,7 @@
   #           "sha256:0n843652fxgczfhykavxca02x057q50g911yvyy82361daally4d";
   #       })
   #     }
-  #     auth-user-pass ${config.age.secrets.fit-vpn.path} 
+  #     auth-user-pass ${config.age.secrets.fit-vpn.path}
   #   '';
   #   autoStart = false;
   #   updateResolvConf = true;
