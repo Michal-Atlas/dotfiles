@@ -1,13 +1,12 @@
 nixpkgs:
 { pkgs, lib, ... }:
-
 let
-  mkTuple = lib.hm.gvariant.mkTuple;
-  my-emacs = (nixpkgs.emacsWithPackagesFromUsePackage {
+  inherit (lib.hm.gvariant) mkTuple;
+  my-emacs = nixpkgs.emacsWithPackagesFromUsePackage {
     alwaysEnsure = true;
     config = ./dotfiles/emacs.el;
-    package = pkgs.emacsNativeComp;
-  });
+    package = nixpkgs.emacsGit;
+  };
 in
 {
   home.username = "michal_atlas";
@@ -76,7 +75,8 @@ in
     ".guile".source = ./dotfiles/guile;
     ".mbsyncrc".source = ./dotfiles/mbsyncrc;
     ".sbclrc".source = ./dotfiles/sbclrc;
-    ".config/common-lisp/source-registry.conf".source = ./dotfiles/cl-src-registry.conf;
+    ".config/common-lisp/source-registry.conf".source =
+      ./dotfiles/cl-src-registry.conf;
   };
   xsession.numlock.enable = true;
   programs.home-manager.enable = true;
@@ -87,12 +87,13 @@ in
   };
   home.packages = with pkgs;
     [
+      my-emacs
       (pkgs.stdenv.mkDerivation (
         let version = "0.3";
         in {
           buildInputs = [ autoconf automake readline texinfo ];
           pname = "mystic";
-          version = version;
+          inherit version;
           src = fetchFromSourcehut {
             owner = "~michal_atlas";
             repo = "mystic";
@@ -131,14 +132,14 @@ in
         name = "TERM";
       };
     "org/gnome/desktop/background" = {
-      picture-uri = (builtins.fetchurl {
+      picture-uri = builtins.fetchurl {
         url = "https://ift.tt/2UDuBqa";
         sha256 = "sha256:1nj5kj4dcxnzazf46dczfvcj8svhv1lhfa8rxn0q418s3j1w5dcb";
-      });
-      picture-uri-dark = (builtins.fetchurl {
+      };
+      picture-uri-dark = builtins.fetchurl {
         url = "https://images.alphacoders.com/923/923968.jpg";
         sha256 = "sha256:0z0awasi0cljvvnbkn9kfvjx7rdr3n68xa5vj3a6y9z9rxxyv1hc";
-      });
+      };
     };
     "org/gnome/desktop/input-sources" = {
       sources = [ (mkTuple [ "xkb" "us" ]) (mkTuple [ "xkb" "cz+ucw" ]) ];
