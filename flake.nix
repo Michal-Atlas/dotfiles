@@ -7,8 +7,8 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-22.11";
     flake-utils.url = "github:numtide/flake-utils";
     agenix.url = "github:ryantm/agenix";
-    # emacs-overlay.url =
-    #   "github:nix-community/emacs-overlay/da2f552d133497abd434006e0cae996c0a282394";
+    emacs-overlay.url =
+      "github:nix-community/emacs-overlay/203a7e8b0a534d10b35097f6de6efc6c71c57566";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,6 +28,7 @@
     , nixpkgs
     , flake-utils
     , home-manager
+    , emacs-overlay
     , agenix
     , pre-commit-hooks
     , ...
@@ -49,7 +50,10 @@
                   home-manager = {
                     useGlobalPkgs = true;
                     useUserPackages = true;
-                    users.michal_atlas = import ./home.nix;
+                    users.michal_atlas = import ./home (import nixpkgs {
+                      system = "x86_64-linux";
+                      overlays = [ emacs-overlay.overlays.default ];
+                    });
                   };
                 }
                 agenix.nixosModules.default
@@ -61,12 +65,8 @@
         (map (f: head (match "(.*).nix" f))
           (attrNames (readDir ./machines))));
     } // (flake-utils.lib.eachDefaultSystem (system:
-    let
-      pkgs = (import nixpkgs) {
-        inherit system;
-      };
-    in
-    {
+    let pkgs = (import nixpkgs) { inherit system; };
+    in {
       checks = {
         pre-commit-check = pre-commit-hooks.lib.${system}.run {
           src = ./.;
@@ -77,7 +77,7 @@
 
         nativeBuildInputs = [
           (pkgs.writeShellScriptBin "recon"
-            ''sudo nixos-rebuild switch --flake .#$(hostname);'')
+            "sudo nixos-rebuild switch --flake .#$(hostname);")
         ];
         inherit (self.checks.${system}.pre-commit-check) shellHook;
       };
