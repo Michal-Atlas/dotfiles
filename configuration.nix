@@ -138,6 +138,10 @@
         path = "/home/michal_atlas/Music";
         devices = [ "Nox" "Hydra" "Dagon" ];
       };
+      "zotero" = {
+        path = "/home/michal_atlas/Zotero";
+        devices = [ "Nox" "Hydra" "Dagon" ];
+      };
     };
   };
 
