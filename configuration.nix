@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ self, config, pkgs, ... }:
+{ self, config, pkgs, agenix, ... }:
 
 {
   # Bootloader.
@@ -164,9 +164,8 @@
     shell = pkgs.zsh;
     description = "Michal Atlas";
     extraGroups = [ "networkmanager" "wheel" "libvirt" "kvm" "transmission" ];
-    openssh.authorizedKeys.keys =
-      with builtins; (map (f: readFile ./keys/${f})
-        (attrNames (readDir ./keys)));
+    openssh.authorizedKeys.keys = with builtins;
+      (map (f: readFile ./keys/${f}) (attrNames (readDir ./keys)));
   };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -181,18 +180,24 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # age.secrets.fit-vpn.file = ./secrets/fit-vpn.age;
+  # age.secrets.fit-mount.file = ./secrets/fit-mount.age;
   # services.openvpn.servers.ctu-fit = {
-  #   config = "config ${(builtins.fetchurl {
-  #     url = "https://help.fit.cvut.cz/vpn/media/fit-vpn.ovpn";
-  #     sha256 = "8d784a956ac10c81bcdf3e84f440c1a7802e80627dabe9a1fbec75278a190459";
-  # })}";
+  #   config = ''
+  #     config ${
+  #       (builtins.fetchurl {
+  #         url = "https://help.fit.cvut.cz/vpn/media/fit-vpn.ovpn";
+  #         sha256 =
+  #           "sha256:0n843652fxgczfhykavxca02x057q50g911yvyy82361daally4d";
+  #       })
+  #     }
+  #     auth-user-pass ${config.age.secrets.fit-vpn.path} 
+  #   '';
   #   autoStart = false;
-  #   # authUserPass.password = "";
-  #   # authUserPass.username = "zacekmi2";
   #   updateResolvConf = true;
   # };
 
-  # fileSystems."/mnt/FIT" = {
+  # fileSystems."/FIT" = {
   #   device = "//drive.fit.cvut.cz/home/zacekmi2";
   #   fsType = "cifs";
   #   options = [
@@ -200,11 +205,16 @@
   #     "file_mode=0700"
   #     "dir_mode=0700"
   #     "uid=1000"
-  #     "user=zacekmi2"
+  #     "credentials=${config.age.secrets.fit-mount.path}"
+  #     "x-systemd.requires=openvpn-ctu-fit.service"
   #   ];
   # };
 
-  nixpkgs.overlays = [ self.inputs.nix-alien.overlays.default ];
+  nixpkgs.overlays = with self.inputs;
+    [
+      nix-alien.overlays.default
+      # emacs-overlay.overlay
+    ];
 
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
@@ -222,6 +232,7 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  environment.systemPackages = [ agenix.packages.x86_64-linux.default ];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

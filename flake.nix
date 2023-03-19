@@ -6,6 +6,7 @@
     nixpkgs.url = "github:NixOs/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-22.11";
     flake-utils.url = "github:numtide/flake-utils";
+    agenix.url = "github:ryantm/agenix";
     # emacs-overlay.url =
     #   "github:nix-community/emacs-overlay/da2f552d133497abd434006e0cae996c0a282394";
     home-manager = {
@@ -26,8 +27,8 @@
     { self
     , nixpkgs
     , flake-utils
-    , nix-alien
     , home-manager
+    , agenix
     , pre-commit-hooks
     , ...
     }@attrs:
@@ -51,6 +52,7 @@
                     users.michal_atlas = import ./home.nix;
                   };
                 }
+                agenix.nixosModules.default
               ];
             };
           } // acc)
