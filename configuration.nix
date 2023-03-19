@@ -134,6 +134,10 @@
         path = "/home/michal_atlas/roam";
         devices = [ "Nox" "Hydra" "Dagon" ];
       };
+      "music" = {
+        path = "/home/michal_atlas/Music";
+        devices = [ "Nox" "Hydra" "Dagon" ];
+      };
     };
   };
 
