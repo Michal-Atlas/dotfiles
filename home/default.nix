@@ -120,16 +120,23 @@ in
       ];
     };
     "org/gnome/shell/peripherals/touchpad" = { tap-to-click = true; };
-    "org/gnome/shell/settings-daemon/plugins/media-keys" = {
+    "org/gnome/settings-daemon/plugins/media-keys" = {
       custom-keybindings = [
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
       ];
     };
-    "org/gnome/shell/settings-daemon/plugins/media-keys/custom-keybindings/custom0" =
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" =
       {
-        binding = "<Super>Return";
+        binding = "<Super>t";
         command = "kgx";
         name = "TERM";
+      };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" =
+      {
+        binding = "<Super>Return";
+        command = "emacsclient -c";
+        name = "EMACS";
       };
     "org/gnome/desktop/background" = {
       picture-uri = builtins.fetchurl {
