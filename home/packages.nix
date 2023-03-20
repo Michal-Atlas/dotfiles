@@ -22,8 +22,6 @@ with pkgs; [
   gcc
   gdb
   gimp
-  gnomeExtensions.appindicator
-  gnomeExtensions.night-theme-switcher
   gnumake
   gnupg
   gparted
@@ -86,4 +84,17 @@ with pkgs; [
   xorg.xrandr
   youtube-dl
   zotero
-]
+] ++ (with gnomeExtensions; [
+  appindicator
+  night-theme-switcher
+  all-ip-addresses
+  awesome-tiles
+  browser-tabs
+  espresso
+  bubblemail
+  color-picker
+  containers
+  cpudots
+  disk-usage
+  gnome-clipboard
+])
