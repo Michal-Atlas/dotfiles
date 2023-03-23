@@ -7,6 +7,7 @@ let
     config = ./dotfiles/emacs.el;
     package = nixpkgs.emacsGit;
   };
+  EDITOR = ''emacsclient -c -a=""'';
 in
 {
   home.username = "michal_atlas";
@@ -20,7 +21,7 @@ in
   # The home.stateVersion option does not have a default and must be set
   home.stateVersion = "22.11";
   # Here goes the rest of your home-manager config, e.g. home.packages = [ pkgs.foo ];
-  home.sessionVariables = { EDITOR = "emacs"; };
+  home.sessionVariables = { inherit EDITOR; };
   home.shellAliases.gx = "nix-env";
   programs = {
     fzf = {
@@ -81,10 +82,10 @@ in
   xsession.numlock.enable = true;
   programs.home-manager.enable = true;
 
-  services.emacs = {
-    enable = true;
-    package = my-emacs;
-  };
+  # services.emacs = {
+  #   enable = true;
+  #   package = my-emacs;
+  # };
   home.packages = with pkgs;
     [
       my-emacs
@@ -118,7 +119,7 @@ in
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" =
       {
         binding = "<Super>Return";
-        command = "emacsclient -c";
+        command = EDITOR;
         name = "EMACS";
       };
     "org/gnome/desktop/background" = {
