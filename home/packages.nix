@@ -6,6 +6,7 @@ with pkgs; [
   audacity
   bat
   bc
+  btop
   btrfs-progs
   chicken
   cifs-utils
@@ -73,6 +74,7 @@ with pkgs; [
   tree
   unzip
   valgrind
+  vim
   virt-manager
   vlc
   vscode
@@ -98,3 +100,9 @@ with pkgs; [
   disk-usage
   gnome-clipboard
 ])
+# ++
+# (with lispPackages; [
+#   defstar
+#   serapeum
+#   alexandria
+# ])
