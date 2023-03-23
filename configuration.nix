@@ -277,8 +277,7 @@
       "tmp-log" = {
         wantedBy = [ "timers.target" ];
         timerConfig = {
-          OnBootSec = "1d";
-          onUnitActiveSec = "1d";
+          OnCalendar = "06:00:00";
           Unit = "tmp-log.service";
         };
       };
@@ -286,8 +285,7 @@
       "mailsync" = {
         wantedBy = [ "timers.target" ];
         timerConfig = {
-          OnBootSec = "20m";
-          onUnitActiveSec = "20m";
+          OnCalendar = "hourly";
           Unit = "mailsync.service";
         };
       };
