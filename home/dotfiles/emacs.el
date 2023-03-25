@@ -5,7 +5,8 @@
 ;;   :hook (org-mode org-fragtog-mode))
 (use-package org-modern :hook (org-mode . org-modern-mode))
 (org-babel-do-load-languages
- 'org-babel-load-languages '((C . t) (scheme . t) (dot . t)))
+ 'org-babel-load-languages
+ '((C . t) (scheme . t) (dot . t) (lisp . t)))
 
 ;; Variable Init
 
@@ -725,3 +726,4 @@
 (use-package yasnippet-snippets)
 (use-package zerodark-theme)
 (use-package elisp-autofmt)
+(use-package slime)
