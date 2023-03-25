@@ -92,7 +92,7 @@
       devShell = nixpkgs.legacyPackages.${system}.mkShell {
         nativeBuildInputs = [
           (pkgs.writeShellScriptBin "recon"
-            "sudo nixos-rebuild switch --flake .#$(hostname);")
+            "sudo nixos-rebuild switch --flake .#$(hostname) $@;")
         ];
         inherit (self.checks.${system}.pre-commit-check) shellHook;
       };
