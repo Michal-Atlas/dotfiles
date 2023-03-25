@@ -10,6 +10,7 @@ with pkgs; [
   btrfs-progs
   chicken
   cifs-utils
+  ccls
   cmake
   cryptsetup
   direnv
@@ -20,6 +21,7 @@ with pkgs; [
   fira-code
   firefox
   fzf
+  gallery-dl
   gcc
   gdb
   gimp
@@ -28,6 +30,7 @@ with pkgs; [
   gparted
   graphviz
   gzdoom
+  guile
   htop
   inkscape
   isync
@@ -46,19 +49,19 @@ with pkgs; [
   mosh
   mpv
   mu
+  neofetch
   nix-alien
   nix-output-monitor
   nixfmt
+  nmap
   okular
   openmw
   #openmw-tes3mp.override
   pandoc
   patchelf
+  picard
   pinentry-curses
   pkg-config
-  python310Packages.dbus-python
-  python310Packages.ipython
-  python310Packages.python
   racket
   rare
   sbcl
@@ -68,7 +71,7 @@ with pkgs; [
   superTuxKart
   swiProlog
   taisei
-  texlive.combined.scheme-minimal
+  texlive.combined.scheme-full
   thunderbird
   transmission-remote-gtk
   tree
@@ -79,12 +82,13 @@ with pkgs; [
   vlc
   vscode
   wesnoth
+  wget
   wineWowPackages.stable
   xclip
   xdot
   xonotic
   xorg.xrandr
-  youtube-dl
+  yt-dlp
   zotero
 ] ++ (with gnomeExtensions; [
   appindicator
@@ -99,6 +103,12 @@ with pkgs; [
   cpudots
   disk-usage
   gnome-clipboard
+]) ++
+(with python310Packages; [
+  dbus-python
+  ipython
+  python
+  pygments
 ])
 # ++
 # (with lispPackages; [
