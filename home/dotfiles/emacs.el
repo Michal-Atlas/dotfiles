@@ -182,7 +182,7 @@
 
 ;; (use-package mode-icons :config (mode-icons-mode 1))
 ;; (elpaca-wait)
-;; TODO: (use-package direnv :config (direnv-mode t))
+(use-package direnv :config (direnv-mode t))
 
 ;; Theme
 
