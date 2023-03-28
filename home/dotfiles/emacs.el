@@ -195,7 +195,8 @@
 ;;  modus-themes-region '(no-extend bg-only accented)
 ;;  modus-themes-bold-constructs t
 ;;  modus-themes-hl-line '(accented intense))
-(use-package gruvbox-theme :config (load-theme 'gruvbox-dark-hard t))
+;; (use-package gruvbox-theme :config (load-theme 'gruvbox-dark-hard t))
+(use-package monokai-theme :config (load-theme 'monokai t))
 
 ;; Modeline
 
@@ -780,7 +781,6 @@
 (use-package iedit)
 (use-package lsp-ui)
 (use-package magit-todos)
-(use-package monokai-theme)
 (use-package multi-term)
 (use-package nix-mode)
 (use-package nixos-options)
