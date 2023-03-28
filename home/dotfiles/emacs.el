@@ -175,6 +175,8 @@
 
 (defvar font-code "Fira Code 12")
 (set-frame-font font-code nil t)
+;; Loads font when opening new frames
+(add-to-list 'default-frame-alist `(font . ,font-code))
 ;; (use-package fira-code-mode :config (global-fira-code-mode))
 
 (setq custom-file (locate-user-emacs-file "custom-vars.el"))
