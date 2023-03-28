@@ -64,6 +64,7 @@ with pkgs; [
   pkg-config
   racket
   rare
+  roswell
   sbcl
   shotwell
   steam
