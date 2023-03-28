@@ -231,8 +231,6 @@
 
 (use-package ace-window :bind ("M-o" . ace-window))
 
-;(guix-prettify-global-mode +1)
-
 
 ;; Eshell
 
@@ -820,3 +818,5 @@
   (f-symlink
    (expand-file-name "~/cl/dotfiles/home/dotfiles/emacs.el")
    "~/.emacs.d/init.el"))
+
+(use-package pretty-sha-path :config (global-pretty-sha-path-mode))
