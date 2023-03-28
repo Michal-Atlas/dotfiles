@@ -460,19 +460,22 @@
 ;; (use-package evil
 ;;   :config (evil-mode 1))
 
-(connection-local-set-profile-variables
- 'guix-system
- '((tramp-remote-path . (tramp-own-remote-path))))
+(use-package
+ tramp
+ :elpaca nil
+ :config
+ (connection-local-set-profile-variables
+  'guix-system '((tramp-remote-path . (tramp-own-remote-path))))
 
-(setq tramp-remote-path
-      (append tramp-remote-path '(tramp-own-remote-path)))
+ (setq tramp-remote-path
+       (append tramp-remote-path '(tramp-own-remote-path)))
 
-(connection-local-set-profiles
- `(:application
-   tramp
-   :protocol "sudo"
-   :machine ,(system-name))
- 'guix-system)
+ (connection-local-set-profiles
+  `(:application
+    tramp
+    :protocol "sudo"
+    :machine ,(system-name))
+  'guix-system))
 
 (defun light/up ()
   (interactive)
