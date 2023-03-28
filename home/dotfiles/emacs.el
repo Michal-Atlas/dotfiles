@@ -531,7 +531,7 @@
    (start-process-shell-command "kitty" nil "kitty")))
 
 (use-package embark :bind ("C-." . embark-act))
-(global-set-key (kbd "C-c p") #'paredit-mode)
+(use-package embark-consult)
 
 ;; EXWM
 
