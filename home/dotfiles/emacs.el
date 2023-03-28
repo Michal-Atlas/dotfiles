@@ -172,8 +172,10 @@
  highlight-indentation
  :hook (prog-mode . highlight-indentation-mode)
  :custom (highlight-indent-guides-method 'bitmap))
-; (set-frame-font "Fira Code-11" nil t)
-; (add-to-list 'default-frame-alist '(font . "Fira Code-11"))
+
+(defvar font-code "Fira Code 12")
+(set-frame-font font-code nil t)
+;; (use-package fira-code-mode :config (global-fira-code-mode))
 
 (setq custom-file (locate-user-emacs-file "custom-vars.el"))
 (load custom-file 'noerror 'nomessage)
