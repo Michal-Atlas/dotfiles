@@ -16,6 +16,14 @@ in
     enable = true;
     userName = "Michal Atlas";
     userEmail = "michal_atlas+git@posteo.net";
+    extraConfig = {
+      filter.lfs = {
+        clean = "git-lfs clean -- %f";
+        smudge = "git-lfs smudge -- %f";
+        process = "git-lfs filter-process";
+        required = true;
+      };
+    };
   };
 
   # The home.stateVersion option does not have a default and must be set
