@@ -7,7 +7,7 @@ let
   #   config = ./dotfiles/emacs.el;
   #   package = nixpkgs.emacsGit;
   # };
-  EDITOR = ''emacsclient -c -a=""'';
+  EDITOR = ''emacsclient -c'';
 in
 {
   home.username = "michal_atlas";
@@ -29,8 +29,7 @@ in
   # The home.stateVersion option does not have a default and must be set
   home.stateVersion = "22.11";
   # Here goes the rest of your home-manager config, e.g. home.packages = [ pkgs.foo ];
-  home.sessionVariables = { inherit EDITOR; };
-  home.shellAliases.gx = "nix-env";
+  home.sessionVariables = { inherit EDITOR; ALTERNATE_EDITOR = ""; };
   programs = {
     fzf = {
       enable = true;
@@ -121,7 +120,7 @@ in
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" =
       {
         binding = "<Super>t";
-        command = ''kgx -e "emacsclient -c -a=\"\" -f eshell-new"'';
+        command = ''emacsclient -c -e "(eshell-new)"'';
         name = "TERM";
       };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" =
