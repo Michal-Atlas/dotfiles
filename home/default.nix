@@ -2,11 +2,11 @@ nixpkgs:
 { pkgs, lib, ... }:
 let
   inherit (lib.hm.gvariant) mkTuple;
-  my-emacs = nixpkgs.emacsWithPackagesFromUsePackage {
-    alwaysEnsure = true;
-    config = ./dotfiles/emacs.el;
-    package = nixpkgs.emacsGit;
-  };
+  # my-emacs = nixpkgs.emacsWithPackagesFromUsePackage {
+  #   alwaysEnsure = true;
+  #   config = ./dotfiles/emacs.el;
+  #   package = nixpkgs.emacsGit;
+  # };
   EDITOR = ''emacsclient -c -a=""'';
 in
 {
@@ -88,7 +88,7 @@ in
   # };
   home.packages = with pkgs;
     [
-      my-emacs
+      nixpkgs.emacsGit
       (import ./pkgs/mystic.nix pkgs)
     ] ++ import ./packages.nix pkgs;
 
@@ -113,7 +113,7 @@ in
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" =
       {
         binding = "<Super>t";
-        command = "kgx";
+        command = ''kgx -e "emacsclient -c -a=\"\" -f eshell-new"'';
         name = "TERM";
       };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" =

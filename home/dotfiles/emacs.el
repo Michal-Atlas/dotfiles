@@ -1,4 +1,86 @@
-(require 'use-package)
+(setq debug-on-error t)
+;; ELPACA SETUP
+(defvar elpaca-installer-version 0.3)
+(defvar elpaca-directory
+  (expand-file-name "elpaca/" user-emacs-directory))
+(defvar elpaca-builds-directory
+  (expand-file-name "builds/" elpaca-directory))
+(defvar elpaca-repos-directory
+  (expand-file-name "repos/" elpaca-directory))
+(defvar elpaca-order
+  '(elpaca
+    :repo "https://github.com/progfolio/elpaca.git"
+    :ref nil
+    :files (:defaults (:exclude "extensions"))
+    :build (:not elpaca--activate-package)))
+(let* ((repo (expand-file-name "elpaca/" elpaca-repos-directory))
+       (build (expand-file-name "elpaca/" elpaca-builds-directory))
+       (order (cdr elpaca-order))
+       (default-directory repo))
+  (add-to-list
+   'load-path
+   (if (file-exists-p build)
+       build
+     repo))
+  (unless (file-exists-p repo)
+    (make-directory repo t)
+    (condition-case-unless-debug err
+        (if-let ((buffer
+                  (pop-to-buffer-same-window "*elpaca-bootstrap*"))
+                 ((zerop
+                   (call-process "git"
+                                 nil
+                                 buffer
+                                 t
+                                 "clone"
+                                 (plist-get order :repo)
+                                 repo)))
+                 ((zerop
+                   (call-process "git"
+                                 nil
+                                 buffer
+                                 t
+                                 "checkout"
+                                 (or (plist-get order :ref) "--"))))
+                 (emacs (concat invocation-directory invocation-name))
+                 ((zerop
+                   (call-process
+                    emacs
+                    nil
+                    buffer
+                    nil
+                    "-Q"
+                    "-L"
+                    "."
+                    "--batch"
+                    "--eval"
+                    "(byte-recompile-directory \".\" 0 'force)")))
+                 ((require 'elpaca))
+                 ((elpaca-generate-autoloads "elpaca" repo)))
+          (kill-buffer buffer)
+          (error
+           "%s"
+           (with-current-buffer buffer
+             (buffer-string))))
+      ((error) (warn "%s" err) (delete-directory repo 'recursive))))
+  (unless (require 'elpaca-autoloads nil t)
+    (require 'elpaca)
+    (elpaca-generate-autoloads "elpaca" repo)
+    (load "./elpaca-autoloads")))
+(add-hook 'after-init-hook #'elpaca-process-queues)
+(elpaca `(,@elpaca-order))
+;; END ELPACA SETUP
+
+;; Install use-package support
+(elpaca
+ elpaca-use-package
+ ;; Enable :elpaca use-package keyword.
+ (elpaca-use-package-mode)
+ ;; Assume :elpaca t unless otherwise specified.
+ (setq elpaca-use-package-by-default t))
+
+(elpaca-wait)
+
 ;; Org-mode
 
 ;; (use-package org-fragtog
@@ -40,6 +122,8 @@
   (y-or-n-p prompt))
 ;(dired-async-mode 1)
 (setq auth-sources '("~/.authinfo.gpg"))
+
+(setq inferior-lisp-program "ros -Q run")
 
 ;; Scrolling
 
@@ -95,20 +179,21 @@
 (load custom-file 'noerror 'nomessage)
 
 ;; (use-package mode-icons :config (mode-icons-mode 1))
-(use-package direnv :config (direnv-mode t))
+;; (elpaca-wait)
+;; TODO: (use-package direnv :config (direnv-mode t))
 
 ;; Theme
 
-(setq
- modus-themes-subtle-line-numbers t
- modus-themes-mode-line '(accented)
- modus-themes-syntax '(yellow-comments)
- modus-themes-paren-match '(bold intense)
- modus-themes-prompts '(intense)
- modus-themes-region '(no-extend bg-only accented)
- modus-themes-bold-constructs t
- modus-themes-hl-line '(accented intense))
-(load-theme 'modus-vivendi t)
+;; (setq
+;;  modus-themes-subtle-line-numbers t
+;;  modus-themes-mode-line '(accented)
+;;  modus-themes-syntax '(yellow-comments)
+;;  modus-themes-paren-match '(bold intense)
+;;  modus-themes-prompts '(intense)
+;;  modus-themes-region '(no-extend bg-only accented)
+;;  modus-themes-bold-constructs t
+;;  modus-themes-hl-line '(accented intense))
+(use-package gruvbox-theme :config (load-theme 'gruvbox-dark-hard t))
 
 ;; Modeline
 
@@ -178,9 +263,9 @@
 (setq eshell-review-quick-commands nil)
 (require 'esh-module) ; require modules
 (add-to-list 'eshell-modules-list 'eshell-tramp)
-(use-package
- esh-autosuggest
- :hook (eshell-mode . esh-autosuggest-mode))
+;; (use-package
+;;  esh-autosuggest
+;;  :hook (eshell-mode . esh-autosuggest-mode))
 
 ;; LSP
 
@@ -266,6 +351,7 @@
 
 (use-package auto-complete :config (ac-config-default))
 
+(use-package geiser :hook (scheme-mode geiser-mode))
 
 (use-package
  geiser-guile
@@ -274,16 +360,12 @@
  (add-hook 'geiser-repl-mode-hook 'ac-geiser-setup)
  (add-to-list 'ac-modes' geiser-repl-mode))
 
-;; (use-package geiser
-;;   :hook (scheme-mode geiser-mode))
-
 (use-package
  paredit
  :hook
  ((emacs-lisp-mode . paredit-mode)
-  (eval-expression-minibuffer-setup . paredit-mode)
-  (scheme-mode . paredit-mode)
-  (lisp-mode . paredit-mode)))
+  ;; (eval-expression-minibuffer-setup . paredit-mode)
+  (scheme-mode . paredit-mode) (lisp-mode . paredit-mode)))
 
 (use-package
  multiple-cursors
@@ -447,7 +529,7 @@
    (interactive)
    (start-process-shell-command "kitty" nil "kitty")))
 
-(global-set-key (kbd "C-.") #'embark-act)
+(use-package embark :bind ("C-." . embark-act))
 (global-set-key (kbd "C-c p") #'paredit-mode)
 
 ;; EXWM
@@ -599,6 +681,7 @@
                        "flatpaks"))
 
 (use-package hydra)
+(elpaca-wait)
 (defhydra
  hydra-system
  (global-map "C-c s")
@@ -662,23 +745,23 @@
   (print x)
   x)
 
-(use-package frame :bind ("C-z" . nil))
+(use-package frame :elpaca nil :bind ("C-z" . nil))
 
 (use-package adaptive-wrap)
 (use-package all-the-icons)
 (use-package all-the-icons-dired)
-; (use-package auctex)
+;; (use-package tex :ensure auctex)
 (use-package calfw)
 (use-package circe)
 (use-package company)
-(use-package company-box)
+;; (use-package company-box)
 (use-package consult-org-roam)
 (use-package consult-yasnippet)
 (use-package crux)
 (use-package csv)
 (use-package csv-mode)
 (use-package dashboard)
-(use-package debbugs)
+;; (use-package debbugs)
 (use-package dmenu)
 (use-package docker)
 (use-package dockerfile-mode)
@@ -690,7 +773,6 @@
 (use-package flycheck)
 (use-package flycheck-haskell)
 (use-package gdscript-mode)
-(use-package geiser-racket)
 (use-package gemini-mode)
 (use-package go-mode)
 (use-package haskell-mode)
@@ -710,20 +792,31 @@
 (use-package password-store)
 (use-package password-store-otp)
 (use-package pdf-tools)
-(use-package racket-mode)
 (use-package realgud)
 (use-package rustic)
 (use-package sly)
 (use-package ssh-agency)
 (use-package stumpwm-mode)
-(use-package stumpwm-mode)
 (use-package swiper)
 (use-package tldr)
 (use-package yaml-mode)
 (use-package yasnippet)
-(use-package yasnippet)
-(use-package yasnippet-snippets)
 (use-package yasnippet-snippets)
 (use-package zerodark-theme)
 (use-package elisp-autofmt)
 (use-package slime)
+(use-package elvish-mode)
+(use-package ob-elvish)
+(use-package eshell-z)
+
+(use-package
+ aweshell
+ :elpaca
+ (abc-mode :fetcher github :repo "manateelazycat/aweshell"))
+
+(defun init-unlink ()
+  (interactive)
+  (f-delete "~/.emacs.d/init.el")
+  (f-symlink
+   (expand-file-name "~/cl/dotfiles/home/dotfiles/emacs.el")
+   "~/.emacs.d/init.el"))
