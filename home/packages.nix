@@ -2,6 +2,7 @@
 with pkgs; [
   # clang
   # mathematica
+  acl2-minimal
   arandr
   audacity
   bat
@@ -16,6 +17,7 @@ with pkgs; [
   direnv
   discord
   dotnet-sdk
+  elvish
   feh
   file
   fira-code
@@ -117,3 +119,7 @@ with pkgs; [
 #   serapeum
 #   alexandria
 # ])
+++
+(with vimPlugins; [
+  # elvish-vim
+])
