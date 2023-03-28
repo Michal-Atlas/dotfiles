@@ -270,16 +270,23 @@
 ;;  esh-autosuggest
 ;;  :hook (eshell-mode . esh-autosuggest-mode))
 
+(use-package eat)
+(use-package eshell-fringe-status)
+(use-package eshell-vterm)
+(use-package eshell-info-banner)
+(use-package fish-completion)
+(use-package eshell-did-you-mean)
+
 ;; LSP
 
 (use-package
- lsp-mode
- :bind ("C-c c" . compile)
- :custom (lsp-keymap-prefix "C-c l")
- :hook
- (lsp-mode . lsp-enable-which-key-integration)
- (c-mode . lsp)
- (c++-mode . lsp))
+  lsp-mode
+  :bind ("C-c c" . compile)
+  :custom (lsp-keymap-prefix "C-c l")
+  :hook
+  (lsp-mode . lsp-enable-which-key-integration)
+  (c-mode . lsp)
+  (c++-mode . lsp))
 
 
 (global-set-key (kbd "C-c o c") 'cfw:open-calendar-buffer)
@@ -657,10 +664,6 @@
   (interactive)
   (vterm (setq vterm-new--i (1+ vterm-new--i))))
 
-(defun cheat (name)
-  (interactive "s")
-  (eww (concat "https://cheat.sh/" name)))
-
 ;; (use-package xah-fly-keys
 ;; :config
 ;; (xah-fly-keys-set-layout "qwerty"))
@@ -814,10 +817,10 @@
 (use-package ob-elvish)
 (use-package eshell-z)
 
-(use-package
- aweshell
- :elpaca
- (abc-mode :fetcher github :repo "manateelazycat/aweshell"))
+;; (use-package
+;;  aweshell
+;;  :elpaca
+;;  (abc-mode :fetcher github :repo "manateelazycat/aweshell"))
 
 (defun init-unlink ()
   (interactive)
@@ -827,3 +830,6 @@
    "~/.emacs.d/init.el"))
 
 (use-package pretty-sha-path :config (global-pretty-sha-path-mode))
+
+(use-package request)
+(use-package cheat-sh)

@@ -45,6 +45,7 @@ with pkgs; [
   lagrange
   legendary-gl
   libreoffice
+  libtool
   lispPackages_new.sbclPackages.linedit
   meson
   minecraft

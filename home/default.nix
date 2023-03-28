@@ -49,9 +49,6 @@ in
     };
     zsh = {
       enable = true;
-      initExtra = ''
-        cheat () { curl "cheat.sh/$@"; }
-      '';
       enableVteIntegration = true;
       enableAutosuggestions = true;
       enableSyntaxHighlighting = true;
@@ -80,6 +77,7 @@ in
   };
   home.file = {
     ".emacs.d/init.el".source = ./dotfiles/emacs.el;
+    ".emacs.d/eshell/aliases".source = ./dotfiles/ealias;
     ".guile".source = ./dotfiles/guile;
     ".mbsyncrc".source = ./dotfiles/mbsyncrc;
     ".sbclrc".source = ./dotfiles/sbclrc;
@@ -89,10 +87,10 @@ in
   xsession.numlock.enable = true;
   programs.home-manager.enable = true;
 
-  # services.emacs = {
-  #   enable = true;
-  #   package = my-emacs;
-  # };
+  services.emacs = {
+    enable = true;
+    package = nixpkgs.emacsGit;
+  };
   home.packages = with pkgs;
     [
       nixpkgs.emacsGit
@@ -108,6 +106,10 @@ in
         "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
         "appindicatorsupport@rgcjonas.gmail.com"
         "nightthemeswitcher@romainvigier.fr"
+        "gnome-extension-all-ip-addresses@havekes.eu"
+        "color-picker@tuberry"
+        "espresso@coadmunkee.github.com"
+        "gnome-clipboard@b00f.github.io"
       ];
     };
     "org/gnome/shell/peripherals/touchpad" = { tap-to-click = true; };
