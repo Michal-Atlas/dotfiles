@@ -4,6 +4,10 @@
 { self, config, pkgs, agenix, ... }: {
   # Should resolve double-prints
   nix.package = pkgs.nixUnstable;
+
+  imports = [ ./cachix.nix ];
+  nix.settings.trusted-users = [ "root" "michal_atlas" ];
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
