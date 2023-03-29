@@ -41,6 +41,7 @@ with pkgs; [
   jetbrains.datagrip
   jetbrains.rider
   keepassxc
+  keychain
   kobodeluxe
   lagrange
   legendary-gl

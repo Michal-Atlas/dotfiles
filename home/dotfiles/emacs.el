@@ -803,7 +803,6 @@
 (use-package realgud)
 (use-package rustic)
 (use-package sly)
-(use-package ssh-agency)
 (use-package stumpwm-mode)
 (use-package swiper)
 (use-package tldr)
@@ -833,3 +832,5 @@
 
 (use-package request)
 (use-package cheat-sh)
+(use-package keychain-environment
+  :config (keychain-refresh-environment))

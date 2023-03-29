@@ -46,6 +46,7 @@ in
       enableZshIntegration = true;
     };
     zsh = {
+      profileExtra = "keychain";
       enable = true;
       enableVteIntegration = true;
       enableAutosuggestions = true;
