@@ -100,6 +100,7 @@
 
 (setq mastodon-instance-url "https://lgbtcz.social")
 (setq mastodon-active-user "michal_atlas")
+(setq indent-tabs-mode nil)
 
 (setq backup-directory-alist '((".*" . "~/.emacs.d/bkp")))
 (setq projectile-project-search-path
