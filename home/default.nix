@@ -75,7 +75,9 @@ in
     };
   };
   home.file = {
-    ".emacs.d/init.el".source = ./dotfiles/emacs.el;
+    ".config/doom/init.el".source = ./dotfiles/init.el;
+    ".config/doom/config.el".source = ./dotfiles/config.el;
+    ".config/doom/packages.el".source = ./dotfiles/packages.el;
     ".emacs.d/eshell/aliases".source = ./dotfiles/ealias;
     ".guile".source = ./dotfiles/guile;
     ".mbsyncrc".source = ./dotfiles/mbsyncrc;
