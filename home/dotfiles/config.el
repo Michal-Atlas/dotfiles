@@ -1,91 +1,85 @@
+;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+
+;; Place your private configuration here! Remember, you do not need to run 'doom
+;; sync' after modifying this file!
+
+
+;; Some functionality uses this to identify you, e.g. GPG configuration, email
+;; clients, file templates and snippets. It is optional.
+
+;; Doom exposes five (optional) variables for controlling fonts in Doom:
+;;
+;; - `doom-font' -- the primary font to use
+;; - `doom-variable-pitch-font' -- a non-monospace font (where applicable)
+;; - `doom-big-font' -- used for `doom-big-font-mode'; use this for
+;;   presentations or streaming.
+;; - `doom-unicode-font' -- for unicode glyphs
+;; - `doom-serif-font' -- for the `fixed-pitch-serif' face
+;;
+;; See 'C-h v doom-font' for documentation and more examples of what they
+;; accept. For example:
+;;
+;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
+;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
+;;
+;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
+;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
+;; refresh your font settings. If Emacs still can't find your font, it likely
+;; wasn't installed correctly. Font issues are rarely Doom issues!
+
+;; There are two ways to load a theme. Both assume the theme is installed and
+;; available. You can either set `doom-theme' or manually load a theme with the
+;; `load-theme' function. This is the default:
+(setq doom-theme 'doom-peacock)
+
+;; This determines the style of line numbers in effect. If set to `nil', line
+;; numbers are disabled. For relative line numbers, set this to `relative'.
+(setq display-line-numbers-type t)
+
+;; If you use `org' and don't want your org files in the default location below,
+;; change `org-directory'. It must be set before org loads!
+
+
+;; Whenever you reconfigure a package, make sure to wrap your config in an
+;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
+;;
+;;   (after! PACKAGE
+;;     (setq x y))
+;;
+;; The exceptions to this rule:
+;;
+;;   - Setting file/directory variables (like `org-directory')
+;;   - Setting variables which explicitly tell you to set them before their
+;;     package is loaded (see 'C-h v VARIABLE' to look up their documentation).
+;;   - Setting doom variables (which start with 'doom-' or '+').
+;;
+;; Here are some additional functions/macros that will help you configure Doom.
+;;
+;; - `load!' for loading external *.el files relative to this one
+;; - `use-package!' for configuring packages
+;; - `after!' for running code after a package has loaded
+;; - `add-load-path!' for adding directories to the `load-path', relative to
+;;   this file. Emacs searches the `load-path' when you load packages with
+;;   `require' or `use-package'.
+;; - `map!' for binding new keys
+;;
+;; To get information about any of these functions/macros, move the cursor over
+;; the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').
+;; This will open documentation for it, including demos of how they are used.
+;; Alternatively, use `C-h o' to look up a symbol (functions, variables, faces,
+;; etc).
+;;
+;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
+;; they are implemented.
+
+
 (setq debug-on-error t)
-;; ELPACA SETUP
-(defvar elpaca-installer-version 0.3)
-(defvar elpaca-directory
-  (expand-file-name "elpaca/" user-emacs-directory))
-(defvar elpaca-builds-directory
-  (expand-file-name "builds/" elpaca-directory))
-(defvar elpaca-repos-directory
-  (expand-file-name "repos/" elpaca-directory))
-(defvar elpaca-order
-  '(elpaca
-    :repo "https://github.com/progfolio/elpaca.git"
-    :ref nil
-    :files (:defaults (:exclude "extensions"))
-    :build (:not elpaca--activate-package)))
-(let* ((repo (expand-file-name "elpaca/" elpaca-repos-directory))
-       (build (expand-file-name "elpaca/" elpaca-builds-directory))
-       (order (cdr elpaca-order))
-       (default-directory repo))
-  (add-to-list
-   'load-path
-   (if (file-exists-p build)
-       build
-     repo))
-  (unless (file-exists-p repo)
-    (make-directory repo t)
-    (condition-case-unless-debug err
-        (if-let ((buffer
-                  (pop-to-buffer-same-window "*elpaca-bootstrap*"))
-                 ((zerop
-                   (call-process "git"
-                                 nil
-                                 buffer
-                                 t
-                                 "clone"
-                                 (plist-get order :repo)
-                                 repo)))
-                 ((zerop
-                   (call-process "git"
-                                 nil
-                                 buffer
-                                 t
-                                 "checkout"
-                                 (or (plist-get order :ref) "--"))))
-                 (emacs (concat invocation-directory invocation-name))
-                 ((zerop
-                   (call-process
-                    emacs
-                    nil
-                    buffer
-                    nil
-                    "-Q"
-                    "-L"
-                    "."
-                    "--batch"
-                    "--eval"
-                    "(byte-recompile-directory \".\" 0 'force)")))
-                 ((require 'elpaca))
-                 ((elpaca-generate-autoloads "elpaca" repo)))
-          (kill-buffer buffer)
-          (error
-           "%s"
-           (with-current-buffer buffer
-             (buffer-string))))
-      ((error) (warn "%s" err) (delete-directory repo 'recursive))))
-  (unless (require 'elpaca-autoloads nil t)
-    (require 'elpaca)
-    (elpaca-generate-autoloads "elpaca" repo)
-    (load "./elpaca-autoloads")))
-(add-hook 'after-init-hook #'elpaca-process-queues)
-(elpaca `(,@elpaca-order))
-;; END ELPACA SETUP
-
-;; Install use-package support
-(elpaca
- elpaca-use-package
- ;; Enable :elpaca use-package keyword.
- (elpaca-use-package-mode)
- ;; Assume :elpaca t unless otherwise specified.
- (setq elpaca-use-package-by-default t))
-
-(elpaca-wait)
 
 ;; Org-mode
 
 ;; (use-package org-fragtog
 ;;   :hook (org-mode org-fragtog-mode))
-(use-package org-modern :hook (org-mode . org-modern-mode))
+(use-package! org-modern :hook (org-mode . org-modern-mode))
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((C . t) (scheme . t) (dot . t) (lisp . t)))
@@ -100,7 +94,6 @@
 
 (setq mastodon-instance-url "https://lgbtcz.social")
 (setq mastodon-active-user "michal_atlas")
-(setq indent-tabs-mode nil)
 
 (setq backup-directory-alist '((".*" . "~/.emacs.d/bkp")))
 (setq projectile-project-search-path
@@ -154,7 +147,7 @@
 (global-set-key (kbd "s-<left>") #'windmove-swap-states-left)
 (global-set-key (kbd "s-<right>") #'windmove-swap-states-right)
 
-;; Theming 
+;; Theming
 
 (tool-bar-mode -1)
 (menu-bar-mode -1)
@@ -168,43 +161,6 @@
 (global-display-line-numbers-mode)
 (global-hl-line-mode 1)
 
-
-(use-package
- highlight-indentation
- :hook (prog-mode . highlight-indentation-mode)
- :custom (highlight-indent-guides-method 'bitmap))
-
-(defvar font-code "Fira Code 12")
-(set-frame-font font-code nil t)
-;; Loads font when opening new frames
-(add-to-list 'default-frame-alist `(font . ,font-code))
-;; (use-package fira-code-mode :config (global-fira-code-mode))
-
-(setq custom-file (locate-user-emacs-file "custom-vars.el"))
-(load custom-file 'noerror 'nomessage)
-
-;; (use-package mode-icons :config (mode-icons-mode 1))
-;; (elpaca-wait)
-(use-package direnv :config (direnv-mode t))
-
-;; Theme
-
-;; (setq
-;;  modus-themes-subtle-line-numbers t
-;;  modus-themes-mode-line '(accented)
-;;  modus-themes-syntax '(yellow-comments)
-;;  modus-themes-paren-match '(bold intense)
-;;  modus-themes-prompts '(intense)
-;;  modus-themes-region '(no-extend bg-only accented)
-;;  modus-themes-bold-constructs t
-;;  modus-themes-hl-line '(accented intense))
-;; (use-package gruvbox-theme :config (load-theme 'gruvbox-dark-hard t))
-(use-package monokai-theme :config (load-theme 'monokai t))
-
-;; Modeline
-
-(use-package doom-modeline :init (doom-modeline-mode 1))
-
 ;; Completion
 
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
@@ -213,34 +169,20 @@
 
 (setq tramp-default-method "ssh")
 
-;; Packages 
+;; Packages
 
-(use-package which-key :config (which-key-mode))
-(setq which-key-popup-type 'minibuffer)
-
-(use-package
+(use-package!
  rainbow-identifiers
  :hook (prog-mode . rainbow-identifiers-mode))
-(use-package
+(use-package!
  rainbow-delimiters
  :hook (prog-mode . rainbow-delimiters-mode))
 
 (set-default 'preview-scale-function 1.5)
 
-(use-package
- undo-tree
- :config
- (global-undo-tree-mode 1)
- (setq undo-tree-auto-save-history t)
- (setq undo-tree-history-directory-alist
-       '(("." . "~/.emacs.d/undo"))))
-
-(use-package ace-window :bind ("M-o" . ace-window))
-
-
 ;; Eshell
 
-(use-package
+(use-package!
  eshell-prompt-extras
  :config
  (with-eval-after-load "esh-opt"
@@ -261,58 +203,27 @@
    (require 'eshell-z)))
 
 (require 'eshell)
-(use-package
+(use-package!
  eshell-syntax-highlighting
  :config (eshell-syntax-highlighting-global-mode 1))
 (setq eshell-review-quick-commands nil)
 (require 'esh-module) ; require modules
 (add-to-list 'eshell-modules-list 'eshell-tramp)
-;; (use-package
+;; (use-package!
 ;;  esh-autosuggest
 ;;  :hook (eshell-mode . esh-autosuggest-mode))
 
-(use-package eat)
-(use-package eshell-fringe-status)
-(use-package eshell-vterm)
-(use-package eshell-info-banner)
-(use-package fish-completion)
-(use-package eshell-did-you-mean)
-
-;; LSP
-
-(use-package
-  lsp-mode
-  :bind ("C-c c" . compile)
-  :custom (lsp-keymap-prefix "C-c l")
-  :hook
-  (lsp-mode . lsp-enable-which-key-integration)
-  (c-mode . lsp)
-  (c++-mode . lsp))
-
-
-(global-set-key (kbd "C-c o c") 'cfw:open-calendar-buffer)
-
-(use-package git-gutter :config (global-git-gutter-mode +1))
-
 ;; Persist history over Emacs restarts. Vertico sorts by history position.
 
-;(use-package savehist :init (savehist-mode))
+;(use-package! savehist :init (savehist-mode))
 
 ;; Configure directory extension.
-
-(use-package
- anzu
- :config (global-anzu-mode +1)
- :bind
- (("M-%" . anzu-query-replace) ("C-M-%" . anzu-query-replace-regexp)))
-
-(use-package marginalia :config (marginalia-mode))
 
 (setq org-agenda-files '("~/roam/todo.org"))
 
 ;; Roam
 
-;; (use-package org-roam
+;; (use-package! org-roam
 ;;   :custom
 ;;   (org-roam-directory (file-truename "~/roam/"))
 ;;   (org-roam-capture-templates
@@ -343,7 +254,7 @@
 ;;   (org-roam-db-autosync-mode)
 ;;   ;; If using org-roam-protocol
 ;;   (require 'org-roam-protocol))
-;; (use-package org-roam-ui
+;; (use-package! org-roam-ui
 ;;   :after org-roam
 ;;   ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
 ;;   ;;         a hookable mode anymore, you're advised to pick something yourself
@@ -360,35 +271,12 @@
 
 ;; Lisps
 
-(use-package auto-complete :config (ac-config-default))
-
-(use-package geiser :hook (scheme-mode geiser-mode))
-
-(use-package
- geiser-guile
- :config
- (add-hook 'geiser-mode-hook 'ac-geiser-setup)
- (add-hook 'geiser-repl-mode-hook 'ac-geiser-setup)
- (add-to-list 'ac-modes' geiser-repl-mode))
-
-(use-package
+(use-package!
  paredit
  :hook
  ((emacs-lisp-mode . paredit-mode)
   ;; (eval-expression-minibuffer-setup . paredit-mode)
   (scheme-mode . paredit-mode) (lisp-mode . paredit-mode)))
-
-(use-package
- multiple-cursors
- :bind
- (("C-S-c C-S-c" . mc/edit-lines)
-  ("C->" . mc/mark-next-like-this)
-  ("C-<" . mc/mark-previous-like-this)
-  ("C-c C-<" . mc/mark-all-like-this)))
-
-;; C
-
-(add-hook 'shell-script-mode 'prog-mode)
 
 ;; Elfeed
 
@@ -408,32 +296,9 @@
    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCQ6fPy9wr7qnMxAbFOGBaLw") ;; Computer Clan
    ("https://lexfridman.com/feed/podcast/")))
 
-;; Misc
-
-(use-package
- magit
- :bind
- (("C-c v s" . magit-stage)
-  ("C-c v p" . magit-push)
-  ("C-c v f" . magit-pull)
-  ("C-c v c" . magit-commit)
-  ("C-x g" . magit))
- :init
- (if (not (boundp 'project-switch-commands))
-     (setq project-switch-commands nil)))
-; (use-package helpful
-;   :bind (("C-h f" . helpful-function)
-;	 ("C-h k" . helpful-key)))
-
-(use-package avy :bind ("C-c q" . avy-goto-char-timer))
-(use-package
- browse-kill-ring
- :config (browse-kill-ring-default-keybindings))
-
-
 ;; EMMS
 
-(use-package
+(use-package!
  emms
  :config
  (require 'emms-setup)
@@ -458,21 +323,18 @@
     "--force-window=no"
     "--vo=null")))
 
-;; Thaumiel 
+;; Thaumiel
 
-;      (straight-use-package '(thaumiel :local-repo "thaumiel" :repo "michal_atlas/thaumiel"))
+;      (straight-use-package! '(thaumiel :local-repo "thaumiel" :repo "michal_atlas/thaumiel"))
 
 ;; Matrix
 
 
 ;; Evil
 
-;; (use-package evil
-;;   :config (evil-mode 1))
 
-(use-package
+(use-package!
  tramp
- :elpaca nil
  :config
  (connection-local-set-profile-variables
   'guix-system '((tramp-remote-path . (tramp-own-remote-path))))
@@ -543,12 +405,9 @@
    (interactive)
    (start-process-shell-command "kitty" nil "kitty")))
 
-(use-package embark :bind ("C-." . embark-act))
-(use-package embark-consult)
-
 ;; EXWM
 
-;; (use-package exwm
+;; (use-package! exwm
 ;;   :custom
 ;;   (exwm-workspace-number 10)
 ;;   :bind
@@ -626,50 +485,21 @@
 
 ;; Vertico
 
-(use-package
- vertico
- :init (vertico-mode)
- :custom
- (vertico-count 20)
- (vertico-resize t)
- (enable-recursive-minibuffers t))
-
-(use-package
- orderless
- :init
- (setq
-  completion-styles '(orderless basic)
-  completion-category-defaults nil
-  completion-category-overrides '((file (styles partial-completion)))))
-
-(global-unset-key (kbd "C-r"))
-(use-package
- consult
- :bind
- (("C-x b" . consult-buffer)
-  ("C-t" . consult-goto-line)
-  ("C-s" . consult-line)
-  ("C-r l" . consult-register)
-  ("C-r s" . consult-register-store)
-  ("M-y" . consult-yank-from-kill-ring)))
-
 (defun close-program ()
   (interactive)
   (kill-buffer)
   (delete-frame))
 
-(global-set-key (kbd "C-s-q") #'close-program)
-
 (setq vterm-new--i 0)
 (defun vterm-new ()
   (interactive)
-  (vterm (setq vterm-new--i (1+ vterm-new--i))))
+  (vterm (cl-incf vterm-new--i)))
 
-;; (use-package xah-fly-keys
+;; (use-package! xah-fly-keys
 ;; :config
 ;; (xah-fly-keys-set-layout "qwerty"))
 
-;; (use-package frames-only-mode
+;; (use-package! frames-only-mode
 ;;   :config (frames-only-mode 1))
 
 (defun flatpak-run ()
@@ -690,8 +520,6 @@
                                          "\n")))))
                        "flatpaks"))
 
-(use-package hydra)
-(elpaca-wait)
 (defhydra
  hydra-system
  (global-map "C-c s")
@@ -723,12 +551,6 @@
  ("g" guix-packages-by-name "find package")
  ("q" nil "cancel"))
 
-(defhydra
- hydra-buffer
- (global-map "C-x")
- ("<right>" next-buffer)
- ("<left>" previous-buffer))
-
 ;; Guile scripts
 
 (setq guile-script-path '("~/dotfiles/scripts"))
@@ -755,69 +577,9 @@
   (print x)
   x)
 
-(use-package frame :elpaca nil :bind ("C-z" . nil))
+(use-package! frame :bind ("C-z" . nil))
 
-(use-package adaptive-wrap)
-(use-package all-the-icons)
-(use-package all-the-icons-dired)
-;; (use-package tex :ensure auctex)
-(use-package calfw)
-(use-package circe)
-(use-package company)
-;; (use-package company-box)
-(use-package consult-org-roam)
-(use-package consult-yasnippet)
-(use-package crux)
-(use-package csv)
-(use-package csv-mode)
-(use-package dashboard)
-;; (use-package debbugs)
-(use-package dmenu)
-(use-package docker)
-(use-package dockerfile-mode)
-(use-package ediprolog)
-(use-package eglot)
-(use-package elpher)
-(use-package ement)
-(use-package engrave-faces)
-(use-package flycheck)
-(use-package flycheck-haskell)
-(use-package gdscript-mode)
-(use-package gemini-mode)
-(use-package go-mode)
-(use-package haskell-mode)
-(use-package htmlize)
-(use-package iedit)
-(use-package lsp-ui)
-(use-package magit-todos)
-(use-package multi-term)
-(use-package nix-mode)
-(use-package nixos-options)
-(use-package nov)
-(use-package on-screen)
-(use-package org-superstar)
-(use-package ox-gemini)
-(use-package password-generator)
-(use-package password-store)
-(use-package password-store-otp)
-(use-package pdf-tools)
-(use-package realgud)
-(use-package rustic)
-(use-package sly)
-(use-package stumpwm-mode)
-(use-package swiper)
-(use-package tldr)
-(use-package yaml-mode)
-(use-package yasnippet)
-(use-package yasnippet-snippets)
-(use-package zerodark-theme)
-(use-package elisp-autofmt)
-(use-package slime)
-(use-package elvish-mode)
-(use-package ob-elvish)
-(use-package eshell-z)
-
-;; (use-package
+;; (use-package!
 ;;  aweshell
 ;;  :elpaca
 ;;  (abc-mode :fetcher github :repo "manateelazycat/aweshell"))
@@ -829,9 +591,9 @@
    (expand-file-name "~/cl/dotfiles/home/dotfiles/emacs.el")
    "~/.emacs.d/init.el"))
 
-(use-package pretty-sha-path :config (global-pretty-sha-path-mode))
+(use-package! pretty-sha-path :config (global-pretty-sha-path-mode))
 
-(use-package request)
-(use-package cheat-sh)
-(use-package keychain-environment
+(use-package! request)
+(use-package! cheat-sh)
+(use-package! keychain-environment
   :config (keychain-refresh-environment))
