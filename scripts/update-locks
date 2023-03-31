@@ -1,0 +1,18 @@
+#! /bin/sh
+# -*- mode: scheme; coding: utf-8 -*-
+exec guix repl -- "$0" "$@"
+!#
+
+(use-modules (guix scripts describe)
+	     (guix scripts pull)
+	     (scripts config))
+
+(define (main . args)
+  (apply guix-pull args)
+  (with-output-to-file channel-lock-file
+    (lambda () (guix-describe "--format=channels"))))
+
+(apply main (cdr (command-line)))
+;; Local Variables:
+;; mode: scheme
+;; End:

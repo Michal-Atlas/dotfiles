@@ -1,0 +1,5 @@
+termcapinfo xterm* ti@:te@
+startup_message off
+deflogin off
+mousetrack on
+escape ^BB
