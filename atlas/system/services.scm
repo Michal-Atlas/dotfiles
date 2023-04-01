@@ -84,7 +84,6 @@
    (unattended-upgrade-configuration
    (channels "/home/michal_atlas/.config/guix/channels.scm")))
    (bluetooth-service #:auto-enable? #f)
-   (service mate-desktop-service-type)
    (modify-services
     %desktop-services
     ;; (delete gdm-service-type)
