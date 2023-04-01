@@ -55,6 +55,13 @@
     "kitty" "fzf"
     "pandoc" "zutils"
     "vim" "zsh" "git" "htop"
+
+    ;; Gnome extensions
+    "gnome-shell-extensions"
+    "gnome-shell-extension-clipboard-indicator"
+    "gnome-shell-extension-paperwm"
+    "gnome-shell-extension-appindicator"
+    "gnome-shell-extension-sound-output-device-chooser"
     
     ;; Toolchains
     "gcc-toolchain" "clang-toolchain" "rust"
