@@ -64,26 +64,25 @@
   (operating-system
  (inherit atlas-system-base)
  (host-name "dagon")
- (mapped-devices
-  (list (mapped-device
-	 (source
-	  (uuid "24276371-36b5-4d74-8376-8fc0b32f86cf"))
-	 (target "cryptroot")
-	 (type luks-device-mapping))))
- (file-systems (cons*
-	 	(file-system
-		 (mount-point "/boot/efi")
-		 (device (uuid "317C-0555" 'fat32))
-		 (type "vfat"))
-		(file-system
-		 (mount-point "/")
-		 (device "/dev/mapper/cryptroot")
-		 (type "btrfs")
-		 (dependencies mapped-devices))
-		%base-file-systems))
- (swap-devices
-  (list (swap-space
-	 (target (uuid "6d46a910-394b-45e0-8a41-1e9f716c3864")))))))
+ (swap-devices (list (swap-space
+                      (target (uuid
+                               "3a5ec2f6-0f10-4f18-9a47-d4aa4586b13f")))))
+ (mapped-devices (list (mapped-device
+                        (source (uuid
+                                 "e1651b91-c5f4-465e-94c7-b3197f46a9ee"))
+                        (target "cryptroot")
+                        (type luks-device-mapping))))
+
+  (file-systems (cons* (file-system
+                        (mount-point "/")
+                        (device "/dev/mapper/cryptroot")
+                        (type "btrfs")
+                        (dependencies mapped-devices))
+                       (file-system
+                        (mount-point "/boot/efi")
+                        (device (uuid "3FC5-9472"
+                                      'fat32))
+                        (type "vfat")) %base-file-systems))))
 
 (define hydra
   (operating-system
