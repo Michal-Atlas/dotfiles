@@ -61,7 +61,7 @@
 (package! circe)
 ;; (package! debbugs)
 (package! dmenu)
-(package! gemini-mode)
+;; (package! gemini-mode)
 (package! htmlize)
 (package! nov)
 (package! ox-gemini)
@@ -76,3 +76,4 @@
 (package! pretty-sha-path)
 (package! cheat-sh)
 (package! keychain-environment)
+(package! rainbow-identifiers)
