@@ -1,20 +1,9 @@
 (in-package :stumpwm)
 (setf *default-package* :stumpwm)
 
-(load #p"/home/michal_atlas/quicklisp/setup.lisp")
-;; (setf *altgr-offset* 4)
-
-;; (run-shell-command "xmodmap -e 'clear mod4'" t)
-;; (run-shell-command "xmodmap -e 'add mod4 = Super_L'" t)
-;; (stumpwm:set-prefix-key (stumpwm:kbd "F20"))
 (stumpwm:set-prefix-key (stumpwm:kbd "C-z"))
 
-;; (ql:quickload :stumptray)
-(ql:quickload :battery-portable)
-;; (ql:quickload :mode-line)
-;; (ql:quickload :stump-backlight)
-;; (ql:quickload :battery-portable)
-;; (ql:quickload :swm-gaps)
+(asdf:load-system :battery-portable)
 
 (setf *mouse-focus-policy* :sloppy
       *float-window-modifier* :SUPER
@@ -26,13 +15,11 @@
       ;; swm-gaps:*inner-gaps-size* 5
       )
 
-;; (when *initializing* (swm-gaps:toggle-gaps))
-
 (when *initializing*
   (mode-line)
   (which-key-mode)
   (run-commands
-   "exec feh --bg-center /home/michal_atlas/Documents/Wallpapers/wallpaper.png"
+   "exec feh --bg-center /home/michal_atlas/documents/Wallpapers/wallpaper.png"
    "gkill Default"
    "gnew Alpha"
    "gnew Lambda"
@@ -84,8 +71,8 @@
 
 ;; Gapps
 
-(ql:quickload :swm-gaps)
-(ql:quickload :net)
+(asdf:load-system :swm-gaps)
+(asdf:load-system :net)
 (setf swm-gaps:*inner-gaps-size* 13
       swm-gaps:*outer-gaps-size* 7
       swm-gaps:*head-gaps-size* 0)
@@ -96,7 +83,7 @@
 ;; Modeline
 (when *initializing*
   (defconstant backlightfile "/sys/class/backlight/intel_backlight/brightness"))
-(ql:quickload :pamixer)
+(asdf:load-system :pamixer)
 (setf *time-modeline-string* "%a, %b %d %I:%M%p"
       *screen-mode-line-format*
       (list
@@ -170,7 +157,7 @@
 
 (define-key *root-map* (kbd "B") "open-book")
 
-(ql:quickload :screenshot)
+(asdf:load-system :screenshot)
 
 (defcommand scrt-datewrap (&optional area) ((:rest "Area?: "))
 	    (let ((f (if (equal area "t")
@@ -182,9 +169,10 @@
 (define-key *top-map* (kbd "s-S") "scrt-datewrap t")
 (define-key *top-map* (kbd "s-s") "scrt-datewrap n")
 
-;; (ql:quickload "xembed")
-;; (ql:quickload :stumptray)
-;; (stumptray::stumptray)
+;; (asdf:load-system "xembed")
+(asdf:load-system :stumptray)
+(when *initializing*
+ (stumptray::stumptray))
 
 (define-key *top-map* (kbd "s-n") "rotate-windows forward")
 

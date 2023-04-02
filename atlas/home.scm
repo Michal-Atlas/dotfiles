@@ -217,7 +217,8 @@ fi;
    (simple-service
     'dotfiles-xdg
     home-xdg-configuration-files-service-type
-    `(("common-lisp/source-registry.conf" ,(local-file "../home/dotfiles/cl-src-registry.conf"))
+    `(
+      ;; ("common-lisp/source-registry.conf" ,(local-file "../home/dotfiles/cl-src-registry.conf"))
       ;; ("sway/config" ,(local-file "../sway.cfg"))
       ("foot/foot.ini" ,(local-file "../home/dotfiles/foot.ini"))
       ))

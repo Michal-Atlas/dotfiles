@@ -14,14 +14,15 @@
     "firefox" "xscreensaver" "gparted"
     "nautilus" "gvfs" "samba"
     "pavucontrol" "screen"
-    "sway"
+    ;;"sway"
     "i3status" "i3lock"
     "flatpak" "font-fira-code"
     "breeze-icons" "hicolor-icon-theme"
     "adwaita-icon-theme"
 
     ;; StumpWM
-     "stumpwm"
+    "sbcl"
+    "stumpwm"
      "sbcl-stumpwm-winner-mode"
      "sbcl-stumpwm-swm-gaps"
      "sbcl-stumpwm-screenshot"
