@@ -76,10 +76,10 @@
 
 ;; (use-package org-fragtog
 ;;   :hook (org-mode org-fragtog-mode))
-(use-package! org-modern :hook (org-mode . org-modern-mode))
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((C . t) (scheme . t) (dot . t) (lisp . t)))
+ '((C . t) (scheme . t) (dot . t) (lisp . t)
+   (maxima . t)))
 
 ;; Variable Init
 
