@@ -72,9 +72,6 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-
-(setq debug-on-error t)
-
 ;; Org-mode
 
 ;; (use-package org-fragtog
