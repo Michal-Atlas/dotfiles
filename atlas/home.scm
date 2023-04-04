@@ -194,12 +194,15 @@
 	      "guix gc -F 10G")
        #~(job
 	      '(next-hour '(6))
-	      "
-mkdir -p ~/tmp-log;
-mkdir -p ~/tmp;
-if [ ! \"$(ls -A ~/tmp)\" ]; then 
-    mv ~/tmp ~/tmp-log/$(date -I);
-    mkdir ~/tmp;
+          "
+mkdir -p \"$HOME/tmp-log\";
+if [ \"$(ls -A \"$HOME/tmp\")\" ]; then
+    mv \"$HOME/tmp\" \"$HOME/tmp-log/$(date -I)\";
+    mkdir -p \"$HOME/tmp\";
+fi;
+if [ \"$(ls -A \"$HOME/Downloads\")\" ]; then
+    mv \"$HOME/Downloads\" \"$HOME/tmp-log/$(date -I)-down\";
+    mkdir -p \"$HOME/Downloads\";
 fi;
 ")
        ))))
