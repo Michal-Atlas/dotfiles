@@ -77,3 +77,5 @@
 (package! cheat-sh)
 (package! keychain-environment)
 (package! rainbow-identifiers)
+(package! guix)
+(package! slime)
