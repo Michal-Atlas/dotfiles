@@ -33,6 +33,7 @@
     "grim" "vlc" "mpv"
     "libreoffice"
     "audacity"
+    "yt-dlp" "picard"
     ))
 
 (define graphics

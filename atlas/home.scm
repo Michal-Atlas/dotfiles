@@ -257,7 +257,8 @@ fi;
    (service nix-profile-service-type
             (map (lambda (pkg) (string-append "nixpkgs#" pkg))
                  (list "hello" "roswell" "jetbrains.clion" "sage"
-                       "zotero")))
+                       "zotero" "acl2-minimal" "discord"
+                       "dotnet-sdk" "vscode")))
    (service
     home-bash-service-type
     (home-bash-configuration
