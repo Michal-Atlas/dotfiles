@@ -76,24 +76,51 @@
                 (default-value '())
                 (description "Loads an Alist of INI Dconf entries on activation")))
 
-;; (define (nix-profile-gexp configuration)
-;;   `((".nix-profile"
-;;      #~(apply invoke #$ (file-append nix "/bin/nix")
-;;               "profile" "install"
-;;               "--extra-experimental-features" "nix-command"
-;;               "--profile" #$output
-;;               (map (lambda (pkg) (string-append "nixpkgs#" pkg))
-;;                    #$configuration)))))
+(define (nix-profile-gexp configuration)
+  #~ (primitive-load #$ (nix-profile configuration)))
 
-;; (define nix-profile-service-type
-;;   (service-type (name 'nix-profile-service)
-;;                 (extensions
-;;                  (list
-;;                   (service-extension
-;;                    home-files-service-type
-;;                    nix-profile-gexp)))
-;;                 (default-value #f)
-;;                 (description "")))
+(define (nix-profile configuration)
+  (program-file
+   "nix-profile-setup"
+   #~ (begin
+        (let ([profile-file "/home/michal_atlas/.nix-profile"])
+          (invoke "nix"
+                  "profile" "remove" ".*"
+                  "--extra-experimental-features" "nix-command flakes"
+                  "--profile" profile-file "--impure")
+          (setenv "NIXPKGS_ALLOW_UNFREE" "1")
+          (invoke "nix"
+                  "profile" "install"
+                  "--extra-experimental-features" "nix-command flakes"
+                  "--impure" "--profile" profile-file
+                  #$@configuration)))))
+
+(define nix-profile-service-type
+  (service-type (name 'nix-profile-service)
+                (extensions
+                 (list
+                  (service-extension
+                   home-activation-service-type
+                   nix-profile-gexp)))
+                (default-value #f)
+                (description "")))
+
+(define (doom-sync)
+  (program-file "doom-sync"
+                #~(invoke"/home/michal_atlas/.config/emacs/bin/doom" "sync")))
+
+(define (doom-sync-gexp x)
+  #~ (primitive-load #$ (doom-sync)))
+
+(define doom-sync-service-type
+  (service-type (name 'nix-profile-service)
+                (extensions
+                 (list
+                  (service-extension
+                   home-activation-service-type
+                   doom-sync-gexp)))
+                (default-value #f)
+                (description "")))
 
 (home-environment
  (packages
@@ -104,9 +131,6 @@
        (hash-ref %packages-by-host (vector-ref (uname) 1))))
  (services
   (list
-   #;
-   (service nix-profile-service-type
-            #~(list "hello" "roswell"))
    (service dconf-load-service-type
             `((org/gnome/shell
                (disable-user-extensions #f)
@@ -221,12 +245,19 @@ fi;
     'dotfiles-xdg
     home-xdg-configuration-files-service-type
     `(
+      ("doom/init.el" ,(local-file "../home/dotfiles/init.el"))
+      ("doom/packages.el" ,(local-file "../home/dotfiles/packages.el"))
+      ("doom/config.el" ,(local-file "../home/dotfiles/config.el"))
       ;; ("common-lisp/source-registry.conf" ,(local-file "../home/dotfiles/cl-src-registry.conf"))
       ;; ("sway/config" ,(local-file "../sway.cfg"))
       ("foot/foot.ini" ,(local-file "../home/dotfiles/foot.ini"))
       ))
                                         ;(".emacs.d/eshell/alias" ,(local-file "../eshell-alias"))
-      
+   (service doom-sync-service-type)
+   (service nix-profile-service-type
+            (map (lambda (pkg) (string-append "nixpkgs#" pkg))
+                 (list "hello" "roswell" "jetbrains.clion" "sage"
+                       "zotero")))
    (service
     home-bash-service-type
     (home-bash-configuration
