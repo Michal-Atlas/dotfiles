@@ -8,7 +8,6 @@
 (setf *mouse-focus-policy* :sloppy
       *float-window-modifier* :SUPER
       ;; *mode-line-timeout* 5
-      ;; *time-modeline-string* "%F %H:%M"
       ;; *group-format* "%t"
       ;; *window-format* "%n: %30t"
       ;; *mode-line-formatter-list* '(("%g") ("%w") ("^>") ("%B") ("%d"))
@@ -85,6 +84,7 @@
   (defconstant backlightfile "/sys/class/backlight/intel_backlight/brightness"))
 (asdf:load-system :pamixer)
 (setf *time-modeline-string* "%a, %b %d %I:%M%p"
+      *net-modeline-fmt* "%i"
       *screen-mode-line-format*
       (list
        ;; Groups
@@ -93,20 +93,38 @@
        "^>"
        ;; Date
        "^7"
+       " | "
        "%d"
        ;; Battery
        " ^7[^n%B^7]^n "
        "| %l "
        "| %P "
        "| "
-       '(:eval (get-backlight-num))))
+       '(:eval (get-backlight-num))
+       " | "
+       '(:eval (playerctl-get "title"))
+       " - "
+       '(:eval (playerctl-get "album"))
+       " - "
+       '(:eval (playerctl-get "artist"))))
+
+(defun playerctl-get (prop)
+  (trim-whitespace
+   (uiop:run-program
+    (list "playerctl" "metadata" prop)
+    :output :string)))
+
+(defun trim-whitespace (x)
+  (string-trim
+   '(#\Space #\Newline #\Backspace #\Tab
+     #\Linefeed #\Page #\Return #\Rubout) x))
 
 (defun get-backlight-num ()
   (format nil "~a"
-	  (/ (parse-integer
-	      (string-trim " \n"
-	       (uiop:read-file-string backlightfile)))
-	     100.0)))
+	      (/ (parse-integer
+	          (string-trim " \n"
+	                       (uiop:read-file-string backlightfile)))
+	         100.0)))
 
 (define-key *root-map* (kbd "C-q") "send-raw-key")
 

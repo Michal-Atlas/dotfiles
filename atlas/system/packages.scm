@@ -20,28 +20,6 @@
     "breeze-icons" "hicolor-icon-theme"
     "adwaita-icon-theme"
 
-    ;; StumpWM
-    "sbcl"
-    "stumpwm"
-     "sbcl-stumpwm-winner-mode"
-     "sbcl-stumpwm-swm-gaps"
-     "sbcl-stumpwm-screenshot"
-     "sbcl-stumpwm-pass"
-     "sbcl-stumpwm-pamixer"
-     "sbcl-stumpwm-numpad-layouts"
-     "sbcl-stumpwm-notify"
-     "sbcl-stumpwm-kbd-layouts"
-     "sbcl-stumpwm-disk"
-     "sbcl-stumpwm-battery-portable"
-     "sbcl-stumpwm-globalwindows"
-     "sbcl-stumpwm-wifi"
-     "sbcl-stumpwm-ttf-fonts"
-     "sbcl-stumpwm-stumptray"
-     "sbcl-stumpwm-net"
-     "sbcl-stumpwm-mem"
-     "sbcl-stumpwm-cpu"
-     "stumpish"
-    
      ;; Emacs
      "emacs"
     #;"emacs-exwm"
@@ -71,7 +49,45 @@
 
     "openvpn" "network-manager-openvpn"
     "gnupg" "pinentry"    
-    "nss-certs" "xdg-utils"))
+    "nss-certs" "xdg-utils"
+
+    "sbcl"
+    "stumpwm"
+    "buildapp"
+    "stumpish"
+    ,@(map (lambda (q) (string-append "sbcl-" q))
+           `( ;; StumpWM
+             ,@(map (lambda (q) (string-append "stumpwm-" q))
+                    `("winner-mode"
+                      "swm-gaps"
+                      "screenshot"
+                      "pass"
+                      "pamixer"
+                      "numpad-layouts"
+                      "notify"
+                      "kbd-layouts"
+                      "disk"
+                      "battery-portable"
+                      "globalwindows"
+                      "wifi"
+                      "ttf-fonts"
+                      "stumptray"
+                      "net"
+                      "mem"
+                      "cpu"))
+
+             "linedit"
+             "serapeum"
+             "alexandria"
+             "cl-autowrap" "optima"
+             "coalton" "coleslaw"
+             "collectors" "cl-strings"
+             "unix-opts" "cffi" "series"
+             "trial" "trees" "sycamore"
+             "terminfo" "terminal-size"
+             "terminal-keypress" "tar"
+             "tailrec" "screamer" "s-xml"
+             ))))
 
 (define %system-desktop-manifest
   (map specification->package %system-desktop-manifest-list))
