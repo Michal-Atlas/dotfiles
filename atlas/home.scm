@@ -7,6 +7,7 @@
   #:use-module (gnu home services ssh)
   #:use-module (gnu home services fontutils)
   #:use-module (gnu home services guix)
+  #:use-module (gnu home services desktop)
   #:use-module (guix channels)
   #:use-module (gnu services)
   #:use-module (gnu packages)
@@ -18,6 +19,7 @@
   #:use-module (gnu packages python-xyz)
   #:use-module (gnu packages freedesktop)
   #:use-module (gnu services xorg)
+  #:use-module (gnu packages mpd)
   #:use-module (gnu home services mcron)
   #:use-module (ice-9 hash-table)
   #:use-module (gnu system keyboard)
@@ -207,7 +209,12 @@
 			               "GDK_DPI_SCALE=0.41"
 			               (default-environment-variables))))
 		        (stop #~(make-system-destructor
-			             "emacsclient -e '(save-buffers-kill-emacs)'")))))))
+			             "emacsclient -e '(save-buffers-kill-emacs)'")))
+               (shepherd-service
+                (provision '(mpdris))
+                (start #~(make-forkexec-constructor
+                          (list #$(file-append mpdris2 "/bin/mpDris2"))))
+                (stop #~(make-kill-destructor)))))))
    (service
     home-mcron-service-type
     (home-mcron-configuration
@@ -259,6 +266,7 @@ fi;
                  (list "hello" "roswell" "jetbrains.clion" "sage"
                        "zotero" "acl2-minimal" "discord"
                        "dotnet-sdk" "vscode")))
+   (service home-redshift-service-type)
    (service
     home-bash-service-type
     (home-bash-configuration

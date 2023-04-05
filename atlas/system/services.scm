@@ -35,7 +35,7 @@
     (list
      (pam-limits-entry "*" 'both 'nofile 524288)))
    (service gpm-service-type)
-   (screen-locker-service xlock "xlock")
+   ;; (screen-locker-service xlock "xlock")
    (service docker-service-type)
    (service tlp-service-type
 	    (tlp-configuration
@@ -46,10 +46,18 @@
          (qemu-binfmt-configuration
            (platforms (lookup-qemu-platforms "arm" "aarch64" "riscv64"))))
    (zerotier-one-service)
+   (service mpd-service-type
+            (mpd-configuration
+             (user "michal_atlas")
+             (music-directory "/home/michal_atlas/Music/")))
+   (service mympd-service-type
+            (mympd-configuration
+             (user "michal_atlas")
+             (port "430")))
    (service libvirt-service-type
-	    (libvirt-configuration
-	     (unix-sock-group "libvirt")
-	     (tls-port "16555")))
+	        (libvirt-configuration
+	         (unix-sock-group "libvirt")
+	         (tls-port "16555")))
    (service virtlog-service-type
 	    (virtlog-configuration
 	     (max-clients 1000)))
