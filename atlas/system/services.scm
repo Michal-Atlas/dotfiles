@@ -48,12 +48,8 @@
    (zerotier-one-service)
    (service mpd-service-type
             (mpd-configuration
-             (user "michal_atlas")
              (music-directory "/home/michal_atlas/Music/")))
-   (service mympd-service-type
-            (mympd-configuration
-             (user "michal_atlas")
-             (port "430")))
+   (service mympd-service-type)
    (service libvirt-service-type
 	        (libvirt-configuration
 	         (unix-sock-group "libvirt")
