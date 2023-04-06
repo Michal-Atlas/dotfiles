@@ -679,7 +679,7 @@
   (interactive)
   (f-delete "~/.emacs.d/init.el")
   (f-symlink
-   (expand-file-name "~/cl/dotfiles/home/dotfiles/emacs.el")
+   (expand-file-name "~/cl/dotfiles/files/emacs.el")
    "~/.emacs.d/init.el"))
 
 (use-package pretty-sha-path :config (global-pretty-sha-path-mode))
