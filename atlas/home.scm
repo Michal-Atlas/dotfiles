@@ -241,23 +241,20 @@ fi;
     'dotfiles
     home-files-service-type
     `(
-      ;; (".emacs.d/init.el" ,(local-file "../emacs.el"))
-      (".guile" ,(local-file "../home/dotfiles/guile"))
+      (".emacs.d/init.el" ,(local-file "../files/emacs.el"))
+      (".guile" ,(local-file "../files/guile"))
       ;; (".screenrc" ,(local-file "../screen"))
       ;; (".mbsyncrc" ,(local-file "../mbsyncrc"))
-      (".sbclrc" ,(local-file "../home/dotfiles/sbclrc"))
-      ;; (".stumpwm.d/init.lisp" ,(local-file "../stumpwm.lisp"))
+      (".sbclrc" ,(local-file "../files/sbclrc"))
+      (".stumpwm.d/init.lisp" ,(local-file "../files/stumpwm.lisp"))
       ))
    (simple-service
     'dotfiles-xdg
     home-xdg-configuration-files-service-type
     `(
-      ("doom/init.el" ,(local-file "../home/dotfiles/init.el"))
-      ("doom/packages.el" ,(local-file "../home/dotfiles/packages.el"))
-      ("doom/config.el" ,(local-file "../home/dotfiles/config.el"))
-      ;; ("common-lisp/source-registry.conf" ,(local-file "../home/dotfiles/cl-src-registry.conf"))
+      ;; ("common-lisp/source-registry.conf" ,(local-file "../files/cl-src-registry.conf"))
       ;; ("sway/config" ,(local-file "../sway.cfg"))
-      ("foot/foot.ini" ,(local-file "../home/dotfiles/foot.ini"))
+      ("foot/foot.ini" ,(local-file "../files/foot.ini"))
       ))
                                         ;(".emacs.d/eshell/alias" ,(local-file "../eshell-alias"))
    (service doom-sync-service-type)
