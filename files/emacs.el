@@ -483,7 +483,7 @@
       	(start-process-shell-command (file-name-nondirectory cmd) nil cmd)))
   (setq
    exwm-workspace-show-all-buffers t
-   exwm-workspace-minibuffer-position 'top
+   ;; exwm-workspace-minibuffer-position 'top
 
    exwm-input-prefix-keys
    `(?\C-x
