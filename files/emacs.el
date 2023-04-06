@@ -477,7 +477,7 @@
   (exwm-systemtray-enable)
   (set-frame-parameter (selected-frame) 'alpha '(85 . 85))
   (add-to-list 'default-frame-alist '(alpha . (85 . 85)))
-  (dolist (cmd '("nm-applet" "pasystray" ("xss-lock" . "xss-lock -- slock")))
+  (dolist (cmd '("nm-applet" "pasystray" ("xss-lock" . "xss-lock -- xlock")))
     (if (listp cmd)
 	(start-process-shell-command (car cmd) nil (cdr cmd))
       	(start-process-shell-command (file-name-nondirectory cmd) nil cmd)))
