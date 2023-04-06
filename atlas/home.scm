@@ -260,7 +260,7 @@ fi;
    (service doom-sync-service-type)
    (service nix-profile-service-type
             (map (lambda (pkg) (string-append "nixpkgs#" pkg))
-                 (list "hello" "roswell" "jetbrains.clion" "sage"
+                 (list "sage"
                        "zotero" "acl2-minimal" "discord"
                        "dotnet-sdk" "vscode")))
    (service home-redshift-service-type)
