@@ -530,7 +530,7 @@
 		   (lambda ()
 		     (interactive)
 		     (eshell ,i))))
-	       (number-sequence 0 9)))))
+	       (number-sequence 0 9))))
 
 (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
 
