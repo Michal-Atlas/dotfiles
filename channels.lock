@@ -25,7 +25,7 @@
         (url "https://git.sr.ht/~michal_atlas/guix-channel")
         (branch "master")
         (commit
-          "10f0a6f81577f3cf987992333c6473d6ead5268a"))
+          "7457e7ba2583bf64a0a06f7bf952f4b7ae654573"))
       (channel
         (name 'guixrus)
         (url "https://git.sr.ht/~whereiseveryone/guixrus")
