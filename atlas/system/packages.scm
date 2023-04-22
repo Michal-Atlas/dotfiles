@@ -23,11 +23,15 @@
     "breeze-icons" "hicolor-icon-theme"
     "adwaita-icon-theme"
 
+    ;; KAB
+    "pkg-config" "openssl" "indent"
+
+    
     ;; Emacs
     "emacs"
     ,@(pkg-set
        "emacs"
-       `("exwm"
+       `(; "exwm"
          "org-roam"
 	     "org-roam-ui"
 	     "consult-org-roam"
@@ -71,8 +75,8 @@
 	     "browse-kill-ring"
 	     "emms"
 	     "evil"
-	     "exwm"
 	     "vertico"
+	     "vertico-posframe"
 	     "orderless"
 	     "consult"
 	     "xah-fly-keys"
@@ -81,6 +85,7 @@
 	     "all-the-icons-dired"
 	     "auctex"
 	     "calfw"
+	     "cheat-sh"
 	     "circe"
 	     "company"
 	     "company-box"
@@ -92,6 +97,7 @@
 	     "direnv"
 	     "ediprolog"
 	     "elfeed"
+	     "elisp-autofmt"
 	     "elpher"
 	     "embark"
 	     "ement"
@@ -108,6 +114,7 @@
 	     "highlight-indent-guides"
 	     "htmlize"
 	     "iedit"
+	     "lispy"
 	     "magit-todos"
 	     "monokai-theme"
 	     "multi-term"
@@ -145,6 +152,8 @@
 	     "password-generator"
 	     "mastodon"
 	     "stumpwm-mode"))
+
+    "yt-dlp"
     
     ;; Libs
     "ncurses" "curl" "virt-manager"
@@ -166,6 +175,7 @@
     "gnupg" "pinentry"    
     "nss-certs" "xdg-utils"
 
+    "sway"
     "sbcl"
     "stumpwm"
     "buildapp"
@@ -192,11 +202,11 @@
                   "net"
                   "mem"
                   "cpu"))
-            "linedit"
-            "serapeum"
-            "alexandria"
-            "cl-autowrap" "optima"
-            "coalton" "coleslaw"
+            "linedit" "mcclim"
+            "serapeum" "eclector"
+            "alexandria" "cl-yacc"
+            "cl-autowrap" "optima" "lparallel"
+            "coalton" "coleslaw" "parser-combinators"
             "collectors" "cl-strings"
             "unix-opts" "cffi" "series"
             "trial" "trees" "sycamore"
