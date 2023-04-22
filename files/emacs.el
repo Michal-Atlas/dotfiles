@@ -5,7 +5,10 @@
 (use-package org-modern :hook (org-mode . org-modern-mode))
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((C . t) (scheme . t) (dot . t) (lisp . t)))
+ '((C . t)
+   (scheme . t)
+   (dot . t)
+   (lisp . t)))
 
 ;; Variable Init
 
@@ -289,19 +292,25 @@
  (add-to-list 'ac-modes' geiser-repl-mode))
 
 (use-package
- paredit
- :hook
- ((emacs-lisp-mode . paredit-mode)
-  ;; (eval-expression-minibuffer-setup . paredit-mode)
-  (scheme-mode . paredit-mode) (lisp-mode . paredit-mode)))
+  paredit
+  :hook ((emacs-lisp-mode . paredit-mode)
+	 ;; (eval-expression-minibuffer-setup . paredit-mode)
+	 (scheme-mode . paredit-mode)
+	 (lisp-mode . paredit-mode)))
+
+(add-hook 'paredit-mode-hook #'lispy-mode)
+(add-hook 'emacs-lisp-mode-hook
+  (lambda ()
+    (require 'elisp-autofmt)
+    (elisp-autofmt-save-hook-for-this-buffer t)))
 
 (use-package
- multiple-cursors
- :bind
- (("C-S-c C-S-c" . mc/edit-lines)
-  ("C->" . mc/mark-next-like-this)
-  ("C-<" . mc/mark-previous-like-this)
-  ("C-c C-<" . mc/mark-all-like-this)))
+  multiple-cursors
+  :bind
+  (("C-S-c C-S-c" . mc/edit-lines)
+   ("C->" . mc/mark-next-like-this)
+   ("C-<" . mc/mark-previous-like-this)
+   ("C-c C-<" . mc/mark-all-like-this)))
 
 ;; C
 
@@ -465,92 +474,125 @@
 
 ;; EXWM
 
-(use-package exwm
-  :custom
-  (exwm-workspace-number 10)
-  :bind
-  ("C-M-l" . (lambda () (interactive) (shell-command "slock")))
-  :config
-  (add-hook 'exwm-update-class-hook
-	    (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
-  (require 'exwm-systemtray)
-  (exwm-systemtray-enable)
-  (set-frame-parameter (selected-frame) 'alpha '(85 . 85))
-  (add-to-list 'default-frame-alist '(alpha . (85 . 85)))
-  (dolist (cmd '("nm-applet" "pasystray" ("xss-lock" . "xss-lock -- xlock")))
-    (if (listp cmd)
-	(start-process-shell-command (car cmd) nil (cdr cmd))
-      	(start-process-shell-command (file-name-nondirectory cmd) nil cmd)))
-  (setq
-   exwm-workspace-show-all-buffers t
-   ;; exwm-workspace-minibuffer-position 'top
+;; exwm-workspace-minibuffer-position 'top
+;; (use-package
+;;   exwm
+;;   :custom (exwm-workspace-number 10)
+;;   :bind ("C-M-l" . (lambda ()
+;; 		     (interactive)
+;; 		     (shell-command "slock")))
+;;   :config (add-hook
+;; 	   'exwm-update-class-hook
+;; 	   (lambda ()
+;; 	     (exwm-workspace-rename-buffer
+;; 	      exwm-class-name)))
+;;   (require 'exwm-systemtray)
+;;   (exwm-systemtray-enable)
+;;   (set-frame-parameter
+;;    (selected-frame)
+;;    'alpha
+;;    '(85 . 85))
+;;   (add-to-list
+;;    'default-frame-alist
+;;    '(alpha . (85 . 85)))
+;;   (dolist (cmd
+;; 	   '("nm-applet"
+;; 	     "pasystray"
+;; 	     ("xss-lock" . "xss-lock -- xlock")))
+;;     (if (listp cmd)
+;; 	(start-process-shell-command
+;; 	 (car cmd)
+;; 	 nil
+;; 	 (cdr cmd))
+;;       (start-process-shell-command
+;;        (file-name-nondirectory cmd)
+;;        nil
+;;        cmd)))
+;;   (setq exwm-workspace-show-all-buffers
+;; 	t
+;; 	exwm-input-prefix-keys
+;; 	`(?\C-x
+;; 	  ?\C-u
+;; 	  ?\C-h
+;; 	  ?\M-x
+;; 	  ?\M-`
+;; 	  ?\M-&
+;; 	  ?\M-:)
+;; 	exwm-input-simulation-keys
+;; 	'(([?\C-b] . [left])
+;; 	  ([?\C-f] . [right])
+;; 	  ([?\C-p] . [up])
+;; 	  ([?\C-n] . [down])
+;; 	  ([?\C-a] . [home])
+;; 	  ([?\C-e] . [end])
+;; 	  ([?\M-v] . [prior])
+;; 	  ([?\C-v] . [next])
+;; 	  ([?\C-d] . [delete])
+;; 	  ([?\C-k] . [S-end delete])
+;; 	  ([?\C-s] . [C-f])
+;; 	  ([?\C-y] . [C-v])
+;; 	  ([?\M-w] . [C-x C-v]))
+;; 	exwm-input-global-keys
+;; 	`(([?\s-&] . (lambda (command)
+;; 		       (interactive (list
+;; 				     (read-shell-command "$ ")))
+;; 		       (start-process-shell-command
+;; 			command
+;; 			nil
+;; 			command)))
+;; 	  ([?\s-w] . exwm-workspace-switch)
+;; 	  (,(kbd "<XF86AudioPlay>") . player/play)
+;; 	  (,(kbd "<XF86AudioNext>") . player/next)
+;; 	  (,(kbd "<XF86AudioPrev>") . player/prev)
+;; 	  (,(kbd "<XF86AudioRaiseVolume>") . volume/up)
+;; 	  (,(kbd "<XF86AudioLowerVolume>") . volume/down)
+;; 	  (,(kbd "<XF86AudioMute>") . volume/mute)
+;; 	  (,(kbd "<XF86MonBrightnessUp>") . light/up)
+;; 	  (,(kbd "<XF86MonBrightnessDown>") . light/down)
+;; 	  (,(kbd "s-l") . lock-screen)
+;; 	  (,(kbd "s-d") . dmenu)
+;; 	  (\,
+;; 	   @
+;; 	   (mapcar
+;; 	    (lambda (i)
+;; 	      `(,(kbd (format "s-%d" i)) . (lambda ()
+;; 					     (interactive)
+;; 					     (exwm-workspace-switch-create
+;; 					      ,i))))
+;; 	    (number-sequence 0 9)))
+;; 	  (\,
+;; 	   @
+;; 	   (mapcar
+;; 	    (lambda (i)
+;; 	      `(,(kbd (format "M-s-%d" i)) . (lambda ()
+;; 					       (interactive)
+;; 					       (eshell ,i))))
+;; 	    (number-sequence 0 9)))))
+;;   (define-key exwm-mode-map [?\C-q]
+;;     'exwm-input-send-next-key)
+;;   (defun efs/configure-window-by-class ()
+;;     (interactive)
+;;     (pcase
+;; 	exwm-class-name
+;;       ("Firefox"
+;;        (exwm-workspace-move-window 3))
+;;       ("mpv"
+;;        (exwm-workspace-move-window 7))))
+;;   (add-hook
+;;    'exwm-manage-finish-hook
+;;    #'efs/configure-window-by-class)
+;;   (exwm-enable))
 
-   exwm-input-prefix-keys
-   `(?\C-x
-     ?\C-u
-     ?\C-h
-     ?\M-x
-     ?\M-`
-     ?\M-&
-     ?\M-:)
-
-   exwm-input-simulation-keys
-   '(([?\C-b] . [left])
-     ([?\C-f] . [right])
-     ([?\C-p] . [up])
-     ([?\C-n] . [down])
-     ([?\C-a] . [home])
-     ([?\C-e] . [end])
-     ([?\M-v] . [prior])
-     ([?\C-v] . [next])
-     ([?\C-d] . [delete])
-     ([?\C-k] . [S-end delete])
-     ([?\C-s] . [C-f]))
-
-   exwm-input-global-keys
-   `(([?\s-&] . (lambda (command) (interactive (list (read-shell-command "$ ")))
-		  (start-process-shell-command command nil command)))
-     ([?\s-w] . exwm-workspace-switch)
-     (,(kbd "<XF86AudioPlay>") . player/play)
-     (,(kbd "<XF86AudioNext>") . player/next)
-     (,(kbd "<XF86AudioPrev>") . player/prev)
-     (,(kbd "<XF86AudioRaiseVolume>") . volume/up)
-     (,(kbd "<XF86AudioLowerVolume>") . volume/down)
-     (,(kbd "<XF86AudioMute>") . volume/mute)
-     (,(kbd "<XF86MonBrightnessUp>") . light/up)
-     (,(kbd "<XF86MonBrightnessDown>") . light/down)
-     ,@(mapcar (lambda (i)
-		 `(,(kbd (format "s-%d" i)) .
-		   (lambda ()
-		     (interactive)
-		     (exwm-workspace-switch-create ,i))))
-	       (number-sequence 0 9))
-     ,@(mapcar (lambda (i)
-		 `(,(kbd (format "M-s-%d" i)) .
-		   (lambda ()
-		     (interactive)
-		     (eshell ,i))))
-	       (number-sequence 0 9))))
-
-(define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
-
-(defun efs/configure-window-by-class () (interactive)
-	 (pcase exwm-class-name
-	   ("Firefox" (exwm-workspace-move-window 3))
-	   ("mpv" (exwm-workspace-move-window 7))))
-(add-hook 'exwm-manage-finish-hook #'efs/configure-window-by-class)
-
-(exwm-enable))
-
+(repeat-mode 1)
 ;; Vertico
 
 (use-package
- vertico
- :init (vertico-mode)
- :custom
- (vertico-count 20)
- (vertico-resize t)
- (enable-recursive-minibuffers t))
+  vertico
+  :init (vertico-mode)
+  :custom (vertico-count 20)
+  (vertico-resize t)
+  (enable-recursive-minibuffers
+   t))
 
 (use-package
  orderless
@@ -608,24 +650,18 @@
                                          "\n")))))
                        "flatpaks"))
 
-(use-package hydra)
-(elpaca-wait)
-(defhydra
- hydra-system
- (global-map "C-c s")
- "system"
- ("p" player/play "Play")
- ("o" player/next "Next")
- ("i" player/prev "Prev")
- ("e" light/up "Br. Up")
- ("d" light/down "Br. Down")
- ("r" volume/up "Vol. Up")
- ("f" volume/down "Vol. Down")
- ("m" volume/mute "Mute"))
+(defhydra hydra-system (global-map "C-c s")
+  "system"
+  ("p" player/play "Play")
+  ("o" player/next "Next")
+  ("i" player/prev "Prev")
+  ("e" light/up "Br. Up")
+  ("d" light/down "Br. Down")
+  ("r" volume/up "Vol. Up")
+  ("f" volume/down "Vol. Down")
+  ("m" volume/mute "Mute"))
 
-(defhydra
- hydra-launcher
- (global-map "C-c r" :color purple :exit t)
+(defhydra hydra-launcher (global-map "C-c r" :color purple :exit t)
  "Launch"
  ("r" (browse-url "http://www.reddit.com/r/emacs/") "reddit")
  ("w" (browse-url "http://www.emacswiki.org/") "emacswiki")
@@ -686,3 +722,62 @@
 
 (use-package keychain-environment
   :config (keychain-refresh-environment))
+
+(defvar guix-config-dir "/home/michal_atlas/cl/dotfiles")
+(defvar guix-channel-lock-file
+  (concat guix-config-dir "/channels.lock"))
+(defvar guix-system-file
+  (concat guix-config-dir "/atlas/system.scm"))
+(defvar guix-home-file
+  (concat guix-config-dir "/atlas/home.scm"))
+
+(defun guix/recon (type file)
+  (async-shell-command
+   (format
+    "%sguix time-machine -C %s -- %s reconfigure -L %s %s -M%d"
+    (if (equal type "system") "sudo " "")
+    guix-channel-lock-file
+    type
+    guix-config-dir
+    file
+    (num-processors))
+   "guix-recon"
+   "guix-recon:err"))
+
+(defun guix/recon-home ()
+    (interactive)
+    (guix/recon "home" guix-home-file))
+
+(defun guix/recon-system ()
+    (interactive)
+    (guix/recon "system" guix-system-file))
+
+(defun atlas/get-address ()
+  (let ((av 
+	 (cdr
+	  (--find (equal "wlp1s0" (car it))
+		  (--filter
+		   (= (length (cdr it)) 5)
+		   (network-interface-list))))))
+    (cl-loop for i to 4
+	     collect (aref av i) into l
+	     finally (return (apply #'format "%s.%s.%s.%s" l)))))
+
+(defun atlas/print-address ()
+  (interactive)
+  (princ (atlas/get-address)))
+
+(defun lock-screen ()
+  (interactive)
+  (shell-command "xlock" nil nil))
+
+(defun divbat ()
+  (string-replace ":" "/"
+   (apply
+    #'calc-eval "fdiv(pfrac($),pfrac($$))" nil 
+    (mapcar
+     (lambda (q) (substring q 25 -3))
+     (-drop-last 1 (split-string
+		    (shell-command-to-string
+		     "upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E 'energy(-full)?:'")
+		    "\n"))))))
