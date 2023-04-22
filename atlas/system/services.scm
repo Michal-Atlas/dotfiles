@@ -35,8 +35,8 @@
     (list
      (pam-limits-entry "*" 'both 'nofile 524288)))
    (service gpm-service-type)
-   ;; (screen-locker-service xlock "xlock")
    (service docker-service-type)
+   (service gnome-desktop-service-type)
    (service tlp-service-type
 	    (tlp-configuration
 	     (cpu-boost-on-ac? #t)
