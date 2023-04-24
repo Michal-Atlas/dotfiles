@@ -752,6 +752,22 @@
     (interactive)
     (guix/recon "system" guix-system-file))
 
+(defun guix/update-locks ()
+  (interactive)
+  (async-start
+   `(lambda ()
+      (shell-command
+       (format "guix pull -M%d" (num-processors))
+       "guix-update-pull"
+       "guix-update-pull:err")
+      ,(async-inject-variables "guix-channel-lock-file")
+      (with-temp-file guix-channel-lock-file
+	(insert
+	 (shell-command-to-string
+	  (format "guix describe --format=channels")))
+	(add-file-local-variable 'mode 'scheme)))
+   'ignore))
+
 (defun atlas/get-address ()
   (let ((av 
 	 (cdr
