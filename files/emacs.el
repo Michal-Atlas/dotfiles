@@ -298,11 +298,11 @@
 	 (scheme-mode . paredit-mode)
 	 (lisp-mode . paredit-mode)))
 
-(add-hook 'paredit-mode-hook #'lispy-mode)
-(add-hook 'emacs-lisp-mode-hook
-  (lambda ()
-    (require 'elisp-autofmt)
-    (elisp-autofmt-save-hook-for-this-buffer t)))
+;; (add-hook 'paredit-mode-hook #'lispy-mode)
+;; (add-hook 'emacs-lisp-mode-hook
+;;   (lambda ()
+;;     (require 'elisp-autofmt)
+;;     (elisp-autofmt-save-hook-for-this-buffer t)))
 
 (use-package
   multiple-cursors
