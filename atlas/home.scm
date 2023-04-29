@@ -25,15 +25,25 @@
   #:use-module (ice-9 hash-table)
   #:use-module (gnu system keyboard)
   #:use-module (guix gexp)
+  #:use-module (guix base64)
   #:use-module (guix download)
   #:use-module (guix modules)
   #:use-module (guix monads)
+  #:use-module (guix store)
+  #:use-module (guix derivations)
   #:use-module (ice-9 match)
   #:use-module (gnu packages gnome)
 
   #:use-module (gnu services configuration)
   #:use-module (gnu packages package-management)
   #:use-module (guix records))
+
+(define (derivation->built-path file)
+  (cdar
+   (with-store store
+     (run-with-store store
+       (mlet %store-monad ((obj file))
+	 (return (derivation->output-paths obj)))))))
 
 (define (alist-value-print value)
   (define (list-vals lv) (string-join (map alist-value-print lv) ", "))
@@ -45,6 +55,7 @@
      (format #f "(~a)" (list-vals entries))]
     [#(entries ...)
      (format #f "[~a]" (list-vals entries))]
+    [(? procedure? pr) (derivation->built-path pr)]
     [v (format #f "~a" v)]))
 
 (define (alist->ini al)
