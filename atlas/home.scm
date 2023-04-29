@@ -108,23 +108,6 @@
                 (default-value #f)
                 (description "")))
 
-(define (doom-sync)
-  (program-file "doom-sync"
-                #~(invoke"/home/michal_atlas/.config/emacs/bin/doom" "sync")))
-
-(define (doom-sync-gexp x)
-  #~ (primitive-load #$ (doom-sync)))
-
-(define doom-sync-service-type
-  (service-type (name 'nix-profile-service)
-                (extensions
-                 (list
-                  (service-extension
-                   home-activation-service-type
-                   doom-sync-gexp)))
-                (default-value #f)
-                (description "")))
-
 (home-environment
  (packages
   (map (λ (f)
