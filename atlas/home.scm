@@ -45,6 +45,9 @@
        (mlet %store-monad ((obj file))
 	 (return (derivation->output-paths obj)))))))
 
+(define (download-file url hash)
+  (url-fetch url 'sha256 (base64-decode hash)))
+
 (define (alist-value-print value)
   (define (list-vals lv) (string-join (map alist-value-print lv) ", "))
   (match value
@@ -158,16 +161,14 @@
                (name "EMACS"))
 
               (org/gnome/desktop/background
-               (picture-uri "/gnu/store/6910xw546ra5lgr58icjjmkzx097r2mm-2UDuBqa"
-                            #;
-                            #~(url-fetch "https://ift.tt/2UDuBqa"
-                                         'sha256
-                                         "1nj5kj4dcxnzazf46dczfvcj8svhv1lhfa8rxn0q418s3j1w5dcb"))
-               (picture-uri-dark "/gnu/store/jfy5whwf1bn7y4k1r2w673sc9v9fzslw-923968.jpg"
-                                 #;
-                                 #~(url-fetch "https://images.alphacoders.com/923/923968.jpg"
-                                              'sha256
-                                              "0z0awasi0cljvvnbkn9kfvjx7rdr3n68xa5vj3a6y9z9rxxyv1hc")))
+               (picture-uri 
+		,(download-file
+		  "https://ift.tt/2UDuBqa"
+		  "i7XCgxwaBYKB7RkpB2nYcGsk2XafNUPcV9921oicRdo="))
+               (picture-uri-dark 
+		,(download-file
+		  "https://images.alphacoders.com/923/923968.jpg"
+		  "DIbte8/pJ2/UkLuojowdueXT5XYz2bns3pIyELXiCnw=")))
 
               (org/gnome/desktop/input-sources
                (sources #(("xkb" "us") ("xkb" "cz+ucw")))
