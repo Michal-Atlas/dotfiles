@@ -31,7 +31,7 @@
 (define-public %system-services-manifest
   (cons*
    (service openssh-service-type)
-   (pam-limits-service
+   (service pam-limits-service-type
     (list
      (pam-limits-entry "*" 'both 'nofile 524288)))
    (service gpm-service-type)
@@ -46,9 +46,11 @@
          (qemu-binfmt-configuration
            (platforms (lookup-qemu-platforms "arm" "aarch64" "riscv64"))))
    (zerotier-one-service)
+   #;
    (service mpd-service-type
             (mpd-configuration
              (music-directory "/home/michal_atlas/Music/")))
+   #;
    (service mympd-service-type)
    (service libvirt-service-type
 	        (libvirt-configuration
@@ -57,7 +59,6 @@
    (service virtlog-service-type
 	    (virtlog-configuration
 	     (max-clients 1000)))
-   #;
    (service hurd-vm-service-type
 	    (hurd-vm-configuration
 	     (disk-size (* 16 (expt 2 30)))
@@ -77,29 +78,24 @@
 	    (transmission-daemon-configuration
 	     (rpc-bind-address "127.0.0.1")
 	     (ratio-limit-enabled? #t)))
-   #;(service mpd-service-type
-   (mpd-configuration			;
-   (user "michal_atlas")		;
-   (music-dir "~/music")))
    (service postgresql-service-type)
    (service nix-service-type)
    #;(service unattended-upgrade-service-type
    (unattended-upgrade-configuration
    (channels "/home/michal_atlas/.config/guix/channels.scm")))
-   (bluetooth-service #:auto-enable? #f)
-   (modify-services
-    %desktop-services
-    ;; (delete gdm-service-type)
-    (gdm-service-type
-     config =>
-     (gdm-configuration
-      #; (auto-login? #t)
-      (default-user "michal_atlas")
-      (wayland? #t)
-      (auto-suspend? #f)
-      (xorg-configuration
+   (service bluetooth-service-type)
+   (modify-services %desktop-services
+     ;; (delete gdm-service-type)
+     (gdm-service-type
+      config =>
+      (gdm-configuration
+       ;; (auto-login? #t)
+       (default-user "michal_atlas")
+       (wayland? #t)
+       (auto-suspend? #f)
        (xorg-configuration
-	(extra-config (list "# Touchpad
+	(xorg-configuration
+	 (extra-config (list "# Touchpad
 Section \"InputClass\"
 Identifier \"touchpad\"
         Driver \"libinput\"
