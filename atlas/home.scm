@@ -20,6 +20,7 @@
   #:use-module (gnu packages freedesktop)
   #:use-module (gnu services xorg)
   #:use-module (gnu packages mpd)
+  #:use-module (gnu packages lisp)
   #:use-module (gnu home services mcron)
   #:use-module (ice-9 hash-table)
   #:use-module (gnu system keyboard)
@@ -220,23 +221,12 @@
     (home-mcron-configuration
      (jobs
       (list
-       #~(job
-	  '(next-hour '(6))
-	  "guix gc -F 10G")
-       #~(job
-	  '(next-hour '(6))
-          "
-mkdir -p \"$HOME/tmp-log\";
-if [ \"$(ls -A \"$HOME/tmp\")\" ]; then
-    mv \"$HOME/tmp\" \"$HOME/tmp-log/$(date -I)\";
-    mkdir -p \"$HOME/tmp\";
-fi;
-if [ \"$(ls -A \"$HOME/Downloads\")\" ]; then
-    mv \"$HOME/Downloads\" \"$HOME/tmp-log/$(date -I)-down\";
-    mkdir -p \"$HOME/Downloads\";
-fi;
-")
-       ))))
+       #~(job '(next-minute '(0))
+	  (lambda ()
+	    (invoke #$(file-append sbcl "/bin/sbcl")
+		    "--script"
+		    #$(local-file "home/old-move-script.lisp")))
+	  "tmp-logs")))))
    (simple-service
     'dotfiles
     home-files-service-type
