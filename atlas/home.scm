@@ -237,11 +237,10 @@
      (jobs
       (list
        #~(job '(next-minute '(0))
-	  (lambda ()
-	    (invoke #$(file-append sbcl "/bin/sbcl")
-		    "--script"
-		    #$(local-file "home/old-move-script.lisp")))
-	  "tmp-logs")))))
+	      (string-append 
+	       #$(file-append sbcl "/bin/sbcl")
+	       " --script "
+	       #$(local-file "home/old-move-script.lisp")))))))
    (simple-service
     'dotfiles
     home-files-service-type
