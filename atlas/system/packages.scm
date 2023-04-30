@@ -28,10 +28,28 @@
 
     ;; Gnome extensions
     "gnome-shell-extensions"
-    "gnome-shell-extension-clipboard-indicator"
-    "gnome-shell-extension-paperwm"
-    "gnome-shell-extension-appindicator"
-    "gnome-shell-extension-sound-output-device-chooser"
+    ,@(pkg-set
+       "gnome-shell-extension"
+       `("vertical-overview"
+	 "unite-shell"
+	 "transparent-window"
+	 "topicons-redux"
+	 "sound-output-device-chooser"
+	 "radio"
+	 "paperwm"
+	 "noannoyance"
+	 "just-perfection"
+	 "jiggle"
+	 "hide-app-icon"
+	 "gsconnect"
+	 "dash-to-panel"
+	 "dash-to-dock"
+	 "customize-ibus"
+	 "clipboard-indicator"
+	 "burn-my-windows"
+	 "blur-my-shell"
+	 "appindicator"))
+    "matcha-theme"
     
     ;; Emacs
     "emacs"
