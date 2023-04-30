@@ -40,16 +40,6 @@
   #:use-module (gnu packages package-management)
   #:use-module (guix records))
 
-(define (derivation->built-path file)
-  (cdar
-   (with-store store
-     (run-with-store store
-       (mlet %store-monad ((obj file))
-	 (return (derivation->output-paths obj)))))))
-
-(define (download-file url hash)
-  (url-fetch url 'sha256 (base64-decode hash)))
-
 (define (alist-value-print value)
   (define (list-vals lv) (string-join (map alist-value-print lv) ", "))
   (match value
@@ -60,7 +50,6 @@
      (format #f "(~a)" (list-vals entries))]
     [#(entries ...)
      (format #f "[~a]" (list-vals entries))]
-    [(? procedure? pr) (derivation->built-path pr)]
     [v (format #f "~a" v)]))
 
 (define (alist->ini al)
@@ -161,16 +150,6 @@
                (binding "<Super>Return")
                (command "emacsclient -c")
                (name "EMACS"))
-
-              (org/gnome/desktop/background
-               (picture-uri 
-		,(download-file
-		  "https://ift.tt/2UDuBqa"
-		  "i7XCgxwaBYKB7RkpB2nYcGsk2XafNUPcV9921oicRdo="))
-               (picture-uri-dark 
-		,(download-file
-		  "https://images.alphacoders.com/923/923968.jpg"
-		  "DIbte8/pJ2/UkLuojowdueXT5XYz2bns3pIyELXiCnw=")))
 
               (org/gnome/desktop/input-sources
                (sources #(("xkb" "us") ("xkb" "cz+ucw")))
