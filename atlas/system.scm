@@ -86,24 +86,26 @@
 
 (define hydra
   (operating-system
- (inherit atlas-system-base)
- (host-name "hydra")
- (mapped-devices
-  (list (mapped-device
-	 (source
-	  (uuid "736b8145-cb48-4581-84a5-55bfe47b5d6d"))
-	 (target "cryptroot")
-	 (type luks-device-mapping))))
- (file-systems (cons*
-	 	(file-system
-		 (mount-point "/boot/efi")
-		 (device (uuid "D7BD-12CE" 'fat32))
-		 (type "vfat"))
-		(file-system
-		 (mount-point "/")
-		 (device "/dev/mapper/cryptroot")
-		 (type "btrfs")
-		 (dependencies mapped-devices))
+   (inherit atlas-system-base)
+   (host-name "hydra")
+   (mapped-devices
+    (list (mapped-device
+	       (source
+	        (uuid "f99a8f6d-23fd-43d9-a9fd-6e08f286e3b8"))
+	       (target "luks-f99a8f6d-23fd-43d9-a9fd-6e08f286e3b8")
+	       (type luks-device-mapping))))
+   (file-systems (cons*
+	 	          (file-system
+		           (mount-point "/boot/efi")
+		           (device (uuid "6065-21B4" 'fat32))
+		           (type "vfat"))
+		          (file-system
+		           (mount-point "/")
+		           (device "/dev/mapper/luks-f99a8f6d-23fd-43d9-a9fd-6e08f286e3b8")
+                   (options (alist->file-system-options
+                             `(("subvol" . "@"))))
+		           (type "btrfs")
+		           (dependencies mapped-devices))
 		;; (file-system
 		;;  (mount-point "/boot/efi")
 		;;  (type "vfat")
@@ -121,12 +123,12 @@
 		;;  (type "cifs")
 		;;  (mount? #f)
 		;;  (create-mount-point? #t))
-		%base-file-systems))
- (swap-devices
-  (list (swap-space
-	 (target (uuid "e85e8826-9652-4e93-a135-5645ea1558fb")))))))
+		          %base-file-systems))
+   (swap-devices
+    (list (swap-space
+	       (target (uuid "a5651b6e-bde2-4a69-ad0a-5857abd8448e")))))))
 
 (assoc-ref
-       `(("dagon" . ,dagon)
-	 ("hydra" . ,hydra))
-        (vector-ref (uname) 1))
+ `(("dagon" . ,dagon)
+   ("hydra" . ,hydra))
+ (vector-ref (uname) 1))
