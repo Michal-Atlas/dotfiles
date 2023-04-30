@@ -42,37 +42,23 @@
   #:use-module (gnu packages package-management)
   #:use-module (guix records))
 
-(define light-wallpaper
-  (package
-    (name "light-wallpaper")
-    (version "1")
-    (source
-     (origin
-       (method url-fetch)
-       (uri "https://ift.tt/2UDuBqa")
-       (file-name "light-wallpaper.png")
-       (sha256 (base64 "i7XCgxwaBYKB7RkpB2nYcGsk2XafNUPcV9921oicRdo="))))
-    (build-system copy-build-system)
-    (description "")
-    (synopsis "")
-    (home-page "https://ift.tt/2UDuBqa")
-    (license #f)))
-
-(define dark-wallpaper
-  (package
-    (name "dark-wallpaper")
-    (version "1")
-    (source
-     (origin
-       (method url-fetch)
-       (uri "https://images.alphacoders.com/923/923968.jpg")
-       (file-name "dark-wallpaper.png")
-       (sha256 (base64 "DIbte8/pJ2/UkLuojowdueXT5XYz2bns3pIyELXiCnw="))))
-    (build-system copy-build-system)
-    (description "")
-    (synopsis "")
-    (home-page "https://images.alphacoders.com/923/923968.jpg")
-    (license #f)))
+(define (file-fetch url hash)
+  (file-append
+   (package
+     (name "file-fetch")
+     (version "1")
+     (source
+      (origin
+	(method url-fetch)
+	(uri url)
+	(file-name "file")
+	(sha256 (base64 hash))))
+     (build-system copy-build-system)
+     (description "")
+     (synopsis "")
+     (home-page url)
+     (license #f))
+   "/file"))
 
 (define (alist-value-print value)
   (define (list-vals lv) (string-join (map alist-value-print lv) ", "))
@@ -245,8 +231,12 @@
     'dotfiles
     home-files-service-type
     `(
-      (".dark-wallpaper.png" ,(file-append dark-wallpaper "/dark-wallpaper.png"))
-      (".light-wallpaper.png" ,(file-append light-wallpaper "/light-wallpaper.png"))
+      (".dark-wallpaper.png"
+       ,(file-fetch "https://images.alphacoders.com/923/923968.jpg"
+		    "DIbte8/pJ2/UkLuojowdueXT5XYz2bns3pIyELXiCnw="))
+      (".light-wallpaper.png"
+       ,(file-fetch "https://ift.tt/2UDuBqa"
+		    "i7XCgxwaBYKB7RkpB2nYcGsk2XafNUPcV9921oicRdo="))
       (".emacs.d/init.el" ,(local-file "../files/emacs.el"))
       (".guile" ,(local-file "../files/guile"))
       ;; (".screenrc" ,(local-file "../screen"))
