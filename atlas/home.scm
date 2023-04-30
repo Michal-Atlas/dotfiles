@@ -226,7 +226,7 @@
 	      (string-append 
 	       #$(file-append sbcl "/bin/sbcl")
 	       " --script "
-	       #$(local-file "home/old-move-script.lisp")))))))
+	       #$(local-file "../files/old-move-script.lisp")))))))
    (simple-service
     'dotfiles
     home-files-service-type
