@@ -18,9 +18,11 @@
   #:use-module (gnu packages xdisorg)
   #:use-module (gnu packages python-xyz)
   #:use-module (gnu packages freedesktop)
+  #:use-module (gnu packages shellutils)
   #:use-module (gnu services xorg)
   #:use-module (gnu packages mpd)
   #:use-module (gnu packages lisp)
+  #:use-module (gnu packages curl)
   #:use-module (gnu home services mcron)
   #:use-module (ice-9 hash-table)
   #:use-module (gnu system keyboard)
@@ -257,12 +259,26 @@
      (guix-defaults? #t)
      (bashrc
       (list
-       (plain-file "bashrc-direnv" "eval \"$(direnv hook bash)\"")
+       (mixed-text-file "bashrc-direnv"
+		   "eval \"$("
+		   (file-append direnv "/bin/direnv")
+		   " hook bash)\"")
        (plain-file "bashrc-ignoredups" "export HISTCONTROL=ignoredups")
-       (plain-file "bashrc-run" "function run { guix shell $1 -- $@; }")
-       (plain-file "bashrc-valgrind" "alias valgrind=\"guix shell -CF valgrind -- valgrind \"")
-       (plain-file "bashrc-fasd" "eval \"$(fasd --init auto)\"")
-       (plain-file "bashrc-cheat" "function cheat { curl \"cheat.sh/$@\"; }")))
+       (mixed-text-file "bashrc-run"
+			"function run { "
+			(file-append guix "/bin/guix")
+			" shell $1 -- $@; }")
+       (mixed-text-file "bashrc-valgrind"
+		   "alias valgrind=\""
+		   (file-append guix "/bin/guix")
+		   " shell -CF valgrind -- valgrind \"")
+       (mixed-text-file "bashrc-fasd" "eval \"$("
+		   (file-append fasd "/bin/fasd")
+		   " --init auto)\"")
+       (mixed-text-file "bashrc-cheat"
+			"function cheat { "
+			(file-append curl "/bin/curl")
+			" \"cheat.sh/$@\"; }")))
      (aliases
       `(("gx" . "guix")
 	("gxi" . "gx install")
