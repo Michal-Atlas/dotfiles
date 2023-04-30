@@ -44,7 +44,6 @@
 
 (defun backup-files (from-dir name)
   (let ((to-dir (make-tmp-path name)))
-    (ensure-directories-exist to-dir)
     (fad:walk-directory
      from-dir (walker from-dir to-dir)
      :FOLLOW-SYMLINKS nil)
