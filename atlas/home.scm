@@ -35,10 +35,44 @@
   #:use-module (guix derivations)
   #:use-module (ice-9 match)
   #:use-module (gnu packages gnome)
-
+  #:use-module (guix packages)
+  #:use-module (guix build-system copy)
+  #:use-module (guix download)
   #:use-module (gnu services configuration)
   #:use-module (gnu packages package-management)
   #:use-module (guix records))
+
+(define light-wallpaper
+  (package
+    (name "light-wallpaper")
+    (version "1")
+    (source
+     (origin
+       (method url-fetch)
+       (uri "https://ift.tt/2UDuBqa")
+       (file-name "light-wallpaper.png")
+       (sha256 (base64 "i7XCgxwaBYKB7RkpB2nYcGsk2XafNUPcV9921oicRdo="))))
+    (build-system copy-build-system)
+    (description "")
+    (synopsis "")
+    (home-page "https://ift.tt/2UDuBqa")
+    (license #f)))
+
+(define dark-wallpaper
+  (package
+    (name "dark-wallpaper")
+    (version "1")
+    (source
+     (origin
+       (method url-fetch)
+       (uri "https://images.alphacoders.com/923/923968.jpg")
+       (file-name "dark-wallpaper.png")
+       (sha256 (base64 "DIbte8/pJ2/UkLuojowdueXT5XYz2bns3pIyELXiCnw="))))
+    (build-system copy-build-system)
+    (description "")
+    (synopsis "")
+    (home-page "https://images.alphacoders.com/923/923968.jpg")
+    (license #f)))
 
 (define (alist-value-print value)
   (define (list-vals lv) (string-join (map alist-value-print lv) ", "))
@@ -151,9 +185,14 @@
                (command "emacsclient -c")
                (name "EMACS"))
 
+	      (org/gnome/desktop/background
+               (picture-uri "/home/michal_atlas/.light-wallpaper.png")
+               (picture-uri-dark "/home/michal_atlas/.dark-wallpaper.png"))
+
               (org/gnome/desktop/input-sources
                (sources #(("xkb" "us") ("xkb" "cz+ucw")))
-               (xkb-options #("grp:caps_switch" "lv3:ralt_switch" "compose:rctrl-altgr")))
+               (xkb-options #("grp:caps_switch" "lv3:ralt_switch"
+			      "compose:rctrl-altgr")))
 
               (org/gnome/system/location
                (enabled #t))
@@ -207,6 +246,8 @@
     'dotfiles
     home-files-service-type
     `(
+      (".dark-wallpaper.png" ,(file-append dark-wallpaper "/dark-wallpaper.png"))
+      (".light-wallpaper.png" ,(file-append light-wallpaper "/light-wallpaper.png"))
       (".emacs.d/init.el" ,(local-file "../files/emacs.el"))
       (".guile" ,(local-file "../files/guile"))
       ;; (".screenrc" ,(local-file "../screen"))
