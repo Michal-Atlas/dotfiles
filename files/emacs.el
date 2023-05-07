@@ -740,7 +740,7 @@
     type
     guix-config-dir
     file
-    (num-processors))
+    (/ (num-processors) 2))
    "guix-recon"
    "guix-recon:err"))
 
