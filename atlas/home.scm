@@ -287,7 +287,11 @@
        (mixed-text-file "bashrc-cheat"
 			"function cheat { "
 			(file-append curl "/bin/curl")
-			" \"cheat.sh/$@\"; }")))
+			" \"cheat.sh/$@\"; }")
+       (mixed-text-file "bashrc-screen"
+			"exec "
+			(file-append emacs "/bin/emacsclient")
+			" -nw -e '(eshell-new)'")))
      (aliases
       `(("gx" . "guix")
 	("gxi" . "gx install")
