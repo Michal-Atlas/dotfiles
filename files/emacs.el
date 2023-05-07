@@ -722,51 +722,6 @@
 (use-package keychain-environment
   :config (keychain-refresh-environment))
 
-(defvar guix-config-dir "/home/michal_atlas/cl/dotfiles")
-(defvar guix-channel-lock-file
-  (concat guix-config-dir "/channels.lock"))
-(defvar guix-system-file
-  (concat guix-config-dir "/atlas/system.scm"))
-(defvar guix-home-file
-  (concat guix-config-dir "/atlas/home.scm"))
-
-(defun guix/recon (type file)
-  (async-shell-command
-   (format
-    "%sguix time-machine -C %s -- %s reconfigure -L %s %s -M%d"
-    (if (equal type "system") "sudo " "")
-    guix-channel-lock-file
-    type
-    guix-config-dir
-    file
-    (/ (num-processors) 2))
-   "guix-recon"
-   "guix-recon:err"))
-
-(defun guix/recon-home ()
-    (interactive)
-    (guix/recon "home" guix-home-file))
-
-(defun guix/recon-system ()
-    (interactive)
-    (guix/recon "system" guix-system-file))
-
-(defun guix/update-locks ()
-  (interactive)
-  (async-start
-   `(lambda ()
-      (shell-command
-       (format "guix pull -M%d" (num-processors))
-       "guix-update-pull"
-       "guix-update-pull:err")
-      ,(async-inject-variables "guix-channel-lock-file")
-      (with-temp-file guix-channel-lock-file
-	(insert
-	 (shell-command-to-string
-	  (format "guix describe --format=channels")))
-	(add-file-local-variable 'mode 'scheme)))
-   'ignore))
-
 (defun atlas/get-address ()
   (let ((av 
 	 (cdr
