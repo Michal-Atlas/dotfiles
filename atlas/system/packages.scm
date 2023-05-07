@@ -85,7 +85,6 @@
 	     "marginalia"
                                         ;"org-roam"
                                         ;"org-roam-ui"
-	     "auto-complete"
 	     "geiser-racket"
 	     "adaptive-wrap"
 	     "geiser-guile"
@@ -112,7 +111,6 @@
 	     "cheat-sh"
 	     "circe"
 	     "company"
-	     "company-box"
 	     "crux"
 	     "csv"
 	     "csv-mode"
@@ -125,9 +123,6 @@
 	     "elpher"
 	     "embark"
 	     "ement"
-	     "lsp-mode"
-	     "lsp-ui"
-	     "rustic"
 	     "eshell-z"
 	     "flycheck"
 	     "flycheck-haskell"
@@ -186,14 +181,15 @@
 
     ;; Shell utils
     "file" "screen"
-    "kitty" "fzf"
+    "fzf"
     "pandoc" "zutils"
-    "vim" "zsh" "git" "htop"
+    "vim" "git" "htop"
+    "mosh" "rsync"
 
     ;; Toolchains
-    "gcc-toolchain" "clang-toolchain" "rust"
+    "gcc-toolchain" "ccls"
     "cmake" "make" "recutils" "python" "python-ipython"
-    "mosh" "luajit" "perl" "nix"
+    "luajit" "perl" "nix"
 
     "openvpn" "network-manager-openvpn"
     "gnupg" "pinentry"    

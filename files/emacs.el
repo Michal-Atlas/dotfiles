@@ -200,17 +200,23 @@
 
 ;; LSP
 
+;; (use-package
+;;   lsp-mode
+;;   :bind ("C-c c" . compile)
+;;   :custom (lsp-keymap-prefix "C-c l")
+;;   :hook
+;;   (lsp-mode . lsp-enable-which-key-integration)
+;;   (c-mode . lsp)
+;;   (c++-mode . lsp))
+
 (use-package
-  lsp-mode
-  :bind ("C-c c" . compile)
-  :custom (lsp-keymap-prefix "C-c l")
-  :hook
-  (lsp-mode . lsp-enable-which-key-integration)
-  (c-mode . lsp)
-  (c++-mode . lsp))
+  eglot
+  :bind
+  ("C-c c" . compile)
+  ("C-c l =" . eglot-format-buffer))
 
-
-(global-set-key (kbd "C-c o c") 'cfw:open-calendar-buffer)
+(add-hook 'c-mode-hook 'eglot-ensure)
+(add-hook 'c++-mode-hook 'eglot-ensure)
 
 (use-package git-gutter :config (global-git-gutter-mode +1))
 
@@ -278,18 +284,11 @@
 
 ;; Langs
 
+(global-company-mode 1)
+
 ;; Lisps
 
-(use-package auto-complete :config (ac-config-default))
-
 (use-package geiser :hook (scheme-mode geiser-mode))
-
-(use-package
- geiser-guile
- :config
- (add-hook 'geiser-mode-hook 'ac-geiser-setup)
- (add-hook 'geiser-repl-mode-hook 'ac-geiser-setup)
- (add-to-list 'ac-modes' geiser-repl-mode))
 
 (use-package
   paredit
