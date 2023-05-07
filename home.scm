@@ -1,46 +1,258 @@
-(define-module (atlas home)
-  #:use-module (atlas home packages)
-  #:use-module (gnu home)
-  #:use-module (gnu home services)
-  #:use-module (gnu home services shells)
-  #:use-module (gnu home services shepherd)
-  #:use-module (gnu home services ssh)
-  #:use-module (gnu home services fontutils)
-  #:use-module (gnu home services guix)
-  #:use-module (gnu home services desktop)
-  #:use-module (guix channels)
-  #:use-module (gnu services)
-  #:use-module (gnu packages)
-  #:use-module (gnu packages admin)
-  #:use-module (gnu packages emacs)
-  #:use-module (gnu packages password-utils)
-  #:use-module (gnu packages wm)
-  #:use-module (gnu packages xdisorg)
-  #:use-module (gnu packages python-xyz)
-  #:use-module (gnu packages freedesktop)
-  #:use-module (gnu packages shellutils)
-  #:use-module (gnu services xorg)
-  #:use-module (gnu packages mpd)
-  #:use-module (gnu packages lisp)
-  #:use-module (gnu packages curl)
-  #:use-module (gnu home services mcron)
-  #:use-module (ice-9 hash-table)
-  #:use-module (gnu system keyboard)
-  #:use-module (guix gexp)
-  #:use-module (guix base64)
-  #:use-module (guix download)
-  #:use-module (guix modules)
-  #:use-module (guix monads)
-  #:use-module (guix store)
-  #:use-module (guix derivations)
-  #:use-module (ice-9 match)
-  #:use-module (gnu packages gnome)
-  #:use-module (guix packages)
-  #:use-module (guix build-system copy)
-  #:use-module (guix download)
-  #:use-module (gnu services configuration)
-  #:use-module (gnu packages package-management)
-  #:use-module (guix records))
+(use-modules
+ (gnu home)
+ (gnu home services)
+ (gnu home services shells)
+ (gnu home services shepherd)
+ (gnu home services ssh)
+ (gnu home services fontutils)
+ (gnu home services guix)
+ (gnu home services desktop)
+ (gnu services)
+ (gnu packages)
+ (gnu packages admin)
+ (gnu packages emacs)
+ (gnu packages password-utils)
+ (gnu packages wm)
+ (gnu packages xdisorg)
+ (gnu packages python-xyz)
+ (gnu packages freedesktop)
+ (gnu packages shellutils)
+ (gnu services xorg)
+ (gnu packages mpd)
+ (gnu packages lisp)
+ (gnu packages curl)
+ (gnu home services mcron)
+ (ice-9 hash-table)
+ (gnu system keyboard)
+ (guix gexp)
+ (guix base64)
+ (guix download)
+ (guix channels)
+ (guix modules)
+ (guix monads)
+ (guix store)
+ (guix derivations)
+ (ice-9 match)
+ (gnu packages gnome)
+ (guix packages)
+ (guix build-system copy)
+ (guix download)
+ (gnu services configuration)
+ (gnu packages package-management)
+ (guix records))
+
+
+(define shell-utils
+  '(
+    "file"
+    "kitty" "fzf"
+    "pandoc" "direnv"
+    "vim" "zsh" "git" ("git" "send-email") "htop"
+    "xclip" "telescope" "agate"
+    "fasd"
+    "bat" "zoxide" "exa"
+					;"tealdeer"
+    "password-store"
+    "pass-otp"
+    "guile-filesystem"
+    "transmission-remote-gtk"
+    "transmission"
+    "pkg-config"
+    ))
+(define toolchains
+  '(
+    "gdb" "clang-toolchain" "go" "ccls"
+    "cmake" "make" "recutils" "python" "python-ipython"
+    "mosh"
+    "sbcl" "chicken" "racket"
+    "gnupg" "swi-prolog"
+    "sbcl-linedit"
+    ))
+
+(define multimedia
+  '(
+    "grim" "vlc" "mpv"
+    "libreoffice"
+    "audacity"
+    "yt-dlp" "picard"
+    ))
+
+(define graphics
+  '(
+    "feh" "shotwell"
+    "inkscape" "gimp" ; "krita"
+    "font-fira-code" "font-jetbrains-mono"
+    "font-awesome" "font-tamzen"
+    "font-sil-charis" "font-adobe-source-han-sans"
+    "font-wqy-zenhei" "font-wqy-microhei"
+    "gparted"
+    "xrandr" "arandr"
+    "graphviz" "xdot"
+    "xdotool" "tree"
+    "bc" "unzip"
+    ))
+(define latex
+  '("texlive"
+    "texlive-tcolorbox"))
+(define games
+  '(
+    "lgogdownloader"
+    "supertuxkart" "cataclysm-dda"
+    "wesnoth" "steam" "sky" "lure"
+    "endless-sky" "naev"
+    "gzdoom" "tintin++" "taisei" "kobodeluxe" ; "dwarf-fortress"
+
+    ))
+(define e-mail
+  '(
+    "mu" "isync" "pinentry"
+    ))
+(define emacs+xyz
+  (cons "emacs"
+   (map (lambda (q) (string-append "emacs-" q))
+	`("org-roam"
+	  "org-roam-ui"
+	  "consult-org-roam"
+					;	  "org-roam-timestamps"
+	  "engrave-faces"
+	  "go-mode"
+	  "use-package"
+	  "password-store"
+	  "password-store-otp"
+	  "org-fragtog"
+	  "org-modern"
+	  "org-superstar"
+	  "highlight-indentation"
+					;"mode-icons"
+	  "doom-modeline"
+	  "which-key"
+	  "rainbow-identifiers"
+	  "rainbow-delimiters"
+	  "undo-tree"
+	  "ace-window"
+	  "eshell-prompt-extras"
+	  "eshell-syntax-highlighting"
+	  "esh-autosuggest"
+	  "git-gutter"
+					;"savehist"
+	  "anzu"
+	  "marginalia"
+					;"org-roam"
+					;"org-roam-ui"
+	  "auto-complete"
+	  "geiser-racket"
+	  "adaptive-wrap"
+	  "geiser-guile"
+	  "sly"
+	  "slime"
+	  "geiser"
+	  "multiple-cursors"
+	  "magit"
+	  "helpful"
+	  "avy"
+	  "browse-kill-ring"
+	  "emms"
+	  "evil"
+	  "exwm"
+	  "vertico"
+	  "orderless"
+	  "consult"
+	  "xah-fly-keys"
+	  "ac-geiser"
+	  "all-the-icons"
+	  "all-the-icons-dired"
+	  "auctex"
+	  "calfw"
+	  "circe"
+	  "company"
+	  "company-box"
+	  "crux"
+	  "csv"
+	  "csv-mode"
+	  "dashboard"
+	  "debbugs"
+	  "direnv"
+	  "ediprolog"
+	  "elfeed"
+	  "elpher"
+	  "embark"
+	  "ement"
+	  "lsp-mode"
+	  "lsp-ui"
+	  "rustic"
+	  "eshell-z"
+	  "flycheck"
+	  "flycheck-haskell"
+	  "frames-only-mode"
+	  "gdscript-mode"
+	  "guix"
+	  "haskell-mode"
+	  "highlight-indent-guides"
+	  "htmlize"
+	  "iedit"
+	  "magit-todos"
+	  "monokai-theme"
+	  "multi-term"
+	  "nix-mode"
+	  "on-screen"
+	  "ox-gemini"
+					;"parinfer"
+	  "pdf-tools"
+	  "pg"
+	  "projectile"
+	  "racket-mode"
+	  "realgud"
+	  "swiper"
+	  "tldr"
+	  "vterm"
+	  "xkcd"
+	  "yaml-mode"
+	  "yasnippet"
+	  "yasnippet-snippets"
+	  "zerodark-theme"
+	  "gemini-mode"
+					;"nov"
+	  "dockerfile-mode"
+	  "docker"
+	  "dmenu"
+	  "eglot"
+	  "org"
+	  "stumpwm-mode"
+	  "hackles"
+	  "yasnippet-snippets"
+	  "consult-yasnippet"
+	  "yasnippet"
+	  "tramp"
+	  "ssh-agency"
+	  "password-generator"
+	  "mastodon"
+	  "stumpwm-mode"
+	  ))))
+(define desktop
+  '("fontconfig" "font-ghostscript" "font-dejavu" "font-gnu-freefont"
+    "font-adobe-source-han-sans" "font-wqy-zenhei"
+    "guix-icons" "breeze-icons" "oxygen-icons"
+    "i3-autotiling"
+    "blueman" "pasystray" "xss-lock"
+    "bemenu" "sway" "swayidle" "swaybg" "swayhide"
+    "wl-clipboard" "lagrange"
+    "grim" "slurp" "foot"
+    "nautilus" "gvfs" "youtube-dl" "okular" "pulseaudio"
+    "wob" "font-iosevka" "browserpass-native"
+    "xsetroot"
+    ))
+(define big-games
+  '(
+    #;"the-dark-mod" "falltergeist"
+    "gnushogi" "nethack" "retux" "angband"
+    "crawl" "crawl-tiles" "retroarch" "7kaa"
+    "marble-marcher" "arx-libertatis"
+    ))
+
+(define-public %packages-by-host
+  (alist->hash-table
+   `(("dagon" . ,(append shell-utils toolchains multimedia graphics e-mail emacs+xyz desktop))
+     ("hydra" . ,(append shell-utils toolchains multimedia graphics e-mail emacs+xyz desktop)))))
 
 (define (file-fetch url hash)
   (file-append
@@ -211,12 +423,7 @@
 			   "GDK_DPI_SCALE=0.41"
 			   (default-environment-variables))))
 		(stop #~(make-system-destructor
-			 "emacsclient -e '(save-buffers-kill-emacs)'")))
-               (shepherd-service
-                (provision '(mpdris))
-                (start #~(make-forkexec-constructor
-                          (list #$(file-append mpdris2 "/bin/mpDris2"))))
-                (stop #~(make-kill-destructor)))))))
+			 "emacsclient -e '(save-buffers-kill-emacs)'")))))))
    (service
     home-mcron-service-type
     (home-mcron-configuration
@@ -226,7 +433,13 @@
 	      (string-append 
 	       #$(file-append sbcl "/bin/sbcl")
 	       " --script "
-	       #$(local-file "../files/old-move-script.lisp")))))))
+	       #$(local-file "files/old-move-script.lisp")))
+       #~(job "30 01 * * 0"
+	      (string-append
+	       "guix time-machine -C "
+	       #$(local-file "channels.scm")
+	       " home reconfigure "
+	       #$(local-file "home.scm")))))))
    (simple-service
     'dotfiles
     home-files-service-type
@@ -237,20 +450,19 @@
       (".light-wallpaper.png"
        ,(file-fetch "https://ift.tt/2UDuBqa"
 		    "i7XCgxwaBYKB7RkpB2nYcGsk2XafNUPcV9921oicRdo="))
-      (".emacs.d/init.el" ,(local-file "../files/emacs.el"))
-      (".guile" ,(local-file "../files/guile"))
+      (".emacs.d/init.el" ,(local-file "files/emacs.el"))
+      (".guile" ,(local-file "files/guile"))
       ;; (".screenrc" ,(local-file "../screen"))
       ;; (".mbsyncrc" ,(local-file "../mbsyncrc"))
-      (".sbclrc" ,(local-file "../files/sbclrc"))
-      (".stumpwm.d/init.lisp" ,(local-file "../files/stumpwm.lisp"))
-      ))
+      (".sbclrc" ,(local-file "files/sbclrc"))
+      (".stumpwm.d/init.lisp" ,(local-file "files/stumpwm.lisp"))))
    (simple-service
     'dotfiles-xdg
     home-xdg-configuration-files-service-type
     `(
-      ("common-lisp/source-registry.conf" ,(local-file "../files/asdf.lisp"))
+      ("common-lisp/source-registry.conf" ,(local-file "files/asdf.lisp"))
       ;; ("sway/config" ,(local-file "../sway.cfg"))
-      ("foot/foot.ini" ,(local-file "../files/foot.ini"))
+      ("foot/foot.ini" ,(local-file "files/foot.ini"))
       ))
                                         ;(".emacs.d/eshell/alias" ,(local-file "../eshell-alias"))
    #;
@@ -311,8 +523,7 @@
 	("PATH" . "$PATH:$HOME/bin/")
 	("GUILE_LOAD_PATH" . "$GUILE_LOAD_PATH:$HOME/bin")
 	("GUILE_LOAD_PATH" . "$GUILE_LOAD_PATH:$HOME/dotfiles")
-	("XDG_DATA_DIRS" . "$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:/home/michal_atlas/.local/share/flatpak/exports/share")
-	))))
+	("XDG_DATA_DIRS" . "$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:/home/michal_atlas/.local/share/flatpak/exports/share")))))
    (service home-channels-service-type
 	    (cons*
 	     (channel
@@ -330,29 +541,30 @@
 	      (introduction
 	       (make-channel-introduction
 		"7c67c3a9f299517bfc4ce8235628657898dd26b2"
- 		(openpgp-fingerprint
+		(openpgp-fingerprint
 		 "CD2D 5EAA A98C CB37 DA91  D6B0 5F58 1664 7F8B E551"))))
 	     (channel
 	      (name 'atlas)
 	      (url "https://git.sr.ht/~michal_atlas/guix-channel"))
 	     (channel
-              (name 'guix-gaming-games)
-              (url "https://gitlab.com/guix-gaming-channels/games.git")
-              (introduction
-               (make-channel-introduction
+	      (name 'guix-gaming-games)
+	      (url "https://gitlab.com/guix-gaming-channels/games.git")
+	      (introduction
+	       (make-channel-introduction
 		"c23d64f1b8cc086659f8781b27ab6c7314c5cca5"
 		(openpgp-fingerprint
 		 "50F3 3E2E 5B0C 3D90 0424  ABE8 9BDC F497 A4BB CC7F"))))
 	     #;
-	     (channel                   ; ; ; ; ; ; ;
-	     (name 'emacs)              ; ; ; ; ; ; ;
-	     (url "https://github.com/babariviere/guix-emacs") ; ; ; ; ; ; ;
-	     (introduction              ; ; ; ; ; ; ;
-	     (make-channel-introduction ; ; ; ; ; ; ;
-	     "72ca4ef5b572fea10a4589c37264fa35d4564783" ; ; ; ; ; ; ;
-	     (openpgp-fingerprint       ; ; ; ; ; ; ;
+	     (channel                   ; ; ; ; ; ; ; ; ; ; ; ; ;
+	     (name 'emacs)              ; ; ; ; ; ; ; ; ; ; ; ; ;
+	     (url "https://github.com/babariviere/guix-emacs") ; ; ; ; ; ; ; ; ; ; ; ; ;
+	     (introduction              ; ; ; ; ; ; ; ; ; ; ; ; ;
+	     (make-channel-introduction ; ; ; ; ; ; ; ; ; ; ; ; ;
+	     "72ca4ef5b572fea10a4589c37264fa35d4564783" ; ; ; ; ; ; ; ; ; ; ; ; ;
+	     (openpgp-fingerprint       ; ; ; ; ; ; ; ; ; ; ; ; ;
 	     "261C A284 3452 FB01 F6DF  6CF4 F9B7 864F 2AB4 6F18"))))
 	     %default-channels))
+   ;; (service home-provenance-service-type)
    (service home-openssh-service-type
 	    (home-openssh-configuration
 	     (hosts (append
@@ -375,6 +587,5 @@
 			     (extra-content "  ControlMaster auto")))
 			  '("1" "2")))
 		    )
-	     (authorized-keys (list (local-file "../keys/hydra.pub")
-				    (local-file "../keys/dagon.pub")))))
-   )))
+	     (authorized-keys (list (local-file "keys/hydra.pub")
+				    (local-file "keys/dagon.pub"))))))))
