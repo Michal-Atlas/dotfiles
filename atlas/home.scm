@@ -287,11 +287,7 @@
        (mixed-text-file "bashrc-cheat"
 			"function cheat { "
 			(file-append curl "/bin/curl")
-			" \"cheat.sh/$@\"; }")
-       (mixed-text-file "bashrc-screen"
-			"exec "
-			(file-append emacs "/bin/emacsclient")
-			" -nw -e '(eshell-new)'")))
+			" \"cheat.sh/$@\"; }")))
      (aliases
       `(("gx" . "guix")
 	("gxi" . "gx install")
@@ -300,6 +296,7 @@
 	("gxsh" . "gx shell")
 	("gxtm" . "gx time-machine")
 	("e" . "$EDITOR")
+	("es" . "$EDITOR -nw -e '(eshell-new)'")
 	("sw" . "swayhide")))
      (environment-variables
       `(
