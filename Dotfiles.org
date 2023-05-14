@@ -650,45 +650,30 @@
     (operating-system
       (inherit atlas-system-base)
       (host-name "hydra")
+      (firmware (list linux-firmware amdgpu-firmware))      
       (mapped-devices
        (list (mapped-device
-	      (source
-	       (uuid "f99a8f6d-23fd-43d9-a9fd-6e08f286e3b8"))
-	      (target "luks-f99a8f6d-23fd-43d9-a9fd-6e08f286e3b8")
-	      (type luks-device-mapping))))
-      (file-systems (cons*
-		     (file-system
-		       (mount-point "/boot/efi")
-		       (device (uuid "6065-21B4" 'fat32))
-		       (type "vfat"))
-		     (file-system
-		       (mount-point "/")
-		       (device "/dev/mapper/luks-f99a8f6d-23fd-43d9-a9fd-6e08f286e3b8")
-		       (options (alist->file-system-options
-				 `(("subvol" . "@"))))
-		       (type "btrfs")
-		       (dependencies mapped-devices))
-		     ;; (file-system
-		     ;;  (mount-point "/boot/efi")
-		     ;;  (type "vfat")
-		     ;;  (device (file-system-label "EFI")))
-		     ;; (file-system
-		     ;;  (mount-point "/")
-		     ;;  (type "ext4")
-		     ;;  (device (file-system-label "guix")))
-		     ;; CTU
-		     ;; (file-system
-		     ;;  (device "//drive.fit.cvut.cz/home/zacekmi2")
-		     ;;  (mount-point "/fit")
-		     ;;  (title 'fit-cifs)
-		     ;;  (options "sec=ntlmv2i,fsc,file_mode=0700,dir_mode=0700,uid=1000,user=zacekmi2")
-		     ;;  (type "cifs")
-		     ;;  (mount? #f)
-		     ;;  (create-mount-point? #t))
-		     %base-file-systems))
+	      (source "VG")
+	      (targets '("VG-guix"))
+	      (type lvm-device-mapping))))
+
+      (file-systems
+       (cons*
+	(file-system
+	 (mount-point "/boot/efi")
+	 (device (file-system-label "NIXEFI"))
+	 (type "vfat"))
+	(file-system
+	 (mount-point "/")
+	 (device "/dev/mapper/VG-guix")
+	 (options (alist->file-system-options
+		   `(("subvol" . "@"))))
+	 (type "btrfs")
+	 (dependencies mapped-devices))
+	%base-file-systems))
       (swap-devices
        (list (swap-space
-	      (target (uuid "a5651b6e-bde2-4a69-ad0a-5857abd8448e")))))))
+	      (target (file-system-label "NIXSWAP")))))))
 #+END_SRC
 
 **** Hurd
