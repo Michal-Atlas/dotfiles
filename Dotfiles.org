@@ -35,7 +35,7 @@
 (list (build-machine
        (name "hydra.local")
        (systems (list "x86_64-linux"))
-       (host-key "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHg7gxhmd2SLBDb3U44L3hxNU8o4dbqZAOnlMTyvgXwp root@(none)")
+       (host-key "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK66MzJx9XpcuPTW8eIrWm9DOxCypREG1KUQy5eyWctJ root@(none)")
        (user "michal_atlas")
        (private-key "/home/michal_atlas/.ssh/id_rsa")))
 #+end_src
@@ -565,7 +565,7 @@
 		  (plain-file "non-guix.pub"
 			      "(public-key (ecc (curve Ed25519) (q #926B78EBA9416220CA0AFA2EAEC8ED99FC9E9C03AF11CD08AE6F8192BCF68673#)))")
 		  (plain-file "hydra.pub"
-			      "(public-key (ecc (curve Ed25519) (q #5E7373D527DC6566C2601F79EDD33ADDBCB16CDF1D7A8A12565B76058DB6A219#)))")
+			      "(public-key (ecc (curve Ed25519) (q #CF233D83746B65D6ACAFC38BE79248E9C1E0F65498A7B908E43C83F859D1D08E#)))")
 		  (plain-file "dagon.pub"
 			      "(public-key (ecc (curve Ed25519) (q #D3D457964156E28FBA767F66ED72CC07DE71B9DBFCEAFDBA00652DBFA80D6B46#)))"))
 		 %default-authorized-guix-keys)))))))
