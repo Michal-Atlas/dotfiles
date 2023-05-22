@@ -754,6 +754,7 @@ Don't want package.el to interfere with straight.el
 					   "\n")))))
 			 "flatpaks"))
 
+  (use-package hydra)
   (defhydra hydra-system (global-map "C-c s")
     "system"
     ("p" player/play "Play")
