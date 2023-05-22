@@ -366,7 +366,7 @@ Don't want package.el to interfere with straight.el
 
 #+begin_src emacs-lisp
 (use-package company-mode
-  :config (global-company-mode 1))
+  :init (global-company-mode 1))
 #+end_src
 
 * Lisps
@@ -495,7 +495,6 @@ Don't want package.el to interfere with straight.el
 #+begin_src emacs-lisp
 (use-package
  tramp
- :elpaca nil
  :config
  (connection-local-set-profile-variables
   'guix-system '((tramp-remote-path . (tramp-own-remote-path))))
@@ -816,7 +815,7 @@ Don't want package.el to interfere with straight.el
   (print x)
   x)
 
-(use-package frame :elpaca nil :bind ("C-z" . nil))
+(global-unset-key (kbd "C-z"))
 
 (defun init-unlink ()
   (interactive)
@@ -877,9 +876,8 @@ Don't want package.el to interfere with straight.el
   (use-package adaptive-wrap)
   (use-package geiser-guile)
   (use-package slime)
-  (use-package emms)
-  (use-package evil)
-  (use-package vertico-posframe)
+  ;; (use-package emms)
+  ;; (use-package evil)
   ;; (use-package ac-geiser)
   (use-package all-the-icons)
   (use-package all-the-icons-dired)
