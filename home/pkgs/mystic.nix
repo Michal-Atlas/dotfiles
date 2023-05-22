@@ -1,7 +1,7 @@
 pkgs:
 with pkgs;
 stdenv.mkDerivation (
-  let version = "0.3";
+  let version = "0.3.1";
   in {
     buildInputs = [ autoconf automake readline texinfo ];
     pname = "mystic";
