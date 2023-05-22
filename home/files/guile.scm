@@ -1,0 +1,5 @@
+(use-modules (ice-9 readline)
+	     (ice-9 colorized))
+(activate-readline)
+(activate-colorized)
+(add-to-load-path "/home/michal_atlas/bin")

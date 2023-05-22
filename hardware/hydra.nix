@@ -20,7 +20,7 @@
       fsType = "btrfs";
     };
 
-  fileSystems."/boot" =
+  fileSystems."/boot/efi" =
     {
       device = "/dev/disk/by-uuid/6065-21B4";
       fsType = "vfat";

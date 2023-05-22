@@ -54,6 +54,22 @@ in
       enableCompletion = true;
       autocd = true;
       history.ignoreDups = true;
+      initExtra = ''
+        function cheat { curl "cheat.sh/$@"' }
+      '';
+      localVariables = {
+        BROWSER = "nyxt";
+        EDITOR = "emacsclient -n -c";
+        ALTERNATE_EDITOR = "";
+        TERM = "xterm-256color";
+        MOZ_ENABLE_WAYLAND = "1";
+        MOZ_USE_XINPUT2 = "1";
+        GRIM_DEFAULT_DIR = "~/tmp";
+        _JAVA_AWT_WM_NONREPARENTING = "1";
+        PATH = "$PATH:$HOME/.nix-profile/bin/:$HOME/bin/";
+        GUILE_LOAD_PATH = "$GUILE_LOAD_PATH:$HOME/bin";
+        XDG_DATA_DIRS = "$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:/home/michal_atlas/.local/share/flatpak/exports/share";
+      };
     };
     starship = {
       enable = true;
@@ -79,10 +95,10 @@ in
     # ".config/doom/config.el".source = ./dotfiles/config.el;
     # ".config/doom/packages.el".source = ./dotfiles/packages.el;
     # ".emacs.d/eshell/aliases".source = ./dotfiles/ealias;
-    # ".guile".source = ./dotfiles/guile;
+    ".guile".source = ./files/guile.scm;
     # ".mbsyncrc".source = ./dotfiles/mbsyncrc;
-    # ".sbclrc".source = ./dotfiles/sbclrc;
-    # ".config/common-lisp/source-registry.conf".source =
+    ".sbclrc".source = ./files/sbcl.lisp;
+    ".config/common-lisp/source-registry.conf".source = ./files/source-registry.lisp;
     #   ./dotfiles/cl-src-registry.conf;
   };
   xsession.numlock.enable = true;

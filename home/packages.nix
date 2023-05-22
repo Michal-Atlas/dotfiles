@@ -37,9 +37,9 @@ with pkgs; [
   inkscape
   isync
   jetbrains-mono
-  jetbrains.clion
-  jetbrains.datagrip
-  jetbrains.rider
+  # jetbrains.clion
+  # jetbrains.datagrip
+  # jetbrains.rider
   keepassxc
   keychain
   kobodeluxe
@@ -47,7 +47,8 @@ with pkgs; [
   legendary-gl
   libreoffice
   libtool
-  lispPackages_new.sbclPackages.linedit
+  maxima
+  wxmaxima
   meson
   minecraft
   mosh

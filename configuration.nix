@@ -290,33 +290,12 @@
           Unit = "tmp-log.service";
         };
       };
-
-      "mailsync" = {
-        wantedBy = [ "timers.target" ];
-        timerConfig = {
-          OnCalendar = "hourly";
-          Unit = "mailsync.service";
-        };
-      };
     };
 
     services = {
-      "mailsync" = {
-        script = "mbsync --all";
-        serviceConfig = { Type = "oneshot"; };
-        path = with pkgs; [ isync gnupg ];
-      };
       "tmp-log" = {
         script = ''
-          mkdir -p "$HOME/tmp-log";
-          if [ "$(ls -A "$HOME/tmp")" ]; then
-              mv "$HOME/tmp" "$HOME/tmp-log/$(date -I)";
-              mkdir -p "$HOME/tmp";
-          fi;
-          if [ "$(ls -A "$HOME/Downloads")" ]; then
-              mv "$HOME/Downloads" "$HOME/tmp-log/$(date -I)-down";
-              mkdir -p "$HOME/Downloads";
-          fi;
+          ${pkgs.sbcl} --load ~/cl/setup.lisp --script ${./tmp-log-script.lisp}
         '';
         serviceConfig = { Type = "oneshot"; };
       };
