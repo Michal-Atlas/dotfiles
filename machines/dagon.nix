@@ -12,14 +12,12 @@
     # if the builder supports building for multiple architectures, 
     # replace the previous line by, e.g.,
     # systems = ["x86_64-linux" "aarch64-linux"];
-    maxJobs = 6;
+    maxJobs = 12;
     speedFactor = 2;
     supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
     mandatoryFeatures = [ ];
     sshUser = "michal_atlas";
     sshKey = "/home/michal_atlas/.ssh/id_rsa";
-    publicHostKey =
-      "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUFDLytHQ0F1RFNxMmt5U3c0K3lCMVUzVjk1Z0YrdjdNOUE1cTE4YXQrWVogcm9vdEBuaXhvcwo=";
   }];
   nix.distributedBuilds = true;
   # optional, useful when the builder has a faster internet connection than yours
