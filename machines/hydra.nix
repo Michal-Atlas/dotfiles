@@ -17,4 +17,11 @@
       "gid=users"
     ];
   };
+  fileSystems."/home" = {
+    fsType = "btrfs";
+    device = "/dev/VG/guix";
+    options = [
+      "subvol=@home"
+    ];
+  };
 }
