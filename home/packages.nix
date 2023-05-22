@@ -57,7 +57,7 @@ with pkgs; [
   mpv
   mu
   neofetch
-  nerd-fonts
+  nerdfonts
   nix-alien
   nix-output-monitor
   nixfmt
