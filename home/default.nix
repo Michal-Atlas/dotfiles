@@ -106,13 +106,13 @@ in
 
   services.emacs = {
     enable = true;
-    package = nixpkgs.emacsPgtk;
+    package = nixpkgs.emacs; #Pgtk;
     defaultEditor = true;
     client.enable = true;
   };
   home.packages = with pkgs;
     [
-      nixpkgs.emacsPgtk
+      nixpkgs.emacs #Pgtk
       (import ./pkgs/mystic.nix pkgs)
     ] ++ import ./packages.nix pkgs;
 
