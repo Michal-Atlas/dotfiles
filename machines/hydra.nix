@@ -11,6 +11,10 @@
 
   fileSystems."/GAMES" = {
     device = "/dev/disk/by-label/Games-Z";
-    fsType = "ntfs";
+    fsType = "ntfs-3g";
+    options = [
+      "uid=michal_atlas"
+      "gid=users"
+    ];
   };
 }
