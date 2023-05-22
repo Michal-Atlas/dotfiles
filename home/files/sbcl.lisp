@@ -7,9 +7,8 @@
 
   (ql:quickload :cffi)
 
-  (setf cffi:*foreign-library-directories* '
-	<<library-profiles()>>
-	)
+  (setf cffi:*foreign-library-directories* 
+	'("/run/current-system/sw/lib"))
 
   (ql:quickload :linedit)
 
