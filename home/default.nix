@@ -55,7 +55,7 @@ in
       autocd = true;
       history.ignoreDups = true;
       initExtra = ''
-        function cheat { curl "cheat.sh/$@"' }
+        function cheat { curl "cheat.sh/$@" }
       '';
       localVariables = {
         BROWSER = "nyxt";
@@ -141,7 +141,7 @@ in
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" =
       {
         binding = "<Super>t";
-        command = ''emacsclient -c -e "(eshell-new)"'';
+        command = ''kgx'';
         name = "TERM";
       };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" =

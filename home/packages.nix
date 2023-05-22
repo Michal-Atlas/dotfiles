@@ -46,6 +46,7 @@ with pkgs; [
   lagrange
   legendary-gl
   libreoffice
+  libgccjit
   libtool
   maxima
   wxmaxima
@@ -72,6 +73,7 @@ with pkgs; [
   roswell
   sbcl
   shotwell
+  spotify
   steam
   superTux
   superTuxKart
