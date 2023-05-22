@@ -925,7 +925,7 @@ Don't want package.el to interfere with straight.el
   (use-package stumpwm-mode)
   (use-package hackles
     :straight (:host sourcehut
-                     :repo "~michal_atlas/emacs-hackles"
+                     :repo "michal_atlas/emacs-hackles"
                      :branch "master"))
   (use-package consult-yasnippet)
   (use-package yasnippet)
