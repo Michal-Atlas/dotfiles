@@ -77,6 +77,7 @@ with pkgs; [
   shotwell
   spotify
   steam
+  steam-run
   superTux
   superTuxKart
   swiProlog
