@@ -110,42 +110,47 @@
       true; # overrides any devices added or deleted through the WebUI
     overrideFolders =
       true; # overrides any folders added or deleted through the WebUI
-    devices = {
-      "Nox" = {
-        id = "JBRYVQP-2GYSCCK-2M37T6I-KSETJHC-UY7ZUQ5-GW56FMG-LDRDFQC-YUH5EAY";
+    relay.enable = false;
+    settings = {
+      devices = {
+        "Nox" = {
+          id = "JBRYVQP-2GYSCCK-2M37T6I-KSETJHC-UY7ZUQ5-GW56FMG-LDRDFQC-YUH5EAY";
+        };
+        "Hydra" = {
+          id = "YNOYPTF-DBWNDGH-QW2IYSP-VIDYVFM-SGSC7DK-IMKHPN3-N4CRIEP-P5AAKQX";
+        };
+        "Dagon" = {
+          id = "X6JNKQ7-QVHFY3K-M2SUZBO-VFFOG7I-P336TUB-KXREZKW-NI5AIWL-VMMRIAW";
+        };
       };
-      "Hydra" = {
-        id = "YNOYPTF-DBWNDGH-QW2IYSP-VIDYVFM-SGSC7DK-IMKHPN3-N4CRIEP-P5AAKQX";
-      };
-      "Dagon" = {
-        id = "X6JNKQ7-QVHFY3K-M2SUZBO-VFFOG7I-P336TUB-KXREZKW-NI5AIWL-VMMRIAW";
-      };
-    };
-    folders = {
-      "documents" = {
-        path = "/home/michal_atlas/Documents";
-        devices = [ "Nox" "Hydra" "Dagon" ];
-      };
-      "sync" = {
-        path = "/home/michal_atlas/Sync";
-        devices = [ "Nox" "Hydra" "Dagon" ];
-      };
-      "cl" = {
-        path = "/home/michal_atlas/cl";
-        devices = [ "Nox" "Hydra" "Dagon" ];
-      };
-      "roam" = {
-        path = "/home/michal_atlas/roam";
-        devices = [ "Nox" "Hydra" "Dagon" ];
-      };
-      "music" = {
-        path = "/home/michal_atlas/Music";
-        devices = [ "Nox" "Hydra" "Dagon" ];
-      };
-      "zotero" = {
-        path = "/home/michal_atlas/Zotero";
-        devices = [ "Nox" "Hydra" "Dagon" ];
-      };
+      folders = with builtins;
+        (listToAttrs
+          (concatLists [
+            (map
+              (name:
+                {
+                  name = "${name}";
+                  value = {
+                    path = "/home/michal_atlas/${name}";
+                    devices = [ "Nox" "Hydra" "Dagon" ];
+                    versioning.type = "staggered";
+                  };
+                })
+              [ "cl" "Documents" ])
+            (map
+              (name:
+                {
+                  name = "${name}";
+                  value = {
+                    path = "/home/michal_atlas/${name}";
+                    devices = [ "Nox" "Hydra" "Dagon" ];
+                  };
+                })
+              [
+                "Sync"
+                "Zotero"
+              ])
+          ]));
     };
   };
 
