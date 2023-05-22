@@ -131,7 +131,7 @@ in
         "gnome-clipboard@b00f.github.io"
       ];
     };
-    "org/gnome/desktop/peripherals/touchpad/tap-to-click" = true;
+    "org/gnome/desktop/peripherals/touchpad" = { tap-to-click = true; };
     "org/gnome/settings-daemon/plugins/media-keys" = {
       custom-keybindings = [
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
