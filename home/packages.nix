@@ -22,6 +22,7 @@ with pkgs; [
   file
   fira-code
   firefox
+  font-awesome
   fzf
   gallery-dl
   gcc
@@ -56,6 +57,7 @@ with pkgs; [
   mpv
   mu
   neofetch
+  nerd-fonts
   nix-alien
   nix-output-monitor
   nixfmt
