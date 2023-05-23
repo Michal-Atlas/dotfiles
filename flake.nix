@@ -28,19 +28,21 @@
     , nixpkgs
     , flake-utils
     , home-manager
-    , emacs-overlay
     , agenix
     , pre-commit-hooks
     , ...
     }@attrs:
-    let sys = "x86_64-linux";
+    let system = "x86_64-linux";
+
     in {
       nixosConfigurations = builtins.foldl'
         (acc: hostname:
           {
             ${hostname} = nixpkgs.lib.nixosSystem {
-              system = sys;
-              specialArgs = attrs // { inherit hostname; };
+              inherit system;
+              specialArgs = attrs // {
+                inherit hostname;
+              };
               modules = [
                 ./configuration.nix
                 ./machines/${hostname}.nix
@@ -50,10 +52,7 @@
                   home-manager = {
                     useGlobalPkgs = true;
                     useUserPackages = true;
-                    users.michal_atlas = import ./home (import nixpkgs {
-                      system = "x86_64-linux";
-                      overlays = [ emacs-overlay.overlays.default ];
-                    });
+                    users.michal_atlas = import ./home;
                   };
                 }
                 agenix.nixosModules.default

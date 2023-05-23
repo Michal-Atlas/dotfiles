@@ -223,11 +223,11 @@
   #   ];
   # };
 
-  nixpkgs.overlays = with self.inputs;
-    [
-      nix-alien.overlays.default
-      emacs-overlay.overlay
-    ];
+  nixpkgs.overlays = with self.inputs; [
+    nix-alien.overlays.default
+    emacs-overlay.overlays.default
+    (import ./atlas-emacs-overlay.nix)
+  ];
 
   nixpkgs.config.permittedInsecurePackages = [
     "openssl-1.1.1t"
@@ -250,17 +250,6 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-  environment.systemPackages = [
-    agenix.packages.x86_64-linux.default
-
-    (pkgs.emacsWithPackagesFromUsePackage {
-      defaultInitFile = true;
-      alwaysEnsure = true;
-      config = ./emacs.el;
-      package = pkgs.emacsPgtk;
-    })
-
-  ];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

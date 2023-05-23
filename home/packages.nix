@@ -1,9 +1,10 @@
-{ pkgs, ... }:
+pkgs:
 with pkgs; [
   # clang
   # mathematica
   acl2-minimal
   arandr
+  atlas-emacs
   audacity
   bat
   bc

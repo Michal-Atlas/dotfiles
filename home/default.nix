@@ -1,4 +1,3 @@
-nixpkgs:
 { pkgs, lib, ... }:
 let
   inherit (lib.hm.gvariant) mkTuple;
@@ -88,14 +87,14 @@ in
 
   services.emacs = {
     enable = true;
-    package = nixpkgs.emacsPgtk;
+    package = pkgs.atlas-emacs;
     defaultEditor = true;
     client.enable = true;
     socketActivation.enable = true;
   };
-  home.packages = with pkgs;
+  home.packages =
     [
-      nixpkgs.emacs #Pgtk
+      pkgs.atlas-emacs
       (import ./pkgs/mystic.nix pkgs)
     ] ++ import ./packages.nix pkgs;
 
