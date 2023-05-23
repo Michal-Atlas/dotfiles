@@ -93,11 +93,6 @@
         nativeBuildInputs = [
           (pkgs.writeShellScriptBin "recon"
             "sudo nixos-rebuild switch --flake .#$(hostname) $@;")
-          (pkgs.writeShellScriptBin "doomstall" ''
-            git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
-            ~/.config/emacs/bin/doom install
-          '')
-
         ];
         inherit (self.checks.${system}.pre-commit-check) shellHook;
       };
