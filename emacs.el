@@ -604,7 +604,6 @@
 (use-package haskell-mode)
 (use-package htmlize)
 (use-package iedit)
-(use-package magit-todos)
 (use-package markdown-mode)
 (use-package multi-term)
 (use-package nix-mode)
