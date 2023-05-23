@@ -22,7 +22,6 @@ with pkgs; [
   feh
   file
   fira-code
-  firefox
   font-awesome
   fzf
   gallery-dl

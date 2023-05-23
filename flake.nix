@@ -13,6 +13,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+    nur.url = "github:nix-community/NUR";
   };
 
   outputs =
@@ -21,6 +22,7 @@
     , flake-utils
     , home-manager
     , agenix
+    , nur
     , pre-commit-hooks
     , ...
     }@attrs:
@@ -49,6 +51,7 @@
                   };
                 }
                 agenix.nixosModules.default
+                nur.nixosModules.nur
               ];
             };
           } // acc)

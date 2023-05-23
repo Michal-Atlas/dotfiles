@@ -224,6 +224,7 @@
   # };
 
   nixpkgs.overlays = with self.inputs; [
+    nur.overlay
     emacs-overlay.overlays.default
     (import ./atlas-emacs-overlay.nix)
   ];

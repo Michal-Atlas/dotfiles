@@ -33,8 +33,49 @@ in
       };
       delta.enable = true;
     };
+
+    firefox = {
+      enable = true;
+      profiles."default" = {
+        bookmarks = (import ./bookmarks.nix);
+        extensions = [
+          pkgs.nur.repos.rycee.firefox-addons.ublock-origin
+        ];
+        search = {
+          default = "DuckDuckGo";
+          force = true;
+
+          engines = {
+
+            "Nix Packages" = {
+              urls = [{
+                template = "https://search.nixos.org/packages";
+                params = [
+                  { name = "type"; value = "packages"; }
+                  { name = "query"; value = "{searchTerms}"; }
+                ];
+              }];
+
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+              definedAliases = [ "@np" ];
+            };
+
+            "NixOS Wiki" = {
+              urls = [{ template = "https://nixos.wiki/index.php?search={searchTerms}"; }];
+              iconUpdateURL = "https://nixos.wiki/favicon.png";
+              updateInterval = 24 * 60 * 60 * 1000; # every day
+              definedAliases = [ "@nw" ];
+            };
+
+            "DuckDuckgo".metaData.alias = "@d";
+
+          };
+
+        };
+      };
+    };
+
     broot.enable = true;
-    browserpass = { enable = true; browsers = [ "firefox" ]; };
     fzf.enable = true;
     dircolors.enable = true;
     keychain.enable = true;
@@ -89,12 +130,18 @@ in
   xsession.numlock.enable = true;
   programs.home-manager.enable = true;
 
-  services.emacs = {
-    enable = true;
-    package = pkgs.atlas-emacs;
-    defaultEditor = true;
-    client.enable = true;
-    socketActivation.enable = true;
+  services = {
+    kdeconnect = {
+      enable = true;
+      indicator = true;
+    };
+    emacs = {
+      enable = true;
+      package = pkgs.atlas-emacs;
+      defaultEditor = true;
+      client.enable = true;
+      socketActivation.enable = true;
+    };
   };
   home.packages =
     [
@@ -122,19 +169,26 @@ in
       custom-keybindings = [
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
       ];
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" =
       {
         binding = "<Super>t";
-        command = ''kgx'';
+        command = "kgx";
         name = "TERM";
       };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" =
       {
         binding = "<Super>Return";
-        command = ''emacsclient -c'';
+        command = "emacsclient -c";
         name = "EMACS";
+      };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" =
+      {
+        binding = "<Super>f";
+        command = "firefox";
+        name = "BROWSER";
       };
     "org/gnome/desktop/background" = {
       picture-uri = builtins.fetchurl {
@@ -157,5 +211,15 @@ in
     };
     "org/gnome/desktop/wm/preferences" = { focus-mode = "sloppy"; };
     "org/gnome/settings-daemon/plugins/color" = { night-light-enabled = true; };
+    "org/gnome/shell" = {
+      favorite-apps = [
+        "firefox.desktop"
+        "spotify.desktop"
+        "discord.desktop"
+        "org.keepassxc.KeePassXC.desktop"
+        "fi.skyjake.Lagrange.desktop"
+        "zotero.desktop"
+      ];
+    };
   };
 }
