@@ -2,17 +2,6 @@
 #+AUTHOR: Michal Atlas
 #+PROPERTY: header-args :comments both :mkdirp yes :tangle home/files/init.el
 
-* Early Init
-:PROPERTIES:
-:header-args+: :tangle ~/.emacs.d/early-init.el
-:END:
-
-Don't want package.el to interfere with straight.el
-
-#+begin_src emacs-lisp
-  (setq package-enable-at-startup nil)
-#+end_src
-
 * Org-mode
 
 #+begin_src emacs-lisp
