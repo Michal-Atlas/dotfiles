@@ -4,7 +4,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOs/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-22.11";
     flake-utils.url = "github:numtide/flake-utils";
     agenix.url = "github:ryantm/agenix";
     emacs-overlay.url =
@@ -57,8 +56,7 @@
         (map (f: head (match "(.*).nix" f))
           (attrNames (readDir ./machines))));
     } // (flake-utils.lib.eachDefaultSystem (system:
-    let pkgs = (import nixpkgs) { inherit system; };
-    in {
+    let pkgs = (import nixpkgs) { inherit system; }; in {
       checks = {
         pre-commit-check = pre-commit-hooks.lib.${system}.run {
           src = ./.;
@@ -90,5 +88,6 @@
         ];
         inherit (self.checks.${system}.pre-commit-check) shellHook;
       };
-    }));
+    }
+    ));
 }
