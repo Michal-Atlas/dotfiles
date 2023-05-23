@@ -87,14 +87,10 @@ in
   };
   home.file = {
     ".emacs.d/init.el".source = ./files/init.el;
-    # ".config/doom/config.el".source = ./dotfiles/config.el;
-    # ".config/doom/packages.el".source = ./dotfiles/packages.el;
-    # ".emacs.d/eshell/aliases".source = ./dotfiles/ealias;
-    ".guile".source = ./files/guile.scm;
-    # ".mbsyncrc".source = ./dotfiles/mbsyncrc;
+    ".emacd.d/early-init.el".source = ./files/early-init.el
+      ".guile".source = ./files/guile.scm;
     ".sbclrc".source = ./files/sbcl.lisp;
     ".config/common-lisp/source-registry.conf".source = ./files/source-registry.lisp;
-    #   ./dotfiles/cl-src-registry.conf;
   };
   xsession.numlock.enable = true;
   programs.home-manager.enable = true;
