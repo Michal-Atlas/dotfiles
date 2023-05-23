@@ -24,7 +24,7 @@
                 nil (get-time)
                 :format local-time:+rfc3339-format/date-only+)
                type)))
-   ,*tmp-log-dir*))
+   *tmp-log-dir*))
 
 (defun walker (from-dir to-dir)
   (lambda (file)
