@@ -45,6 +45,7 @@
                     useGlobalPkgs = true;
                     useUserPackages = true;
                     users.michal_atlas = import ./home;
+                    backupFileExtension = "nix-home.bkp";
                   };
                 }
                 agenix.nixosModules.default

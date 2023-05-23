@@ -43,7 +43,6 @@ with pkgs; [
   # jetbrains.datagrip
   # jetbrains.rider
   keepassxc
-  keychain
   kobodeluxe
   lagrange
   legendary-gl
@@ -86,6 +85,7 @@ with pkgs; [
   transmission-remote-gtk
   tree
   unzip
+  uqm
   valgrind
   vim
   virt-manager

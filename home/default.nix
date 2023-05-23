@@ -3,44 +3,41 @@ let
   inherit (lib.hm.gvariant) mkTuple;
 in
 {
-  home.username = "michal_atlas";
-  home.homeDirectory = "/home/michal_atlas";
-  programs.git = {
-    enable = true;
-    userName = "Michal Atlas";
-    userEmail = "michal_atlas+git@posteo.net";
-    extraConfig = {
-      filter.lfs = {
-        clean = "git-lfs clean -- %f";
-        smudge = "git-lfs smudge -- %f";
-        process = "git-lfs filter-process";
-        required = true;
-      };
-    };
+  home = {
+    username = "michal_atlas";
+    homeDirectory = "/home/michal_atlas";
   };
 
   # The home.stateVersion option does not have a default and must be set
   home.stateVersion = "22.11";
   # Here goes the rest of your home-manager config, e.g. home.packages = [ pkgs.foo ];
   programs = {
-    fzf = {
+    git = {
       enable = true;
-      enableZshIntegration = true;
+      userName = "Michal Atlas";
+      userEmail = "michal_atlas+git@posteo.net";
+      extraConfig = {
+        filter.lfs = {
+          clean = "git-lfs clean -- %f";
+          smudge = "git-lfs smudge -- %f";
+          process = "git-lfs filter-process";
+          required = true;
+        };
+      };
+      delta.enable = true;
     };
-    dircolors = {
-      enable = true;
-      enableZshIntegration = true;
-    };
+    broot.enable = true;
+    browserpass = { enable = true; browsers = [ "firefox" ]; };
+    fzf.enable = true;
+    dircolors.enable = true;
+    keychain.enable = true;
+    navi.enable = true;
     direnv = {
       nix-direnv.enable = true;
       enable = true;
     };
-    autojump = {
-      enable = true;
-      enableZshIntegration = true;
-    };
+    autojump.enable = true;
     zsh = {
-      profileExtra = "keychain";
       enable = true;
       enableVteIntegration = true;
       enableAutosuggestions = true;
