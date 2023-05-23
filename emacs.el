@@ -1,3 +1,8 @@
+(use-package
+ bind-key
+ :config
+ (add-to-list 'same-window-buffer-names "*Personal Keybindings*"))
+
 ;;;; * Org-mode
 
 (use-package org)
@@ -8,9 +13,7 @@
  'org-babel-load-languages
  '((C . t) (scheme . t) (dot . t) (lisp . t)))
 
-
 ;;;; * Variable Init
-
 
 (setq
  user-full-name "Michal Atlas"
@@ -44,9 +47,7 @@
 ;(dired-async-mode 1)
 (setq auth-sources '("~/.authinfo.gpg"))
 
-
 ;;;; * Scrolling
-
 
 (setq
  scroll-step 1
