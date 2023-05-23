@@ -254,8 +254,9 @@
     agenix.packages.x86_64-linux.default
 
     (pkgs.emacsWithPackagesFromUsePackage {
+      defaultInitFile = true;
       alwaysEnsure = true;
-      config = ./home/files/init.el;
+      config = ./Emacs.org;
       package = pkgs.emacsPgtk;
       extraEmacsPackages = epkg: [
         epkg.use-package
