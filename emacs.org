@@ -901,7 +901,3 @@
   (use-package nix-mode)
 #+end_src
 
-# Local Variables:
-# org-confirm-babel-evaluate: nil
-# after-save-hook: org-babel-tangle
-# End:
