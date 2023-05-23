@@ -8,7 +8,7 @@
     flake-utils.url = "github:numtide/flake-utils";
     agenix.url = "github:ryantm/agenix";
     emacs-overlay.url =
-      "github:nix-community/emacs-overlay/203a7e8b0a534d10b35097f6de6efc6c71c57566";
+      "github:nix-community/emacs-overlay";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
