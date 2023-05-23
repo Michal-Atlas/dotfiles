@@ -10,7 +10,7 @@ stdenv.mkDerivation (
       owner = "~michal_atlas";
       repo = "mystic";
       rev = "v${version}";
-      sha256 = "sha256-1492bbgYfgbiRd3ahUFlaFFHrk1Scx+oTIjQamQ+m5o=";
+      sha256 = "sha256-MrM6Hul0CGZCwd4Mz+EQYA1I3TqysXKWekTz0jd/rV8=";
     };
     preConfigurePhases = [ "autogen" ];
     autogen = "./autogen.sh";
