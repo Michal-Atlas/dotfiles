@@ -260,6 +260,9 @@
       alwaysEnsure = true;
       config = ./home/files/init.el;
       package = pkgs.emacsPgtk;
+      extraEmacsPackages = epkg: [
+        epkg.use-package
+      ];
     })
 
   ];
