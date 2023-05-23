@@ -245,6 +245,13 @@
     enableSSHSupport = true;
   };
 
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+          if (action.id == "org.libvirt.unix.manage")
+             return polkit.Result.YES;
+    });
+  '';
+
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
