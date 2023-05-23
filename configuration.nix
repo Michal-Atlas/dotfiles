@@ -229,7 +229,7 @@
   nixpkgs.overlays = with self.inputs;
     [
       nix-alien.overlays.default
-      # emacs-overlay.overlay
+      emacs-overlay.overlay
     ];
 
   nixpkgs.config.permittedInsecurePackages = [
@@ -253,7 +253,17 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-  environment.systemPackages = [ agenix.packages.x86_64-linux.default ];
+  environment.systemPackages = [
+    agenix.packages.x86_64-linux.default
+
+    (pkgs.emacsWithPackagesFromUsePackage {
+      alwaysEnsure = true;
+      config = ./home/files/init.el;
+      package = pkgs.emacsPgtk;
+      extraPackages = epkgs: [ epkgs.company ];
+    })
+
+  ];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

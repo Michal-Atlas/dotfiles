@@ -2,11 +2,6 @@ nixpkgs:
 { pkgs, lib, ... }:
 let
   inherit (lib.hm.gvariant) mkTuple;
-  # my-emacs = nixpkgs.emacsWithPackagesFromUsePackage {
-  #   alwaysEnsure = true;
-  #   config = ./dotfiles/emacs.el;
-  #   package = nixpkgs.emacsGit;
-  # };
 in
 {
   home.username = "michal_atlas";
@@ -91,7 +86,7 @@ in
     };
   };
   home.file = {
-    # ".config/doom/init.el".source = ./dotfiles/init.el;
+    ".emacs.d/init.el".source = ./files/init.el;
     # ".config/doom/config.el".source = ./dotfiles/config.el;
     # ".config/doom/packages.el".source = ./dotfiles/packages.el;
     # ".emacs.d/eshell/aliases".source = ./dotfiles/ealias;
