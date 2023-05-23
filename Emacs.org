@@ -1,6 +1,6 @@
 #+TITLE: Emacs
 #+AUTHOR: Michal Atlas
-#+PROPERTY: header-args :comments both :mkdirp yes :tangle ~/.emacs.d/init.el
+#+PROPERTY: header-args :comments both :mkdirp yes :tangle home/files/init.el
 
 * Early Init
 :PROPERTIES:
@@ -11,27 +11,6 @@ Don't want package.el to interfere with straight.el
 
 #+begin_src emacs-lisp
   (setq package-enable-at-startup nil)
-#+end_src
-
-* Straight
-** Bootstrap
-
-#+begin_src emacs-lisp
-  (defvar straight-use-package-by-default t)
-  (defvar bootstrap-version)
-    (let ((bootstrap-file
-	   (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-	  (bootstrap-version 6))
-      (unless (file-exists-p bootstrap-file)
-	(with-current-buffer
-	    (url-retrieve-synchronously
-	     "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-	     'silent 'inhibit-cookies)
-	  (goto-char (point-max))
-	  (eval-print-last-sexp)))
-      (load bootstrap-file nil 'nomessage))
-
-  (straight-use-package 'use-package)
 #+end_src
 
 * Org-mode
