@@ -344,7 +344,7 @@ Don't want package.el to interfere with straight.el
 * Langs
 
 #+begin_src emacs-lisp
-(use-package company-mode
+(use-package company
   :init (global-company-mode 1))
 #+end_src
 
