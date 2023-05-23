@@ -121,10 +121,6 @@
 
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
 
-;;;; * Tramp
-
-(setq tramp-default-method "ssh")
-
 ;;;; * Packages 
 
 
@@ -294,30 +290,7 @@
 
 ;;;; * Thaumiel 
 
-
 ;      (straight-use-package '(thaumiel :local-repo "thaumiel" :repo "michal_atlas/thaumiel"))
-
-
-;;;; * Matrix
-
-
-;;;; * Tramp
-
-(use-package
- tramp
- :config
- (connection-local-set-profile-variables
-  'guix-system '((tramp-remote-path . (tramp-own-remote-path))))
-
- (setq tramp-remote-path
-       (append tramp-remote-path '(tramp-own-remote-path)))
-
- (connection-local-set-profiles
-  `(:application
-    tramp
-    :protocol "sudo"
-    :machine ,(system-name))
-  'guix-system))
 
 ;;;; * Desktop
 
@@ -576,7 +549,6 @@
 (use-package password-store-otp)
 (use-package org-superstar)
 (use-package rust-mode)
-(use-package csharp-mode)
 (use-package org-roam-ui)
 ;; (use-package geiser-racket)
 (use-package adaptive-wrap)
@@ -587,7 +559,7 @@
 ;; (use-package ac-geiser)
 (use-package all-the-icons)
 (use-package all-the-icons-dired)
-(use-package auctex)
+(use-package tex)
 (use-package calfw)
 (use-package cheat-sh)
 (use-package circe)
@@ -610,7 +582,7 @@
 (use-package nix-mode)
 (use-package on-screen)
 (use-package ox-gemini)
-(use-package parinfer)
+;; (use-package parinfer)
 (use-package pdf-tools)
 ;; (use-package racket-mode)
 (use-package realgud)

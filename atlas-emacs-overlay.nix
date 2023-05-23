@@ -5,5 +5,7 @@ self: super: {
       alwaysEnsure = true;
       config = ./emacs.el;
       package = super.emacsPgtk;
+      extraEmacsPackages =
+        epkg: [ epkg.auctex ];
     });
 }
