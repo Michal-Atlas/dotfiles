@@ -40,7 +40,7 @@
           {
             ${hostname} = nixpkgs.lib.nixosSystem {
               system = sys;
-              specialArgs = attrs;
+              specialArgs = attrs // { inherit hostname; };
               modules = [
                 ./configuration.nix
                 ./machines/${hostname}.nix

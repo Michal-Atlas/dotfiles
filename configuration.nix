@@ -1,7 +1,4 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-{ self, config, pkgs, agenix, ... }: {
+{ self, config, pkgs, agenix, hostname, ... }: {
   # Should resolve double-prints
   nix.package = pkgs.nixUnstable;
 
@@ -326,5 +323,10 @@
       watch-dir-enabled = true;
       trash-original-torrent-files = true;
     };
+  };
+
+  system.autoUpgrade = {
+    enable = true;
+    flake = "sourcehut:~michal_atlas/dotfiles#${hostname}";
   };
 }
