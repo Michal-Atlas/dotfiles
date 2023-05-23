@@ -11,6 +11,13 @@ in
   # The home.stateVersion option does not have a default and must be set
   home.stateVersion = "22.11";
   # Here goes the rest of your home-manager config, e.g. home.packages = [ pkgs.foo ];
+
+  home.shellAliases = {
+    e = "$EDITOR -c -nw";
+    g = "git";
+    z = "j";
+  };
+
   programs = {
     git = {
       enable = true;
