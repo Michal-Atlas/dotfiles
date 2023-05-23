@@ -86,8 +86,6 @@ in
     };
   };
   home.file = {
-    ".emacs.d/init.el".source = ./files/init.el;
-    ".emacd.d/early-init.el".source = ./files/early-init.el;
     ".guile".source = ./files/guile.scm;
     ".sbclrc".source = ./files/sbcl.lisp;
     ".config/common-lisp/source-registry.conf".source = ./files/source-registry.lisp;
