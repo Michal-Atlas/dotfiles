@@ -59,8 +59,6 @@ with pkgs; [
   mu
   neofetch
   nerdfonts
-  nix-alien
-  nix-output-monitor
   nixfmt
   nmap
   okular

@@ -13,13 +13,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-alien = {
-      url = "github:thiagokokada/nix-alien";
-      inputs = {
-        nixpkgs.follows = "nixpkgs-stable";
-        flake-utils.follows = "flake-utils";
-      };
-    };
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
   };
 
