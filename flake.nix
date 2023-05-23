@@ -88,7 +88,7 @@
           };
         };
       };
-      devShell = nixpkgs.legacyPackages.${system}.mkShell {
+      devShells.default = nixpkgs.legacyPackages.${system}.mkShell {
         nativeBuildInputs = [
           (pkgs.writeShellScriptBin "recon"
             "sudo nixos-rebuild switch --flake .#$(hostname) $@;")
