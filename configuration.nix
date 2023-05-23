@@ -256,7 +256,7 @@
     (pkgs.emacsWithPackagesFromUsePackage {
       defaultInitFile = true;
       alwaysEnsure = true;
-      config = ./Emacs.org;
+      config = ./emacs.el;
       package = pkgs.emacsPgtk;
       extraEmacsPackages = epkg: [
         epkg.use-package
