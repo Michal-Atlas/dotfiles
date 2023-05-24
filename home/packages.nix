@@ -81,6 +81,7 @@ with pkgs; [
   taisei
   texlive.combined.scheme-full
   thunderbird
+  tldr
   transmission-remote-gtk
   tree
   unzip
