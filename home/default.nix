@@ -68,20 +68,15 @@ in
         MOZ_USE_XINPUT2 = "1";
         GRIM_DEFAULT_DIR = "~/tmp";
         _JAVA_AWT_WM_NONREPARENTING = "1";
+        EDITOR = "$EDITOR -c -nw";
       };
     };
-    starship = {
-      enable = true;
-      enableZshIntegration = true;
-    };
+    starship.enable = true;
     bat = {
       enable = true;
       extraPackages = with pkgs.bat-extras; [ batdiff batman batgrep batwatch ];
     };
-    nix-index = {
-      enable = true;
-      enableZshIntegration = true;
-    };
+    nix-index.enable = true;
     exa = {
       enable = true;
       enableAliases = true;
