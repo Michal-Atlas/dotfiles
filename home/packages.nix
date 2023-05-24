@@ -8,6 +8,7 @@ with pkgs; [
   audacity
   bat
   bc
+  borgbackup
   btop
   btrfs-progs
   chicken
@@ -18,7 +19,7 @@ with pkgs; [
   direnv
   discord
   dotnet-sdk
-  elvish
+  element-desktop-wayland
   feh
   file
   fira-code
@@ -128,5 +129,5 @@ with pkgs; [
   # ])
 ++
 (with vimPlugins; [
-  # elvish-vim
+
 ])
