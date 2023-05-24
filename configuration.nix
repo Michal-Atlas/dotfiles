@@ -293,7 +293,8 @@
     services = {
       "tmp-log" = {
         script = ''
-          ${pkgs.sbcl}/bin/sbcl --load ~/cl/setup.lisp --script ${./tmp-log-script.lisp}
+          ${pkgs.sbcl}/bin/sbcl --load ~/cl/setup.lisp \
+                                --script ${./tmp-log-script.lisp}
         '';
         serviceConfig = { Type = "oneshot"; };
       };
