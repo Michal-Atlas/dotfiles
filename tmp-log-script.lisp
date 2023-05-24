@@ -46,16 +46,14 @@
 (defun backup-files (from-dir name)
   (let ((to-dir (make-tmp-path name)))
     (fad:walk-directory
-     from-dir (walker from-dir to-dir)
-     :FOLLOW-SYMLINKS nil)
+     from-dir (walker from-dir to-dir))
     (fad:walk-directory
      from-dir #'delete-empty
      :directories :depth-first
      :test
      (lambda (dir)
        (and (fad:directory-pathname-p dir)
-            (not (uiop:pathname-equal dir from-dir))))
-     :FOLLOW-SYMLINKS nil)))
+            (not (uiop:pathname-equal dir from-dir)))))))
 
 (backup-files (home/ #p"Downloads/") "down")
 (backup-files (home/ #p"tmp/") "tmp")
