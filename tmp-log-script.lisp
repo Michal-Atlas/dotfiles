@@ -43,9 +43,34 @@
   (when (null (fad:list-directory dir))
     (uiop:delete-empty-directory dir)))
 
+;; Again, Phoe thank youu
+(defun symlinkp (pathname)
+  (sb-posix:s-islnk (sb-posix:stat-mode (sb-posix:lstat pathname))))
+
+(defun negate (fn) (lambda (&rest args) (not (apply fn args))))
+
+(defun walk-directory (dir walker)
+  ;; Thanks to Phoe for basically writing this for me
+  ;; Treating of symlinks is very implementation dependent
+  ;; and cl-fad actually behaves incredibly inconsistently
+  (mapcar walker
+          (mapcan
+           #'uiop:directory*
+           (mapcar (lambda (p) (make-pathname :defaults p
+                                         :name :wild
+                                         :type :wild))
+                   (mapcan #'uiop/filesystem:directory*
+                           (uiop:while-collecting
+                            (grab)
+                            (uiop/filesystem:collect-sub*directories
+                             dir
+                             (negate #'symlinkp)
+                             (negate #'symlinkp)
+                             #'grab)))))))
+
 (defun backup-files (from-dir name)
   (let ((to-dir (make-tmp-path name)))
-    (fad:walk-directory
+    (walk-directory
      from-dir (walker from-dir to-dir))
     (fad:walk-directory
      from-dir #'delete-empty
