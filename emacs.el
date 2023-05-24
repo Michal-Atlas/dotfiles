@@ -553,6 +553,7 @@
 ;; (use-package geiser-racket)
 (use-package adaptive-wrap)
 (use-package geiser-guile)
+(use-package sly)
 (use-package slime)
 ;; (use-package emms)
 ;; (use-package evil)
