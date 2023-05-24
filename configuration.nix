@@ -10,11 +10,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
-  networking.extraHosts = ''
-    192.168.0.100 hydra
-    192.168.0.101 dagon
-  '';
-
   # Setup keyfile
   # boot.initrd.secrets = { "/crypto_keyfile.bin" = null; };
 
@@ -79,17 +74,6 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  # system.nssModules = pkgs.lib.optional true pkgs.nssmdns;
-  # system.nssDatabases.hosts = pkgs.lib.optionals true (pkgs.lib.mkMerge [
-  #   (pkgs.lib.mkBefore [ "mdns4_minimal [NOTFOUND=return]" ]) # before resolve
-  #   (pkgs.lib.mkAfter [ "mdns4" ]) # after dns
-  # ]);
-
-  services.avahi = {
-    enable = true;
-    nssmdns = true;
-  };
 
   services.zerotierone = {
     enable = true;
@@ -262,7 +246,13 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = false;
+
+  networking.networkmanager.connectionConfig."connection.mdns" = 2;
+  services = {
+    resolved.enable = true;
+    avahi.enable = true;
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

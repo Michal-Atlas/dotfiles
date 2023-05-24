@@ -7,7 +7,7 @@
   networking.hostName = "dagon";
 
   nix.buildMachines = [{
-    hostName = "hydra";
+    hostName = "hydra.local";
     system = "x86_64-linux";
     # if the builder supports building for multiple architectures, 
     # replace the previous line by, e.g.,
