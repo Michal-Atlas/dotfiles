@@ -35,6 +35,7 @@ with pkgs; [
   graphviz
   gzdoom
   guile
+  heroic
   htop
   inkscape
   isync
@@ -69,8 +70,6 @@ with pkgs; [
   pinentry-curses
   pkg-config
   racket
-  rare
-  roswell
   sbcl
   shotwell
   spotify
