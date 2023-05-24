@@ -37,7 +37,7 @@
              (local-time:timestamp- (get-time) 1 :day))
         (ensure-directories-exist dest-file)
         (rename-file file dest-file)
-        (format t "archived [~a] => [~a]~%" from-dir to-dir)))))
+        (format t "archived [~a] => [~a]~%" file dest-file)))))
 
 (defun delete-empty (dir)
   (when (null (fad:list-directory dir))
