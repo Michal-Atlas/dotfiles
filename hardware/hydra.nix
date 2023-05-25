@@ -28,11 +28,6 @@
     fsType = "zfs";
   };
 
-  fileSystems."/GAMES" = {
-    device = "rpool/games";
-    fsType = "zfs";
-  };
-
   fileSystems."/boot/efi" = {
     device = "/dev/disk/by-uuid/C9ED-A99E";
     fsType = "vfat";
