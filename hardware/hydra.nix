@@ -53,10 +53,4 @@
     lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   networking.hostId = "3ae7f95f";
-  services.zfs.autoScrub.enable = true;
-  services.zfs.trim.enable = true;
-  boot.zfs.extraPools = [ "rpool" ];
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-  boot.kernelParams = [ "nohibernate" ];
-  systemd.services.zfs-mount.enable = false;
 }

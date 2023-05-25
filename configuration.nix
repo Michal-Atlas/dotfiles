@@ -293,5 +293,18 @@
     flake = "sourcehut:~michal_atlas/dotfiles#${hostname}";
   };
 
-  services.zfs.autoSnapshot.enable = true;
+  services.zfs = {
+    autoSnapshot.enable = true;
+    # If you set this option to false and NixOS subsequently fails to boot because it cannot import the root pool, you should boot with the zfs_force=1 option as a kernel parameter
+
+    autoScrub.enable = true;
+    trim.enable = true;
+  };
+
+  boot.zfs = {
+    forceImportRoot = false;
+    extraPools = [ "rpool" ];
+  };
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  systemd.services.zfs-mount.enable = false;
 }
