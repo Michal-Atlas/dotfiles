@@ -293,40 +293,5 @@
     flake = "sourcehut:~michal_atlas/dotfiles#${hostname}";
   };
 
-  services.borgbackup.jobs = {
-    libraries = {
-      user = "michal_atlas";
-      paths = builtins.map (name: "/home/michal_atlas/${name}") [
-        "cl"
-        "Documents"
-        "Zotero"
-      ];
-      repo = "/home/michal_atlas/borg/libs";
-      prune.keep = {
-        daily = 7;
-        weekly = 3;
-        monthly = -1;
-        yearly = -1;
-      };
-      startAt = "06:00";
-      persistentTimer = true;
-      encryption.mode = "none";
-    };
-    tmp = {
-      user = "michal_atlas";
-      paths = builtins.map (name: "/home/michal_atlas/${name}") [
-        "Downloads"
-        "tmp"
-      ];
-      postCreate = ''
-        ${pkgs.coreutils}/bin/rm -r /home/michal_atlas/{tmp,Downloads}
-        ${pkgs.coreutils}/bin/mkdir /home/michal_atlas/{tmp,Downloads}
-      '';
-      repo = "/home/michal_atlas/borg/tmps";
-      prune.keep = { daily = -1; };
-      startAt = "06:00";
-      persistentTimer = true;
-      encryption.mode = "none";
-    };
-  };
+  services.zfs.autoSnapshot.enable = true;
 }
