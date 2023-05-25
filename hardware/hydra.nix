@@ -4,30 +4,42 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [
-      (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "uas" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules =
+    [ "xhci_pci" "ahci" "usb_storage" "uas" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
+  boot.supportedFilesystems = [ "ntfs" "zfs" ];
 
-  fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/8712f32a-4941-4821-b9a5-c03b1426dc21";
-      fsType = "btrfs";
-    };
+  fileSystems."/" = {
+    device = "rpool/root";
+    fsType = "zfs";
+  };
 
-  fileSystems."/boot/efi" =
-    {
-      device = "/dev/disk/by-uuid/6065-21B4";
-      fsType = "vfat";
-    };
+  fileSystems."/nix" = {
+    device = "rpool/store";
+    fsType = "zfs";
+  };
+
+  fileSystems."/home" = {
+    device = "rpool/home";
+    fsType = "zfs";
+  };
+
+  fileSystems."/GAMES" = {
+    device = "rpool/games";
+    fsType = "zfs";
+  };
+
+  fileSystems."/boot/efi" = {
+    device = "/dev/disk/by-uuid/C9ED-A99E";
+    fsType = "vfat";
+  };
 
   swapDevices =
-    [{ device = "/dev/disk/by-uuid/a5651b6e-bde2-4a69-ad0a-5857abd8448e"; }];
+    [{ device = "/dev/disk/by-uuid/1a20f616-635b-46af-bf07-ff09cf461504"; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -37,5 +49,14 @@
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode =
+    lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  networking.hostId = "3ae7f95f";
+  services.zfs.autoScrub.enable = true;
+  services.zfs.trim.enable = true;
+  boot.zfs.extraPools = [ "rpool" ];
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  boot.kernelParams = [ "nohibernate" ];
+  systemd.services.zfs-mount.enable = false;
 }

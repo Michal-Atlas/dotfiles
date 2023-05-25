@@ -8,13 +8,4 @@
   nix.settings.trusted-users = [ "michal_atlas" ];
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" ];
-
-  fileSystems."/GAMES" = {
-    device = "/dev/disk/by-label/Games-Z";
-    fsType = "ntfs-3g";
-    options = [
-      "uid=michal_atlas"
-      "gid=users"
-    ];
-  };
 }
