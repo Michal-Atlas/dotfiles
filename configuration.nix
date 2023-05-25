@@ -308,4 +308,30 @@
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   # This should be okay to have on
   # systemd.services.zfs-mount.enable = false;
+
+  systemd.user = {
+    timers = {
+      "tmpclear" = {
+        wantedBy = [ "timers.target" ];
+        timerConfig = {
+          OnCalendar = "06:00:00";
+          Unit = "tmpclear.service";
+        };
+      };
+    };
+
+    services = {
+      "tmpclear" = {
+        script = ''
+          ${pkgs.coreutils}/bin/find \
+                                     ~/tmp/ \
+                                     ~/Downloads/ \
+                                     -mindepth 1 \
+                                     -mtime +2 \
+                                     -delete;
+        '';
+        serviceConfig = { Type = "oneshot"; };
+      };
+    };
+  };
 }
