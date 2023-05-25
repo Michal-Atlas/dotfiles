@@ -18,6 +18,6 @@
   }
   {
     name = "Syncthing";
-    url = "http://localhost:8384"
-      }
-      ]
+    url = "http://localhost:8384";
+  }
+]
