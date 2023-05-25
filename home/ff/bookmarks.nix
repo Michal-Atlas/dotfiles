@@ -16,4 +16,8 @@
     name = "Home Manager Configuration Options";
     url = "https://nix-community.github.io/home-manager/options.html";
   }
-]
+  {
+    name = "Syncthing";
+    url = "http://localhost:8384"
+      }
+      ]
