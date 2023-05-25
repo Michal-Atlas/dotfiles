@@ -306,5 +306,6 @@
     extraPools = [ "rpool" ];
   };
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-  systemd.services.zfs-mount.enable = false;
+  # This should be okay to have on
+  # systemd.services.zfs-mount.enable = false;
 }
