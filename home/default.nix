@@ -181,6 +181,7 @@ in
         "org.keepassxc.KeePassXC.desktop"
         "fi.skyjake.Lagrange.desktop"
         "zotero.desktop"
+        "org.gnome.Nautilus.desktop"
       ];
     };
     "org/gnome/mutter" = {
