@@ -248,10 +248,10 @@
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
 
-  networking.networkmanager.connectionConfig."connection.mdns" = 2;
   services = {
     resolved.enable = true;
     avahi.enable = true;
+    avahi.ipv6 = false;
   };
 
   # This value determines the NixOS release from which the default
