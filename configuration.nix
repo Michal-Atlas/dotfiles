@@ -294,7 +294,7 @@
   };
 
   services.zfs = {
-    autoSnapshot.enable = true;
+    autoSnapshot = { enable = true; flags = "-k -p -u"; };
     # If you set this option to false and NixOS subsequently fails to boot because it cannot import the root pool, you should boot with the zfs_force=1 option as a kernel parameter
 
     autoScrub.enable = true;
