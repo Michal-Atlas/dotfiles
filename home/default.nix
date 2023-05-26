@@ -132,6 +132,7 @@ in
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/"
       ];
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" =
@@ -151,6 +152,12 @@ in
         binding = "<Super>f";
         command = "firefox";
         name = "BROWSER";
+      };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3" =
+      {
+        binding = "<Super>n";
+        command = "nautilus";
+        name = "FILES";
       };
     "org/gnome/desktop/background" = {
       picture-uri = builtins.fetchurl {
