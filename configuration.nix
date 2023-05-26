@@ -94,14 +94,14 @@
     relay.enable = false;
     settings = {
       devices = {
-        "Nox" = {
+        "nox" = {
           id = "JBRYVQP-2GYSCCK-2M37T6I-KSETJHC-UY7ZUQ5-GW56FMG-LDRDFQC-YUH5EAY";
         };
-        "Hydra" = {
+        "hydra" = {
           id = "4F77KY2-XKLI7OD-J5GX6RH-VLFWIZA-M45YSV2-C2PNRGE-4GCE5Y5-ZLSTHQP";
         };
-        "Dagon" = {
-          id = "X6JNKQ7-QVHFY3K-M2SUZBO-VFFOG7I-P336TUB-KXREZKW-NI5AIWL-VMMRIAW";
+        "dagon" = {
+          id = "UOVQXCK-LGQ7OA5-YQUBF67-QHTENZK-KEEGPET-PLZZQFZ-BPSZRCJ-LVEBTAD";
         };
       };
       folders = with builtins;
@@ -113,7 +113,7 @@
                   name = "${name}";
                   value = {
                     path = "/home/michal_atlas/${name}";
-                    devices = [ "Nox" "Hydra" "Dagon" ];
+                    devices = [ "nox" "hydra" "dagon" ];
                     versioning.type = "staggered";
                   };
                 })
@@ -124,7 +124,7 @@
                   name = "${name}";
                   value = {
                     path = "/home/michal_atlas/${name}";
-                    devices = [ "Nox" "Hydra" "Dagon" ];
+                    devices = [ "nox" "hydra" "dagon" ];
                   };
                 })
               [
