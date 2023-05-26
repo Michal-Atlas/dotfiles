@@ -333,4 +333,19 @@
       };
     };
   };
+
+  fileSystems."/" = {
+    device = "rpool/root";
+    fsType = "zfs";
+  };
+
+  fileSystems."/nix" = {
+    device = "rpool/store";
+    fsType = "zfs";
+  };
+
+  fileSystems."/home" = {
+    device = "rpool/home";
+    fsType = "zfs";
+  };
 }

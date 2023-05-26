@@ -13,21 +13,6 @@
   boot.extraModulePackages = [ ];
   boot.supportedFilesystems = [ "ntfs" "zfs" ];
 
-  fileSystems."/" = {
-    device = "rpool/root";
-    fsType = "zfs";
-  };
-
-  fileSystems."/nix" = {
-    device = "rpool/store";
-    fsType = "zfs";
-  };
-
-  fileSystems."/home" = {
-    device = "rpool/home";
-    fsType = "zfs";
-  };
-
   fileSystems."/boot/efi" = {
     device = "/dev/disk/by-uuid/C9ED-A99E";
     fsType = "vfat";

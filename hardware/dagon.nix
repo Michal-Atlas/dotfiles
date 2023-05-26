@@ -14,25 +14,6 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-
-  fileSystems."/" =
-    {
-      device = "rpool/root";
-      fsType = "zfs";
-    };
-
-  fileSystems."/nix" =
-    {
-      device = "rpool/store";
-      fsType = "zfs";
-    };
-
-  fileSystems."/home" =
-    {
-      device = "rpool/home";
-      fsType = "zfs";
-    };
-
   fileSystems."/boot/efi" =
     {
       device = "/dev/disk/by-uuid/193E-62CC";
