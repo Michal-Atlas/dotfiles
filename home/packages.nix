@@ -62,8 +62,7 @@ with pkgs; [
   nixfmt
   nmap
   okular
-  openmw
-  #openmw-tes3mp.override
+  openmw-tes3mp
   pandoc
   patchelf
   picard

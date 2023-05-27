@@ -156,11 +156,19 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.groups = { tes3mp = { }; };
   users.users.michal_atlas = {
     isNormalUser = true;
     shell = pkgs.zsh;
     description = "Michal Atlas";
-    extraGroups = [ "networkmanager" "wheel" "libvirt" "kvm" "transmission" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "libvirt"
+      "kvm"
+      "transmission"
+      "tes3mp"
+    ];
     openssh.authorizedKeys.keys = with builtins;
       (map (f: readFile ./keys/${f}) (attrNames (readDir ./keys)));
   };
