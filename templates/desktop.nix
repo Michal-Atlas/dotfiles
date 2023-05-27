@@ -2,8 +2,8 @@
   # Should resolve double-prints
   nix.package = pkgs.nixUnstable;
 
-  imports = [ ./cachix.nix ];
-  nix.settings.trusted-users = [ "root" "michal_atlas" ];
+  imports = [ ../cachix.nix ];
+  nix.settings.trusted-users = [ "root" "@wheel" ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -62,8 +62,10 @@
   };
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver = {
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+  };
 
   # Configure keymap in X11
   services.xserver = {
@@ -156,7 +158,6 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.groups = { tes3mp = { }; };
   users.users.michal_atlas = {
     isNormalUser = true;
     shell = pkgs.zsh;
@@ -167,10 +168,9 @@
       "libvirt"
       "kvm"
       "transmission"
-      "tes3mp"
     ];
     openssh.authorizedKeys.keys = with builtins;
-      (map (f: readFile ./keys/${f}) (attrNames (readDir ./keys)));
+      (map (f: readFile ../keys/${f}) (attrNames (readDir ../keys)));
   };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -218,7 +218,7 @@
   nixpkgs.overlays = with self.inputs; [
     nur.overlay
     emacs-overlay.overlays.default
-    (import ./atlas-emacs-overlay.nix)
+    (import ../overlays/atlas-emacs.nix)
   ];
 
   nixpkgs.config.permittedInsecurePackages = [

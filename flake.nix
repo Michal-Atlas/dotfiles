@@ -26,39 +26,47 @@
     , pre-commit-hooks
     , ...
     }@attrs:
-    let system = "x86_64-linux";
+    let
+      system = "x86_64-linux";
+      desktop-modules = [
+        home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.michal_atlas = import ./home;
+            backupFileExtension = "nix-home.bkp";
+          };
+        }
+        agenix.nixosModules.default
+        nur.nixosModules.nur
+      ];
 
-    in {
-      nixosConfigurations = builtins.foldl'
-        (acc: hostname:
-          {
-            ${hostname} = nixpkgs.lib.nixosSystem {
-              inherit system;
-              specialArgs = attrs // {
-                inherit hostname;
-              };
+    in
+    rec {
+      images.rpi2 = nixosConfigurations.rpi2.config.system.build.sdImage;
+      nixosConfigurations =
+        {
+          rpi2 =
+            nixpkgs.lib.nixosSystem {
               modules = [
-                ./configuration.nix
-                ./machines/${hostname}.nix
-                ./hardware/${hostname}.nix
-                home-manager.nixosModules.home-manager
-                {
-                  home-manager = {
-                    useGlobalPkgs = true;
-                    useUserPackages = true;
-                    users.michal_atlas = import ./home;
-                    backupFileExtension = "nix-home.bkp";
-                  };
-                }
-                agenix.nixosModules.default
-                nur.nixosModules.nur
+                "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-raspberrypi.nix"
+                ./machines/rpi.nix
               ];
             };
-          } // acc)
-        { }
-        (with builtins;
-        (map (f: head (match "(.*).nix" f))
-          (attrNames (readDir ./machines))));
+          hydra = nixpkgs.lib.nixosSystem {
+            specialArgs = attrs // {
+              hostname = "hydra";
+            };
+            modules = [ ./machines/hydra.nix ] ++ desktop-modules;
+          };
+          dagon = nixpkgs.lib.nixosSystem {
+            specialArgs = attrs // {
+              hostname = "dagon";
+            };
+            modules = [ ./machines/dagon.nix ] ++ desktop-modules;
+          };
+        };
     } // (flake-utils.lib.eachDefaultSystem (system:
     let pkgs = (import nixpkgs) { inherit system; }; in {
       checks = {

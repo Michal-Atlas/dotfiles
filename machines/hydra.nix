@@ -4,22 +4,39 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  networking.hostName = "hydra";
-  nix.settings.trusted-users = [ "michal_atlas" ];
-  boot.initrd.kernelModules = [ "amdgpu" ];
-  boot.kernelModules = [ "kvm-amd" ];
+  imports = [
+    ../templates/desktop.nix
+    ../templates/morrowind-server.nix
+    (modulesPath + "/installer/scan/not-detected.nix")
+  ];
 
-  systemd.services."tes3mp-server" = {
-    wants = [ "network.target" ];
-    after = [ "syslog.target" "network-online.target" ];
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Group = "tes3mp";
-    };
-    environment = {
-      XDG_CONFIG_HOME = "/rpool/tes3mp/config";
-      XDG_DATA_HOME = "/rpool/tes3mp/data";
-    };
-    script = "${pkgs.openmw-tes3mp}/bin/tes3mp-server";
+  boot.initrd.availableKernelModules =
+    [ "xhci_pci" "ahci" "usb_storage" "uas" "usbhid" "sd_mod" ];
+  boot.initrd.kernelModules = [ "dm-snapshot" ];
+  boot.kernelModules = [ "kvm-amd" "amdgpu" ];
+  boot.extraModulePackages = [ ];
+  boot.supportedFilesystems = [ "ntfs" "zfs" ];
+
+  fileSystems."/boot/efi" = {
+    device = "/dev/disk/by-uuid/C9ED-A99E";
+    fsType = "vfat";
   };
+
+  swapDevices =
+    [{ device = "/dev/disk/by-uuid/1a20f616-635b-46af-bf07-ff09cf461504"; }];
+
+  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
+  # (the default) this is the recommended approach. When using systemd-networkd it's
+  # still possible to use this option, but it's recommended to use it in conjunction
+  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
+  networking.useDHCP = lib.mkDefault true;
+  # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
+
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.amd.updateMicrocode =
+    lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  networking.hostId = "3ae7f95f";
+
+  networking.hostName = "hydra";
 }

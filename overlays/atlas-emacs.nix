@@ -3,7 +3,7 @@ self: super: {
     (super.emacsWithPackagesFromUsePackage {
       defaultInitFile = true;
       alwaysEnsure = true;
-      config = ./emacs.el;
+      config = ../home/files/emacs.el;
       package = super.emacsPgtk;
       extraEmacsPackages =
         epkg: [ epkg.auctex ];
