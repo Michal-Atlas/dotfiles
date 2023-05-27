@@ -68,6 +68,7 @@ with pkgs; [
   picard
   pinentry-curses
   pkg-config
+  qt5.qtbase
   racket
   sbcl
   shotwell
