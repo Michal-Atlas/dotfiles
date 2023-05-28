@@ -2,7 +2,10 @@
   # Should resolve double-prints
   nix.package = pkgs.nixUnstable;
 
-  imports = [ ../cachix.nix ];
+  imports = [
+    ../cachix.nix
+    ./steam.nix
+  ];
   nix.settings.trusted-users = [ "root" "@wheel" ];
 
   # Bootloader.
