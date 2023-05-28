@@ -223,6 +223,7 @@
     nur.overlay
     emacs-overlay.overlays.default
     (import ../overlays/atlas-emacs.nix)
+    atlas-overlay.overlays.default
   ];
 
   nixpkgs.config.permittedInsecurePackages = [

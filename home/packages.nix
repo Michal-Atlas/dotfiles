@@ -57,6 +57,7 @@ with pkgs; [
   mosh
   mpv
   mu
+  mystic
   neofetch
   nerdfonts
   nixfmt

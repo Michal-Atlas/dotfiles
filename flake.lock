@@ -20,6 +20,26 @@
         "type": "github"
       }
     },
+    "atlas-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1685317095,
+        "narHash": "sha256-at6plGHv3EMLaLwWTX8FT/Fj2YYbmE5zH7QH5Rk8xpY=",
+        "owner": "~michal_atlas",
+        "repo": "nur-packages",
+        "rev": "c60828b06194fd094db62d9af56a17fda113721d",
+        "type": "sourcehut"
+      },
+      "original": {
+        "owner": "~michal_atlas",
+        "repo": "nur-packages",
+        "type": "sourcehut"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -307,6 +327,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "atlas-overlay": "atlas-overlay",
         "emacs-overlay": "emacs-overlay",
         "flake-utils": "flake-utils_2",
         "home-manager": "home-manager_2",
