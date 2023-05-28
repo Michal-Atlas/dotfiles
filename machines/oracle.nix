@@ -22,6 +22,5 @@
     fsType = "ext4";
   };
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub.devices = [ "/dev/disk/by-label/ESP" ];
 }
