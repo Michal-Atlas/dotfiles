@@ -5,6 +5,7 @@
   imports = [
     ../cachix.nix
     ./steam.nix
+    ./yggdrasil.nix
   ];
   nix.settings.trusted-users = [ "root" "@wheel" ];
 
