@@ -73,6 +73,7 @@ with pkgs; [
   sbcl
   shotwell
   spotify
+  steam
   steam-run
   superTux
   superTuxKart
