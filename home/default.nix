@@ -108,7 +108,6 @@ in
   home.packages =
     [
       pkgs.atlas-emacs
-      (import ./pkgs/mystic.nix pkgs)
     ] ++ import ./packages.nix pkgs;
 
   dconf.settings = {
