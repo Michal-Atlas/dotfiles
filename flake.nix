@@ -45,30 +45,28 @@
     in
     rec {
       images.rpi2 = nixosConfigurations.rpi2.config.system.build.sdImage;
-      nixosConfigurations =
-        {
-          rpi2 =
-            nixpkgs.lib.nixosSystem {
-              modules = [
-                "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-raspberrypi.nix"
-                ./machines/rpi.nix
-              ];
-            };
-          hydra = nixpkgs.lib.nixosSystem {
-            specialArgs = attrs // {
-              hostname = "hydra";
-            };
-            modules = [ ./machines/hydra.nix ] ++ desktop-modules;
-          };
-          dagon = nixpkgs.lib.nixosSystem {
-            specialArgs = attrs // {
-              hostname = "dagon";
-            };
-            modules = [ ./machines/dagon.nix ] ++ desktop-modules;
-          };
+      nixosConfigurations = {
+        rpi2 = nixpkgs.lib.nixosSystem {
+          modules = [
+            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-raspberrypi.nix"
+            ./machines/rpi.nix
+          ];
         };
+        oracle = nixpkgs.lib.nixosSystem {
+          modules = [ ./machines/oracle.nix ];
+        };
+        hydra = nixpkgs.lib.nixosSystem {
+          specialArgs = attrs // { hostname = "hydra"; };
+          modules = [ ./machines/hydra.nix ] ++ desktop-modules;
+        };
+        dagon = nixpkgs.lib.nixosSystem {
+          specialArgs = attrs // { hostname = "dagon"; };
+          modules = [ ./machines/dagon.nix ] ++ desktop-modules;
+        };
+      };
     } // (flake-utils.lib.eachDefaultSystem (system:
-    let pkgs = (import nixpkgs) { inherit system; }; in {
+    let pkgs = (import nixpkgs) { inherit system; };
+    in {
       checks = {
         pre-commit-check = pre-commit-hooks.lib.${system}.run {
           src = ./.;
@@ -81,11 +79,13 @@
             elisp-autofmt = {
               enable = true;
               name = "Elisp Autofmt";
-              entry = "${(pkgs.writeShellScriptBin "autofmt.sh" ''
-                ${
-                  (pkgs.emacsPackagesFor pkgs.emacs).emacsWithPackages
-                  (epkgs: with epkgs; [ elisp-autofmt ])
-                }/bin/emacs "$1" --batch --eval "(require 'elisp-autofmt)" -f elisp-autofmt-buffer -f save-buffer --kill'')}/bin/autofmt.sh";
+              entry = "${
+                    (pkgs.writeShellScriptBin "autofmt.sh" ''
+                      ${
+                        (pkgs.emacsPackagesFor pkgs.emacs).emacsWithPackages
+                        (epkgs: with epkgs; [ elisp-autofmt ])
+                      }/bin/emacs "$1" --batch --eval "(require 'elisp-autofmt)" -f elisp-autofmt-buffer -f save-buffer --kill'')
+                  }/bin/autofmt.sh";
               files = "\\.(el)$";
             };
           };
@@ -95,11 +95,9 @@
         nativeBuildInputs = [
           (pkgs.writeShellScriptBin "recon"
             "sudo nixos-rebuild switch --flake .#$(hostname) $@;")
-          (pkgs.writeShellScriptBin "check"
-            "nix flake check")
+          (pkgs.writeShellScriptBin "check" "nix flake check")
         ];
         inherit (self.checks.${system}.pre-commit-check) shellHook;
       };
-    }
-    ));
+    }));
 }
