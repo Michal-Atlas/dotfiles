@@ -5,6 +5,7 @@
   imports = [
     ../cachix.nix
     ./yggdrasil.nix
+    ./atlasnet-hosts.nix
   ];
   nix.settings.trusted-users = [ "root" "@wheel" ];
 
