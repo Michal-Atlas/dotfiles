@@ -173,8 +173,7 @@
       "kvm"
       "transmission"
     ];
-    openssh.authorizedKeys.keys = with builtins;
-      (map (f: readFile ../keys/${f}) (attrNames (readDir ../keys)));
+    openssh.authorizedKeys.keyFiles = with builtins;(attrNames (readDir ../keys));
   };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
