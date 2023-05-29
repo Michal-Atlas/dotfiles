@@ -358,4 +358,9 @@
     device = "rpool/home";
     fsType = "zfs";
   };
+
+  networking.nameservers = [
+    "193.17.47.1"
+    "185.43.135.1"
+  ];
 }
