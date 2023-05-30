@@ -68,6 +68,9 @@
           specialArgs = attrs // { hostname = "dagon"; };
           modules = [ ./machines/dagon.nix ] ++ desktop-modules;
         };
+        herd = nixpkgs.lib.nixosSystem {
+          modules = [ ./machines/herd.nix ];
+        };
       };
     } // (flake-utils.lib.eachDefaultSystem (system:
     let pkgs = (import nixpkgs) { inherit system; };
