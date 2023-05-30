@@ -40,4 +40,9 @@
   networking.hostId = "3ae7f95f";
 
   networking.hostName = "hydra";
+
+  system.autoUpgrade = {
+    flags = [ "--update-input" "nixpkgs" "--commit-lock-file" ];
+    flake = "/home/michal_atlas/cl/dotfiles";
+  };
 }

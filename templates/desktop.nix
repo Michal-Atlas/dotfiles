@@ -1,4 +1,4 @@
-{ self, config, pkgs, agenix, hostname, ... }: {
+{ self, config, pkgs, agenix, ... }: {
   # Should resolve double-prints
   nix.package = pkgs.nixUnstable;
 
@@ -245,7 +245,7 @@
 
   system.autoUpgrade = {
     enable = true;
-    flake = "sourcehut:~michal_atlas/dotfiles#${hostname}";
+    allowReboot = true;
   };
 
   services.zfs = {

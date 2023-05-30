@@ -3,7 +3,7 @@
   description = "Atlas' NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOs/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOs/nixpkgs/nixos-23.05";
     flake-utils.url = "github:numtide/flake-utils";
     agenix.url = "github:ryantm/agenix";
     emacs-overlay.url =
@@ -61,11 +61,11 @@
           modules = [ ./machines/oracle.nix ];
         };
         hydra = nixpkgs.lib.nixosSystem {
-          specialArgs = attrs // { hostname = "hydra"; };
+          specialArgs = attrs;
           modules = [ ./machines/hydra.nix ] ++ desktop-modules;
         };
         dagon = nixpkgs.lib.nixosSystem {
-          specialArgs = attrs // { hostname = "dagon"; };
+          specialArgs = attrs;
           modules = [ ./machines/dagon.nix ] ++ desktop-modules;
         };
         herd = nixpkgs.lib.nixosSystem {
