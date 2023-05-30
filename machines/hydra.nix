@@ -43,6 +43,6 @@
 
   system.autoUpgrade = {
     flags = [ "--update-input" "nixpkgs" "--commit-lock-file" ];
-    flake = "/home/michal_atlas/cl/dotfiles";
+    flake = "/home/michal_atlas/cl/dotfiles#hydra";
   };
 }

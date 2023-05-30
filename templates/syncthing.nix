@@ -34,13 +34,10 @@
                   "nox"
                   "hydra"
                   "dagon"
-
-                  "Sync"
-                  "Zotero"
                 ];
               };
             })
-          [ "cl" "Documents" ])
+          [ "cl" "Documents" "Sync" "Zotero" ])
       );
   };
 }
