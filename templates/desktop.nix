@@ -278,7 +278,7 @@
     services = {
       "tmpclear" = {
         script = ''
-          ${pkgs.coreutils}/bin/find \
+          ${pkgs.findutils}/bin/find \
                                      ~/tmp/ \
                                      ~/Downloads/ \
                                      -mindepth 1 \
