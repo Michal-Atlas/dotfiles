@@ -1,7 +1,5 @@
 pkgs:
 with pkgs; [
-  # clang
-  # mathematica
   acl2-minimal
   arandr
   atlas-emacs
@@ -12,9 +10,9 @@ with pkgs; [
   btop
   btrfs-progs
   carp
+  ccls
   chicken
   cifs-utils
-  ccls
   cmake
   cryptsetup
   direnv
@@ -36,26 +34,21 @@ with pkgs; [
   gnupg
   gparted
   graphviz
-  gzdoom
   guile
+  gzdoom
   heroic
   htop
   inkscape
   isync
   jetbrains-mono
-  # jetbrains.clion
-  # jetbrains.datagrip
-  # jetbrains.rider
   keepassxc
   kobodeluxe
   lagrange
   legendary-gl
-  libreoffice
   libgccjit
+  libreoffice
   libtool
   maxima
-  wxmaxima
-  ocamlPackages.merlin
   meson
   minecraft
   mosh
@@ -67,6 +60,7 @@ with pkgs; [
   nixfmt
   nmap
   ocaml
+  ocamlPackages.merlin
   okular
   openmw-tes3mp
   pandoc
@@ -100,6 +94,7 @@ with pkgs; [
   wesnoth
   wget
   wineWowPackages.stable
+  wxmaxima
   xclip
   xdot
   xonotic
@@ -107,32 +102,22 @@ with pkgs; [
   yt-dlp
   zotero
 ] ++ (with gnomeExtensions; [
-  appindicator
-  night-theme-switcher
   all-ip-addresses
+  appindicator
   awesome-tiles
   browser-tabs
-  espresso
   bubblemail
   color-picker
   containers
   cpudots
   disk-usage
+  espresso
   gnome-clipboard
+  night-theme-switcher
 ]) ++
 (with python310Packages; [
   dbus-python
   ipython
-  python
   pygments
-])
-  # ++
-  # (with lispPackages; [
-  #   defstar
-  #   serapeum
-  #   alexandria
-  # ])
-++
-(with vimPlugins; [
-
+  python
 ])
