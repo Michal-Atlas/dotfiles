@@ -52,6 +52,7 @@ with pkgs; [
   libtool
   maxima
   wxmaxima
+  ocamlPackages.merlin
   meson
   minecraft
   mosh
@@ -62,6 +63,7 @@ with pkgs; [
   nerdfonts
   nixfmt
   nmap
+  ocaml
   okular
   openmw-tes3mp
   pandoc

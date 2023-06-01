@@ -612,3 +612,4 @@
 (use-package password-generator)
 (use-package stumpwm-mode)
 (use-package nix-mode)
+(use-package tuareg)
