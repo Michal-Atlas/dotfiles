@@ -114,10 +114,11 @@ with pkgs; [
   espresso
   gnome-clipboard
   night-theme-switcher
-]) ++
-(with python310Packages; [
-  dbus-python
-  ipython
-  pygments
-  python
-])
+]) ++ [
+  (pkgs.python3.withPackages (ps: with ps; [
+    dbus-python
+    ipython
+    pygments
+    python
+  ]))
+]
