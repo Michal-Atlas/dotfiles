@@ -11,6 +11,7 @@ with pkgs; [
   borgbackup
   btop
   btrfs-progs
+  carp
   chicken
   cifs-utils
   ccls
@@ -28,6 +29,8 @@ with pkgs; [
   gallery-dl
   gcc
   gdb
+  gerbil
+  ghc
   gimp
   gnumake
   gnupg
