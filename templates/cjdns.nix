@@ -1,4 +1,4 @@
-{ ... }: {
+_: {
   services.cjdns = {
     enable = true;
     addExtraHosts = true;

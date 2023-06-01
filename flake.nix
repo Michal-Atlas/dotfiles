@@ -77,9 +77,9 @@
           src = ./.;
           hooks = {
             nixpkgs-fmt.enable = true;
-            # statix.enable = true;
-            # shellcheck.enable = true;
-            # shfmt.enable = true;
+            statix.enable = true;
+            shellcheck.enable = true;
+            shfmt.enable = true;
 
             elisp-autofmt = {
               enable = true;
@@ -101,6 +101,7 @@
           (pkgs.writeShellScriptBin "recon"
             "sudo nixos-rebuild switch --flake .#$(hostname) $@;")
           (pkgs.writeShellScriptBin "check" "nix flake check")
+          (pkgs.writeShellScriptBin "build" "nixos-rebuild build --flake .#$(hostname)")
         ];
         inherit (self.checks.${system}.pre-commit-check) shellHook;
       };
