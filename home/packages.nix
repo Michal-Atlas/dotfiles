@@ -1,5 +1,6 @@
 pkgs:
-with pkgs; [
+with pkgs;
+[
   acl2-minimal
   arandr
   atlas-emacs
@@ -70,7 +71,6 @@ with pkgs; [
   pkg-config
   qt5.qtbase
   racket
-  sbcl
   shotwell
   spotify
   steam
@@ -115,10 +115,38 @@ with pkgs; [
   gnome-clipboard
   night-theme-switcher
 ]) ++ [
-  (pkgs.python3.withPackages (ps: with ps; [
-    dbus-python
-    ipython
-    pygments
-    python
-  ]))
+  (pkgs.python3.withPackages
+    (ps: with ps; [ dbus-python ipython pygments python ]))
+  (pkgs.sbcl.withPackages (ps:
+    with ps; [
+      alexandria
+      linedit
+      mcclim
+      serapeum
+      eclector
+      alexandria
+      yacc
+      cl-autowrap
+      optima
+      lparallel
+      # coalton
+      coleslaw
+      parser-combinators
+      collectors
+      cl-strings # virality
+      harmony # cl-raylib
+      unix-opts
+      cffi
+      series
+      # trial
+      trees
+      sycamore
+      parenscript
+      terminfo # terminal-size
+      # terminal-keypress
+      tar
+      tailrec
+      screamer
+      s-xml
+    ]))
 ]
