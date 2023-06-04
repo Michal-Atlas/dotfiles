@@ -18,6 +18,7 @@
       url = "sourcehut:~michal_atlas/nur-packages";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stevenblackhosts.url = "github:StevenBlack/hosts";
   };
 
   outputs =
@@ -29,6 +30,7 @@
     , nur
     , atlas-overlay
     , pre-commit-hooks
+    , stevenblackhosts
     , ...
     }@attrs:
     let
@@ -45,6 +47,7 @@
         }
         agenix.nixosModules.default
         nur.nixosModules.nur
+        stevenblackhosts.nixosModule
       ];
 
     in
