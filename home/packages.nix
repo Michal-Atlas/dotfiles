@@ -119,34 +119,38 @@ with pkgs;
     (ps: with ps; [ dbus-python ipython pygments python ]))
   (pkgs.sbcl.withPackages (ps:
     with ps; [
-      alexandria
-      linedit
-      mcclim
-      serapeum
-      eclector
-      alexandria
-      yacc
-      cl-autowrap
-      optima
-      lparallel
+      # cl-raylib
       # coalton
-      coleslaw
-      parser-combinators
-      collectors
-      cl-strings # virality
-      harmony # cl-raylib
-      unix-opts
-      cffi
-      series
-      # trial
-      trees
-      sycamore
-      parenscript
-      terminfo # terminal-size
       # terminal-keypress
-      tar
-      tailrec
-      screamer
+      # terminal-size
+      # trial
+      # virality
+      alexandria
+      cffi
+      cl-autowrap
+      cl-fuse-meta-fs
+      cl-strings
+      coleslaw
+      collectors
+      eclector
+      harmony
+      linedit
+      lparallel
+      mcclim
+      mcclim-layouts
+      optima
+      parenscript
+      parser-combinators
       s-xml
+      screamer
+      serapeum
+      series
+      sycamore
+      tailrec
+      tar
+      terminfo
+      trees
+      unix-opts
+      yacc
     ]))
 ]
