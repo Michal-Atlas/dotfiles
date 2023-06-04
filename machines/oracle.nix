@@ -1,21 +1,21 @@
-{ ... }:
+_:
 {
-  imports = [ ../templates/morrowind-server.nix ];
   system.stateVersion = "23.05";
   networking.hostName = "oracle";
   nixpkgs.hostPlatform = "x86_64-linux";
-  users.users."root".initialPassword = "foobar270";
+  users.mutableUsers = false;
+  users.users."michal_atlas" = { group = "users"; extraGroups = [ "wheel" ]; password = "foobar270"; isNormalUser = true; };
   boot.growPartition = true;
   services = {
     openssh.enable = true;
-    # resolved = {
-    #   enable = true;
-    #   llmnr = "false";
-    # }; };
+    resolved = {
+      enable = true;
+      #   llmnr = "false";
+    };
   };
   networking = {
     firewall.enable = false;
-    # networkmanager.enable = true;       
+    networkmanager.enable = true;
   };
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";
