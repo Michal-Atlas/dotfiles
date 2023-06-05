@@ -79,6 +79,7 @@ with pkgs;
   superTuxKart
   swiProlog
   taisei
+  telegram-desktop
   texlive.combined.scheme-full
   thunderbird
   tldr
