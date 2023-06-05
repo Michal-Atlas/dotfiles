@@ -1,7 +1,7 @@
 _: {
   networking.hosts =
     let
-      blocklinks = [ "reddit.com" "www.youtube.com" "m.youtube.com" "youtu.be" ];
+      blocklinks = [ "reddit.com" "www.youtube.com" "m.youtube.com" "youtu.be" "deviantart.com" ];
     in
     {
       "200:aa4d:e2e3:5360:2ee8:7b99:984f:155f" = [ "hydra" ];
