@@ -120,12 +120,6 @@ with pkgs;
     (ps: with ps; [ dbus-python ipython pygments python ]))
   (pkgs.sbcl.withPackages (ps:
     with ps; [
-      # cl-raylib
-      # coalton
-      # terminal-keypress
-      # terminal-size
-      # trial
-      # virality
       alexandria
       cffi
       cl-autowrap
