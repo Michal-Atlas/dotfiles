@@ -118,6 +118,7 @@
       "libvirt"
       "kvm"
       "transmission"
+      "plugdev"
     ];
     openssh.authorizedKeys.keys = with builtins;
       (map (f: readFile ../keys/${f}) (attrNames (readDir ../keys)));

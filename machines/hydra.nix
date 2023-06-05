@@ -40,4 +40,9 @@
   networking.hostId = "3ae7f95f";
 
   networking.hostName = "hydra";
+
+
+  services.udev.extraRules = ''
+    SUBSYSTEM=="usb", ATTR{idVendor}=="2833", ATTR{idProduct}=="0186", MODE="0666", GROUP="plugdev"
+  '';
 }
