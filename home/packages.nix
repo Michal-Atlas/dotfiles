@@ -10,6 +10,7 @@ with pkgs;
   borgbackup
   btop
   btrfs-progs
+  caprine-bin
   carp
   ccls
   chicken
