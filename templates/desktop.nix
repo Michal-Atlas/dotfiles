@@ -246,6 +246,7 @@
 
   system.autoUpgrade = {
     enable = true;
+    flake = "sourcehut:~michal_atlas/dotfiles#dagon";
   };
 
   services.zfs = {

@@ -50,6 +50,4 @@
   nix.distributedBuilds = true;
   # optional, useful when the builder has a faster internet connection than yours
   nix.extraOptions = "	builders-use-substitutes = true\n";
-
-  system.autoUpgrade.flake = "sourcehut:~michal_atlas/dotfiles#dagon";
 }
