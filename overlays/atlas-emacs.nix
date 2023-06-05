@@ -4,7 +4,7 @@ self: super: {
       defaultInitFile = true;
       alwaysEnsure = true;
       config = ../home/files/emacs.el;
-      package = super.emacsPgtk;
+      package = super.emacs-pgtk;
       extraEmacsPackages =
         epkg: [ epkg.auctex ];
     };
