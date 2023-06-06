@@ -86,8 +86,6 @@ in
   };
   home.file = {
     ".guile".source = ./files/guile.scm;
-    ".sbclrc".source = ./files/sbcl.lisp;
-    ".config/common-lisp/source-registry.conf".source = ./files/source-registry.lisp;
     ".face".source = builtins.fetchurl {
       url = "https://michal_atlas.srht.site/posts/mlxan/carcass-mountain/portraits/weeping-priest.jpeg";
       sha256 = "sha256:05szymcb5745xm8bcj1d8gyiyf1y5m9x6nijyghqz949haqwgjfl";
