@@ -45,6 +45,7 @@ with pkgs;
   jetbrains-mono
   keepassxc
   kobodeluxe
+  krita
   lagrange
   legendary-gl
   libgccjit
