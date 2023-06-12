@@ -1,7 +1,15 @@
 _: {
   networking.hosts =
     let
-      blocklinks = [ "reddit.com" "www.youtube.com" "m.youtube.com" "youtu.be" "deviantart.com" ];
+      blocklinks = [
+        "reddit.com"
+        "www.reddit.com"
+        "www.youtube.com"
+        "m.youtube.com"
+        "youtu.be"
+        "www.deviantart.com"
+        "www.tiktok.com"
+      ];
     in
     {
       "200:aa4d:e2e3:5360:2ee8:7b99:984f:155f" = [ "hydra" ];
@@ -18,5 +26,6 @@ _: {
     blockFakenews = true;
     blockGambling = true;
     blockPorn = true;
+    blockSocial = true;
   };
 }
