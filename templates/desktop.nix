@@ -311,4 +311,11 @@
     "185.43.135.1"
     "302:db60::53"
   ];
+
+  boot.binfmt.emulatedSystems = [
+    "aarch64-linux"
+    "armv7l-linux"
+    "i686-linux"
+    "riscv64-linux"
+  ];
 }
