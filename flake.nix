@@ -105,6 +105,7 @@
             "sudo nixos-rebuild switch --flake .#$(hostname) $@;")
           (pkgs.writeShellScriptBin "check" "nix flake check")
           (pkgs.writeShellScriptBin "build" "nixos-rebuild build --flake .#$(hostname)")
+          agenix.packages.${system}.default
         ];
         inherit (self.checks.${system}.pre-commit-check) shellHook;
       };
