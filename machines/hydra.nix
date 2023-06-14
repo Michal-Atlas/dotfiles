@@ -45,4 +45,11 @@
   services.udev.extraRules = ''
     SUBSYSTEM=="usb", ATTR{idVendor}=="2833", ATTR{idProduct}=="0186", MODE="0666", GROUP="plugdev"
   '';
+
+  nix.sshServe = {
+    enable = true;
+    keys = [
+      (builtins.readFile ../keys/dagon.pub)
+    ];
+  };
 }
