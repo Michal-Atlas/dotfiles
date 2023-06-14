@@ -8,7 +8,6 @@
     ../templates/desktop.nix
     ../templates/morrowind-server.nix
     ../templates/i2p.nix
-    ../templates/fit-mount.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 

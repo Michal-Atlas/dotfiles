@@ -7,6 +7,7 @@
     ./yggdrasil.nix
     ./atlasnet-hosts.nix
     ./syncthing.nix
+    ./fit-mount.nix
   ];
   nix.settings.trusted-users = [ "root" "@wheel" ];
 

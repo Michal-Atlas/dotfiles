@@ -26,6 +26,9 @@
       "uid=1000"
       "credentials=${config.age.secrets.fit-mount.path}"
       "x-systemd.requires=openvpn-ctu-fit.service"
+      "x-systemd.automount"
+      "noauto"
+      "x-systemd.idle-timeout=300"
     ];
   };
 }
