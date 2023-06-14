@@ -41,6 +41,7 @@ with pkgs;
   heroic
   htop
   inkscape
+  ipfs
   isync
   jetbrains-mono
   keepassxc
