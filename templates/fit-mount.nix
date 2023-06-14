@@ -28,7 +28,7 @@
       "x-systemd.requires=openvpn-ctu-fit.service"
       "x-systemd.automount"
       "noauto"
-      "x-systemd.idle-timeout=300"
+      "x-systemd.idle-timeout=60"
     ];
   };
 }
