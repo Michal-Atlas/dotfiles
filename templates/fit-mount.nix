@@ -11,6 +11,7 @@
         }
       }
       auth-user-pass ${config.age.secrets.fit-vpn.path}
+      pull-filter ignore redirect-gateway
     '';
     # autoStart = false;
     updateResolvConf = true;
