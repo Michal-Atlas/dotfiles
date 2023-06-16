@@ -8,6 +8,7 @@
     ./atlasnet-hosts.nix
     ./syncthing.nix
     ./fit-mount.nix
+    ./steam.nix
   ];
   nix.settings.trusted-users = [ "root" "@wheel" ];
 

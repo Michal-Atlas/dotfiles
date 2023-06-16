@@ -76,7 +76,6 @@ with pkgs;
   racket
   shotwell
   spotify
-  steam
   steam-run
   superTux
   superTuxKart
