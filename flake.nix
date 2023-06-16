@@ -6,18 +6,14 @@
     nixpkgs.url = "github:NixOs/nixpkgs/nixos-23.05";
     flake-utils.url = "github:numtide/flake-utils";
     agenix.url = "github:ryantm/agenix";
-    emacs-overlay.url =
-      "github:nix-community/emacs-overlay";
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
     nur.url = "github:nix-community/NUR";
-    atlas-overlay = {
-      url = "sourcehut:~michal_atlas/nur-packages";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    atlas-overlay.url = "sourcehut:~michal_atlas/nur-packages";
     stevenblackhosts.url = "github:StevenBlack/hosts";
   };
 
