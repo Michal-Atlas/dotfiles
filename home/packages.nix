@@ -10,8 +10,6 @@ with pkgs;
   borgbackup
   btop
   btrfs-progs
-  caprine-bin
-  carp
   ccls
   chicken
   cifs-utils
@@ -61,7 +59,6 @@ with pkgs;
   mu
   mystic
   neofetch
-  nerdfonts
   nixfmt
   nmap
   ocaml
