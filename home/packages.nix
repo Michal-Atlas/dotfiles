@@ -21,8 +21,6 @@ with pkgs;
   element-desktop-wayland
   feh
   file
-  fira-code
-  font-awesome
   fzf
   gallery-dl
   gcc
