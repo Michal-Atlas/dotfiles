@@ -35,6 +35,7 @@ with pkgs;
   gnumake
   gnupg
   gparted
+  gprolog
   graphviz
   guile
   gzdoom
@@ -79,7 +80,6 @@ with pkgs;
   steam-run
   superTux
   superTuxKart
-  swiProlog
   taisei
   telegram-desktop
   texlive.combined.scheme-full

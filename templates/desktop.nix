@@ -149,11 +149,6 @@
     atlas-overlay.overlays.x86_64-linux.default
   ];
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "openssl-1.1.1u"
-    "openssl-1.1.1t"
-  ];
-
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
   # Some programs need SUID wrappers, can be configured further or are
