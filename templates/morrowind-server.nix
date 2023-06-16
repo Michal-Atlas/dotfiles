@@ -10,4 +10,6 @@
     };
     script = "${pkgs.openmw-tes3mp}/bin/tes3mp-server";
   };
+
+  networking.firewall.allowedTCPPorts = [ 25565 ];
 }
