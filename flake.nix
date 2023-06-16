@@ -96,13 +96,18 @@
         };
       };
       devShells.default = nixpkgs.legacyPackages.${system}.mkShell {
-        nativeBuildInputs = [
-          (pkgs.writeShellScriptBin "recon"
-            "sudo nixos-rebuild switch --flake .#$(hostname) $@;")
-          (pkgs.writeShellScriptBin "check" "nix flake check $@;")
-          (pkgs.writeShellScriptBin "build" "nixos-rebuild build --flake .#$(hostname) $@;")
-          agenix.packages.${system}.default
-        ];
+        nativeBuildInputs =
+          let
+            rebuild-cmd = cmd:
+              "sudo nixos-rebuild ${cmd} --flake .#$(hostname) $@;";
+          in
+          [
+            (pkgs.writeShellScriptBin "recon" (rebuild-cmd "switch"))
+            (pkgs.writeShellScriptBin "recboot" (rebuild-cmd "boot"))
+            (pkgs.writeShellScriptBin "check" "nix flake check $@;")
+            (pkgs.writeShellScriptBin "build" "nixos-rebuild build --flake .#$(hostname) $@;")
+            agenix.packages.${system}.default
+          ];
         inherit (self.checks.${system}.pre-commit-check) shellHook;
       };
     }));
