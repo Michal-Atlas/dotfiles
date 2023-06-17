@@ -68,7 +68,7 @@
           modules = [ ./machines/dagon.nix ] ++ desktop-modules;
         };
         sentinel = nixpkgs.lib.nixosSystem {
-          specialArgs = attrs // { gnome = false; sway = true; };
+          specialArgs = attrs // { enableGnome = false; enableSway = true; };
           modules = [
             ./machines/sentinel.nix
             agenix.nixosModules.default
