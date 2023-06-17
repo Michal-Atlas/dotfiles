@@ -70,6 +70,7 @@
         sentinel = nixpkgs.lib.nixosSystem {
           specialArgs = attrs // { gnome = false; sway = true; };
           modules = [
+            ./machines/sentinel.nix
             agenix.nixosModules.default
             nur.nixosModules.nur
             stevenblackhosts.nixosModule
