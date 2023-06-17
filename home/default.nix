@@ -34,15 +34,6 @@ in
       delta.enable = true;
     };
 
-    firefox = {
-      enable = true;
-      profiles."default" = {
-        bookmarks = import ./ff/bookmarks.nix;
-        extensions = import ./ff/extensions.nix pkgs;
-        search = import ./ff/engines.nix pkgs;
-      };
-    };
-
     fzf.enable = true;
     dircolors.enable = true;
     keychain.enable = true;
