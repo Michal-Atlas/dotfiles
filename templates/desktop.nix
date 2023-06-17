@@ -2,8 +2,8 @@
 , config
 , pkgs
 , agenix
-, enableGnome ? true
-, enableSway ? false
+, gnome ? true
+, sway ? false
 , ...
 }: {
   # Should resolve double-prints
@@ -77,12 +77,12 @@
 
   # Enable the GNOME Desktop Environment.
   services.xserver = {
-    displayManager.gdm.enable = enableGnome;
-    desktopManager.gnome.enable = enableGnome;
+    displayManager.gdm.enable = gnome;
+    desktopManager.gnome.enable = gnome;
   };
 
   programs.sway = {
-    enable = enableSway;
+    enable = sway;
     wrapperFeatures.gtk = true;
   };
 
