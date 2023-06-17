@@ -87,7 +87,7 @@ in
       sha256 = "sha256:05szymcb5745xm8bcj1d8gyiyf1y5m9x6nijyghqz949haqwgjfl";
     };
     ".local/share/nyxt/bookmarks.lisp".source = ./files/nyxt/bookmarks.lisp;
-    ".config/nyxt/init.lisp".source = ./files/nyxt/init.lisp;
+    ".config/nyxt/config.lisp".source = ./files/nyxt/init.lisp;
   };
   xsession.numlock.enable = true;
   programs.home-manager.enable = true;

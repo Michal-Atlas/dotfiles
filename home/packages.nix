@@ -21,6 +21,7 @@ with pkgs;
   element-desktop-wayland
   feh
   file
+  firefox
   fzf
   gallery-dl
   gcc
