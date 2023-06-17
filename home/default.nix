@@ -81,6 +81,8 @@ in
       url = "https://michal_atlas.srht.site/posts/mlxan/carcass-mountain/portraits/weeping-priest.jpeg";
       sha256 = "sha256:05szymcb5745xm8bcj1d8gyiyf1y5m9x6nijyghqz949haqwgjfl";
     };
+    ".local/share/nyxt/bookmarks.lisp".source = ./files/nyxt/bookmarks.lisp;
+    ".config/nyxt/init.lisp".source = ./files/nyxt/init.lisp;
   };
   xsession.numlock.enable = true;
   programs.home-manager.enable = true;
@@ -142,7 +144,7 @@ in
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" =
       {
         binding = "<Super>f";
-        command = "firefox";
+        command = "nyxt";
         name = "BROWSER";
       };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3" =

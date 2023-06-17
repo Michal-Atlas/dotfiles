@@ -59,6 +59,7 @@ with pkgs;
   neofetch
   nixfmt
   nmap
+  nyxt
   ocaml
   ocamlPackages.merlin
   okular
