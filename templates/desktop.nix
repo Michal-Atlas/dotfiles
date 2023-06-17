@@ -1,11 +1,4 @@
-{ self
-, config
-, pkgs
-, agenix
-, gnome ? true
-, sway ? false
-, ...
-}: {
+{ self, config, pkgs, agenix, ... }: {
   # Should resolve double-prints
   nix.package = pkgs.nixUnstable;
 
@@ -77,13 +70,8 @@
 
   # Enable the GNOME Desktop Environment.
   services.xserver = {
-    displayManager.gdm.enable = gnome;
-    desktopManager.gnome.enable = gnome;
-  };
-
-  programs.sway = {
-    enable = sway;
-    wrapperFeatures.gtk = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
   };
 
   # Configure keymap in X11
