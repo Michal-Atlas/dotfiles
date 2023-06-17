@@ -67,6 +67,14 @@
           specialArgs = attrs;
           modules = [ ./machines/dagon.nix ] ++ desktop-modules;
         };
+        sentinel = nixpkgs.lib.nixosSystem {
+          specialArgs = attrs // { gnome = false; sway = true; };
+          modules = [
+            agenix.nixosModules.default
+            nur.nixosModules.nur
+            stevenblackhosts.nixosModule
+          ];
+        };
       };
     } // (flake-utils.lib.eachDefaultSystem (system:
     let pkgs = (import nixpkgs) { inherit system; };
