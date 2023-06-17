@@ -74,6 +74,11 @@ in
       git = true;
       icons = true;
     };
+    password-store.enable = true;
+    aerc = {
+      enable = true;
+      extraConfig.general.unsafe-accounts-conf = true;
+    };
   };
   home.file = {
     ".guile".source = ./files/guile.scm;
@@ -99,6 +104,11 @@ in
       client.enable = true;
       socketActivation.enable = true;
     };
+    password-store-sync = {
+      enable = true;
+      frequency = "1d";
+    };
+    pass-secret-service.enable = true;
   };
   home.packages =
     [
@@ -193,5 +203,34 @@ in
 
     "org/gnome/shell/app-switcher" =
       { current-workspace-only = true; };
+  };
+
+  accounts.email = {
+    accounts =
+      {
+        "Posteo" = {
+          address = "michal_atlas@posteo.net";
+          realName = "Michal Atlas";
+          primary = true;
+          imap.host = "posteo.de";
+          aerc.enable = true;
+          passwordCommand = "pass email/michal_atlas@posteo.net";
+          smtp.host = "posteo.de";
+          userName = "michal_atlas@posteo.net";
+        };
+        # "CTU" = {
+        #   address = "zacekmi2@cvut.cz";
+        #   realName = "Michal Žáček";
+        #   flavor = "outlook.office365.com";
+        #   imap.host = "outlook.office365.com";
+        #   imapnotify.enable = true;
+        #   neomutt.enable = true;
+        #   notmuch = { enable = true; neomutt.enable = true; };
+        #   offlineimap.enable = true;
+        #   passwordCommand = "pass email/zacekmi2@cvut.cz";
+        #   smtp.host = "smtp.office365.com";
+        #   userName = "zacekmi2@cvut.cz";
+        # };
+      };
   };
 }
