@@ -18,6 +18,7 @@ with pkgs;
   direnv
   discord
   dotnet-sdk
+  element-desktop
   element-desktop-wayland
   feh
   file
@@ -31,6 +32,7 @@ with pkgs;
   gimp
   gnumake
   gnupg
+  gnuplot
   gparted
   gprolog
   graphviz
@@ -70,6 +72,7 @@ with pkgs;
   picard
   pinentry-curses
   pkg-config
+  playerctl
   qt5.qtbase
   racket
   shotwell
@@ -122,16 +125,22 @@ with pkgs;
       alexandria
       cffi
       cl-autowrap
+      cl-css
       cl-fuse-meta-fs
       cl-strings
+      cl-who
+      clsql
       coleslaw
       collectors
+      dbd-sqlite3
       eclector
       harmony
+      hunchentoot
       linedit
       lparallel
       mcclim
       mcclim-layouts
+      mito
       optima
       parenscript
       parser-combinators
