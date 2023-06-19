@@ -19,7 +19,6 @@ with pkgs;
   discord
   dotnet-sdk
   element-desktop
-  element-desktop-wayland
   feh
   file
   firefox
