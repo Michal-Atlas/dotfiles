@@ -152,7 +152,6 @@
 
   services.udev.packages = with pkgs; [
     gnome.gnome-settings-daemon
-    android-udev-rules
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
