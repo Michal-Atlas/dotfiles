@@ -106,7 +106,7 @@ in
     };
     password-store-sync = {
       enable = true;
-      frequency = "1d";
+      frequency = "daily";
     };
     pass-secret-service.enable = true;
   };
