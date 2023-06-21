@@ -123,6 +123,7 @@
       "kvm"
       "transmission"
       "plugdev"
+      "adbusers"
     ];
     openssh.authorizedKeys.keys = with builtins;
       (map (f: readFile ../keys/${f}) (attrNames (readDir ../keys)));
@@ -149,7 +150,10 @@
     atlas-overlay.overlays.x86_64-linux.default
   ];
 
-  services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+  services.udev.packages = with pkgs; [
+    gnome.gnome-settings-daemon
+    android-udev-rules
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -293,4 +297,6 @@
     })
     font-awesome
   ];
+
+  programs.adb.enable = true;
 }
