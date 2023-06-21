@@ -118,7 +118,15 @@ with pkgs;
   night-theme-switcher
 ]) ++ [
   (pkgs.python3.withPackages
-    (ps: with ps; [ dbus-python ipython pygments python ]))
+    (ps: with ps; [
+      dbus-python
+      ipython
+      pygments
+      python
+      matplotlib
+      numpy
+      scipy
+    ]))
   (pkgs.sbcl.withPackages (ps:
     with ps; [
       alexandria
