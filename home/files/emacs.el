@@ -38,7 +38,7 @@
 (setq visible-bell t)
 (setq recentf-max-menu-items 25)
 (setq recentf-max-saved-items 25)
-(global-set-key "\C-x\ \C-r" 'recentf-open-files)
+(global-set-key (kbd "C-x C-r") 'recentf-open-files)
 (run-at-time nil (* 10 60) 'recentf-save-list)
 (global-prettify-symbols-mode +1)
 
