@@ -61,7 +61,6 @@ with pkgs;
   neofetch
   nixfmt
   nmap
-  nyxt
   ocaml
   ocamlPackages.merlin
   okular
@@ -117,14 +116,14 @@ with pkgs;
   gnome-clipboard
   night-theme-switcher
 ]) ++ [
-  (pkgs.python3.withPackages
+  (pkgs.python311.withPackages
     (ps: with ps; [
       dbus-python
       ipython
-      pygments
-      python
       matplotlib
       numpy
+      pygments
+      python
       scipy
     ]))
   (pkgs.sbcl.withPackages (ps:
@@ -141,6 +140,7 @@ with pkgs;
       collectors
       dbd-sqlite3
       eclector
+      generators
       harmony
       hunchentoot
       linedit
@@ -155,6 +155,7 @@ with pkgs;
       screamer
       serapeum
       series
+      str
       sycamore
       tailrec
       tar
