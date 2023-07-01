@@ -44,7 +44,7 @@
     "font-adobe-source-han-sans" "font-wqy-zenhei"
     "guix-icons" "breeze-icons" "oxygen-icons"
     "xnotify" "brightnessctl" "pamixer" "playerctl"
-    "firefox" "xscreensaver" "gparted"
+    "firefox" "nyxt" "xscreensaver" "gparted"
     "nautilus" "gvfs" "samba"
     "pavucontrol" "screen"
     ;;"sway"
@@ -82,231 +82,127 @@
     "matcha-theme"
 
 ;;; shell-utils
-"file"
-"kitty" "fzf"
-"pandoc" "direnv"
-"vim" "zsh" "git" "git" "htop"
-"xclip" "telescope" "agate"
-"fasd"
-"bat" "zoxide" "exa"
-"tealdeer"
-"password-store"
-"pass-otp"
-"guile-filesystem"
-"transmission-remote-gtk"
-"transmission"
-"pkg-config"
+    "file"
+    "kitty" "fzf"
+    "pandoc" "direnv"
+    "vim" "zsh" "git" "git" "htop"
+    "xclip" "telescope" "agate"
+    "fasd"
+    "bat" "zoxide" "exa"
+    "tealdeer"
+    "password-store"
+    "pass-otp"
+    "guile-filesystem"
+    "transmission-remote-gtk"
+    "transmission"
+    "pkg-config"
 
-      ;;; toolchains
-"gdb" "go" "ccls"
-"cmake" "make" "recutils" "python" "python-ipython"
-"mosh"
-"sbcl" "racket"
-"gnupg" "swi-prolog"
-"sbcl-linedit"
+;;; toolchains
+    "gdb" "go" "ccls"
+    "cmake" "make" "recutils" "python" "python-ipython"
+    "mosh"
+    "sbcl" "racket"
+    "gnupg" "swi-prolog"
+    "sbcl-linedit"
 
-      ;;; multimedia
-"grim" "vlc" "mpv"
-"libreoffice"
-"audacity"
-"yt-dlp" "picard"
+;;; multimedia
+    "grim" "vlc" "mpv"
+    "libreoffice"
+    "audacity"
+    "yt-dlp" "picard"
 
-      ;;; graphics
-"feh" "shotwell"
-"inkscape" "gimp" "krita"
-"font-fira-code" "font-jetbrains-mono"
-"font-awesome" "font-tamzen"
-"font-sil-charis" "font-adobe-source-han-sans"
-"font-wqy-zenhei" "font-wqy-microhei"
-"gparted"
-"xrandr" "arandr"
-"graphviz" "xdot"
-"xdotool" "tree"
-"bc" "unzip"
-      ;;; latex
-"texlive"
-"texlive-tcolorbox"
-      ;;; games
-"lgogdownloader"
-"supertuxkart" "cataclysm-dda"
-"wesnoth" ;"steam" "sky" "lure"
-; "endless-sky" "naev"
-"gzdoom" ;"tintin++"
-"taisei" "kobodeluxe" ;"dwarf-fortress"
+;;; graphics
+    "feh" "shotwell"
+    "inkscape" "gimp" "krita"
+    "font-fira-code" "font-jetbrains-mono"
+    "font-awesome" "font-tamzen"
+    "font-sil-charis" "font-adobe-source-han-sans"
+    "font-wqy-zenhei" "font-wqy-microhei"
+    "gparted"
+    "xrandr" "arandr"
+    "graphviz" "xdot"
+    "xdotool" "tree"
+    "bc" "unzip"
+;;; latex
+    "texlive"
+    "texlive-tcolorbox"
+;;; games
+    "lgogdownloader"
+    "supertuxkart" "cataclysm-dda"
+    "wesnoth"                           ;"steam" "sky" "lure"
+                                        ; "endless-sky" "naev"
+    "gzdoom"                            ;"tintin++"
+    "taisei" "kobodeluxe"               ;"dwarf-fortress"
 
-      ;;; e-mail
-"pinentry"
+;;; e-mail
+    "pinentry"
 
-      ;;; desktop
-"fontconfig" "font-ghostscript" "font-dejavu" "font-gnu-freefont"
-"font-adobe-source-han-sans" "font-wqy-zenhei"
-"guix-icons" "breeze-icons" "oxygen-icons"
-"pasystray" "xss-lock"
-"bemenu" "sway" "swayidle" "swaybg" "swayhide"
-"wl-clipboard" "lagrange"
-"grim" "slurp" "foot"
-"nautilus" "gvfs" "okular" "pulseaudio"
-"wob" "font-iosevka" "browserpass-native"
-"xsetroot"
+;;; desktop
+    "fontconfig" "font-ghostscript" "font-dejavu" "font-gnu-freefont"
+    "font-adobe-source-han-sans" "font-wqy-zenhei"
+    "guix-icons" "breeze-icons" "oxygen-icons"
+    "pasystray" "xss-lock"
+    "bemenu" "sway" "swayidle" "swaybg" "swayhide"
+    "wl-clipboard" "lagrange"
+    "grim" "slurp" "foot"
+    "nautilus" "gvfs" "okular" "pulseaudio"
+    "wob" "font-iosevka" "browserpass-native"
+    "xsetroot"
 
 ;;; big-games
-#;"the-dark-mod" ;"falltergeist"
-"nethack" ;"retux"
-"angband"
-;"retroarch"
-"marble-marcher"
-;; Packages:1 ends here
+    #;"the-dark-mod" ;"falltergeist"
+    "nethack"                           ;"retux"
+    "angband"
+                                        ;"retroarch"
+    "marble-marcher"
+    ;; Packages:1 ends here
 
-;; Emacs
-
-
-;; [[file:Dotfiles.org::*Emacs][Emacs:1]]
-"emacs"
-,@(pkg-set
-   "emacs"
-   `(; "exwm"
-     "org-roam"
-	 "org-roam-ui"
-	 "consult-org-roam"
-				    ;	  "org-roam-timestamps"
-	 "engrave-faces"
-	 "go-mode"
-	 "use-package"
-	 "password-store"
-	 "password-store-otp"
-	 "org-fragtog"
-	 "org-modern"
-	 "org-superstar"
-	 "highlight-indentation"
-	 "rust-mode"
-	 "csharp-mode"
-				    ;"mode-icons"
-	 "doom-modeline"
-	 "which-key"
-	 "rainbow-identifiers"
-	 "rainbow-delimiters"
-	 "undo-tree"
-	 "ace-window"
-	 "eshell-prompt-extras"
-	 "eshell-syntax-highlighting"
-	 "esh-autosuggest"
-	 "git-gutter"
-				    ;"savehist"
-	 "anzu"
-	 "marginalia"
-				    ;"org-roam"
-				    ;"org-roam-ui"
-	 "geiser-racket"
-	 "adaptive-wrap"
-	 "geiser-guile"
-	 "sly"
-	 "slime"
-	 "geiser"
-	 "multiple-cursors"
-	 "magit"
-	 "helpful"
-	 "avy"
-	 "browse-kill-ring"
-	 "emms"
-	 "evil"
-	 "vertico"
-	 "vertico-posframe"
-	 "orderless"
-	 "consult"
-	 "xah-fly-keys"
-	 "ac-geiser"
-	 "all-the-icons"
-	 "all-the-icons-dired"
-	 "auctex"
-	 "calfw"
-	 ;"cheat-sh"
-	 "circe"
-	 "company"
-	 "crux"
-	 "csv"
-	 "csv-mode"
-	 "dashboard"
-	 "debbugs"
-	 "direnv"
-	 "ediprolog"
-	 "elfeed"
-	 "elisp-autofmt"
-	 "elpher"
-	 "embark"
-	 "ement"
-	 "eshell-z"
-	 "flycheck"
-	 "flycheck-haskell"
-	 "frames-only-mode"
-	 "gdscript-mode"
-	 "guix"
-	 "haskell-mode"
-	 "highlight-indent-guides"
-	 "htmlize"
-	 "iedit"
-	 "lispy"
-	 "magit-todos"
-	 "markdown-mode"
-	 "monokai-theme"
-	 "multi-term"
-	 "nix-mode"
-	 "on-screen"
-	 "ox-gemini"
-				    ;"parinfer"
-	 "pdf-tools"
-	 "pg"
-	 "projectile"
-	 "racket-mode"
-	 "realgud"
-	 "swiper"
-	 "tldr"
-	 "vterm"
-	 "xkcd"
-	 "yaml-mode"
-	 "yasnippet"
-	 "yasnippet-snippets"
-	 "zerodark-theme"
-	 "gemini-mode"
-				    ;"nov"
-	 "dockerfile-mode"
-	 "docker"
-	 "dmenu"
-	 "eglot"
-	 "org"
-	 "stumpwm-mode"
-	 "hackles"
-	 "consult-yasnippet"
-	 "yasnippet"
-	 "tramp"
-	 "ssh-agency"
-	 "password-generator"
-	 "mastodon"
-	 "stumpwm-mode"))
-;; Emacs:1 ends here
-
-;; Libs
+    ;; Emacs
 
 
-;; [[file:Dotfiles.org::*Libs][Libs:1]]
+    ;; [[file:Dotfiles.org::*Emacs][Emacs:1]]
+    "emacs"
+    ,@(let ((try-resolve
+             (lambda (pkg)
+               (catch #t (lambda () (specification->package pkg))
+                 (lambda q #f)))))
 
-;; Libs
-"ncurses" "curl" "virt-manager"
-"ntfs-3g" "btrfs-progs"
-"cifs-utils"
+        (filter try-resolve
+                (map (compose
+                      (lambda (pkg) (string-append "emacs-" pkg))
+                      symbol->string)
+                     (with-input-from-file "./home/files/emacs.el"
+                       (lambda () (let loop ((exp (read))
+                                        (out '()))
+                               (if (eof-object? exp)
+                                   out (loop (read)
+                                             (if (eq? 'use-package (car exp))
+                                                 (cons (cadr exp) out) out)))))))))
+    ;; Emacs:1 ends here
 
-;; Shell utils
-"file" "screen"
-"fzf"
-"pandoc" "zutils"
-"vim" "git" "htop"
-"mosh" "rsync"
-;; Libs:1 ends here
-
-;; Toolchains
+    ;; Libs
 
 
-;; [[file:Dotfiles.org::*Toolchains][Toolchains:1]]
-"gcc-toolchain" "ccls"
+    ;; [[file:Dotfiles.org::*Libs][Libs:1]]
+
+    ;; Libs
+    "ncurses" "curl" "virt-manager"
+    "ntfs-3g" "btrfs-progs"
+    "cifs-utils"
+
+    ;; Shell utils
+    "file" "screen"
+    "fzf"
+    "pandoc" "zutils"
+    "vim" "git" "htop"
+    "mosh" "rsync"
+    ;; Libs:1 ends here
+
+    ;; Toolchains
+
+
+    ;; [[file:Dotfiles.org::*Toolchains][Toolchains:1]]
+    "gcc-toolchain" "ccls"
     "cmake" "make" "recutils" "python" "python-ipython"
     "luajit" "perl" "nix"
 
@@ -319,39 +215,39 @@
     ,@(pkg-set
        "sbcl"
        `( ;; StumpWM
-	    ,@(pkg-set
-	       "stumpwm"
-		`("winner-mode"
-		  "swm-gaps"
-		  "screenshot"
-		  "pass"
-		  "pamixer"
-		  "numpad-layouts"
-		  "notify"
-		  "kbd-layouts"
-		  "disk"
-		  "battery-portable"
-		  "globalwindows"
-		  "wifi"
-		  "ttf-fonts"
-		  "stumptray"
-		  "net"
-		  "mem"
-		  "cpu"))
-	    "linedit" "mcclim"
-	    "serapeum" "eclector"
-	    "alexandria" "cl-yacc"
-	    "cl-autowrap" "optima" "lparallel"
-	    "coalton" "coleslaw" "parser-combinators"
-	    "collectors" "cl-strings" ;"virality"
-	    "speechless" "mathkit"
-	    "sketch" "cl-liballegro" "cl-fast-ecs"
-	    "sdl2kit" "harmony" "cl-raylib"
-	    "unix-opts" "cffi" "series"
-	    "trial" "trees" "sycamore" "parenscript"
-	    "terminfo" "terminal-size"
-	    "terminal-keypress" "tar"
-	    "tailrec" "screamer" "s-xml"))))
+	 ,@(pkg-set
+	    "stumpwm"
+	    `("winner-mode"
+	      "swm-gaps"
+	      "screenshot"
+	      "pass"
+	      "pamixer"
+	      "numpad-layouts"
+	      "notify"
+	      "kbd-layouts"
+	      "disk"
+	      "battery-portable"
+	      "globalwindows"
+	      "wifi"
+	      "ttf-fonts"
+	      "stumptray"
+	      "net"
+	      "mem"
+	      "cpu"))
+	 "linedit" "mcclim"
+	 "serapeum" "eclector"
+	 "alexandria" "cl-yacc"
+	 "cl-autowrap" "optima" "lparallel"
+	 "coalton" "coleslaw" "parser-combinators"
+	 "collectors" "cl-strings"      ;"virality"
+	 "speechless" "mathkit"
+	 "sketch" "cl-liballegro" "cl-fast-ecs"
+	 "sdl2kit" "harmony" "cl-raylib"
+	 "unix-opts" "cffi" "series"
+	 "trial" "trees" "sycamore" "parenscript"
+	 "terminfo" "terminal-size"
+	 "terminal-keypress" "tar"
+	 "tailrec" "screamer" "s-xml"))))
 
 (define %system-desktop-manifest
   (map specification->package %system-desktop-manifest-list))
