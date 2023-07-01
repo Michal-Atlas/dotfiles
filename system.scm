@@ -409,6 +409,14 @@
 	    (tlp-configuration
 	     (cpu-boost-on-ac? #t)
 	     (wifi-pwr-on-bat? #t)))
+   (simple-service
+    'system-mcron-jobs
+    mcron-service-type
+    (list #~(job '(next-minute '(0))
+                 (string-append
+                  "btrfs subvolume snapshot -r /home /snapshots/$("
+                  #$(file-append coreutils "/bin/date")
+                  " -Iminutes)"))))
    (service inputattach-service-type)
    (service qemu-binfmt-service-type
 	 (qemu-binfmt-configuration
