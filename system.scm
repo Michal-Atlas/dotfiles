@@ -329,8 +329,8 @@
    ;; 	    (hurd-vm-configuration
    ;; 	     (disk-size (* 16 (expt 2 30)))
    ;; 	     (memory-size 2048)))
-   ;; (service syncthing-service-type
-   ;; 	    (syncthing-configuration (user "michal_atlas")))
+   (service syncthing-service-type
+	    (syncthing-configuration (user "michal_atlas")))
    (service cups-service-type
 	    (cups-configuration
 	     (web-interface? #t)
