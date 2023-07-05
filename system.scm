@@ -162,6 +162,7 @@
 
     ;; [[file:Dotfiles.org::*Emacs][Emacs:1]]
     "emacs"
+    "emacs-use-package"
     ,@(let ((try-resolve
              (lambda (pkg)
                (catch #t (lambda () (specification->package pkg))
