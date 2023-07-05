@@ -158,7 +158,23 @@
 		(provision '(disk-automount))
 		(start #~(make-forkexec-constructor
 			  (list #$(file-append udiskie "/bin/udiskie"))))
-		(stop #~(make-kill-destructor)))))))
+		(stop #~(make-kill-destructor)))
+                (shepherd-service
+		        (provision '(emacs))
+		        (start #~(make-forkexec-constructor
+			              (list #$(file-append emacs "/bin/emacs") "--fg-daemon")
+			              #:environment-variables
+			              (cons*
+			               "GDK_SCALE=2"
+			               "GDK_DPI_SCALE=0.41"
+			               (default-environment-variables))))
+		        (stop #~(make-system-destructor
+			         "emacsclient -e '(save-buffers-kill-emacs)'")))
+                (shepherd-service
+                 (provision '(mpdris))
+                 (start #~(make-forkexec-constructor
+                           (list #$(file-append mpdris2 "/bin/mpDris2"))))
+                 (stop #~(make-kill-destructor)))))))
 ;; Home Environment:1 ends here
 
 ;; Mcron
@@ -173,7 +189,10 @@
        #~(job '(next-minute '(0))
 	      (string-append 
 	       #$(file-append findutils "/bin/find")
-	       " ~/tmp/ ~/Downloads/ -mindepth 1 -mtime +2 -delete;"))))))
+	       " ~/tmp/ ~/Downloads/ -mindepth 1 -mtime +2 -delete;"))
+       #~(job
+	      '(next-minute '(0))
+	      "guix gc -F 80G")))))
 
    (service home-git-service-type
             (home-git-configuration
@@ -237,7 +256,6 @@
      ;; [[file:Dotfiles.org::*Environment][Environment:1]]
      (environment-variables `
       (("BROWSER" . "firefox") ("EDITOR" . "emacsclient -n -c")
-       ("ALTERNATE_EDITOR" . "")
        ("TERM" . "xterm-256color") ("MOZ_ENABLE_WAYLAND" . "1")
        ("MOZ_USE_XINPUT2" . "1") ("GRIM_DEFAULT_DIR" . "~/tmp")
        ("_JAVA_AWT_WM_NONREPARENTING" . "1")
