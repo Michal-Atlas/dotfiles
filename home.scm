@@ -206,11 +206,11 @@
     home-files-service-type
     (map
      (match-lambda [(out in) `(,out ,(local-file in))])
-     '((".emacs.d/init.el" "home/files/emacs.el")
-       (".guile" "home/files/guile.scm")
-       (".sbclrc" "home/files/sbcl.lisp")
-       (".local/share/nyxt/bookmarks.lisp" "home/files/nyxt/bookmarks.lisp")
-       (".config/nyxt/config.lisp" "home/files/nyxt/init.lisp"))))
+     '((".emacs.d/init.el" "files/emacs.el")
+       (".guile" "files/guile.scm")
+       (".sbclrc" "files/sbcl.lisp")
+       (".local/share/nyxt/bookmarks.lisp" "files/nyxt/bookmarks.lisp")
+       (".config/nyxt/config.lisp" "files/nyxt/init.lisp"))))
    
    (service
     home-bash-service-type

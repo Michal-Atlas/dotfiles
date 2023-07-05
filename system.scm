@@ -172,7 +172,7 @@
                 (map (compose
                       (lambda (pkg) (string-append "emacs-" pkg))
                       symbol->string)
-                     (with-input-from-file "./home/files/emacs.el"
+                     (with-input-from-file "files/emacs.el"
                        (lambda () (let loop ((exp (read))
                                         (out '()))
                                (if (eof-object? exp)
