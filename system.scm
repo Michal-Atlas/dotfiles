@@ -466,36 +466,58 @@ EndSection
 
 ;; Hydra
 
+(use-modules (guix packages)
+	     (gnu packages file-systems)
+	     (nongnu packages linux)
+	     (gnu services linux))
+
+(define custom-zfs
+  (package
+   (inherit zfs)
+   (arguments
+    (cons*
+     #:linux linux-6.1
+     (package-arguments zfs)))))
 
 ;; [[file:Dotfiles.org::*Hydra][Hydra:1]]
 (define hydra
   (operating-system
     (inherit atlas-system-base)
     (host-name "hydra")
-    (firmware (list linux-firmware amdgpu-firmware))      
-    (mapped-devices
-     (list (mapped-device
-	    (source "VG")
-	    (targets '("VG-guix"))
-	    (type lvm-device-mapping))))
+    (firmware (list linux-firmware amdgpu-firmware))
+    (kernel linux-6.1)
+    (kernel-loadable-modules (list (list custom-zfs "module")))
 
+    (packages (cons custom-zfs (operating-system-packages atlas-system-base)))
+    (services (cons
+	       (simple-service
+		'load-zfs
+		kernel-module-loader-service-type
+		'("zfs"))
+	       %system-services-manifest))
+	       ;; (operating-system-services atlas-system-base)))
+    
     (file-systems
      (cons*
       (file-system
        (mount-point "/boot/efi")
-       (device (file-system-label "NIXEFI"))
+       (device (file-system-label "EFIBOOT"))
        (type "vfat"))
       (file-system
        (mount-point "/")
-       (device "/dev/mapper/VG-guix")
-       (options (alist->file-system-options
-		 `(("subvol" . "@"))))
+       (device (uuid
+                "e2f2bd08-7962-4e9d-a22a-c66972b7b1e3"
+                'btrfs))
        (type "btrfs")
-       (dependencies mapped-devices))
+       )
+      ;; (file-system
+      ;;  (mount-point "/games")
+      ;;  (device "rpool/games")
+      ;;  (type "zfs"))
       %base-file-systems))
     (swap-devices
      (list (swap-space
-	    (target (file-system-label "NIXSWAP")))))))
+	    (target (file-system-label "SWAP")))))))
 ;; Hydra:1 ends here
 
 ;; Hurd
