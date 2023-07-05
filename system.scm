@@ -467,37 +467,12 @@ EndSection
 
 ;; Hydra
 
-(use-modules (guix packages)
-	     (gnu packages file-systems)
-	     (nongnu packages linux)
-	     (gnu services linux))
-
-(define custom-zfs
-  (package
-   (inherit zfs)
-   (arguments
-    (cons*
-     #:linux linux-6.1
-     (package-arguments zfs)))))
-
 ;; [[file:Dotfiles.org::*Hydra][Hydra:1]]
 (define hydra
   (operating-system
     (inherit atlas-system-base)
     (host-name "hydra")
     (firmware (list linux-firmware amdgpu-firmware))
-    (kernel linux-6.1)
-    (kernel-loadable-modules (list (list custom-zfs "module")))
-
-    (packages (cons custom-zfs (operating-system-packages atlas-system-base)))
-    (services (cons
-	       (simple-service
-		'load-zfs
-		kernel-module-loader-service-type
-		'("zfs"))
-	       %system-services-manifest))
-	       ;; (operating-system-services atlas-system-base)))
-    
     (file-systems
      (cons*
       (file-system
@@ -509,12 +484,19 @@ EndSection
        (device (uuid
                 "e2f2bd08-7962-4e9d-a22a-c66972b7b1e3"
                 'btrfs))
-       (type "btrfs")
-       )
-      ;; (file-system
-      ;;  (mount-point "/games")
-      ;;  (device "rpool/games")
-      ;;  (type "zfs"))
+       (type "btrfs"))
+      (file-system
+       (mount-point "/GAMES")
+       (device (file-system-label "STORAGE"))
+       (options
+        (alist->file-system-options '(("subvol" . "@games"))))
+       (type "btrfs"))
+      (file-system
+       (mount-point "/DOWNLOADS")
+       (device (file-system-label "VAULT"))
+       (options
+        (alist->file-system-options '(("subvol" . "@downloads"))))
+       (type "btrfs"))
       %base-file-systems))
     (swap-devices
      (list (swap-space
