@@ -16,7 +16,6 @@
   #:use-module (gnu home services mcron)
   #:use-module (gnu home services shells)
   #:use-module (gnu home services shepherd)
-  #:use-module (nongnu services vpn)
   #:use-module (nongnu packages linux)
   #:use-module (nongnu system linux-initrd)
   #:use-module (gnu packages hurd)
