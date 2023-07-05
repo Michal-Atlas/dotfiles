@@ -246,7 +246,8 @@
        ("GUILE_LOAD_PATH" . "$GUILE_LOAD_PATH:$HOME/bin")
        ("GUILE_LOAD_PATH" . "$GUILE_LOAD_PATH:$HOME/dotfiles")
        ("XDG_DATA_DIRS" . "$XDG_DATA_DIRS:/home/michal_atlas/.local/share/flatpak/exports/share")
-       ("XDG_DATA_DIRS" . "$XDG_DATA_DIRS:/var/lib/flatpak/exports/share"))
+       ("XDG_DATA_DIRS" . "$XDG_DATA_DIRS:/var/lib/flatpak/exports/share")
+       ("GUIX_SANDBOX_HOME" . "/GAMES"))
       )
      ;; Environment:1 ends here
 
