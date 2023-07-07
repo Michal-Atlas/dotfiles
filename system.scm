@@ -278,6 +278,8 @@
  vpn
  xorg)
 
+(use-modules (atlas services btrfs))
+
 (define-public %system-services-manifest
   (cons*
 ;; Services:1 ends here
@@ -305,14 +307,28 @@
 	    (tlp-configuration
 	     (cpu-boost-on-ac? #t)
 	     (wifi-pwr-on-bat? #t)))
-   (simple-service
-    'system-mcron-jobs
-    mcron-service-type
-    (list #~(job '(next-minute '(0))
-                 (string-append
-                  "btrfs subvolume snapshot -r /home /snapshots/$("
-                  #$(file-append coreutils "/bin/date")
-                  " -Iminutes)"))))
+   (service btrfs-auto-snapshot-service-type
+            (list
+             (btrfs-auto-snapshot-spec
+              (name "hourly")
+              (retention 24)
+              (schedule "0 * * * *")
+              (path "/home"))
+             (btrfs-auto-snapshot-spec
+              (name "daily")
+              (retention 7)
+              (schedule "0 9 * * *")
+              (path "/home"))
+             (btrfs-auto-snapshot-spec
+              (name "weekly")
+              (retention 5)
+              (schedule "0 0 * * 0")
+              (path "/home"))
+             (btrfs-auto-snapshot-spec
+              (name "monthly")
+              (retention 12)
+              (schedule "0 0 1 * *")
+              (path "/home"))))
    (service inputattach-service-type)
    (service qemu-binfmt-service-type
 	 (qemu-binfmt-configuration
