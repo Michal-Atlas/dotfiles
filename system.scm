@@ -278,7 +278,8 @@
  vpn
  xorg)
 
-(use-modules (atlas services btrfs))
+(use-modules (atlas services btrfs)
+             (atlas services morrowind))
 
 (define-public %system-services-manifest
   (cons*
@@ -493,6 +494,15 @@ EndSection
     (inherit atlas-system-base)
     (host-name "hydra")
     (firmware (list linux-firmware amdgpu-firmware))
+    (services (cons*
+               (service tes3mp-service-type "/tes3mp")
+               (service btrfs-autosnap-service-type
+                        (list (btrfs-autosnap-spec
+                               (name "tes3mp")
+                               (retention 31)
+                               (schedule "0 9 * * *")
+                               (path "/tes3mp"))))
+               %system-services-manifest))
     (file-systems
      (cons*
       (file-system
