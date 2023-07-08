@@ -248,7 +248,7 @@
        ("gxb" . "gx build") ("gxs" . "gx search")
        ("gxsh" . "gx shell") ("gxtm" . "gx time-machine")
        ("e" . "$EDITOR") ("sw" . "swayhide")
-       ("dd" . "dd status=progress") ("cp" . "rsync --progress")))
+       ("dd" . "dd status=progress")))
      ;; Aliases:1 ends here
 
      ;; Environment
