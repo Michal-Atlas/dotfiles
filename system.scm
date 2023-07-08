@@ -307,24 +307,29 @@
 	    (tlp-configuration
 	     (cpu-boost-on-ac? #t)
 	     (wifi-pwr-on-bat? #t)))
-   (service btrfs-auto-snapshot-service-type
+   (service btrfs-autosnap-service-type
             (list
-             (btrfs-auto-snapshot-spec
+             (btrfs-autosnap-spec
+              (name "frequent")
+              (retention 4)
+              (schedule "*/15 * * * *")
+              (path "/home"))
+             (btrfs-autosnap-spec
               (name "hourly")
               (retention 24)
               (schedule "0 * * * *")
               (path "/home"))
-             (btrfs-auto-snapshot-spec
+             (btrfs-autosnap-spec
               (name "daily")
               (retention 7)
               (schedule "0 9 * * *")
               (path "/home"))
-             (btrfs-auto-snapshot-spec
+             (btrfs-autosnap-spec
               (name "weekly")
               (retention 5)
               (schedule "0 0 * * 0")
               (path "/home"))
-             (btrfs-auto-snapshot-spec
+             (btrfs-autosnap-spec
               (name "monthly")
               (retention 12)
               (schedule "0 0 1 * *")
