@@ -279,7 +279,8 @@
  xorg)
 
 (use-modules (atlas services btrfs)
-             (atlas services morrowind))
+             (atlas services morrowind)
+             (nongnu services vpn))
 
 (define-public %system-services-manifest
   (cons*
@@ -293,6 +294,7 @@
    (service gpm-service-type)
    (service docker-service-type)
    (service gnome-desktop-service-type)
+   (zerotier-one-service)
    (service yggdrasil-service-type
 	    (yggdrasil-configuration
 	     (autoconf? #t)
