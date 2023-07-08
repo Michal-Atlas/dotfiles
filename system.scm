@@ -402,9 +402,8 @@ EndSection
       (inherit config)
       (discover? #t)
       (substitute-urls
-       (append (list
-		"https://substitutes.nonguix.org")
-	       %default-substitute-urls))
+       (cons "https://substitutes.nonguix.org"
+	     %default-substitute-urls))
       (authorized-keys
        (append (list
 		(plain-file "non-guix.pub"
