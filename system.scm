@@ -473,13 +473,6 @@ EndSection
 			   (device "/dev/mapper/cryptroot")
 			   (type "btrfs")
 			   (dependencies mapped-devices))
-                         (file-system
-			   (mount-point "/home")
-			   (device "/dev/mapper/cryptroot")
-			   (type "btrfs")
-                           (options
-                            (alist->file-system-options '(("subvol" . "home"))))
-			   (dependencies mapped-devices))
 			 (file-system
 			  (mount-point "/boot/efi")
 			  (device (uuid "D762-6C63"
@@ -506,14 +499,6 @@ EndSection
        (device (uuid
                 "e2f2bd08-7962-4e9d-a22a-c66972b7b1e3"
                 'btrfs))
-       (type "btrfs"))
-      (file-system
-       (mount-point "/home")
-       (device (uuid
-                "e2f2bd08-7962-4e9d-a22a-c66972b7b1e3"
-                'btrfs))
-       (options
-        (alist->file-system-options '(("subvol" . "home"))))
        (type "btrfs"))
       (file-system
        (mount-point "/GAMES")
