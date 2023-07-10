@@ -247,7 +247,8 @@
 	 "trial" "trees" "sycamore" "parenscript"
 	 "terminfo" "terminal-size"
 	 "terminal-keypress" "tar"
-	 "tailrec" "screamer" "s-xml"))))
+	 "tailrec" "screamer" "s-xml"
+         "qvm" "cl-quilc"))))
 
 (define %system-desktop-manifest
   (map specification->package %system-desktop-manifest-list))
