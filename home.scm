@@ -56,6 +56,11 @@
   (url-fetch url 'sha256 (base64-decode hash)))
 ;; Custom Services:1 ends here
 
+(define profiles
+  '("/run/current-system/profile"
+    "/home/michal_atlas/.guix-home/profile"
+    "/home/michal_atlas/.guix-profile"))
+
 ;; Dconf
 ;; Dconf:1 ends here
 
@@ -261,6 +266,13 @@
        ("_JAVA_AWT_WM_NONREPARENTING" . "1")
        ("PATH" . "$HOME/.nix-profile/bin/:$PATH")
        ("PATH" . "$PATH:$HOME/bin/")
+       ("PATH" . "$PATH:$HOME/.roswell/bin/")
+       ("LD_LIBRARY_PATH" .
+        ,(string-join
+          (map
+           (lambda (q) (string-append "/lib"))
+           profiles)
+          ":"))
        ("GUILE_LOAD_PATH" . "$GUILE_LOAD_PATH:$HOME/bin")
        ("GUILE_LOAD_PATH" . "$GUILE_LOAD_PATH:$HOME/dotfiles")
        ("XDG_DATA_DIRS" . "$XDG_DATA_DIRS:/home/michal_atlas/.local/share/flatpak/exports/share")
