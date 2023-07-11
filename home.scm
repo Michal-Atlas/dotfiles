@@ -53,7 +53,9 @@
 
 ;; [[file:Dotfiles.org::*Custom Services][Custom Services:1]]
 (define (file-fetch url hash)
-  (url-fetch url 'sha256 (base64-decode hash)))
+  (with-store store
+    (run-with-store store
+     (url-fetch url 'sha256 (base64-decode hash)))))
 ;; Custom Services:1 ends here
 
 (define profiles
@@ -72,88 +74,88 @@
  (services
   (list
    (service home-dconf-load-service-type
-	    `((org/gnome/shell
-	       (disable-user-extensions #f)
-	       (enabled-extensions
-		#("launch-new-instance@gnome-shell-extensions.gcampax.github.com"
-		  "drive-menu@gnome-shell-extensions.gcampax.github.com"
-		  "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
-		  "appindicatorsupport@rgcjonas.gmail.com"
-		  "nightthemeswitcher@romainvigier.fr"
-		  "gnome-extension-all-ip-addresses@havekes.eu"
-		  "color-picker@tuberry"
-		  "espresso@coadmunkee.github.com"
-		  "gnome-clipboard@b00f.github.io")))
-	      (org/gnome/desktop/peripherals/touchpad
-	       (tap-to-click #t))
-	      (org/gnome/settings-daemon/plugins/media-keys
-	       (custom-keybindings
-		#("/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
-		  "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
-                  "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
-                  "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/")))
-	      (org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0
-	       (binding "<Super>t")
-	       (command "kgx")
-	       (name "TERM"))
+	    #~`((org/gnome/shell
+                 (disable-user-extensions #f)
+                 (enabled-extensions
+                  #("launch-new-instance@gnome-shell-extensions.gcampax.github.com"
+                    "drive-menu@gnome-shell-extensions.gcampax.github.com"
+                    "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
+                    "appindicatorsupport@rgcjonas.gmail.com"
+                    "nightthemeswitcher@romainvigier.fr"
+                    "gnome-extension-all-ip-addresses@havekes.eu"
+                    "color-picker@tuberry"
+                    "espresso@coadmunkee.github.com"
+                    "gnome-clipboard@b00f.github.io")))
+                (org/gnome/desktop/peripherals/touchpad
+                 (tap-to-click #t))
+                (org/gnome/settings-daemon/plugins/media-keys
+                 (custom-keybindings
+                  #("/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+                    "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
+                    "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
+                    "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/")))
+                (org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0
+                 (binding "<Super>t")
+                 (command "kgx")
+                 (name "TERM"))
 
-	      (org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1
-	       (binding "<Super>Return")
-	       (command "emacsclient -c")
-	       (name "EMACS"))
+                (org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1
+                 (binding "<Super>Return")
+                 (command "emacsclient -c")
+                 (name "EMACS"))
 
-              (org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2
-	       (binding "<Super>f")
-	       (command "nyxt")
-	       (name "BROWSER"))
+                (org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2
+                 (binding "<Super>f")
+                 (command "nyxt")
+                 (name "BROWSER"))
 
-              (org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3
-	       (binding "<Super>e")
-	       (command "nautilus")
-	       (name "FILES"))
+                (org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3
+                 (binding "<Super>e")
+                 (command "nautilus")
+                 (name "FILES"))
 
-	      (org/gnome/desktop/background
-	       (picture-uri
-                ,(file-fetch "https://ift.tt/2UDuBqa"
-		            "i7XCgxwaBYKB7RkpB2nYcGsk2XafNUPcV9921oicRdo="))
-	       (picture-uri-dark
-                ,(file-fetch "https://images.alphacoders.com/923/923968.jpg"
-		            "DIbte8/pJ2/UkLuojowdueXT5XYz2bns3pIyELXiCnw=")))
+                (org/gnome/desktop/background
+                 (picture-uri
+                  #$(file-fetch "https://ift.tt/2UDuBqa"
+                                "i7XCgxwaBYKB7RkpB2nYcGsk2XafNUPcV9921oicRdo="))
+                 (picture-uri-dark
+                  #$(file-fetch "https://images.alphacoders.com/923/923968.jpg"
+                                "DIbte8/pJ2/UkLuojowdueXT5XYz2bns3pIyELXiCnw=")))
 
-	      (org/gnome/desktop/input-sources
-	       (sources #(("xkb" "us") ("xkb" "cz+ucw")))
-	       (xkb-options #("grp:caps_switch" "lv3:ralt_switch"
-			      "compose:rctrl-altgr")))
+                (org/gnome/desktop/input-sources
+                 (sources #(("xkb" "us") ("xkb" "cz+ucw")))
+                 (xkb-options #("grp:caps_switch" "lv3:ralt_switch"
+                                "compose:rctrl-altgr")))
 
-	      (org/gnome/system/location
-	       (enabled #t))
+                (org/gnome/system/location
+                 (enabled #t))
 
-	      (org/gnome/shell/extensions/nightthemeswitcher/time
-	       (manual-schedule #f))
+                (org/gnome/shell/extensions/nightthemeswitcher/time
+                 (manual-schedule #f))
 
-	      (org/gnome/desktop/wm/preferences
-	       (focus-mode "sloppy"))
+                (org/gnome/desktop/wm/preferences
+                 (focus-mode "sloppy"))
 
-	      (org/gnome/settings-daemon/plugins/color
-	       (night-light-enabled #t))
+                (org/gnome/settings-daemon/plugins/color
+                 (night-light-enabled #t))
 
-              (org/gnome/shell
-               (favorite-apps
-                #("firefox.desktop"
-                  "spotify.desktop"
-                  "discord.desktop"
-                  "org.keepassxc.KeePassXC.desktop"
-                  "fi.skyjake.Lagrange.desktop"
-                  "zotero.desktop"
-                  "org.gnome.Nautilus.desktop")))
+                (org/gnome/shell
+                 (favorite-apps
+                  #("firefox.desktop"
+                    "spotify.desktop"
+                    "discord.desktop"
+                    "org.keepassxc.KeePassXC.desktop"
+                    "fi.skyjake.Lagrange.desktop"
+                    "zotero.desktop"
+                    "org.gnome.Nautilus.desktop")))
 
-              (org/gnome/mutter
-               (edge-tiling #t)
-               (dynamic-workspaces #t)
-               (workspaces-only-on-primary #t))
+                (org/gnome/mutter
+                 (edge-tiling #t)
+                 (dynamic-workspaces #t)
+                 (workspaces-only-on-primary #t))
 
-              (org/gnome/shell/app-switcher
-               (current-workspace-only #t))))
+                (org/gnome/shell/app-switcher
+                 (current-workspace-only #t))))
 
    (service home-shepherd-service-type
 	    (home-shepherd-configuration
