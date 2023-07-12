@@ -7,9 +7,8 @@
     ./yggdrasil.nix
     ./atlasnet-hosts.nix
     ./syncthing.nix
-    ./fit-mount.nix
+    # ./fit-mount.nix
     ./steam.nix
-    ./guix.nix
   ];
   nix.settings.trusted-users = [ "root" "@wheel" ];
 
@@ -200,7 +199,6 @@
 
       # Required for containers under podman-compose to be able to talk to each other.
       defaultNetwork.settings.dns_enabled = true;
-      extraPackages = [ pkgs.zfs ];
     };
   };
   nix.settings.auto-optimise-store = true;
@@ -214,21 +212,7 @@
     };
   };
 
-  services.zfs = {
-    autoSnapshot = { enable = true; flags = "-k -p -u"; };
-    # If you set this option to false and NixOS subsequently fails to boot because it cannot import the root pool, you should boot with the zfs_force=1 option as a kernel parameter
-
-    autoScrub.enable = true;
-    trim.enable = true;
-  };
-
-  boot.zfs = {
-    forceImportRoot = false;
-    extraPools = [ "rpool" ];
-  };
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-  # This should be okay to have on
-  # systemd.services.zfs-mount.enable = false;
+  services.btrfs.autoScrub.enable = true;
 
   systemd.user = {
     timers = {
@@ -254,21 +238,6 @@
         serviceConfig = { Type = "oneshot"; };
       };
     };
-  };
-
-  fileSystems."/" = {
-    device = "rpool/root";
-    fsType = "zfs";
-  };
-
-  fileSystems."/nix" = {
-    device = "rpool/store";
-    fsType = "zfs";
-  };
-
-  fileSystems."/home" = {
-    device = "rpool/home";
-    fsType = "zfs";
   };
 
   networking.nameservers = [
