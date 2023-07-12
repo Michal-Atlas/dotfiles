@@ -53,12 +53,6 @@ in
       history.ignoreDups = true;
       initExtra = ''
         function cheat { curl "cheat.sh/$@" }
-
-        GUIX_PROFILE="$HOME/.config/guix/current"
-        . "$GUIX_PROFILE/etc/profile"
-
-        GUIX_PROFILE="$HOME/.guix-profile"
-        . "$GUIX_PROFILE/etc/profile"
       '';
       localVariables = {
         MOZ_ENABLE_WAYLAND = "1";
