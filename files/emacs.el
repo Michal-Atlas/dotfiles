@@ -28,11 +28,11 @@
 (setq backup-directory-alist '((".*" . "~/.emacs.d/bkp")))
 (setq projectile-project-search-path
       (list "~/Documents" "~/source" "~/cl"))
-(setq org-roam-directory "/home/michal_atlas/roam")
+(setq org-roam-directory "/home/michal_atlas/Documents/roam")
 (setq enable-local-variables :all)
 (setq calendar-week-start-day 1)
 (setq org-agenda-start-on-weekday 1)
-(setq find-function-C-source-directory "~/source/emacs")
+(setq find-function-C-source-directory "~/cl/emacs")
 (global-auto-revert-mode 1)
 (recentf-mode 1)
 (setq visible-bell t)
@@ -213,7 +213,7 @@
 
 (use-package marginalia :config (marginalia-mode))
 
-(setq org-agenda-files '("~/roam/todo.org"))
+(setq org-agenda-files '("~/Documents/roam/todo.org"))
 
 ;;;; * Langs
 
