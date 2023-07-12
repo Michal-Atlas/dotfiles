@@ -272,7 +272,7 @@
        ("LD_LIBRARY_PATH" .
         ,(string-join
           (map
-           (lambda (q) (string-append "/lib"))
+           (lambda (q) (string-append q "/lib"))
            profiles)
           ":"))
        ("GUILE_LOAD_PATH" . "$GUILE_LOAD_PATH:$HOME/bin")
