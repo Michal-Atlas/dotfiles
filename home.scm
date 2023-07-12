@@ -255,7 +255,8 @@
        ("gxb" . "gx build") ("gxs" . "gx search")
        ("gxsh" . "gx shell") ("gxtm" . "gx time-machine")
        ("e" . "$EDITOR") ("sw" . "swayhide")
-       ("dd" . "dd status=progress")))
+       ("dd" . "dd status=progress")
+       ("lem" . "sbcl --load ~/cl/setup.lisp --eval '(ql:quickload :lem-ncurses)' 00eval '(lem:lem)'")))
      ;; Aliases:1 ends here
 
      ;; Environment
@@ -268,7 +269,6 @@
        ("_JAVA_AWT_WM_NONREPARENTING" . "1")
        ("PATH" . "$HOME/.nix-profile/bin/:$PATH")
        ("PATH" . "$PATH:$HOME/bin/")
-       ("PATH" . "$PATH:$HOME/.roswell/bin/")
        ("LD_LIBRARY_PATH" .
         ,(string-join
           (map
