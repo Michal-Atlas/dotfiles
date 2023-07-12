@@ -212,8 +212,6 @@
     };
   };
 
-  services.btrfs.autoScrub.enable = true;
-
   systemd.user = {
     timers = {
       "tmpclear" = {

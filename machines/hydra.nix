@@ -16,7 +16,7 @@
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-amd" "amdgpu" ];
   boot.extraModulePackages = [ ];
-  boot.supportedFilesystems = [ "ntfs" "zfs" ];
+  boot.supportedFilesystems = [ "ntfs" ];
 
   fileSystems."/boot/efi" = {
     device = "/dev/disk/by-uuid/C9ED-A99E";
@@ -37,7 +37,34 @@
   hardware.cpu.amd.updateMicrocode =
     lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-  networking.hostId = "3ae7f95f";
-
   networking.hostName = "hydra";
+
+  services.btrfs.autoScrub.enable = true;
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/e2f2bd08-7962-4e9d-a22a-c66972b7b1e3";
+      options = [ "subvol=@nix" ];
+      fsType = "btrfs";
+    };
+    "/home" = {
+      device = "/dev/disk/by-uuid/e2f2bd08-7962-4e9d-a22a-c66972b7b1e3";
+      options = [ "subvol=@home" ];
+      fsType = "btrfs";
+    };
+    "/tes3mp" = {
+      device = "/dev/disk/by-uuid/e2f2bd08-7962-4e9d-a22a-c66972b7b1e3";
+      options = [ "subvol=@tes3mp" ];
+      fsType = "btrfs";
+    };
+    "/GAMES" = {
+      device = "/dev/disk/by-uuid/09bd533f-e008-4ed8-bc30-eeae89429821";
+      options = [ "subvol=@games" ];
+      fsType = "btrfs";
+    };
+    "/DOWNLOADS" = {
+      device = "/dev/disk/by-uuid/e24e064b-5f09-47b8-be7b-3ac41aff85e7";
+      options = [ "subvol=@downloads" ];
+      fsType = "btrfs";
+    };
+  };
 }
