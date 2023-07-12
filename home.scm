@@ -256,7 +256,10 @@
        ("gxsh" . "gx shell") ("gxtm" . "gx time-machine")
        ("e" . "$EDITOR") ("sw" . "swayhide")
        ("dd" . "dd status=progress")
-       ("lem" . "sbcl --load ~/cl/setup.lisp --eval '(ql:quickload :lem-ncurses)' --eval '(lem:lem)'")))
+       ("lem" . "sbcl --load ~/cl/setup.lisp \
+                      --eval '(ql:quickload :lem-ncurses)' \
+                      --eval '(lem:lem)' \
+                      --quit")))
      ;; Aliases:1 ends here
 
      ;; Environment
