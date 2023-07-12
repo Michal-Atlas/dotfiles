@@ -256,7 +256,7 @@
        ("gxsh" . "gx shell") ("gxtm" . "gx time-machine")
        ("e" . "$EDITOR") ("sw" . "swayhide")
        ("dd" . "dd status=progress")
-       ("lem" . "sbcl --load ~/cl/setup.lisp \
+       ("lem" . "sbcl --load ~/.quicklisp/setup.lisp \
                       --eval '(ql:quickload :lem-ncurses)' \
                       --eval '(lem:lem)' \
                       --quit")))
