@@ -9,28 +9,53 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "ahci"
+    "usb_storage"
+    "sd_mod"
+    # Should speed up LUKS
+    "aesni_intel"
+    "cryptd"
+  ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-  boot.supportedFilesystems = [ "ntfs" "zfs" ];
+  boot.supportedFilesystems = [ "ntfs" ];
 
   fileSystems."/boot/efi" =
     {
-      device = "/dev/disk/by-uuid/193E-62CC";
+      device = "/dev/disk/by-uuid/D762-6C63";
       fsType = "vfat";
     };
 
   swapDevices =
-    [{ device = "/dev/disk/by-uuid/35a962a4-ab8e-469a-9a56-bf5d269214d6"; }];
+    [{ device = "/dev/disk/by-uuid/bffe4a79-4fe6-4c29-98d2-3b71fd1c83ab"; }];
+
+  boot.initrd.luks.devices = {
+    cryptroot = {
+      device = "/dev/disk/by-uuid/13d67955-714a-4427-a24d-eaf26659f256";
+    };
+  };
+
+  fileSystems = {
+    "/" = {
+      device = "/dev/mapper/cryptroot";
+      options = [ "subvol=@nix" ];
+      fsType = "btrfs";
+    };
+    "/home" = {
+      device = "/dev/mapper/cryptroot";
+      options = [ "subvol=@home" ];
+      fsType = "btrfs";
+    };
+  };
 
   networking.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
-  networking.hostId = "e1ff25b5";
 
   networking.hostName = "dagon";
 
