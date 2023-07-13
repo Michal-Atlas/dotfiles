@@ -9,6 +9,7 @@
     ./syncthing.nix
     # ./fit-mount.nix
     ./steam.nix
+    ./backups.nix
   ];
   nix.settings.trusted-users = [ "root" "@wheel" ];
 
