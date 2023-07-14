@@ -1,4 +1,5 @@
-(ql:quickload :linedit)
+(require 'asdf)
+(require 'linedit)
 
 ;;; Check for --no-linedit command-line option.
 (if (member "--no-linedit" sb-ext:*posix-argv* :test 'equal)
@@ -8,3 +9,7 @@
       (linedit:install-repl :wrap-current t :eof-quits t)
       (funcall (intern "INSTALL-REPL" :linedit) :wrap-current t)))
 
+(asdf:initialize-source-registry
+  `(:source-registry
+     (:directory "~/cl/link-farm")
+     :inherit-configuration))
