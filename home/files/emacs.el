@@ -55,6 +55,8 @@
  auto-window-vscroll nil
  scroll-margin 8)
 
+(pixel-scroll-precision-mode t)
+
 ;;; Scrolling.
 ;; Good speed and allow scrolling through large images (pixel-scroll).
 ;; Note: Scroll lags when point must be moved but increasing the number
