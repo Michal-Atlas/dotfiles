@@ -1,4 +1,10 @@
 (require 'asdf)
+
+(asdf:initialize-source-registry
+  `(:source-registry
+     (:directory "~/cl/link-farm")
+     :inherit-configuration))
+
 (require 'linedit)
 
 ;;; Check for --no-linedit command-line option.
@@ -9,7 +15,3 @@
       (linedit:install-repl :wrap-current t :eof-quits t)
       (funcall (intern "INSTALL-REPL" :linedit) :wrap-current t)))
 
-(asdf:initialize-source-registry
-  `(:source-registry
-     (:directory "~/cl/link-farm")
-     :inherit-configuration))
