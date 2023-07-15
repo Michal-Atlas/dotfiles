@@ -81,14 +81,14 @@ in
     };
   };
   home.file = {
-    ".guile".source = ./files/guile.scm;
-    ".sbclrc".source = ./files/sbcl.lisp;
+    ".guile".source = ../../files/guile.scm;
+    ".sbclrc".source = ../../files/sbcl.lisp;
     ".face".source = builtins.fetchurl {
       url = "https://michal_atlas.srht.site/assets/mlxan/carcass-mountain/portraits/weeping-priest.jpeg";
       sha256 = "sha256:05szymcb5745xm8bcj1d8gyiyf1y5m9x6nijyghqz949haqwgjfl";
     };
-    ".local/share/nyxt/bookmarks.lisp".source = ./files/nyxt/bookmarks.lisp;
-    ".config/nyxt/config.lisp".source = ./files/nyxt/init.lisp;
+    ".local/share/nyxt/bookmarks.lisp".source = ../../files/nyxt/bookmarks.lisp;
+    ".config/nyxt/config.lisp".source = ../../files/nyxt/init.lisp;
   };
   xsession.numlock.enable = true;
   programs.home-manager.enable = true;
@@ -105,11 +105,11 @@ in
       client.enable = true;
       socketActivation.enable = true;
     };
-    password-store-sync = {
-      enable = true;
-      frequency = "daily";
-    };
-    pass-secret-service.enable = true;
+    # password-store-sync = {
+    #   enable = true;
+    #   frequency = "daily";
+    # };
+    # pass-secret-service.enable = true;
   };
   home.packages =
     [
