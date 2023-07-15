@@ -158,26 +158,8 @@
 
     ;; Emacs
 
-
     ;; [[file:Dotfiles.org::*Emacs][Emacs:1]]
     "emacs"
-    "emacs-use-package"
-    ,@(let ((try-resolve
-             (lambda (pkg)
-               (catch #t (lambda () (specification->package pkg))
-                 (lambda q #f)))))
-
-        (filter try-resolve
-                (map (compose
-                      (lambda (pkg) (string-append "emacs-" pkg))
-                      symbol->string)
-                     (with-input-from-file "files/emacs.el"
-                       (lambda () (let loop ((exp (read))
-                                        (out '()))
-                               (if (eof-object? exp)
-                                   out (loop (read)
-                                             (if (eq? 'use-package (car exp))
-                                                 (cons (cadr exp) out) out)))))))))
     ;; Emacs:1 ends here
 
     ;; Libs
