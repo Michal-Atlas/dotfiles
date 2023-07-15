@@ -1,7 +1,24 @@
+(setq straight-use-package-by-default t)
+
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 6))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+(straight-use-package 'use-package)
+
 (use-package
- bind-key
- :config
- (add-to-list 'same-window-buffer-names "*Personal Keybindings*"))
+  bind-key
+  :config
+  (add-to-list 'same-window-buffer-names "*Personal Keybindings*"))
 
 ;;;; * Org-mode
 
@@ -252,21 +269,14 @@
 
 ;;;; * Elfeed
 
+(use-package elfeed)
 (setq
  elfeed-feeds
  '(("https://xkcd.com/rss.xml" comics)
-   ("https://www.smbc-comics.com/comic/rss" comics)
-   ("https://www.giantitp.com/comics/oots.rss" comics)
-   ("https://feeds.feedburner.com/LookingForGroup" comics)
-   ("https://www.oglaf.com/" comics)
-   ("http://phdcomics.com/gradfeed.php" comics)
+   ("https://fsf.org/blogs/RSS" fsf)
    ("https://blog.tecosaur.com/tmio/rss.xml" emacs)
-   ("http://festivalofthespokennerd.libsyn.com/rss" podcast)
    ("https://guix.gnu.org/feeds/blog.atom" tech linux)
-   ("https://vkc.sh/feed/" tech linux)
-   ("https://www.youtube.com/feeds/videos.xml?channel_id=UCMiyV_Ib77XLpzHPQH_q0qQ") ;; Veronica
-   ("https://www.youtube.com/feeds/videos.xml?channel_id=UCQ6fPy9wr7qnMxAbFOGBaLw") ;; Computer Clan
-   ("https://lexfridman.com/feed/podcast/")))
+   ("https://vkc.sh/feed/" tech linux)))
 
 ;;;; * Misc
 
@@ -562,7 +572,8 @@
 ;; (use-package ac-geiser)
 (use-package all-the-icons)
 (use-package all-the-icons-dired)
-(use-package tex)
+(use-package tex
+  :straight nil)
 (use-package calfw)
 (use-package cheat-sh)
 (use-package circe)
