@@ -100,7 +100,7 @@ in
     };
     emacs = {
       enable = true;
-      package = pkgs.atlas-emacs;
+      package = pkgs.emacs-pgtk;
       defaultEditor = true;
       client.enable = true;
       socketActivation.enable = true;
@@ -111,10 +111,7 @@ in
     # };
     # pass-secret-service.enable = true;
   };
-  home.packages =
-    [
-      pkgs.atlas-emacs
-    ] ++ import ./packages.nix pkgs;
+  home.packages = import ./packages.nix pkgs;
 
   dconf.settings = {
     "org/gnome/shell" = {

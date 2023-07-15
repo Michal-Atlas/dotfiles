@@ -17,7 +17,7 @@
             ${pkgs.sbcl.withPackages (ps: with ps; [
               clingon local-time pkgs.btrfs-progs
             ])}/bin/sbcl \
-                --script ${../scripts/btrfs-autosnap.lisp} \
+                --script ${../../scripts/btrfs-autosnap.lisp} \
                 --label '${label}' \
                 --path '${path}' \
                 --retention '${builtins.toString retention}'

@@ -3,7 +3,7 @@ with pkgs;
 [
   acl2-minimal
   arandr
-  atlas-emacs
+  emacs-pgtk
   audacity
   bat
   bc
