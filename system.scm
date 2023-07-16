@@ -497,6 +497,24 @@ EndSection
        (device (uuid
                 "e2f2bd08-7962-4e9d-a22a-c66972b7b1e3"
                 'btrfs))
+       (options
+        (alist->file-system-options '(("subvol" . "@guix"))))
+       (type "btrfs"))
+      (file-system
+       (mount-point "/home")
+       (device (uuid
+                "e2f2bd08-7962-4e9d-a22a-c66972b7b1e3"
+                'btrfs))
+       (options
+        (alist->file-system-options '(("subvol" . "@home"))))
+       (type "btrfs"))
+      (file-system
+       (mount-point "/tes3mp")
+       (device (uuid
+                "e2f2bd08-7962-4e9d-a22a-c66972b7b1e3"
+                'btrfs))
+       (options
+        (alist->file-system-options '(("subvol" . "@tes3mp"))))
        (type "btrfs"))
       (file-system
        (mount-point "/GAMES")
