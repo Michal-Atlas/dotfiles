@@ -159,7 +159,7 @@
     ;; Emacs
 
     ;; [[file:Dotfiles.org::*Emacs][Emacs:1]]
-    "emacs"
+    "emacs-next-pgtk"
     ;; Emacs:1 ends here
 
     ;; Libs
