@@ -272,12 +272,6 @@
        ("_JAVA_AWT_WM_NONREPARENTING" . "1")
        ("PATH" . "$HOME/.nix-profile/bin/:$PATH")
        ("PATH" . "$PATH:$HOME/bin/")
-       ("LD_LIBRARY_PATH" .
-        ,(string-join
-          (map
-           (lambda (q) (string-append q "/lib"))
-           profiles)
-          ":"))
        ("GUILE_LOAD_PATH" . "$GUILE_LOAD_PATH:$HOME/bin")
        ("GUILE_LOAD_PATH" . "$GUILE_LOAD_PATH:$HOME/dotfiles")
        ("XDG_DATA_DIRS" . "$XDG_DATA_DIRS:/home/michal_atlas/.local/share/flatpak/exports/share")
