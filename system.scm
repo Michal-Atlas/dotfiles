@@ -457,11 +457,21 @@ EndSection
 				    "13d67955-714a-4427-a24d-eaf26659f256"))
 			   (target "cryptroot")
 			   (type luks-device-mapping))))
-    (file-systems (cons* (file-system
+    (file-systems (cons* 
+			(file-system
 			   (mount-point "/")
 			   (device "/dev/mapper/cryptroot")
 			   (type "btrfs")
-			   (dependencies mapped-devices))
+			   (dependencies mapped-devices)
+				(options (alist->file-system-options `(("subvol" . "@guix")))))
+			
+			(file-system
+				(mount-point "/home")
+				(device "/dev/mapper/cryptroot")
+				(type "btrfs")
+				(dependencies mapped-devices)
+				(options (alist->file-system-options `(("subvol" . "@home")))))
+
 			 (file-system
 			  (mount-point "/boot/efi")
 			  (device (uuid "D762-6C63"
