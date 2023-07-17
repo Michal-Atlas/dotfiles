@@ -469,34 +469,39 @@ EndSection
   (operating-system
     (inherit atlas-system-base)
     (host-name "dagon")
+    (mapped-devices (let* ((rpool-lvm (lambda (lv)
+                                        (mapped-device
+                                         (source "rpool")
+                                         (target (string-append "rpool-" lv))
+			                 (type lvm-device-mapping))))
+                           (lvm-maps
+                            (map rpool-lvm
+                                 '("home" "root" "swap"))))
+                      (append
+		       lvm-maps
+		       (list
+                        (mapped-device
+                         (source "/dev/mapper/rpool-home")
+                         (target "rpool-home-decrypted")
+                         (type luks-device-mapping))))))
     (swap-devices (list (swap-space
-			 (target (uuid
-				  "bffe4a79-4fe6-4c29-98d2-3b71fd1c83ab")))))
-    (mapped-devices (list (mapped-device
-			   (source (uuid
-				    "13d67955-714a-4427-a24d-eaf26659f256"))
-			   (target "cryptroot")
-			   (type luks-device-mapping))))
-    (file-systems (cons* 
-			(file-system
-			   (mount-point "/")
-			   (device "/dev/mapper/cryptroot")
-			   (type "btrfs")
-			   (dependencies mapped-devices)
-				(options (alist->file-system-options `(("subvol" . "@guix")))))
-			
-			(file-system
-				(mount-point "/home")
-				(device "/dev/mapper/cryptroot")
-				(type "btrfs")
-				(dependencies mapped-devices)
-				(options (alist->file-system-options `(("subvol" . "@home")))))
-
+			 (target "/dev/mapper/rpool-swap")
+			 (dependencies mapped-devices))))
+    (file-systems (cons* (file-system
+		          (mount-point "/")
+		          (device "/dev/mapper/rpool-root")
+		          (type "btrfs")
+		          (dependencies mapped-devices))
+                         (file-system
+                          (mount-point "/home")
+                          (device "/dev/mapper/rpool-home-decrypted")
+                          (type "btrfs")
+                          (dependencies mapped-devices))
 			 (file-system
 			  (mount-point "/boot/efi")
-			  (device (uuid "D762-6C63"
-					'fat32))
-			  (type "vfat")) %base-file-systems))))
+			  (device (uuid "D762-6C63" 'fat32))
+			  (type "vfat"))
+                         %base-file-systems))))
 ;; Dagon:1 ends here
 
 ;; Hydra
