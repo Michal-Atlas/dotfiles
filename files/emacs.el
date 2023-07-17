@@ -1,20 +1,3 @@
-(setq straight-use-package-by-default t)
-
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 6))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-
-(straight-use-package 'use-package)
-
 (use-package
   bind-key
   :config
@@ -22,9 +5,6 @@
 
 ;;;; * Org-mode
 
-(use-package org)
-;; (use-package org-fragtog
-;;   :hook (org-mode org-fragtog-mode))
 (use-package org-modern :hook (org-mode . org-modern-mode))
 (org-babel-do-load-languages
  'org-babel-load-languages
@@ -113,11 +93,10 @@
  :hook (prog-mode . highlight-indentation-mode)
  :custom (highlight-indent-guides-method 'bitmap))
 
-;; (defvar font-code "Fira Code 12")
-;; (set-frame-font font-code nil t)
-;; Loads font when opening new frames
-;; (add-to-list 'default-frame-alist `(font . ,font-code))
-;; (use-package fira-code-mode :config (global-fira-code-mode))
+(defvar font-code "Fira Code 12")
+(set-frame-font font-code nil t)
+(add-to-list 'default-frame-alist `(font . ,font-code))
+(use-package fira-code-mode :config (global-fira-code-mode t))
 
 (setq custom-file (locate-user-emacs-file "custom-vars.el"))
 (load custom-file 'noerror 'nomessage)
@@ -551,78 +530,3 @@
        (shell-command-to-string
         "upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E 'energy(-full)?:'")
        "\n"))))))
-
-(use-package org-roam)
-(use-package org-roam-ui)
-(use-package consult-org-roam)
-(use-package engrave-faces)
-(use-package go-mode)
-(use-package password-store)
-(use-package password-store-otp)
-(use-package org-superstar)
-(use-package rust-mode)
-(use-package org-roam-ui)
-;; (use-package geiser-racket)
-(use-package adaptive-wrap)
-(use-package geiser-guile)
-(use-package sly)
-;; (use-package slime)
-;; (use-package emms)
-;; (use-package evil)
-;; (use-package ac-geiser)
-(use-package all-the-icons)
-(use-package all-the-icons-dired)
-(use-package tex
-  :straight nil)
-(use-package calfw)
-(use-package cheat-sh)
-(use-package circe)
-(use-package crux)
-(use-package csv)
-(use-package csv-mode)
-(use-package dashboard)
-(use-package debbugs)
-(use-package ediprolog)
-(use-package elpher)
-(use-package ement)
-(use-package flycheck)
-(use-package flycheck-haskell)
-(use-package gdscript-mode)
-(use-package haskell-mode)
-(use-package htmlize)
-(use-package iedit)
-(use-package markdown-mode)
-(use-package multi-term)
-(use-package nix-mode)
-(use-package on-screen)
-(use-package ox-gemini)
-;; (use-package parinfer)
-(use-package pdf-tools)
-;; (use-package racket-mode)
-(use-package realgud)
-(use-package swiper)
-(use-package tldr)
-(use-package yaml-mode)
-(use-package yasnippet)
-(use-package yasnippet-snippets)
-(use-package zerodark-theme)
-(use-package gemini-mode)
-(use-package nov)
-(use-package dockerfile-mode)
-(use-package docker)
-(use-package dmenu)
-(use-package stumpwm-mode)
-(use-package
- hackles
- :straight
- (:host
-  sourcehut
-  :repo "michal_atlas/emacs-hackles"
-  :branch "master"))
-(use-package consult-yasnippet)
-(use-package yasnippet)
-(use-package ssh-agency)
-(use-package password-generator)
-(use-package stumpwm-mode)
-(use-package nix-mode)
-(use-package tuareg)

@@ -159,7 +159,27 @@
     ;; Emacs
 
     ;; [[file:Dotfiles.org::*Emacs][Emacs:1]]
-    "emacs-next-pgtk"
+    ,@(pkg-set
+       "emacs-"
+       '("next-pgtk"
+         "tuareg" "nix-mode" "stumpwm-mode" "password-generator" "ssh-agency"
+         "yasnippet" "consult-yasnippet" "hackles" "stumpwm-mode" "dmenu" "docker"
+         "dockerfile-mode" "gemini-mode" "zerodark-theme" "yasnippet-snippets"
+         "yasnippet" "yaml-mode" "tldr" "swiper" "realgud" "pdf-tools" "ox-gemini"
+         "on-screen" "nix-mode" "multi-term" "markdown-mode" "iedit" "htmlize"
+         "haskell-mode" "gdscript-mode" "flycheck-haskell" "flycheck" "ement"
+         "elpher" "ediprolog" "debbugs" "dashboard" "csv-mode" "csv" "crux"
+         "circe" "cheat-sh" "calfw" "all-the-icons-dired" "all-the-icons" "sly"
+         "geiser-guile" "adaptive-wrap" "org-roam-ui" "rust-mode" "org-superstar"
+         "password-store-otp" "password-store" "go-mode" "engrave-faces"
+         "consult-org-roam" "org-roam-ui" "org-roam" "hydra" "consult" "orderless"
+         "vertico" "embark" "browse-kill-ring" "avy" "magit" "elfeed"
+         "multiple-cursors" "paredit" "geiser" "company" "marginalia" "anzu"
+         "git-gutter" "eglot" "eshell-did-you-mean" "fish-completion"
+         "eshell-vterm" "eat" "eshell-syntax-highlighting" "eshell-prompt-extras"
+         "ace-window" "undo-tree" "rainbow-delimiters" "rainbow-identifiers"
+         "which-key" "doom-modeline" "monokai-theme" "direnv"
+         "highlight-indentation" "org-modern" "org" "auctex"))
     ;; Emacs:1 ends here
 
     ;; Libs
