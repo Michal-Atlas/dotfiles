@@ -162,6 +162,7 @@
     ,@(pkg-set
        "emacs"
        '("next-pgtk"
+         "hydra"
          "tuareg" "nix-mode" "stumpwm-mode" "password-generator" "ssh-agency"
          "yasnippet" "consult-yasnippet" "hackles" "stumpwm-mode" "dmenu" "docker"
          "dockerfile-mode" "gemini-mode" "zerodark-theme" "yasnippet-snippets"
