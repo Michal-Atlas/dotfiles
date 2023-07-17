@@ -200,7 +200,7 @@
 	       " ~/tmp/ ~/Downloads/ -mindepth 1 -mtime +2 -delete;"))
        #~(job
 	      '(next-minute '(0))
-	      "guix gc -F 80G")))))
+	      "guix gc -F 20G")))))
 
    (service home-git-service-type
             (home-git-configuration
