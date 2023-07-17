@@ -160,7 +160,7 @@
 
     ;; [[file:Dotfiles.org::*Emacs][Emacs:1]]
     ,@(pkg-set
-       "emacs-"
+       "emacs"
        '("next-pgtk"
          "tuareg" "nix-mode" "stumpwm-mode" "password-generator" "ssh-agency"
          "yasnippet" "consult-yasnippet" "hackles" "stumpwm-mode" "dmenu" "docker"
