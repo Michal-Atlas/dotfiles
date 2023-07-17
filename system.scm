@@ -373,8 +373,8 @@
    (service nix-service-type
 	    (nix-configuration
 	     (extra-config
-	      '("experimental-features = nix-command flakes"
-                "trusted-users = @wheel"))))
+	      '("experimental-features = nix-command flakes\n"
+                "trusted-users = @wheel\n"))))
    (service bluetooth-service-type)
    (modify-services %desktop-services
      (gdm-service-type
