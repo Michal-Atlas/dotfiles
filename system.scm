@@ -413,9 +413,9 @@ EndSection
 		(plain-file "non-guix.pub"
 			    "(public-key (ecc (curve Ed25519) (q #926B78EBA9416220CA0AFA2EAEC8ED99FC9E9C03AF11CD08AE6F8192BCF68673#)))")
 		(plain-file "hydra.pub"
-			    "(public-key (ecc (curve Ed25519) (q #03385757E9801272CAAD8462A6EDA563E83F9633A63C36936A7DD47E22316CDA#)))")
+			    "(public-key (ecc (curve Ed25519) (q #51C7C5CF4DA2EF64351B7AFE4998058F454622B8493EC6C96DDA8A2681EE5A2D#)))")
 		(plain-file "dagon.pub"
-			    "(public-key (ecc (curve Ed25519) (q #DB49668C798D60F0FAE967CB44D6CF2F154EF225B18EBF204263A73B1391D4EE#)))"))
+			    "(public-key (ecc (curve Ed25519) (q #F5E876A29802796DBA7BAD8B7C0FEE90BDD784A70CB2CC8A1365A47DA03AADBD#)))"))
 	       %default-authorized-guix-keys)))))))
 ;; Services:3 ends here
 
