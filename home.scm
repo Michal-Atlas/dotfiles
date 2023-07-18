@@ -310,7 +310,8 @@
 			  (extra-content "  ControlMaster auto")))
 		       '("1" "2"))))
 	  (authorized-keys (list (local-file "keys/hydra.pub")
-				 (local-file "keys/dagon.pub")))))
+				 (local-file "keys/dagon.pub")
+                                 (local-file "keys/arc.pub")))))
 ;; Environment:4 ends here
 
 ;; [[file:Dotfiles.org::*Environment][Environment:5]]
