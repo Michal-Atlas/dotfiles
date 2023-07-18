@@ -45,7 +45,8 @@
  (gnu packages package-management)
  (guix records)
  (atlas home services dconf)
- (atlas home services git))
+ (atlas home services git)
+ (atlas home services flatpak))
 ;; Imports:1 ends here
 
 ;; Custom Services
@@ -270,9 +271,8 @@
        ("PATH" . "$PATH:$HOME/bin/")
        ("GUILE_LOAD_PATH" . "$GUILE_LOAD_PATH:$HOME/bin")
        ("GUILE_LOAD_PATH" . "$GUILE_LOAD_PATH:$HOME/dotfiles")
-       ("XDG_DATA_DIRS" . "$XDG_DATA_DIRS:/home/michal_atlas/.local/share/flatpak/exports/share")
-       ("XDG_DATA_DIRS" . "$XDG_DATA_DIRS:/var/lib/flatpak/exports/share")
-       ("GUIX_SANDBOX_HOME" . "/GAMES"))
+       ("GUIX_SANDBOX_HOME" . "/GAMES")
+       ("ALTERNATE_EDITOR" . ""))
       )
      ;; Environment:1 ends here
 
@@ -283,6 +283,13 @@
 ;; [[file:Dotfiles.org::*Environment][Environment:3]]
 (service home-channels-service-type (load "channels.scm"))
 ;; Environment:3 ends here
+
+(service home-flatpak-service-type
+         (home-flatpak-configuration
+          (packages
+           '(("flathub"
+              "com.discordapp.Discord"
+              "com.spotify.Client")))))
 
 ;; [[file:Dotfiles.org::*Environment][Environment:4]]
 ;; (service home-provenance-service-type)
