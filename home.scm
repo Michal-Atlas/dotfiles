@@ -244,6 +244,7 @@
        ("gxb" . "gx build") ("gxs" . "gx search")
        ("gxsh" . "gx shell") ("gxtm" . "gx time-machine")
        ("e" . "$EDITOR") ("sw" . "swayhide")
+       ("cat" . "bat -p")
        ("dd" . "dd status=progress")))
      ;; Aliases:1 ends here
 
