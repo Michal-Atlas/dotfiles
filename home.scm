@@ -292,7 +292,14 @@
 		    (name "ZmioSem")
 		    (user "michal_zacek")
 		    (port 10169)
-		    (host-name "hiccup.mazim.cz")))
+		    (host-name "hiccup.mazim.cz"))
+                   (openssh-host
+                    (name "the-dam")
+                    (user "atlas")
+                    (host-name "the-dam.org")
+                    (identity-file (string-append
+                                    (getenv "HOME")
+                                    "/.ssh/the-dam"))))
 		  (map (lambda (q)
 			 (openssh-host
 			  (name (string-append "Fray" q))
