@@ -278,6 +278,7 @@
           (packages
            '(("flathub"
               "com.discordapp.Discord"
+              "org.telegram.desktop"
               "com.spotify.Client")))))
 
 ;; [[file:Dotfiles.org::*Environment][Environment:4]]
