@@ -143,11 +143,11 @@
                 (org/gnome/shell
                  (favorite-apps
                   #("firefox.desktop"
-                    "spotify.desktop"
-                    "discord.desktop"
+                    "com.spotify.Client.desktop"
+                    "com.discordapp.Discord.desktop"
                     "org.keepassxc.KeePassXC.desktop"
                     "fi.skyjake.Lagrange.desktop"
-                    "zotero.desktop"
+                    "org.zotero.Zotero.desktop"
                     "org.gnome.Nautilus.desktop")))
 
                 (org/gnome/mutter
