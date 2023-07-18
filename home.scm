@@ -245,6 +245,8 @@
        ("gxsh" . "gx shell") ("gxtm" . "gx time-machine")
        ("e" . "$EDITOR") ("sw" . "swayhide")
        ("cat" . "bat -p")
+       ("recon-home" . "guix home reconfigure $HOME/cl/dotfiles/home.scm")
+       ("recon-system" . "guix home reconfigure $HOME/cl/dotfiles/system.scm")
        ("dd" . "dd status=progress")))
      ;; Aliases:1 ends here
 
