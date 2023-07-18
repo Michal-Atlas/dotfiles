@@ -248,14 +248,16 @@
 
 ;;;; * Elfeed
 
-(use-package elfeed)
-(setq
- elfeed-feeds
- '(("https://xkcd.com/rss.xml" comics)
-   ("https://fsf.org/blogs/RSS" fsf)
-   ("https://blog.tecosaur.com/tmio/rss.xml" emacs)
-   ("https://guix.gnu.org/feeds/blog.atom" tech linux)
-   ("https://vkc.sh/feed/" tech linux)))
+(use-package elfeed
+  :config
+  (setq
+   elfeed-feeds
+   '(("https://xkcd.com/rss.xml" comics)
+     ("https://the-dam.org/rss.xml" unix dam)
+     ("https://fsf.org/blogs/RSS" fsf)
+     ("https://blog.tecosaur.com/tmio/rss.xml" emacs)
+     ("https://guix.gnu.org/feeds/blog.atom" tech linux)
+     ("https://vkc.sh/feed/" tech linux))))
 
 ;;;; * Misc
 
