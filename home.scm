@@ -302,6 +302,10 @@
              "c23d64f1b8cc086659f8781b27ab6c7314c5cca5"
              (openpgp-fingerprint
               "50F3 3E2E 5B0C 3D90 0424  ABE8 9BDC F497 A4BB CC7F"))))
+          (channel
+           (name 'beaver-labs)
+           (url "https://gitlab.com/edouardklein/guix")
+           (branch "beaverlabs"))
           %default-channels))
 
 ;; Environment:3 ends here
