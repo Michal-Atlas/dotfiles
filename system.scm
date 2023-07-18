@@ -134,7 +134,7 @@
     "taisei" "kobodeluxe"               ;"dwarf-fortress"
 
 ;;; e-mail
-    "pinentry"
+    "pinentry" "keepassxc"
 
 ;;; desktop
     "fontconfig" "font-ghostscript" "font-dejavu" "font-gnu-freefont"
