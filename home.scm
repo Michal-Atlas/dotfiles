@@ -279,6 +279,7 @@
            '(("flathub"
               "com.discordapp.Discord"
               "org.telegram.desktop"
+              "org.zotero.Zotero"
               "com.spotify.Client")))))
 
 ;; [[file:Dotfiles.org::*Environment][Environment:4]]
