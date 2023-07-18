@@ -168,18 +168,6 @@
 			  (list #$(file-append udiskie "/bin/udiskie"))))
 		(stop #~(make-kill-destructor)))
                 (shepherd-service
-		        (provision '(emacs))
-		        (start #~(make-forkexec-constructor
-			              (list #$(file-append emacs-next-pgtk "/bin/emacs")
-                                            "--fg-daemon")
-			              #:environment-variables
-			              (cons*
-			               "GDK_SCALE=2"
-			               "GDK_DPI_SCALE=0.41"
-			               (default-environment-variables))))
-		        (stop #~(make-system-destructor
-			         "emacsclient -e '(save-buffers-kill-emacs)'")))
-                (shepherd-service
                  (provision '(mpdris))
                  (start #~(make-forkexec-constructor
                            (list #$(file-append mpdris2 "/bin/mpDris2"))))
