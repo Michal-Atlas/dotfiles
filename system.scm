@@ -212,8 +212,6 @@
    (service virtlog-service-type
 	    (virtlog-configuration
 	     (max-clients 1000)))
-   (service syncthing-service-type
-	    (syncthing-configuration (user "michal_atlas")))
    (service cups-service-type
 	    (cups-configuration
 	     (web-interface? #t)

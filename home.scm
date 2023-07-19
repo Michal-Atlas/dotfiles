@@ -28,6 +28,7 @@
  (gnu packages terminals)
  (gnu packages lisp)
  (gnu packages curl)
+ (gnu packages rsync)
  (gnu home services mcron)
  (ice-9 hash-table)
  (gnu system keyboard)
@@ -68,8 +69,12 @@
                               (url-fetch url 'sha256 (base64-decode hash)))))
 ;; Custom Services:1 ends here
 
-;; Dconf
-;; Dconf:1 ends here
+(define rsync-dirs '("Sync" "cl" "Documents" "Zotero"))
+(define rsync-targets
+  (assoc-ref
+   `(("hydra" "dagon.local")
+     ("dagon" "hydra.local"))
+   (vector-ref (uname) 1)))
 
 ;; Home Environment
 
@@ -196,13 +201,26 @@
     (home-mcron-configuration
      (jobs
       (list
-       #~(job '(next-minute '(0))
+       #~(job "0 * * * *"
 	      (string-append 
 	       #$(file-append findutils "/bin/find")
 	       " ~/tmp/ ~/Downloads/ -mindepth 1 -mtime +2 -delete;"))
-       #~(job
-	  '(next-minute '(0))
-	  "guix gc -F 20G")))))
+       #~(job "0 * * * *"
+	      "guix gc -F 20G")
+       #~(job "* * * * *"
+              (lambda ()
+                (let ((targets '#$rsync-targets)
+                      (dirs '#$rsync-dirs))
+                  (for-each
+                   (lambda (dir)
+                     (for-each
+                      (lambda (remote)
+                        (system* #$(file-append rsync "/bin/rsync") "-au"
+                                 dir
+                                 (string-append remote ":" dir)))
+                      targets))
+                   dirs)))
+              "Rsync")))))
 
    (service home-git-service-type
             (home-git-configuration
