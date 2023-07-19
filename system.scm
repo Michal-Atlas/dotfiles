@@ -142,6 +142,7 @@
     "guix-icons" "breeze-icons" "oxygen-icons"
     "pasystray" "xss-lock"
     "bemenu" "sway" "swayidle" "swaybg" "swayhide"
+    "swaynotificationcenter"
     "wl-clipboard" "lagrange"
     "grim" "slurp" "foot"
     "nautilus" "gvfs" "okular" "pulseaudio"
@@ -213,7 +214,6 @@
     "gnupg" "pinentry"    
     "nss-certs" "xdg-utils"
 
-    "sway"
     "sbcl"
     ,@(pkg-set
        "sbcl"
@@ -295,8 +295,8 @@
     (list
      (pam-limits-entry "*" 'both 'nofile 524288)))
    (service gpm-service-type)
+   (screen-locker-service swaylock "swaylock")
    (service docker-service-type)
-   (service gnome-desktop-service-type)
    (zerotier-one-service)
    (service yggdrasil-service-type
 	    (yggdrasil-configuration
@@ -378,30 +378,7 @@
                 "trusted-users = @wheel\n"))))
    (service bluetooth-service-type)
    (modify-services %desktop-services
-     (gdm-service-type
-      config =>
-      (gdm-configuration
-       (auto-login? #t)
-       (default-user "michal_atlas")
-       (wayland? #t)
-       (auto-suspend? #f)
-       (xorg-configuration
-	(xorg-configuration
-	 (extra-config (list "# Touchpad
-Section \"InputClass\"
-Identifier \"touchpad\"
-	Driver \"libinput\"
-MatchIsTouchpad \"on\"
-Option \"DisableWhileTyping\" \"on\"
-Option \"Tapping\" \"1\"
-Option \"NaturalScrolling\" \"1\"
-Option \"Emulate3Buttons\" \"yes\"
-EndSection
-# Touchpad:1 ends here"))
-	(keyboard-layout
-	 (keyboard-layout "us,cz" ",ucw" #:options
-			  '("grp:caps_switch" #;"ctrl:nocaps" "grp_led"
-			    "lv3:ralt_switch" "compose:rctrl-altgr")))))))
+     (delete gdm-service-type)
     (guix-service-type
      config =>
      (guix-configuration
