@@ -37,134 +37,59 @@
 
 (define %system-desktop-manifest-list
   `(
-    "nvi" "patchelf"
-
     ;; DE
     "fontconfig" "font-ghostscript" "font-dejavu" "font-gnu-freefont"
     "font-adobe-source-han-sans" "font-wqy-zenhei"
-    "guix-icons" "breeze-icons" "oxygen-icons"
-    "xnotify" "brightnessctl" "pamixer" "playerctl"
-    "firefox" "nyxt" "xscreensaver" "gparted"
-    "nautilus" "gvfs" "samba"
-    "pavucontrol" "screen"
-    ;;"sway"
-    "i3status" "i3lock"
-    "flatpak" "font-fira-code"
-    "breeze-icons" "hicolor-icon-theme"
+    "guix-icons" "breeze-icons" "oxygen-icons"    
+    "font-fira-code"
     "adwaita-icon-theme"
 
-    ;; KAB
-    "pkg-config" "openssl" "indent"
-
-    ;; Gnome extensions
-    "gnome-shell-extensions"
-    ,@(pkg-set
-       "gnome-shell-extension"
-       `("vertical-overview"
-	 "unite-shell"
-	 "transparent-window"
-	 "topicons-redux"
-	 "sound-output-device-chooser"
-	 "radio"
-	 "paperwm"
-	 "noannoyance"
-	 "just-perfection"
-	 "jiggle"
-	 "hide-app-icon"
-	 "gsconnect"
-	 "dash-to-panel"
-	 "dash-to-dock"
-	 "customize-ibus"
-	 "clipboard-indicator"
-	 "burn-my-windows"
-	 "blur-my-shell"
-	 "appindicator"))
-    "matcha-theme"
-
-;;; shell-utils
-    "file"
-    "kitty" "fzf"
-    "pandoc" "direnv"
-    "vim" "zsh" "git" "git" "htop"
-    "xclip" "telescope" "agate"
-    "fasd"
-    "bat" "zoxide" "exa"
-    "tealdeer"
-    "password-store"
-    "pass-otp"
-    "guile-filesystem"
-    "transmission-remote-gtk"
-    "transmission"
-    "pkg-config"
-
-;;; toolchains
-    "gdb" "go" "ccls"
-    "cmake" "make" "recutils" "python" "python-ipython"
-    "mosh"
-    "sbcl" "racket"
-    "gnupg" "swi-prolog"
-    "sbcl-linedit"
-
-;;; multimedia
-    "grim" "vlc" "mpv"
-    "libreoffice"
-    "audacity"
-    "yt-dlp" "picard"
-
-;;; graphics
-    "feh" "shotwell"
-    "inkscape" "gimp" "krita"
-    "font-fira-code" "font-jetbrains-mono"
+    "font-jetbrains-mono"
     "font-awesome" "font-tamzen"
     "font-sil-charis" "font-adobe-source-han-sans"
     "font-wqy-zenhei" "font-wqy-microhei"
-    "gparted"
-    "xrandr" "arandr"
-    "graphviz" "xdot"
-    "xdotool" "tree"
-    "bc" "unzip"
-;;; latex
-    "texlive"
-    "texlive-tcolorbox"
-;;; games
-    "lgogdownloader"
-    "supertuxkart" "cataclysm-dda"
-    "wesnoth"                           ;"steam" "sky" "lure"
-                                        ; "endless-sky" "naev"
-    "gzdoom"                            ;"tintin++"
-    "taisei" "kobodeluxe"               ;"dwarf-fortress"
-
-;;; e-mail
-    "pinentry" "keepassxc"
-
-;;; desktop
-    "fontconfig" "font-ghostscript" "font-dejavu" "font-gnu-freefont"
-    "font-adobe-source-han-sans" "font-wqy-zenhei"
-    "guix-icons" "breeze-icons" "oxygen-icons"
-    "pasystray" "xss-lock"
-    "bemenu" "sway" "swayidle" "swaybg" "swayhide"
-    "swaynotificationcenter"
-    "wl-clipboard" "lagrange"
-    "grim" "slurp" "foot"
-    "nautilus" "gvfs" "okular" "pulseaudio"
-    "wob" "font-iosevka" "browserpass-native"
-    "xsetroot"
-
-;;; big-games
-    #;"the-dark-mod" ;"falltergeist"
-    "nethack"                           ;"retux"
-    "angband"
-                                        ;"retroarch"
-    "marble-marcher"
-    ;; Packages:1 ends here
 
     ;; Emacs
 
     ;; [[file:Dotfiles.org::*Emacs][Emacs:1]]
+
+    ;; Emacs:1 ends here
+
+    "nss-certs"
+
+    "sbcl"
+    ,@(pkg-set
+       "sbcl"
+       `("linedit" "mcclim"
+         "serapeum"
+         "alexandria" "cl-yacc"
+         "lparallel"
+         "coalton" "unix-opts" "cffi" "series"
+         "trial" "trees" "parenscript"
+         "terminfo" "terminal-size"
+         "terminal-keypress" "tar"
+         "tailrec" "s-xml"))
+    "nyxt" "gparted" "pavucontrol"
+    "screen" "indent" "pkg-config"
+
+    "file" "kitty" "fzf"
+    "pandoc" "direnv" "git" "htop"
+    "bat" "transmission-remote-gtk"
+
+    "make" "python-ipython" "mpv" "yt-dlp"
+
+    "feh" "shotwell" "krita" "arandr" "graphviz" "xdot"
+    "tree" "gnupg" "fasd"
+    ;; "texlive" "texlive-tcolorbox"
+
+    "xonotic" "keepassxc"
+    "wl-clipboard" "lagrange" "grim"
+    "slurp" "okular" "virt-manager" "btrfs-progs"
+    "mosh" "rsync" "nix" "recutils" "xdg-utils"
+
     ,@(pkg-set
        "emacs"
-       '("next-pgtk"
-         "hydra"
+       '("next-pgtk" "hydra"
          "tuareg" "nix-mode" "stumpwm-mode" "password-generator" "ssh-agency"
          "yasnippet" "consult-yasnippet" "hackles" "stumpwm-mode" "dmenu" "docker"
          "dockerfile-mode" "gemini-mode" "zerodark-theme" "yasnippet-snippets"
@@ -182,76 +107,7 @@
          "eshell-vterm" "eat" "eshell-syntax-highlighting" "eshell-prompt-extras"
          "ace-window" "undo-tree" "rainbow-delimiters" "rainbow-identifiers"
          "which-key" "doom-modeline" "monokai-theme" "direnv"
-         "highlight-indentation" "org-modern" "org" "auctex"))
-    ;; Emacs:1 ends here
-
-    ;; Libs
-
-
-    ;; [[file:Dotfiles.org::*Libs][Libs:1]]
-
-    ;; Libs
-    "ncurses" "curl" "virt-manager"
-    "ntfs-3g" "btrfs-progs"
-    "cifs-utils"
-
-    ;; Shell utils
-    "file" "screen"
-    "fzf"
-    "pandoc" "zutils"
-    "vim" "git" "htop"
-    "mosh" "rsync"
-    ;; Libs:1 ends here
-
-    ;; Toolchains
-
-
-    ;; [[file:Dotfiles.org::*Toolchains][Toolchains:1]]
-    "gcc-toolchain" "ccls"
-    "cmake" "make" "recutils" "python" "python-ipython"
-    "luajit" "perl" "nix"
-
-    "openvpn" "network-manager-openvpn"
-    "gnupg" "pinentry"    
-    "nss-certs" "xdg-utils"
-
-    "sbcl"
-    ,@(pkg-set
-       "sbcl"
-       `( ;; StumpWM
-	 ,@(pkg-set
-	    "stumpwm"
-	    `("winner-mode"
-	      "swm-gaps"
-	      "screenshot"
-	      "pass"
-	      "pamixer"
-	      "numpad-layouts"
-	      "notify"
-	      "kbd-layouts"
-	      "disk"
-	      "battery-portable"
-	      "globalwindows"
-	      "wifi"
-	      "ttf-fonts"
-	      "stumptray"
-	      "net"
-	      "mem"
-	      "cpu"))
-	 "linedit" "mcclim"
-	 "serapeum" "eclector"
-	 "alexandria" "cl-yacc"
-	 "cl-autowrap" "optima" "lparallel"
-	 "coalton" "coleslaw" "parser-combinators"
-	 "collectors" "cl-strings"      ;"virality"
-	 "speechless" "mathkit"
-	 "sketch" "cl-liballegro" "cl-fast-ecs"
-	 "sdl2kit" "harmony" "cl-raylib"
-	 "unix-opts" "cffi" "series"
-	 "trial" "trees" "sycamore" "parenscript"
-	 "terminfo" "terminal-size"
-	 "terminal-keypress" "tar"
-	 "tailrec" "screamer" "s-xml"))))
+         "highlight-indentation" "org-modern" "org" "auctex"))))
 
 (define %system-desktop-manifest
   (map specification->package %system-desktop-manifest-list))
@@ -356,10 +212,6 @@
    (service virtlog-service-type
 	    (virtlog-configuration
 	     (max-clients 1000)))
-   ;; (service hurd-vm-service-type
-   ;; 	    (hurd-vm-configuration
-   ;; 	     (disk-size (* 16 (expt 2 30)))
-   ;; 	     (memory-size 2048)))
    (service syncthing-service-type
 	    (syncthing-configuration (user "michal_atlas")))
    (service cups-service-type
@@ -434,9 +286,7 @@
 	     %base-packages))
     (setuid-programs
      (append (list (setuid-program
-		    (program (file-append cifs-utils "/sbin/mount.cifs")))
-                   (setuid-program
-                    (program (file-append light "/bin/light"))))
+		    (program (file-append cifs-utils "/sbin/mount.cifs"))))
 	     %setuid-programs))
     (services
      %system-services-manifest)
@@ -499,6 +349,10 @@
     (host-name "hydra")
     (firmware (list linux-firmware amdgpu-firmware))
     (services (cons*
+               (service hurd-vm-service-type
+	                (hurd-vm-configuration
+	                 (disk-size (* 16 (expt 2 30)))
+	                 (memory-size 2048)))
                (service tes3mp-service-type "/tes3mp")
                (service btrfs-autosnap-service-type
                         (list (btrfs-autosnap-spec
