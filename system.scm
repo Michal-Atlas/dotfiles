@@ -72,7 +72,7 @@
     "nyxt" "gparted" "pavucontrol"
     "screen" "indent" "pkg-config"
 
-    "file" "kitty" "fzf"
+    "file" "kitty" "fzf" "sway" "flatpak"
     "pandoc" "direnv" "git" "htop"
     "bat" "transmission-remote-gtk"
 

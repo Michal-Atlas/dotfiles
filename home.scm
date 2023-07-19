@@ -171,6 +171,12 @@
                   ("inactive_workspace" "#32323200" "#32323200" "#5c5c5c")))))
 
               (exec ,(file-append i3-autotiling "/bin/autotiling"))
+
+              (exec ,(file-append swayidle "/bin/swayidle") -w
+                    before-sleep
+                    "'"
+                    ,(file-append swaylock "/bin/swaylock")
+                    "-f -c 000000'")
                 
               "exec swayidle -w \
                 timeout 600 'playerctl status || swaylock -f -c 000000' \
