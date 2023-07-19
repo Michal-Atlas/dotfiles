@@ -8,6 +8,7 @@
 (define-module (atlas system)
   #:use-module (gnu)
   #:use-module (gnu packages)
+  #:use-module (gnu packages wm)
   #:use-module (gnu system setuid)
   #:use-module (gnu services desktop)
   #:use-module (gnu services xorg)
@@ -295,7 +296,11 @@
     (list
      (pam-limits-entry "*" 'both 'nofile 524288)))
    (service gpm-service-type)
-   (screen-locker-service swaylock "swaylock")
+   (service screen-locker-service-type
+            (screen-locker-configuration
+             (name "swaylock")
+             (program (file-append swaylock
+                                   "/bin/swaylock"))))
    (service docker-service-type)
    (zerotier-one-service)
    (service yggdrasil-service-type
@@ -429,7 +434,9 @@
 	     %base-packages))
     (setuid-programs
      (append (list (setuid-program
-		    (program (file-append cifs-utils "/sbin/mount.cifs"))))
+		    (program (file-append cifs-utils "/sbin/mount.cifs")))
+                   (setuid-program
+                    (program (file-append light "/bin/light"))))
 	     %setuid-programs))
     (services
      %system-services-manifest)
