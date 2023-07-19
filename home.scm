@@ -28,7 +28,7 @@
  (gnu packages terminals)
  (gnu packages lisp)
  (gnu packages curl)
- (gnu packages rsync)
+ (gnu packages ocaml)
  (gnu home services mcron)
  (ice-9 hash-table)
  (gnu system keyboard)
@@ -70,10 +70,10 @@
 ;; Custom Services:1 ends here
 
 (define rsync-dirs '("Sync" "cl" "Documents" "Zotero"))
-(define rsync-targets
+(define rsync-target
   (assoc-ref
-   `(("hydra" "dagon.local")
-     ("dagon" "hydra.local"))
+   `(("hydra" . "dagon.local")
+     ("dagon" . "hydra.local"))
    (vector-ref (uname) 1)))
 
 ;; Home Environment
@@ -179,17 +179,26 @@
    (service home-shepherd-service-type
 	    (home-shepherd-configuration
 	     (services
-	      (list
-	       (shepherd-service
-		(provision '(disk-automount))
-		(start #~(make-forkexec-constructor
-			  (list #$(file-append udiskie "/bin/udiskie"))))
-		(stop #~(make-kill-destructor)))
-               (shepherd-service
-                (provision '(mpdris))
-                (start #~(make-forkexec-constructor
-                          (list #$(file-append mpdris2 "/bin/mpDris2"))))
-                (stop #~(make-kill-destructor)))))))
+              ((if (string= "hydra" (vector-ref (uname) 1))
+                   (lambda (q) (cons
+                           (shepherd-service
+                            (provision '(unison))
+                            (start #~(make-forkexec-constructor
+                                      (list #$(file-append unison "/bin/unison"))))
+                            (stop #~(make-kill-destructor)))
+                           q))
+                   identity)
+	       (list
+	        (shepherd-service
+		 (provision '(disk-automount))
+		 (start #~(make-forkexec-constructor
+			   (list #$(file-append udiskie "/bin/udiskie"))))
+		 (stop #~(make-kill-destructor)))
+                (shepherd-service
+                 (provision '(mpdris))
+                 (start #~(make-forkexec-constructor
+                           (list #$(file-append mpdris2 "/bin/mpDris2"))))
+                 (stop #~(make-kill-destructor))))))))
    ;; Home Environment:1 ends here
 
    ;; Mcron
@@ -206,21 +215,7 @@
 	       #$(file-append findutils "/bin/find")
 	       " ~/tmp/ ~/Downloads/ -mindepth 1 -mtime +2 -delete;"))
        #~(job "0 * * * *"
-	      "guix gc -F 20G")
-       #~(job "* * * * *"
-              (lambda ()
-                (let ((targets '#$rsync-targets)
-                      (dirs '#$rsync-dirs))
-                  (for-each
-                   (lambda (dir)
-                     (for-each
-                      (lambda (remote)
-                        (system* #$(file-append rsync "/bin/rsync") "-au"
-                                 dir
-                                 (string-append remote ":" dir)))
-                      targets))
-                   dirs)))
-              "Rsync")))))
+	      "guix gc -F 20G")))))
 
    (service home-git-service-type
             (home-git-configuration
@@ -237,7 +232,23 @@
       (".guile" ,(local-file "files/guile.scm"))
       (".sbclrc" ,(local-file "files/sbcl.lisp"))
       (".local/share/nyxt/bookmarks.lisp" ,(local-file "files/nyxt/bookmarks.lisp"))
-      (".config/nyxt/config.lisp" ,(local-file "files/nyxt/init.lisp"))))
+      (".config/nyxt/config.lisp" ,(local-file "files/nyxt/init.lisp"))
+      (".unison/default.prf"
+       ,(mixed-text-file "unison-profile"
+                         "root=/home/michal_atlas\n"
+                         "root=ssh://"
+                         rsync-target
+                         "//home/michal_atlas\n"
+                         
+                         "path=Sync\n"
+                         "path=Documents\n"
+                         "path=cl\n"
+                         "path=Zotero\n"
+                         "auto=true\n"
+                         "batch=true\n"
+                         "log=true\n"
+                         "repeat=watch\n"
+                         "sortbysize=true\n"))))
    
    (service
     home-bash-service-type
