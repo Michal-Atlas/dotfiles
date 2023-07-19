@@ -101,7 +101,7 @@
                 (exec swaync)
                 
                 ,@(sway-exec-bindings
-                   `(("Return" ,(file-append emacs-next-pgtk "/bin/emacsclient"))
+                   `(("Return" ,(file-append emacs-next-pgtk "/bin/emacsclient -c"))
                      (("Shift" "n") ,(file-append swaynotificationcenter "/bin/swaync-client -t -sw"))
                      ("d" ,(file-append bemenu "/bin/bemenu-run"))
                      ("t" ,(file-append kitty "/bin/kitty"))
