@@ -25,6 +25,7 @@
  (gnu packages mpd)
  (gnu packages music)
  (gnu packages linux)
+ (gnu packages terminals)
  (gnu packages lisp)
  (gnu packages curl)
  (gnu home services mcron)
@@ -96,11 +97,14 @@
                       "&& mkfifo && tail -f" $sock
                       "|"
                       ,(file-append wob "/bin/wob"))
-                
+
+                (exec swaync)
                 
                 ,@(sway-exec-bindings
                    `(("Return" ,(file-append emacs-next-pgtk "/bin/emacsclient"))
+                     (("Shift" "n") ,(file-append swaynotificationcenter "/bin/swaync-client -t -sw"))
                      ("d" ,(file-append bemenu "/bin/bemenu-run"))
+                     ("t" ,(file-append kitty "/bin/kitty"))
                      (("Shift" "e") "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'")
                      (("Shift" "s")
                       "DIM=\"$(" ,(file-append slurp "/bin/slurp") "\""
