@@ -174,14 +174,8 @@
 
               (exec ,(file-append swayidle "/bin/swayidle") -w
                     before-sleep
-                    "'"
-                    ,(file-append swaylock "/bin/swaylock")
-                    "-f -c 000000'")
-                
-              "exec swayidle -w \
-                timeout 600 'playerctl status || swaylock -f -c 000000' \
-                timeout 1200 'playerctl status || swaymsg \"output * dpms off\"' resume 'swaymsg \"output * dpms on\"' \
-                before-sleep 'swaylock -f -c 000000'"))
+                    ;; We need the global setuid one
+                    "'swaylock -f -c 000000'")))
    (service home-shepherd-service-type
 	    (home-shepherd-configuration
 	     (services
