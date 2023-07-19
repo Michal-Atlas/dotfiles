@@ -193,12 +193,7 @@
 		 (provision '(disk-automount))
 		 (start #~(make-forkexec-constructor
 			   (list #$(file-append udiskie "/bin/udiskie"))))
-		 (stop #~(make-kill-destructor)))
-                (shepherd-service
-                 (provision '(mpdris))
-                 (start #~(make-forkexec-constructor
-                           (list #$(file-append mpdris2 "/bin/mpDris2"))))
-                 (stop #~(make-kill-destructor))))))))
+		 (stop #~(make-kill-destructor))))))))
    ;; Home Environment:1 ends here
 
    ;; Mcron
