@@ -77,112 +77,99 @@
  (services
   (list
    (service home-sway-service-type
-            (home-sway-configuration
-             ;; (exec
-             ;;  (list
-             ;;   (let ((sock "$XDG_RUNTIME_DIR/wob.sock"))
-             ;;     (string-append "rm -f " sock
-             ;;                    " && mkfifo && tail -f " sock "| "
-             ;;                    (file-append wob "/bin/wob")))))
-             (keyboard my-layout)
-             (inputs #~`(("1739:32382:DELL0740:00_06CB:7E7E_Touchpad"
-                        ("dwt" . "enabled")
-                        ("tap" . "enabled")
-                        ("natural_scroll" . "enabled")
-                        ("middle_emulation" . "enabled"))))
-             (outputs #~`(("*"
-                           (bg .
-                             ,(string-append
-                               #$(file-fetch "https://ift.tt/2UDuBqa"
-                                             "i7XCgxwaBYKB7RkpB2nYcGsk2XafNUPcV9921oicRdo=")
-                               " fill")))))
-             ;; (lock
-             ;;  (home-sway-lock-configuration
-             ;;   (color "000000")
-             ;;   (lock-timeout 600)
-             ;;   (screen-timeout 1200)))
-             (mod-key "Mod4")
-             (exec-bindings
-              #~`(("Return" . #$(file-append emacs-next-pgtk "/bin/emacsclient"))
-                  ("d" . #$(file-append bemenu "/bin/bemenu-run"))
-                  (("Shift" "e") . "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'")
-                  (("Shift" "s") .
-                   ,(string-append
-                     "DIM=\"$(" #$(file-append slurp "/bin/slurp") "\""
-                     " && " #$(file-append grim "/bin/grim")
-                     " ~/tmp/$(date +'%s_grim.png') -g \"$DIM\" "
-                     "&& " #$(file-append grim "/bin/grim")
-                     " -g \"$DIM\" - | wl-copy --type image/png"))
+            `((set $mod "Mod4")
+              ,(sway-keyboard-layout my-layout)
 
-                  ("XF86AudioRaiseVolume" .
-                   "pactl set-sink-volume @DEFAULT_SINK@ +5% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1| awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK")
-                  
-                  ("XF86AudioLowerVolume" . "pactl set-sink-volume @DEFAULT_SINK@ -5% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1| awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK")
-                  ("XF86AudioMute" . "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-mute @DEFAULT_SINK@ | grep \"no\" && echo 100 > $WOBSOCK || echo 0 > $WOBSOCK")
-                  ("XF86AudioMicMute" . "pactl set-source-mute @DEFAULT_SOURCE@ toggle")
+                (input "1739:32382:DELL0740:00_06CB:7E7E_Touchpad"
+                       ((dwt enabled)
+                        (tap enabled)
+                        (natural_scroll enabled)
+                        (middle_emulation enabled)))
 
-                  ("XF86MonBrightnessUp" .
-                   ,(string-append
-                     #$(file-append light "/bin/light -A 10 && ")
-                     #$(file-append light "/bin/light -G | cut -d'.' -f1 > $WOBSOCK")))
-                  ("XF86MonBrightnessDown" .
-                   ,(string-append
-                     #$(file-append light "/bin/light -U 10 && ")
-                     #$(file-append light "/bin/light -G | cut -d'.' -f1 > $WOBSOCK")))
+                (output "*"
+                        ((bg ,(file-fetch "https://ift.tt/2UDuBqa"
+                                          "i7XCgxwaBYKB7RkpB2nYcGsk2XafNUPcV9921oicRdo=")
+                             fill)))
+                
+                (set $sock "$XDG_RUNTIME_DIR/wob.sock")
+                (exec "rm -f" $sock
+                      "&& mkfifo && tail -f" $sock
+                      "|"
+                      ,(file-append wob "/bin/wob"))
+                
+                
+                ,@(sway-exec-bindings
+                   `(("Return" ,(file-append emacs-next-pgtk "/bin/emacsclient"))
+                     ("d" ,(file-append bemenu "/bin/bemenu-run"))
+                     (("Shift" "e") "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'")
+                     (("Shift" "s")
+                      "DIM=\"$(" ,(file-append slurp "/bin/slurp") "\""
+                      " && " ,(file-append grim "/bin/grim")
+                      " ~/tmp/$(date +'%s_grim.png') -g \"$DIM\" "
+                      "&& " ,(file-append grim "/bin/grim")
+                      " -g \"$DIM\" - | wl-copy --type image/png")))
+                ,@(sway-exec-bindings/nomod
+                   `(("XF86AudioPrev" ,(file-append playerctl "/bin/playerctl previous"))
+                     ("XF86AudioNext" ,(file-append playerctl "/bin/playerctl next"))
+                     ("XF86AudioPlay" ,(file-append playerctl "/bin/playerctl play-pause"))
+                     ("XF86AudioRaiseVolume" 
+                      "pactl set-sink-volume @DEFAULT_SINK@ +5% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1| awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK")
+                     
+                     ("XF86AudioLowerVolume" "pactl set-sink-volume @DEFAULT_SINK@ -5% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1| awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK")
+                     ("XF86AudioMute" "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-mute @DEFAULT_SINK@ | grep \"no\" && echo 100 > $WOBSOCK || echo 0 > $WOBSOCK")
+                     ("XF86AudioMicMute" "pactl set-source-mute @DEFAULT_SOURCE@ toggle")
 
-                  ("XF86AudioPrev" . #$(file-append playerctl "/bin/playerctl previous"))
-                  ("XF86AudioNext" . #$(file-append playerctl "/bin/playerctl next"))
-                  ("XF86AudioPlay" . #$(file-append playerctl "/bin/playerctl play-pause"))))
-             (bindings
-              #~`((("Shift" "q") . "kill")
-                  (("Shift" "c") . "reload")
-                  ,@(let ((dirs '("Left" "Right" "Up" "Down")))
-                      (append
-                       (map (lambda (q) `(,q . ,(string-append "focus " (string-downcase q))))
-                            dirs)
-                       (map (lambda (q) `(("Shift" ,q) .
-                                     ,(string-append "move " (string-downcase q))))
-                            dirs)))
-                  ,@(map (lambda (q) `(,q .
-                                     ,(string-append "workspace number " (format #f "~a" q))))
-                         (iota 9))
-                  ,@(map (lambda (q) `(("Shift" ,q) .
-                                  ,(string-append "move container to workspace number "
-                                                  (format #f "~a" q))))
-                         (iota 9))
-                  ("b" . "splith")
-                  ("v" . "splitv")
-                  
-                  ("s" . "layout stacking")
-                  ("w" . "layout tabbed")
-                  ("e" . "layout toggle split")
+                     ("XF86MonBrightnessUp"
+                      ,(file-append light "/bin/light -A 10 &&")
+                      ,(file-append light "/bin/light -G | cut -d'.' -f1 > $sock"))
+                     ("XF86MonBrightnessDown"
+                      ,(file-append light "/bin/light -U 10 &&")
+                      ,(file-append light "/bin/light -G | cut -d'.' -f1 > $sock"))))
+                ,@(sway-bindings
+                   `((("Shift" "q") kill)
+                     (("Shift" "c") reload)
+                     ,@(let ((dirs '("Left" "Right" "Up" "Down")))
+                         (append
+                          (map (lambda (q) `(,q ,(string-append "focus " (string-downcase q))))
+                               dirs)
+                          (map (lambda (q) `(("Shift" ,q)
+                                        ,(string-append "move " (string-downcase q))))
+                               dirs)))
+                     ,@(map (compose (lambda (q) `(,q ,(string-append "workspace number " q)))
+                                     number->string)
+                            (iota 9))
+                     ,@(map (compose (lambda (q) `(("Shift" ,q)
+                                              ,(string-append "move container to workspace number " q)))
+                                     number->string)
+                            (iota 9))
+                     ("b" splith)
+                     ("v" splitv)
+                
+                     ("s" layout stacking)
+                     ("w" layout tabbed)
+                     ("e" layout toggle split)
 
-                  ("f" . "fullscreen")
+                     ("f" fullscreen)
 
-                  (("Shift" "space") . "floating toggle")
-                  ("space" . "focus mode_toggle")
-                  (("Shift" "minus") . "move scratchpad")
-                  ("minus" . "scratchpad show")))
-             ;; (floating-modifier (list mod-key "normal"))
-             (bar
-              (home-sway-bar-configuration
-               (position "top")
-               (status (file-append i3status "/bin/i3status"))
-               #;
-               (colors
-                `(("statusline" . "#ffffff")
-                  ("background" . "#323232")
-                  ("inactive_workspace" "#32323200" "#32323200" "#5c5c5c")))))
-             (extras
-              #~(list
-                 (string-append "exec " #$ (file-append i3-autotiling "/bin/autotiling"))
-                 "exec swayidle -w \
-         timeout 600 'playerctl status || swaylock -f -c 000000' \
-         timeout 1200 'playerctl status || swaymsg \"output * dpms off\"' resume 'swaymsg \"output * dpms on\"' \
-         before-sleep 'swaylock -f -c 000000'"
+                     (("Shift" "space") floating toggle)
+                     ("space" focus mode_toggle)
+                     (("Shift" "minus") move scratchpad)
+                     ("minus" scratchpad show)))
+                (floating_modifier $mod normal)
+                (bar
+                 ((position "top")
+                  (status_command ,(file-append i3status "/bin/i3status"))
+                  (colors
+                   (("statusline" "#ffffff")
+                    ("background" "#323232")
+                    ("inactive_workspace" "#32323200" "#32323200" "#5c5c5c")))))
 
-               ))
-             ))
+                (exec ,(file-append i3-autotiling "/bin/autotiling"))
+                
+                "exec swayidle -w \
+                timeout 600 'playerctl status || swaylock -f -c 000000' \
+                timeout 1200 'playerctl status || swaymsg \"output * dpms off\"' resume 'swaymsg \"output * dpms on\"' \
+                before-sleep 'swaylock -f -c 000000'"))
    (service home-shepherd-service-type
 	    (home-shepherd-configuration
 	     (services
