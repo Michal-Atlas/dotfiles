@@ -171,11 +171,10 @@
                   ("inactive_workspace" "#32323200" "#32323200" "#5c5c5c")))))
 
               (exec ,(file-append i3-autotiling "/bin/autotiling"))
-
-              (exec ,(file-append swayidle "/bin/swayidle") -w
-                    before-sleep
-                    ;; We need the global setuid one
-                    "'swaylock -f -c 000000'")))
+              
+              "exec swayidle -w \
+                timeout 1200 'playerctl status || swaymsg \"output * dpms off\"' resume 'swaymsg \"output * dpms on\"' \
+                before-sleep 'swaylock -f -c 000000'"))
    (service home-shepherd-service-type
 	    (home-shepherd-configuration
 	     (services
