@@ -259,6 +259,8 @@
        ("cat" . "bat -p")
        ("recon-home" . "guix home reconfigure $HOME/cl/dotfiles/home.scm")
        ("recon-system" . "sudo guix system reconfigure $HOME/cl/dotfiles/system.scm")
+       ("recon-home-time" . "guix time-machine -C $HOME/.guix-home/channels.scm -- home reconfigure $HOME/cl/dotfiles/home.scm")
+       ("recon-system-time" . "sudo guix time-machine -C /run/current-system/channels.scm -- system reconfigure $HOME/cl/dotfiles/system.scm")
        ("dd" . "dd status=progress")))
      ;; Aliases:1 ends here
 
