@@ -338,7 +338,8 @@
         (mixed-text-file "bashrc-cheat"
 		         "function cheat { "
 		         curl "/bin/curl"
-		         " \"cheat.sh/$@\"; }")))
+		         " \"cheat.sh/$@\"; }")
+        (plain-file "vi" "set -o vi")))
 
       (aliases `
        (("gx" . "guix")
