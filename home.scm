@@ -25,6 +25,7 @@
   #:use-module (gnu packages linux)
   #:use-module (gnu packages terminals)
   #:use-module (gnu packages lisp)
+  #:use-module (gnu packages pulseaudio)
   #:use-module (gnu packages curl)
   #:use-module (gnu packages ocaml)
   #:use-module (gnu home services mcron)
@@ -137,97 +138,135 @@
               (branch "beaverlabs"))
              %default-channels))
    (service home-sway-service-type
-            `((set $mod "Mod4")
-              ,(sway-keyboard-layout my-layout)
+            (home-sway-configuration
+             (sway
+              `((set $mod "Mod4")
+                ,(sway-keyboard-layout my-layout)
 
-              (input "1739:32382:DELL0740:00_06CB:7E7E_Touchpad"
-                     ((dwt enabled)
-                      (tap enabled)
-                      (natural_scroll enabled)
-                      (middle_emulation enabled)))
+                (input "1739:32382:DELL0740:00_06CB:7E7E_Touchpad"
+                       ((dwt enabled)
+                        (tap enabled)
+                        (natural_scroll enabled)
+                        (middle_emulation enabled)))
 
-              (output "*"
-                      ((bg ,(file-fetch "https://ift.tt/2UDuBqa"
-                                        "i7XCgxwaBYKB7RkpB2nYcGsk2XafNUPcV9921oicRdo=")
-                           fill)))
+                (output "*"
+                        ((bg ,(file-fetch "https://ift.tt/2UDuBqa"
+                                          "i7XCgxwaBYKB7RkpB2nYcGsk2XafNUPcV9921oicRdo=")
+                             fill)))
               
-              (set $sock "$XDG_RUNTIME_DIR/wob.sock")
-              (exec "rm -f" $sock
-                    "&& mkfifo" $sock "&& tail -f" $sock
-                    "|"
-                    ,(file-append wob "/bin/wob"))
-              
-              ,@(sway-exec-bindings
-                 `(("y" ,(file-append kitty "/bin/kitty unison"))
-                   ("Return" ,(file-append emacs-next-pgtk "/bin/emacsclient -c"))
-                   ("d" ,(file-append bemenu "/bin/bemenu-run"))
-                   ("t" ,(file-append kitty "/bin/kitty"))
-                   (("Shift" "e") "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'")
-                   (("Shift" "s")
-                    "DIM=\"$(" ,(file-append slurp "/bin/slurp") "\""
-                    " && " ,(file-append grim "/bin/grim")
-                    " ~/tmp/$(date +'%s_grim.png') -g \"$DIM\" "
-                    "&& " ,(file-append grim "/bin/grim")
-                    " -g \"$DIM\" - | wl-copy --type image/png")))
-              ,@(sway-exec-bindings/nomod
-                 `(("XF86AudioPrev" ,(file-append playerctl "/bin/playerctl previous"))
-                   ("XF86AudioNext" ,(file-append playerctl "/bin/playerctl next"))
-                   ("XF86AudioPlay" ,(file-append playerctl "/bin/playerctl play-pause"))
-                   ("XF86AudioRaiseVolume" 
-                    "pactl set-sink-volume @DEFAULT_SINK@ +5% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1| awk '{print substr($5, 1, length($5)-1)}' > $sock")
+                ,@(sway-exec-bindings
+                   `(("y" ,(file-append kitty "/bin/kitty unison"))
+                     ("Return" ,(file-append emacs-next-pgtk "/bin/emacsclient -c"))
+                     ("d" ,(file-append bemenu "/bin/bemenu-run"))
+                     ("t" ,(file-append kitty "/bin/kitty"))
+                     (("Shift" "e") "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'")
+                     (("Shift" "s")
+                      "DIM=\"$(" ,(file-append slurp "/bin/slurp") "\""
+                      " && " ,(file-append grim "/bin/grim")
+                      " ~/tmp/$(date +'%s_grim.png') -g \"$DIM\" "
+                      "&& " ,(file-append grim "/bin/grim")
+                      " -g \"$DIM\" - | wl-copy --type image/png")))
+                ,@(let* ((pactl-exec
+                          (lambda (cmd)
+                            (file-append pulseaudio (string-append "/bin/pactl " cmd))))
+                         (edit-audio-by
+                          (lambda (n)
+                            (pactl-exec
+                             (string-append "set-sink-volume @DEFAULT_SINK@ " n))))
+                         (playerctl-exec (lambda (cmd) (file-append playerctl "/bin/playerctl " cmd))))
+                    (sway-exec-bindings/nomod
+                     `(("XF86AudioPrev" ,(playerctl-exec "previous"))
+                       ("XF86AudioNext" ,(playerctl-exec "next"))
+                       ("XF86AudioPlay" ,(playerctl-exec "play-pause"))
+                       ("XF86AudioRaiseVolume" ,(edit-audio-by "+5%"))
+                       ("XF86AudioLowerVolume" ,(edit-audio-by "-5%"))
+                       ("XF86AudioMute" ,(pactl-exec "set-sink-mute @DEFAULT_SINK@ toggle"))
+                       ("XF86AudioMicMute" ,(pactl-exec "set-source-mute @DEFAULT_SOURCE@ toggle"))
+
+                       ("XF86MonBrightnessUp"
+                        ,(file-append brightnessctl "/bin/brightnessctl s +10%"))
+                       ("XF86MonBrightnessDown"
+                        ,(file-append brightnessctl "/bin/brightnessctl s 10%-")))))
+                ,@(sway-bindings
+                   `((("Shift" "q") kill)
+                     (("Shift" "c") reload)
+                     ,@(let ((dirs '("Left" "Right" "Up" "Down")))
+                         (append
+                          (map (lambda (q) `(,q ,(string-append "focus " (string-downcase q))))
+                               dirs)
+                          (map (lambda (q) `(("Shift" ,q)
+                                        ,(string-append "move " (string-downcase q))))
+                               dirs)))
+                     ,@(map (compose (lambda (q) `(,q ,(string-append "workspace number " q)))
+                                     number->string)
+                            (iota 9))
+                     ,@(map (compose (lambda (q) `(("Shift" ,q)
+                                              ,(string-append "move container to workspace number " q)))
+                                     number->string)
+                            (iota 9))
+                     ("b" splith)
+                     ("v" splitv)
                    
-                   ("XF86AudioLowerVolume" "pactl set-sink-volume @DEFAULT_SINK@ -5% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1| awk '{print substr($5, 1, length($5)-1)}' > $sock")
-                   ("XF86AudioMute" "pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-mute @DEFAULT_SINK@ | grep \"no\" && echo 100 > $sock || echo 0 > $sock")
-                   ("XF86AudioMicMute" "pactl set-source-mute @DEFAULT_SOURCE@ toggle")
+                     ("s" layout stacking)
+                     ("w" layout tabbed)
+                     ("e" layout toggle split)
 
-                   ("XF86MonBrightnessUp"
-                    ,(file-append brightnessctl "/bin/brightnessctl +10%"))
-                   ("XF86MonBrightnessDown"
-                    ,(file-append brightnessctl "/bin/brightnessctl 10%-"))))
-              ,@(sway-bindings
-                 `((("Shift" "q") kill)
-                   (("Shift" "c") reload)
-                   ,@(let ((dirs '("Left" "Right" "Up" "Down")))
-                       (append
-                        (map (lambda (q) `(,q ,(string-append "focus " (string-downcase q))))
-                             dirs)
-                        (map (lambda (q) `(("Shift" ,q)
-                                      ,(string-append "move " (string-downcase q))))
-                             dirs)))
-                   ,@(map (compose (lambda (q) `(,q ,(string-append "workspace number " q)))
-                                   number->string)
-                          (iota 9))
-                   ,@(map (compose (lambda (q) `(("Shift" ,q)
-                                            ,(string-append "move container to workspace number " q)))
-                                   number->string)
-                          (iota 9))
-                   ("b" splith)
-                   ("v" splitv)
-                   
-                   ("s" layout stacking)
-                   ("w" layout tabbed)
-                   ("e" layout toggle split)
+                     ("f" fullscreen)
 
-                   ("f" fullscreen)
+                     (("Shift" "space") floating toggle)
+                     ("space" focus mode_toggle)
+                     (("Shift" "minus") move scratchpad)
+                     ("minus" scratchpad show)))
+                (floating_modifier $mod normal)
+                (bar
+                 ((position "top")
+                  (status_command ,(file-append i3status "/bin/i3status"))
+                  (colors
+                   (("statusline" "#ffffff")
+                    ("background" "#323232")
+                    ("inactive_workspace" "#32323200" "#32323200" "#5c5c5c")))))
 
-                   (("Shift" "space") floating toggle)
-                   ("space" focus mode_toggle)
-                   (("Shift" "minus") move scratchpad)
-                   ("minus" scratchpad show)))
-              (floating_modifier $mod normal)
-              (bar
-               ((position "top")
-                (status_command ,(file-append i3status "/bin/i3status"))
-                (colors
-                 (("statusline" "#ffffff")
-                  ("background" "#323232")
-                  ("inactive_workspace" "#32323200" "#32323200" "#5c5c5c")))))
-
-              (exec ,(file-append i3-autotiling "/bin/autotiling"))
+                (exec ,(file-append i3-autotiling "/bin/autotiling"))
               
-              "exec swayidle -w \
+                "exec swayidle -w \
                 timeout 1200 'playerctl status || swaymsg \"output * dpms off\"' resume 'swaymsg \"output * dpms on\"' \
                 before-sleep 'swaylock -f -c 000000'"))
+
+             (status
+              `((general ((output_format = "i3bar")
+                          (colors = true)
+                          (interval = 5)))
+                
+                ,@(map (lambda (id) `(order += ,id))
+                       `("ipv6"
+                         "disk /"
+                         "wireless wlp1s0"
+                         "battery 0"
+                         "memory"
+                         "read_file brightness"
+                         "volume master"
+                         "time local"))
+                (wireless wlp1s0 ((format_up = "W: %ip @ %essid")
+                                  (format_down = "W: down")))
+                (battery 0 ((format = "%status %percentage %emptytime")
+                            (format_down = "No battery")
+                            (status_chr = "CHR")
+                            (status_bat = "BAT")
+                            (status_unk = "UNK")
+                            (status_full = "FUL")
+                            (path = "/sys/class/power_supply/BAT%d/uevent")
+                            (last_full_capacity = true)
+                            (low_threshold = 20)))
+                (time ((format = "%Y-%m-%d %H:%M:%S")))
+                (memory  ((format = "MEM: %used")
+                          (threshold_degraded = "10%")
+                          (format_degraded = "MEM: %free")))
+                (disk "/" ((format = "/: %free")))
+                (volume master ((device = "pulse")
+                                (format = "VOL: %volume")
+                                (format_muted = "VOL: __%")))
+                (read_file brightness ((path = "/sys/class/backlight/intel_backlight/brightness")
+                                       (format = "BRT: %content")))))))
 
    (.service home-shepherd
       (services
