@@ -133,6 +133,7 @@
                  (path "/tes3mp")))))))
       #:dagon '())
      (cons*
+      (zerotier-one-service)
       (service pam-limits-service-type
                (list
                 (pam-limits-entry "*" 'both 'nofile 524288)))
@@ -447,7 +448,6 @@
      (program (file-append swaylock
                            "/bin/swaylock")))
     (.docker)
-    ;; (zerotier-one-service)
     (.yggdrasil
      (autoconf? #t)
      (json-config
