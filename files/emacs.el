@@ -3,9 +3,6 @@
   :config
   (add-to-list 'same-window-buffer-names "*Personal Keybindings*"))
 
-(use-package evil
-  :config (evil-mode 1))
-
 ;;;; * Org-mode
 
 (use-package org-modern :hook (org-mode . org-modern-mode))
@@ -225,35 +222,12 @@
 (use-package geiser :hook (scheme-mode geiser-mode))
 
 (use-package
- smartparens
+ paredit
  :hook
- ((emacs-lisp-mode . smartparens-mode)
+ ((emacs-lisp-mode . paredit-mode)
   ;; (eval-expression-minibuffer-setup . paredit-mode)
-  (scheme-mode . smartparens-mode)
-  (lisp-mode . smartparens-mode)))
-
-(use-package evil-smartparens
-  :hook ((smartparens-mode . evil-smartparens-mode)))
-
-(use-package evil-quickscope
-  :ocnfig (global-evil-quickscope-mode 1))
-
-(use-package evil-commentary
-  :config (evil-commentary-mode 1))
-
-(use-package evil-owl
-  :config (evil-owl-mode 1))
-
-(use-package evil-org
-  :hook (org-mode . (lambda () evil-org-mode)))
-
-(use-package evil-goggles
-  :config (evil-goggles-mode 1))
-
-(use-package evil-collection
-  :config (evil-collection-init))
-
-(use-package evil-anzu)
+  (scheme-mode . paredit-mode)
+  (lisp-mode . paredit-mode)))
 
 (use-package
   multiple-cursors

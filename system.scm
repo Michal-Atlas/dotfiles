@@ -293,15 +293,6 @@
      emacs-eshell-prompt-extras
      emacs-eshell-syntax-highlighting
      emacs-eshell-vterm
-     emacs-evil-anzu
-     emacs-evil-collection
-     emacs-evil-commentary
-     emacs-evil-goggles
-     emacs-evil-next
-     emacs-evil-org
-     emacs-evil-owl
-     emacs-evil-quickscope
-     emacs-evil-smartparens
      emacs-fish-completion
      emacs-flycheck
      emacs-flycheck-haskell
@@ -346,7 +337,7 @@
      emacs-realgud
      emacs-rust-mode
      emacs-sly
-     emacs-smartparens
+     emacs-paredit
      emacs-ssh-agency
      emacs-stumpwm-mode
      emacs-stumpwm-mode
@@ -431,8 +422,8 @@
      shotwell
      slurp
      sway
-     texlive
-     texlive-tcolorbox
+     ;; texlive
+     ;; texlive-tcolorbox
      transmission-remote-gtk
      tree
      virt-manager
