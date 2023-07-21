@@ -91,7 +91,7 @@
       (if (eq? (car body) self) (cadr body)
           (loop (cddr body))))))
 
-(define-macro (@host-if os host fn)
+(define (@host-if os host fn)
   ((if (eq? host (host-keyword))
        fn identity)
    os))
@@ -111,12 +111,32 @@
    (locale "en_US.utf8")
    (timezone "Europe/Prague")
    (services
-    (cons*
-     (service pam-limits-service-type
-              (list
-               (pam-limits-entry "*" 'both 'nofile 524288)))
-     (modify-services %desktop-services
-                      (delete gdm-service-type))))
+    (append
+     (@host
+      #:hydra
+      (list
+       (service hurd-vm-service-type
+        (hurd-vm-configuration
+         (disk-size (* 16 (expt 2 30)))
+         (memory-size 2048)))
+       (service tes3mp-service-type
+        (tes3mp-configuration (config-dir "/tes3mp")
+                              (data-dir "/tes3mp")))
+       (service btrfs-autosnap-service-type
+        (btrfs-autosnap-configuration
+         (specs
+          (list (btrfs-autosnap-spec
+                 (name "tes3mp")
+                 (retention 31)
+                 (schedule "0 9 * * *")
+                 (path "/tes3mp")))))))
+      #:dagon '())
+     (cons*
+      (service pam-limits-service-type
+               (list
+                (pam-limits-entry "*" 'both 'nofile 524288)))
+      (modify-services %desktop-services
+                       (delete gdm-service-type)))))
    (keyboard-layout
     (keyboard-layout "us,cz" ",ucw" #:options
 		     '("grp:caps_switch" "grp_led"
@@ -503,16 +523,4 @@
                            "(public-key (ecc (curve Ed25519) (q #51C7C5CF4DA2EF64351B7AFE4998058F454622B8493EC6C96DDA8A2681EE5A2D#)))")
                (plain-file "dagon.pub"
                            "(public-key (ecc (curve Ed25519) (q #F5E876A29802796DBA7BAD8B7C0FEE90BDD784A70CB2CC8A1365A47DA03AADBD#)))"))
-              %default-authorized-guix-keys)))
-
-    (@host-if #:hydra (.hurd-vm
-                       (disk-size (* 16 (expt 2 30)))
-                       (memory-size 2048)))
-    (@host-if #:hydra (.tes3mp (config-dir "/tes3mp")))
-    (@host-if #:hydra (.btrfs-autosnap
-                       (specs
-                        (list (btrfs-autosnap-spec
-                               (name "tes3mp")
-                               (retention 31)
-                               (schedule "0 9 * * *")
-                               (path "/tes3mp")))))))
+              %default-authorized-guix-keys))))
