@@ -3,6 +3,9 @@
   :config
   (add-to-list 'same-window-buffer-names "*Personal Keybindings*"))
 
+(use-package evil
+  :config (evil-mode 1))
+
 ;;;; * Org-mode
 
 (use-package org-modern :hook (org-mode . org-modern-mode))
@@ -222,25 +225,43 @@
 (use-package geiser :hook (scheme-mode geiser-mode))
 
 (use-package
- paredit
+ smartparens
  :hook
- ((emacs-lisp-mode . paredit-mode)
+ ((emacs-lisp-mode . smartparens-mode)
   ;; (eval-expression-minibuffer-setup . paredit-mode)
-  (scheme-mode . paredit-mode) (lisp-mode . paredit-mode)))
+  (scheme-mode . smartparens-mode)
+  (lisp-mode . smartparens-mode)))
 
-;; (add-hook 'paredit-mode-hook #'lispy-mode)
-;; (add-hook 'emacs-lisp-mode-hook
-;;   (lambda ()
-;;     (require 'elisp-autofmt)
-;;     (elisp-autofmt-save-hook-for-this-buffer t)))
+(use-package evil-smartparens
+  :hook ((smartparens-mode . evil-smartparens-mode)))
+
+(use-package evil-quickscope
+  :ocnfig (global-evil-quickscope-mode 1))
+
+(use-package evil-commentary
+  :config (evil-commentary-mode 1))
+
+(use-package evil-owl
+  :config (evil-owl-mode 1))
+
+(use-package evil-org
+  :hook (org-mode . (lambda () evil-org-mode)))
+
+(use-package evil-goggles
+  :config (evil-goggles-mode 1))
+
+(use-package evil-collection
+  :config (evil-collection-init))
+
+(use-package evil-anzu)
 
 (use-package
- multiple-cursors
- :bind
- (("C-S-c C-S-c" . mc/edit-lines)
-  ("C->" . mc/mark-next-like-this)
-  ("C-<" . mc/mark-previous-like-this)
-  ("C-c C-<" . mc/mark-all-like-this)))
+  multiple-cursors
+  :bind
+  (("C-S-c C-S-c" . mc/edit-lines)
+   ("C->" . mc/mark-next-like-this)
+   ("C-<" . mc/mark-previous-like-this)
+   ("C-c C-<" . mc/mark-all-like-this)))
 
 ;;;; * C
 

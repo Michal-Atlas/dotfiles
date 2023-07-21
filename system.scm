@@ -270,6 +270,16 @@
      emacs-eshell-prompt-extras
      emacs-eshell-syntax-highlighting
      emacs-eshell-vterm
+     emacs-bind-map
+     emacs-evil-anzu
+     emacs-evil-collection
+     emacs-evil-commentary
+     emacs-evil-goggles
+     emacs-evil-org
+     emacs-evil-owl
+     emacs-evil-quickscope
+     emacs-evil-smartparens
+     emacs-evil-next
      emacs-fish-completion
      emacs-flycheck
      emacs-flycheck-haskell
@@ -305,7 +315,7 @@
      emacs-org-roam-ui
      emacs-org-superstar
      emacs-ox-gemini
-     emacs-paredit
+     emacs-smartparens
      emacs-password-generator
      emacs-password-store
      emacs-password-store-otp
