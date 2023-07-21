@@ -153,6 +153,11 @@
                         ((bg ,(file-fetch "https://ift.tt/2UDuBqa"
                                           "i7XCgxwaBYKB7RkpB2nYcGsk2XafNUPcV9921oicRdo=")
                              fill)))
+
+                (output "HDMI-A-1"
+                        ((position "1920,0")))
+                (output "DP-1"
+                        ((position "0,0")))
               
                 ,@(sway-exec-bindings
                    `(("y" ,(file-append kitty "/bin/kitty unison"))
