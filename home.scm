@@ -156,11 +156,10 @@
                     "&& mkfifo" $sock "&& tail -f" $sock
                     "|"
                     ,(file-append wob "/bin/wob"))
-
-              (exec swaync)
               
               ,@(sway-exec-bindings
-                 `(("Return" ,(file-append emacs-next-pgtk "/bin/emacsclient -c"))
+                 `(("y" ,(file-append kitty "/bin/kitty unison"))
+                   ("Return" ,(file-append emacs-next-pgtk "/bin/emacsclient -c"))
                    ("d" ,(file-append bemenu "/bin/bemenu-run"))
                    ("t" ,(file-append kitty "/bin/kitty"))
                    (("Shift" "e") "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'")
