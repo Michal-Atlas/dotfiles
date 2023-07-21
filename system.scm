@@ -31,6 +31,7 @@
  ghostscript
  gnome
  gnupg
+ gnuzilla
  graphviz
  haskell-xyz
  image
@@ -386,6 +387,7 @@
      grim
      guix-icons
      htop
+     icecat
      indent
      keepassxc
      kitty
