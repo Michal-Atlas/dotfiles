@@ -428,8 +428,8 @@
      shotwell
      slurp
      sway
-     ;; texlive
-     ;; texlive-tcolorbox
+     texlive
+     texlive-tcolorbox
      transmission-remote-gtk
      tree
      virt-manager
