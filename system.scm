@@ -525,4 +525,8 @@
                            "(public-key (ecc (curve Ed25519) (q #51C7C5CF4DA2EF64351B7AFE4998058F454622B8493EC6C96DDA8A2681EE5A2D#)))")
                (plain-file "dagon.pub"
                            "(public-key (ecc (curve Ed25519) (q #F5E876A29802796DBA7BAD8B7C0FEE90BDD784A70CB2CC8A1365A47DA03AADBD#)))"))
-              %default-authorized-guix-keys))))
+              %default-authorized-guix-keys)))
+
+    (+hosts
+     (list (host "200:672d:4835:ed25:662c:6d2e:b972:36d8" "hydra")
+           (host "203:3e6f:462d:790f:b89d:11c2:1e7a:2464" "dagon"))))
