@@ -50,10 +50,8 @@
   #:use-module (gnu packages image)
   #:use-module (guixrus home services emacs)
   #:use-module (atlas home services sway)
-  #:use-module (atlas home services git)
+  #:use-module (gnu home-services version-control)
   #:use-module (atlas home services flatpak))
-
-
 
 (define my-layout
   (keyboard-layout "us,cz" ",ucw" #:options
@@ -137,6 +135,14 @@
                 "c23d64f1b8cc086659f8781b27ab6c7314c5cca5"
                 (openpgp-fingerprint
                  "50F3 3E2E 5B0C 3D90 0424  ABE8 9BDC F497 A4BB CC7F"))))
+             (channel
+              (name 'rde)
+              (url "https://git.sr.ht/~abcdw/rde")
+              (introduction
+               (make-channel-introduction
+                "257cebd587b66e4d865b3537a9a88cccd7107c95"
+                (openpgp-fingerprint
+                 "2841 9AC6 5038 7440 C7E9  2FFA 2208 D209 58C1 DEB0"))))
              (channel
               (name 'beaver-labs)
               (url "https://gitlab.com/edouardklein/guix")
@@ -298,8 +304,13 @@
 	       "guix gc -F 20G"))))
 
    (.service home-git
-      (name "Michal Atlas")
-      (email "michal_atlas+git@posteo.net"))
+             (config
+              `((user
+                 ((name . "Michal Atlas")
+                  (email . "michal_atlas+git@posteo.net")
+                  (signingkey . "3EFBF2BBBB29B99E")))
+                (commit
+                 ((gpgsign . #t))))))
 
    (+service home-files
       ;; local-file being explicit allows earlier check for file existence
