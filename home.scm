@@ -123,7 +123,12 @@
                  "CD2D 5EAA A98C CB37 DA91  D6B0 5F58 1664 7F8B E551"))))
              (channel
               (name 'atlas)
-              (url "https://git.sr.ht/~michal_atlas/guix-channel"))
+              (url "https://git.sr.ht/~michal_atlas/guix-channel")
+              (introduction
+               (make-channel-introduction
+                "f0e838427c2d9c495202f1ad36cfcae86e3ed6af"
+                (openpgp-fingerprint
+                 "D45185A2755DAF831F1C3DC63EFBF2BBBB29B99E"))))
              (channel
               (name 'guix-gaming-games)
               (url "https://gitlab.com/guix-gaming-channels/games.git")
