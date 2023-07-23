@@ -193,6 +193,9 @@
                 ,(sway-keyboard-layout my-layout)
                 (input type:keyboard ((xkb_numlock enabled)))
 
+                (gaps inner 5)
+                (gaps outer 5)
+
                 (input "1739:32382:DELL0740:00_06CB:7E7E_Touchpad"
                        ((dwt enabled)
                         (tap enabled)
