@@ -308,14 +308,15 @@
              (servers
               (list
                (home-foot-server
+                (display "wayland-1")
                 (config-file
                  (apply mixed-text-file "foot.ini"
-                  (serialize-ini-config
-                   `((main
-                      ((font . "Fira Code:size=14")
-                       (include . ,(file-append
-                                    foot
-                                    "/share/foot/themes/monokai-pro"))))))))))))
+                        (serialize-ini-config
+                         `((main
+                            ((font . "Fira Code:size=14")
+                             (include . ,(file-append
+                                          foot
+                                          "/share/foot/themes/monokai-pro"))))))))))))
 
    (.service home-waybar
              (config
