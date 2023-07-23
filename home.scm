@@ -48,7 +48,6 @@
   #:use-module (guix packages)
   #:use-module (guix records)
   #:use-module (guix store)
-  #:use-module (guixrus home services foot)
   #:use-module (guixrus home services mako)
   #:use-module (ice-9 hash-table)
   #:use-module (ice-9 match)
@@ -217,10 +216,10 @@
                 (output "DP-1"
                         ((position "0,0")))
                 ,@(sway-exec-bindings
-                   `(("y" ,(file-append foot "/bin/footclient unison"))
+                   `(("y" ,(file-append foot "/bin/foot unison"))
                      ("Return" ,(file-append emacs-next-pgtk "/bin/emacsclient -c"))
                      ("d" ,(file-append bemenu "/bin/bemenu-run"))
-                     ("t" ,(file-append foot "/bin/footclient"))
+                     ("t" ,(file-append foot "/bin/foot"))
                      (("Shift" "e") "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'")
                      (("Shift" "s")
                       ("DIM=\"$("
@@ -312,20 +311,6 @@
 
    (.service home-dbus)
 
-   (.service home-foot
-             (servers
-              (list
-               (home-foot-server
-                (display "wayland-1")
-                (config-file
-                 (apply mixed-text-file "foot.ini"
-                        (serialize-ini-config
-                         `((main
-                            ((font . "Fira Code:size=14")
-                             (include . ,(file-append
-                                          foot
-                                          "/share/foot/themes/monokai-pro"))))))))))))
-
    (.service home-waybar
              (config
               #(((ipc . #t)
@@ -412,28 +397,36 @@
                                 "posteo.net")))))))
 
    (+service home-files
-      ;; local-file being explicit allows earlier check for file existence
-      `((".emacs.d/init.el" ,(local-file "files/emacs.el"))
-        (".guile" ,(local-file "files/guile.scm"))
-        (".sbclrc" ,(local-file "files/sbcl.lisp"))
-        (".local/share/nyxt/bookmarks.lisp" ,(local-file "files/nyxt/bookmarks.lisp"))
-        (".config/nyxt/config.lisp" ,(local-file "files/nyxt/init.lisp"))
-        (".unison/default.prf"
-         ,(mixed-text-file "unison-profile"
-                           "root=/home/michal_atlas\n"
-                           "root=ssh://"
-                           rsync-target
-                           "//home/michal_atlas\n"
+             ;; local-file being explicit allows earlier check for file existence
+             `((".emacs.d/init.el" ,(local-file "files/emacs.el"))
+               (".config/foot/foot.ini"
+                (apply mixed-text-file "foot.ini"
+                       (serialize-ini-config
+                        `((main
+                           ((font . #{Fira Code:size=12}#)
+                            (include . ,(file-append
+                                         foot
+                                         "/share/foot/themes/monokai-pro"))))))))
+               (".guile" ,(local-file "files/guile.scm"))
+               (".sbclrc" ,(local-file "files/sbcl.lisp"))
+               (".local/share/nyxt/bookmarks.lisp" ,(local-file "files/nyxt/bookmarks.lisp"))
+               (".config/nyxt/config.lisp" ,(local-file "files/nyxt/init.lisp"))
+               (".unison/default.prf"
+                ,(mixed-text-file "unison-profile"
+                                  "root=/home/michal_atlas\n"
+                                  "root=ssh://"
+                                  rsync-target
+                                  "//home/michal_atlas\n"
                          
-                           "path=Sync\n"
-                           "path=Documents\n"
-                           "path=cl\n"
-                           "path=Zotero\n"
-                           "auto=true\n"
-                           ;; "batch=true\n"
-                           "log=true\n"
-                           ;; "repeat=watch\n"
-                           "sortbysize=true\n"))))
+                                  "path=Sync\n"
+                                  "path=Documents\n"
+                                  "path=cl\n"
+                                  "path=Zotero\n"
+                                  "auto=true\n"
+                                  ;; "batch=true\n"
+                                  "log=true\n"
+                                  ;; "repeat=watch\n"
+                                  "sortbysize=true\n"))))
 
    (.service home-bash
       (guix-defaults? #t)
