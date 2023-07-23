@@ -49,6 +49,7 @@
   #:use-module (guix records)
   #:use-module (guix store)
   #:use-module (guixrus home services foot)
+  #:use-module (guixrus home services mako)
   #:use-module (ice-9 hash-table)
   #:use-module (ice-9 match)
   #:use-module (rde home services wm)
@@ -301,6 +302,13 @@
    (.service home-swaylock
              (config
               `((color . "000000"))))
+
+   (.service home-mako
+             (sections
+              (list
+               (home-mako-section
+                (default-timeout 10000)
+                (max-visible 10)))))
 
    (.service home-dbus)
 
