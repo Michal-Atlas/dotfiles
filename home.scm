@@ -337,8 +337,8 @@
                  (memory . ((format . "{}% ")))
                  (battery . ((format . "{}% BAT")))
                  (backlight . ((format . "{percent}% "))))))
-             (style-css `((* ((font-size . 13px)
-                              (font-family . monospace)))
+             (style-css `((* ((font-size . 14px)
+                              (font-family . "Fira Code")))
                           (window#waybar
                            ((background-color . #{rgba(0,0,0,0)}#)))
                           (label
