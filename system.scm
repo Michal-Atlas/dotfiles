@@ -397,6 +397,7 @@
      graphviz
      grim
      guix-icons
+     hicolor-icon-theme
      htop
      icecat
      indent
