@@ -100,7 +100,6 @@
    os))
 
 ((@@ (beaver functional-services) define-os-macros-for) btrfs-autosnap)
-((@@ (beaver functional-services) define-os-macros-for) tes3mp)
 
 (define-public atlas-system-base
   (operating-system
@@ -142,9 +141,7 @@
         (hurd-vm-configuration
          (disk-size (* 16 (expt 2 30)))
          (memory-size 2048)))
-       (service tes3mp-service-type
-        (tes3mp-configuration (config-dir "/tes3mp")
-                              (data-dir "/tes3mp")))
+       (service tes3mp-server-service-type)
        (service btrfs-autosnap-service-type
         (btrfs-autosnap-configuration
          (specs
@@ -152,7 +149,7 @@
                  (name "tes3mp")
                  (retention 31)
                  (schedule "0 9 * * *")
-                 (path "/tes3mp")))))))
+                 (path "/var/lib/tes3mp")))))))
       #:dagon '())
      (cons*
       (zerotier-one-service)
@@ -235,7 +232,7 @@
                         (alist->file-system-options '(("subvol" . "@home"))))
                        (type "btrfs"))
                       (file-system
-                       (mount-point "/tes3mp")
+                       (mount-point "/var/lib/tes3mp")
                        (device (uuid
                                 "e2f2bd08-7962-4e9d-a22a-c66972b7b1e3"
                                 'btrfs))
