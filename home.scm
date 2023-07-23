@@ -48,8 +48,7 @@
   #:use-module (gnu packages package-management)
   #:use-module (guix records)
   #:use-module (gnu packages image)
-  #:use-module (guixrus home services emacs)
-  #:use-module (atlas home services sway)
+  #:use-module (rde home services wm)
   #:use-module (gnu home-services version-control)
   #:use-module (atlas home services flatpak))
 
@@ -96,6 +95,44 @@
         #'(simple-service (format #f "~a extension" service-type)
                           service-type
                           config))])))
+
+
+(define (sway-keyboard-layout layout)
+  `(input *
+          ((xkb_layout ,(keyboard-layout-name layout))
+           (xkb_variant ,(keyboard-layout-variant layout))
+           (xkb_options ,(string-join
+                          (keyboard-layout-options layout)
+                          ",")))))
+
+(define (sway-kbd binds)
+  (string-join (listify binds) "+"))
+(define (listify k) (if (list? k) k (list k)))
+(define (sway-mkbd binds)
+  (sway-kbd (cons "$mod" (listify binds))))
+
+(define (sway-serialize-bindings binds schema->bind)
+  (map
+   (lambda (q) `(bindsym ,(schema->bind (car q))
+                    ,@(cdr q)))
+   binds))
+
+(define (prefix-exec l)
+  (map (lambda (bind) `(,(car bind) ,@(cons 'exec (listify (cadr bind))))) l))
+
+(define (sway-bindings binds)
+  (sway-serialize-bindings binds sway-mkbd))
+
+(define (sway-exec-bindings binds)
+  (sway-serialize-bindings
+   (prefix-exec binds)
+   sway-mkbd))
+
+(define (sway-exec-bindings/nomod binds)
+  (sway-serialize-bindings (prefix-exec binds) sway-kbd))
+
+(define (sway-bindings/nomod binds)
+  (sway-serialize-bindings binds sway-kbd))
 
 (home-environment
  (services
@@ -150,9 +187,11 @@
              %default-channels))
    (service home-sway-service-type
             (home-sway-configuration
-             (sway
+             (config
               `((set $mod "Mod4")
+
                 ,(sway-keyboard-layout my-layout)
+                (input type:keyboard ((xkb_numlock enabled)))
 
                 (input "1739:32382:DELL0740:00_06CB:7E7E_Touchpad"
                        ((dwt enabled)
@@ -169,7 +208,6 @@
                         ((position "1920,0")))
                 (output "DP-1"
                         ((position "0,0")))
-              
                 ,@(sway-exec-bindings
                    `(("y" ,(file-append kitty "/bin/kitty unison"))
                      ("Return" ,(file-append emacs-next-pgtk "/bin/emacsclient -c"))
@@ -203,6 +241,7 @@
                         ,(file-append brightnessctl "/bin/brightnessctl s +10%"))
                        ("XF86MonBrightnessDown"
                         ,(file-append brightnessctl "/bin/brightnessctl s 10%-")))))
+                
                 ,@(sway-bindings
                    `((("Shift" "q") kill)
                      (("Shift" "c") reload)
@@ -236,72 +275,82 @@
                 (floating_modifier $mod normal)
                 (bar
                  ((position "top")
-                  (status_command ,(file-append i3status "/bin/i3status"))
-                  (colors
-                   (("statusline" "#ffffff")
-                    ("background" "#323232")
-                    ("inactive_workspace" "#32323200" "#32323200" "#5c5c5c")))))
+                  (swaybar_command waybar)))
 
-                (exec ,(file-append i3-autotiling "/bin/autotiling"))
-              
-                "exec swayidle -w \
-                timeout 1200 'playerctl status || swaymsg \"output * dpms off\"' resume 'swaymsg \"output * dpms on\"' \
-                before-sleep 'swaylock -f -c 000000'"))
+                (exec swayidle)
+                (exec ,(file-append i3-autotiling "/bin/autotiling"))))))
 
-             (status
-              `((general ((output_format = "i3bar")
-                          (colors = true)
-                          (interval = 5)))
-                
-                ,@(map (lambda (id) `(order += ,id))
-                       `("ipv6"
-                         "disk /"
-                         "wireless wlp1s0"
-                         "battery 0"
-                         "memory"
-                         "read_file brightness"
-                         "volume master"
-                         "time local"))
-                (wireless wlp1s0 ((format_up = "W: %ip @ %essid")
-                                  (format_down = "W: down")))
-                (battery 0 ((format = "%status %percentage %emptytime")
-                            (format_down = "No battery")
-                            (status_chr = "CHR")
-                            (status_bat = "BAT")
-                            (status_unk = "UNK")
-                            (status_full = "FUL")
-                            (path = "/sys/class/power_supply/BAT%d/uevent")
-                            (last_full_capacity = true)
-                            (low_threshold = 20)))
-                (time ((format = "%Y-%m-%d %H:%M:%S")))
-                (memory  ((format = "MEM: %used")
-                          (threshold_degraded = "10%")
-                          (format_degraded = "MEM: %free")))
-                (disk "/" ((format = "/: %free")))
-                (volume master ((device = "pulse")
-                                (format = "VOL: %volume")
-                                (format_muted = "VOL: __%")))
-                (read_file brightness ((path = "/sys/class/backlight/intel_backlight/brightness")
-                                       (format = "BRT: %content")))))))
+   (.service home-swayidle
+             (config
+              `((timeout 1200 "'swaymsg \"output * dpms off\"'")
+                (resume "'swaymsg \"output * dpms on\"'")
+                (before-sleep "'swaylock -cf -c 000000'"))))
+
+   (.service home-waybar
+             (config
+              #(((ipc . #t)
+                 (id . 0)
+                 (modules-left . #("sway/workspaces" "sway/mode"))
+                 (modules-center . #("sway/window"))
+                 (modules-right . #("idle_inhibitor" "pulseaudio" "network"
+                                    "cpu" "memory" "disk" "backlight" "battery"
+                                    "clock" "tray"))
+                 (idle_inhibitor . ((format . "{icon}")
+                                    (format-icons . ((activated . "")
+                                                     (deactivated . "")))))
+                 (disk . ((format . "{used}/{total}")))
+                 (tray . ((spacing . 10)))
+                 (pulseaudio . ((format . "{volume}% ")
+                                (format-muted . "--% ")))
+                 (network . ((format-wifi . "{essid} {ipaddr}/{cidr}")
+                             (format-ethernet . "{ipaddr}/{cidr}")
+                             (tooltip-format . "{signalStrength}%")))
+                 (clock . ((format . "{:%FT%TZ}")))
+                 (cpu . ((format . "{usage}% ")))
+                 (memory . ((format . "{}% ")))
+                 (backlight . ((format . "{percent}%"))))))
+             (style-css `((* ((font-size . 13px)
+                              (font-family . monospace)))
+                          (window#waybar
+                           ((background-color . #{rgba(0,0,0,0)}#)))
+                          (label
+                           ((background . #{#292b2e}#)
+                            (color . #{#fdf6e3}#)
+                            (margin . #{0 1px}#)
+                            (padding . 5px)
+                            (border-left 2px solid grey)
+                            (border-right 2px solid grey)))
+                          (#{#workspaces}#
+                           ((background . #{#1a1a1a}#)))
+                          ((#{#workspaces}# button)
+                           ((padding 0 2px)
+                            (color . #{#fdf6e3}#)))
+                          ((#{#workspaces}# button.focused)
+                           ((color . #{#268bd2}#)))
+                          (#{#pulseaudio}# ((color . #{#268bd2}#)))
+                          (#{#memory}# ((color . #{#2aa198}#)))
+                          (#{#cpu}# ((color . #{#6c71c4}#)))
+                          (#{#battery}# ((color . #{#859900}#)))
+                          (#{#disk}# ((color . #{#b58900}#))))))
 
    (.service home-shepherd
-      (services
-       (list
-        (shepherd-service
-         (provision '(disk-automount))
-         (start #~(make-forkexec-constructor
-	           (list #$(file-append udiskie "/bin/udiskie"))))
-         (stop #~(make-kill-destructor))))))
+             (services
+              (list
+               (shepherd-service
+                (provision '(disk-automount))
+                (start #~(make-forkexec-constructor
+	                  (list #$(file-append udiskie "/bin/udiskie"))))
+                (stop #~(make-kill-destructor))))))
 
    (.service home-mcron
-      (jobs
-       (list
-        #~(job "0 * * * *"
-	       (string-append 
-	        #$(file-append findutils "/bin/find")
-	        " ~/tmp/ ~/Downloads/ -mindepth 1 -mtime +2 -delete;"))
-        #~(job "0 * * * *"
-	       "guix gc -F 20G"))))
+             (jobs
+              (list
+               #~(job "0 * * * *"
+	              (string-append 
+	               #$(file-append findutils "/bin/find")
+	               " ~/tmp/ ~/Downloads/ -mindepth 1 -mtime +2 -delete;"))
+               #~(job "0 * * * *"
+	              "guix gc -F 20G"))))
 
    (.service home-git
              (config
