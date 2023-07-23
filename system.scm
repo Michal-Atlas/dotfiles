@@ -389,6 +389,7 @@
      font-wqy-zenhei
      font-wqy-zenhei
      fontconfig
+     foot
      fzf
      git
      gnu-make
@@ -402,7 +403,6 @@
      icecat
      indent
      keepassxc
-     kitty
      krita
      lagrange
      mosh
