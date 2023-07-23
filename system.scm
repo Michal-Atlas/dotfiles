@@ -348,6 +348,7 @@
      emacs-org-roam-ui
      emacs-org-superstar
      emacs-ox-gemini
+     emacs-paredit
      emacs-password-generator
      emacs-password-store
      emacs-password-store-otp
@@ -357,7 +358,6 @@
      emacs-realgud
      emacs-rust-mode
      emacs-sly
-     emacs-paredit
      emacs-ssh-agency
      emacs-stumpwm-mode
      emacs-stumpwm-mode
@@ -412,8 +412,10 @@
      nyxt
      okular
      oxygen-icons    
+     p7zip
      pandoc
      pavucontrol
+     pinentry
      pkg-config
      python-ipython
      recutils
@@ -446,6 +448,7 @@
      ;; texlive-tcolorbox
      transmission-remote-gtk
      tree
+     unzip
      virt-manager
      wl-clipboard
      xdg-utils
