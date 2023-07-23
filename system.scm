@@ -459,7 +459,9 @@
     (.screen-locker
      (name "swaylock")
      (program (file-append swaylock
-                           "/bin/swaylock")))
+                           "/bin/swaylock"))
+     (using-setuid? #f)
+     (using-pam? #t))
     (.docker)
     (.yggdrasil
      (autoconf? #t)
