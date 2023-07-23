@@ -289,7 +289,8 @@
                   (swaybar_command waybar)))
 
                 (exec swayidle)
-                (exec ,(file-append i3-autotiling "/bin/autotiling"))))))
+                (exec ,(file-append i3-autotiling "/bin/autotiling"))
+                (exec ,(file-append mako "/bin/mako"))))))
 
    (.service home-swayidle
              (config
