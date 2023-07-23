@@ -217,7 +217,15 @@
                 (output "DP-1"
                         ((position "0,0")))
                 ,@(sway-exec-bindings
-                   `(("y" ,(file-append foot "/bin/foot unison"))
+                   `(("y" ,#~(string-append
+                              #$(file-append foot "/bin/foot")
+                              " "
+                              #$(program-file
+                                 "unison-wait"
+                                 #~(begin
+                                     (system*
+                                      #$(file-append unison "/bin/unison"))
+                                     (sleep 5)))))
                      ("Return" ,(file-append emacs-next-pgtk "/bin/emacsclient -c"))
                      ("d" ,(file-append bemenu "/bin/bemenu-run"))
                      ("t" ,(file-append foot "/bin/foot"))
