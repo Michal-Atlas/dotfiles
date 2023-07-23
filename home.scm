@@ -222,11 +222,15 @@
                      ("t" ,(file-append foot "/bin/footclient"))
                      (("Shift" "e") "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'")
                      (("Shift" "s")
-                      "DIM=\"$(" ,(file-append slurp "/bin/slurp") "\""
-                      " && " ,(file-append grim "/bin/grim")
-                      " ~/tmp/$(date +'%s_grim.png') -g \"$DIM\" "
-                      "&& " ,(file-append grim "/bin/grim")
-                      " -g \"$DIM\" - | wl-copy --type image/png")))
+                      ("DIM=\"$("
+                       ,(file-append slurp "/bin/slurp")
+                       ")\"" "&&"
+                       ,(file-append grim "/bin/grim")
+                       "~/tmp/$(date +'%s_grim.png') -g \"$DIM\"" "&&"
+                       ,(file-append grim "/bin/grim")
+                       "-g \"$DIM\" - |"
+                       ,(file-append wl-clipboard "/bin/wl-copy")
+                       "--type image/png"))))
                 ,@(let* ((pactl-exec
                           (lambda (cmd)
                             (file-append pulseaudio (string-append "/bin/pactl " cmd))))
@@ -464,7 +468,7 @@
       (environment-variables
        `(("BROWSER" . "firefox") ("EDITOR" . "emacsclient -n -c")
          ("TERM" . "xterm-256color") ("MOZ_ENABLE_WAYLAND" . "1")
-         ("MOZ_USE_XINPUT2" . "1") ("GRIM_DEFAULT_DIR" . "~/tmp")
+         ("MOZ_USE_XINPUT2" . "1")
          ("_JAVA_AWT_WM_NONREPARENTING" . "1")
          ("PATH" . "$HOME/.nix-profile/bin/:$PATH")
          ("PATH" . "$PATH:$HOME/bin/")
