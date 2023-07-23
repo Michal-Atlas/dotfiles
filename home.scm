@@ -362,7 +362,15 @@
                   (email . "michal_atlas+git@posteo.net")
                   (signingkey . "3EFBF2BBBB29B99E")))
                 (commit
-                 ((gpgsign . #t))))))
+                 ((gpgsign . #t)))
+                (sendemail
+                 ((smtpserver . "posteo.de")
+                  (smtpserverport . 587)
+                  (smtpencryption . "tls")
+                  (smtpuser . ,(string-append
+                                "michal_atlas"
+                                "@"
+                                "posteo.net")))))))
 
    (+service home-files
       ;; local-file being explicit allows earlier check for file existence
