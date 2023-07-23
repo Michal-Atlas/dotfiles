@@ -431,92 +431,92 @@
                                   "sortbysize=true\n"))))
 
    (.service home-bash
-      (guix-defaults? #t)
-      (bashrc
-       (list
-        (mixed-text-file "bashrc-direnv"
-		         "eval \"$("
-		         direnv "/bin/direnv"
-		         " hook bash)\"")
-        (plain-file "bashrc-ignoredups" "export HISTCONTROL=ignoredups")
-        (mixed-text-file "bashrc-run"
-		         "function run { "
-		         guix "/bin/guix"
-		         " shell $1 -- $@; }")
-        (mixed-text-file "bashrc-valgrind"
-		         "alias valgrind=\""
-		         guix "/bin/guix"
-		         " shell -CF valgrind -- valgrind \"")
-        (mixed-text-file "bashrc-fasd" "eval \"$("
-		         fasd "/bin/fasd"
-		         " --init auto)\"")
-        (mixed-text-file "bashrc-cheat"
-		         "function cheat { "
-		         curl "/bin/curl"
-		         " \"cheat.sh/$@\"; }")))
+             (guix-defaults? #t)
+             (bashrc
+              (list
+               (mixed-text-file "bashrc-direnv"
+		                "eval \"$("
+		                direnv "/bin/direnv"
+		                " hook bash)\"")
+               (plain-file "bashrc-ignoredups" "export HISTCONTROL=ignoredups")
+               (mixed-text-file "bashrc-run"
+		                "function run { "
+		                guix "/bin/guix"
+		                " shell $1 -- $@; }")
+               (mixed-text-file "bashrc-valgrind"
+		                "alias valgrind=\""
+		                guix "/bin/guix"
+		                " shell -CF valgrind -- valgrind \"")
+               (mixed-text-file "bashrc-fasd" "eval \"$("
+		                fasd "/bin/fasd"
+		                " --init auto)\"")
+               (mixed-text-file "bashrc-cheat"
+		                "function cheat { "
+		                curl "/bin/curl"
+		                " \"cheat.sh/$@\"; }")))
 
-      (aliases `
-       (("gx" . "guix")
-        ("gxi" . "gx install")
-        ("gxb" . "gx build")
-        ("gxs" . "gx search")
-        ("gxsh" . "gx shell")
-        ("gxtm" . "gx time-machine")
-        ("e" . "$EDITOR")
-        ("sw" . "swayhide")
-        ("cat" . "bat -p")
-        ("recon-home" . "guix home reconfigure $HOME/cl/dotfiles/home.scm")
-        ("recon-system" . "sudo guix system reconfigure $HOME/cl/dotfiles/system.scm")
-        ("recon-home-time" . "guix time-machine -C $HOME/.guix-home/channels.scm -- home reconfigure $HOME/cl/dotfiles/home.scm")
-        ("recon-system-time" . "sudo guix time-machine -C /run/current-system/channels.scm -- system reconfigure $HOME/cl/dotfiles/system.scm")))
+             (aliases `
+              (("gx" . "guix")
+               ("gxi" . "gx install")
+               ("gxb" . "gx build")
+               ("gxs" . "gx search")
+               ("gxsh" . "gx shell")
+               ("gxtm" . "gx time-machine")
+               ("e" . "$EDITOR")
+               ("sw" . "swayhide")
+               ("cat" . "bat -p")
+               ("recon-home" . "guix home reconfigure $HOME/cl/dotfiles/home.scm")
+               ("recon-system" . "sudo guix system reconfigure $HOME/cl/dotfiles/system.scm")
+               ("recon-home-time" . "guix time-machine -C $HOME/.guix-home/channels.scm -- home reconfigure $HOME/cl/dotfiles/home.scm")
+               ("recon-system-time" . "sudo guix time-machine -C /run/current-system/channels.scm -- system reconfigure $HOME/cl/dotfiles/system.scm")))
 
-      (environment-variables
-       `(("BROWSER" . "firefox") ("EDITOR" . "emacsclient -n -c")
-         ("TERM" . "xterm-256color") ("MOZ_ENABLE_WAYLAND" . "1")
-         ("MOZ_USE_XINPUT2" . "1")
-         ("_JAVA_AWT_WM_NONREPARENTING" . "1")
-         ("PATH" . "$HOME/.nix-profile/bin/:$PATH")
-         ("PATH" . "$PATH:$HOME/bin/")
-         ("GUILE_LOAD_PATH" . "$GUILE_LOAD_PATH:$HOME/bin")
-         ("GUILE_LOAD_PATH" . "$GUILE_LOAD_PATH:$HOME/dotfiles")
-         ("GUIX_SANDBOX_HOME" . "/GAMES")
-         ("ALTERNATE_EDITOR" . ""))))
+             (environment-variables
+              `(("BROWSER" . "firefox") ("EDITOR" . "emacsclient -n -c")
+                ("TERM" . "xterm-256color") ("MOZ_ENABLE_WAYLAND" . "1")
+                ("MOZ_USE_XINPUT2" . "1")
+                ("_JAVA_AWT_WM_NONREPARENTING" . "1")
+                ("PATH" . "$HOME/.nix-profile/bin/:$PATH")
+                ("PATH" . "$PATH:$HOME/bin/")
+                ("GUILE_LOAD_PATH" . "$GUILE_LOAD_PATH:$HOME/bin")
+                ("GUILE_LOAD_PATH" . "$GUILE_LOAD_PATH:$HOME/dotfiles")
+                ("GUIX_SANDBOX_HOME" . "/GAMES")
+                ("ALTERNATE_EDITOR" . ""))))
 
    (.service home-flatpak
-      (packages
-       '(("flathub"
-          "com.discordapp.Discord"
-          "org.telegram.desktop"
-          "org.zotero.Zotero"
-          "com.spotify.Client"))))
+             (packages
+              '(("flathub"
+                 "com.discordapp.Discord"
+                 "org.telegram.desktop"
+                 "org.zotero.Zotero"
+                 "com.spotify.Client"))))
 
    (.service home-openssh
-      (hosts (append
-	      (list
-	       (openssh-host
-	        (name "Myst")
-	        (host-name "34.122.2.188"))
-	       (openssh-host
-	        (name "ZmioSem")
-	        (user "michal_zacek")
-	        (port 10169)
-	        (host-name "hiccup.mazim.cz"))
-               (openssh-host
-                (name "the-dam")
-                (user "atlas")
-                (host-name "the-dam.org")
-                (identity-file (string-append
-                                (getenv "HOME")
-                                "/.ssh/the-dam"))))
-	      (map (lambda (q)
-		     (openssh-host
-		      (name (string-append "Fray" q))
-		      (host-name (string-append "fray" q ".fit.cvut.cz"))
-		      (user "zacekmi2")
-		      (host-key-algorithms (list "+ssh-rsa"))
-		      (accepted-key-types (list "+ssh-rsa"))
-		      (extra-content "  ControlMaster auto")))
-	           '("1" "2"))))
-      (authorized-keys (list (local-file "keys/hydra.pub")
-			     (local-file "keys/dagon.pub")
-                             (local-file "keys/arc.pub")))))))
+             (hosts (append
+	             (list
+	              (openssh-host
+	               (name "Myst")
+	               (host-name "34.122.2.188"))
+	              (openssh-host
+	               (name "ZmioSem")
+	               (user "michal_zacek")
+	               (port 10169)
+	               (host-name "hiccup.mazim.cz"))
+                      (openssh-host
+                       (name "the-dam")
+                       (user "atlas")
+                       (host-name "the-dam.org")
+                       (identity-file (string-append
+                                       (getenv "HOME")
+                                       "/.ssh/the-dam"))))
+	             (map (lambda (q)
+		            (openssh-host
+		             (name (string-append "Fray" q))
+		             (host-name (string-append "fray" q ".fit.cvut.cz"))
+		             (user "zacekmi2")
+		             (host-key-algorithms (list "+ssh-rsa"))
+		             (accepted-key-types (list "+ssh-rsa"))
+		             (extra-content "  ControlMaster auto")))
+	                  '("1" "2"))))
+             (authorized-keys (list (local-file "keys/hydra.pub")
+			            (local-file "keys/dagon.pub")
+                                    (local-file "keys/arc.pub")))))))
