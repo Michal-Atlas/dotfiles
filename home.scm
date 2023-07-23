@@ -295,6 +295,8 @@
              (config
               `((color . "000000"))))
 
+   (.service home-dbus)
+
    (.service home-waybar
              (config
               #(((ipc . #t)
