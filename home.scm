@@ -285,8 +285,8 @@
 
    (.service home-swayidle
              (config
-              `((timeout 1200 "'swaymsg \"output * dpms off\"'")
-                (resume "'swaymsg \"output * dpms on\"'")
+              `((timeout 1200 "'swaymsg \"output * dpms off\"'"
+                         resume "'swaymsg \"output * dpms on\"'")
                 (before-sleep "'swaylock -cf -c 000000'"))))
 
    (.service home-waybar
