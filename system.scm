@@ -18,6 +18,7 @@
  bittorrent
  certs
  code
+ compression
  cups
  databases
  disk
