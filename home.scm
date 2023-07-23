@@ -141,6 +141,7 @@
   (sway-serialize-bindings binds sway-kbd))
 
 (home-environment
+ (packages (list foot))
  (services
   (list
    (service home-channels-service-type
