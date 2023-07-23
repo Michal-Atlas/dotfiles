@@ -345,7 +345,8 @@
                            ((background . #{#292b2e}#)
                             (color . #{#fdf6e3}#)
                             (margin . #{0 1px}#)
-                            (padding . 5px)
+                            (border-radius . 5px)
+                            (padding 0px 5px 0px 5px)
                             (border-left 2px solid grey)
                             (border-right 2px solid grey)))
                           (#{#workspaces}#
