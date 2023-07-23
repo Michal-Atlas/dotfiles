@@ -62,6 +62,10 @@
               (run-with-store store
                               (url-fetch url 'sha256 (base64-decode hash)))))
 
+(define wallpaper
+  (file-fetch "https://ift.tt/2UDuBqa"
+              "i7XCgxwaBYKB7RkpB2nYcGsk2XafNUPcV9921oicRdo="))
+
 (define rsync-dirs '("Sync" "cl" "Documents" "Zotero"))
 (define rsync-target
   (assoc-ref
@@ -203,9 +207,7 @@
                         (middle_emulation enabled)))
 
                 (output "*"
-                        ((bg ,(file-fetch "https://ift.tt/2UDuBqa"
-                                          "i7XCgxwaBYKB7RkpB2nYcGsk2XafNUPcV9921oicRdo=")
-                             fill)))
+                        ((bg ,wallpaper fill)))
 
                 (output "HDMI-A-1"
                         ((position "1920,0")))
