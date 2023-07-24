@@ -366,7 +366,6 @@
      fasd
      feh
      file
-     flatpak
      font-adobe-source-han-sans
      font-adobe-source-han-sans
      font-awesome
