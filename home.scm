@@ -1,6 +1,7 @@
 (define-module (home)
   #:use-module (atlas home services flatpak)
   #:use-module (beaver system)
+  #:use-module (games packages minecraft)
   #:use-module (gnu home services desktop)
   #:use-module (gnu home services fontutils)
   #:use-module (gnu home services guix)
@@ -141,7 +142,8 @@
   (sway-serialize-bindings binds sway-kbd))
 
 (home-environment
- (packages (list foot))
+ (packages (list foot
+                 prismlauncher))
  (services
   (list
    (service home-channels-service-type
