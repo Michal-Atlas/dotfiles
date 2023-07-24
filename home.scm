@@ -227,7 +227,12 @@
                                       #$(file-append unison "/bin/unison"))
                                      (sleep 5)))))
                      ("Return" ,(file-append emacs-next-pgtk "/bin/emacsclient -c"))
-                     ("d" ,(file-append bemenu "/bin/bemenu-run"))
+                     ("d" ,(file-append bemenu (string-join '("/bin/bemenu-run"
+                                                              "-c"
+                                                              "-M200"
+                                                              "--fn 'Fira Code 15'"
+                                                              "-B2"
+                                                              "-l10"))))
                      ("t" ,(file-append foot "/bin/foot"))
                      (("Shift" "e") "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'")
                      (("Shift" "s")
