@@ -384,6 +384,7 @@
      foot
      fzf
      git
+     (list git "send-email")
      gnu-make
      gnupg
      gparted
