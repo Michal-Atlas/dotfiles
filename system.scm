@@ -430,8 +430,9 @@
      shotwell
      slurp
      sway
-     ;; texlive
-     ;; texlive-tcolorbox
+     texlive
+     texlive-scheme-basic
+     texlive-tcolorbox
      transmission-remote-gtk
      tree
      unzip
