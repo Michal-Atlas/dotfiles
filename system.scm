@@ -232,6 +232,12 @@
                         (alist->file-system-options '(("subvol" . "@home"))))
                        (type "btrfs"))
                       (file-system
+                       (mount-point "/GAMES")
+                       (device (file-system-label "VAULT"))
+                       (options
+                        (alist->file-system-options '(("subvol" . "@games"))))
+                       (type "btrfs"))
+                      (file-system
                        (mount-point "/DOWNLOADS")
                        (device (file-system-label "VAULT"))
                        (options
