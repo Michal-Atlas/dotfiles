@@ -488,7 +488,7 @@
                 ("PATH" . "$PATH:$HOME/bin/")
                 ("GUILE_LOAD_PATH" . "$GUILE_LOAD_PATH:$HOME/bin")
                 ("GUILE_LOAD_PATH" . "$GUILE_LOAD_PATH:$HOME/dotfiles")
-                ("GUIX_SANDBOX_HOME" . "/GAMES")
+                ("GUIX_SANDBOX_HOME" . "$HOME/Games")
                 ("ALTERNATE_EDITOR" . ""))))
 
    (.service home-flatpak
