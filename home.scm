@@ -500,9 +500,15 @@
              (packages
               '(("flathub"
                  "com.discordapp.Discord"
+                 "com.github.IsmaelMartinez.teams_for_linux"
+                 "com.spotify.Client"
+                 "com.usebottles.bottles"
+                 "com.visualstudio.code"
+                 "org.geogebra.GeoGebra"
+                 "org.openrgb.OpenRGB"
                  "org.telegram.desktop"
                  "org.zotero.Zotero"
-                 "com.spotify.Client"))))
+                 "rest.insomnia.Insomnia"))))
 
    (.service home-openssh
              (hosts (append
