@@ -60,6 +60,14 @@
 		   '("grp:caps_switch" "grp_led"
 		     "lv3:ralt_switch" "compose:rctrl-altgr")))
 
+(define bemenu-flags
+  (list
+   "-c"
+   "-M200"
+   "--fn 'Fira Code 15'"
+   "-B2"
+   "-l10"))
+
 (define (file-fetch url hash)
   (with-store store
               (run-with-store store
@@ -229,12 +237,10 @@
                                       #$(file-append unison "/bin/unison"))
                                      (sleep 5)))))
                      ("Return" ,(file-append emacs-next-pgtk "/bin/emacsclient -c"))
-                     ("d" ,(file-append bemenu (string-join '("/bin/bemenu-run"
-                                                              "-c"
-                                                              "-M200"
-                                                              "--fn 'Fira Code 15'"
-                                                              "-B2"
-                                                              "-l10"))))
+                     ("d" ,(file-append bemenu (string-join
+                                                (cons
+                                                 "/bin/bemenu-run"
+                                                 bemenu-flags))))
                      ("t" ,(file-append foot "/bin/foot"))
                      (("Shift" "e") "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'")
                      (("Shift" "s")
