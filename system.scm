@@ -238,11 +238,17 @@
                         (alist->file-system-options '(("subvol" . "@games"))))
                        (type "btrfs"))
                       (file-system
-                       (mount-point "/DOWNLOADS")
+                       (mount-point "/var/lib/ipfs")
                        (device (file-system-label "VAULT"))
                        (options
-                        (alist->file-system-options '(("subvol" . "@downloads"))))
-                       (type "btrfs"))))))
+                        (alist->file-system-options '(("subvol" . "@ipfs"))))
+                       (type "btrfs"))
+                      (file-system
+                        (mount-point "/DOWNLOADS")
+                        (device (file-system-label "VAULT"))
+                        (options
+                         (alist->file-system-options '(("subvol" . "@downloads"))))
+                        (type "btrfs"))))))
    (bootloader
     (bootloader-configuration
      (bootloader grub-efi-bootloader)
