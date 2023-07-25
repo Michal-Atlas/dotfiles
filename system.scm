@@ -538,4 +538,5 @@
 
     (+hosts
      (list (host "200:672d:4835:ed25:662c:6d2e:b972:36d8" "hydra")
-           (host "203:3e6f:462d:790f:b89d:11c2:1e7a:2464" "dagon"))))
+           (host "203:3e6f:462d:790f:b89d:11c2:1e7a:2464" "dagon")))
+    (.ipfs (gateway "/ip4/0.0.0.0/tcp/8082")))
