@@ -99,7 +99,7 @@
 	        '("wheel" "netdev" "audio" "docker"
 	          "video" "libvirt" "kvm" "tty" "transmission")))))
  (packages
-  (list
+  (cons*
    adwaita-icon-theme
    arandr
    bat
@@ -287,7 +287,8 @@
    xdg-utils
    xdot
    xonotic
-   yt-dlp))
+   yt-dlp
+   %base-packages))
  (firmware
   (@host
    linux-firmware
