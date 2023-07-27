@@ -337,6 +337,8 @@
         (disk-size (* 16 (expt 2 30)))
         (memory-size 2048))
     #:hydra
+    (&s quassel)
+    #:hydra
     (&s tes3mp-server)
     #:hydra
     (&s btrfs-autosnap
@@ -428,8 +430,7 @@
           '("experimental-features = nix-command flakes\n"
             "trusted-users = @wheel\n")))
     (bluetooth)
-    (ipfs (gateway "/ip4/0.0.0.0/tcp/8080"))
-    (quassel))
+    (ipfs (gateway "/ip4/0.0.0.0/tcp/8080")))
    (modify-services %desktop-services
                     (delete gdm-service-type)
                     (guix-service-type configuration =>
