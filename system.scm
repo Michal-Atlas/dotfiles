@@ -11,7 +11,20 @@
   #:use-module (nongnu packages linux)
   #:use-module (nongnu services vpn)
   #:use-module (nongnu system linux-initrd)
-  #:use-module (atlas utils services))
+  #:use-module (atlas utils services)
+  #:use-module (ice-9 textual-ports)
+  #:use-module (ice-9 popen))
+
+(define (getlabel system)
+  (chdir (dirname (current-filename)))
+  (string-join
+   (list
+    (operating-system-default-label system)
+    (string-trim-both
+     (get-string-all
+      (open-pipe* OPEN_READ
+                  "git" "log" "-1" "--pretty=%B"))))
+   " - "))
 
 (use-package-modules
  admin
@@ -90,6 +103,7 @@
  (host-name (hostname))
  (kernel linux)
  (initrd microcode-initrd)
+ (label (getlabel this-operating-system))
  (users (list (user-account
 	       (name "michal_atlas")
 	       (comment "Michal Atlas")
