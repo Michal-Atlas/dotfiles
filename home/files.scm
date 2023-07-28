@@ -1,4 +1,10 @@
 (define-library (home files)
+  (import (scheme base)
+          (atlas utils services)
+          (guix gexp)
+          (rde serializers ini)
+          (gnu home services)
+          (gnu packages terminals))
   (export %files)
   (begin
     (define rsync-dirs '("Sync" "cl" "Documents" "Zotero"))
