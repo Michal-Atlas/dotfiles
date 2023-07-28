@@ -1,7 +1,6 @@
 (define-library (system)
   (import (scheme base)
-          (scheme lazy)
-          (except (guile) delay force)
+          (guile)
           (ice-9 textual-ports)
           (ice-9 popen)
           (utils services)
@@ -29,9 +28,8 @@
        " - "))
 
     (define %system
-      (delay
-       (operating-system
-        (host-name (force hostname))
+      (operating-system
+        (host-name (hostname))
         (kernel linux)
         (initrd microcode-initrd)
         (label (getlabel this-operating-system))
@@ -50,7 +48,7 @@
           #:hydra amdgpu-firmware))
         (locale "en_US.utf8")
         (timezone "Europe/Prague")
-        (services (force %services))
+        (services %services)
         (keyboard-layout
          (keyboard-layout "us,cz" ",ucw" #:options
 		          '("grp:caps_switch" "grp_led"
@@ -59,13 +57,11 @@
          (append (list (setuid-program
 		        (program (file-append cifs-utils "/sbin/mount.cifs"))))
 	         %setuid-programs))
-        (mapped-devices (force %mapped-devices))
-        (swap-devices (force %swap))
-        (file-systems (force %filesystems))
+        (mapped-devices %mapped-devices)
+        (swap-devices %swap)
+        (file-systems %filesystems)
         (bootloader
          (bootloader-configuration
           (bootloader grub-efi-bootloader)
           (targets `("/boot/efi"))))
-        (name-service-switch %mdns-host-lookup-nss))))
-
-    %system))
+        (name-service-switch %mdns-host-lookup-nss)))))

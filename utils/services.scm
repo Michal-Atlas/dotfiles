@@ -1,7 +1,6 @@
 (define-library (utils services)
   (import (scheme base)
-          (scheme lazy)
-          (except (guile) force delay)
+          (guile)
           (gnu services))
   (export @host
           @host-append
@@ -24,8 +23,11 @@ with a symbol:
       (list (prefix inner ...) ...))
 
     (define hostname
-      (delay (vector-ref (uname) 1)))
-    (define (host-keyword) (symbol->keyword (string->symbol (force hostname))))
+      (make-parameter (vector-ref (uname) 1)))
+    (define (host-keyword)
+      (symbol->keyword
+       (string->symbol
+        (hostname))))
     (define (@host . body)
       "Returns the body as a list,
 omitting all expressions that follow
