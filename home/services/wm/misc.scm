@@ -1,6 +1,6 @@
 (define-library (home services wm misc)
   (import (scheme base)
-          (atlas utils services)
+          (utils services)
           (rde home services wm)
           (guixrus home services mako))
   (export %misc)

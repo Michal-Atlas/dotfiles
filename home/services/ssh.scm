@@ -2,7 +2,7 @@
   (import (scheme base)
           (guile)
           (guix gexp)
-          (atlas utils services)
+          (utils services)
           (gnu home services ssh))
   (export %ssh)
   (begin

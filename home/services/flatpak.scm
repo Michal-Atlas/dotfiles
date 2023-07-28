@@ -1,6 +1,6 @@
 (define-library (home services flatpak)
   (import (scheme base)
-          (atlas utils services)
+          (utils services)
           (atlas home services flatpak))
   (export %flatpak)
   (begin

@@ -1,6 +1,6 @@
 (define-library (home services bash)
   (import (scheme base)
-          (atlas utils services)
+          (utils services)
           (gnu home services shells)
           (guix gexp)
           (gnu packages shellutils)

@@ -1,6 +1,6 @@
 (define-library (home services mcron)
   (import (scheme base)
-          (atlas utils services)
+          (utils services)
           (guix gexp)
           (gnu home services mcron)
           (gnu packages base))

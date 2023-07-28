@@ -3,7 +3,7 @@
           (guile)
           (ice-9 textual-ports)
           (ice-9 popen)
-          (atlas utils services)
+          (utils services)
           (nongnu packages linux)
           (gnu packages samba)
           (nongnu system linux-initrd)

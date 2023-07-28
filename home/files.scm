@@ -1,6 +1,6 @@
 (define-library (home files)
   (import (scheme base)
-          (atlas utils services)
+          (utils services)
           (guix gexp)
           (rde serializers ini)
           (gnu home services)

@@ -1,6 +1,6 @@
 (define-library (home services wm waybar)
   (import (scheme base)
-          (atlas utils services)
+          (utils services)
           (rde home services wm))
   (export %waybar)
   (begin

@@ -1,7 +1,7 @@
 (define-library (system services)
   (import (scheme base)
           (gnu services)
-          (atlas utils services)
+          (utils services)
           (guix gexp)
           (gnu services cuirass)
           (gnu services virtualization)

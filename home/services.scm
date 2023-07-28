@@ -1,7 +1,7 @@
 (define-library (home services)
   (import (scheme base)
           (guile)
-          (atlas utils services)
+          (utils services)
           (channels)
           (gnu home services guix)
           (gnu home services desktop)

@@ -1,7 +1,7 @@
 (define-library (system filesystems)
   (import (scheme base)
           (gnu system file-systems)
-          (atlas utils services)
+          (utils services)
           (system filesystems mapped))
   (export %filesystems)
   (begin

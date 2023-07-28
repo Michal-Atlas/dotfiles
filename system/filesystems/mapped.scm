@@ -1,6 +1,6 @@
 (define-library (system filesystems mapped)
   (import (scheme base)
-          (atlas utils services)
+          (utils services)
           (gnu system mapped-devices))
   (export %mapped-devices)
   (begin
