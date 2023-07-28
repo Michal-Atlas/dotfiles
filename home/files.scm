@@ -20,7 +20,7 @@
                           (include . ,(file-append
                                        foot
                                        "/share/foot/themes/monokai-pro"))))))))
-            (".guile" ,(local-file "files/guile.scm"))
+            (".guile" ,(local-file "files/guilerc"))
             (".inputrc" ,(local-file "files/inputrc"))
             (".sbclrc" ,(local-file "files/sbcl.lisp"))
             (".local/share/nyxt/bookmarks.lisp" ,(local-file "files/nyxt/bookmarks.lisp"))
