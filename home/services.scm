@@ -1,6 +1,7 @@
 (define-library (home services)
   (import (scheme base)
-          (guile)
+          (scheme lazy)
+          (except (guile) force delay)
           (utils services)
           (channels)
           (gnu home services guix)
@@ -16,14 +17,15 @@
   (export %services)
   (begin
     (define %services
-     (cons*
-      (&s home-channels #:config %channels)
-      (&s home-dbus)
-      %files
-      %bash
-      %flatpak
-      %git
-      %mcron
-      %shepherd
-      %ssh
-      %wm))))
+      (delay
+       (cons*
+        (&s home-channels #:config %channels)
+        (&s home-dbus)
+        (force %files)
+        %bash
+        %flatpak
+        %git
+        %mcron
+        %shepherd
+        %ssh
+        %wm)))))

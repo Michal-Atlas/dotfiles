@@ -58,15 +58,13 @@
              (output "DP-1"
                      ((position "0,0")))
              ,@(sway-exec-bindings
-                `(("u" ,#~(string-join
-                           (list
-                            #$(file-append foot "/bin/foot")
-                            #$(program-file
-                               "unison-wait"
-                               #~(begin
-                                   (system*
-                                    #$(file-append unison "/bin/unison"))
-                                   (sleep 5))))))
+                `(("u" (,(file-append foot "/bin/foot")
+                        ,(program-file
+                          "unison-wait"
+                          #~(begin
+                              (system*
+                               #$(file-append unison "/bin/unison"))
+                              (sleep 5)))))
                   
                   ("Return" ,(file-append emacs-next-pgtk "/bin/emacsclient -c"))
                   ("d" ,(file-append bemenu (string-join
