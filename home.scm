@@ -7,6 +7,6 @@
     (define %home
      (home-environment
       (packages %packages)
-      (services %services)))))
+      (services %services)))
 
-%home
+    %home))

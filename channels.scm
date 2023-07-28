@@ -52,6 +52,6 @@
         (url "https://git.sr.ht/~michal_atlas/dotfiles"))
        (channel-with-substitutes-available
        %default-guix-channel
-       "https://ci.guix.gnu.org")))))
+       "https://ci.guix.gnu.org")))
+    %channels))
 
-%channels
