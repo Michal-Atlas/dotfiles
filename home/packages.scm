@@ -4,6 +4,6 @@
           (games packages minecraft))
   (export %packages)
   (begin
-    (define %packages
+    (define (%packages)
       (list foot
             prismlauncher))))

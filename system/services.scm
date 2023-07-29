@@ -25,7 +25,7 @@
           (gnu services nix))
   (export %services)
   (begin
-    (define %services
+    (define (%services)
       (append
        (@host
         #:hydra
