@@ -47,6 +47,14 @@
           "257cebd587b66e4d865b3537a9a88cccd7107c95"
           (openpgp-fingerprint
            "2841 9AC6 5038 7440 C7E9  2FFA 2208 D209 58C1 DEB0"))))
+       (channel
+        (name 'guix-past)
+        (url "https://gitlab.inria.fr/guix-hpc/guix-past")
+        (introduction
+         (make-channel-introduction
+          "0c119db2ea86a389769f4d2b9c6f5c41c027e336"
+          (openpgp-fingerprint
+           "3CE4 6455 8A84 FDC6 9DB4  0CFB 090B 1199 3D9A EBB5"))))
        (channel-with-substitutes-available
        %default-guix-channel
        "https://ci.guix.gnu.org")))

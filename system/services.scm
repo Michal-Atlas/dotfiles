@@ -1,5 +1,6 @@
 (define-library (system services)
   (import (scheme base)
+          (only (guile) cons*)
           (gnu services)
           (utils services)
           (guix gexp)
@@ -153,8 +154,9 @@
                             (guix-configuration
                              (discover? #t)
                              (substitute-urls
-                              (cons "https://substitutes.nonguix.org"
-                                    %default-substitute-urls))
+                              (cons* "https://substitutes.nonguix.org"
+                                     "https://guix.bordeaux.inria.fr"
+                                     %default-substitute-urls))
                              (authorized-keys
                               (append (list
                                        (plain-file "non-guix.pub"
@@ -162,5 +164,7 @@
                                        (plain-file "hydra.pub"
                                                    "(public-key (ecc (curve Ed25519) (q #51C7C5CF4DA2EF64351B7AFE4998058F454622B8493EC6C96DDA8A2681EE5A2D#)))")
                                        (plain-file "dagon.pub"
-                                                   "(public-key (ecc (curve Ed25519) (q #F5E876A29802796DBA7BAD8B7C0FEE90BDD784A70CB2CC8A1365A47DA03AADBD#)))"))
+                                                   "(public-key (ecc (curve Ed25519) (q #F5E876A29802796DBA7BAD8B7C0FEE90BDD784A70CB2CC8A1365A47DA03AADBD#)))")
+                                       (plain-file "past.pub"
+                                                   "(public-key (ecc (curve Ed25519) (q #89FBA276A976A8DE2A69774771A92C8C879E0F24614AAAAE23119608707B3F06#)))"))
                                       %default-authorized-guix-keys)))))))))
