@@ -5,7 +5,7 @@
           (home packages))
   (export %home)
   (begin
-    (define (%home)
+    (define %home
       (home-environment
-       (packages (%packages))
-       (services (%services))))))
+       (packages %packages)
+       (services %services)))))

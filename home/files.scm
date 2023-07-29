@@ -8,12 +8,12 @@
   (export %files)
   (begin
     (define rsync-dirs '("Sync" "cl" "Documents" "Zotero"))
-    (define (rsync-target)
+    (define rsync-target
       (car (@host
             #:hydra "dagon.local"
             #:dagon "hydra.local")))
 
-    (define (%files)
+    (define %files
       (+s home-files
           ;; local-file being explicit allows earlier check for file existence
           `((".emacs.d/init.el" ,(local-file "files/emacs.el"))
@@ -35,7 +35,7 @@
              ,(mixed-text-file "unison-profile"
                                "root=/home/michal_atlas\n"
                                "root=ssh://"
-                               (rsync-target)
+                               rsync-target
                                "//home/michal_atlas\n"                                  
                                "path=Sync\n"
                                "path=Documents\n"

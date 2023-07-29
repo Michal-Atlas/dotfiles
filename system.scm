@@ -27,7 +27,7 @@
                       "git" "log" "-1" "--pretty=%B"))))
        " - "))
 
-    (define (%system)
+    (define %system
       (operating-system
         (host-name (hostname))
         (kernel linux)
@@ -41,14 +41,14 @@
 	              (supplementary-groups
 	               '("wheel" "netdev" "audio" "docker"
 	                 "video" "libvirt" "kvm" "tty" "transmission")))))
-        (packages (%packages))
+        (packages %packages)
         (firmware
          (@host
           linux-firmware
           #:hydra amdgpu-firmware))
         (locale "en_US.utf8")
         (timezone "Europe/Prague")
-        (services (%services))
+        (services %services)
         (keyboard-layout
          (keyboard-layout "us,cz" ",ucw" #:options
 		          '("grp:caps_switch" "grp_led"
@@ -57,9 +57,9 @@
          (append (list (setuid-program
 		        (program (file-append cifs-utils "/sbin/mount.cifs"))))
 	         %setuid-programs))
-        (mapped-devices (%mapped-devices))
-        (swap-devices (%swap))
-        (file-systems (%filesystems))
+        (mapped-devices %mapped-devices)
+        (swap-devices %swap)
+        (file-systems %filesystems)
         (bootloader
          (bootloader-configuration
           (bootloader grub-efi-bootloader)

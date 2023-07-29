@@ -15,11 +15,11 @@
           (home services wm))
   (export %services)
   (begin
-    (define (%services)
+    (define %services
       (cons*
        (&s home-channels #:config %channels)
        (&s home-dbus)
-       (%files)
+       %files
        %bash
        %flatpak
        %git

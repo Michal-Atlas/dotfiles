@@ -22,9 +22,8 @@ with a symbol:
 @end lisp"
       (list (prefix inner ...) ...))
 
-    (define (hostname)
-      (display "BIG NONO")
-      (vector-ref (uname) 1))
+    (define hostname
+      (make-parameter (vector-ref (uname) 1)))
     (define (host-keyword)
       (symbol->keyword
        (string->symbol
