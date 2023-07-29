@@ -3,10 +3,12 @@
           (utils services)
           (gnu home services shells)
           (guix gexp)
+          (gnu packages base)
           (gnu packages shellutils)
           (gnu packages package-management)
           (gnu packages admin)
-          (gnu packages curl))
+          (gnu packages curl)
+          (gnu packages version-control))
   (export %bash)
   (begin
     (define %bash
@@ -14,6 +16,12 @@
           (guix-defaults? #t)
           (bashrc
            (list
+            (mixed-text-file "tinker"
+                             "function tinker { "
+                             "DIR=\"$(" coreutils "/bin/mktemp -d)\";"
+                             git "/bin/git clone \"$1\" \"$DIR\";"
+                             "cd \"$DIR\";"
+                             " }")
             (mixed-text-file "bashrc-direnv"
 		             "eval \"$("
 		             direnv "/bin/direnv"
