@@ -33,7 +33,8 @@
 
     (define (%system)
       (operating-system
-        (host-name (hostname))
+        (host-name (format #f "~a"
+                           (keyword->symbol (hostname))))
         (kernel linux)
         (initrd microcode-initrd)
         (label (getlabel this-operating-system))
