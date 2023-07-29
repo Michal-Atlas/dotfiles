@@ -46,10 +46,14 @@
             ("ipfs" . "sudo -u ipfs bash --login")
             ("sw" . "swayhide")
             ("cat" . "bat -p")
-            ("recon-home" . "guix home reconfigure -e '(@ (home) %home)'")
-            ("recon-system" . "sudo \"GUILE_LOAD_PATH=$GUILE_LOAD_PATH\" guix system reconfigure -e '(@ (system) %system)'")
-            ("recon-home-time" . "guix time-machine -C $HOME/.guix-home/channels.scm -- home reconfigure -e '(@ (home) %home)'")
-            ("recon-system-time" . "sudo \"GUILE_LOAD_PATH=$GUILE_LOAD_PATH\" guix time-machine -C /run/current-system/channels.scm -- system reconfigure -e '(@ (system) %system)'")))
+            ("recon-home" .
+             "guix home reconfigure -e \"((@ (home) get-home) $HOSTNAME)\"")
+            ("recon-system" .
+             "sudo \"GUILE_LOAD_PATH=$GUILE_LOAD_PATH\" guix system reconfigure -e \"((@ (system) get-system) $HOSTNAME)\"")
+            ("recon-home-time" .
+             "guix time-machine -C $HOME/.guix-home/channels.scm -- home reconfigure -e \"((@ (home) get-home) $HOSTNAME)\"")
+            ("recon-system-time" .
+             "sudo \"GUILE_LOAD_PATH=$GUILE_LOAD_PATH\" guix time-machine -C /run/current-system/channels.scm -- system reconfigure -e \"((@ (system) get-system) $HOSTNAME)\"")))
 
           (environment-variables
            `(("BROWSER" . "firefox") ("EDITOR" . "emacsclient")

@@ -16,6 +16,10 @@
           (gnu))
   (export %system)
   (begin
+    (define (get-system host)
+      (parameterize ((hostname host))
+        (%system)))
+    
     (define (getlabel system)
       (chdir (dirname (current-filename)))
       (string-join
