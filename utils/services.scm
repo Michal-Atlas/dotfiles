@@ -23,6 +23,7 @@ with a symbol:
       (list (prefix inner ...) ...))
 
     (define (hostname)
+      (display "BIG NONO")
       (vector-ref (uname) 1))
     (define (host-keyword)
       (symbol->keyword
