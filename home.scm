@@ -4,7 +4,7 @@
           (utils services)
           (home services)
           (home packages))
-  (export %home)
+  (export get-home)
   (begin
     (define (get-home host)
       (parameterize ((hostname host))

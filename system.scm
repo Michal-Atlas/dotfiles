@@ -14,7 +14,7 @@
           (system filesystems swap)
           (gnu system setuid)
           (gnu))
-  (export %system)
+  (export get-system)
   (begin
     (define (get-system host)
       (parameterize ((hostname host))
