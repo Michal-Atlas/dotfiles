@@ -7,10 +7,6 @@
   (export get-home)
   (begin
     (define (get-home host)
-      (parameterize ((hostname host))
-        (%home)))
-    
-    (define (%home)
       (home-environment
-       (packages (%packages))
-       (services (%services))))))
+       (packages %packages)
+       (services (%services host))))))

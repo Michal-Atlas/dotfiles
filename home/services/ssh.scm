@@ -1,6 +1,6 @@
 (define-library (home services ssh)
   (import (scheme base)
-          (guile)
+          (scheme process-context)
           (guix gexp)
           (utils services)
           (gnu home services ssh))
@@ -23,7 +23,7 @@
                     (user "atlas")
                     (host-name "the-dam.org")
                     (identity-file (string-append
-                                    (getenv "HOME")
+                                    (get-environment-variable "HOME")
                                     "/.ssh/the-dam"))))
 	          (map (lambda (q)
 		         (openssh-host

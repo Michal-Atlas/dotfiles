@@ -22,12 +22,11 @@ with a symbol:
 @end lisp"
       (list (prefix inner ...) ...))
 
-    (define hostname (make-parameter
-                      ""
-                      (compose
-                       symbol->keyword
-                       string->symbol)))
-    (define (@host . body)
+    (define (host-keyword hostname)
+      (symbol->keyword
+       (string->symbol
+        hostname)))
+    (define (@host host . body)
       "Returns the body as a list,
 omitting all expressions that follow
 a keyword which isn't equal to the value of hostname.
@@ -47,7 +46,7 @@ and on dagon it would yield
 
 useful when a service/package/mount is
 only relevant on some machines"
-      (let ((self (hostname)))
+      (let ((self (host-keyword host)))
         (let loop ((body body))
           (if (null? body) body
               (if (keyword? (car body))
@@ -56,8 +55,8 @@ only relevant on some machines"
                       (loop (cddr body)))
                   (cons (car body) (loop (cdr body))))))))
 
-    (define (@host-append . body)
-      (apply append (apply @host body)))
+    (define (@host-append host . body)
+      (apply append (apply @host host body)))
 
     (define (name->typename ctx name)
       (datum->syntax ctx (symbol-append

@@ -1,6 +1,5 @@
 (define-library (utils sway)
-  (import (scheme base)
-          (guile)
+  (import (guile)
           (gnu system keyboard))
   (export sway-keyboard-layout
 

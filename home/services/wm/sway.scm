@@ -16,7 +16,8 @@
           (gnu packages linux)
           (gnu packages python-xyz)
           (gnu packages wm)
-          (guile))
+          (srfi srfi-13)
+          (only (guile) compose iota))
   (export %sway)
   (begin
     (define my-layout

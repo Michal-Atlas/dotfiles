@@ -16,10 +16,6 @@
           (gnu))
   (export get-system)
   (begin
-    (define (get-system host)
-      (parameterize ((hostname host))
-        (%system)))
-    
     (define (getlabel system)
       (chdir (dirname (current-filename)))
       (string-join
@@ -31,10 +27,9 @@
                       "git" "log" "-1" "--pretty=%B"))))
        " - "))
 
-    (define (%system)
+    (define (get-system host)
       (operating-system
-        (host-name (format #f "~a"
-                           (keyword->symbol (hostname))))
+        (host-name host)
         (kernel linux)
         (initrd microcode-initrd)
         (label (getlabel this-operating-system))
@@ -46,14 +41,14 @@
 	              (supplementary-groups
 	               '("wheel" "netdev" "audio" "docker"
 	                 "video" "libvirt" "kvm" "tty" "transmission")))))
-        (packages (%packages))
+        (packages %packages)
         (firmware
-         (@host
+         (@host host
           linux-firmware
           #:hydra amdgpu-firmware))
         (locale "en_US.utf8")
         (timezone "Europe/Prague")
-        (services (%services))
+        (services (%services host))
         (keyboard-layout
          (keyboard-layout "us,cz" ",ucw" #:options
 		          '("grp:caps_switch" "grp_led"
@@ -62,9 +57,9 @@
          (append (list (setuid-program
 		        (program (file-append cifs-utils "/sbin/mount.cifs"))))
 	         %setuid-programs))
-        (mapped-devices (%mapped-devices))
-        (swap-devices (%swap))
-        (file-systems (%filesystems))
+        (mapped-devices (%mapped-devices host))
+        (swap-devices (%swap host))
+        (file-systems (%filesystems host))
         (bootloader
          (bootloader-configuration
           (bootloader grub-efi-bootloader)

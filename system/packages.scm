@@ -57,7 +57,7 @@
           (gnu packages xdisorg))
   (export %packages)
   (begin
-    (define (%packages)
+    (define %packages
       (cons*
        adwaita-icon-theme
        arandr

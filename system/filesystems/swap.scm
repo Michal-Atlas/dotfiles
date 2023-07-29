@@ -5,10 +5,10 @@
           (gnu system file-systems))
   (export %swap)
   (begin
-    (define (%swap)
-      (@host
+    (define (%swap host)
+      (@host host
        #:dagon (swap-space
 	        (target "/dev/mapper/rpool-swap")
-	        (dependencies (%mapped-devices)))
+	        (dependencies (%mapped-devices host)))
        #:hydra (swap-space
 	        (target (file-system-label "SWAP")))))))

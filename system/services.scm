@@ -23,12 +23,13 @@
           (gnu packages cups)
           (gnu services file-sharing)
           (gnu services databases)
-          (gnu services nix))
+          (gnu services nix)
+          (scheme write))
   (export %services)
   (begin
-    (define (%services)
+    (define (%services hostname)
       (append
-       (@host
+       (@host hostname
         #:hydra
         (&s cuirass
             (interval (* 60 60))

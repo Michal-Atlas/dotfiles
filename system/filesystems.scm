@@ -5,19 +5,19 @@
           (system filesystems mapped))
   (export %filesystems)
   (begin
-    (define (%filesystems)
+    (define (%filesystems host)
       (append %base-file-systems
-              (@host
+              (@host host
                #:dagon (file-system
 	                 (mount-point "/")
 	                 (device "/dev/mapper/rpool-root")
 	                 (type "btrfs")
-	                 (dependencies (%mapped-devices)))
+	                 (dependencies (%mapped-devices host)))
                #:dagon (file-system
                          (mount-point "/home")
                          (device "/dev/mapper/rpool-home-decrypted")
                          (type "btrfs")
-                         (dependencies (%mapped-devices)))
+                         (dependencies (%mapped-devices host)))
                #:dagon (file-system
                          (mount-point "/boot/efi")
                          (device (uuid "D762-6C63" 'fat32))

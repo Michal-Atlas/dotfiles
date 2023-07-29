@@ -4,8 +4,8 @@
           (gnu system mapped-devices))
   (export %mapped-devices)
   (begin
-   (define (%mapped-devices)
-     (@host-append
+   (define (%mapped-devices host)
+     (@host-append host
       #:dagon
       (let* ((rpool-lvm (lambda (lv)
                           (mapped-device
