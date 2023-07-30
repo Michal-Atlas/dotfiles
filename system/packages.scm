@@ -10,6 +10,7 @@
           (gnu packages bittorrent)
           (gnu packages certs)
           (gnu packages code)
+          (gnu packages commencement)
           (gnu packages compression)
           (gnu packages cups)
           (gnu packages databases)
@@ -181,6 +182,7 @@
        fontconfig
        foot
        fzf
+       gcc-toolchain
        git
        (list git "send-email")
        gnu-make
