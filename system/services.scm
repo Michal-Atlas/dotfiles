@@ -86,10 +86,9 @@
          (using-pam? #t))
         (docker)
         (yggdrasil
-         (autoconf? #t)
          (json-config
           '((peers .
-	           #( ;; Czechia
+	           #(;; Czechia
 	             "tls://[2a03:3b40:fe:ab::1]:993"
 	             "tls://37.205.14.171:993"
 	             ;; Germany
