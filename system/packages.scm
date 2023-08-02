@@ -193,10 +193,8 @@
        guix-icons
        hicolor-icon-theme
        htop
-       icecat
        indent
        keepassxc
-       krita
        lagrange
        mosh
        mpv
@@ -237,9 +235,6 @@
        shotwell
        slurp
        sway
-       texlive
-       texlive-scheme-basic
-       texlive-tcolorbox
        transmission-remote-gtk
        tree
        unzip
@@ -247,6 +242,5 @@
        wl-clipboard
        xdg-utils
        xdot
-       xonotic
        yt-dlp
        %base-packages))))
