@@ -1,6 +1,6 @@
 (define-library (system)
-  (import (scheme base)
-          (guile)
+  (import (guile)
+          (srfi srfi-98)
           (ice-9 textual-ports)
           (ice-9 popen)
           (utils services)
@@ -64,4 +64,6 @@
          (bootloader-configuration
           (bootloader grub-efi-bootloader)
           (targets `("/boot/efi"))))
-        (name-service-switch %mdns-host-lookup-nss)))))
+        (name-service-switch %mdns-host-lookup-nss)))
+
+    (get-system (vector-ref (uname) 1))))
