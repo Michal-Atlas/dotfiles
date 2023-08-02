@@ -24,7 +24,7 @@
         (string-trim-both
          (get-string-all
           (open-pipe* OPEN_READ
-                      "git" "log" "-1" "--pretty=%B"))))
+                      "git" "log" "-1" "--pretty=reference"))))
        " - "))
 
     (define (get-system host)
