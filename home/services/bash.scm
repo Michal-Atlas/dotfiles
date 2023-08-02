@@ -55,13 +55,13 @@
             ("sw" . "swayhide")
             ("cat" . "bat -p")
             ("recon-home" .
-             "guix home reconfigure -e \"((@ (home) get-home) \\\"$HOSTNAME\\\")\"")
+             "guix home reconfigure $HOME/cl/dotfiles/home.scm")
             ("recon-system" .
-             "sudo \"GUILE_LOAD_PATH=$GUILE_LOAD_PATH\" guix system reconfigure -e \"((@ (system) get-system) \\\"$HOSTNAME\\\")\"")
+             "sudo \"GUILE_LOAD_PATH=$GUILE_LOAD_PATH\" guix system reconfigure $HOME/cl/dotfiles/system.scm")
             ("recon-home-time" .
-             "guix time-machine -C $HOME/.guix-home/channels.scm -- home reconfigure -e \"((@ (home) get-home) \\\"$HOSTNAME\\\")\"")
+             "guix time-machine -C $HOME/.guix-home/channels.scm -- home reconfigure  $HOME/cl/dotfiles/home.scm")
             ("recon-system-time" .
-             "sudo \"GUILE_LOAD_PATH=$GUILE_LOAD_PATH\" guix time-machine -C /run/current-system/channels.scm -- system reconfigure -e \"((@ (system) get-system) \\\"$HOSTNAME\\\")\"")))
+             "sudo \"GUILE_LOAD_PATH=$GUILE_LOAD_PATH\" guix time-machine -C /run/current-system/channels.scm -- system reconfigure $HOME/cl/dotfiles/system.scm")))
 
           (environment-variables
            `(("BROWSER" . "firefox") ("EDITOR" . "emacsclient")
