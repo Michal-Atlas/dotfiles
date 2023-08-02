@@ -55,13 +55,13 @@
             ("sw" . "swayhide")
             ("cat" . "bat -p")
             ("recon-home" .
-             "guix home reconfigure $HOME/cl/dotfiles/home.scm")
+             "guix home reconfigure $SYSTEM_REPO/home.scm")
             ("recon-system" .
-             "sudo \"GUILE_LOAD_PATH=$GUILE_LOAD_PATH\" guix system reconfigure $HOME/cl/dotfiles/system.scm")
+             "sudo \"GUILE_LOAD_PATH=$GUILE_LOAD_PATH\" guix system reconfigure $SYSTEM_REPO/system.scm")
             ("recon-home-time" .
-             "guix time-machine -C $HOME/.guix-home/channels.scm -- home reconfigure  $HOME/cl/dotfiles/home.scm")
+             "guix time-machine -C $HOME/.guix-home/channels.scm -- home reconfigure  $SYSTEM_REPO/home.scm")
             ("recon-system-time" .
-             "sudo \"GUILE_LOAD_PATH=$GUILE_LOAD_PATH\" guix time-machine -C /run/current-system/channels.scm -- system reconfigure $HOME/cl/dotfiles/system.scm")))
+             "sudo \"GUILE_LOAD_PATH=$GUILE_LOAD_PATH\" guix time-machine -C /run/current-system/channels.scm -- system reconfigure $SYSTEM_REPO/system.scm")))
 
           (environment-variables
            `(("BROWSER" . "firefox") ("EDITOR" . "emacsclient")
@@ -70,6 +70,7 @@
              ("_JAVA_AWT_WM_NONREPARENTING" . "1")
              ("PATH" . "$HOME/.nix-profile/bin/:$PATH")
              ("PATH" . "$PATH:$HOME/bin/")
-             ("GUILE_LOAD_PATH" . "$HOME/cl/dotfiles:$GUILE_LOAD_PATH")
              ("GUIX_SANDBOX_HOME" . "$HOME/Games")
-             ("ALTERNATE_EDITOR" . "")))))))
+             ("ALTERNATE_EDITOR" . "")
+             ("SYSTEM_REPO" . "$HOME/cl/dotfiles")
+             ("GUILE_LOAD_PATH" . "$SYSTEM_REPO:$GUILE_LOAD_PATH")))))))
