@@ -17,7 +17,7 @@
   (export get-system)
   (begin
     (define (getlabel system)
-      (chdir (dirname (current-filename)))
+      (chdir "/home/michal_atlas/cl/dotfiles/")
       (string-join
        (list
         (operating-system-default-label system)
