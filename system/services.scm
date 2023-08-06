@@ -32,7 +32,7 @@
        (@host hostname
         #:hydra
         (&s cuirass
-            (interval (* 60 60))
+            (interval (* 24 60 60))
             (host "0.0.0.0")
             (use-substitutes? #t)
             (specifications
