@@ -3,7 +3,7 @@
           (gnu home)
           (utils services)
           (home services)
-          (only (guile) uname)
+          (only (guile) gethostname)
           (home packages))
   (export get-home)
   (begin
@@ -12,4 +12,4 @@
        (packages %packages)
        (services (%services host))))
 
-    (get-home (vector-ref (uname) 1))))
+    (get-home (gethostname))))

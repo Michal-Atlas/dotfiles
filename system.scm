@@ -66,4 +66,4 @@
           (targets `("/boot/efi"))))
         (name-service-switch %mdns-host-lookup-nss)))
 
-    (get-system (vector-ref (uname) 1))))
+    (get-system (gethostname))))
