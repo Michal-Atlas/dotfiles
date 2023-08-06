@@ -128,9 +128,7 @@
         (inputattach)
         (qemu-binfmt
          (platforms (lookup-qemu-platforms "arm" "aarch64" "riscv64")))
-        (libvirt
-         (unix-sock-group "libvirt")
-         (tls-port "16555"))
+        (libvirt)
         (virtlog (max-clients 1000))
         (cups
          (web-interface? #t)
