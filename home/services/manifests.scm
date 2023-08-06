@@ -55,6 +55,5 @@
              "sbcl-trees"
              "sbcl-trial"
              "sbcl-unix-opts")
-            ("texlive"
-             "texlive-scheme-basic"
-             "texlive-tcolorbox"))))))
+            ("tex"
+             "texlive"))))))
