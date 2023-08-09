@@ -11,6 +11,7 @@
           (gnu packages version-control))
   (export %bash)
   (begin
+    (define system-repo "$HOME/cl/dotfiles")
     (define %bash
       (&s home-bash
           (guix-defaults? #t)
@@ -43,25 +44,25 @@
 		             curl "/bin/curl"
 		             " \"cheat.sh/$@\"; }")))
 
-          (aliases `
-           (("gx" . "guix")
-            ("gxi" . "gx install")
-            ("gxb" . "gx build")
-            ("gxs" . "gx search")
-            ("gxsh" . "gx shell")
-            ("gxtm" . "gx time-machine")
-            ("e" . "$EDITOR")
-            ("ipfs" . "sudo -u ipfs bash --login")
-            ("sw" . "swayhide")
-            ("cat" . "bat -p")
-            ("recon-home" .
-             "guix home reconfigure $SYSTEM_REPO/home.scm")
-            ("recon-system" .
-             "sudo \"GUILE_LOAD_PATH=$GUILE_LOAD_PATH\" guix system reconfigure $SYSTEM_REPO/system.scm")
-            ("recon-home-time" .
-             "guix time-machine -C $HOME/.guix-home/channels.scm -- home reconfigure  $SYSTEM_REPO/home.scm")
-            ("recon-system-time" .
-             "sudo \"GUILE_LOAD_PATH=$GUILE_LOAD_PATH\" guix time-machine -C /run/current-system/channels.scm -- system reconfigure $SYSTEM_REPO/system.scm")))
+          (aliases
+           `(("gx" . "guix")
+             ("gxi" . "gx install")
+             ("gxb" . "gx build")
+             ("gxs" . "gx search")
+             ("gxsh" . "gx shell")
+             ("gxtm" . "gx time-machine")
+             ("e" . "$EDITOR")
+             ("ipfs" . "sudo -u ipfs bash --login")
+             ("sw" . "swayhide")
+             ("cat" . "bat -p")
+             ("recon-home" .
+              ,(string-append "guix home reconfigure " system-repo "/home.scm"))
+             ("recon-system" .
+              ,(string-append "sudo \"GUILE_LOAD_PATH=$GUILE_LOAD_PATH\" guix system reconfigure " system-repo "/system.scm"))
+             ("recon-home-time" .
+              ,(string-append "guix time-machine -C $HOME/.guix-home/channels.scm -- home reconfigure " system-repo "/home.scm"))
+             ("recon-system-time" .
+              ,(string-append "sudo \"GUILE_LOAD_PATH=$GUILE_LOAD_PATH\" guix time-machine -C /run/current-system/channels.scm -- system reconfigure " system-repo "/system.scm"))))
 
           (environment-variables
            `(("BROWSER" . "firefox") ("EDITOR" . "emacsclient")
@@ -72,5 +73,6 @@
              ("PATH" . "$PATH:$HOME/bin/")
              ("GUIX_SANDBOX_HOME" . "$HOME/Games")
              ("ALTERNATE_EDITOR" . "")
-             ("SYSTEM_REPO" . "$HOME/cl/dotfiles")
-             ("GUILE_LOAD_PATH" . "$SYSTEM_REPO:$GUILE_LOAD_PATH")))))))
+             ("GUILE_LOAD_PATH" . ,(string-append
+                                    system-repo
+                                    ":$GUILE_LOAD_PATH"))))))))
