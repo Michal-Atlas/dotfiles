@@ -4,21 +4,21 @@
           (gnu system mapped-devices))
   (export %mapped-devices)
   (begin
-   (define (%mapped-devices host)
-     (@host-append host
-      #:dagon
-      (let* ((rpool-lvm (lambda (lv)
-                          (mapped-device
-                           (source "rpool")
-                           (target (string-append "rpool-" lv))
-		           (type lvm-device-mapping))))
-             (lvm-maps
-              (map rpool-lvm
-                   '("home" "root" "swap"))))
-        (append
-         lvm-maps
-         (list
-          (mapped-device
-           (source "/dev/mapper/rpool-home")
-           (target "rpool-home-decrypted")
-           (type luks-device-mapping)))))))))
+    (define (rpool-lvm lv)
+      (mapped-device
+       (source "rpool")
+       (target (string-append "rpool-" lv))
+       (type lvm-device-mapping)))
+    
+    (define (%mapped-devices host)
+      (@host-append host
+                    #:hydra
+                    (map rpool-lvm '("vault"))
+                    #:dagon
+                    (append
+                     (map rpool-lvm '("home" "root" "swap"))
+                     (list
+                      (mapped-device
+                       (source "/dev/mapper/rpool-home")
+                       (target "rpool-home-decrypted")
+                       (type luks-device-mapping))))))))
