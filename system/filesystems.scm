@@ -43,26 +43,30 @@
                           (alist->file-system-options '(("subvol" . "@home"))))
                          (type "btrfs"))
                #:hydra (file-system
-                         (mount-point "/GAMES")
-                         (device (file-system-label "VAULT"))
+                         (mount-point "/home/michal_atlas/tmp")
+                         (device "/dev/mapper/rpool-vault")
+                         (options
+                          (alist->file-system-options '(("subvol" . "@tmp"))))
+                         (type "btrfs")
+                         (dependencies (%mapped-devices host)))
+               #:hydra (file-system
+                         (mount-point "/home/michal_atlas/Downloads")
+                         (device "/dev/mapper/rpool-vault")
+                         (options
+                          (alist->file-system-options '(("subvol" . "@tmp"))))
+                         (type "btrfs")
+                         (dependencies (%mapped-devices host)))
+               #:hydra (file-system
+                         (mount-point "/home/michal_atlas/Games")
+                         (device "/dev/mapper/rpool-vault")
                          (options
                           (alist->file-system-options '(("subvol" . "@games"))))
-                         (type "btrfs"))
-               #:hydra (file-system
-                         (mount-point "/var/lib/ipfs")
-                         (device (file-system-label "VAULT"))
-                         (options
-                          (alist->file-system-options '(("subvol" . "@ipfs"))))
-                         (type "btrfs"))
-               #:hydra (file-system
-                         (mount-point "/DOWNLOADS")
-                         (device (file-system-label "VAULT"))
-                         (options
-                          (alist->file-system-options '(("subvol" . "@downloads"))))
-                         (type "btrfs"))
+                         (type "btrfs")
+                         (dependencies (%mapped-devices host)))
                #:hydra (file-system
                          (mount-point "/var/lib/transmission-daemon/downloads/")
-                         (device (file-system-label "VAULT"))
+                         (device "/dev/mapper/rpool-vault")
                          (options
                           (alist->file-system-options '(("subvol" . "@torrents"))))
-                         (type "btrfs")))))))
+                         (type "btrfs")
+                         (dependencies (%mapped-devices host))))))))
