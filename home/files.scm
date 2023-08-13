@@ -25,7 +25,10 @@
                           (pad . #{5x5 center}#)
                           (include . ,(file-append
                                        foot
-                                       "/share/foot/themes/monokai-pro"))))))))
+                                       "/share/foot/themes/monokai-pro"))))
+                        (colors
+                         ((alpha . 0.9)))))))
+            
             (".guile" ,(local-file "files/guilerc"))
             (".inputrc" ,(local-file "files/inputrc"))
             (".sbclrc" ,(local-file "files/sbcl.lisp"))
