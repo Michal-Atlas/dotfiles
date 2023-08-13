@@ -17,7 +17,7 @@
               "com.usebottles.bottles"
               "com.visualstudio.code"
               "de.haeckerfelix.Shortwave"
-              "io.typora.Typora"
+              "md.obsidian.Obsidian"
               "org.geogebra.GeoGebra"
               "org.ghidra_sre.Ghidra"
               "org.openrgb.OpenRGB"
