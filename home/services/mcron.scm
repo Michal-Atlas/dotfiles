@@ -3,7 +3,9 @@
           (utils services)
           (guix gexp)
           (gnu home services mcron)
-          (gnu packages base))
+          (gnu packages base)
+          (gnu packages sync)
+          (gnu packages ocaml))
   (export %mcron)
   (begin
     (define (%mcron host)
@@ -15,6 +17,11 @@
 	                 (string-append 
 	                  #$(file-append onedrive "/bin/onedrive")
 	                  " --synchronize"))
+                  #:hydra
+                  #~(job "*/15 * * * *"
+	                 (string-append 
+	                  #$(file-append unison "/bin/unison")
+	                  " -batch"))
                   #~(job "0 * * * *"
 	                 (string-append 
 	                  #$(file-append findutils "/bin/find")
