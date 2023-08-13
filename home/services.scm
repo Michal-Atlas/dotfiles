@@ -24,7 +24,7 @@
        %bash
        %flatpak
        %git
-       %mcron
+       (%mcron host)
        %shepherd
        %ssh
        %manifests
