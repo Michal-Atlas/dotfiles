@@ -229,6 +229,8 @@
   (scheme-mode . paredit-mode)
   (lisp-mode . paredit-mode)))
 
+(setq inferior-lisp-program "sbcl")
+
 (use-package
   multiple-cursors
   :bind
