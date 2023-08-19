@@ -51,10 +51,6 @@
                             "D45185A2755DAF831F1C3DC63EFBF2BBBB29B99E"))))
                         %default-channels))))))
         #:hydra
-        (&s hurd-vm
-            (disk-size (* 16 (expt 2 30)))
-            (memory-size 2048))
-        #:hydra
         (&s quassel)
         #:hydra
         (&s tes3mp-server)
