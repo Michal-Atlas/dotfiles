@@ -28,17 +28,13 @@
                          (type "vfat"))
                #:hydra (file-system
                          (mount-point "/")
-                         (device (uuid
-                                  "e2f2bd08-7962-4e9d-a22a-c66972b7b1e3"
-                                  'btrfs))
+                         (device "/dev/mapper/spool-root")
                          (options
                           (alist->file-system-options '(("subvol" . "@guix"))))
                          (type "btrfs"))
                #:hydra (file-system
                          (mount-point "/home")
-                         (device (uuid
-                                  "e2f2bd08-7962-4e9d-a22a-c66972b7b1e3"
-                                  'btrfs))
+                         (device "/dev/mapper/spool-root")
                          (options
                           (alist->file-system-options '(("subvol" . "@home"))))
                          (type "btrfs"))

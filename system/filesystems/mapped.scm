@@ -4,19 +4,22 @@
           (gnu system mapped-devices))
   (export %mapped-devices)
   (begin
-    (define (rpool-lvm lv)
+    (define (lvm pool)
+      (lambda (lv)
       (mapped-device
-       (source "rpool")
-       (target (string-append "rpool-" lv))
-       (type lvm-device-mapping)))
+       (source pool)
+       (target (string-append pool "-" lv))
+       (type lvm-device-mapping))))
     
     (define (%mapped-devices host)
       (@host-append host
+		    #:hydra
+		    (map (lvm "spool") '("root"))
                     #:hydra
-                    (map rpool-lvm '("vault"))
+                    (map (lvm "rpool") '("vault"))
                     #:dagon
                     (append
-                     (map rpool-lvm '("home" "root" "swap"))
+                     (map (lvm "rpool") '("home" "root" "swap"))
                      (list
                       (mapped-device
                        (source "/dev/mapper/rpool-home")
