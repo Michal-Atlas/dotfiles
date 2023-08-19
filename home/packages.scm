@@ -99,6 +99,7 @@
              slurp
              transmission-remote-gtk
              tree
+             unison
              unzip
              virt-manager
              wl-clipboard
