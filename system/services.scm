@@ -1,6 +1,6 @@
 (define-library (system services)
   (import (scheme base)
-          (only (guile) cons*)
+          (only (guile) cons* string-join)
           (gnu services)
           (utils services)
           (guix gexp)
@@ -68,8 +68,12 @@
              (pam-limits-entry "*" 'both 'nofile 524288)))
 
         (+s hosts
-            (list (host "200:ac59:de15:abe5:650e:7139:f561:c2fb" "hydra")
-                  (host "201:12bb:d969:58b6:f1d2:1142:e377:d99c" "dagon"))))
+            (list (host (string-join '("201" "a50e" "ca2d" "72bf"
+                                       "89aa" "e12" "e14d" "f2e6") ":") "hydra")
+                  (host (string-join '("200" "ac59" "de15" "abe5"
+                                       "650e" "7139" "f561" "c2fb") ":") "dagon")
+                  (host (string-join '("200" "29bd" "a495" "4ad7"
+                                       "f79e" "e29a" "181a" "3872") ":") "lana"))))
        (macromap
         &s
         (openssh)
