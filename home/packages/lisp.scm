@@ -10,8 +10,11 @@
        sbcl-alexandria
        sbcl-cffi
        sbcl-cl-yacc
+       sbcl-clingon
        sbcl-coalton
+       sbcl-iterate
        sbcl-linedit
+       sbcl-log4cl
        sbcl-lparallel
        sbcl-mcclim
        sbcl-parenscript
