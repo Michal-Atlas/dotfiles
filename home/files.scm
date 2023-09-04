@@ -10,8 +10,8 @@
     (define rsync-dirs '("Sync" "cl" "Documents" "Zotero"))
     (define (rsync-target host)
       (car (@host host
-            #:hydra "dagon.local"
-            #:dagon "hydra.local")))
+            #:hydra "dagon"
+            #:dagon "hydra")))
 
     (define (%files host)
       (+s home-files
