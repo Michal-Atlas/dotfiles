@@ -11,6 +11,12 @@
  '((C . t) (scheme . t) (dot . t) (lisp . t)
    (octave . t)))
 
+(setq org-latex-default-packages-alist
+      (cl-substitute-if
+       '("colorlinks=true" "hyperref" nil)
+       (lambda (entry) (string-equal (cl-second entry) "hyperref"))
+       org-latex-default-packages-alist))
+
 ;;;; * Variable Init
 
 (setq
