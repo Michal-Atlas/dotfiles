@@ -65,5 +65,10 @@
       options = [ "subvol=@tmp" ];
       fsType = "btrfs";
     };
+    "/var/lib/ipfs" = {
+      device = "/dev/rpool/vault";
+      options = [ "subvol=@ipfs" ];
+      fsType = "btrfs";
+    };
   };
 }
