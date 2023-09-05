@@ -50,8 +50,8 @@
   };
 
   # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-  # services.xserver.videoDrivers = [ "amdgpu" ];
+  services.xserver.enable = true;
+  services.xserver.videoDrivers = [ "amdgpu" ];
   # https://nixos.wiki/wiki/AMD_GPU
   systemd.tmpfiles.rules =
     [ "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.hip}" ];
@@ -65,6 +65,12 @@
     # Only available on unstable
     extraPackages32 = with pkgs; [ driversi686Linux.amdvlk libva ];
     setLdLibraryPath = true;
+  };
+
+  # Enable the GNOME Desktop Environment.
+  services.xserver = {
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
   };
 
   # Configure keymap in X11
@@ -126,12 +132,12 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Enable automatic login for the user.
-  # services.xserver.displayManager.autoLogin.enable = true;
-  # services.xserver.displayManager.autoLogin.user = "michal_atlas";
+  services.xserver.displayManager.autoLogin.enable = true;
+  services.xserver.displayManager.autoLogin.user = "michal_atlas";
 
   # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-  # systemd.services."getty@tty1".enable = false;
-  # systemd.services."autovt@tty1".enable = false;
+  systemd.services."getty@tty1".enable = false;
+  systemd.services."autovt@tty1".enable = false;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -143,9 +149,9 @@
     atlas-overlay.overlays.x86_64-linux.default
   ];
 
-  # services.udev.packages = with pkgs; [
-  #   gnome.gnome-settings-daemon
-  # ];
+  services.udev.packages = with pkgs; [
+    gnome.gnome-settings-daemon
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
