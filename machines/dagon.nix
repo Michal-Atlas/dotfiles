@@ -30,23 +30,23 @@
     };
 
   swapDevices =
-    [{ device = "/dev/disk/by-uuid/bffe4a79-4fe6-4c29-98d2-3b71fd1c83ab"; }];
+    [{ device = "/dev/rpool/swap"; }];
 
   boot.initrd.luks.devices = {
-    cryptroot = {
-      device = "/dev/disk/by-uuid/13d67955-714a-4427-a24d-eaf26659f256";
+    crypthome = {
+      device = "/dev/rpool/home";
+      preLVM = false;
     };
   };
 
   fileSystems = {
     "/" = {
-      device = "/dev/mapper/cryptroot";
+      device = "/dev/rpool/root";
       options = [ "subvol=@nix" ];
       fsType = "btrfs";
     };
     "/home" = {
-      device = "/dev/mapper/cryptroot";
-      options = [ "subvol=@home" ];
+      device = "/dev/mapper/crypthome";
       fsType = "btrfs";
     };
   };
