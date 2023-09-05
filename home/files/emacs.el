@@ -3,6 +3,8 @@
  :config
  (add-to-list 'same-window-buffer-names "*Personal Keybindings*"))
 
+(use-package hydra)
+
 ;;;; * Org-mode
 
 (use-package org-modern :hook (org-mode . org-modern-mode))
@@ -119,7 +121,7 @@
 
 ;;;; * Modeline
 
-(use-package doom-modeline :init (doom-modeline-mode 1))
+(use-package doom-modeline :config (doom-modeline-mode 1))
 
 ;;;; * Completion
 
@@ -221,7 +223,7 @@
 
 ;;;; * Langs
 
-(use-package company :init (global-company-mode 1))
+(use-package company :config (global-company-mode 1))
 
 ;;;; * Lisps
 
@@ -274,76 +276,11 @@
  :init
  (if (not (boundp 'project-switch-commands))
      (setq project-switch-commands nil)))
-; (use-package helpful
-;   :bind (("C-h f" . helpful-function)
-;	 ("C-h k" . helpful-key)))
 
 (use-package avy :bind ("C-c q" . avy-goto-char-timer))
 (use-package
  browse-kill-ring
  :config (browse-kill-ring-default-keybindings))
-
-;;;; * Thaumiel 
-
-;      (straight-use-package '(thaumiel :local-repo "thaumiel" :repo "michal_atlas/thaumiel"))
-
-;;;; * Desktop
-
-(defun light/up ()
-  (interactive)
-  (shell-command "light -A 10")
-  (light/show))
-
-(defun light/down ()
-  (interactive)
-  (shell-command "light -U 10")
-  (light/show))
-
-(defun light/show ()
-  (princ
-   (concat
-    "Brightness..."
-    (string-trim (shell-command-to-string "light -G"))
-    "%")))
-
-(defun volume/up ()
-  (interactive)
-  (shell-command "pactl set-sink-volume @DEFAULT_SINK@ +5%")
-  (volume/show))
-
-(defun volume/down ()
-  (interactive)
-  (shell-command "pactl set-sink-volume @DEFAULT_SINK@ -5%")
-  (volume/show))
-
-(defun volume/mute ()
-  (interactive)
-  (shell-command "pactl set-sink-mute @DEFAULT_SINK@ toggle")
-  (volume/show))
-
-(defun volume/show ()
-  (princ
-   (funcall (-cut string-join <> (string ?\n))
-            (mapcar
-             (-compose #'string-trim #'shell-command-to-string)
-             '("pactl get-sink-mute @DEFAULT_SINK@"
-               "pactl get-sink-volume @DEFAULT_SINK@")))))
-
-(defun player/play ()
-  (interactive)
-  (shell-command "playerctl play-pause"))
-(defun player/next ()
-  (interactive)
-  (shell-command "playerctl next"))
-(defun player/prev ()
-  (interactive)
-  (shell-command "playerctl previous"))
-
-(global-set-key
- (kbd "s-<return>")
- (lambda ()
-   (interactive)
-   (start-process-shell-command "kitty" nil "kitty")))
 
 (use-package embark :bind ("C-." . embark-act))
 (use-package embark-consult)
@@ -352,7 +289,7 @@
 
 (use-package
  vertico
- :init (vertico-mode)
+ :config (vertico-mode)
  :custom
  (vertico-count 20)
  (vertico-resize t)
@@ -377,115 +314,14 @@
   ("C-r s" . consult-register-store)
   ("M-y" . consult-yank-from-kill-ring)))
 
-(defun close-program ()
-  (interactive)
-  (kill-buffer)
-  (delete-frame))
-
-(global-set-key (kbd "C-s-q") #'close-program)
-
-(setq vterm-new--i 0)
-(defun vterm-new ()
-  (interactive)
-  (vterm (setq vterm-new--i (1+ vterm-new--i))))
-
-;; (use-package xah-fly-keys
-;; :config
-;; (xah-fly-keys-set-layout "qwerty"))
-
-;; (use-package frames-only-mode
-;;   :config (frames-only-mode 1))
-
-(defun flatpak-run ()
-  (interactive)
-  (async-shell-command (concat
-                        "flatpak run "
-                        (completing-read
-                         "Run Flatpak: "
-                         (mapcar
-                          #'(lambda (q)
-                              (let ((stf
-                                     (-take 2 (split-string q "\t"))))
-                                `(,(cadr stf) . ,(car stf))))
-                          (delete
-                           ""
-                           (split-string (shell-command-to-string
-                                          "flatpak list --app")
-                                         "\n")))))
-                       "flatpaks"))
-
-(use-package hydra)
-(defhydra
- hydra-system
- (global-map "C-c s")
- "system"
- ("p" player/play "Play")
- ("o" player/next "Next")
- ("i" player/prev "Prev")
- ("e" light/up "Br. Up")
- ("d" light/down "Br. Down")
- ("r" volume/up "Vol. Up")
- ("f" volume/down "Vol. Down")
- ("m" volume/mute "Mute"))
-
-(defhydra
- hydra-launcher
- (global-map "C-c r" :color purple :exit t)
- "Launch"
- ("r" (browse-url "http://www.reddit.com/r/emacs/") "reddit")
- ("w" (browse-url "http://www.emacswiki.org/") "emacswiki")
- ("f" (start-process-shell-command "firefox" nil "firefox") "firefox")
- ("d" (start-process-shell-command
-   "discord" nil "flatpak run com.discordapp.Discord")
-  "discord")
- ("s" shell "shell")
- ("e" eshell "eshell")
- ("l"
-  (start-process-shell-command "lagrange" nil "lagrange")
-  "lagrange")
- ("g" guix-packages-by-name "find package")
- ("q" nil "cancel"))
-
 (defhydra
  hydra-buffer
  (global-map "C-x")
  ("<right>" next-buffer)
  ("<left>" previous-buffer))
 
-;;;; * Guile scripts
-
-(setq guile-script-path '("~/dotfiles/scripts"))
-
-(defun guile/script-launcher ()
-  (interactive)
-  (print
-   (let* ((script-list
-           (peek
-            (mapcar
-             (lambda (q) `(,(f-filename q) . ,q))
-             (apply #'append
-                    (mapcar
-                     (lambda (q)
-                       (directory-files
-                        q
-                        t directory-files-no-dot-files-regexp))
-                     guile-script-path)))))
-          (comp (completing-read "Run Script: " script-list)))
-     (async-shell-command (alist-get comp script-list nil nil #'equal)
-                          (concat "guile:" comp)))))
-
-(defun peek (x)
-  (print x)
-  x)
 
 (global-unset-key (kbd "C-z"))
-
-(defun init-unlink ()
-  (interactive)
-  (f-delete "~/.emacs.d/init.el")
-  (f-symlink
-   (expand-file-name "~/cl/dotfiles/files/emacs.el")
-   "~/.emacs.d/init.el"))
 
 (use-package pretty-sha-path :config (global-pretty-sha-path-mode))
 
@@ -493,52 +329,9 @@
  keychain-environment
  :config (keychain-refresh-environment))
 
-(defun atlas/get-address ()
-  (let ((av
-         (cdr
-          (--find
-           (equal "wlp1s0" (car it))
-           (--filter
-            (= (length (cdr it)) 5) (network-interface-list))))))
-    (cl-loop
-     for
-     i
-     to
-     4
-     collect
-     (aref av i)
-     into
-     l
-     finally
-     (return (apply #'format "%s.%s.%s.%s" l)))))
-
-(defun atlas/print-address ()
-  (interactive)
-  (princ (atlas/get-address)))
-
-(defun lock-screen ()
-  (interactive)
-  (shell-command "xlock" nil nil))
-
-(defun divbat ()
-  (string-replace
-   ":" "/"
-   (apply
-    #'calc-eval
-    "fdiv(pfrac($),pfrac($$))" nil
-    (mapcar
-     (lambda (q) (substring q 25 -3))
-     (-drop-last
-      1
-      (split-string
-       (shell-command-to-string
-        "upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E 'energy(-full)?:'")
-       "\n"))))))
-
 (use-package adaptive-wrap)
 (use-package all-the-icons)
 (use-package all-the-icons-dired)
-(use-package auctex)
 (use-package bind-map)
 (use-package calfw)
 (use-package cheat-sh)
@@ -581,8 +374,6 @@
 (use-package realgud)
 (use-package rust-mode)
 (use-package sly)
-(use-package ssh-agency)
-(use-package stumpwm-mode)
 (use-package swiper)
 (use-package tldr)
 (use-package yaml-mode)

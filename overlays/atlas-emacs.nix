@@ -6,6 +6,6 @@ self: super: {
       config = ../home/files/emacs.el;
       package = super.emacs-pgtk;
       extraEmacsPackages =
-        epkg: [ epkg.auctex ];
+        epkg: [ ];
     };
 }
