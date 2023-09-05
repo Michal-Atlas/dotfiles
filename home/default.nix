@@ -55,117 +55,6 @@ in
         };
       };
     };
-    waybar = {
-      enable = true;
-      systemd.enable = true;
-      settings = {
-        mainBar = {
-          ipc = true;
-          id = 0;
-          modules-left = [
-            "sway/workspaces"
-            "sway/mode"
-          ];
-          modules-center = [
-            "sway/windows"
-          ];
-          modules-right = [
-            "idle_inhibitor"
-            "pulseaudio"
-            "network"
-            "cpu"
-            "memory"
-            "disk"
-            "backlight"
-            "battery"
-            "clock"
-            "tray"
-          ];
-          idle_inhibitor = {
-            format = "{icon}";
-            format-icons = {
-              activated = "\uf06e";
-              deactivated = "\uf070";
-            };
-          };
-          disk.format = "{used}/{total}";
-          tray.spacing = 10;
-          pulseaudio = {
-            format-wifi = "{essid} {ipaddr}/{cidr}";
-            format-ethernet =
-              "{ipaddr}/{cidr}";
-            tooltip-format = "{signalStrength}%";
-          };
-          clock.format = "{:%FT%TZ}";
-          cpu.format = "{usage}% \uf2db";
-          memory.format = "{}% \uf0c9";
-          battery.format = "{}% BAT";
-          backlight.format = "{percent}% \uf185";
-        };
-      };
-      style = ''
-        * {
-            font-size: 14px;
-            font-family: "Fira Code";
-        }
-
-        window#waybar {
-            background-color: rgba(0,0,0,0);
-        }
-
-        label {
-            background: #292b2e;
-            color: #fdf6e3;
-            margin: 0 1px;
-            border-radius: 5px;
-            padding: 0px 5px 0px 5px;
-            border-left: 2px solid grey;
-            border-right: 2px solid grey;
-        }
-
-        #workspaces {
-            background: #1a1a1a;
-        }
-
-        #workspaces button {
-            padding: 0 2px;
-            color: #fdf6e3;
-        }
-
-        #workspaces button.focused {
-            color: #268bd2;
-        }
-
-        #pulseaudio {
-            color: #268bd2;
-        }
-
-        #memory {
-            color: #2aa198;
-        }
-
-        #cpu {
-            color: #6c71c4;
-        }
-
-        #battery {
-            color: #859900;
-        }
-
-        #disk {
-            color: #b58900;
-        }
-      '';
-    };
-
-    swaylock = {
-      enable = true;
-      settings = {
-        color = "000000";
-        show-failed-attempts = true;
-        indicator-idle-visible = true;
-      };
-    };
   };
   home.file = {
     ".guile".source = ./files/guile.scm;
@@ -206,34 +95,7 @@ in
       client.enable = true;
       socketActivation.enable = true;
     };
-    swayidle = {
-      enable = true;
-      events = [
-        {
-          event = "before-sleep";
-          command = "${pkgs.swaylock}/bin/swaylock";
-        }
-        {
-          event = "after-resume";
-          command = "${pkgs.sway}/bin/swaymsg \"\output * dpms on\"";
-        }
-      ];
-      timeouts = [
-        {
-          timeout = 1200;
-          command =
-            "${pkgs.sway}/bin/swaymsg \"output * dpms off\"";
-        }
-      ];
-    };
-    mako = {
-      enable = true;
-      defaultTimeout = 10000;
-      maxVisible = 10;
-    };
   };
-
-  wayland.windowManager.sway = import ./sway.nix { inherit pkgs; inherit lib; };
 
   home.packages =
     [
@@ -244,4 +106,94 @@ in
     "e /home/michal_atlas/Downloads - - - 2d"
     "e /home/michal_atlas/tmp - - - 2d"
   ];
+
+  dconf.settings = {
+    "org/gnome/shell" = {
+      disable-user-extensions = false;
+      enabled-extensions = [
+        "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
+        "drive-menu@gnome-shell-extensions.gcampax.github.com"
+        "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
+        "appindicatorsupport@rgcjonas.gmail.com"
+        "nightthemeswitcher@romainvigier.fr"
+        "gnome-extension-all-ip-addresses@havekes.eu"
+        "color-picker@tuberry"
+        "espresso@coadmunkee.github.com"
+        "gnome-clipboard@b00f.github.io"
+      ];
+    };
+    "org/gnome/desktop/peripherals/touchpad" = { tap-to-click = true; };
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+      custom-keybindings = [
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/"
+      ];
+    };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" =
+      {
+        binding = "<Super>t";
+        command = "kgx";
+        name = "TERM";
+      };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" =
+      {
+        binding = "<Super>Return";
+        command = "emacsclient -c";
+        name = "EMACS";
+      };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" =
+      {
+        binding = "<Super>f";
+        command = "nyxt";
+        name = "BROWSER";
+      };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3" =
+      {
+        binding = "<Super>n";
+        command = "nautilus";
+        name = "FILES";
+      };
+    "org/gnome/desktop/background" = {
+      picture-uri = builtins.fetchurl {
+        url = "https://ift.tt/2UDuBqa";
+        sha256 = "sha256:1nj5kj4dcxnzazf46dczfvcj8svhv1lhfa8rxn0q418s3j1w5dcb";
+      };
+      picture-uri-dark = builtins.fetchurl {
+        url = "https://images.alphacoders.com/923/923968.jpg";
+        sha256 = "sha256:0z0awasi0cljvvnbkn9kfvjx7rdr3n68xa5vj3a6y9z9rxxyv1hc";
+      };
+    };
+    "org/gnome/desktop/input-sources" = {
+      sources = [ (mkTuple [ "xkb" "us" ]) (mkTuple [ "xkb" "cz+ucw" ]) ];
+      xkb-options =
+        [ "grp:caps_switch" "lv3:ralt_switch" "compose:rctrl-altgr" ];
+    };
+    "org/gnome/system/location" = { enabled = true; };
+    "org/gnome/shell/extensions/nightthemeswitcher/time" = {
+      manual-schedule = false;
+    };
+    "org/gnome/desktop/wm/preferences" = { focus-mode = "sloppy"; };
+    "org/gnome/settings-daemon/plugins/color" = { night-light-enabled = true; };
+    "org/gnome/shell" = {
+      favorite-apps = [
+        "firefox.desktop"
+        "spotify.desktop"
+        "discord.desktop"
+        "org.keepassxc.KeePassXC.desktop"
+        "fi.skyjake.Lagrange.desktop"
+        "zotero.desktop"
+        "org.gnome.Nautilus.desktop"
+      ];
+    };
+    "org/gnome/mutter" = {
+      edge-tiling = true;
+      dynamic-workspaces = true;
+      workspaces-only-on-primary = true;
+    };
+
+    "org/gnome/shell/app-switcher" =
+      { current-workspace-only = true; };
+  };
 }
