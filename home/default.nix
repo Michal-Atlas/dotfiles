@@ -43,18 +43,6 @@ in
       git = true;
       icons = true;
     };
-    foot = {
-      enable = true;
-      server.enable = true;
-      settings = {
-        colors.alpha = "0.9";
-        main = {
-          font = "Fira Code:size=12";
-          pad = "5x5 center";
-          include = "${pkgs.foot.themes}/share/foot/themes/monokai-pro";
-        };
-      };
-    };
   };
   home.file = {
     ".guile".source = ./files/guile.scm;
