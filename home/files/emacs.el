@@ -1,15 +1,14 @@
 (use-package
-  bind-key
-  :config
-  (add-to-list 'same-window-buffer-names "*Personal Keybindings*"))
+ bind-key
+ :config
+ (add-to-list 'same-window-buffer-names "*Personal Keybindings*"))
 
 ;;;; * Org-mode
 
 (use-package org-modern :hook (org-mode . org-modern-mode))
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((C . t) (scheme . t) (dot . t) (lisp . t)
-   (octave . t)))
+ '((C . t) (scheme . t) (dot . t) (lisp . t) (octave . t)))
 
 (setq org-latex-default-packages-alist
       (cl-substitute-if
@@ -233,18 +232,17 @@
  :hook
  ((emacs-lisp-mode . paredit-mode)
   ;; (eval-expression-minibuffer-setup . paredit-mode)
-  (scheme-mode . paredit-mode)
-  (lisp-mode . paredit-mode)))
+  (scheme-mode . paredit-mode) (lisp-mode . paredit-mode)))
 
 (setq inferior-lisp-program "sbcl")
 
 (use-package
-  multiple-cursors
-  :bind
-  (("C-S-c C-S-c" . mc/edit-lines)
-   ("C->" . mc/mark-next-like-this)
-   ("C-<" . mc/mark-previous-like-this)
-   ("C-c C-<" . mc/mark-all-like-this)))
+ multiple-cursors
+ :bind
+ (("C-S-c C-S-c" . mc/edit-lines)
+  ("C->" . mc/mark-next-like-this)
+  ("C-<" . mc/mark-previous-like-this)
+  ("C-c C-<" . mc/mark-all-like-this)))
 
 ;;;; * C
 
@@ -252,16 +250,16 @@
 
 ;;;; * Elfeed
 
-(use-package elfeed
-  :config
-  (setq
-   elfeed-feeds
-   '(("https://xkcd.com/rss.xml" comics)
-     ("https://the-dam.org/rss.xml" unix dam)
-     ("https://fsf.org/blogs/RSS" fsf)
-     ("https://blog.tecosaur.com/tmio/rss.xml" emacs)
-     ("https://guix.gnu.org/feeds/blog.atom" tech linux)
-     ("https://vkc.sh/feed/" tech linux))))
+(use-package
+ elfeed
+ :config
+ (setq elfeed-feeds
+       '(("https://xkcd.com/rss.xml" comics)
+         ("https://the-dam.org/rss.xml" unix dam)
+         ("https://fsf.org/blogs/RSS" fsf)
+         ("https://blog.tecosaur.com/tmio/rss.xml" emacs)
+         ("https://guix.gnu.org/feeds/blog.atom" tech linux)
+         ("https://vkc.sh/feed/" tech linux))))
 
 ;;;; * Misc
 
@@ -536,3 +534,56 @@
        (shell-command-to-string
         "upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E 'energy(-full)?:'")
        "\n"))))))
+
+(use-package adaptive-wrap)
+(use-package all-the-icons)
+(use-package all-the-icons-dired)
+(use-package auctex)
+(use-package bind-map)
+(use-package calfw)
+(use-package cheat-sh)
+(use-package circe)
+(use-package consult-org-roam)
+(use-package consult-yasnippet)
+(use-package crux)
+(use-package csv)
+(use-package csv-mode)
+(use-package dashboard)
+(use-package debbugs)
+(use-package dmenu)
+(use-package docker)
+(use-package dockerfile-mode)
+(use-package ediprolog)
+(use-package elpher)
+(use-package ement)
+(use-package engrave-faces)
+(use-package flycheck)
+(use-package flycheck-haskell)
+(use-package gdscript-mode)
+(use-package geiser-guile)
+(use-package gemini-mode)
+(use-package go-mode)
+(use-package hackles)
+(use-package haskell-mode)
+(use-package htmlize)
+(use-package iedit)
+(use-package markdown-mode)
+(use-package multi-term)
+(use-package nix-mode)
+(use-package on-screen)
+(use-package org-roam-ui)
+(use-package org-superstar)
+(use-package ox-gemini)
+(use-package password-generator)
+(use-package password-store)
+(use-package password-store-otp)
+(use-package pdf-tools)
+(use-package realgud)
+(use-package rust-mode)
+(use-package sly)
+(use-package ssh-agency)
+(use-package stumpwm-mode)
+(use-package swiper)
+(use-package tldr)
+(use-package yaml-mode)
+(use-package yasnippet-snippets)
