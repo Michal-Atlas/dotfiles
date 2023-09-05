@@ -121,13 +121,19 @@ with pkgs;
   yt-dlp
   zotero
 
-  source-han-sans
-  font-awesome
-  dejavu_fonts
-  fira-code
-  jetbrains-mono
   charis-sil
-  tamzen
+  dejavu_fonts
+  dina-font
+  fira-code
+  fira-code-symbols
+  font-awesome
+  jetbrains-mono
+  liberation_ttf
+  mplus-outline-fonts.githubRelease
+  noto-fonts
+  noto-fonts-cjk
+  noto-fonts-emoji
+  source-han-sans
 
 ]
 ++ (with gnomeExtensions; [
