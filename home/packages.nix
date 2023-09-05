@@ -129,7 +129,22 @@ with pkgs;
   charis-sil
   tamzen
 
-] ++ [
+]
+++ (with gnomeExtensions; [
+  all-ip-addresses
+  appindicator
+  awesome-tiles
+  browser-tabs
+  bubblemail
+  color-picker
+  containers
+  cpudots
+  disk-usage
+  espresso
+  gnome-clipboard
+  night-theme-switcher
+])
+++ [
   (pkgs.python311.withPackages
     (ps: with ps; [
       dbus-python
