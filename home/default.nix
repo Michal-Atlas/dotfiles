@@ -68,17 +68,6 @@ in
     };
     ".local/share/nyxt/bookmarks.lisp".source = ./files/nyxt/bookmarks.lisp;
     ".config/nyxt/config.lisp".source = ./files/nyxt/init.lisp;
-    ".unison/default.prf".text = ''
-      root=/home/michal_atlas
-      root=ssh:////home/michal_atlas
-      path=Sync
-      path=Documents
-      path=cl
-      path=Zotero
-      auto=true
-      log=true
-      sortbysize=true
-    '';
   };
   xsession.numlock.enable = true;
   programs.home-manager.enable = true;
