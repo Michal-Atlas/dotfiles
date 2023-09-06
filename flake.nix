@@ -50,22 +50,13 @@
     rec {
       images.rpi2 = nixosConfigurations.rpi2.config.system.build.sdImage;
       nixosConfigurations = {
-        rpi2 = nixpkgs.lib.nixosSystem {
-          modules = [
-            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-raspberrypi.nix"
-            ./machines/rpi.nix
-          ];
-        };
-        oracle = nixpkgs.lib.nixosSystem {
-          modules = [ ./machines/oracle.nix ];
-        };
         hydra = nixpkgs.lib.nixosSystem {
           specialArgs = attrs;
-          modules = [ ./machines/hydra.nix ] ++ desktop-modules;
+          modules = [ ./system/machines/hydra.nix ] ++ desktop-modules;
         };
         dagon = nixpkgs.lib.nixosSystem {
           specialArgs = attrs;
-          modules = [ ./machines/dagon.nix ] ++ desktop-modules;
+          modules = [ ./system/machines/dagon.nix ] ++ desktop-modules;
         };
       };
     } // (flake-utils.lib.eachDefaultSystem (system:

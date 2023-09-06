@@ -5,8 +5,8 @@
 
 {
   imports = [
-    ../templates/desktop.nix
-    ../templates/morrowind-server.nix
+    ../modules/desktop.nix
+    ../modules/morrowind-server.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 

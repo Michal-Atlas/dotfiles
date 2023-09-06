@@ -5,7 +5,7 @@
 
 {
   imports = [
-    ../templates/desktop.nix
+    ../modules/desktop.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 

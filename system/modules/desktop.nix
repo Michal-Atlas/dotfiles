@@ -127,7 +127,7 @@
       "adbusers"
     ];
     openssh.authorizedKeys.keys = with builtins;
-      (map (f: readFile ../keys/${f}) (attrNames (readDir ../keys)));
+      (map (f: readFile ../../keys/${f}) (attrNames (readDir ../../keys)));
   };
   users.mutableUsers = false;
   users.users.root.hashedPassword = "$y$j9T$BJgm2ampHrpbLgQhzXNw4.$xppBStrecndUWp4AHAdAt3vZ7.XHmuXvNTL3WgJ0NyC";
@@ -147,7 +147,7 @@
   nixpkgs.overlays = with self.inputs; [
     nur.overlay
     emacs-overlay.overlays.default
-    (import ../overlays/atlas-emacs.nix)
+    (import ../../overlays/atlas-emacs.nix)
     atlas-overlay.overlays.x86_64-linux.default
   ];
 
