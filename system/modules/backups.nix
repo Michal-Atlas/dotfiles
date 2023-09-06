@@ -6,11 +6,11 @@
           snapshot_dir = ".btrfs";
           snapshot_create = "onchange";
           timestamp_format = "long-iso";
-          snapshot_preserve_min = "1h";
-          snapshot_preserve = "25h 31d 4w 12m";
+          snapshot_preserve_min = "latest";
+          snapshot_preserve = "24h 31d 4w 12m";
         };
       };
     };
-    onCalendar = "*:0/12";
+    onCalendar = "hourly";
   };
 }
