@@ -11,10 +11,13 @@ with pkgs;
   btop
   btrfs-progs
   ccls
+  charis-sil
   chicken
   cifs-utils
   cmake
   cryptsetup
+  dejavu_fonts
+  dina-font
   direnv
   discord
   dotnet-sdk
@@ -22,7 +25,10 @@ with pkgs;
   fasd
   feh
   file
+  fira-code
+  fira-code-symbols
   firefox
+  font-awesome
   foot
   fzf
   gallery-dl
@@ -43,16 +49,19 @@ with pkgs;
   gzdoom
   heroic
   htop
+  imagemagick
   indent
   inkscape
   ipfs
   isync
+  jetbrains-mono
   jetbrains-mono
   keepassxc
   kobodeluxe
   krita
   lagrange
   legendary-gl
+  liberation_ttf
   libgccjit
   libreoffice
   libtool
@@ -60,6 +69,7 @@ with pkgs;
   meson
   minecraft
   mosh
+  mplus-outline-fonts.githubRelease
   mpv
   mu
   mystic
@@ -67,9 +77,13 @@ with pkgs;
   nix
   nixfmt
   nmap
+  noto-fonts
+  noto-fonts-cjk
+  noto-fonts-emoji
   nyxt
   ocaml
   ocamlPackages.merlin
+  octave
   okular
   openmw-tes3mp
   p7zip
@@ -89,6 +103,7 @@ with pkgs;
   screen
   shotwell
   slurp
+  source-han-sans
   spotify
   steam-run
   superTux
@@ -120,21 +135,6 @@ with pkgs;
   xorg.xrandr
   yt-dlp
   zotero
-
-  charis-sil
-  dejavu_fonts
-  dina-font
-  fira-code
-  fira-code-symbols
-  font-awesome
-  jetbrains-mono
-  liberation_ttf
-  mplus-outline-fonts.githubRelease
-  noto-fonts
-  noto-fonts-cjk
-  noto-fonts-emoji
-  source-han-sans
-
 ]
 ++ (with gnomeExtensions; [
   all-ip-addresses
