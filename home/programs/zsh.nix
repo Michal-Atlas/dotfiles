@@ -7,6 +7,7 @@
   autocd = true;
   history.ignoreDups = true;
   initExtra = ''
+    set -o emacs
     function cheat { curl "cheat.sh/$@" }
   '';
   localVariables = {

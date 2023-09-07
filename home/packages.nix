@@ -63,7 +63,6 @@ with pkgs;
   mpv
   mu
   mystic
-  ncurses
   neofetch
   nix
   nixfmt
