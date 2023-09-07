@@ -8,6 +8,10 @@
     ./registry.nix
   ];
 
+  nix.settings = {
+    flake-registry = "";
+  };
+
   home = {
     username = "michal_atlas";
     homeDirectory = "/home/michal_atlas";
