@@ -29,32 +29,34 @@
     let
       system = "x86_64-linux";
       pkgs = (import nixpkgs) { inherit system; };
-      desktop-modules = [
-        home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            extraSpecialArgs = attrs;
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users.michal_atlas = import ./home;
-          };
-        }
-        agenix.nixosModules.default
-        nur.nixosModules.nur
-        stevenblackhosts.nixosModule
-      ];
     in
     {
-      nixosConfigurations = {
-        hydra = nixpkgs.lib.nixosSystem {
-          specialArgs = attrs;
-          modules = [ ./system/machines/hydra.nix ] ++ desktop-modules;
+      nixosConfigurations =
+        let
+          makeSys = file:
+            nixpkgs.lib.nixosSystem {
+              specialArgs = attrs;
+              modules = [
+                file
+                home-manager.nixosModules.home-manager
+                {
+                  home-manager = {
+                    extraSpecialArgs = attrs;
+                    useGlobalPkgs = true;
+                    useUserPackages = true;
+                    users.michal_atlas = import ./home;
+                  };
+                }
+                agenix.nixosModules.default
+                nur.nixosModules.nur
+                stevenblackhosts.nixosModule
+              ];
+            };
+        in
+        {
+          hydra = makeSys ./system/machines/hydra;
+          dagon = makeSys ./system/machines/dagon;
         };
-        dagon = nixpkgs.lib.nixosSystem {
-          specialArgs = attrs;
-          modules = [ ./system/machines/dagon.nix ] ++ desktop-modules;
-        };
-      };
 
       checks.${system} = {
         pre-commit-check = pre-commit-hooks.lib.${system}.run {
