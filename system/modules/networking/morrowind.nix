@@ -21,7 +21,6 @@ let cfg = config.services.morrowind-server; in
       script = "${pkgs.openmw-tes3mp}/bin/tes3mp-server";
     };
 
-    networking.firewall.allowedTCPPorts =
-      if cfg.enable then [ 25565 ] else [ ];
+    networking.firewall.allowedTCPPorts = [ 25565 ];
   };
 }
