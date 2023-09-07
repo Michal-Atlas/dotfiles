@@ -5,6 +5,7 @@
     ./files
     ./services.nix
     ./dconf.nix
+    ./registry.nix
   ];
 
   home = {

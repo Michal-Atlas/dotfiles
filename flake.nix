@@ -35,6 +35,7 @@
         home-manager.nixosModules.home-manager
         {
           home-manager = {
+            extraSpecialArgs = attrs;
             useGlobalPkgs = true;
             useUserPackages = true;
             users.michal_atlas = import ./home;
@@ -47,18 +48,18 @@
       ];
 
     in
-    rec {
-      images.rpi2 = nixosConfigurations.rpi2.config.system.build.sdImage;
-      nixosConfigurations = {
-        hydra = nixpkgs.lib.nixosSystem {
-          specialArgs = attrs;
-          modules = [ ./system/machines/hydra.nix ] ++ desktop-modules;
+    {
+      nixosConfigurations =
+        {
+          hydra = nixpkgs.lib.nixosSystem {
+            specialArgs = attrs;
+            modules = [ ./system/machines/hydra.nix ] ++ desktop-modules;
+          };
+          dagon = nixpkgs.lib.nixosSystem {
+            specialArgs = attrs;
+            modules = [ ./system/machines/dagon.nix ] ++ desktop-modules;
+          };
         };
-        dagon = nixpkgs.lib.nixosSystem {
-          specialArgs = attrs;
-          modules = [ ./system/machines/dagon.nix ] ++ desktop-modules;
-        };
-      };
     } // (flake-utils.lib.eachDefaultSystem (system:
     let pkgs = (import nixpkgs) { inherit system; };
     in {
