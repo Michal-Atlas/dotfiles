@@ -1,10 +1,8 @@
 {
-
   description = "Atlas' NixOS configuration";
 
   inputs = {
     nixpkgs.url = "github:NixOs/nixpkgs/nixos-23.05";
-    flake-utils.url = "github:numtide/flake-utils";
     agenix.url = "github:ryantm/agenix";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     home-manager = {
@@ -20,7 +18,6 @@
   outputs =
     { self
     , nixpkgs
-    , flake-utils
     , home-manager
     , agenix
     , nur
@@ -31,6 +28,7 @@
     }@attrs:
     let
       system = "x86_64-linux";
+      pkgs = (import nixpkgs) { inherit system; };
       desktop-modules = [
         home-manager.nixosModules.home-manager
         {
@@ -39,31 +37,26 @@
             useGlobalPkgs = true;
             useUserPackages = true;
             users.michal_atlas = import ./home;
-            backupFileExtension = "nix-home.bkp";
           };
         }
         agenix.nixosModules.default
         nur.nixosModules.nur
         stevenblackhosts.nixosModule
       ];
-
     in
     {
-      nixosConfigurations =
-        {
-          hydra = nixpkgs.lib.nixosSystem {
-            specialArgs = attrs;
-            modules = [ ./system/machines/hydra.nix ] ++ desktop-modules;
-          };
-          dagon = nixpkgs.lib.nixosSystem {
-            specialArgs = attrs;
-            modules = [ ./system/machines/dagon.nix ] ++ desktop-modules;
-          };
+      nixosConfigurations = {
+        hydra = nixpkgs.lib.nixosSystem {
+          specialArgs = attrs;
+          modules = [ ./system/machines/hydra.nix ] ++ desktop-modules;
         };
-    } // (flake-utils.lib.eachDefaultSystem (system:
-    let pkgs = (import nixpkgs) { inherit system; };
-    in {
-      checks = {
+        dagon = nixpkgs.lib.nixosSystem {
+          specialArgs = attrs;
+          modules = [ ./system/machines/dagon.nix ] ++ desktop-modules;
+        };
+      };
+
+      checks.${system} = {
         pre-commit-check = pre-commit-hooks.lib.${system}.run {
           src = ./.;
           hooks = {
@@ -76,31 +69,31 @@
               enable = true;
               name = "Elisp Autofmt";
               entry = "${
-                    (pkgs.writeShellScriptBin "autofmt.sh" ''
-                      ${
-                        (pkgs.emacsPackagesFor pkgs.emacs).emacsWithPackages
-                        (epkgs: with epkgs; [ elisp-autofmt ])
-                      }/bin/emacs "$1" --batch --eval "(require 'elisp-autofmt)" -f elisp-autofmt-buffer -f save-buffer --kill'')
-                  }/bin/autofmt.sh";
+                  (pkgs.writeShellScriptBin "autofmt.sh" ''
+                    ${
+                      (pkgs.emacsPackagesFor pkgs.emacs).emacsWithPackages
+                      (epkgs: with epkgs; [ elisp-autofmt ])
+                    }/bin/emacs "$1" --batch --eval "(require 'elisp-autofmt)" -f elisp-autofmt-buffer -f save-buffer --kill'')
+                }/bin/autofmt.sh";
               files = "\\.(el)$";
             };
           };
         };
       };
-      devShells.default = nixpkgs.legacyPackages.${system}.mkShell {
+      devShells.${system}.default = nixpkgs.legacyPackages.${system}.mkShell {
         nativeBuildInputs =
           let
-            rebuild-cmd = cmd:
-              "sudo nixos-rebuild ${cmd} --flake .#$(hostname) $@;";
+            rebuild-cmd = cmd: "nixos-rebuild ${cmd} --flake .#$(hostname) $@;";
+            sudo-rebuild-cmd = cmd: "sudo ${rebuild-cmd cmd}";
           in
           [
-            (pkgs.writeShellScriptBin "recon" (rebuild-cmd "switch"))
-            (pkgs.writeShellScriptBin "recboot" (rebuild-cmd "boot"))
+            (pkgs.writeShellScriptBin "recon" (sudo-rebuild-cmd "switch"))
+            (pkgs.writeShellScriptBin "recboot" (sudo-rebuild-cmd "boot"))
             (pkgs.writeShellScriptBin "check" "nix flake check $@;")
-            (pkgs.writeShellScriptBin "build" "nixos-rebuild build --flake .#$(hostname) $@;")
+            (pkgs.writeShellScriptBin "build" (rebuild-cmd "build"))
             agenix.packages.${system}.default
           ];
         inherit (self.checks.${system}.pre-commit-check) shellHook;
       };
-    }));
+    };
 }
