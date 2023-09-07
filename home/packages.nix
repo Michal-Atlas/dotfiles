@@ -166,10 +166,12 @@ with pkgs;
       alexandria
       cffi
       cl-autowrap
+      cl-conspack
       cl-css
       cl-fuse-meta-fs
       cl-strings
       cl-who
+      clingon
       clsql
       coleslaw
       collectors
@@ -178,7 +180,9 @@ with pkgs;
       generators
       harmony
       hunchentoot
+      iterate
       linedit
+      log4cl
       lparallel
       mcclim
       mcclim-layouts
