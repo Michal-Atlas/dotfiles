@@ -241,4 +241,5 @@
   ];
 
   programs.adb.enable = true;
+  services.gvfs.enable = true;
 }
