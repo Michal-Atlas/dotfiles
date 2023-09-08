@@ -95,9 +95,7 @@
             (pkgs.writeShellScriptBin "build" (rebuild-cmd "build"))
             agenix.packages.${system}.default
             (pkgs.writeShellScriptBin "recdiff" ''
-              build
-              ${pkgs.nix-diff}/bin/nix-diff /run/current-system result
-              rm result
+              build && ${pkgs.nix-diff}/bin/nix-diff /run/current-system result && rm result
             '')
           ];
         inherit (self.checks.${system}.pre-commit-check) shellHook;
