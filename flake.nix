@@ -35,7 +35,9 @@
         let
           makeSys = file:
             nixpkgs.lib.nixosSystem {
-              specialArgs = attrs;
+              specialArgs = attrs // {
+                lib = nixpkgs.lib // import ./lib;
+              };
               modules = [
                 file
                 home-manager.nixosModules.home-manager

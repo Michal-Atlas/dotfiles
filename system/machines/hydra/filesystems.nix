@@ -1,43 +1,27 @@
-_: {
-  fileSystems."/boot/efi" = {
-    device = "/dev/disk/by-uuid/C9ED-A99E";
-    fsType = "vfat";
-  };
-
+{ lib, ... }: with lib; {
   swapDevices =
     [{ device = "/dev/disk/by-uuid/1a20f616-635b-46af-bf07-ff09cf461504"; }];
 
   services.btrfs.autoScrub.enable = true;
-  fileSystems = {
-    "/" = {
-      device = "/dev/spool/root";
-      options = [ "subvol=@nix" ];
-      fsType = "btrfs";
+  fileSystems =
+    let
+      btrfsMount =
+        dev: subvol: {
+          device = dev;
+          options = [ "subvol=${subvol}" "noatime" ];
+          fsType = "btrfs";
+        };
+    in
+    {
+      "/boot/efi" = {
+        device = "/dev/disk/by-uuid/C9ED-A99E";
+        fsType = "vfat";
+      };
+      "/" = btrfsMount "/dev/spool/root" "@nix";
+      "/home" = btrfsMount "/dev/rpool/home" "@home";
+      "/home/michal_atlas/Games" = btrfsMount "/dev/rpool/vault" "@games";
+      "/home/michal_atlas/Downloads" = btrfsMount "/dev/rpool/vault" "@tmp";
+      "/home/michal_atlas/tmp" = btrfsMount "/dev/rpool/vault" "@tmp";
+      "/var/lib/ipfs" = btrfsMount "/dev/rpool/vault" "@ipfs";
     };
-    "/home" = {
-      device = "/dev/rpool/home";
-      options = [ "subvol=@home" ];
-      fsType = "btrfs";
-    };
-    "/home/michal_atlas/Games" = {
-      device = "/dev/rpool/vault";
-      options = [ "subvol=@games" ];
-      fsType = "btrfs";
-    };
-    "/home/michal_atlas/Downloads" = {
-      device = "/dev/rpool/vault";
-      options = [ "subvol=@tmp" ];
-      fsType = "btrfs";
-    };
-    "/home/michal_atlas/tmp" = {
-      device = "/dev/rpool/vault";
-      options = [ "subvol=@tmp" ];
-      fsType = "btrfs";
-    };
-    "/var/lib/ipfs" = {
-      device = "/dev/rpool/vault";
-      options = [ "subvol=@ipfs" ];
-      fsType = "btrfs";
-    };
-  };
 }

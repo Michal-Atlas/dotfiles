@@ -1,10 +1,6 @@
-_: {
-  fileSystems."/boot/efi" =
-    {
-      device = "/dev/disk/by-uuid/D762-6C63";
-      fsType = "vfat";
-    };
-
+{ lib, ... }:
+with lib;
+{
   swapDevices =
     [{ device = "/dev/rpool/swap"; }];
 
@@ -16,13 +12,15 @@ _: {
   };
 
   fileSystems = {
-    "/" = {
-      device = "/dev/rpool/root";
-      options = [ "subvol=@nix" ];
-      fsType = "btrfs";
-    };
+    "/boot/efi" =
+      {
+        device = "/dev/disk/by-uuid/D762-6C63";
+        fsType = "vfat";
+      };
+    "/" = btrfsMount "/dev/rpool/root" "@nix";
     "/home" = {
       device = "/dev/mapper/crypthome";
+      options = [ "noatime" ];
       fsType = "btrfs";
     };
   };
