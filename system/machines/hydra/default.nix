@@ -3,6 +3,7 @@
   imports = [
     ../../modules
     ./filesystems.nix
+    (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
   services.morrowind-server.enable = true;
