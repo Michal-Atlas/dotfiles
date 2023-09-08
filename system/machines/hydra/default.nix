@@ -3,8 +3,8 @@
   imports = [
     ../../modules
     ./filesystems.nix
-    (modulesPath + "/installer/scan/not-detected.nix")
   ];
+  hardware.enableAllFirmware = true;
 
   services.morrowind-server.enable = true;
 
