@@ -10,5 +10,6 @@ _: {
     enable = true;
     blockFakenews = true;
     blockGambling = true;
+    blockPorn = true;
   };
 }
