@@ -11,6 +11,7 @@ _: {
     ./storage
     ./user.nix
     ./virtualization.nix
+    ./cachix.nix
   ];
   system.stateVersion = "22.11";
   time.timeZone = "Europe/Prague";
