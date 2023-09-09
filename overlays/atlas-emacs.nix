@@ -4,7 +4,7 @@ self: super: {
       defaultInitFile = true;
       alwaysEnsure = true;
       config = ../home/files/emacs.el;
-      package = super.emacs-pgtk;
+      package = super.emacs29-pgtk;
       extraEmacsPackages =
         epkg: [ ];
     };
