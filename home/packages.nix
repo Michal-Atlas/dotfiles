@@ -7,9 +7,11 @@ with pkgs;
   audacity
   bat
   bc
+  blender
   borgbackup
   btop
   btrfs-progs
+  caprine-bin
   ccls
   charis-sil
   chicken
@@ -41,6 +43,7 @@ with pkgs;
   gnumake
   gnupg
   gnuplot
+  godot_4
   gparted
   gprolog
   graphviz
@@ -55,7 +58,10 @@ with pkgs;
   ipfs
   isync
   jetbrains-mono
-  jetbrains-mono
+  jetbrains.clion
+  jetbrains.idea-ultimate
+  jetbrains.rider
+  jetbrains.webstorm
   keepassxc
   kobodeluxe
   krita
