@@ -21,35 +21,42 @@ in
     "org/gnome/desktop/peripherals/touchpad" = { tap-to-click = true; };
     "org/gnome/settings-daemon/plugins/media-keys" = {
       custom-keybindings = [
-        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
-        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
-        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
-        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/term/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/emacs/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/browser/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/files/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/recon/"
       ];
     };
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" =
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/term" =
       {
         binding = "<Super>t";
         command = "kgx";
         name = "TERM";
       };
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" =
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/emacs" =
       {
         binding = "<Super>Return";
         command = "emacsclient -c";
         name = "EMACS";
       };
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" =
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/browser" =
       {
         binding = "<Super>f";
         command = "nyxt";
         name = "BROWSER";
       };
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3" =
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/files" =
       {
         binding = "<Super>n";
         command = "nautilus";
         name = "FILES";
+      };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/recon" =
+      {
+        binding = "<Super>u";
+        command = "kgx -e 'cd $HOME/cl/dotfiles; nix develop -c recon'";
+        name = "RECON";
       };
     "org/gnome/desktop/background" = {
       picture-uri = builtins.fetchurl {
