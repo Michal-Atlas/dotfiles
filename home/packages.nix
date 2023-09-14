@@ -17,6 +17,7 @@ with pkgs;
   chicken
   cifs-utils
   cmake
+  comma
   cryptsetup
   dejavu_fonts
   dina-font
