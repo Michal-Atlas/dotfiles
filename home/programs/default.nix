@@ -2,7 +2,7 @@
 {
   programs = {
     git = import ./git.nix;
-
+    ssh = import ./ssh.nix;
     fzf.enable = true;
     dircolors.enable = true;
     keychain.enable = true;
