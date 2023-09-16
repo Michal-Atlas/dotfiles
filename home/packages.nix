@@ -1,6 +1,8 @@
 pkgs:
 with pkgs;
 [
+  nushell
+  scala_3
   acl2-minimal
   arandr
   atlas-emacs
