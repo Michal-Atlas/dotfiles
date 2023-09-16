@@ -229,6 +229,24 @@
         "type": "github"
       }
     },
+    "guix-overlay": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_5"
+      },
+      "locked": {
+        "lastModified": 1671581861,
+        "narHash": "sha256-tj6mhEHpvVXz38DtnYytq9IzWm0qX/ie0IuPyLkQUe4=",
+        "owner": "foo-dogsquared",
+        "repo": "nix-overlay-guix",
+        "rev": "6ea748a541fa994058de94903fd1adaa3e1f6a8a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "foo-dogsquared",
+        "repo": "nix-overlay-guix",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -385,6 +403,22 @@
     },
     "nixpkgs_5": {
       "locked": {
+        "lastModified": 1665763903,
+        "narHash": "sha256-znGWY4x688cZ3Ii01qLnhl+mSKpQ9iCufGxfdV6oBOc=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "78a37aa630faa41944060a966607d4f1128ea94b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-22.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_6": {
+      "locked": {
         "lastModified": 1694048570,
         "narHash": "sha256-PEQptwFCVaJ+jLFJgrZll2shQ9VI/7xVhrCYkJo8iIw=",
         "owner": "NixOs",
@@ -399,7 +433,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_6": {
+    "nixpkgs_7": {
       "locked": {
         "lastModified": 1689261696,
         "narHash": "sha256-LzfUtFs9MQRvIoQ3MfgSuipBVMXslMPH/vZ+nM40LkA=",
@@ -457,7 +491,7 @@
         "flake-compat": "flake-compat_2",
         "flake-utils": "flake-utils_4",
         "gitignore": "gitignore_2",
-        "nixpkgs": "nixpkgs_6",
+        "nixpkgs": "nixpkgs_7",
         "nixpkgs-stable": "nixpkgs-stable_3"
       },
       "locked": {
@@ -479,8 +513,9 @@
         "agenix": "agenix",
         "atlas-overlay": "atlas-overlay",
         "emacs-overlay": "emacs-overlay",
+        "guix-overlay": "guix-overlay",
         "home-manager": "home-manager_2",
-        "nixpkgs": "nixpkgs_5",
+        "nixpkgs": "nixpkgs_6",
         "nur": "nur",
         "pre-commit-hooks": "pre-commit-hooks_2",
         "stevenblackhosts": "stevenblackhosts"

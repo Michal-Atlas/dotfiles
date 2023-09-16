@@ -24,4 +24,9 @@ _: {
     pinentryFlavor = "gtk2";
     enableSSHSupport = true;
   };
+  services.guix-binary = {
+    enable = true;
+    extraArgs = [ "--discover=yes" ];
+    publish.enable = true;
+  };
 }

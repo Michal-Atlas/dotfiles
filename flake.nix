@@ -16,6 +16,7 @@
       url = "github:StevenBlack/hosts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    guix-overlay.url = "github:foo-dogsquared/nix-overlay-guix";
   };
 
   outputs =
@@ -27,6 +28,7 @@
     , atlas-overlay
     , pre-commit-hooks
     , stevenblackhosts
+    , guix-overlay
     , ...
     }@attrs:
     let
@@ -55,6 +57,7 @@
                 agenix.nixosModules.default
                 nur.nixosModules.nur
                 stevenblackhosts.nixosModule
+                guix-overlay.nixosModules.guix-binary
               ];
             };
         in

@@ -9,6 +9,9 @@
   initExtra = ''
     set -o emacs
     function cheat { curl "cheat.sh/$@" }
+
+    GUIX_PROFILE="/home/michal_atlas/.config/guix/current"
+    . "$GUIX_PROFILE/etc/profile"
   '';
   localVariables = {
     MOZ_ENABLE_WAYLAND = "1";
