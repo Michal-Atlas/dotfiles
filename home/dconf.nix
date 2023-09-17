@@ -60,12 +60,12 @@ in
       };
     "org/gnome/desktop/background" = {
       picture-uri = builtins.fetchurl {
-        url = "https://ift.tt/2UDuBqa";
-        sha256 = "sha256:1nj5kj4dcxnzazf46dczfvcj8svhv1lhfa8rxn0q418s3j1w5dcb";
+        url = "https://www.gnu.org/graphics/o_espirito_da_liberdade.fondo.big.png";
+        sha256 = "sha256:0ipqb8ssz2fs2cwdwp1cvbrsz27n40478bh8h9x9gpbdy2376nzw";
       };
       picture-uri-dark = builtins.fetchurl {
-        url = "https://images.alphacoders.com/923/923968.jpg";
-        sha256 = "sha256:0z0awasi0cljvvnbkn9kfvjx7rdr3n68xa5vj3a6y9z9rxxyv1hc";
+        url = "https://www.gnu.org/graphics/techy-gnu-tux-bivouac-large.jpg";
+        sha256 = "sha256:13934pa275b6s27gja545bwic6fzhjb2y6x5bvpn30vmyva09rm0";
       };
     };
     "org/gnome/desktop/input-sources" = {
