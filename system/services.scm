@@ -62,7 +62,6 @@
                     (retention 31)
                     (schedule "0 9 * * *")
                     (path "/var/lib/tes3mp")))))
-        (zerotier-one-service)
         (&s pam-limits #:config
             (list
              (pam-limits-entry "*" 'both 'nofile 524288)))
