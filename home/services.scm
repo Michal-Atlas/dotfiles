@@ -13,6 +13,7 @@
           (home services shepherd)
           (home services ssh)
           (home services wm)
+	  (home services dconf)
           (home services manifests))
   (export %services)
   (begin
@@ -21,6 +22,7 @@
        (&s home-channels #:config %channels)
        (&s home-dbus)
        (%files host)
+       %dconf
        %bash
        %flatpak
        %git

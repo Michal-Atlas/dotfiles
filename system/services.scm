@@ -77,6 +77,7 @@
        (macromap
         &s
         (openssh)
+	(gnome-desktop)
         (gpm)
         (screen-locker
          (name "swaylock")
@@ -147,7 +148,12 @@
         (bluetooth)
         (ipfs (gateway "/ip4/0.0.0.0/tcp/8080")))
        (modify-services %desktop-services
-         (delete gdm-service-type)
+			(gdm-service-type configuration =>
+					  (gdm-configuration
+					   (inherit configuration)
+					   (auto-login? #t)
+					   (default-user "michal_atlas")
+					   (wayland? #t)))
          (guix-service-type configuration =>
                             (guix-configuration
                              (discover? #t)
