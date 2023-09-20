@@ -25,7 +25,6 @@
           (gnu packages gnome)
           (gnu packages games)
           (gnu packages ghostscript)
-          (gnu packages gnupg)
           (gnu packages gnuzilla)
           (gnu packages graphviz)
           (gnu packages haskell-xyz)
@@ -78,7 +77,6 @@
              gimp
              git
              gnu-make
-             gnupg
              gparted
              graphviz
              grim
@@ -96,7 +94,6 @@
              p7zip
              pandoc
              pavucontrol
-             pinentry
              pkg-config
              prismlauncher
              python-ipython
