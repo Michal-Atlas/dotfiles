@@ -1,6 +1,7 @@
 (define-library (system services)
   (import (scheme base)
           (only (guile) cons* string-join)
+          (home)
           (gnu services)
           (utils services)
           (guix gexp)
@@ -24,6 +25,7 @@
           (gnu services file-sharing)
           (gnu services databases)
           (gnu services nix)
+          (gnu services home)
           (scheme write))
   (export %services)
   (begin
@@ -62,6 +64,8 @@
                     (retention 31)
                     (schedule "0 9 * * *")
                     (path "/var/lib/tes3mp")))))
+        (&s guix-home #:config
+            `(("michal_atlas" . ,(get-home hostname))))
         (&s pam-limits #:config
             (list
              (pam-limits-entry "*" 'both 'nofile 524288)))
