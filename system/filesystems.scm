@@ -12,10 +12,12 @@
 	                 (mount-point "/")
 	                 (device "/dev/mapper/rpool-root")
 	                 (type "btrfs")
+                         (options
+                          (alist->file-system-options '(("subvol" . "@guix"))))
 	                 (dependencies (%mapped-devices host)))
                #:dagon (file-system
                          (mount-point "/home")
-                         (device "/dev/mapper/rpool-home-decrypted")
+                         (device "/dev/mapper/crypthome")
                          (type "btrfs")
                          (dependencies (%mapped-devices host)))
                #:dagon (file-system

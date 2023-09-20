@@ -23,5 +23,5 @@
                      (list
                       (mapped-device
                        (source "/dev/mapper/rpool-home")
-                       (target "rpool-home-decrypted")
+                       (target "crypthome")
                        (type luks-device-mapping))))))))
