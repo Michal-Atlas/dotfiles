@@ -12,13 +12,12 @@
           (home services mcron)
           (home services shepherd)
           (home services ssh)
-          (home services wm)
 	  (home services dconf)
           (home services manifests))
   (export %services)
   (begin
     (define (%services host)
-      (cons*
+      (list
        (&s home-channels #:config %channels)
        (&s home-dbus)
        (%files host)
@@ -29,5 +28,4 @@
        (%mcron host)
        %shepherd
        %ssh
-       %manifests
-       %wm))))
+       %manifests))))
