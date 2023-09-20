@@ -12,8 +12,7 @@
           (home services mcron)
           (home services shepherd)
           (home services ssh)
-	  (home services dconf)
-          (home services manifests))
+	  (home services dconf))
   (export %services)
   (begin
     (define (%services host)
@@ -27,5 +26,4 @@
        %git
        (%mcron host)
        %shepherd
-       %ssh
-       %manifests))))
+       %ssh))))

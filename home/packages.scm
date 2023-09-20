@@ -55,7 +55,11 @@
           (gnu packages virtualization)
           (gnu packages web-browsers)
           (gnu packages wm)
-          (gnu packages xdisorg))
+          (gnu packages xdisorg)
+          (nongnu packages mozilla)
+          (gnu packages gimp)
+          (gnu packages inkscape)
+          (games packages the-ur-quan-masters))
   (export %packages)
   (begin
     (define %packages
@@ -67,9 +71,11 @@
              fasd
              feh
              file
+             firefox
              foot
              fzf
              gcc-toolchain
+             gimp
              git
              gnu-make
              gnupg
@@ -78,7 +84,9 @@
              grim
              htop
              indent
+             inkscape
              keepassxc
+             krita
              lagrange
              mosh
              mpv
@@ -97,14 +105,19 @@
              screen
              shotwell
              slurp
+             supertux
+             supertuxkart
+             texlive-scheme-basic
              transmission-remote-gtk
              tree
              unison
              unzip
+             uqm
              virt-manager
              wl-clipboard
              xdg-utils
              xdot
+             xonotic
              yt-dlp)
        %lisp-packages
        %font-packages
