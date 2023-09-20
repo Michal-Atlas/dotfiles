@@ -8,9 +8,9 @@
   (export %dconf)
   (begin
   (define (keybinds binds)
-    (define prefix "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings")
+    (define prefix "org/gnome/settings-daemon/plugins/media-keys")
     (define (bind->ini name binding command)
-      `(,(string-append prefix "/" name)
+      `(,(string-append prefix "/custom-keybindings/" name)
 	(name ,name)
 	(binding ,binding)
 	(command ,command)))
@@ -19,10 +19,7 @@
 	,(list->vector
 	  (map
 	   (lambda (bind)
-             (string-append
-              prefix
-              "/"
-              (car bind)))
+             (string-append "/" prefix "/custom-keybindings/" (car bind) "/"))
 	   binds))))
       ,@(map (lambda (bind) (apply bind->ini bind))
 	     binds)))
