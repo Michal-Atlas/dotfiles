@@ -37,6 +37,7 @@
           (gnu packages ocaml)
           (gnu packages package-management)
           (gnu packages password-utils)
+          (gnu packages perl)
           (gnu packages pkg-config)
           (gnu packages pulseaudio)
           (gnu packages python-xyz)
@@ -94,6 +95,7 @@
              p7zip
              pandoc
              pavucontrol
+             perl
              pkg-config
              prismlauncher
              python-ipython

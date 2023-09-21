@@ -1,6 +1,7 @@
 (define-library (home services bash)
   (import (scheme base)
           (utils services)
+          (utils download)
           (gnu home services shells)
           (guix gexp)
           (gnu packages base)
@@ -27,6 +28,11 @@
 		             "eval \"$("
 		             direnv "/bin/direnv"
 		             " hook bash)\"")
+            (mixed-text-file "bashrc-fzfbind"
+                             ". "
+                             (file-fetch
+                              "https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.bash"
+                              "0qGJBDRM/kW/eNKkNyEw/36pc5D7/cPENzEeb49NhNU="))
             (plain-file "bashrc-ignoredups" "export HISTCONTROL=ignoredups")
             (mixed-text-file "bashrc-run"
 		             "function run { "
