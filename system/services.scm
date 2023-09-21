@@ -9,6 +9,7 @@
           (gnu services virtualization)
           (gnu services messaging)
           (gnu services sound)
+          (gnu services syncthing)
           (atlas services morrowind)
           (atlas services btrfs)
           (nongnu services vpn)
@@ -81,6 +82,7 @@
         (openssh)
 	(gnome-desktop)
         (gpm)
+        (syncthing (user "michal_atlas"))
         (screen-locker
          (name "swaylock")
          (program (file-append swaylock
