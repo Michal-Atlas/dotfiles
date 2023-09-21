@@ -13,7 +13,8 @@
           (home services shepherd)
           (home services ssh)
 	  (home services dconf)
-          (gnu home-services gnupg))
+          (gnu home-services gnupg)
+          (unwox home pipewire))
   (export %services)
   (begin
     (define (%services host)
@@ -28,4 +29,5 @@
        (%mcron host)
        %shepherd
        %ssh
-       (&s home-gnupg)))))
+       (&s home-gnupg)
+       (&s home-pipewire)))))
