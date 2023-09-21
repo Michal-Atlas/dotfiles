@@ -169,7 +169,7 @@
                                                       (plain-file "non-guix.pub"
                                                                   "(public-key (ecc (curve Ed25519) (q #926B78EBA9416220CA0AFA2EAEC8ED99FC9E9C03AF11CD08AE6F8192BCF68673#)))")
                                                       (plain-file "hydra.pub"
-                                                                  "(public-key (ecc (curve Ed25519) (q #C4F8927AAB5A941F2EB9B76FCDF30FFCC9026F8D16A3C1F1BA00A07ACC6B743C#)))")
+                                                                  "(public-key (ecc (curve Ed25519) (q #6544BC5D41A16DF594F8AA088B7CD6F840590B83FE1D2500FE79E4A4D067F964#)))")
                                                       (plain-file "dagon.pub"
                                                                   "(public-key (ecc (curve Ed25519) (q #F5E876A29802796DBA7BAD8B7C0FEE90BDD784A70CB2CC8A1365A47DA03AADBD#)))")
                                                       (plain-file "past.pub"
