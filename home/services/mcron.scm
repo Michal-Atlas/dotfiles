@@ -17,11 +17,6 @@
 	                 (string-append 
 	                  #$(file-append onedrive "/bin/onedrive")
 	                  " --synchronize"))
-                  #:hydra
-                  #~(job "*/15 * * * *"
-	                 (string-append 
-	                  #$(file-append unison "/bin/unison")
-	                  " -batch"))
                   #~(job "0 * * * *"
 	                 (string-append 
 	                  #$(file-append findutils "/bin/find")

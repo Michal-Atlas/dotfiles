@@ -7,12 +7,6 @@
           (gnu packages terminals))
   (export %files)
   (begin
-    (define rsync-dirs '("Sync" "cl" "Documents" "Zotero"))
-    (define (rsync-target host)
-      (car (@host host
-            #:hydra "dagon"
-            #:dagon "hydra")))
-
     (define (%files host)
       (+s home-files
           ;; local-file being explicit allows earlier check for file existence
@@ -36,16 +30,3 @@
             (".config/gtk-3.0/settings.ini" ,(local-file "files/gtk3.ini"))
             (".local/share/nyxt/bookmarks.lisp" ,(local-file "files/nyxt/bookmarks.lisp"))
             (".config/nyxt/config.lisp" ,(local-file "files/nyxt/init.lisp"))
-            (".unison/default.prf"
-             ,(mixed-text-file "unison-profile"
-                               "root=/home/michal_atlas\n"
-                               "root=ssh://"
-                               (rsync-target host)
-                               "//home/michal_atlas\n"                                  
-                               "path=Sync\n"
-                               "path=Documents\n"
-                               "path=cl\n"
-                               "path=Zotero\n"
-                               "auto=true\n"
-                               "log=true\n"
-                               "sortbysize=true\n")))))))
