@@ -84,15 +84,7 @@
              ("e" . "$EDITOR")
              ("ipfs" . "sudo -u ipfs bash --login")
              ("sw" . "swayhide")
-             ("cat" . "bat -p")
-             ("recon-home" .
-              ,(string-append "guix home reconfigure " system-repo "/home.scm"))
-             ("recon-system" .
-              ,(string-append "sudo \"GUILE_LOAD_PATH=$GUILE_LOAD_PATH\" guix system reconfigure " system-repo "/system.scm"))
-             ("recon-home-time" .
-              ,(string-append "guix time-machine -C $HOME/.guix-home/channels.scm -- home reconfigure " system-repo "/home.scm"))
-             ("recon-system-time" .
-              ,(string-append "sudo \"GUILE_LOAD_PATH=$GUILE_LOAD_PATH\" guix time-machine -C /run/current-system/channels.scm -- system reconfigure " system-repo "/system.scm"))))
+             ("cat" . "bat -p")))
 
           (environment-variables
            `(("BROWSER" . "firefox") ("EDITOR" . "emacsclient")
