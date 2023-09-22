@@ -50,15 +50,16 @@
 		             curl "/bin/curl"
 		             " \"cheat.sh/$@\"; }")
             (let* ((default-color "\\[\\e[0m\\]")
-                   (color-fn
-                    (lambda (color)
-                      (lambda (text)
-                        (string-append color text default-color))))
-                   (color-red (color-fn "\\[\\e[91m\\]"))
-                   (color-blue (color-fn "\\[\\e[96m\\]"))
-                   (color-pink (color-fn "\\[\\e[95m\\]"))
-                   (color-salmon (color-fn "\\[\\e[38;5;218m\\]"))
-                   (color-green (color-fn "\\[\\e[92m\\]"))
+                   (color
+                    (lambda (color text)
+                      (string-append
+                       (case color
+                         ((red) "\\[\\e[91m\\]")
+                         ((blue) "\\[\\e[96m\\]")
+                         ((pink) "\\[\\e[95m\\]")
+                         ((salmon) "\\[\\e[38;5;218m\\]")
+                         ((green) "\\[\\e[92m\\]"))
+                       text default-color)))
                    (hostname "\\H")
                    (pwd "\\w")
                    (exit-status "$?")
@@ -68,9 +69,9 @@
               (mixed-text-file
                "bashrc-ps1"
                "PS1='\\n\\n"
-               (color-red hostname) "@" (color-blue pwd) "\\n"
-               "[" (color-pink exit-status) "] {"
-               (color-salmon jobs) "} " (color-green git-branch)
+               (color 'red hostname) "@" (color 'blue pwd) "\\n"
+               "[" (color 'pink exit-status) "] {"
+               (color 'salmon jobs) "} " (color 'green git-branch)
                "\\n" prompt " "
                "'"))))
 
