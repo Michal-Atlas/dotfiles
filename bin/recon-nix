@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -euox pipefail
+
+pushd "$DOTFILE_ROOT"
+home-manager switch --flake .
+popd

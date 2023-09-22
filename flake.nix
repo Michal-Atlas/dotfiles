@@ -34,6 +34,7 @@
     let
       system = "x86_64-linux";
       pkgs = (import nixpkgs) { inherit system; };
+      lib = nixpkgs.lib // import ./lib;
     in
     {
       nixosConfigurations =
@@ -41,7 +42,7 @@
           makeSys = file:
             nixpkgs.lib.nixosSystem {
               specialArgs = attrs // {
-                lib = nixpkgs.lib // import ./lib;
+                inherit lib;
               };
               modules = [
                 file
@@ -65,7 +66,11 @@
           hydra = makeSys ./system/machines/hydra;
           dagon = makeSys ./system/machines/dagon;
         };
-
+      homeConfigurations."michal_atlas" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [ ./home ];
+        extraSpecialArgs = attrs;
+      };
       checks.${system} = {
         pre-commit-check = pre-commit-hooks.lib.${system}.run {
           src = ./.;
