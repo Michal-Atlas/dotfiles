@@ -1,6 +1,7 @@
 (define-library (home files)
   (import (scheme base)
           (atlas utils services)
+          (atlas utils download)
           (guix gexp)
           (gnu packages video)
           (rde serializers ini)
@@ -32,4 +33,8 @@
             (".local/share/nyxt/bookmarks.lisp" ,(local-file "files/nyxt/bookmarks.lisp"))
             (".config/nyxt/config.lisp" ,(local-file "files/nyxt/init.lisp"))
             (".config/mpv/scripts/mpris.so"
-             ,(file-append mpv-mpris "/lib/mpris.so")))))))
+             ,(file-append mpv-mpris "/lib/mpris.so"))
+            (".face"
+             ,(file-fetch
+               "https://git.sr.ht/~michal_atlas/www/blob/0d74b8802a0c9e820c38e41cfe920f1bdbb06746/assets/mlxan/carcass-mountain/portraits/weeping-priest.jpeg"
+               "1MnHsYKJpI/h8zJa01MtPjgf/UMtSLZQ7YWcslj1Xxc=")))))))
