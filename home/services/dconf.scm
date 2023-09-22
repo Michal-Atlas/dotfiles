@@ -55,6 +55,8 @@
 	      #$(file-fetch
 	         "https://www.gnu.org/graphics/techy-gnu-tux-bivouac-large.jpg"
 	         "oOYE1PZ1g2HvXqUbL5aE3xkW+SqkKPmO0GaVI9QlI40=")))
+            ("org/gnome/desktop/background"
+             (picture-options "scaled"))
 
             ("org/gnome/desktop/input-sources"
              (sources #(("xkb" "us") ("xkb" "cz+ucw")))
