@@ -1,6 +1,6 @@
 (define-library (home services git)
   (import (scheme base)
-          (utils services)
+          (atlas utils services)
           (gnu home-services version-control))
   (export %git)
   (begin

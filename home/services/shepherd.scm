@@ -1,6 +1,6 @@
 (define-library (home services shepherd)
   (import (scheme base)
-          (utils services)
+          (atlas utils services)
           (guix gexp)
           (gnu home services shepherd)
           (gnu packages freedesktop))

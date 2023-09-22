@@ -1,6 +1,6 @@
 (define-library (system filesystems swap)
   (import (scheme base)
-          (utils services)
+          (atlas utils services)
           (system filesystems mapped)
           (gnu system file-systems))
   (export %swap)

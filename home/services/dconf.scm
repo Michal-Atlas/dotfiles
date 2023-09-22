@@ -2,8 +2,8 @@
   (import (scheme base)
           (guile)
 	  (guix gexp)
-          (utils services)
-	  (utils download)
+          (atlas utils services)
+	  (atlas utils download)
 	  (atlas home services dconf))
   (export %dconf)
   (begin
@@ -23,7 +23,7 @@
 	   binds))))
       ,@(map (lambda (bind) (apply bind->ini bind))
 	     binds)))
-  
+
   (define %dconf
     (&s home-dconf-load #:config
 	#~`(("org/gnome/shell"
@@ -45,7 +45,7 @@
 		`(("TERM" "<Super>t" "kgx")
 		  ("EMACS" "<Super>Return" "emacsclient -c")
 		  ("FILES" "<Super>n" "nautilus")))
-	
+
 	    ("org/gnome/desktop/background"
 	     (picture-uri
 	      #$(file-fetch
@@ -55,24 +55,24 @@
 	      #$(file-fetch
 	         "https://www.gnu.org/graphics/techy-gnu-tux-bivouac-large.jpg"
 	         "oOYE1PZ1g2HvXqUbL5aE3xkW+SqkKPmO0GaVI9QlI40=")))
-	
+
             ("org/gnome/desktop/input-sources"
              (sources #(("xkb" "us") ("xkb" "cz+ucw")))
              (xkb-options #("grp:caps_switch" "lv3:ralt_switch"
                             "compose:rctrl-altgr")))
-	
+
             ("org/gnome/system/location"
              (enabled #t))
-	
+
             ("org/gnome/shell/extensions/nightthemeswitcher/time"
              (manual-schedule #f))
-	
+
             ("org/gnome/desktop/wm/preferences"
              (focus-mode "sloppy"))
-	
+
             ("org/gnome/settings-daemon/plugins/color"
              (night-light-enabled #t))
-	
+
             ("org/gnome/shell"
              (favorite-apps
               #("firefox.desktop"
@@ -82,11 +82,11 @@
                 "fi.skyjake.Lagrange.desktop"
                 "zotero.desktop"
                 "org.gnome.Nautilus.desktop")))
-	    
+
             ("org/gnome/mutter"
              (edge-tiling #t)
              (dynamic-workspaces #t)
              (workspaces-only-on-primary #t))
-	    
+
             ("org/gnome/shell/app-switcher"
              (current-workspace-only #t)))))))

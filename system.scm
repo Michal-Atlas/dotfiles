@@ -3,7 +3,7 @@
           (srfi srfi-98)
           (ice-9 textual-ports)
           (ice-9 popen)
-          (utils services)
+          (atlas utils services)
           (nongnu packages linux)
           (gnu packages samba)
           (nongnu system linux-initrd)

@@ -1,6 +1,6 @@
 (define-library (home services mcron)
   (import (scheme base)
-          (utils services)
+          (atlas utils services)
           (guix gexp)
           (gnu home services mcron)
           (gnu packages base)
@@ -14,11 +14,11 @@
            (@host host
                   #:hydra
                   #~(job "0 6 * * *"
-	                 (string-append 
+	                 (string-append
 	                  #$(file-append onedrive "/bin/onedrive")
 	                  " --synchronize"))
                   #~(job "0 * * * *"
-	                 (string-append 
+	                 (string-append
 	                  #$(file-append findutils "/bin/find")
 	                  " ~/tmp/ ~/Downloads/ -mindepth 1 -mtime +2 -delete;"))
                   #~(job "0 * * * *"

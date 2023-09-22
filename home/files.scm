@@ -1,6 +1,6 @@
 (define-library (home files)
   (import (scheme base)
-          (utils services)
+          (atlas utils services)
           (guix gexp)
           (gnu packages video)
           (rde serializers ini)
@@ -23,7 +23,7 @@
                                        "/share/foot/themes/monokai-pro"))))
                         (colors
                          ((alpha . 0.9)))))))
-            
+
             (".guile" ,(local-file "files/guilerc"))
             (".inputrc" ,(local-file "files/inputrc"))
             (".sbclrc" ,(local-file "files/sbcl.lisp"))

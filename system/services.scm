@@ -3,7 +3,7 @@
           (only (guile) cons* string-join)
           (home)
           (gnu services)
-          (utils services)
+          (atlas utils services)
           (guix gexp)
           (gnu services cuirass)
           (gnu services virtualization)

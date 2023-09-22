@@ -1,7 +1,7 @@
 (define-library (home)
   (import (scheme base)
           (gnu home)
-          (utils services)
+          (atlas utils services)
           (home services)
           (only (guile) gethostname)
           (home packages))

@@ -2,7 +2,7 @@
   (import (scheme base)
           (scheme process-context)
           (guix gexp)
-          (utils services)
+          (atlas utils services)
           (gnu home services ssh))
   (export %ssh)
   (begin

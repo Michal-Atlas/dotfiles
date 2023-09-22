@@ -1,6 +1,6 @@
 (define-library (system filesystems mapped)
   (import (scheme base)
-          (utils services)
+          (atlas utils services)
           (gnu system mapped-devices))
   (export %mapped-devices)
   (begin
@@ -10,7 +10,7 @@
        (source pool)
        (target (string-append pool "-" lv))
        (type lvm-device-mapping))))
-    
+
     (define (%mapped-devices host)
       (@host-append host
 		    #:hydra
