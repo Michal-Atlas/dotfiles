@@ -14,20 +14,26 @@
           (home services ssh)
 	  (home services dconf)
           (gnu home-services gnupg)
-          (unwox home pipewire))
+          (unwox home pipewire)
+          (atlas home services bash))
   (export %services)
   (begin
     (define (%services host)
-      (list
-       (&s home-channels #:config %channels)
-       (&s home-dbus)
-       (%files host)
-       %dconf
-       %bash
-       %flatpak
-       %git
-       (%mcron host)
-       %shepherd
-       %ssh
-       (&s home-gnupg)
-       (&s home-pipewire)))))
+      (append
+       (list
+        (%files host)
+        %dconf
+        %bash
+        %flatpak
+        %git
+        (%mcron host)
+        %shepherd
+        %ssh)
+       (macromap &s
+                 (home-channels #:config %channels)
+                 (home-dbus)
+                 (home-gnupg)
+                 (home-pipewire)
+                 (home-direnv-bash)
+                 (home-fzf-history-bash)
+                 (home-fasd-bash))))))

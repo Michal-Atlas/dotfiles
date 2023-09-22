@@ -24,15 +24,6 @@
                              git "/bin/git clone \"$1\" \"$DIR\";"
                              "cd \"$DIR\";"
                              " }")
-            (mixed-text-file "bashrc-direnv"
-		             "eval \"$("
-		             direnv "/bin/direnv"
-		             " hook bash)\"")
-            (mixed-text-file "bashrc-fzfbind"
-                             ". "
-                             (file-fetch
-                              "https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.bash"
-                              "0qGJBDRM/kW/eNKkNyEw/36pc5D7/cPENzEeb49NhNU="))
             (plain-file "bashrc-ignoredups" "export HISTCONTROL=ignoredups")
             (mixed-text-file "bashrc-run"
 		             "function run { "
@@ -42,9 +33,6 @@
 		             "alias valgrind=\""
 		             guix "/bin/guix"
 		             " shell -CF valgrind -- valgrind \"")
-            (mixed-text-file "bashrc-fasd" "eval \"$("
-		             fasd "/bin/fasd"
-		             " --init auto)\"")
             (mixed-text-file "bashrc-cheat"
 		             "function cheat { "
 		             curl "/bin/curl"
@@ -93,9 +81,5 @@
              ("MOZ_USE_XINPUT2" . "1")
              ("_JAVA_AWT_WM_NONREPARENTING" . "1")
              ("PATH" . "$HOME/.nix-profile/bin/:$PATH")
-             ("PATH" . "$PATH:$HOME/bin/")
              ("GUIX_SANDBOX_HOME" . "$HOME/Games")
-             ("ALTERNATE_EDITOR" . "")
-             ("GUILE_LOAD_PATH" . ,(string-append
-                                    system-repo
-                                    ":$GUILE_LOAD_PATH"))))))))
+             ("ALTERNATE_EDITOR" . "")))))))
