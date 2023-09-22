@@ -27,6 +27,7 @@
           (gnu packages ghostscript)
           (gnu packages gnuzilla)
           (gnu packages graphviz)
+          (gnu packages haskell-apps)
           (gnu packages haskell-xyz)
           (gnu packages image)
           (gnu packages image-viewers)
@@ -97,11 +98,13 @@
              pavucontrol
              perl
              pkg-config
+             pre-commit
              prismlauncher
              python-ipython
              recutils
              rsync
              screen
+             shellcheck
              shotwell
              slurp
              supertux
