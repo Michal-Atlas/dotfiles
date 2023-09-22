@@ -11,7 +11,7 @@
           (gnu services sound)
           (gnu services syncthing)
           (atlas services morrowind)
-          (atlas services btrfs)
+          (atlas services btrbk)
           (nongnu services vpn)
           (gnu services base)
           (gnu system pam)
@@ -58,14 +58,6 @@
         (&s quassel)
         #:hydra
         (&s tes3mp-server)
-        #:hydra
-        (&s btrfs-autosnap
-            (specs
-             (list (btrfs-autosnap-spec
-                    (name "tes3mp")
-                    (retention 31)
-                    (schedule "0 9 * * *")
-                    (path "/var/lib/tes3mp")))))
         (&s pam-limits #:config
             (list
              (pam-limits-entry "*" 'both 'nofile 524288)))
@@ -102,34 +94,19 @@
          (cpu-boost-on-ac? #t)
          (wifi-pwr-on-bat? #t))
 
-        (btrfs-autosnap
-         (specs
-          (list
-           (btrfs-autosnap-spec
-            (name "frequent")
-            (retention 4)
-            (schedule "*/15 * * * *")
-            (path "/home"))
-           (btrfs-autosnap-spec
-            (name "hourly")
-            (retention 24)
-            (schedule "0 * * * *")
-            (path "/home"))
-           (btrfs-autosnap-spec
-            (name "daily")
-            (retention 7)
-            (schedule "0 9 * * *")
-            (path "/home"))
-           (btrfs-autosnap-spec
-            (name "weekly")
-            (retention 5)
-            (schedule "0 0 * * 0")
-            (path "/home"))
-           (btrfs-autosnap-spec
-            (name "monthly")
-            (retention 12)
-            (schedule "0 0 1 * *")
-            (path "/home")))))
+        (btrbk
+         (config
+          (plain-file "btrbk.conf"
+           "
+backend btrfs-progs-sudo
+volume /home
+ subvolume .
+  snapshot_create onchange
+  snapshot_dir .btrfs
+  snapshot_preserve 24h 31d 4w 12m
+  snapshot_preserve_min latest
+  timestamp_format long-iso
+")))
         (inputattach)
         (qemu-binfmt
          (platforms (lookup-qemu-platforms "arm" "aarch64" "riscv64")))
