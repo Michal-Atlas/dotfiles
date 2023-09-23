@@ -1,2 +1,3 @@
 (specifications->manifest
- (list "pre-commit"))
+ (list "pre-commit"
+       "python"))
