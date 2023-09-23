@@ -9,9 +9,4 @@
     (define %shepherd
       (&s home-shepherd
           (services
-           (list
-            (shepherd-service
-             (provision '(disk-automount))
-             (start #~(make-forkexec-constructor
-	               (list #$(file-append udiskie "/bin/udiskie"))))
-             (stop #~(make-kill-destructor)))))))))
+           (list))))))

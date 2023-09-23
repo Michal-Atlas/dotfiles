@@ -15,7 +15,8 @@
 	  (home services dconf)
           (gnu home-services gnupg)
           (unwox home pipewire)
-          (atlas home services bash))
+          (atlas home services bash)
+          (rde home services desktop))
   (export %services)
   (begin
     (define (%services host)
@@ -36,4 +37,5 @@
                  (home-pipewire)
                  (home-direnv-bash)
                  (home-fzf-history-bash)
-                 (home-fasd-bash))))))
+                 (home-fasd-bash)
+                 (home-udiskie))))))
