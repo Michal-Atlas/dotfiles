@@ -2,6 +2,9 @@
 
 set -euox pipefail
 
+#shellcheck disable=SC1091
+. common
+
 pushd "$DOTFILE_ROOT"
-sudo guix system reconfigure system.scm "$@"
+sudo guix system reconfigure system.scm "${COMMON_FLAGS[@]}" "$@"
 popd
