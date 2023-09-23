@@ -27,7 +27,9 @@
           (gnu packages games)
           (gnu packages ghostscript)
           (gnu packages gnuzilla)
+          (gnu packages gnuzilla)
           (gnu packages graphviz)
+          (gnu packages haskell)
           (gnu packages haskell-apps)
           (gnu packages haskell-xyz)
           (gnu packages image)
@@ -70,6 +72,7 @@
              bat
              btrfs-progs
              direnv
+             icedove/wayland
              fasd
              feh
              file
@@ -77,6 +80,7 @@
              foot
              fzf
              gcc-toolchain
+             ghc
              gimp
              git
              gnu-make
