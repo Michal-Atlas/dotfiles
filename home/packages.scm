@@ -6,6 +6,7 @@
           (home packages emacs)
           (home packages lisp)
           (home packages fonts)
+          (home packages gnome)
           (home packages icons)
           (gnu packages admin)
           (gnu packages base)
@@ -124,4 +125,5 @@
        %lisp-packages
        %font-packages
        %icon-packages
+       %gnome-packages
        %emacs-packages))))
