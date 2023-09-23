@@ -58,10 +58,11 @@
  scroll-step 1
  scroll-conservatively 10000
  auto-window-vscroll nil
- scroll-margin 8)
+ scroll-margin 8
+ use-dialog-box nil)
 
 (pixel-scroll-precision-mode t)
-
+(save-place-mode 1)
 ;;; Scrolling.
 ;; Good speed and allow scrolling through large images (pixel-scroll).
 ;; Note: Scroll lags when point must be moved but increasing the number
