@@ -1,19 +1,15 @@
-{ pkgs, lib, ... }:
-{
+{ pkgs, lib, ... }: {
   imports = [
     ./programs
     ./files
     ./services.nix
     ./dconf.nix
     ./registry.nix
+    ./packages.nix
   ];
 
-  nix.settings = {
-    flake-registry = "";
-  };
-  nixpkgs.config = {
-    allowUnfree = true;
-  };
+  nix.settings = { flake-registry = ""; };
+  nixpkgs.config = { allowUnfree = true; };
 
   home = {
     username = "michal_atlas";
@@ -31,13 +27,7 @@
   };
   fonts.fontconfig.enable = true;
   xsession.numlock.enable = true;
-  nix.package = pkgs.nix;
   programs.home-manager.enable = true;
-
-  home.packages =
-    [
-      pkgs.atlas-emacs
-    ] ++ import ./packages.nix pkgs;
 
   systemd.user.tmpfiles.rules = [
     "e /home/michal_atlas/Downloads - - - 2d"
