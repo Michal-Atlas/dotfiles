@@ -11,6 +11,9 @@
   nix.settings = {
     flake-registry = "";
   };
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
 
   home = {
     username = "michal_atlas";
@@ -28,6 +31,7 @@
   };
   fonts.fontconfig.enable = true;
   xsession.numlock.enable = true;
+  nix.package = pkgs.nix;
   programs.home-manager.enable = true;
 
   home.packages =
