@@ -24,7 +24,10 @@
                     (host-name "the-dam.org")
                     (identity-file (string-append
                                     (get-environment-variable "HOME")
-                                    "/.ssh/the-dam"))))
+                                    "/.ssh/the-dam")))
+                   (openssh-host
+                    (name "metacentrum-plzen1")
+                    (host-name "alfrid.meta.zcu.cz")))
 	          (map (lambda (q)
 		         (openssh-host
 		          (name (string-append "Fray" q))
