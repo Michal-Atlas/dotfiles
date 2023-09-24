@@ -73,7 +73,8 @@
              ("e" . "$EDITOR")
              ("ipfs" . "sudo -u ipfs bash --login")
              ("sw" . "swayhide")
-             ("cat" . "bat -p")))
+             ("cat" . "bat -p")
+             ("cd" . "pushd")))
 
           (environment-variables
            `(("BROWSER" . "firefox") ("EDITOR" . "emacsclient")
