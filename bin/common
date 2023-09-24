@@ -1,1 +1,1 @@
-COMMON_FLAGS=("--on-error=debug" "-L" ".")
+COMMON_FLAGS=("-L" ".")
