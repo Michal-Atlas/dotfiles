@@ -89,7 +89,7 @@ according to a declaration")
       (let* ((devices (list
                       (syncthing-device
                        (name "nox")
-                       (id "JBRYVQP-2GYSCCK-2M37T6I-KSETJHC-UY7ZUQ5-GW56FMG-LDRDFQC-YUH5EAY"))
+                       (id "TR36KZQ-QLRVK4R-UYME5BV-ECD4KSB-NQBQLVW-654IVPP-BO34P75-ICPNOAL"))
                       (syncthing-device
                        (name "hydra")
                        (id "4F77KY2-XKLI7OD-J5GX6RH-VLFWIZA-M45YSV2-C2PNRGE-4GCE5Y5-ZLSTHQP"))
