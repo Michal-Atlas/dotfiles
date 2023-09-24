@@ -16,12 +16,14 @@
           (gnu home-services gnupg)
           (unwox home pipewire)
           (atlas home services bash)
-          (rde home services desktop))
+          (rde home services desktop)
+          (system services syncthing))
   (export %services)
   (begin
     (define (%services host)
       (append
        (list
+        syncthing-configure-instance
         (%files host)
         %dconf
         %bash
