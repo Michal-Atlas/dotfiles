@@ -91,4 +91,24 @@
              (workspaces-only-on-primary #t))
 
             ("org/gnome/shell/app-switcher"
-             (current-workspace-only #t)))))))
+             (current-workspace-only #t))
+
+            ("org/gnome/shell"
+             (disable-user-extensions #f)
+             (enabled-extensions
+              #("drive-menu@gnome-shell-extensions.gcampax.github.com"
+                "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
+                "nightthemeswitcher@romainvigier.fr"
+                "gnome-extension-all-ip-addresses@havekes.eu"
+                "color-picker@tuberry"
+                "espresso@coadmunkee.github.com"
+                "gnome-clipboard@b00f.github.io"
+                "apps-menu@gnome-shell-extensions.gcampax.github.com"
+                "blur-my-shell@aunetx"
+                "clipboard-indicator@tudmotu.com"
+                "appindicatorsupport@rgcjonas.gmail.com"
+                "gsconnect@andyholmes.github.io"
+                "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
+                "native-window-placement@gnome-shell-extensions.gcampax.github.com"
+                "noannoyance@daase.net"
+                "Vitals@CoreCoding.com"))))))))
