@@ -26,6 +26,7 @@
                          ((alpha . 0.9)))))))
 
             (".guile" ,(local-file "files/guilerc"))
+            (".sbclrc" ,(plain-file "sbclrc" "(load #p\"~/.sbclrc.lisp\")"))
             (".inputrc" ,(local-file "files/inputrc"))
             (".gtkrc-2.0" ,(local-file "files/gtk2.ini"))
             (".local/share/nyxt/bookmarks.lisp" ,(local-file "files/nyxt/bookmarks.lisp"))
