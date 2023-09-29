@@ -45,8 +45,4 @@
                  (home-direnv-bash)
                  (home-fzf-history-bash)
                  (home-fasd-bash)
-                 (home-udiskie)
-                 (home-gtk3
-                  (settings-ini
-                   '((Settings
-                      ((gtk-key-theme-name . "Emacs")))))))))))
+                 (home-udiskie))))))
