@@ -13,10 +13,13 @@
           (home services shepherd)
           (home services ssh)
 	  (home services dconf)
+          (home services nyxt)
+          (home services lisp)
           (gnu home-services gnupg)
           (unwox home pipewire)
           (atlas home services bash)
           (rde home services desktop)
+          (rde home services gtk)
           (system services syncthing))
   (export %services)
   (begin
@@ -31,6 +34,8 @@
         %git
         (%mcron host)
         %shepherd
+        %nyxt
+        %lisp
         %ssh)
        (macromap &s
                  (home-channels #:config %channels)
@@ -40,4 +45,8 @@
                  (home-direnv-bash)
                  (home-fzf-history-bash)
                  (home-fasd-bash)
-                 (home-udiskie))))))
+                 (home-udiskie)
+                 (home-gtk3
+                  (settings-ini
+                   '((Settings
+                      ((gtk-key-theme-name . "Emacs")))))))))))

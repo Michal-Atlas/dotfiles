@@ -97,6 +97,7 @@
              lagrange
              mosh
              mpv
+             nheko
              nix
              nyxt
              okular
@@ -109,7 +110,6 @@
              prismlauncher
              python
              python-ipython
-             quaternion
              recutils
              rsync
              screen
