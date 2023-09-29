@@ -23,7 +23,6 @@
           (gnu packages gimp)
           (gnu packages gnome)
           (gnu packages gnuzilla)
-          (gnu packages gnuzilla)
           (gnu packages graphviz)
           (gnu packages haskell)
           (gnu packages haskell-apps)
@@ -35,12 +34,14 @@
           (gnu packages linux)
           (gnu packages lisp)
           (gnu packages lisp-xyz)
+          (gnu packages messaging)
           (gnu packages ocaml)
           (gnu packages package-management)
           (gnu packages password-utils)
           (gnu packages perl)
           (gnu packages pkg-config)
           (gnu packages pulseaudio)
+          (gnu packages python)
           (gnu packages python-xyz)
           (gnu packages rsync)
           (gnu packages rust-apps)
@@ -72,7 +73,6 @@
              bat
              btrfs-progs
              direnv
-             icedove/wayland
              fasd
              feh
              file
@@ -87,7 +87,9 @@
              gparted
              graphviz
              grim
+             gzdoom
              htop
+             icedove/wayland
              indent
              inkscape
              keepassxc
@@ -105,7 +107,9 @@
              pkg-config
              pre-commit
              prismlauncher
+             python
              python-ipython
+             quaternion
              recutils
              rsync
              screen
