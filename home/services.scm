@@ -10,7 +10,6 @@
           (home services flatpak)
           (home services git)
           (home services mcron)
-          (home services shepherd)
           (home services ssh)
 	  (home services dconf)
           (home services nyxt)
@@ -33,7 +32,6 @@
         %flatpak
         %git
         (%mcron host)
-        %shepherd
         %nyxt
         %lisp
         %ssh)
