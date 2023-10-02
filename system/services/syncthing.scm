@@ -96,7 +96,7 @@ according to a declaration")
                       (syncthing-device
                        (name "dagon")
                        (id "UOVQXCK-LGQ7OA5-YQUBF67-QHTENZK-KEEGPET-PLZZQFZ-BPSZRCJ-LVEBTAD"))))
-            (folders (list "cl" "Documents" "Sync" "Zotero")))
+            (folders (list "cl" "Documents" "Sync" "Zotero" "Pictures")))
           (service syncthing-configure-service-type
                    (syncthing-configure-configuration
                     (folders
