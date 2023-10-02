@@ -8,7 +8,7 @@
   (export %emacs-packages)
   (begin
     (define %emacs-packages
-      (list      
+      (list
        emacs-ace-window
        emacs-adaptive-wrap
        emacs-all-the-icons
@@ -69,7 +69,7 @@
        emacs-monokai-theme
        emacs-multi-term
        emacs-multiple-cursors
-       emacs-next-pgtk
+       emacs-pgtk
        emacs-nix-mode
        emacs-on-screen
        emacs-orderless
