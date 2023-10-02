@@ -36,6 +36,7 @@
       (append
        (@host hostname
         #:hydra
+              (&s hurd-vm)
         (&s cuirass
             (interval (* 24 60 60))
             (host "0.0.0.0")
@@ -154,4 +155,12 @@ volume /home
                                                                   "(public-key (ecc (curve Ed25519) (q #F5E876A29802796DBA7BAD8B7C0FEE90BDD784A70CB2CC8A1365A47DA03AADBD#)))")
                                                       (plain-file "past.pub"
                                                                   "(public-key (ecc (curve Ed25519) (q #89FBA276A976A8DE2A69774771A92C8C879E0F24614AAAAE23119608707B3F06#)))"))
-                                                     %default-authorized-guix-keys)))))))))
+                                                     %default-authorized-guix-keys))
+                                            (build-machines
+                                             (list
+                                              #~(build-machine
+                                                 (name "hydra")
+                                                 (user "michal_atlas")
+                                                 (systems (list "x86_64-linux"))
+                                                 (private-key "/home/michal_atlas/.ssh/id_rsa")
+                                                 (host-key "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFje4GZkT1qpeuWQEy3VHc8xY4B4siD6CiXrkVFDN1Ka")))))))))))
