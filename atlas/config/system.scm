@@ -6,10 +6,10 @@
   #:use-module ((atlas utils services) #:select (@host))
   #:use-module (nongnu packages linux)
   #:use-module (gnu packages samba)
+  #:use-module (gnu packages certs)
   #:use-module (nongnu system linux-initrd)
-  #:use-module (atlas system packages)
-  #:use-module (atlas system services)
-  #:use-module (atlas system filesystems)
+  #:use-module (atlas config system services)
+  #:use-module (atlas config system filesystems)
   #:use-module (gnu system setuid)
   #:use-module (gnu))
 
@@ -49,7 +49,6 @@
     (packages %base-packages)
     (services '())
     (name-service-switch %mdns-host-lookup-nss))
-   %packages
    %services
    %filesystems
    (users
@@ -62,6 +61,7 @@
       '("wheel" "netdev" "audio" "docker"
         "video" "libvirt" "kvm" "tty" "transmission"))))
    (if-host "hydra" (firmware amdgpu-firmware))
-   (firmware linux-firmware)))
+   (firmware linux-firmware)
+   (packages nss-certs)))
 
 (get-system (gethostname))
