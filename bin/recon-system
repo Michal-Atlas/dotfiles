@@ -6,5 +6,6 @@ set -euox pipefail
 . common
 
 pushd "$DOTFILE_ROOT"
-sudo guix system reconfigure system.scm --on-error=debug "${COMMON_FLAGS[@]}" "$@"
+sudo guix system reconfigure atlas/system.scm \
+     --on-error=backtrace "${COMMON_FLAGS[@]}" "$@"
 popd

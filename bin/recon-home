@@ -6,5 +6,5 @@ set -euox pipefail
 . common
 
 pushd "$DOTFILE_ROOT"
-guix home reconfigure home.scm "${COMMON_FLAGS[@]}" "$@"
+guix home reconfigure atlas/home.scm "${COMMON_FLAGS[@]}" "$@"
 popd
