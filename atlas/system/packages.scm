@@ -1,5 +1,5 @@
 (define-module (atlas system packages)
-  #:use-module (atlas utils combinators)
+  #:use-module (atlas combinators)
   #:use-module (gnu))
 
 (use-package-modules   

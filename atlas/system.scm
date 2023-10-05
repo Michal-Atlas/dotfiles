@@ -2,16 +2,14 @@
   #:use-module (srfi srfi-98)
   #:use-module (ice-9 textual-ports)
   #:use-module (ice-9 popen)
-  #:use-module (atlas utils combinators)
+  #:use-module (atlas combinators)
   #:use-module ((atlas utils services) #:select (@host))
   #:use-module (nongnu packages linux)
   #:use-module (gnu packages samba)
   #:use-module (nongnu system linux-initrd)
   #:use-module (atlas system packages)
   #:use-module (atlas system services)
-  #:use-module (atlas system filesystems mapped)
   #:use-module (atlas system filesystems)
-  #:use-module (atlas system filesystems swap)
   #:use-module (gnu system setuid)
   #:use-module (gnu))
 
@@ -33,10 +31,6 @@
     (kernel linux)
     (initrd microcode-initrd)
     (label (getlabel this-operating-system))
-    (firmware
-     (@host host
-            linux-firmware
-            #:hydra amdgpu-firmware))
     (locale "en_US.utf8")
     (timezone "Europe/Prague")
     (keyboard-layout
@@ -57,8 +51,6 @@
     (name-service-switch %mdns-host-lookup-nss))
    %packages
    %services
-   %mapped-devices
-   %swap
    %filesystems
    (users
     (user-account
@@ -68,6 +60,8 @@
      (home-directory "/home/michal_atlas")
      (supplementary-groups
       '("wheel" "netdev" "audio" "docker"
-        "video" "libvirt" "kvm" "tty" "transmission"))))))
+        "video" "libvirt" "kvm" "tty" "transmission"))))
+   (if-host "hydra" (firmware amdgpu-firmware))
+   (firmware linux-firmware)))
 
 (get-system (gethostname))

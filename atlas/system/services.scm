@@ -1,7 +1,7 @@
 (define-module (atlas system services)
   #:use-module (atlas services btrbk)
   #:use-module (atlas services morrowind)
-  #:use-module (atlas utils combinators)
+  #:use-module (atlas combinators)
   #:use-module (gnu)
   #:use-module (gnu services)
   #:use-module (gnu system pam)
