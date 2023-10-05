@@ -41,7 +41,7 @@
                         #~(begin
                             (use-modules (ice-9 pretty-print))
 
-                            (call-with-input-file (car (command-line))
+                            (call-with-input-file (cadr (command-line))
                               (lambda (f)
                                 (let loop ((r (read f)))
                                   (unless (eof-object? r)
