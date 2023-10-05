@@ -1,4 +1,4 @@
-(define-module (atlas system packages)
+(define-module (atlas config system packages)
   #:use-module (atlas combinators)
   #:use-module (gnu))
 

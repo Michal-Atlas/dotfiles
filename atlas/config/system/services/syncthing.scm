@@ -1,4 +1,4 @@
-(define-module (atlas system services syncthing)
+(define-module (atlas config system services syncthing)
   #:use-module (srfi srfi-1)
   #:use-module (gnu services configuration)
   #:use-module (gnu services shepherd)

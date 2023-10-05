@@ -1,4 +1,4 @@
-(define-module (atlas system)
+(define-module (atlas config system)
   #:use-module (srfi srfi-98)
   #:use-module (ice-9 textual-ports)
   #:use-module (ice-9 popen)

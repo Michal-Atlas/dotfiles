@@ -1,4 +1,4 @@
-(define-module (atlas system filesystems)
+(define-module (atlas config system filesystems)
   #:use-module (gnu system file-systems)
   #:use-module (gnu system mapped-devices)
   #:use-module (atlas combinators))

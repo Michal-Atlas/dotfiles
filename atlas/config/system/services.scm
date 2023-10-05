@@ -1,4 +1,4 @@
-(define-module (atlas system services)
+(define-module (atlas config system services)
   #:use-module (atlas services btrbk)
   #:use-module (atlas services morrowind)
   #:use-module (atlas combinators)
