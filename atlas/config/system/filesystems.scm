@@ -53,38 +53,38 @@
               (device "/dev/mapper/spool-root")
               (options
                (alist->file-system-options '(("subvol" . "@guix"))))
+              (type "btrfs")))
+            ((mapped-file-systems
+              (rpool "home"))
+             (file-system
+              (mount-point "/home")
+              (device "/dev/mapper/spool-root")
+              (options
+               (alist->file-system-options '(("subvol" . "@home"))))
+              (type "btrfs")))
+            ((mapped-file-systems
+              (rpool "vault"))
+             (file-system
+              (mount-point "/home/michal_atlas/tmp")
+              (device "/dev/mapper/rpool-vault")
+              (options
+               (alist->file-system-options '(("subvol" . "@tmp"))))
               (type "btrfs"))
-             ((mapped-file-systems
-               (spool "root"))
-              (file-system
-               (mount-point "/home")
-               (device "/dev/mapper/spool-root")
-               (options
-                (alist->file-system-options '(("subvol" . "@home"))))
-               (type "btrfs")))
-             ((mapped-file-systems
-               (rpool "vault"))
-              (file-system
-               (mount-point "/home/michal_atlas/tmp")
-               (device "/dev/mapper/rpool-vault")
-               (options
-                (alist->file-system-options '(("subvol" . "@tmp"))))
-               (type "btrfs"))
-              (file-system
-               (mount-point "/home/michal_atlas/Downloads")
-               (device "/dev/mapper/rpool-vault")
-               (options
-                (alist->file-system-options '(("subvol" . "@tmp"))))
-               (type "btrfs"))
-              (file-system
-               (mount-point "/home/michal_atlas/Games")
-               (device "/dev/mapper/rpool-vault")
-               (options
-                (alist->file-system-options '(("subvol" . "@games"))))
-               (type "btrfs"))
-              (file-system
-               (mount-point "/var/lib/transmission-daemon/downloads/")
-               (device "/dev/mapper/rpool-vault")
-               (options
-                (alist->file-system-options '(("subvol" . "@torrents"))))
-               (type "btrfs")))))))
+             (file-system
+              (mount-point "/home/michal_atlas/Downloads")
+              (device "/dev/mapper/rpool-vault")
+              (options
+               (alist->file-system-options '(("subvol" . "@tmp"))))
+              (type "btrfs"))
+             (file-system
+              (mount-point "/home/michal_atlas/Games")
+              (device "/dev/mapper/rpool-vault")
+              (options
+               (alist->file-system-options '(("subvol" . "@games"))))
+              (type "btrfs"))
+             (file-system
+              (mount-point "/var/lib/transmission-daemon/downloads/")
+              (device "/dev/mapper/rpool-vault")
+              (options
+               (alist->file-system-options '(("subvol" . "@torrents"))))
+              (type "btrfs"))))))
