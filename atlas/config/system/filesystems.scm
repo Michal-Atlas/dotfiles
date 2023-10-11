@@ -47,7 +47,9 @@
              (file-system
               (mount-point "/boot/efi")
               (device (file-system-label "EFIBOOT"))
-              (type "vfat"))
+              (type "vfat")))
+            ((mapped-file-systems
+              (spool "root"))
              (file-system
               (mount-point "/")
               (device "/dev/mapper/spool-root")
@@ -58,7 +60,7 @@
               (rpool "home"))
              (file-system
               (mount-point "/home")
-              (device "/dev/mapper/spool-root")
+              (device "/dev/mapper/rpool-home")
               (options
                (alist->file-system-options '(("subvol" . "@home"))))
               (type "btrfs")))
