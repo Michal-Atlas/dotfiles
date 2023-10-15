@@ -16,8 +16,10 @@
  commencement
  compression
  cups
+ curl
  databases
  disk
+ ed
  emacs
  emacs-xyz
  file
@@ -25,6 +27,7 @@
  fontutils
  freedesktop
  games
+ gdb
  ghostscript
  gimp
  gnome
@@ -37,14 +40,18 @@
  image
  image-viewers
  inkscape
+ irc
  kde
  kde-frameworks
+ libreoffice
  linux
  lisp
  lisp-xyz
+ lsof
  messaging
  ocaml
  package-management
+ parallel
  password-utils
  perl
  pkg-config
@@ -248,6 +255,8 @@
     bat
     btrfs-progs
     direnv
+    curl
+    ed
     fasd
     feh
     file
@@ -255,6 +264,7 @@
     foot
     fzf
     gcc-toolchain
+    gdb
     ghc
     gimp
     git
@@ -267,9 +277,12 @@
     icedove/wayland
     indent
     inkscape
+    irssi
     keepassxc
     krita
     lagrange
+    libreoffice
+    lsof
     mosh
     mpv
     nheko
@@ -278,6 +291,7 @@
     okular
     p7zip
     pandoc
+    parallel
     pavucontrol
     perl
     pkg-config
@@ -293,6 +307,7 @@
     slurp
     supertux
     supertuxkart
+    tealdeer
     texlive-scheme-basic
     transmission-remote-gtk
     tree
@@ -300,6 +315,7 @@
     unzip
     uqm
     virt-manager
+    vlc
     wl-clipboard
     xdg-utils
     xdot
