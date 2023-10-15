@@ -67,17 +67,10 @@
                                   "650e" "7139" "f561" "c2fb") ":") "dagon")
              (host (string-join '("200" "29bd" "a495" "4ad7"
                                   "f79e" "e29a" "181a" "3872") ":") "lana")))
-   
+
    (&s openssh)
    (&s gnome-desktop)
    (&s gpm)
-   (&s syncthing (user "michal_atlas"))
-   (&s screen-locker
-    (name "swaylock")
-    (program (file-append swaylock
-                          "/bin/swaylock"))
-    (using-setuid? #f)
-    (using-pam? #t))
    (&s docker)
    (&s yggdrasil
     (json-config
