@@ -53,17 +53,19 @@
     (name-service-switch %mdns-host-lookup-nss))
    %services
    %filesystems
-   (users
-    (user-account
-     (name "michal_atlas")
-     (comment "Michal Atlas")
-     (group "users")
-     (home-directory "/home/michal_atlas")
-     (supplementary-groups
-      '("wheel" "netdev" "audio" "docker"
-        "video" "libvirt" "kvm" "tty" "transmission"))))
-   (if-host "hydra" (firmware amdgpu-firmware))
-   (firmware linux-firmware)
-   (packages nss-certs)))
+   (+s account atlas
+       (list
+        (user-account
+         (name "michal_atlas")
+         (comment "Michal Atlas")
+         (group "users")
+         (home-directory "/home/michal_atlas")
+         (supplementary-groups
+          '("wheel" "netdev" "audio" "docker"
+            "video" "libvirt" "kvm" "tty" "transmission")))))
+   (if-host "hydra"
+            (+s firmware amd (list amdgpu-firmware)))
+   (+s firmware linux (list linux-firmware))
+   (+s profile certs (list nss-certs))))
 
 (get-system (gethostname))
