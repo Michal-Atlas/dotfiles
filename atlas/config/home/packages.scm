@@ -112,6 +112,7 @@
    emacs-all-the-icons-dired
    emacs-anzu
    emacs-auctex
+   emacs-auto-dark
    emacs-avy
    emacs-bind-map
    emacs-browse-kill-ring
@@ -228,7 +229,7 @@
    gnome-shell-extension-hide-app-icon
    gnome-shell-extension-jiggle
    gnome-shell-extension-just-perfection
-   ;; gnome-shell-extension-night-theme-switcher
+   gnome-shell-extension-night-theme-switcher
    gnome-shell-extension-noannoyance
    gnome-shell-extension-paperwm
    gnome-shell-extension-radio
@@ -300,7 +301,7 @@
     perl
     pkg-config
     pre-commit
-    ;; prismlauncher
+    prismlauncher
     python
     python-ipython
     recutils

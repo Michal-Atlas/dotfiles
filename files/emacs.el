@@ -116,9 +116,11 @@
 
 ;;;; * Theme
 
-;;;; ** Monokai
-
-(use-package monokai-theme :config (load-theme 'monokai t))
+(use-package auto-dark
+  :config (auto-dark-mode t)
+  :custom
+  (auto-dark-dark-theme 'modus-vivendi)
+  (auto-dark-light-theme 'modus-operandi))
 
 ;;;; * Modeline
 
