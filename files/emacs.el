@@ -83,7 +83,7 @@
 (global-set-key (kbd "s-<left>") #'windmove-swap-states-left)
 (global-set-key (kbd "s-<right>") #'windmove-swap-states-right)
 
-;;;; * Theming 
+;;;; * Theming
 
 (tool-bar-mode -1)
 (menu-bar-mode -1)
@@ -128,7 +128,7 @@
 
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
 
-;;;; * Packages 
+;;;; * Packages
 
 
 (use-package which-key :config (which-key-mode))
