@@ -11,7 +11,7 @@
   (compose
    (maybe-service
     (const (string= (gethostname) "hydra"))
-    (hm/+s home-mcron
+    (hm/+s home-mcron hydra-extensions
            (home-mcron-configuration
             (jobs
              (list #~(job "0 6 * * *"

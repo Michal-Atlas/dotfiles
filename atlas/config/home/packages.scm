@@ -1,5 +1,6 @@
 (define-module (atlas config home packages)
   #:use-module (gnu)
+  #:use-module (gnu home services)
   #:use-module (atlas combinators)
   #:use-module (games packages minecraft)
   #:use-module (games packages the-ur-quan-masters)
@@ -74,34 +75,37 @@
  wm
  xdisorg)
 
+(define-syntax-rule (packages why pkgs ...)
+  (hm/+s home-profile why (list pkgs ...)))
+
 (define %lisp-packages
-  (hm/packages
-   sbcl
-   sbcl-alexandria
-   sbcl-cffi
-   sbcl-cl-yacc
-   sbcl-clingon
-   sbcl-coalton
-   sbcl-iterate
-   sbcl-linedit
-   sbcl-log4cl
-   sbcl-lparallel
-   sbcl-mcclim
-   sbcl-parenscript
-   sbcl-s-xml
-   sbcl-serapeum
-   sbcl-series
-   sbcl-tailrec
-   sbcl-tar
-   sbcl-terminal-keypress
-   sbcl-terminal-size
-   sbcl-terminfo
-   sbcl-trees
-   sbcl-trial
-   sbcl-unix-opts))
+  (packages lisp
+         sbcl
+         sbcl-alexandria
+         sbcl-cffi
+         sbcl-cl-yacc
+         sbcl-clingon
+         sbcl-coalton
+         sbcl-iterate
+         sbcl-linedit
+         sbcl-log4cl
+         sbcl-lparallel
+         sbcl-mcclim
+         sbcl-parenscript
+         sbcl-s-xml
+         sbcl-serapeum
+         sbcl-series
+         sbcl-tailrec
+         sbcl-tar
+         sbcl-terminal-keypress
+         sbcl-terminal-size
+         sbcl-terminfo
+         sbcl-trees
+         sbcl-trial
+         sbcl-unix-opts))
 
 (define %emacs-packages
-  (hm/packages
+  (packages emacs
    emacs-ace-window
    emacs-adaptive-wrap
    emacs-all-the-icons
@@ -195,7 +199,7 @@
    emacs-zerodark-theme))
 
 (define %font-packages
-  (hm/packages
+  (packages fonts
    font-adobe-source-han-sans
    font-adobe-source-han-sans
    font-awesome
@@ -212,7 +216,7 @@
    fontconfig))
 
 (define %gnome-packages
-  (hm/packages
+  (packages gnome
    gnome-shell-extension-appindicator
    gnome-shell-extension-blur-my-shell
    gnome-shell-extension-burn-my-windows
@@ -224,7 +228,7 @@
    gnome-shell-extension-hide-app-icon
    gnome-shell-extension-jiggle
    gnome-shell-extension-just-perfection
-   gnome-shell-extension-night-theme-switcher
+   ;; gnome-shell-extension-night-theme-switcher
    gnome-shell-extension-noannoyance
    gnome-shell-extension-paperwm
    gnome-shell-extension-radio
@@ -236,7 +240,7 @@
    gnome-shell-extension-vitals))
 
 (define %icon-packages
-  (hm/packages
+  (packages icons
    adwaita-icon-theme
    breeze-icons
    guix-icons
@@ -250,7 +254,7 @@
    %icon-packages
    %gnome-packages
    %emacs-packages
-   (hm/packages
+   (packages packages
     `(,git "send-email")
     bat
     btrfs-progs
@@ -296,7 +300,7 @@
     perl
     pkg-config
     pre-commit
-    prismlauncher
+    ;; prismlauncher
     python
     python-ipython
     recutils

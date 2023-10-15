@@ -9,7 +9,7 @@
 
 (define-public %files
   (compose
-   (hm/+s home-files
+   (hm/+s home-files dotfiles
           ;; local-file being explicit allows earlier check for file existence
           `((".emacs.d/init.el" ,(local-file "../../../files/emacs.el"))
             (".config/foot/foot.ini"
@@ -48,6 +48,6 @@
                                         (loop (read f)))))))))))
    (maybe-service
     (const (string= (gethostname) "hydra"))
-    (hm/+s home-files
+    (hm/+s home-files unison
            `((".unison/default.prf"
               ,(local-file "../../../files/default.prf")))))))
