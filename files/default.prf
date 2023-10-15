@@ -1,0 +1,10 @@
+root=/home/michal_atlas
+root=ssh://dagon.local//home/michal_atlas
+path=Sync
+path=Documents
+path=cl
+path=Zotero
+auto=true
+log=true
+sortbysize=true
+repeat=watch
