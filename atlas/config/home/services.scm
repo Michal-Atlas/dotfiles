@@ -16,12 +16,10 @@
   #:use-module (unwox home pipewire)
   #:use-module (atlas home services bash)
   #:use-module (rde home services desktop)
-  #:use-module (rde home services gtk)
-  #:use-module (atlas config system services syncthing))
+  #:use-module (rde home services gtk))
 
 (define-public %services
   (compose
-   (hm/services syncthing-configure-instance)
    %dconf
    %bash
    %flatpak
