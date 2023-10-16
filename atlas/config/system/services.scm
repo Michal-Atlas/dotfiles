@@ -63,8 +63,8 @@
    (+s hosts yggdrasil-hosts
        (list (host (string-join '("201" "a50e" "ca2d" "72bf"
                                   "89aa" "e12" "e14d" "f2e6") ":") "hydra")
-             (host (string-join '("200" "ac59" "de15" "abe5"
-                                  "650e" "7139" "f561" "c2fb") ":") "dagon")
+             (host (string-join '("200" "a3ee" "7e54" "10e9"
+                                  "c0d6" "47db" "90a" "5ed5") ":") "dagon")
              (host (string-join '("200" "29bd" "a495" "4ad7"
                                   "f79e" "e29a" "181a" "3872") ":") "lana")))
 
