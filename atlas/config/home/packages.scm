@@ -112,7 +112,6 @@
    emacs-all-the-icons-dired
    emacs-anzu
    emacs-auctex
-   emacs-auto-dark
    emacs-avy
    emacs-bind-map
    emacs-browse-kill-ring

@@ -116,11 +116,7 @@
 
 ;;;; * Theme
 
-(use-package auto-dark
-  :config (auto-dark-mode t)
-  :custom
-  (auto-dark-dark-theme 'modus-vivendi)
-  (auto-dark-light-theme 'modus-operandi))
+(load-theme 'modus-vivendi t)
 
 ;;;; * Modeline
 
