@@ -34,7 +34,9 @@
   (compose
    (+s etc podman-policy
        `(("containers/policy.json"
-          ,(local-file "../../../files/podman.conf"))))
+          ,(local-file "../../../files/podman.conf"))
+         ("containers/registries.conf"
+          ,(local-file "../../../files/podman-registry.conf"))))
    (if-host "hydra"
             (&s hurd-vm)
             (&s cuirass
