@@ -36,7 +36,13 @@
        `(("containers/policy.json"
           ,(local-file "../../../files/podman.conf"))
          ("containers/registries.conf"
-          ,(local-file "../../../files/podman-registry.conf"))))
+          ,(local-file "../../../files/podman-registry.conf"))
+         ("subuid"
+          ,(plain-file "subuid"
+                       "michal_atlas:100000:65536"))
+         ("subgid"
+          ,(plain-file "subgid"
+                       "michal_atlas:100000:65536"))))
    (if-host "hydra"
             (&s hurd-vm)
             (&s cuirass
