@@ -2,10 +2,7 @@
 
 set -euox pipefail
 
-#shellcheck disable=SC1091
-. common
-
 pushd "$DOTFILE_ROOT"
 sudo guix system reconfigure atlas/config/system.scm \
-     --on-error=backtrace "${COMMON_FLAGS[@]}" "$@"
+     --on-error=backtrace -L . "$@"
 popd

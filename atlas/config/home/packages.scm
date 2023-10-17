@@ -303,7 +303,6 @@
     pkg-config
     podman
     pre-commit
-    prismlauncher
     python
     python-ipython
     recutils

@@ -2,9 +2,6 @@
 
 set -euox pipefail
 
-#shellcheck disable=SC1091
-. common
-
 pushd "$DOTFILE_ROOT"
-guix home reconfigure atlas/config/home.scm "${COMMON_FLAGS[@]}" "$@"
+guix home reconfigure atlas/config/home.scm "$@"
 popd
