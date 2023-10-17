@@ -24,10 +24,6 @@
                           "cd \"$DIR\";"
                           " }")
          (plain-file "bashrc-ignoredups" "export HISTCONTROL=ignoredups")
-         (mixed-text-file "bashrc-run"
-		          "function run { "
-		          guix "/bin/guix"
-		          " shell $1 -- $@; }")
          (mixed-text-file "bashrc-valgrind"
 		          "alias valgrind=\""
 		          guix "/bin/guix"
