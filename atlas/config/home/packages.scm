@@ -16,6 +16,7 @@
  code
  commencement
  compression
+ containers
  cups
  curl
  databases
@@ -300,6 +301,7 @@
     pavucontrol
     perl
     pkg-config
+    podman
     pre-commit
     prismlauncher
     python

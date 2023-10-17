@@ -17,7 +17,6 @@
   cups
   databases
   desktop
-  docker
   file-sharing
   home
   messaging
@@ -33,6 +32,9 @@
 
 (define-public %services
   (compose
+   (+s etc podman-policy
+       `(("containers/policy.json"
+          ,(local-file "../../../files/podman.conf"))))
    (if-host "hydra"
             (&s hurd-vm)
             (&s cuirass
@@ -71,7 +73,6 @@
    (&s openssh)
    (&s gnome-desktop)
    (&s gpm)
-   (&s docker)
    (&s yggdrasil
     (json-config
      '((peers .

@@ -61,7 +61,7 @@
          (group "users")
          (home-directory "/home/michal_atlas")
          (supplementary-groups
-          '("wheel" "netdev" "audio" "docker"
+          '("wheel" "netdev" "audio"
             "video" "libvirt" "kvm" "tty" "transmission")))))
    (if-host "hydra"
             (+s firmware amd (list amdgpu-firmware)))
