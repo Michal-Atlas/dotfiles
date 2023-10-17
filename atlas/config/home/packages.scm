@@ -72,6 +72,7 @@
  video
  virtualization
  web-browsers
+ wine
  wm
  xdisorg)
 
@@ -320,6 +321,7 @@
     uqm
     virt-manager
     vlc
+    wine64
     wl-clipboard
     xdg-utils
     xdot
