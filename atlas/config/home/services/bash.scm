@@ -10,8 +10,6 @@
   #:use-module (gnu packages curl)
   #:use-module (gnu packages version-control))
 
-(define system-repo "$HOME/cl/dotfiles")
-
 (define-public %bash
   (hm/&s home-bash
        (guix-defaults? #t)
@@ -69,7 +67,8 @@
           ("ipfs" . "sudo -u ipfs bash --login")
           ("sw" . "swayhide")
           ("cat" . "bat -p")
-          ("cd" . "pushd")))
+          ("cd" . "pushd")
+          ("docker" . "podman")))
 
        (environment-variables
         `(("BROWSER" . "firefox") ("EDITOR" . "emacsclient")
