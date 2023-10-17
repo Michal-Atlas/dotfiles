@@ -3,6 +3,7 @@
   #:use-module (atlas utils download)
   #:use-module (guix gexp)
   #:use-module (gnu packages video)
+  #:use-module (gnu packages containers)
   #:use-module (rde serializers ini)
   #:use-module (gnu home services)
   #:use-module (gnu packages terminals))
@@ -45,7 +46,12 @@
                                     (let loop ((r (read f)))
                                       (unless (eof-object? r)
                                         (pretty-print r)
-                                        (loop (read f)))))))))))
+                                        (loop (read f)))))))))
+            (".bin/docker"
+             ,(program-file "docker"
+                            #~(apply execlp
+                                     #$(file-append podman "/bin/podman")
+                                     (command-line))))))
    (maybe-service
     (const (string= (gethostname) "hydra"))
     (hm/+s home-files unison

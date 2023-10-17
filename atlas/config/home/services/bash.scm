@@ -67,8 +67,7 @@
           ("ipfs" . "sudo -u ipfs bash --login")
           ("sw" . "swayhide")
           ("cat" . "bat -p")
-          ("cd" . "pushd")
-          ("docker" . "podman")))
+          ("cd" . "pushd")))
 
        (environment-variables
         `(("BROWSER" . "firefox") ("EDITOR" . "emacsclient")
