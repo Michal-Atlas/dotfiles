@@ -9,29 +9,48 @@
   #:use-module (nongnu services vpn))
 
 (use-package-modules
- cups messaging wm gnome)
+ cups
+ messaging
+ wm
+ gnome
+ linux)
 
 (use-service-modules
-  base
-  cuirass
-  cups
-  databases
-  desktop
-  file-sharing
-  home
-  messaging
-  networking
-  nix
-  pm
-  sound
-  ssh
-  syncthing
-  virtualization
-  xorg
-  vpn)
+ admin
+ base
+ cuirass
+ cups
+ databases
+ desktop
+ file-sharing
+ home
+ linux
+ messaging
+ networking
+ nix
+ pm
+ security
+ shepherd
+ sound
+ ssh
+ syncthing
+ virtualization
+ xorg
+ vpn)
 
 (define-public %services
   (compose
+   (+s shepherd-root rshare-root
+       (list
+        (shepherd-service
+         (provision '(rshare-root))
+         (requirement '(file-systems))
+         (one-shot? #t)
+         (start #~(make-forkexec-constructor
+                   (list #$(file-append util-linux+udev
+                                        "/bin/mount")
+                         "--make-rshared" "/")))
+         (stop #~(make-kill-destructor)))))
    (+s etc podman-policy
        `(("containers/policy.json"
           ,(local-file "../../../files/podman.conf"))

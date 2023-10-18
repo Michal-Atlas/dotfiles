@@ -41,8 +41,7 @@
               (device "/dev/mapper/rpool-root")
               (type "btrfs")
               (options
-               (alist->file-system-options '(("subvol" . "@guix")
-                                             "rshared"))))))
+               (alist->file-system-options '(("subvol" . "@guix")))))))
    (if-host "hydra"
             (file-systems
              (file-system
@@ -55,8 +54,7 @@
               (mount-point "/")
               (device "/dev/mapper/spool-root")
               (options
-               (alist->file-system-options '(("subvol" . "@guix")
-                                             "rshared")))
+               (alist->file-system-options '(("subvol" . "@guix"))))
               (type "btrfs")))
             ((mapped-file-systems
               (rpool "home"))
