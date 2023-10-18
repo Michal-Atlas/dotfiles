@@ -5,7 +5,6 @@
   #:use-module (gnu home services desktop)
   #:use-module (atlas config home files)
   #:use-module (atlas config home services bash)
-  #:use-module (atlas config home services flatpak)
   #:use-module (atlas config home services git)
   #:use-module (atlas config home services mcron)
   #:use-module (atlas config home services ssh)
@@ -22,7 +21,6 @@
   (compose
    %dconf
    %bash
-   %flatpak
    %git
    %mcron
    %nyxt
