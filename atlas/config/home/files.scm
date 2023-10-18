@@ -56,4 +56,8 @@
     (const (string= (gethostname) "hydra"))
     (hm/+s home-files unison
            `((".unison/default.prf"
+              ,(plain-file "default.prf"
+                           "include nowatch
+repeat=watch"))
+             (".unison/nowatch.prf"
               ,(local-file "../../../files/default.prf")))))))
