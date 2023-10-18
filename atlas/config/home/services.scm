@@ -11,6 +11,7 @@
   #:use-module (atlas config home services dconf)
   #:use-module (atlas config home services nyxt)
   #:use-module (atlas config home services lisp)
+  #:use-module (atlas config home services nix)
   #:use-module (gnu home-services gnupg)
   #:use-module (unwox home pipewire)
   #:use-module (atlas home services bash)
@@ -22,6 +23,7 @@
    %dconf
    %bash
    %git
+   %nix
    %mcron
    %nyxt
    %lisp
