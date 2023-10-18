@@ -106,9 +106,6 @@
    (&s fstrim)
    (&s fail2ban)
    (&s yggdrasil
-   (&s tlp
-    (cpu-boost-on-ac? #t)
-    (wifi-pwr-on-bat? #t))
        (json-config
         '((peers .
                  #( ;; Czechia
@@ -116,6 +113,10 @@
                    "tls://37.205.14.171:993"
                    ;; Germany
                    "tcp://193.107.20.230:7743")))))
+   (if-host "dagon"
+    (&s tlp
+        (cpu-boost-on-ac? #t)
+        (wifi-pwr-on-bat? #t)))
 
    (&s btrbk
     (config
