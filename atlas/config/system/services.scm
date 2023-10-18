@@ -51,6 +51,8 @@
                                         "/bin/mount")
                          "--make-rshared" "/")))
          (stop #~(make-kill-destructor)))))
+   (&s file-database)
+   (&s package-database)
    (+s etc podman-policy
        `(("containers/policy.json"
           ,(local-file "../../../files/podman.conf"))
@@ -100,6 +102,9 @@
    (&s openssh)
    (&s gnome-desktop)
    (&s gpm)
+   (&s earlyoom)
+   (&s fstrim)
+   (&s fail2ban)
    (&s yggdrasil
    (&s tlp
     (cpu-boost-on-ac? #t)
