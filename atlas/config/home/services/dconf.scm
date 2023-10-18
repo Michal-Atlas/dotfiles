@@ -34,6 +34,7 @@
 	         "gnome-extension-all-ip-addresses@havekes.eu"
 	         "color-picker@tuberry"
 	         "espresso@coadmunkee.github.com"
+                 "sound-output-device-chooser@kgshank.net"
 	         "gnome-clipboard@b00f.github.io")))
 	     ("org/gnome/desktop/peripherals/touchpad"
 	      (tap-to-click #t))
