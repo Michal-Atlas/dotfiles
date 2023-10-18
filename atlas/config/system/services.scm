@@ -90,10 +90,10 @@
         (pam-limits-entry "*" 'both 'nofile 524288)))
 
    (+s hosts yggdrasil-hosts
-       (list (host (string-join '("201" "a50e" "ca2d" "72bf"
-                                  "89aa" "e12" "e14d" "f2e6") ":") "hydra")
-             (host (string-join '("200" "a3ee" "7e54" "10e9"
-                                  "c0d6" "47db" "90a" "5ed5") ":") "dagon")
+       (list (host (string-join '("200" "6229" "6335" "8721"
+                                  "7ae1" "6b30" "961e" "c172") ":") "hydra")
+             (host (string-join '("200" "2b5a" "7e80" "7b31"
+                                  "7d15" "6c81" "2563" "62c") ":") "dagon")
              (host (string-join '("200" "29bd" "a495" "4ad7"
                                   "f79e" "e29a" "181a" "3872") ":") "lana")))
 
@@ -101,16 +101,16 @@
    (&s gnome-desktop)
    (&s gpm)
    (&s yggdrasil
-    (json-config
-     '((peers .
-              #( ;; Czechia
-                "tls://[2a03:3b40:fe:ab::1]:993"
-                "tls://37.205.14.171:993"
-                ;; Germany
-                "tcp://193.107.20.230:7743")))))
    (&s tlp
     (cpu-boost-on-ac? #t)
     (wifi-pwr-on-bat? #t))
+       (json-config
+        '((peers .
+                 #( ;; Czechia
+                   "tls://[2a03:3b40:fe:ab::1]:993"
+                   "tls://37.205.14.171:993"
+                   ;; Germany
+                   "tcp://193.107.20.230:7743")))))
 
    (&s btrbk
     (config
