@@ -44,6 +44,9 @@
 		   ("EMACS" "<Super>Return" "emacsclient -c")
 		   ("FILES" "<Super>n" "nautilus")))
 
+             ("org/gnome/shell/extensions/nightthemeswitcher/time"
+              ("always-enable-ondemand" #t))
+
 	     ("org/gnome/desktop/background"
 	      (picture-uri
 	       #$(file-fetch
