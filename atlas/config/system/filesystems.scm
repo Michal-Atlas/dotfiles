@@ -16,6 +16,9 @@
             (swap-devices
              (swap-space (target (file-system-label "SWAP")))))))
 
+(define compress
+  (cons "compress" "zstd"))
+
 (define-public %filesystems
   (compose
    %swap
@@ -41,7 +44,8 @@
               (device "/dev/mapper/rpool-root")
               (type "btrfs")
               (options
-               (alist->file-system-options '(("subvol" . "@guix")))))))
+               (alist->file-system-options `(("subvol" . "@guix")
+                                             ,compress))))))
    (if-host "hydra"
             (file-systems
              (file-system
@@ -54,7 +58,8 @@
               (mount-point "/")
               (device "/dev/mapper/spool-root")
               (options
-               (alist->file-system-options '(("subvol" . "@guix"))))
+               (alist->file-system-options `(("subvol" . "@guix")
+                                             ,compress)))
               (type "btrfs")))
             ((mapped-file-systems
               (rpool "home"))
@@ -62,7 +67,8 @@
               (mount-point "/home")
               (device "/dev/mapper/rpool-home")
               (options
-               (alist->file-system-options '(("subvol" . "@home"))))
+               (alist->file-system-options `(("subvol" . "@home")
+                                             ,compress)))
               (type "btrfs")))
             ((mapped-file-systems
               (rpool "vault"))
@@ -82,11 +88,13 @@
               (mount-point "/home/michal_atlas/Games")
               (device "/dev/mapper/rpool-vault")
               (options
-               (alist->file-system-options '(("subvol" . "@games"))))
+               (alist->file-system-options `(("subvol" . "@games")
+                                             ,compress)))
               (type "btrfs"))
              (file-system
               (mount-point "/var/lib/transmission-daemon/downloads/")
               (device "/dev/mapper/rpool-vault")
               (options
-               (alist->file-system-options '(("subvol" . "@torrents"))))
+               (alist->file-system-options `(("subvol" . "@torrents")
+                                             ,compress)))
               (type "btrfs"))))))
