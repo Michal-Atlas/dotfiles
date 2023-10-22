@@ -178,7 +178,7 @@ volume /home
                                                    (plain-file "non-guix.pub"
                                                                "(public-key (ecc (curve Ed25519) (q #926B78EBA9416220CA0AFA2EAEC8ED99FC9E9C03AF11CD08AE6F8192BCF68673#)))")
                                                    (plain-file "hydra.pub"
-                                                               "(public-key (ecc (curve Ed25519) (q #6544BC5D41A16DF594F8AA088B7CD6F840590B83FE1D2500FE79E4A4D067F964#)))")
+                                                               "(public-key (ecc (curve Ed25519) (q #629C1EFAFAB6A1D70E0CBC221C3F164226EBF72E52401CACEA0444CACA89E0D2#)))")
                                                    (plain-file "dagon.pub"
                                                                "(public-key (ecc (curve Ed25519) (q #F5E876A29802796DBA7BAD8B7C0FEE90BDD784A70CB2CC8A1365A47DA03AADBD#)))")
                                                    (plain-file "past.pub"
@@ -193,4 +193,4 @@ volume /home
                                                   (user "michal_atlas")
                                                   (systems (list "x86_64-linux"))
                                                   (private-key "/home/michal_atlas/.ssh/id_rsa")
-                                                  (host-key "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFje4GZkT1qpeuWQEy3VHc8xY4B4siD6CiXrkVFDN1Ka")))))))))))
+                                                  (host-key "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINAIrtjcu5p0bORlaVvkqGgeSxD+uUUp114CaXOBOgqQ")))))))))))
