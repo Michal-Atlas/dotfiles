@@ -51,7 +51,9 @@
            (file-system
             (mount-point "/home")
             (device "/dev/mapper/crypthome")
-            (type "btrfs"))))
+            (type "btrfs")
+            (options
+             (alist->file-system-options `(,compress))))))
      (if-host "dagon"
               (mapped-devices
                unlock-home rpool-home rpool-root)
