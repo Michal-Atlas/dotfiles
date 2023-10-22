@@ -53,7 +53,8 @@
             (device "/dev/mapper/crypthome")
             (type "btrfs")
             (options
-             (alist->file-system-options `(,compress))))))
+             (alist->file-system-options `(,compress)))
+            (dependencies (list unlock-home)))))
      (if-host "dagon"
               (mapped-devices
                unlock-home rpool-home rpool-root)
