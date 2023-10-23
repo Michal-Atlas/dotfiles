@@ -30,6 +30,13 @@
 		          "function cheat { "
 		          curl "/bin/curl"
 		          " \"cheat.sh/$@\"; }")
+         (mixed-text-file
+          "bashrc-nuix"
+          "function nix() { case \"$1\" in "
+          "build) " nix "/bin/nix \"$1\" --no-link --print-out-paths \"${@:2}\";; "
+          "*)" nix "/bin/nix \"${@:1}\";; "
+          "esac;"
+          " }")
          (let* ((default-color "\\[\\e[0m\\]")
                 (color
                  (lambda (color text)
@@ -68,7 +75,6 @@
           ("sw" . "swayhide")
           ("cat" . "bat -p")
           ("cd" . "pushd")))
-          ("nix" . "nix --no-link --print-out-paths")
 
        (environment-variables
         `(("BROWSER" . "firefox") ("EDITOR" . "emacsclient")
