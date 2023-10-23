@@ -5,6 +5,7 @@
   #:use-module (gnu packages base)
   #:use-module (gnu packages sync)
   #:use-module (gnu packages ocaml)
+  #:use-module (gnu packages containers)
   #:use-module (gnu packages linux))
 
 (define-public %mcron
@@ -32,4 +33,10 @@
                     " ~/tmp/ ~/Downloads/ -mindepth 1 -mtime +2 -delete;")
                    "Clear tmpfiles")
             #~(job "0 * * * *"
-	           "guix gc -F 20G"))))))
+	           "guix gc -F 20G")
+            #~(job "0 0 * * 0"
+                   #$(file-append podman "/bin/podman container prune -f")
+                   "podman prune containers")
+            #~(job "0 0 * * 0"
+                   #$(file-append podman "/bin/podman image prune -f")
+                   "podman prune images"))))))
