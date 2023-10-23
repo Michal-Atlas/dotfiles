@@ -68,6 +68,7 @@
           ("sw" . "swayhide")
           ("cat" . "bat -p")
           ("cd" . "pushd")))
+          ("nix" . "nix --no-link --print-out-paths")
 
        (environment-variables
         `(("BROWSER" . "firefox") ("EDITOR" . "emacsclient")
