@@ -20,6 +20,9 @@ in {
   nixpkgs.config = {
     allowUnfree = true;
     allowInsecure = true;
+    permittedInsecurePackages = [
+      "zotero-6.0.27"
+    ];
   };
   nix = {
     package = pkgs.nix;
