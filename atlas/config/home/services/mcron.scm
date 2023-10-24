@@ -22,7 +22,7 @@
                         (string-append
                          #$(file-append procps "/bin/pgrep") " unison >/dev/null || "
                          #$(file-append unison "/bin/unison")
-                         " -batch")
+                         " -batch watch")
                         "Unison"))))
    (hm/&s home-mcron
           (jobs
