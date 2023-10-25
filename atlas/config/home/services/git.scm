@@ -9,6 +9,10 @@
              ((name . "Michal Atlas")
               (email . "michal_atlas+git@posteo.net")
               (signingkey . "3EFBF2BBBB29B99E")))
+            (pull
+             ((rebase . #t)))
+            (rebase
+             ((autostash . #t)))
             (commit
              ((gpgsign . #t)))
             (sendemail
