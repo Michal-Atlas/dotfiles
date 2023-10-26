@@ -227,7 +227,8 @@ exec to all your commands"
                    ,(file-append grim "/bin/grim")
                    "-g \"$DIM\" - |"
                    ,(file-append wl-clipboard "/bin/wl-copy")
-                   "--type image/png"))))
+                   "--type image/png"))
+                 ("l" "swaylock")))
             ,@(let* ((pactl-exec
                       (lambda (cmd)
                         (file-append pulseaudio (string-append "/bin/pactl " cmd))))
