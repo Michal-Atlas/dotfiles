@@ -91,6 +91,13 @@
        (list
         (pam-limits-entry "*" 'both 'nofile 524288)))
 
+   (&s screen-locker
+       (name "swaylock")
+       (program (file-append swaylock
+                             "/bin/swaylock"))
+       (using-setuid? #f)
+       (using-pam? #t))
+
    (+s hosts yggdrasil-hosts
        (list (host (string-join '("200" "6229" "6335" "8721"
                                   "7ae1" "6b30" "961e" "c172") ":") "hydra")
