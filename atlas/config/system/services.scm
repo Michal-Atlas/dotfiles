@@ -158,12 +158,7 @@ volume /home
                                                     (inherit configuration)
                                                     (vpn-plugins
                                                      (list network-manager-openvpn))))
-                     (gdm-service-type configuration =>
-		                       (gdm-configuration
-			                (inherit configuration)
-			                (auto-login? #t)
-			                (default-user "michal_atlas")
-			                (wayland? #t)))
+                     (delete gdm-service-type)
                      (delete pulseaudio-service-type)
                      (guix-service-type configuration =>
                                         (guix-configuration
