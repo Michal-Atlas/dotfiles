@@ -160,16 +160,6 @@ volume /home
                                                      (list network-manager-openvpn))))
                      (delete gdm-service-type)
                      (delete pulseaudio-service-type)
-                     (mingetty-service-type config =>
-                                            (let ((auto-login-to-tty
-                                                   (lambda (config tty user)
-                                                     (if (string=? tty (mingetty-configuration-tty config))
-                                                         (mingetty-configuration
-                                                          (inherit config)
-                                                          (auto-login user))
-                                                         config))))
-                                             (auto-login-to-tty
-                                              config "tty1" "michal_atlas")))
                      (guix-service-type configuration =>
                                         (guix-configuration
                                          (discover? #t)
