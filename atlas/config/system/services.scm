@@ -100,7 +100,6 @@
                                   "f79e" "e29a" "181a" "3872") ":") "lana")))
 
    (&s openssh)
-   (&s gnome-desktop)
    (&s gpm)
    (&s earlyoom)
    (&s fstrim)

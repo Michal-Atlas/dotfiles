@@ -8,10 +8,10 @@
   #:use-module (atlas config home services git)
   #:use-module (atlas config home services mcron)
   #:use-module (atlas config home services ssh)
-  #:use-module (atlas config home services dconf)
   #:use-module (atlas config home services nyxt)
   #:use-module (atlas config home services lisp)
   #:use-module (atlas config home services nix)
+  #:use-module (atlas config home services wm)
   #:use-module (gnu home-services gnupg)
   #:use-module (unwox home pipewire)
   #:use-module (atlas home services bash)
@@ -20,7 +20,6 @@
 
 (define-public %services
   (compose
-   %dconf
    %bash
    %git
    %nix
@@ -29,6 +28,7 @@
    %lisp
    %ssh
    %files
+   %wm
    (hm/&s home-channels #:config %channels)
    (hm/&s home-dbus)
    (hm/&s home-gnupg)
