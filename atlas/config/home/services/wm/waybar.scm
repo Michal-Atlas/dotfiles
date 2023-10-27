@@ -29,10 +29,15 @@
              (custom/unison . ((exec .
                                      ,(program-file "unison-running-p"
                                                     #~(begin
-                                                        (use-modules (ice-9 format))
-                                                        (format #t
-                                                                "{\"text\": \"𝖀\", \"class\": \"~:[unired~;unigreen~]\"}"
-                                                                (zero? (system #$(file-append procps "/bin/pgrep unison >/dev/null")))))))
+                                                        (use-modules (json))
+                                                        (scm->json
+                                                         `((text . "𝖀")
+                                                           (class . ,(if
+                                                                      (zero? (system
+                                                                              #$(file-append procps
+                                                                                             "/bin/pgrep unison >/dev/null")))
+                                                                      "unigreen"
+                                                                      "unired")))))))
                                (return-type . json)
                                (interval . 10)))
              (clock . ((format . "{:%FT%TZ}")))
