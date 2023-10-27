@@ -1,16 +1,19 @@
 (define-module (atlas config home services wm waybar)
   #:use-module (atlas combinators)
+  #:use-module (guix gexp)
+  #:use-module (gnu packages linux)
   #:use-module (rde home services wm))
 
 (define-public %waybar
   (hm/&s home-waybar
          (config
-          #(((ipc . #t)
+          (vector
+           `((ipc . #t)
              (id . 0)
              (modules-left . #("sway/workspaces" "sway/mode"))
              (modules-center . #("sway/window"))
              (modules-right . #("idle_inhibitor" "pulseaudio" "network"
-                                "cpu" "memory" "disk" "backlight" "battery"
+                                "cpu" "memory" "disk" "custom/unison" "backlight" "battery"
                                 "clock" "tray"))
              (idle_inhibitor . ((format . "{icon}")
                                 (format-icons . ((activated . "")
@@ -23,6 +26,15 @@
              (network . ((format-wifi . "{essid} {ipaddr}/{cidr}")
                          (format-ethernet . "{ipaddr}/{cidr}")
                          (tooltip-format . "{signalStrength}%")))
+             (custom/unison . ((exec .
+                                     ,(program-file "unison-running-p"
+                                                    #~(begin
+                                                        (use-modules (ice-9 format))
+                                                        (format #t
+                                                                "{\"text\": \"𝖀\", \"class\": \"~:[unired~;unigreen~]\"}"
+                                                                (zero? (system #$(file-append procps "/bin/pgrep unison >/dev/null")))))))
+                               (return-type . json)
+                               (interval . 10)))
              (clock . ((format . "{:%FT%TZ}")))
              (cpu . ((format . "{usage}% ")))
              (memory . ((format . "{}% ")))
@@ -51,4 +63,6 @@
                       (#{#memory}# ((color . #{#2aa198}#)))
                       (#{#cpu}# ((color . #{#6c71c4}#)))
                       (#{#battery}# ((color . #{#859900}#)))
+                      (#{#custom-unison.unigreen}# ((color . #{#859900}#)))
+                      (#{#custom-unison.unired}# ((color . #{#dc322f}#)))
                       (#{#disk}# ((color . #{#b58900}#)))))))
