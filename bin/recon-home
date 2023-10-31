@@ -3,5 +3,5 @@
 set -euox pipefail
 
 pushd "$DOTFILE_ROOT"
-guix home reconfigure atlas/config/home.scm "$@"
+guix home reconfigure home.scm "$@"
 popd

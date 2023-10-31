@@ -3,6 +3,6 @@
 set -euox pipefail
 
 pushd "$DOTFILE_ROOT"
-sudo guix system reconfigure atlas/config/system.scm \
-     --on-error=backtrace -L . "$@"
+sudo guix system reconfigure system.scm \
+     --on-error=backtrace "$@"
 popd
