@@ -1,4 +1,5 @@
 (load "home-loads.scm")
+(use-modules (atlas utils services))
 
 (home-environment
  (services
