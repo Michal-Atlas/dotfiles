@@ -18,8 +18,6 @@
  (guix gexp)
  (guixrus home services mako)
  (guixrus packages emacs)
- (ice-9 control)
- (ice-9 ftw)
  (nongnu packages mozilla)
  (rde home services desktop)
  (rde home services gtk)
@@ -27,7 +25,6 @@
  (rde home services web-browsers)
  (rde home services wm)
  (rde serializers ini)
- (srfi srfi-171)
  (unwox home pipewire))
 
 (use-package-modules
