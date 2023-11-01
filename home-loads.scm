@@ -87,6 +87,7 @@
  shells
  shellutils
  ssh
+ sync
  terminals
  tex
  version-control

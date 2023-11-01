@@ -1,3 +1,12 @@
+(use-modules (atlas utils services)
+             (atlas services morrowind)
+             (gnu))
+
+(use-service-modules
+ virtualization
+ cuirass
+ messaging)
+
 (list
  (&s hurd-vm)
  (&s cuirass
