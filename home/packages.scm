@@ -150,8 +150,9 @@
             `(,git "send-email")
             bat
             btrfs-progs
-            direnv
+            compsize
             curl
+            direnv
             ed
             fasd
             feh
@@ -172,22 +173,29 @@
             htop
             icedove/wayland
             indent
+            indent
             inkscape
+            inotify-tools
             irssi
+            jq
             keepassxc
             krita
             lagrange
             libreoffice
             lsof
+            maxima
             mosh
             mpv
             nheko
             nix
+            node
             nyxt
             okular
+            openssl
             p7zip
             pandoc
             parallel
+            patchelf
             pavucontrol
             perl
             pkg-config
@@ -196,15 +204,18 @@
             python
             python-ipython
             recutils
+            rlwrap
             rsync
             screen
             shellcheck
             shotwell
+            skribilo
             slurp
             supertux
             supertuxkart
             tealdeer
             texlive-scheme-basic
+            translate-shell
             transmission-remote-gtk
             tree
             unison

@@ -39,8 +39,10 @@
  cups
  curl
  databases
+ dictionaries
  disk
  ed
+ elf
  emacs
  emacs-xyz
  file
@@ -68,8 +70,10 @@
  lisp
  lisp-xyz
  lsof
+ maths
  messaging
  music
+ node
  ocaml
  package-management
  parallel
@@ -79,6 +83,7 @@
  pulseaudio
  python
  python-xyz
+ readline
  rdesktop
  rsync
  rust-apps
@@ -86,13 +91,16 @@
  screen
  shells
  shellutils
+ skribilo
  ssh
  sync
  terminals
  tex
+ tls
  version-control
  video
  virtualization
+ web
  web-browsers
  wine
  wm
