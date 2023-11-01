@@ -1,12 +1,3 @@
-(use-modules (gnu services desktop)
-             (gnu packages gnome)
-             (gnu))
-
-(use-service-modules
- sound
- networking
- xorg)
-
 (modify-services %desktop-services
                  (network-manager-service-type configuration =>
                                                (network-manager-configuration

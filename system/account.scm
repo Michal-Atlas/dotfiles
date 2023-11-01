@@ -1,5 +1,3 @@
-(use-modules (atlas utils services))
-
 (+s account atlas
     (list
      (user-account

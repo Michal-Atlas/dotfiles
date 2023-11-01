@@ -1,8 +1,10 @@
-(load "home-loads.scm")
-(use-modules (atlas utils services))
+(eval-when (expand load eval compile)
+ (load "home-loads.scm"))
 
-(home-environment
- (services
+(define services
   (append
    (gather-services (string-append "home-" (gethostname)))
-   (gather-services "home"))))
+   (gather-services "home")))
+
+(home-environment
+ (services services))

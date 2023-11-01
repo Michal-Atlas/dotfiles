@@ -1,19 +1,5 @@
-(use-modules
- (atlas utils services)
- (gnu system file-systems)
- (gnu system mapped-devices)
- (gnu packages certs)
- (gnu packages linux)
- (gnu packages samba)
- (gnu system linux-initrd)
- (gnu system setuid)
- (gnu)
- (gnu system)
- (ice-9 popen)
- (ice-9 textual-ports)
- (nongnu packages linux)
- (nongnu system linux-initrd)
- (ice-9 curried-definitions))
+(eval-when (expand load eval compile)
+ (load "system-loads.scm"))
 
 (define (getlabel system)
   (chdir "/home/michal_atlas/cl/dotfiles/")
@@ -26,8 +12,16 @@
                   "git" "log" "-1" "--pretty=reference"))))
    " - "))
 
+(define filesystems
+  (load (string-append "filesystems/" (gethostname) ".scm")))
+
+(define services
+  (append
+   (gather-services (string-append "system-" (gethostname)))
+   (gather-services "system")))
+
 (operating-system
- (inherit (load (string-append "filesystems/" (gethostname) ".scm")))
+ (inherit filesystems)
  (host-name (gethostname))
  (kernel linux)
  (initrd microcode-initrd)
@@ -48,7 +42,5 @@
    (bootloader grub-efi-bootloader)
    (targets `("/boot/efi"))))
  (packages %base-packages)
- (services (append
-            (gather-services (string-append "system-" (gethostname)))
-            (gather-services "system")))
+ (services services)
  (name-service-switch %mdns-host-lookup-nss))
