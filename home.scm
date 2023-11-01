@@ -1,4 +1,4 @@
-(eval-when (expand load eval compile)
+(eval-when (expand load eval)
  (load "home-loads.scm"))
 
 (define services

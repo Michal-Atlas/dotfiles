@@ -1,4 +1,4 @@
-(eval-when (expand load eval compile)
+(eval-when (expand load eval)
  (load "system-loads.scm"))
 
 (define (getlabel system)
