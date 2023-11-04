@@ -32,7 +32,7 @@
     (operating-system
      (host-name #f) (bootloader #f)
      (file-systems
-      (list
+      (cons*
        efi root home
        (file-system
         (mount-point "/home/michal_atlas/tmp")
@@ -63,7 +63,8 @@
          (alist->file-system-options `(("subvol" . "@torrents")
                                        ,compress)))
         (type "btrfs")
-        (dependencies (list rpool-vault)))))
+        (dependencies (list rpool-vault)))
+       %base-file-systems))
      (swap-devices
       (list (swap-space (target (file-system-label "SWAP")))))
      (mapped-devices
