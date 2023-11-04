@@ -15,11 +15,6 @@
 (define filesystems
   (load (string-append "filesystems/" (gethostname) ".scm")))
 
-(define services
-  (append
-   (gather-services (string-append "system-" (gethostname)))
-   (gather-services "system")))
-
 (operating-system
  (inherit filesystems)
  (host-name (gethostname))
@@ -42,5 +37,10 @@
    (bootloader grub-efi-bootloader)
    (targets `("/boot/efi"))))
  (packages %base-packages)
- (services services)
+ (services
+  (begin
+    (load "system-loads.scm")
+    (append
+     (gather-services (string-append "system-" (gethostname)))
+     (gather-services "system"))))
  (name-service-switch %mdns-host-lookup-nss))
