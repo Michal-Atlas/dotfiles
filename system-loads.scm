@@ -16,6 +16,7 @@
  (gnu)
  (guix gexp)
  (ice-9 curried-definitions)
+ (ice-9 match)
  (ice-9 popen)
  (ice-9 textual-ports)
  (nongnu packages linux)

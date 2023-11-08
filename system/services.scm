@@ -55,20 +55,6 @@
                  "tls://37.205.14.171:993"
                  ;; Germany
                  "tcp://193.107.20.230:7743")))))
-
- (&s btrbk
-     (config
-      (plain-file "btrbk.conf"
-                  "
-backend btrfs-progs-sudo
-volume /home
- subvolume .
-  snapshot_create onchange
-  snapshot_dir .btrfs
-  snapshot_preserve 24h 31d 4w 12m
-  snapshot_preserve_min latest
-  timestamp_format long-iso
-")))
  (&s inputattach)
  (&s qemu-binfmt
      (platforms (lookup-qemu-platforms "arm" "aarch64"
