@@ -4,7 +4,7 @@
       `((ipc . #t)
         (id . 0)
         (modules-left . #("sway/workspaces" "sway/mode"))
-        (modules-center . #("sway/window"))
+        (modules-center . #("mpris"))
         (modules-right . #("idle_inhibitor" "pulseaudio" "network"
                            "cpu" "memory" "disk" "custom/unison" "backlight" "battery"
                            "clock" "tray"))
