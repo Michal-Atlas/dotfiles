@@ -8,12 +8,13 @@ in {
     homeDirectory = "/home/michal_atlas";
     stateVersion = "23.05";
     packages = with pkgs; [
-      jetbrains.idea-ultimate
       discord
+      insomnia
+      jetbrains.idea-ultimate
       spot
+      teams-for-linux
       telegram-desktop
       zotero
-      insomnia
     ];
   };
   programs.home-manager.enable = true;
@@ -21,6 +22,7 @@ in {
     allowUnfree = true;
     allowInsecure = true;
     permittedInsecurePackages = [
+      "electron-24.8.6"
       "zotero-6.0.27"
     ];
   };
