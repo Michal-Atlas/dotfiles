@@ -10,9 +10,9 @@
                                     (guix-configuration
                                      (discover? #t)
                                      (substitute-urls
-                                      (cons* "https://substitutes.nonguix.org"
-                                             "https://guix.bordeaux.inria.fr"
-                                             %default-substitute-urls))
+                                      (cons*"https://guix.bordeaux.inria.fr"
+                                            "https://substitutes.nonguix.org"
+                                            %default-substitute-urls))
                                      (authorized-keys
                                       (append (list
                                                (plain-file "non-guix.pub"
