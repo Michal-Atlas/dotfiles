@@ -8,5 +8,5 @@
                  (string-append
                   #$(file-append procps "/bin/pgrep") " unison >/dev/null || "
                   #$(file-append unison "/bin/unison")
-                  " -batch watch")
+                  " -batch -repeat=watch")
                  "Unison")))

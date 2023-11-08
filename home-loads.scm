@@ -19,6 +19,7 @@
  (guix gexp)
  (guixrus home services mako)
  (guixrus packages emacs)
+ (ice-9 curried-definitions)
  (nongnu packages mozilla)
  (rde home services desktop)
  (rde home services gtk)
