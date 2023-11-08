@@ -4,6 +4,7 @@
  (atlas packages emacs-xyz)
  (atlas utils download)
  (atlas utils services)
+ (engstrand wallpapers)
  (games packages the-ur-quan-masters)
  (gnu home services desktop)
  (gnu home services guix)

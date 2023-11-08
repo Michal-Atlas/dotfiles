@@ -52,6 +52,15 @@
     "9e7a681dece5688c792755bf047f664fb859b47a"
     (openpgp-fingerprint
      "43E6 223B 3497 270A 6162  82FF B675 80AB 5694 9C84"))))
+ (channel
+  (name 'engstrand-wallpapers)
+  (url "https://github.com/engstrand-config/wallpapers")
+  (branch "main")
+  (introduction
+   (make-channel-introduction
+    "ef88c361750170ec80a0276767328961a5547533"
+    (openpgp-fingerprint
+     "C9BE B8A0 4458 FDDF 1268 1B39 029D 8EB7 7E18 D68C"))))
  (channel-with-substitutes-available
   %default-guix-channel
   "https://ci.guix.gnu.org"))

@@ -156,9 +156,9 @@ exec to all your commands"
    "--fn 'Fira Code 15'"
    "-B2"
    "-l10"))
+
 (define wallpaper
-  (file-fetch "https://ift.tt/2UDuBqa"
-              "i7XCgxwaBYKB7RkpB2nYcGsk2XafNUPcV9921oicRdo="))
+  (get-wallpaper-path "neon/china-reflection.jpg"))
 
 (&s home-sway
     (config
