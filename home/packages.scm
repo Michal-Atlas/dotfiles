@@ -1,7 +1,96 @@
-(begin
- (define-syntax-rule (packages why pkgs ...)
-   (+s home-profile why (list pkgs ...)))
+(define-module (home packages)
+  #:use-module (gnu home services)
+  #:use-module (atlas utils services)
+  #:use-module (gnu)
+  #:use-module (atlas packages emacs-xyz)
+  #:use-module (guixrus packages emacs)
+  #:use-module (nongnu packages mozilla)
+  #:use-module (games packages the-ur-quan-masters)
+  #:export (packages-services))
 
+(use-package-modules
+ admin
+ base
+ bittorrent
+ certs
+ code
+ commencement
+ compression
+ containers
+ cups
+ curl
+ databases
+ dictionaries
+ disk
+ ed
+ elf
+ emacs
+ emacs-xyz
+ file
+ fonts
+ fontutils
+ freedesktop
+ games
+ gdb
+ ghostscript
+ gimp
+ gnome
+ gnuzilla
+ graphviz
+ haskell
+ haskell-apps
+ haskell-xyz
+ image
+ image-viewers
+ inkscape
+ irc
+ kde
+ kde-frameworks
+ libreoffice
+ linux
+ lisp
+ lisp-xyz
+ lsof
+ maths
+ messaging
+ music
+ node
+ ocaml
+ package-management
+ parallel
+ password-utils
+ perl
+ pkg-config
+ pulseaudio
+ python
+ python-xyz
+ readline
+ rdesktop
+ rsync
+ rust-apps
+ samba
+ screen
+ shells
+ shellutils
+ skribilo
+ ssh
+ sync
+ terminals
+ tex
+ tls
+ version-control
+ video
+ virtualization
+ web
+ web-browsers
+ wine
+ wm
+ xdisorg)
+
+(define-syntax-rule (packages why pkgs ...)
+  (+s home-profile why (list pkgs ...)))
+
+(define packages-services
  (list
   (packages lisp
             sbcl

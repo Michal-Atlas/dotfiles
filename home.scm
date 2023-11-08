@@ -1,10 +1,21 @@
-(eval-when (expand load eval)
- (load "home-loads.scm"))
+(define-module (home)
+  #:use-module (atlas utils define)
+  #:use-module (ice-9 match)
+  #:use-module (gnu home)
+  #:use-module (home services)
+  #:use-module (home hydra)
+  #:export (get-home))
 
-(home-environment
- (services
-  (begin
-    (load "home-loads.scm")
+(define/cp pass (get-home extra-services)
+  (home-environment
+   (services
     (append
-     (gather-services (string-append "home-" (gethostname)))
-     (gather-services "home")))))
+     extra-services
+     (pass configure-services)))))
+
+(apply get-home
+       (match (gethostname)
+         ("dagon"
+          (list #:extra-services '()))
+         ("hydra"
+          (list #:extra-services hydra:services))))
