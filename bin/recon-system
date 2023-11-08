@@ -3,6 +3,6 @@
 set -euox pipefail
 
 pushd "$DOTFILE_ROOT"
-sudo guix system reconfigure system.scm \
+sudo --preserve-env=GUILE_LOAD_PATH guix system reconfigure system.scm \
      --on-error=backtrace "$@"
 popd

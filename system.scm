@@ -1,5 +1,26 @@
-(eval-when (expand load eval)
- (load "system-loads.scm"))
+(define-module (system)
+  #:use-module (atlas utils define)
+  #:use-module ((file-systems dagon) #:prefix dagon:)
+  #:use-module ((file-systems hydra) #:prefix hydra:)
+  #:use-module (srfi srfi-26)
+  #:use-module (ice-9 match)
+  #:use-module (guix gexp)
+  #:use-module (gnu system)
+  #:use-module (nongnu packages linux)
+  #:use-module (nongnu system linux-initrd)
+  #:use-module (gnu system keyboard)
+  #:use-module (gnu system setuid)
+  #:use-module (gnu packages samba)
+  #:use-module (gnu bootloader)
+  #:use-module (gnu bootloader grub)
+  #:use-module (gnu system nss)
+  #:use-module (gnu system linux-initrd)
+  #:use-module (ice-9 textual-ports)
+  #:use-module (ice-9 popen)
+  #:use-module (system dagon)
+  #:use-module (system hydra)
+  #:use-module (system services)
+  #:export (get-system))
 
 (define (getlabel system)
   (chdir "/home/michal_atlas/cl/dotfiles/")
@@ -12,35 +33,63 @@
                   "git" "log" "-1" "--pretty=reference"))))
    " - "))
 
-(define filesystems
-  (load (string-append "filesystems/" (gethostname) ".scm")))
+(define/cp pass (get-system
+                 hostname
+                 file-systems swap-devices mapped-devices
+                 extra-services)
+  (operating-system
+    (host-name hostname)
+    (kernel linux)
+    (initrd microcode-initrd)
+    (initrd-modules (cons "dm-raid" %base-initrd-modules))
+    (label (getlabel this-operating-system))
+    (locale "en_US.utf8")
+    (timezone "Europe/Prague")
+    (keyboard-layout
+     (keyboard-layout "us,cz" ",ucw" #:options
+                      '("grp:caps_switch" "grp_led"
+                        "lv3:ralt_switch" "compose:rctrl-altgr")))
+    (setuid-programs
+     (append (list (setuid-program
+                    (program (file-append cifs-utils "/sbin/mount.cifs"))))
+             %setuid-programs))
+    (bootloader
+     (bootloader-configuration
+      (bootloader grub-efi-bootloader)
+      (targets `("/boot/efi"))))
+    (packages %base-packages)
+    (services
+     (append
+      extra-services
+      (pass configure-services)))
+    (name-service-switch %mdns-host-lookup-nss)
+    (file-systems file-systems)
+    (swap-devices swap-devices)
+    (mapped-devices mapped-devices)))
 
-(operating-system
- (inherit filesystems)
- (host-name (gethostname))
- (kernel linux)
- (initrd microcode-initrd)
- (initrd-modules (cons "dm-raid" %base-initrd-modules))
- (label (getlabel this-operating-system))
- (locale "en_US.utf8")
- (timezone "Europe/Prague")
- (keyboard-layout
-  (keyboard-layout "us,cz" ",ucw" #:options
-                   '("grp:caps_switch" "grp_led"
-                     "lv3:ralt_switch" "compose:rctrl-altgr")))
- (setuid-programs
-  (append (list (setuid-program
-                 (program (file-append cifs-utils "/sbin/mount.cifs"))))
-          %setuid-programs))
- (bootloader
-  (bootloader-configuration
-   (bootloader grub-efi-bootloader)
-   (targets `("/boot/efi"))))
- (packages %base-packages)
- (services
-  (begin
-    (load "system-loads.scm")
-    (append
-     (gather-services (string-append "system-" (gethostname)))
-     (gather-services "system"))))
- (name-service-switch %mdns-host-lookup-nss))
+(apply get-system
+       (match (gethostname)
+         ("dagon"
+          (list
+           #:hostname "dagon"
+           #:file-systems dagon:file-systems
+           #:swap-devices dagon:swap-devices
+           #:mapped-devices dagon:mapped-devices
+           #:extra-services dagon:services
+           #:build-machines
+           (list
+            #~(build-machine
+               (name "hydra")
+               (user "michal_atlas")
+               (systems (list "x86_64-linux"))
+               (private-key "/home/michal_atlas/.ssh/id_rsa")
+               (host-key "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINAIrtjcu5p0bORlaVvkqGgeSxD+uUUp114CaXOBOgqQ")))
+           #:btrbk-schedule "24h 4d"))
+         ("hydra"
+          (list
+           #:hostname "hydra"
+           #:file-systems hydra:file-systems
+           #:swap-devices hydra:swap-devices
+           #:mapped-devices hydra:mapped-devices
+           #:extra-services hydra:services
+           #:btrbk-schedule "24h 31d 4w 12m"))))
