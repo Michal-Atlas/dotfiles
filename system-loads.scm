@@ -5,7 +5,6 @@
  (gnu packages certs)
  (gnu packages linux)
  (gnu packages samba)
- (gnu services desktop)
  (gnu services)
  (gnu system file-systems)
  (gnu system linux-initrd)
@@ -21,7 +20,8 @@
  (ice-9 textual-ports)
  (nongnu packages linux)
  (nongnu services vpn)
- (nongnu system linux-initrd))
+ (nongnu system linux-initrd)
+ (srfi srfi-1))
 
 (use-package-modules
  cups
@@ -40,6 +40,7 @@
  file-sharing
  home
  linux
+ mcron
  messaging
  networking
  nix
