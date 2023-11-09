@@ -73,10 +73,7 @@
         ("ipfs" . "sudo -u ipfs bash --login")
         ("sw" . "swayhide")
         ("cat" . "bat -p")
-        ("cd" . "pushd")
-        ("sps" .
-         ,(file-append freerdp
-                       "/bin/xfreerdp /u:student /p:***REMOVED*** /v:***REMOVED***"))))
+        ("cd" . "pushd")))
 
      (environment-variables
       `(("BROWSER" . "firefox") ("EDITOR" . "emacsclient")

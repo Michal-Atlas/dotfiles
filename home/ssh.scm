@@ -14,7 +14,7 @@
               (openssh-host
                (name "sps06")
                (user "student")
-               (host-name "***REMOVED***")
+               (host-name "sps-06.kps.in.fit.cvut.cz")
                (identity-file (string-append
                                (getenv "HOME")
                                "/.ssh/sps")))
