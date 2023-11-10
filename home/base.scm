@@ -1,5 +1,6 @@
 (define-module (home base)
   #:use-module (atlas utils services)
+  #:use-module (channels)
   #:use-module (gnu home services guix)
   #:use-module (gnu home services desktop)
   #:use-module (gnu home-services gnupg)
@@ -10,7 +11,7 @@
 
 (define base-services
  (list
-  (&s home-channels #:config (load "../channels.scm"))
+  (&s home-channels #:config %channels)
   (&s home-dbus)
   (&s home-gnupg)
   (&s home-pipewire)
