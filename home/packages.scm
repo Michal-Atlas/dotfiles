@@ -22,6 +22,7 @@
  databases
  dictionaries
  disk
+ dns
  ed
  elf
  emacs
@@ -42,6 +43,7 @@
  haskell-xyz
  image
  image-viewers
+ imagemagick
  inkscape
  irc
  kde
@@ -236,6 +238,7 @@
             oxygen-icons)
 
   (packages packages
+            `(,isc-bind "utils")
             `(,git "send-email")
             bat
             btrfs-progs
@@ -262,7 +265,7 @@
             gzdoom
             htop
             icedove/wayland
-            indent
+            imagemagick
             indent
             inkscape
             inotify-tools
@@ -276,6 +279,7 @@
             maxima
             mosh
             mpv
+            netcat
             nheko
             nix
             node
@@ -285,10 +289,13 @@
             p7zip
             pandoc
             parallel
+            pass-otp
+            password-store
             patchelf
             pavucontrol
             perl
             pkg-config
+            playerctl
             podman
             pre-commit
             python
@@ -315,6 +322,7 @@
             vlc
             wine64
             wl-clipboard
+            wtype
             xdg-desktop-portal-wlr
             xdg-utils
             xdot
