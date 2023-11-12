@@ -23,4 +23,9 @@
            (smtpuser . ,(string-append
                          "michal_atlas"
                          "@"
-                         "posteo.net"))))))))
+                         "posteo.net"))))
+         (filter "lfs"
+                 ((process . "git-lfs filter-process")
+                  (required . #t)
+                  (clean . "git-lfs clean -- %f")
+                  (smudge . "git-lfs smudge -- %f")))))))

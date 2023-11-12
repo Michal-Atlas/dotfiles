@@ -254,6 +254,7 @@
             ghc
             gimp
             git
+            git-lfs
             gnu-make
             gparted
             graphviz
