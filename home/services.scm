@@ -13,9 +13,9 @@
   #:use-module (home wm misc)
   #:use-module (home wm sway)
   #:use-module (home wm waybar)
-  #:export (configure-services))
+  #:export (get-services))
 
-(define/cp pass (configure-services)
+(define (get-services)
   (cons*
    bash
    files
