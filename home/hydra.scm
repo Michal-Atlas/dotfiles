@@ -19,7 +19,8 @@
                       "cl"
                       "Zotero"
                       "Pictures"
-                      "Music")))
+                      "Music"
+                      ".password-store")))
          (define ((pref p) s)
            (string-append p "=" s "\n"))
 
