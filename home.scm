@@ -20,6 +20,6 @@
   ("hydra"
    (parameterize
        ((services
-         (append hydra:services
+         (append (hydra:services)
                  (get-services))))
      (get-home))))

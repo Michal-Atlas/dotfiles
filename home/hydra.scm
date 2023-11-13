@@ -1,6 +1,7 @@
 (define-module (home hydra)
   #:use-module (ice-9 curried-definitions)
   #:use-module (atlas utils services)
+  #:use-module (home hydra spotifyd)
   #:use-module (gnu home services)
   #:use-module (guix gexp)
   #:use-module (gnu packages ocaml)
@@ -9,8 +10,9 @@
   #:use-module (gnu packages linux)
   #:export (hydra:services))
 
-(define hydra:services
+(define (hydra:services)
   (list
+   (hydra:spotifyd)
    (+s home-files unison
        (let ((roots '("/home/michal_atlas"
                       "ssh://dagon.local//home/michal_atlas"))
