@@ -79,6 +79,7 @@
  sync
  terminals
  tex
+ texlive
  tls
  version-control
  video
@@ -236,6 +237,9 @@
             guix-icons
             hicolor-icon-theme
             oxygen-icons)
+
+  (packages texlive
+            texlive)
 
   (packages packages
             `(,isc-bind "utils")
