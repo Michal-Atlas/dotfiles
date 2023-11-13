@@ -1,5 +1,4 @@
 (define-module (system)
-  #:use-module (atlas utils define)
   #:use-module ((file-systems dagon) #:prefix dagon:)
   #:use-module ((file-systems hydra) #:prefix hydra:)
   #:use-module (srfi srfi-26)
@@ -8,6 +7,7 @@
   #:use-module (gnu system)
   #:use-module (nongnu packages linux)
   #:use-module (nongnu system linux-initrd)
+  #:use-module (gnu system file-systems)
   #:use-module (gnu system keyboard)
   #:use-module (gnu system setuid)
   #:use-module (gnu packages samba)
@@ -17,6 +17,8 @@
   #:use-module (gnu system linux-initrd)
   #:use-module (ice-9 textual-ports)
   #:use-module (ice-9 popen)
+  #:use-module (system base)
+  #:use-module (system btrbk)
   #:use-module (system dagon)
   #:use-module (system hydra)
   #:use-module (system services)
@@ -33,12 +35,21 @@
                   "git" "log" "-1" "--pretty=reference"))))
    " - "))
 
-(define/cp pass (get-system
-                 hostname
-                 file-systems swap-devices mapped-devices
-                 extra-services)
-  (operating-system
-    (host-name hostname)
+(define hostname (make-parameter #f))
+(define services (make-parameter '()))
+(define file-systems (make-parameter '()
+                                     (lambda (fs)
+                                       (append
+                                        %base-file-systems
+                                        fs))))
+(define swap-devices (make-parameter '()))
+(define mapped-devices (make-parameter '()))
+
+(define (get-system)
+  (let ((services (services))
+        (swap-devices (swap-devices)))
+   (operating-system
+    (host-name (hostname))
     (kernel linux)
     (initrd microcode-initrd)
     (initrd-modules (cons "dm-raid" %base-initrd-modules))
@@ -58,38 +69,40 @@
       (bootloader grub-efi-bootloader)
       (targets `("/boot/efi"))))
     (packages %base-packages)
-    (services
-     (append
-      extra-services
-      (pass configure-services)))
+    (services services)
     (name-service-switch %mdns-host-lookup-nss)
-    (file-systems file-systems)
+    (file-systems (file-systems))
     (swap-devices swap-devices)
-    (mapped-devices mapped-devices)))
+    (mapped-devices (mapped-devices)))))
 
-(apply get-system
-       (match (gethostname)
-         ("dagon"
-          (list
-           #:hostname "dagon"
-           #:file-systems dagon:file-systems
-           #:swap-devices dagon:swap-devices
-           #:mapped-devices dagon:mapped-devices
-           #:extra-services dagon:services
-           #:build-machines
-           (list
-            #~(build-machine
-               (name "hydra")
-               (user "michal_atlas")
-               (systems (list "x86_64-linux"))
-               (private-key "/home/michal_atlas/.ssh/id_rsa")
-               (host-key "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINAIrtjcu5p0bORlaVvkqGgeSxD+uUUp114CaXOBOgqQ")))
-           #:btrbk-schedule "24h 4d"))
-         ("hydra"
-          (list
-           #:hostname "hydra"
-           #:file-systems hydra:file-systems
-           #:swap-devices hydra:swap-devices
-           #:mapped-devices hydra:mapped-devices
-           #:extra-services hydra:services
-           #:btrbk-schedule "24h 31d 4w 12m"))))
+(match (gethostname)
+  ("dagon"
+   (parameterize
+       ((hostname "dagon")
+        (file-systems dagon:file-systems)
+        (swap-devices dagon:swap-devices)
+        (mapped-devices dagon:mapped-devices)
+        (build-machines
+         (list
+          #~(build-machine
+             (name "hydra")
+             (user "michal_atlas")
+             (systems (list "x86_64-linux"))
+             (private-key "/home/michal_atlas/.ssh/id_rsa")
+             (host-key "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINAIrtjcu5p0bORlaVvkqGgeSxD+uUUp114CaXOBOgqQ"))))
+        (btrbk-schedule "24h 4d"))
+     (parameterize
+         ((services (append dagon:services
+                            (get-services))))
+       (get-system))))
+  ("hydra"
+   (parameterize
+       ((hostname "hydra")
+        (file-systems hydra:file-systems)
+        (swap-devices hydra:swap-devices)
+        (mapped-devices hydra:mapped-devices)
+        (btrbk-schedule "24h 31d 4w 12m"))
+     (parameterize
+         ((services (append hydra:services
+                            (get-services))))
+       (get-system)))))

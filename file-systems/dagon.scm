@@ -57,4 +57,4 @@
         rpool-root))
 
 (define file-systems
-  (cons* efi root home %base-file-systems))
+  (list efi root home))

@@ -20,14 +20,13 @@
   #:use-module (gnu services file-sharing)
   #:use-module (gnu services nix)
   #:use-module (gnu services databases)
-  #:use-module (atlas utils define)
   #:use-module (system account)
   #:use-module (system btrfs)
   #:use-module (system firmware)
   #:use-module (system packages)
   #:use-module (system base)
   #:use-module (system btrbk)
-  #:export (configure-services))
+  #:export (get-services))
 
 (define services
   (list
@@ -111,13 +110,13 @@
    (&s postgresql)
    (&s ipfs (gateway "/ip4/0.0.0.0/tcp/8080"))))
 
-(define/cp pass (configure-services)
+(define (get-services)
   (cons*
    accounts
    btrfs-maid
    firmware
    packages
-   (pass btrbk)
+   (btrbk)
    (append
     services
-    (pass base-services))))
+    (base-services))))

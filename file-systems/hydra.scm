@@ -42,7 +42,7 @@
 (define rpool-vault (rpool "vault"))
 
 (define file-systems
-  (cons*
+  (list
    efi root home
    (file-system
      (mount-point "/home/michal_atlas/tmp")
@@ -73,8 +73,7 @@
       (alist->file-system-options `(("subvol" . "@torrents")
                                     ,compress)))
      (type "btrfs")
-     (dependencies (list rpool-vault)))
-   %base-file-systems))
+     (dependencies (list rpool-vault)))))
 
 (define swap-devices
  (list (swap-space (target (file-system-label "SWAP")))))
