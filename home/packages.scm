@@ -283,6 +283,7 @@
             maxima
             mosh
             mpv
+            nautilus
             netcat
             nheko
             nix
