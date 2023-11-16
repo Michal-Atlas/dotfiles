@@ -201,7 +201,6 @@
             emacs-rainbow-identifiers
             emacs-realgud
             emacs-rust-mode
-            emacs-scala-mode
             emacs-sly
             emacs-ssh-agency
             emacs-stumpwm-mode
