@@ -43,7 +43,7 @@
                     "Onedrive")
              #~(job "*/10 * * * *"
                     (string-append
-                     #$(file-append procps "/bin/pgrep") " unison >/dev/null || "
+                     #$(file-append procps "/bin/pgrep") " -x unison >/dev/null || "
                      #$(file-append unison "/bin/unison")
                      " -batch -repeat=watch")
                     "Unison")))))
