@@ -18,10 +18,12 @@
   #:use-module (ice-9 textual-ports)
   #:use-module (ice-9 popen)
   #:use-module (system base)
+  #:use-module (system hostname)
   #:use-module (system btrbk)
   #:use-module (system dagon)
   #:use-module (system hydra)
   #:use-module (system services)
+  #:use-module (system wireguard)
   #:export (get-system))
 
 (define (getlabel system)
@@ -35,7 +37,6 @@
                   "git" "log" "-1" "--pretty=reference"))))
    " - "))
 
-(define hostname (make-parameter #f))
 (define services (make-parameter '()))
 (define file-systems (make-parameter '()
                                      (lambda (fs)
@@ -101,7 +102,8 @@
         (file-systems hydra:file-systems)
         (swap-devices hydra:swap-devices)
         (mapped-devices hydra:mapped-devices)
-        (btrbk-schedule "24h 31d 4w 12m"))
+        (btrbk-schedule "24h 31d 4w 12m")
+        (wireguard:keepalive 24))
      (parameterize
          ((services (append hydra:services
                             (get-services))))

@@ -26,6 +26,7 @@
   #:use-module (system packages)
   #:use-module (system base)
   #:use-module (system btrbk)
+  #:use-module (system wireguard)
   #:export (get-services))
 
 (define services
@@ -119,4 +120,5 @@
    (btrbk)
    (append
     services
+    (wireguard:get)
     (base-services))))
