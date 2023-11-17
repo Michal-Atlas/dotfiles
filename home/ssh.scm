@@ -2,6 +2,8 @@
   #:use-module (atlas utils services)
   #:use-module (gnu home services ssh)
   #:use-module (guix gexp)
+  #:use-module (system wireguard)
+  #:use-module (gnu services vpn)
   #:export (ssh))
 
 (define ssh
@@ -24,6 +26,9 @@
 	       (port 10169)
 	       (host-name "hiccup.mazim.cz"))
               (openssh-host
+	       (name "ctrl-c")
+	       (host-name "ctrl-c.club"))
+              (openssh-host
                (name "the-dam")
                (user "atlas")
                (host-name "the-dam.org")
@@ -32,7 +37,17 @@
                                "/.ssh/the-dam")))
               (openssh-host
                (name "metacentrum-plzen1")
-               (host-name "alfrid.meta.zcu.cz")))
+               (host-name "alfrid.meta.zcu.cz"))
+              (openssh-host
+	       (name "oracle")
+	       (host-name (car (string-split
+                                (wireguard-peer-endpoint
+                                 (wireguard:remote-peer))
+                                #\:)))
+               (user "ubuntu")
+               (identity-file (string-append
+                               (getenv "HOME")
+                               "/.ssh/oracle"))))
 	     (map (lambda (q)
 		    (openssh-host
 		     (name (string-append "Fray" q))
