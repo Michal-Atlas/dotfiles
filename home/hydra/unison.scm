@@ -16,11 +16,12 @@
        (list
         #~(job "*/10 * * * *"
                (lambda ()
-                 (if (zero? (system*
-                             #$(file-append procps "/bin/pgrep")
-                             "-x" "unison"))
-                     (system* #$(file-append unison "/bin/unison")))
-                 " -batch -repeat=watch")
+                 (if (not
+                      (zero? (system*
+                              #$(file-append procps "/bin/pgrep")
+                              "-x" "unison")))
+                     (system* #$(file-append unison "/bin/unison")
+                              "-batch" "-repeat=watch")))
                "Unison")))
    (+s home-files unison-files
        (let ((roots '("/home/michal_atlas"
