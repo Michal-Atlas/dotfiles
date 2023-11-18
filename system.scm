@@ -23,7 +23,7 @@
   #:use-module (system dagon)
   #:use-module (system hydra)
   #:use-module (system services)
-  #:use-module (system wireguard)
+  #:use-module (system networks wireguard)
   #:export (get-system))
 
 (define (getlabel system)

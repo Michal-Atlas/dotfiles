@@ -26,7 +26,8 @@
   #:use-module (system packages)
   #:use-module (system base)
   #:use-module (system btrbk)
-  #:use-module (system wireguard)
+  #:use-module (system networks wireguard)
+  #:use-module (system networks yggdrasil)
   #:export (get-services))
 
 (define services
@@ -66,27 +67,11 @@
        (using-setuid? #f)
        (using-pam? #t))
 
-   (+s hosts yggdrasil-hosts
-       (list (host (string-join '("200" "6229" "6335" "8721"
-                                  "7ae1" "6b30" "961e" "c172") ":") "hydra")
-             (host (string-join '("200" "2b5a" "7e80" "7b31"
-                                  "7d15" "6c81" "2563" "62c") ":") "dagon")
-             (host (string-join '("200" "29bd" "a495" "4ad7"
-                                  "f79e" "e29a" "181a" "3872") ":") "lana")))
-
    (&s openssh)
    (&s gpm)
    (&s earlyoom)
    (&s fstrim)
    (&s fail2ban)
-   (&s yggdrasil
-       (json-config
-        '((peers .
-                 #( ;; Czechia
-                   "tls://[2a03:3b40:fe:ab::1]:993"
-                   "tls://37.205.14.171:993"
-                   ;; Germany
-                   "tcp://193.107.20.230:7743")))))
    (&s inputattach)
    (&s qemu-binfmt
        (platforms (lookup-qemu-platforms "arm" "aarch64"
@@ -121,4 +106,5 @@
    (append
     services
     (wireguard:get)
+    (yggdrasil:get)
     (base-services))))

@@ -1,4 +1,4 @@
-(define-module (system wireguard)
+(define-module (system networks wireguard)
   #:use-module (atlas utils services)
   #:use-module (srfi srfi-1)
   #:use-module (system hostname)
