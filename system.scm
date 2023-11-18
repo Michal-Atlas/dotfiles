@@ -86,7 +86,7 @@
         (build-machines
          (list
           #~(build-machine
-             (name "hydra")
+             (name "hydra.local")
              (user "michal_atlas")
              (systems (list "x86_64-linux"))
              (private-key "/home/michal_atlas/.ssh/id_rsa")
