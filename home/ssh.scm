@@ -2,7 +2,7 @@
   #:use-module (atlas utils services)
   #:use-module (gnu home services ssh)
   #:use-module (guix gexp)
-  #:use-module (system wireguard)
+  #:use-module (system networks wireguard)
   #:use-module (gnu services vpn)
   #:export (ssh))
 
