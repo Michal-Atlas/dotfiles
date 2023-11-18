@@ -10,6 +10,12 @@
  (&s home-openssh
      (hosts (append
 	     (list
+              (openssh-host
+               (name "hydra")
+               (host-name "hydra.local"))
+              (openssh-host
+               (name "dagon")
+               (host-name "dagon.local"))
 	      (openssh-host
 	       (name "Myst")
 	       (host-name "34.122.2.188"))
