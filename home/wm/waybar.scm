@@ -21,6 +21,8 @@
                                              (deactivated . "")))))
          (disk . ((format . "{used}/{total}")))
          (tray . ((spacing . 10)))
+         (mpris . ((dynamic-len . 80)
+                   (title-len . 30)))
          (pulseaudio . ((format . "{volume}% ")
                         (format-muted . "--% ")
                         (on-click . "swaymsg exec pavucontrol")))
