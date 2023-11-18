@@ -6,6 +6,8 @@
   #:use-module (guixrus packages emacs)
   #:use-module (nongnu packages mozilla)
   #:use-module (games packages the-ur-quan-masters)
+  #:use-module (guix transformations)
+  #:use-module (guix cpu)
   #:export (packages-services))
 
 (use-package-modules
@@ -90,8 +92,19 @@
  wm
  xdisorg)
 
+(define tuning-target (cpu->gcc-architecture (current-cpu)))
+(define transform
+  (options->transformation
+   `((tune . ,tuning-target))))
+
 (define-syntax-rule (packages why pkgs ...)
-  (+s home-profile why (list pkgs ...)))
+  (+s home-profile why
+      (map
+       (lambda (p)
+         (if (list? p)
+             (cons (transform (car p)) (cdr p))
+             (transform p)))
+       (list pkgs ...))))
 
 (define packages-services
  (list
