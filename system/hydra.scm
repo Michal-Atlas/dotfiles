@@ -32,5 +32,4 @@
                       (openpgp-fingerprint
                        "D45185A2755DAF831F1C3DC63EFBF2BBBB29B99E"))))
                    %default-channels))))))
-   (&s quassel)
    (&s tes3mp-server)))
