@@ -36,7 +36,7 @@
                                                        (class . ,(if
                                                                   (zero? (system
                                                                           #$(file-append procps
-                                                                                         "/bin/pgrep unison >/dev/null")))
+                                                                                         "/bin/pgrep -x unison >/dev/null")))
                                                                   "unigreen"
                                                                   "unired")))))))
                            (return-type . json)
