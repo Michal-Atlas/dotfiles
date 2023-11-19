@@ -58,7 +58,7 @@
           (host
            (car (string-split (car (wireguard-peer-allowed-ips wp)) #\/))
            (string-append "wg-" (wireguard-peer-name wp))))
-        (cons (wireguard:peers))))
+        (wireguard:peers)))
    (&s wireguard
        (addresses
         (wireguard-peer-allowed-ips (peer-by-name)))
