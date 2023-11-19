@@ -1,4 +1,4 @@
-(define-module (file-systems common)
+(define-module (system mounts common)
   #:use-module (ice-9 curried-definitions)
   #:use-module (gnu system mapped-devices)
   #:export (lvm common-flags))

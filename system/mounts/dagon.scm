@@ -1,5 +1,5 @@
-(define-module (file-systems dagon)
-  #:use-module (file-systems common)
+(define-module (system mounts dagon)
+  #:use-module (system mounts common)
   #:use-module (gnu system mapped-devices)
   #:use-module (gnu system file-systems)
   #:export (file-systems

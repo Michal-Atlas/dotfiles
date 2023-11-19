@@ -1,6 +1,6 @@
 (define-module (system)
-  #:use-module ((file-systems dagon) #:prefix dagon:)
-  #:use-module ((file-systems hydra) #:prefix hydra:)
+  #:use-module ((system mounts dagon) #:prefix dagon:)
+  #:use-module ((system mounts hydra) #:prefix hydra:)
   #:use-module (srfi srfi-26)
   #:use-module (ice-9 match)
   #:use-module (guix gexp)

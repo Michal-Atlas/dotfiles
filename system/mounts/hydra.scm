@@ -1,5 +1,5 @@
-(define-module (file-systems hydra)
-  #:use-module (file-systems common)
+(define-module (system mounts hydra)
+  #:use-module (system mounts common)
   #:use-module (gnu system file-systems)
   #:export (file-systems
             mapped-devices
