@@ -13,6 +13,4 @@
   (cons "compress" "zstd"))
 
 (define common-flags
-  (list
-   "noatime"
-   compress))
+  (list compress))
