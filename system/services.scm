@@ -3,6 +3,8 @@
   #:use-module (gnu services shepherd)
   #:use-module (guix gexp)
   #:use-module (gnu packages linux)
+  #:use-module (gnu packages gnome)
+  #:use-module (gnu services dbus)
   #:use-module (gnu services admin)
   #:use-module (gnu services)
   #:use-module (gnu services base)
@@ -32,8 +34,6 @@
 
 (define services
   (list
-   (&s gnome-desktop)
-   (&s gnome-keyring)
    (+s shepherd-root rshare-root
        (list
         (shepherd-service
@@ -100,6 +100,7 @@
 
 (define (get-services)
   (cons*
+   (+s dbus-root gvfs (list gvfs))
    accounts
    btrfs-maid
    firmware
