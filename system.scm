@@ -91,7 +91,7 @@
              (systems (list "x86_64-linux"))
              (private-key "/home/michal_atlas/.ssh/id_rsa")
              (host-key "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINAIrtjcu5p0bORlaVvkqGgeSxD+uUUp114CaXOBOgqQ"))))
-        (btrbk-schedule "24h 4d"))
+        (btrbk-schedule "24h 7d"))
      (parameterize
          ((services (append dagon:services
                             (get-services))))
