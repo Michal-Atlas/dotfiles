@@ -33,6 +33,7 @@
 (define services
   (list
    (&s gnome-desktop)
+   (&s gnome-keyring)
    (+s shepherd-root rshare-root
        (list
         (shepherd-service
