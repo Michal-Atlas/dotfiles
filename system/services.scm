@@ -32,6 +32,7 @@
 
 (define services
   (list
+   (&s gnome-desktop)
    (+s shepherd-root rshare-root
        (list
         (shepherd-service
