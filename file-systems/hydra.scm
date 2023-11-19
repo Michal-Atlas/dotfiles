@@ -16,8 +16,10 @@
       (mount-point "/")
       (device "/dev/mapper/spool-root")
       (options
-       (alist->file-system-options `(("subvol" . "@guix")
-                                     ,compress)))
+       (alist->file-system-options
+        (cons
+         '("subvol" . "@guix")
+         common-flags)))
       (type "btrfs")
       (dependencies (list spool-root))))
 
@@ -34,8 +36,10 @@
    (mount-point "/home")
    (device "/dev/mapper/rpool-home")
    (options
-    (alist->file-system-options `(("subvol" . "@home")
-                                  ,compress)))
+    (alist->file-system-options
+     (cons
+      '("subvol" . "@home")
+      common-flags)))
    (type "btrfs")
    (dependencies (list rpool-home))))
 
@@ -48,30 +52,40 @@
      (mount-point "/home/michal_atlas/tmp")
      (device "/dev/mapper/rpool-vault")
      (options
-      (alist->file-system-options '(("subvol" . "@tmp"))))
+      (alist->file-system-options
+       (cons
+        '("subvol" . "@tmp")
+        common-flags)))
      (type "btrfs")
      (dependencies (list home rpool-vault)))
    (file-system
      (mount-point "/home/michal_atlas/Downloads")
      (device "/dev/mapper/rpool-vault")
      (options
-      (alist->file-system-options '(("subvol" . "@tmp"))))
+      (alist->file-system-options
+       (cons
+        '("subvol" . "@tmp")
+        common-flags)))
      (type "btrfs")
      (dependencies (list home rpool-vault)))
    (file-system
      (mount-point "/home/michal_atlas/Games")
      (device "/dev/mapper/rpool-vault")
      (options
-      (alist->file-system-options `(("subvol" . "@games")
-                                    ,compress)))
+      (alist->file-system-options
+       (cons
+        '("subvol" . "@games")
+        common-flags)))
      (type "btrfs")
      (dependencies (list home rpool-vault)))
    (file-system
      (mount-point "/var/lib/transmission-daemon/downloads/")
      (device "/dev/mapper/rpool-vault")
      (options
-      (alist->file-system-options `(("subvol" . "@torrents")
-                                    ,compress)))
+      (alist->file-system-options
+       (cons
+        '("subvol" . "@torrents")
+        common-flags)))
      (type "btrfs")
      (dependencies (list rpool-vault)))))
 

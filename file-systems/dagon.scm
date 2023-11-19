@@ -24,8 +24,10 @@
     (device "/dev/mapper/rpool-root")
     (type "btrfs")
     (options
-     (alist->file-system-options `(("subvol" . "@guix")
-                                   ,compress)))
+     (alist->file-system-options
+      (cons
+       '("subvol" . "@guix")
+       common-flags)))
     (dependencies (list rpool-root))))
 
 (define efi
@@ -40,7 +42,7 @@
    (device "/dev/mapper/crypthome")
    (type "btrfs")
    (options
-    (alist->file-system-options `(,compress)))
+    (alist->file-system-options common-flags))
    (dependencies (list unlock-home))))
 
 (define rpool-swap (rpool "swap"))
