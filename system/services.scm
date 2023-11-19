@@ -100,7 +100,7 @@
 
 (define (get-services)
   (cons*
-   (+s dbus-root gvfs (list gvfs))
+   (+s polkit gvfs (list gvfs))
    accounts
    btrfs-maid
    firmware
