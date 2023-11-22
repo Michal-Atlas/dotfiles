@@ -79,6 +79,7 @@
  skribilo
  ssh
  sync
+ telegram
  terminals
  tex
  texlive
@@ -327,6 +328,7 @@
             slurp
             supertux
             supertuxkart
+            telegram-desktop
             tealdeer
             texlive-scheme-basic
             translate-shell

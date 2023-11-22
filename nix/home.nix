@@ -9,11 +9,8 @@ in {
     stateVersion = "23.05";
     packages = with pkgs; [
       discord
-      insomnia
       jetbrains.idea-ultimate
-      spot
       teams-for-linux
-      telegram-desktop
       zotero
     ];
   };
