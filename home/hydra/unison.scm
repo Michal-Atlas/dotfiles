@@ -33,11 +33,11 @@
                       (let ((unison-pid (get-unison-pid)))
                         (when unison-pid
                           (kill unison-pid SIGTERM)
-                          (sleep 3)))
+                          (sleep 5)))
 
                       (unless (get-unison-pid)
                         (system* #$(file-append unison "/bin/unison")
-                                 "-batch" "-repeat=watch"))))
+                                 "-batch" "-repeat=watch" "-silent"))))
                "Unison")))
    (+s home-files unison-files
        (let ((roots '("/home/michal_atlas"
