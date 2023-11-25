@@ -15,22 +15,24 @@
    (+s home-mcron unison-mcron
        (list
         #~(job "*/10 * * * *"
-               (lambda ()
-                 (use-modules (ice-9 popen)
-                              (ice-9 textual-ports))
+               #$(program-file
+                  "unison-kill-sync"
+                  #~(begin
+                      (use-modules (ice-9 popen)
+                                   (ice-9 textual-ports))
 
-                 (let ((unison-pid
-                        (string->number
-                         (string-trim-both
-                          (get-string-all
-                           (open-input-pipe
-                            #$(file-append
-                               procps
-                               "/bin/pgrep -x unison")))))))
-                   (when unison-pid (kill unison-pid SIGTERM)))
+                      (let ((unison-pid
+                             (string->number
+                              (string-trim-both
+                               (get-string-all
+                                (open-input-pipe
+                                 #$(file-append
+                                    procps
+                                    "/bin/pgrep -x unison")))))))
+                        (when unison-pid (kill unison-pid SIGTERM)))
 
-                 (system* #$(file-append unison "/bin/unison")
-                          "-batch" "-repeat=watch"))
+                      (system* #$(file-append unison "/bin/unison")
+                               "-batch" "-repeat=watch")))
                "Unison")))
    (+s home-files unison-files
        (let ((roots '("/home/michal_atlas"
