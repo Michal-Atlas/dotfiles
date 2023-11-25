@@ -20,7 +20,6 @@
    bash
    files
    git
-   lisp
    mcron
    nix
    nyxt
@@ -28,6 +27,7 @@
    wm:sway
    wm:waybar
    (append
+    lisp
     packages-services
     wm:misc
     base-services)))
