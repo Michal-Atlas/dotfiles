@@ -29,7 +29,9 @@
                                  #$(file-append
                                     procps
                                     "/bin/pgrep -x unison")))))))
-                        (when unison-pid (kill unison-pid SIGTERM)))
+                        (when unison-pid
+                          (kill unison-pid SIGTERM)
+                          (sleep 5)))
 
                       (system* #$(file-append unison "/bin/unison")
                                "-batch" "-repeat=watch")))
