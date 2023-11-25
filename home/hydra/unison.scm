@@ -21,20 +21,23 @@
                       (use-modules (ice-9 popen)
                                    (ice-9 textual-ports))
 
-                      (let ((unison-pid
-                             (string->number
-                              (string-trim-both
-                               (get-string-all
-                                (open-input-pipe
-                                 #$(file-append
-                                    procps
-                                    "/bin/pgrep -x unison")))))))
+                      (define (get-unison-pid)
+                        (string->number
+                         (string-trim-both
+                          (get-string-all
+                           (open-input-pipe
+                            #$(file-append
+                               procps
+                               "/bin/pgrep -x unison"))))))
+
+                      (let ((unison-pid (get-unison-pid)))
                         (when unison-pid
                           (kill unison-pid SIGTERM)
-                          (sleep 5)))
+                          (sleep 3)))
 
-                      (system* #$(file-append unison "/bin/unison")
-                               "-batch" "-repeat=watch")))
+                      (unless (get-unison-pid)
+                        (system* #$(file-append unison "/bin/unison")
+                                 "-batch" "-repeat=watch"))))
                "Unison")))
    (+s home-files unison-files
        (let ((roots '("/home/michal_atlas"
