@@ -6,6 +6,7 @@
   #:use-module (guixrus packages emacs)
   #:use-module (nongnu packages mozilla)
   #:use-module (games packages the-ur-quan-masters)
+  #:use-module (games packages minecraft)
   #:use-module (guix transformations)
   #:use-module (guix cpu)
   #:export (packages-services))
@@ -316,6 +317,7 @@
             playerctl
             podman
             pre-commit
+            prismlauncher
             python
             python-ipython
             recutils
