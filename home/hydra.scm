@@ -4,6 +4,7 @@
   #:use-module (home hydra unison)
   #:use-module (guix gexp)
   #:use-module (gnu home services mcron)
+  #:use-module (gnu home services messaging)
   #:use-module (gnu packages sync)
   #:export (hydra:services))
 
@@ -11,6 +12,7 @@
   (append
    (hydra:unison:get)
    (list
+    (&s home-znc)
     (hydra:spotifyd)
     (+s home-mcron hydra-extensions
         (list #~(job "0 6 * * *"
