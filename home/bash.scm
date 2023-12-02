@@ -82,4 +82,6 @@
         ("_JAVA_AWT_WM_NONREPARENTING" . "1")
         ("PATH" . "$PATH:$HOME/.bin/")
         ("GUIX_SANDBOX_HOME" . "$HOME/Games")
-        ("ALTERNATE_EDITOR" . "")))))
+        ("ALTERNATE_EDITOR" . "")
+        ("HISTFILESIZE" . "-1")
+        ("HISTSIZE" . "-1")))))
