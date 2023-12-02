@@ -14,6 +14,7 @@
   #:use-module (gnu packages linux)
   #:use-module (gnu packages python-xyz)
   #:use-module (gnu packages wm)
+  #:use-module (gnu packages xorg)
   #:export (wm:sway))
 
 (define my-layout
@@ -285,7 +286,7 @@ exec to all your commands"
         (bar
          ((position "top")
           (swaybar_command waybar)))
-
+        (exec ,(file-append xhost "/bin/xhost +si:localuser:root"))
         (exec swayidle)
         (exec ,(file-append i3-autotiling "/bin/autotiling"))
         (exec ,(file-append mako "/bin/mako"))))))
