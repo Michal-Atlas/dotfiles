@@ -35,17 +35,6 @@
 
 (define services
   (list
-   (+s shepherd-root rshare-root
-       (list
-        (shepherd-service
-         (provision '(rshare-root))
-         (requirement '(file-systems))
-         (one-shot? #t)
-         (start #~(make-forkexec-constructor
-                   (list #$(file-append util-linux+udev
-                                        "/bin/mount")
-                         "--make-rshared" "/")))
-         (stop #~(make-kill-destructor)))))
    (&s file-database)
    (&s package-database)
    (+s etc podman-policy
