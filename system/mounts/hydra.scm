@@ -12,16 +12,9 @@
 (define spool-root (spool "root"))
 
 (define root
-  (file-system
-      (mount-point "/")
-      (device "/dev/mapper/spool-root")
-      (options
-       (alist->file-system-options
-        (cons
-         '("subvol" . "@guix")
-         common-flags)))
-      (type "btrfs")
-      (dependencies (list spool-root))))
+  (fs "/dev/mapper/spool-root" "/" (list spool-root)
+      #:subvol "@guix"
+      #:flags '(shared)))
 
 (define efi
   (file-system
@@ -32,62 +25,29 @@
 (define rpool-home (rpool "home"))
 
 (define home
- (file-system
-   (mount-point "/home")
-   (device "/dev/mapper/rpool-home")
-   (options
-    (alist->file-system-options
-     (cons
-      '("subvol" . "@home")
-      common-flags)))
-   (type "btrfs")
-   (dependencies (list rpool-home))))
+  (fs "/dev/mapper/rpool-home" "/home" (list rpool-home)
+      #:subvol "@home"))
 
 (define rpool-vault (rpool "vault"))
 
 (define file-systems
   (list
    efi root home
-   (file-system
-     (mount-point "/home/michal_atlas/tmp")
-     (device "/dev/mapper/rpool-vault")
-     (options
-      (alist->file-system-options
-       (cons
-        '("subvol" . "@tmp")
-        common-flags)))
-     (type "btrfs")
-     (dependencies (list home rpool-vault)))
-   (file-system
-     (mount-point "/home/michal_atlas/Downloads")
-     (device "/dev/mapper/rpool-vault")
-     (options
-      (alist->file-system-options
-       (cons
-        '("subvol" . "@tmp")
-        common-flags)))
-     (type "btrfs")
-     (dependencies (list home rpool-vault)))
-   (file-system
-     (mount-point "/home/michal_atlas/Games")
-     (device "/dev/mapper/rpool-vault")
-     (options
-      (alist->file-system-options
-       (cons
-        '("subvol" . "@games")
-        common-flags)))
-     (type "btrfs")
-     (dependencies (list home rpool-vault)))
-   (file-system
-     (mount-point "/var/lib/transmission-daemon/downloads/")
-     (device "/dev/mapper/rpool-vault")
-     (options
-      (alist->file-system-options
-       (cons
-        '("subvol" . "@torrents")
-        common-flags)))
-     (type "btrfs")
-     (dependencies (list rpool-vault)))))
+   (fs "/dev/mapper/rpool-vault" "/home/michal_atlas/tmp"
+       (list home rpool-vault)
+       #:subvol "@tmp")
+   (fs "/dev/mapper/rpool-vault" "/home/michal_atlas/Downloads"
+       (list home rpool-vault)
+       #:subvol "@tmp")
+   (fs "/dev/mapper/rpool-vault" "/home/michal_atlas/Games"
+       (list home rpool-vault)
+       #:subvol "@games")
+   (fs "/dev/mapper/rpool-vault" "/var/lib/transmission-daemon/downloads/"
+       (list rpool-vault)
+       #:subvol "@torrents")
+   (fs "/dev/mapper/rpool-vault" "/var/lib/libvirt"
+       (list rpool-vault)
+       #:subvol "@vm")))
 
 (define swap-devices
  (list (swap-space (target (file-system-label "SWAP")))))

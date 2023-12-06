@@ -19,16 +19,9 @@
    (type luks-device-mapping)))
 
 (define root
-  (file-system
-    (mount-point "/")
-    (device "/dev/mapper/rpool-root")
-    (type "btrfs")
-    (options
-     (alist->file-system-options
-      (cons
-       '("subvol" . "@guix")
-       common-flags)))
-    (dependencies (list rpool-root))))
+  (fs "/dev/mapper/rpool-root" "/" (list rpool-root)
+      #:subvol "@guix"
+      #:flags '(shared)))
 
 (define efi
   (file-system
@@ -37,13 +30,7 @@
    (type "vfat")))
 
 (define home
- (file-system
-   (mount-point "/home")
-   (device "/dev/mapper/crypthome")
-   (type "btrfs")
-   (options
-    (alist->file-system-options common-flags))
-   (dependencies (list unlock-home))))
+  (fs "/dev/mapper/crypthome" "/home" (list unlock-home)))
 
 (define rpool-swap (rpool "swap"))
 

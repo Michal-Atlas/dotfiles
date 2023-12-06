@@ -1,7 +1,8 @@
 (define-module (system mounts common)
   #:use-module (ice-9 curried-definitions)
   #:use-module (gnu system mapped-devices)
-  #:export (lvm common-flags))
+  #:use-module (gnu system file-systems)
+  #:export (lvm fs))
 
 (define ((lvm pool) lv)
   (mapped-device
@@ -9,8 +10,23 @@
    (target (string-append pool "-" lv))
    (type lvm-device-mapping)))
 
-(define compress
-  (cons "compress" "zstd"))
+(define common-options
+  '(("compress" . "zstd")))
 
 (define common-flags
-  (list compress))
+  '(no-atime))
+
+(define* (fs source target
+             #:optional (dependencies '())
+             #:key (flags '()) (options '()) subvol)
+  (file-system
+   (mount-point target)
+   (device source)
+   (type "btrfs")
+   (flags (append flags common-flags))
+   (options
+    (alist->file-system-options
+     (let ((opts (append options common-options)))
+       (if subvol (cons `("subvol" . ,subvol) opts)
+           opts))))
+   (dependencies dependencies)))
