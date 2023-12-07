@@ -45,7 +45,7 @@
           ".." "dotfiles"
           #:recursive? #t
           #:select? (lambda (file _)
-                      (eq? (string-ref (basename file) 0) #\.)))
+                      (not (eq? (string-ref (basename file) 0) #\.))))
          "/system.scm")))
    (&s file-database)
    (&s package-database)
