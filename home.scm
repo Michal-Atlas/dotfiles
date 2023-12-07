@@ -17,14 +17,11 @@
 
 (match (gethostname)
   ("dagon"
-   (parameterize
-       ((services (get-services))
-        (unison-remote "hydra.local"))
-     (get-home)))
+   (parameterize ((unison-remote "hydra.local"))
+    (parameterize ((services (get-services)))
+      (get-home))))
   ("hydra"
-   (parameterize
-       ((services
-         (append (hydra:services)
-                 (get-services)))
-        (unison-remote "dagon.local"))
-     (get-home))))
+   (parameterize ((unison-remote "dagon.local"))
+     (parameterize ((services (append (hydra:services)
+                                      (get-services))))
+       (get-home)))))

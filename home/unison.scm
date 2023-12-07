@@ -15,7 +15,10 @@
 (define (unison-get)
   (+s home-files unison-files
       (let ((roots `("/home/michal_atlas"
-                     ,(string-append "ssh://" (unison:remote) "//home/michal_atlas")))
+                     ,(string-append
+                       "ssh://"
+                       (unison-remote)
+                       "//home/michal_atlas")))
             (paths '("Sync"
                      "Documents"
                      "cl"

@@ -10,6 +10,7 @@
   #:use-module (home nyxt)
   #:use-module (home packages)
   #:use-module (home ssh)
+  #:use-module (home unison)
   #:use-module (home wm misc)
   #:use-module (home wm sway)
   #:use-module (home wm waybar)
@@ -17,6 +18,7 @@
 
 (define (get-services)
   (cons*
+   (unison-get)
    bash
    files
    git
