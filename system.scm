@@ -1,3 +1,5 @@
+(add-to-load-path (dirname (current-filename)))
+
 (define-module (system)
   #:use-module ((system mounts dagon) #:prefix dagon:)
   #:use-module ((system mounts hydra) #:prefix hydra:)

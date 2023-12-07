@@ -1,3 +1,5 @@
+(add-to-load-path (dirname (current-filename)))
+
 (define-module (home)
   #:use-module (ice-9 match)
   #:use-module (gnu home)
