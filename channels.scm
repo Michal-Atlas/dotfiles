@@ -1,9 +1,10 @@
 (define-module (channels)
   #:use-module (guix channels)
   #:use-module (guix gexp)
-  #:export (%channels))
+  #:export (%channels
+            %channels-gexp))
 
-(define %channels
+(define %channels-gexp
  #~(list
     (channel
      (name 'nonguix)
@@ -64,3 +65,7 @@
        (openpgp-fingerprint
         "C9BE B8A0 4458 FDDF 1268 1B39 029D 8EB7 7E18 D68C"))))
     %default-guix-channel))
+
+(define %channels
+  (eval (gexp->approximate-sexp %channels-gexp)
+        (resolve-module '(channels))))
