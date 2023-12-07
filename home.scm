@@ -5,6 +5,7 @@
   #:use-module (gnu home)
   #:use-module (home services)
   #:use-module (home hydra)
+  #:use-module (home unison)
   #:export (get-home))
 
 (define services (make-parameter '()))
@@ -17,11 +18,13 @@
 (match (gethostname)
   ("dagon"
    (parameterize
-       ((services (get-services)))
+       ((services (get-services))
+        (unison-remote "hydra.local"))
      (get-home)))
   ("hydra"
    (parameterize
        ((services
          (append (hydra:services)
-                 (get-services))))
+                 (get-services)))
+        (unison-remote "dagon.local"))
      (get-home))))

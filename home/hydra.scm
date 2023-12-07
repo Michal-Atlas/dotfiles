@@ -1,7 +1,6 @@
 (define-module (home hydra)
   #:use-module (atlas utils services)
   #:use-module (home hydra spotifyd)
-  #:use-module (home hydra unison)
   #:use-module (guix gexp)
   #:use-module (gnu home services mcron)
   #:use-module (gnu home services messaging)
@@ -9,14 +8,12 @@
   #:export (hydra:services))
 
 (define (hydra:services)
-  (append
-   (hydra:unison:get)
-   (list
-    (&s home-znc)
-    (hydra:spotifyd)
-    (+s home-mcron hydra-extensions
-        (list #~(job "0 6 * * *"
-                     (string-append
-                      #$(file-append onedrive "/bin/onedrive")
-                      " --synchronize")
-                     "Onedrive"))))))
+  (list
+   (&s home-znc)
+   (hydra:spotifyd)
+   (+s home-mcron hydra-extensions
+       (list #~(job "0 6 * * *"
+                    (string-append
+                     #$(file-append onedrive "/bin/onedrive")
+                     " --synchronize")
+                    "Onedrive")))))
