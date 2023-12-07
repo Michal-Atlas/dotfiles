@@ -209,7 +209,8 @@ exec to all your commands"
                      "unison-wait"
                      #~(begin
                          (system*
-                          #$(file-append unison "/bin/unison"))
+                          #$(file-append unison "/bin/unison")
+                          "-repeat=watch")
                          (sleep 3)))))
 
              ("Return" ,(file-append emacs-pgtk "/bin/emacsclient -c"))
