@@ -73,7 +73,8 @@
         ("ipfs" . "sudo -u ipfs bash --login")
         ("sw" . "swayhide")
         ("cat" . "bat -p")
-        ("cd" . "pushd")))
+        ("cd" . "pushd")
+        ("u" . "unison")))
 
      (environment-variables
       `(("BROWSER" . "firefox") ("EDITOR" . "emacsclient")
