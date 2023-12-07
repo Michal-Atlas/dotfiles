@@ -1,5 +1,5 @@
 (define-module (home services)
-  #:use-module (atlas utils define)
+  #:use-module (atlas utils services)
   #:use-module (home base)
   #:use-module (home bash)
   #:use-module (home files)
@@ -14,10 +14,12 @@
   #:use-module (home wm misc)
   #:use-module (home wm sway)
   #:use-module (home wm waybar)
+  #:use-module (rde home services bittorrent)
   #:export (get-services))
 
 (define (get-services)
   (cons*
+   (&s home-transmission (auto-start? #t))
    (unison-get)
    bash
    files

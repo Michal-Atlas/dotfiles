@@ -95,9 +95,6 @@
    (&s guix-publish
        (host "0.0.0.0")
        (advertise? #t))
-   (&s transmission-daemon
-       (rpc-bind-address "127.0.0.1")
-       (ratio-limit-enabled? #t))
    (&s nix (extra-config
             '("experimental-features = nix-command flakes\n"
               "trusted-users = @wheel\n")))
