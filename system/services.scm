@@ -23,6 +23,7 @@
   #:use-module (gnu services file-sharing)
   #:use-module (gnu services nix)
   #:use-module (gnu services databases)
+  #:use-module (gnu services home)
   #:use-module (system account)
   #:use-module (system btrfs)
   #:use-module (system firmware)
@@ -32,10 +33,14 @@
   #:use-module (system networks wireguard)
   #:use-module (system networks yggdrasil)
   #:use-module (system networks zerotier)
-  #:export (get-services))
+  #:export (get-services home))
+
+(define home (make-parameter #f))
 
 (define services
   (list
+   (&s guix-home #:config
+       `(("michal_atlas" . ,(home))))
    (&s unattended-upgrade
        (schedule "0 20 */3 * *")
        (channels %channels-gexp)

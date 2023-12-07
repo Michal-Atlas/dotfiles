@@ -3,6 +3,7 @@
 (define-module (system)
   #:use-module ((system mounts dagon) #:prefix dagon:)
   #:use-module ((system mounts hydra) #:prefix hydra:)
+  #:use-module (home)
   #:use-module (srfi srfi-26)
   #:use-module (ice-9 match)
   #:use-module (guix gexp)
@@ -97,7 +98,8 @@
         (wireguard:keepalive 24))
      (parameterize
          ((services (append dagon:services
-                            (get-services))))
+                            (get-services)))
+          (home (home-by-host (hostname))))
        (get-system))))
   ("hydra"
    (parameterize
@@ -109,5 +111,6 @@
         (wireguard:keepalive 24))
      (parameterize
          ((services (append hydra:services
-                            (get-services))))
+                            (get-services)))
+          (home (home-by-host (hostname))))
        (get-system)))))
