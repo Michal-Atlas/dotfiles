@@ -39,8 +39,6 @@
 
 (define services
   (list
-   (&s guix-home #:config
-       `(("michal_atlas" . ,(home))))
    (&s unattended-upgrade
        (schedule "0 20 */3 * *")
        (channels %channels-gexp)
@@ -105,6 +103,8 @@
 (define (get-services)
   (cons*
    (+s polkit gvfs (list gvfs))
+   (&s guix-home #:config
+       `(("michal_atlas" . ,(home))))
    accounts
    btrfs-maid
    firmware

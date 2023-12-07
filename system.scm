@@ -79,37 +79,36 @@
     (swap-devices swap-devices)
     (mapped-devices (mapped-devices)))))
 
-(match (gethostname)
-  ("dagon"
-   (parameterize
-       ((hostname "dagon")
-        (file-systems dagon:file-systems)
-        (swap-devices dagon:swap-devices)
-        (mapped-devices dagon:mapped-devices)
-        (build-machines
-         (list
-          #~(build-machine
-             (name "hydra.local")
-             (user "michal_atlas")
-             (systems (list "x86_64-linux"))
-             (private-key "/home/michal_atlas/.ssh/id_rsa")
-             (host-key "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINAIrtjcu5p0bORlaVvkqGgeSxD+uUUp114CaXOBOgqQ"))))
-        (btrbk-schedule "24h 7d")
-        (wireguard:keepalive 24))
-     (parameterize ((home (home-by-host (hostname))))
-       (parameterize
-           ((services (append dagon:services
-                              (get-services))))
-         (get-system)))))
-  ("hydra"
-   (parameterize
-       ((hostname "hydra")
-        (file-systems hydra:file-systems)
-        (swap-devices hydra:swap-devices)
-        (mapped-devices hydra:mapped-devices)
-        (btrbk-schedule "24h 31d 4w 12m")
-        (wireguard:keepalive 24))
-     (parameterize ((home (home-by-host (hostname))))
+(parameterize ((home current-home))
+ (match (gethostname)
+   ("dagon"
+    (parameterize
+        ((hostname "dagon")
+         (file-systems dagon:file-systems)
+         (swap-devices dagon:swap-devices)
+         (mapped-devices dagon:mapped-devices)
+         (build-machines
+          (list
+           #~(build-machine
+              (name "hydra.local")
+              (user "michal_atlas")
+              (systems (list "x86_64-linux"))
+              (private-key "/home/michal_atlas/.ssh/id_rsa")
+              (host-key "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINAIrtjcu5p0bORlaVvkqGgeSxD+uUUp114CaXOBOgqQ"))))
+         (btrbk-schedule "24h 7d")
+         (wireguard:keepalive 24))
+      (parameterize
+          ((services (append dagon:services
+                             (get-services))))
+        (get-system))))
+   ("hydra"
+    (parameterize
+        ((hostname "hydra")
+         (file-systems hydra:file-systems)
+         (swap-devices hydra:swap-devices)
+         (mapped-devices hydra:mapped-devices)
+         (btrbk-schedule "24h 31d 4w 12m")
+         (wireguard:keepalive 24))
       (parameterize
           ((services (append hydra:services
                              (get-services))))

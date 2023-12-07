@@ -6,7 +6,8 @@
   #:use-module (home services)
   #:use-module (home hydra)
   #:use-module (home unison)
-  #:export (home-by-host))
+  #:export (home-by-host
+            current-home))
 
 (define services (make-parameter '()))
 
@@ -28,4 +29,7 @@
            (get-home)))))
    host))
 
-(home-by-host (gethostname))
+(define current-home
+  (home-by-host (gethostname)))
+
+current-home
