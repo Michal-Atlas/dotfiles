@@ -68,4 +68,4 @@
 
 (define %channels
   (eval (gexp->approximate-sexp %channels-gexp)
-        (resolve-module '(channels))))
+        (current-module)))

@@ -38,7 +38,7 @@
   (list
    (&s unattended-upgrade
        (schedule "0 20 */3 * *")
-       (channels %channels)
+       (channels %channels-gexp)
        (operating-system-file
         (file-append
          (local-file
