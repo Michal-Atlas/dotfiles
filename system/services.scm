@@ -1,4 +1,5 @@
 (define-module (system services)
+  #:use-module (channels)
   #:use-module (atlas utils services)
   #:use-module (gnu services shepherd)
   #:use-module (guix gexp)
@@ -35,6 +36,17 @@
 
 (define services
   (list
+   (&s unattended-upgrade
+       (schedule "0 20 */3 * *")
+       (channels %channels)
+       (operating-system-file
+        (file-append
+         (local-file
+          ".." "dotfiles"
+          #:recursive? #t
+          #:select? (lambda (file _)
+                      (eq? (string-ref (basename file) 0) #\.)))
+         "/system.scm")))
    (&s file-database)
    (&s package-database)
    (+s etc podman-policy
