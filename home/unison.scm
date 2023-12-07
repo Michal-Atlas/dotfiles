@@ -25,7 +25,7 @@
                      "Zotero"
                      "Pictures"
                      "Music"
-                     ".password-store")))
+                     ".local/state/password-store")))
         (define ((pref p) s)
           (string-append p "=" s "\n"))
 

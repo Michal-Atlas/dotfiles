@@ -309,7 +309,6 @@
             pandoc
             parallel
             pass-otp
-            password-store
             patchelf
             pavucontrol
             perl

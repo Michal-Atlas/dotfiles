@@ -9,6 +9,7 @@
   #:use-module (home nix)
   #:use-module (home nyxt)
   #:use-module (home packages)
+  #:use-module (home pass)
   #:use-module (home ssh)
   #:use-module (home unison)
   #:use-module (home wm misc)
@@ -20,6 +21,7 @@
 (define (get-services)
   (cons*
    (&s home-transmission (auto-start? #t))
+   pass
    (unison-get)
    bash
    files
