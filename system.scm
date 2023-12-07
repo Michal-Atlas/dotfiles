@@ -96,11 +96,11 @@
              (host-key "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINAIrtjcu5p0bORlaVvkqGgeSxD+uUUp114CaXOBOgqQ"))))
         (btrbk-schedule "24h 7d")
         (wireguard:keepalive 24))
-     (parameterize
-         ((services (append dagon:services
-                            (get-services)))
-          (home (home-by-host (hostname))))
-       (get-system))))
+     (parameterize ((home (home-by-host (hostname))))
+       (parameterize
+           ((services (append dagon:services
+                              (get-services))))
+         (get-system)))))
   ("hydra"
    (parameterize
        ((hostname "hydra")
@@ -109,8 +109,8 @@
         (mapped-devices hydra:mapped-devices)
         (btrbk-schedule "24h 31d 4w 12m")
         (wireguard:keepalive 24))
-     (parameterize
-         ((services (append hydra:services
-                            (get-services)))
-          (home (home-by-host (hostname))))
-       (get-system)))))
+     (parameterize ((home (home-by-host (hostname))))
+      (parameterize
+          ((services (append hydra:services
+                             (get-services))))
+        (get-system))))))
