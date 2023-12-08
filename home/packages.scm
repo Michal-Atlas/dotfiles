@@ -9,6 +9,8 @@
   #:use-module (games packages minecraft)
   #:use-module (guix transformations)
   #:use-module (guix cpu)
+  #:use-module ((emacs packages melpa)
+                #:select (emacs-shen-elisp))
   #:export (packages-services))
 
 (use-package-modules
@@ -347,4 +349,9 @@
             xdg-utils
             xdot
             xonotic
-            yt-dlp)))
+            yt-dlp)
+
+  (packages shen
+            emacs-shen-elisp
+            carp
+            emacs-carp)))
