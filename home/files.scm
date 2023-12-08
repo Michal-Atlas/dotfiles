@@ -36,17 +36,6 @@
         ,(file-fetch
           "https://git.sr.ht/~michal_atlas/www/blob/0d74b8802a0c9e820c38e41cfe920f1bdbb06746/assets/mlxan/carcass-mountain/portraits/weeping-priest.jpeg"
           "1MnHsYKJpI/h8zJa01MtPjgf/UMtSLZQ7YWcslj1Xxc="))
-       (".bin/pp"
-        ,(program-file "pp"
-                       #~(begin
-                           (use-modules (ice-9 pretty-print))
-
-                           (call-with-input-file (cadr (command-line))
-                             (lambda (f)
-                               (let loop ((r (read f)))
-                                 (unless (eof-object? r)
-                                   (pretty-print r)
-                                   (loop (read f)))))))))
        (".bin/docker"
         ,(program-file "docker"
                        #~(apply execlp

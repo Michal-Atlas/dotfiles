@@ -4,6 +4,7 @@
   #:use-module (guix gexp)
   #:use-module (gnu packages base)
   #:use-module (gnu packages version-control)
+  #:use-module (gnu packages rust-apps)
   #:use-module (gnu packages package-management)
   #:use-module (gnu packages curl)
   #:use-module (gnu packages rdesktop)
@@ -36,6 +37,22 @@
         "*)" nix "/bin/nix \"${@:1}\";; "
         "esac;"
         " }")
+       (mixed-text-file
+        "bashrc-pp"
+        "function pp() { "
+        (program-file
+         "pp"
+         #~(begin
+             (use-modules (ice-9 pretty-print))
+             (call-with-input-file (cadr (command-line))
+               (lambda (f)
+                 (let loop ((r (read f)))
+                   (unless (eof-object? r)
+                     (pretty-print r)
+                     (loop (read f))))))))
+        " $1 | "
+        (file-append bat "/bin/bat")
+        " -pl lisp; }")
        (let* ((default-color "\\[\\e[0m\\]")
               (color
                (lambda (color text)
