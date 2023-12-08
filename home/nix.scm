@@ -2,12 +2,9 @@
   #:use-module (atlas utils services)
   #:use-module (atlas home services nix)
   #:use-module (guix gexp)
-  #:use-module (guix git-download)
   #:export (nix))
 
 (define nix
  (&s home-nix
      (flake
-      (local-file "../nix" "nix-home"
-                  #:recursive? #t
-                  #:select? (git-predicate "..")))))
+      (local-file "../nix" "nix-home" #:recursive? #t))))

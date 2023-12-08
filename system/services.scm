@@ -33,7 +33,6 @@
   #:use-module (system networks wireguard)
   #:use-module (system networks yggdrasil)
   #:use-module (system networks zerotier)
-  #:use-module (guix git-download)
   #:export (get-services home))
 
 (define home (make-parameter #f))
@@ -48,7 +47,8 @@
          (local-file
           ".." "dotfiles"
           #:recursive? #t
-          #:select? (git-predicate ".."))
+          #:select? (lambda (file _)
+                      (not (eq? (string-ref (basename file) 0) #\.))))
          "/system.scm")))
    (&s file-database)
    (&s package-database)
@@ -98,7 +98,6 @@
               "trusted-users = @wheel\n")))
    (&s bluetooth)
    (&s postgresql)
-   #;
    (&s ipfs (gateway "/ip4/0.0.0.0/tcp/8080"))))
 
 (define (get-services)
