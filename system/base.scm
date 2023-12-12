@@ -14,9 +14,6 @@
 
 (define (base-services)
   (modify-services %desktop-services
-    (elogind-service-type configuration =>
-                          (elogind-configuration
-                           (handle-lid-switch 'hibernate)))
     (network-manager-service-type configuration =>
                                   (network-manager-configuration
                                    (inherit configuration)
