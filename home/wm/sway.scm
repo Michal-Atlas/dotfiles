@@ -265,11 +265,11 @@ exec to all your commands"
                        dirs)))
              ,@(map (compose (lambda (q) `(,q ,(string-append "workspace number " q)))
                              number->string)
-                    (iota 9))
+                    (iota 10))
              ,@(map (compose (lambda (q) `(("Shift" ,q)
                                       ,(string-append "move container to workspace number " q)))
                              number->string)
-                    (iota 9))
+                    (iota 10))
              ("b" splith)
              ("v" splitv)
 
