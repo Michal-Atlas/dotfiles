@@ -3,6 +3,7 @@
   #:use-module (atlas utils services)
   #:use-module (gnu)
   #:use-module (atlas packages emacs-xyz)
+  #:use-module (atlas packages shen)
   #:use-module (guixrus packages emacs)
   #:use-module (nongnu packages mozilla)
   #:use-module (games packages the-ur-quan-masters)
@@ -18,6 +19,7 @@
  base
  bittorrent
  certs
+ chez
  code
  commencement
  compression
@@ -67,6 +69,7 @@
  parallel
  password-utils
  perl
+ prolog
  pkg-config
  pulseaudio
  python
@@ -354,4 +357,8 @@
   (packages shen
             emacs-shen-elisp
             carp
-            emacs-carp)))
+            emacs-carp
+            swi-prolog
+            chez-scheme
+            shen-scheme
+            shen-c)))
