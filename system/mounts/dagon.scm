@@ -46,4 +46,7 @@
         rpool-root))
 
 (define file-systems
-  (list efi root home))
+  (list efi root home
+        (fs "/home/michal_atlas/tmp"
+            "/home/michal_atlas/Downloads"
+            #:flags '(bind-mount))))
