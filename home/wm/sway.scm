@@ -133,16 +133,7 @@ exec to all your commands"
         (output "DP-1"
                 ((position "0,0")))
         ,@(sway-exec-bindings
-           `(("u" (,(file-append foot "/bin/foot")
-                   ,(program-file
-                     "unison-wait"
-                     #~(begin
-                         (system*
-                          #$(file-append unison "/bin/unison")
-                          "-repeat=watch")
-                         (sleep 3)))))
-
-             ("Return" ,(file-append emacs-pgtk "/bin/emacsclient -c"))
+           `(("Return" ,(file-append emacs-pgtk "/bin/emacsclient -c"))
              ("d" ,(file-append bemenu (string-join
                                         (cons
                                          "/bin/bemenu-run"
