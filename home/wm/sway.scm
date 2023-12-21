@@ -17,21 +17,22 @@
   #:use-module (gnu packages xorg)
   #:export (wm:sway))
 
-(define my-layout
-  (keyboard-layout "us,cz" ",ucw" #:options
+(define* (klayout #:key (layout "us,cz,ru"))
+  (keyboard-layout layout ",ucw" #:options
 		   '("grp:caps_switch" "grp_led"
 		     "lv3:ralt_switch" "compose:rctrl-altgr")))
 
-(define (sway-keyboard-layout layout)
+(define (sway-keyboard-layout . rest)
   "Takes a standard guix keyboard-layout object
 and emits a Sway input config
 compatible with the RDE sway service."
-  `(input type:keyboard
-          ((xkb_layout ,(keyboard-layout-name layout))
-           (xkb_variant ,(keyboard-layout-variant layout))
-           (xkb_options ,(string-join
-                          (keyboard-layout-options layout)
-                          ",")))))
+  (let ((layout (apply klayout rest)))
+    `(input type:keyboard
+            ((xkb_layout ,(keyboard-layout-name layout))
+             (xkb_variant ,(keyboard-layout-variant layout))
+             (xkb_options ,(string-join
+                            (keyboard-layout-options layout)
+                            ","))))))
 
 (define (sway-kbd binds)
   (string-join (listify binds) "+"))
@@ -47,13 +48,6 @@ compatible with the RDE sway service."
 
 (define (prefix-exec l)
   (map (lambda (bind) `(,(car bind) ,@(cons 'exec (listify (cadr bind))))) l))
-
-(define (sway-exec-bindings binds)
-  "Like sway-bindings but prefixes
-exec to all your commands"
-  (sway-serialize-bindings
-   (prefix-exec binds)
-   sway-mkbd))
 
 (define (sway-exec-bindings/nomod binds)
   (sway-serialize-bindings (prefix-exec binds) sway-kbd))
@@ -119,8 +113,7 @@ exec to all your commands"
  (&s home-sway
      (config
       `((set $mod "Mod4")
-
-        ,(sway-keyboard-layout my-layout)
+        ,(sway-keyboard-layout)
         (input type:keyboard ((xkb_numlock enabled)))
 
         (gaps inner 5)
@@ -223,6 +216,9 @@ exec to all your commands"
         (bar
          ((position "top")
           (swaybar_command waybar)))
+
+        (bindcode "Ctrl+49" input "*" xkb_switch_layout next)
+
         (exec ,(file-append xhost "/bin/xhost +si:localuser:root"))
         (exec swayidle)
         (exec ,(file-append i3-autotiling "/bin/autotiling"))
