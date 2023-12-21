@@ -5,7 +5,9 @@
   #:use-module (gnu services virtualization)
   #:use-module (gnu services cuirass)
   #:use-module (guix gexp)
+  #:use-module (gnu services pam-mount)
   #:use-module (gnu services messaging)
+  #:use-module (gnu services docker)
   #:use-module (atlas services morrowind)
   #:export (hydra:services))
 
@@ -32,4 +34,21 @@
                       (openpgp-fingerprint
                        "D45185A2755DAF831F1C3DC63EFBF2BBBB29B99E"))))
                    %default-channels))))))
+   (&s docker)
+   (+s oci-container jellyfin
+       (list
+        (oci-container-configuration
+         (image "jellyfin/jellyfin")
+         (ports '(("8096" . "8096")))
+         (network "host")
+         (volumes '("jellyfin-config:/config"
+                    "jellyfin-cache:/cache"
+                    "/shares/router-disk/Movies/:/media:ro")))))
+   (+s pam-mount-volume router-disk
+       (list (pam-mount-volume
+              (file-system-type "cifs")
+              (server "192.168.0.1")
+              (file-name "sda1")
+              (options "vers=1.0")
+              (mount-point "/shares/router-disk"))))
    (&s tes3mp-server)))
