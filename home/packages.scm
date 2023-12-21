@@ -236,7 +236,6 @@
 
   (packages fonts
             font-adobe-source-han-sans
-            font-adobe-source-han-sans
             font-awesome
             font-dejavu
             font-fira-code
@@ -246,9 +245,7 @@
             font-sil-charis
             font-tamzen
             font-wqy-microhei
-            font-wqy-zenhei
-            font-wqy-zenhei
-            fontconfig)
+            font-wqy-zenhei)
 
   (packages icons
             adwaita-icon-theme
