@@ -91,6 +91,7 @@
         ("sw" . "swayhide")
         ("cat" . "bat -p")
         ("cd" . "pushd")
+        ("shen-scheme" . "rlwrap shen-scheme")
         ("u" . "unison")))
 
      (environment-variables
