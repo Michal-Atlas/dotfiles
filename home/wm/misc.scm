@@ -17,7 +17,7 @@
       (config
        `((timeout 1200 "'swaymsg \"output * dpms off\"'"
                   resume "'swaymsg \"output * dpms on\"'")
-         (before-sleep "'swaylock'"))))
+         (before-sleep "'playerctl stop; swaylock'"))))
 
   (&s home-swaylock
       (config
