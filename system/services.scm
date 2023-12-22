@@ -38,17 +38,6 @@
 
 (define services
   (list
-   (&s unattended-upgrade
-       (schedule "0 20 */3 * *")
-       (channels %channels-gexp)
-       (operating-system-file
-        (file-append
-         (local-file
-          ".." "dotfiles"
-          #:recursive? #t
-          #:select? (lambda (file _)
-                      (not (eq? (string-ref (basename file) 0) #\.))))
-         "/system.scm")))
    (&s file-database)
    (&s package-database)
    (+s etc podman-policy
@@ -102,8 +91,6 @@
 (define (get-services)
   (cons*
    (+s polkit gvfs (list gvfs))
-   (&s guix-home #:config
-       `(("michal_atlas" . ,(home))))
    accounts
    btrfs-maid
    firmware
