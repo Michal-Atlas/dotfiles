@@ -4,7 +4,8 @@
   #:use-module (gnu system file-systems)
   #:export (lvm fs
                 common-options
-                common-flags))
+                common-flags
+                router-disk))
 
 (define ((lvm pool) lv)
   (mapped-device
@@ -17,6 +18,15 @@
 
 (define common-flags
   '(no-atime))
+
+(define router-disk
+  (file-system
+    (type "cifs")
+    (device "//192.168.0.1/sda1")
+    (options "vers=1.0,password=")
+    (mount? #f)
+    (mount-point "/shares/router-disk")
+    (create-mount-point? #t)))
 
 (define* (fs source target
              #:optional (dependencies '())

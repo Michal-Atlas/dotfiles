@@ -36,4 +36,4 @@
         rpool-root))
 
 (define file-systems
-  (list efi root))
+  (list efi root router-disk))

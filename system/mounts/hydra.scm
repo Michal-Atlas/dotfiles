@@ -32,7 +32,7 @@
 
 (define file-systems
   (list
-   efi root home
+   efi root home router-disk
    (fs "/dev/mapper/rpool-vault" "/home/michal_atlas/tmp"
        (list home rpool-vault)
        #:subvol "@tmp")
