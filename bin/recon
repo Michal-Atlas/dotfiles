@@ -2,5 +2,5 @@
 
 set -euox pipefail
 
-kgx -e "sh -c '. ${DOTFILE_ROOT}/.envrc; recon-home'"
-kgx -e "sh -c '. ${DOTFILE_ROOT}/.envrc; recon-system'"
+recon-system
+recon-home
