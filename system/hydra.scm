@@ -44,11 +44,4 @@
          (volumes '("jellyfin-config:/config"
                     "jellyfin-cache:/cache"
                     "/shares/router-disk/Movies/:/media:ro")))))
-   (+s pam-mount-volume router-disk
-       (list (pam-mount-volume
-              (file-system-type "cifs")
-              (server "192.168.0.1")
-              (file-name "sda1")
-              (options "vers=1.0")
-              (mount-point "/shares/router-disk"))))
    (&s tes3mp-server)))
