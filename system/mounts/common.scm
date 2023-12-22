@@ -2,7 +2,9 @@
   #:use-module (ice-9 curried-definitions)
   #:use-module (gnu system mapped-devices)
   #:use-module (gnu system file-systems)
-  #:export (lvm fs))
+  #:export (lvm fs
+                common-options
+                common-flags))
 
 (define ((lvm pool) lv)
   (mapped-device
