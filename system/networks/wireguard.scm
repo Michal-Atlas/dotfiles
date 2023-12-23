@@ -33,12 +33,8 @@
      (public-key "VUk71x+wmwt//38RNT47ZNFJP0ZB2xB++4bAAtT6uEU="))
     (wireguard-peer
      (name "arc")
-     (public-key "+i1Pv+p34kp/iEsPYeIj1mz/WkisdAUfQYlioRLbmxY="))
-    (wireguard-peer
-     (name "sps")
-     (allowed-ips '("13.0.0.101/32" "13.0.0.102/32" "13.0.0.103/32"))
-     (public-key "h5aakFQU0KsraXu6o6ySX7JY588sBt6IV+GiaRMjCEw=")))))
      (allowed-ips '("10.0.0.4/32"))
+     (public-key "+i1Pv+p34kp/iEsPYeIj1mz/WkisdAUfQYlioRLbmxY=")))))
 
 (define (remote-config-file)
   ((@@ (gnu services vpn) wireguard-configuration-file)
