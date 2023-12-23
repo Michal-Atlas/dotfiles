@@ -19,6 +19,7 @@
                  `((main
                     ((font . #{Fira Code:size=12}#)
                      (pad . #{5x5 center}#)
+                     (term . xterm-256color)
                      (include . ,(file-append
                                   foot
                                   "/share/foot/themes/monokai-pro"))))
