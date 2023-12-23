@@ -32,6 +32,7 @@
   #:use-module (system btrbk)
   #:use-module (system mounts autofs)
   #:use-module (system networks wireguard)
+  #:use-module (system networks yggdrasil)
   #:use-module (system networks zerotier)
   #:export (get-services home))
 
@@ -102,4 +103,5 @@
     (zerotier:get)
     services
     (wireguard:get)
+    (yggdrasil:get)
     (base-services))))
