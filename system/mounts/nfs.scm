@@ -6,5 +6,5 @@
 
 (define (nfs:get)
   (&s nfs
-      (exports '(("/home/michal_atlas/Pictures"
+      (exports '(("/home/michal_atlas"
                   "dagon(ro)")))))
