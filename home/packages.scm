@@ -145,8 +145,6 @@
             emacs-org-re-reveal
             emacs-ace-window
             emacs-adaptive-wrap
-            emacs-all-the-icons
-            emacs-all-the-icons-dired
             emacs-anzu
             emacs-auctex
             emacs-avy
