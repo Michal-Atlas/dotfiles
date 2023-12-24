@@ -15,17 +15,13 @@
          (modules-center . #("mpris"))
          (modules-right . #("idle_inhibitor" "pulseaudio" "network"
                             "cpu" "memory" "disk" "custom/unison"
-                            "sway/language" "backlight" "battery"
+                            "backlight" "battery"
                             "clock" "tray"))
          (idle_inhibitor . ((format . "{icon}")
                             (format-icons . ((activated . "")
                                              (deactivated . "")))))
          (disk . ((format . "{used}/{total}")))
          (tray . ((spacing . 10)))
-         (sway/language
-          . ((format . "{flag} {variant}")
-             (on-click
-              . "swaymsg input type:keyboard xkb_switch_layout next")))
          (mpris . ((dynamic-len . 80)
                    (title-len . 30)))
          (pulseaudio . ((format . "{volume}% ")

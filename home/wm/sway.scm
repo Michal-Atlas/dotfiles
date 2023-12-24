@@ -17,7 +17,7 @@
   #:use-module (gnu packages xorg)
   #:export (wm:sway))
 
-(define* (klayout #:key (layout "us,cz,ru"))
+(define* (klayout #:key (layout "us,cz"))
   (keyboard-layout layout ",ucw" #:options
 		   '("grp:caps_switch" "grp_led"
 		     "lv3:ralt_switch" "compose:rctrl-altgr")))
@@ -207,8 +207,6 @@ exec to all your commands"
         (bar
          ((position "top")
           (swaybar_command waybar)))
-
-        (bindcode "Ctrl+49" input "*" xkb_switch_layout next)
 
         (exec ,(file-append xhost "/bin/xhost +si:localuser:root"))
         (exec swayidle)
