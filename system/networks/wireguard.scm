@@ -4,51 +4,36 @@
   #:use-module (system hostname)
   #:use-module (gnu services vpn)
   #:use-module (gnu services base)
+  #:use-module (ice-9 curried-definitions)
   #:export (wireguard:keepalive
             wireguard:get
-            wireguard:remote-peer
             wireguard:peers))
 
 (define wireguard:keepalive
   (make-parameter #f))
-
-(define (wireguard:remote-peer)
-  (wireguard-peer
-   (name "central")
-   (endpoint "130.61.54.212:51820")
-   (public-key "DfSW8vkOq5riNSenbVwRK7GUECcfbvGSUjHLUw1PAhc=")
-   (allowed-ips '("10.0.0.0/24"))
-   (keep-alive (wireguard:keepalive))))
 
 (define wireguard:peers
   (make-parameter
    (list
     (wireguard-peer
      (name "hydra")
-     (allowed-ips '("10.0.0.2/32"))
+     (endpoint "yg-hydra:51820")
+     (allowed-ips '("fd4c:16e4:7d9b:0::1/128"))
      (public-key "0MigA4ewwzbwrlrZsi7+xhxn893q3nbtTPn6uiB2LEE="))
     (wireguard-peer
      (name "dagon")
-     (allowed-ips '("10.0.0.3/32"))
+     (endpoint "yg-dagon:51820")
+     (allowed-ips '("fd4c:16e4:7d9b:0::2/128"))
      (public-key "VUk71x+wmwt//38RNT47ZNFJP0ZB2xB++4bAAtT6uEU="))
     (wireguard-peer
      (name "arc")
-     (allowed-ips '("10.0.0.4/32"))
+     (allowed-ips '("fd4c:16e4:7d9b:0::3/128"))
      (public-key "+i1Pv+p34kp/iEsPYeIj1mz/WkisdAUfQYlioRLbmxY=")))))
 
-(define (remote-config-file)
-  ((@@ (gnu services vpn) wireguard-configuration-file)
-   (wireguard-configuration
-    (addresses (list "10.0.0.1/24"))
-    (peers (wireguard:peers)))))
-
-(define (peer-by-name)
-  (find
-   (lambda (p)
-     (string=
-      (wireguard-peer-name p)
-      (hostname)))
-   (wireguard:peers)))
+(define ((peer-by-name name) peer)
+  (string=
+   (wireguard-peer-name peer)
+   name))
 
 (define (wireguard:get)
   (list
@@ -59,10 +44,14 @@
            (lambda (addr)
              (host
               (car (string-split addr #\/))
-              (string-append "wg-" (wireguard-peer-name wp))))
+              (wireguard-peer-name wp)))
            (wireguard-peer-allowed-ips wp)))
         (wireguard:peers)))
    (&s wireguard
        (addresses
-        (wireguard-peer-allowed-ips (peer-by-name)))
-       (peers (list (wireguard:remote-peer))))))
+        (wireguard-peer-allowed-ips
+         (find (peer-by-name (hostname)) (wireguard:peers))))
+       (peers
+        (filter
+         (negate (peer-by-name (hostname)))
+         (wireguard:peers))))))

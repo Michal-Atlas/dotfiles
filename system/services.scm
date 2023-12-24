@@ -34,9 +34,7 @@
   #:use-module (system networks wireguard)
   #:use-module (system networks yggdrasil)
   #:use-module (system networks zerotier)
-  #:export (get-services home))
-
-(define home (make-parameter #f))
+  #:export (get-services))
 
 (define services
   (list

@@ -3,7 +3,6 @@
 (define-module (system)
   #:use-module ((system mounts dagon) #:prefix dagon:)
   #:use-module ((system mounts hydra) #:prefix hydra:)
-  #:use-module (home)
   #:use-module (srfi srfi-26)
   #:use-module (ice-9 match)
   #:use-module (guix gexp)
@@ -114,10 +113,9 @@
       (get-system))))
 
 (define (system-by-host host)
- (parameterize ((home current-home))
-   ((match host
-      ("dagon" system-dagon)
-      ("hydra" system-hydra)))))
+ ((match host
+    ("dagon" system-dagon)
+    ("hydra" system-hydra))))
 
 (define current-system
   (system-by-host (gethostname)))

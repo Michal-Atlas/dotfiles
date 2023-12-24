@@ -18,12 +18,12 @@
     (services services))))
 
 (define (home-dagon)
-  (parameterize ((unison-remote "hydra.local"))
+  (parameterize ((unison-remote "hydra"))
     (parameterize ((services (get-services)))
       (get-home))))
 
 (define (home-hydra)
-  (parameterize ((unison-remote "dagon.local"))
+  (parameterize ((unison-remote "dagon"))
     (parameterize ((services (append (hydra:services)
                                      (get-services))))
       (get-home))))

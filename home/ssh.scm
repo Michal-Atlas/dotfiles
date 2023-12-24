@@ -46,10 +46,7 @@
                (host-name "alfrid.meta.zcu.cz"))
               (openssh-host
 	       (name "oracle")
-	       (host-name (car (string-split
-                                (wireguard-peer-endpoint
-                                 (wireguard:remote-peer))
-                                #\:)))
+	       (host-name "130.61.54.212")
                (user "ubuntu")
                (identity-file (string-append
                                (getenv "HOME")
