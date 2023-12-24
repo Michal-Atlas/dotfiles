@@ -84,9 +84,7 @@
    (&s nix (extra-config
             '("experimental-features = nix-command flakes\n"
               "trusted-users = @wheel\n")))
-   (&s bluetooth)
-   (&s postgresql)
-   (&s ipfs (gateway "/ip4/0.0.0.0/tcp/8080"))))
+   (&s bluetooth)))
 
 (define (get-services)
   (cons*
