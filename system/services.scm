@@ -31,6 +31,7 @@
   #:use-module (system base)
   #:use-module (system btrbk)
   #:use-module (system mounts autofs)
+  #:use-module (system mounts nfs)
   #:use-module (system networks wireguard)
   #:use-module (system networks yggdrasil)
   #:use-module (system networks zerotier)
@@ -95,6 +96,7 @@
    packages
    (btrbk)
    (autofs:get)
+   (nfs:get)
    (append
     (zerotier:get)
     services

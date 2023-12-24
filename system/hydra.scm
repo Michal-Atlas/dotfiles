@@ -1,6 +1,5 @@
 (define-module (system hydra)
   #:use-module (atlas utils services)
-  #:use-module (system mounts nfs)
   #:use-module (gnu services)
   #:use-module (nongnu packages linux)
   #:use-module (gnu services virtualization)
@@ -14,7 +13,6 @@
 
 (define hydra:services
   (list
-   (nfs:get)
    (+s firmware amd (list amdgpu-firmware))
    (&s hurd-vm)
    (&s docker)
