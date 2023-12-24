@@ -16,7 +16,7 @@
                " ~/tmp/ ~/Downloads/ -mindepth 1 -mtime +2 -ctime +2 -delete;")
               "Clear tmpfiles")
        #~(job "0 * * * *"
-	      "guix gc -F 20G")
+	      "guix gc -F 50G -d 2w")
        #~(job "0 0 * * 0"
               #$(file-append podman "/bin/podman container prune -f")
               "podman prune containers")
