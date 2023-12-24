@@ -7,4 +7,4 @@
 (define (nfs:get)
   (&s nfs
       (exports '(("/home/michal_atlas"
-                  "dagon(ro) hydra(ro)")))))
+                  "fd4c:16e4:7d9b::/64(rw,crossmnt)")))))
