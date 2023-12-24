@@ -13,13 +13,6 @@
 	      (openssh-host
 	       (name "Myst")
 	       (host-name "34.122.2.188"))
-              (openssh-host
-               (name "sps06")
-               (user "student")
-               (host-name "sps-06.kps.in.fit.cvut.cz")
-               (identity-file (string-append
-                               (getenv "HOME")
-                               "/.ssh/sps")))
 	      (openssh-host
 	       (name "ZmioSem")
 	       (user "michal_zacek")
