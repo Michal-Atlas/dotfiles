@@ -16,7 +16,7 @@
   (mixed-text-file
    "auto.master"
    "/shares " autofs-shares " --timeout 60 --browse\n"
-   "/net -hosts --timeout=60 nolock\n"))
+   "/net -hosts --timeout=60 nolock soft timeout=10\n"))
 
 (define (autofs:get)
   (+s shepherd-root autofs-daemon
