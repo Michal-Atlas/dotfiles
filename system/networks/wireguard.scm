@@ -12,22 +12,25 @@
 (define wireguard:keepalive
   (make-parameter #f))
 
+(define (wg-ip host)
+  (format #f "fd4c:16e4:7d9b:0::~x/128" host))
+
 (define wireguard:peers
   (make-parameter
    (list
     (wireguard-peer
      (name "hydra")
      (endpoint "yg-hydra:51820")
-     (allowed-ips '("fd4c:16e4:7d9b:0::1/128"))
+     (allowed-ips (list (wg-ip 1)))
      (public-key "0MigA4ewwzbwrlrZsi7+xhxn893q3nbtTPn6uiB2LEE="))
     (wireguard-peer
      (name "dagon")
      (endpoint "yg-dagon:51820")
-     (allowed-ips '("fd4c:16e4:7d9b:0::2/128"))
+     (allowed-ips (list (wg-ip 2)))
      (public-key "VUk71x+wmwt//38RNT47ZNFJP0ZB2xB++4bAAtT6uEU="))
     (wireguard-peer
      (name "arc")
-     (allowed-ips '("fd4c:16e4:7d9b:0::3/128"))
+     (allowed-ips (list (wg-ip 3)))
      (public-key "+i1Pv+p34kp/iEsPYeIj1mz/WkisdAUfQYlioRLbmxY=")))))
 
 (define ((peer-by-name name) peer)
