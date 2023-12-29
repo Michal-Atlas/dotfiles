@@ -15,14 +15,4 @@
   (list
    (+s firmware amd (list amdgpu-firmware))
    (&s hurd-vm)
-   (&s docker)
-   (+s oci-container jellyfin
-       (list
-        (oci-container-configuration
-         (image "jellyfin/jellyfin")
-         (ports '(("8096" . "8096")))
-         (network "host")
-         (volumes '("jellyfin-config:/config"
-                    "jellyfin-cache:/cache"
-                    "/shares/router-disk/Movies/:/media:ro")))))
    (&s tes3mp-server)))
