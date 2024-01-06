@@ -282,6 +282,7 @@
             grim
             gzdoom
             htop
+            hut
             icedove/wayland
             imagemagick
             indent
