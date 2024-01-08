@@ -32,8 +32,8 @@
    ssh
    wm:sway
    wm:waybar
+   packages
    (append
     lisp
-    packages-services
     wm:misc
     base-services)))

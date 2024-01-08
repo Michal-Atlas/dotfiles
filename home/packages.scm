@@ -2,19 +2,24 @@
   #:use-module (gnu home services)
   #:use-module (atlas utils services)
   #:use-module (gnu)
+  #:use-module (ice-9 match)
   #:use-module (atlas packages emacs-xyz)
   #:use-module (atlas packages shen)
   #:use-module (guixrus packages emacs)
   #:use-module (nongnu packages mozilla)
+  #:use-module (nongnu packages gog)
+  #:use-module (nongnu packages steam-client)
+  #:use-module (sops packages sops)
   #:use-module (games packages the-ur-quan-masters)
   #:use-module (games packages minecraft)
   #:use-module (guix transformations)
   #:use-module (guix cpu)
   #:use-module ((emacs packages melpa)
                 #:select (emacs-shen-elisp))
-  #:export (packages-services))
+  #:export (packages))
 
 (use-package-modules
+ acl
  admin
  base
  bittorrent
@@ -38,6 +43,7 @@
  fonts
  fontutils
  freedesktop
+ game-development
  games
  gdb
  ghostscript
@@ -60,9 +66,11 @@
  lisp
  lisp-xyz
  lsof
+ mail
  maths
  messaging
  music
+ networking
  node
  ocaml
  package-management
@@ -88,11 +96,14 @@
  telegram
  terminals
  tex
+ texinfo
  texlive
  tls
  version-control
  video
+ vim
  virtualization
+ w3m
  web
  web-browsers
  wine
@@ -104,45 +115,30 @@
   (options->transformation
    `((tune . ,tuning-target))))
 
-(define-syntax-rule (packages why pkgs ...)
-  (+s home-profile why
-      (map
-       (lambda (p)
-         (if (list? p)
-             (cons (transform (car p)) (cdr p))
-             (transform p)))
-       (list pkgs ...))))
+(define trans
+  (match-lambda
+    [(pkg output) (list (transform pkg) output)]
+    [pkg (transform pkg)]))
 
-(define packages-services
- (list
-  (packages lisp
-            sbcl
-            sbcl-alexandria
-            sbcl-cffi
-            sbcl-cl-yacc
-            sbcl-clingon
-            sbcl-coalton
-            sbcl-iterate
-            sbcl-linedit
-            sbcl-log4cl
-            sbcl-lparallel
-            sbcl-mcclim
-            sbcl-parenscript
-            sbcl-s-xml
-            sbcl-serapeum
-            sbcl-series
-            sbcl-tailrec
-            sbcl-tar
-            sbcl-terminal-keypress
-            sbcl-terminal-size
-            sbcl-terminfo
-            sbcl-trees
-            sbcl-trial
-            sbcl-unix-opts)
-
-  (packages emacs
-            emacs-ox-reveal
-            emacs-org-re-reveal
+(define packages
+  (+s home-profile system-packages
+      (map trans
+           (list
+            `(,git "send-email")
+            `(,isc-bind "utils")
+            acl
+            adwaita-icon-theme
+            bat
+            bemenu
+            breeze-icons
+            btrfs-progs
+            carp
+            chez-scheme
+            compsize
+            curl
+            direnv
+            ecl
+            ed
             emacs-ace-window
             emacs-adaptive-wrap
             emacs-anzu
@@ -151,6 +147,7 @@
             emacs-bind-map
             emacs-browse-kill-ring
             emacs-calfw
+            emacs-carp
             emacs-cheat-sh
             emacs-circe
             emacs-company
@@ -201,24 +198,27 @@
             emacs-monokai-theme
             emacs-multi-term
             emacs-multiple-cursors
-            emacs-pgtk
             emacs-nix-mode
             emacs-on-screen
             emacs-orderless
             emacs-org
             emacs-org-modern
+            emacs-org-re-reveal
             emacs-org-roam
             emacs-org-superstar
             emacs-ox-gemini
+            emacs-ox-reveal
             emacs-paredit
             emacs-password-generator
             emacs-password-store
             emacs-password-store-otp
             emacs-pdf-tools
+            emacs-pgtk
             emacs-rainbow-delimiters
             emacs-rainbow-identifiers
             emacs-realgud
             emacs-rust-mode
+            emacs-shen-elisp
             emacs-sly
             emacs-ssh-agency
             emacs-stumpwm-mode
@@ -230,9 +230,13 @@
             emacs-yaml-mode
             emacs-yasnippet
             emacs-yasnippet-snippets
-            emacs-zerodark-theme)
-
-  (packages fonts
+            emacs-zerodark-theme
+            fasd
+            feh
+            ffmpeg
+            fheroes2
+            file
+            firefox
             font-adobe-source-han-sans
             font-awesome
             font-dejavu
@@ -243,31 +247,7 @@
             font-sil-charis
             font-tamzen
             font-wqy-microhei
-            font-wqy-zenhei)
-
-  (packages icons
-            adwaita-icon-theme
-            breeze-icons
-            guix-icons
-            hicolor-icon-theme
-            oxygen-icons)
-
-  (packages texlive
-            texlive)
-
-  (packages packages
-            `(,isc-bind "utils")
-            `(,git "send-email")
-            bat
-            btrfs-progs
-            compsize
-            curl
-            direnv
-            ed
-            fasd
-            feh
-            file
-            firefox
+            font-wqy-zenhei
             foot
             fzf
             gcc-toolchain
@@ -276,11 +256,14 @@
             gimp
             git
             git-lfs
+            gmnisrv
             gnu-make
             gparted
             graphviz
             grim
+            guix-icons
             gzdoom
+            hicolor-icon-theme
             htop
             hut
             icedove/wayland
@@ -291,25 +274,33 @@
             irssi
             jq
             keepassxc
+            kineto
             krita
             lagrange
+            lgogdownloader
             libreoffice
             lsof
+            mailutils
             maxima
             mosh
             mpv
             nautilus
+            ndisc6
             netcat
             nheko
             nix
             node
             nyxt
             okular
+            openmw
             openssl
+            oxygen-icons
             p7zip
+            pagekite
             pandoc
             parallel
             pass-otp
+            password-store
             patchelf
             pavucontrol
             perl
@@ -323,38 +314,66 @@
             recutils
             rlwrap
             rsync
+            sbcl
+            sbcl-alexandria
+            sbcl-cffi
+            sbcl-cl-yacc
+            sbcl-clingon
+            sbcl-coalton
+            sbcl-iterate
+            sbcl-linedit
+            sbcl-log4cl
+            sbcl-lparallel
+            sbcl-mcclim
+            sbcl-parenscript
+            sbcl-s-xml
+            sbcl-serapeum
+            sbcl-series
+            sbcl-tailrec
+            sbcl-tar
+            sbcl-terminal-keypress
+            sbcl-terminal-size
+            sbcl-terminfo
+            sbcl-trees
+            sbcl-trial
+            sbcl-unix-opts
             screen
             shellcheck
+            shen-c
+            shen-scheme
             shotwell
             skribilo
             slurp
+            sops
+            steam
             supertux
             supertuxkart
-            telegram-desktop
+            swi-prolog
             tealdeer
+            telegram-desktop
+            texinfo
+            texlive
+            texlive-listings
             texlive-scheme-basic
+            texlive-ulem
             translate-shell
             transmission-remote-gtk
             tree
             unison
             unzip
             uqm
+            vcmi
             virt-manager
             vlc
+            w3m
+            wdisplays
             wine64
+            wireshark
             wl-clipboard
             wtype
             xdg-desktop-portal-wlr
             xdg-utils
             xdot
             xonotic
-            yt-dlp)
-
-  (packages shen
-            emacs-shen-elisp
-            carp
-            emacs-carp
-            swi-prolog
-            chez-scheme
-            shen-scheme
-            shen-c)))
+            xxd
+            yt-dlp))))
