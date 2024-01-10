@@ -26,6 +26,15 @@
        (openpgp-fingerprint
         "8D10 60B9 6BB8 292E 829B  7249 AED4 1CC1 93B7 01E2"))))
     (channel
+     (name 'home-service-dwl-guile)
+     (url "https://github.com/engstrand-config/home-service-dwl-guile")
+     (branch "main")
+     (introduction
+      (make-channel-introduction
+       "314453a87634d67e914cfdf51d357638902dd9fe"
+       (openpgp-fingerprint
+        "C9BE B8A0 4458 FDDF 1268 1B39 029D 8EB7 7E18 D68C"))))
+    (channel
      (name 'emacs)
      (url "https://github.com/babariviere/guix-emacs")
      (introduction
