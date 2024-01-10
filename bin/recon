@@ -2,5 +2,5 @@
 
 set -euox pipefail
 
-recon-system
-recon-home
+recon-system "$@"
+recon-home "$@"
