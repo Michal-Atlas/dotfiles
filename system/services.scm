@@ -35,6 +35,7 @@
   #:use-module (system networks wireguard)
   #:use-module (system networks yggdrasil)
   #:use-module (system networks zerotier)
+  #:use-module (sops)
   #:export (get-services))
 
 (define services
@@ -97,6 +98,7 @@
    (btrbk)
    (autofs:get)
    (nfs:get)
+   sops-service
    (append
     (zerotier:get)
     services

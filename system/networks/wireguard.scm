@@ -5,6 +5,9 @@
   #:use-module (gnu services vpn)
   #:use-module (gnu services base)
   #:use-module (ice-9 curried-definitions)
+  #:use-module (system hostname)
+  #:use-module (sops)
+  #:use-module (sops services sops)
   #:export (wireguard:keepalive
             wireguard:get
             wireguard:peers))
@@ -57,4 +60,11 @@
        (peers
         (filter
          (negate (peer-by-name (hostname)))
-         (wireguard:peers))))))
+         (wireguard:peers)))
+       (private-key "/run/secrets/wireguard.key"))
+   (+s sops-secrets sops-wireguard
+       (list
+        (sops-secret
+         (key `("wireguard" ,(hostname)))
+         (file common.yaml)
+         (path "wireguard.key"))))))

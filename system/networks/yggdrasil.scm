@@ -3,6 +3,9 @@
   #:use-module (gnu services networking)
   #:use-module (gnu services base)
   #:use-module (ice-9 match)
+  #:use-module (system hostname)
+  #:use-module (sops)
+  #:use-module (sops services sops)
   #:export (yggdrasil:get))
 
 
@@ -28,4 +31,12 @@
        (json-config
         '((peers .
                  #("tls://37.205.14.171:993"
-                   "tls://ygg.yt:443")))))))
+                   "tls://ygg.yt:443"))))
+       (config-file "/run/secrets/yggdrasil.conf"))
+   (+s sops-secrets sops-wireguard
+       (list
+        (sops-secret
+         (key `("yggdrasil" ,(hostname)))
+         (file common.yaml)
+         (output-type "json")
+         (path "yggdrasil.conf"))))))
