@@ -1,8 +1,3 @@
 set -euox pipefail
 
-if [ ! $# -eq 1 ]; then
-   echo "Specify the machine you want to pull from";
-   exit 1;
-fi;
-
-guix pull -C <(ssh $1 guix describe -f channels)
+guix pull -C <(ssh $1 guix describe -f channels) "${@:2}"
