@@ -8,7 +8,7 @@
   #:use-module (guixrus packages emacs)
   #:use-module (nongnu packages mozilla)
   #:use-module (nongnu packages gog)
-  #:use-module (nongnu packages steam-client)
+  #:use-module (nongnu packages game-client)
   #:use-module (sops packages sops)
   #:use-module (games packages the-ur-quan-masters)
   #:use-module (games packages minecraft)
@@ -263,6 +263,7 @@
             grim
             guix-icons
             gzdoom
+            heroic
             hicolor-icon-theme
             htop
             hut
