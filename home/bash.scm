@@ -87,7 +87,6 @@
         ("gxsh" . "gx shell")
         ("gxtm" . "gx time-machine")
         ("e" . "$EDITOR")
-        ("ipfs" . "sudo -u ipfs bash --login")
         ("sw" . "swayhide")
         ("cat" . "bat -p")
         ("cd" . "pushd")
