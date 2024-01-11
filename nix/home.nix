@@ -12,8 +12,8 @@ in {
     homeDirectory = "/home/michal_atlas";
     stateVersion = "23.05";
     packages = with pkgs; [
+      caprine-bin
       discord
-      jetbrains.idea-ultimate
       teams-for-linux
       zotero
     ];
