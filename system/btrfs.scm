@@ -13,7 +13,7 @@
            (op '("scrub start"
                  "balance start --full-balance")))
        (define ((job fs) op)
-         #~(job "0 0 * * 6"
+         #~(job "0 5 * * 6"
                 (string-append
                  #$(file-append btrfs-progs "/bin/btrfs")
                  " " #$op " " #$fs)
