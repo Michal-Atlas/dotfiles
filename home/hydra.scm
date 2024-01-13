@@ -8,8 +8,6 @@
   #:use-module (gnu home services shepherd)
   #:use-module (gnu packages sync)
   #:use-module (gnu packages ocaml)
-  #:use-module (gnu packages networking)
-  #:use-module (gnu packages web)
   #:export (hydra:services))
 
 (define (hydra:services)
@@ -36,33 +34,4 @@
                     "-repeat=watch"
                     "-batch")
                    #:log-file (string-append %user-log-dir "/unison.log")))
-         (stop #~(make-kill-destructor)))))
-   (+s home-shepherd kineto+pagekite
-       (list
-        (shepherd-service
-         (provision '(kineto))
-         (start #~(make-forkexec-constructor
-                   (list #$(file-append kineto "/bin/kineto")
-                         "gemini://michal_atlas.srht.site")))
-         (stop #~(make-kill-destructor)))
-        (shepherd-service
-         (provision '(gmnisrv))
-         (start #~(make-forkexec-constructor
-                   (list #$(file-append gmnisrv "/bin/gmnisrv")
-                         "-C" #$(plain-file "gmnisrv.ini"
-                                            "listen=0.0.0.0 [::]
-
-[:tls]
-store=certs
-
-[hydra]
-root=/home/michal_atlas/Pictures/CC0
-autoindex=on"))))
-         (stop #~(make-kill-destructor)))
-
-        (shepherd-service
-         (provision '(pagekite))
-         (start #~(make-forkexec-constructor
-                   (list #$(file-append pagekite "/bin/pagekite")
-                         "http:matlas.pagekite.me:localhost:8080:")))
          (stop #~(make-kill-destructor)))))))
