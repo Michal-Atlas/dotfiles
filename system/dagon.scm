@@ -4,6 +4,8 @@
   #:use-module (gnu services pam-mount)
   #:use-module (system mounts common)
   #:use-module (gnu system file-systems)
+  #:use-module (nongnu packages linux)
+  #:use-module (gnu services)
   #:export (dagon:services))
 
 (define dagon:services
@@ -11,7 +13,7 @@
    (&s tlp
     (cpu-boost-on-ac? #t)
     (wifi-pwr-on-bat? #t))
-
+   (+s firmware intel (list intel-microcode))
    (+s pam-mount-volume encrypted-home
        (list (pam-mount-volume
               (user-name "michal_atlas")
