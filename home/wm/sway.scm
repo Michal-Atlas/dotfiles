@@ -145,7 +145,7 @@ exec to all your commands"
                ,(file-append slurp "/bin/slurp")
                ")\"" "&&"
                ,(file-append grim "/bin/grim")
-               "~/tmp/$(date +'%s_grim.png') -g \"$DIM\"" "&&"
+               "-g \"$DIM\" ~/tmp/$(date +'%s_grim.png')" "&&"
                ,(file-append grim "/bin/grim")
                "-g \"$DIM\" - |"
                ,(file-append wl-clipboard "/bin/wl-copy")
