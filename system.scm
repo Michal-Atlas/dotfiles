@@ -55,7 +55,7 @@
     (host-name (hostname))
     (kernel linux)
     (initrd microcode-initrd)
-    (initrd-modules (cons "dm-raid" %base-initrd-modules))
+    (initrd-modules %base-initrd-modules)
     (label (getlabel this-operating-system))
     (locale "en_US.utf8")
     (timezone "Europe/Prague")
