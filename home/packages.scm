@@ -281,6 +281,7 @@
             lgogdownloader
             libreoffice
             lsof
+            lvm2
             mailutils
             maxima
             mosh
