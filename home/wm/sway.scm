@@ -107,7 +107,7 @@ exec to all your commands"
    "-l10"))
 
 (define wallpaper
-  (get-wallpaper-path "neon/china-reflection.jpg"))
+  (get-wallpaper-path "space/astronaut-repair.jpg"))
 
 (define wm:sway
  (&s home-sway
