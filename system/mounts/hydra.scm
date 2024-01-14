@@ -7,12 +7,10 @@
 
 (define rpool (lvm "rpool"))
 
-(define spool (lvm "spool"))
-
-(define spool-root (spool "root"))
+(define rpool-root (rpool "root"))
 
 (define root
-  (fs "/dev/mapper/spool-root" "/" (list spool-root)
+  (fs "/dev/mapper/rpool-root" "/" (list rpool-root)
       #:subvol "@guix"
       #:flags '(shared)))
 
@@ -32,7 +30,7 @@
 
 (define file-systems
   (list
-   efi root home router-disk
+   efi root home
    (fs "/dev/mapper/rpool-vault" "/home/michal_atlas/tmp"
        (list home rpool-vault)
        #:subvol "@tmp")
@@ -54,4 +52,4 @@
 
 (define mapped-devices
  (list
-  rpool-vault rpool-home spool-root))
+  rpool-vault rpool-home rpool-root))
