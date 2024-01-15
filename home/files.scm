@@ -46,7 +46,7 @@
                          #~(apply execlp
                                   #$(file-append podman "/bin/podman")
                                   (command-line))))))
-   (+s home-xdg-configuration dotfiles
+   (+s home-xdg-configuration-files dotfiles
        `(("foot/foot.ini"
           ,(apply mixed-text-file "foot.ini"
                   (serialize-ini-config
