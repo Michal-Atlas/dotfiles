@@ -5,6 +5,7 @@
   #:use-module (gnu home services guix)
   #:use-module (gnu home services desktop)
   #:use-module (gnu home services gnupg)
+  #:use-module (gnu home services xdg)
   #:use-module (atlas home services bash)
   #:use-module (rde home services desktop)
   #:export (base-services))
@@ -19,3 +20,6 @@
   (&s home-fzf-history-bash)
   (&s home-fasd-bash)
   (&s home-udiskie)
+  (&s home-xdg-mime-applications
+      (default
+        `(("application/pdf" . "okularApplication_pdf.desktop"))))))
