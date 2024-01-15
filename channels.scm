@@ -26,15 +26,6 @@
        (openpgp-fingerprint
         "8D10 60B9 6BB8 292E 829B  7249 AED4 1CC1 93B7 01E2"))))
     (channel
-     (name 'home-service-dwl-guile)
-     (url "https://github.com/engstrand-config/home-service-dwl-guile")
-     (branch "main")
-     (introduction
-      (make-channel-introduction
-       "314453a87634d67e914cfdf51d357638902dd9fe"
-       (openpgp-fingerprint
-        "C9BE B8A0 4458 FDDF 1268 1B39 029D 8EB7 7E18 D68C"))))
-    (channel
      (name 'emacs)
      (url "https://github.com/babariviere/guix-emacs")
      (introduction
@@ -74,14 +65,6 @@
        "257cebd587b66e4d865b3537a9a88cccd7107c95"
        (openpgp-fingerprint
         "2841 9AC6 5038 7440 C7E9  2FFA 2208 D209 58C1 DEB0"))))
-    (channel
-     (name 'unwox)
-     (url "https://git.sr.ht/~unwox/guix-pkgs")
-     (introduction
-      (make-channel-introduction
-       "9e7a681dece5688c792755bf047f664fb859b47a"
-       (openpgp-fingerprint
-        "43E6 223B 3497 270A 6162  82FF B675 80AB 5694 9C84"))))
     (channel
      (name 'engstrand-wallpapers)
      (url "https://github.com/engstrand-config/wallpapers")
