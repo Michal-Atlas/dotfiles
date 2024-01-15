@@ -24,7 +24,6 @@
    pass
    (unison-get)
    bash
-   files
    git
    mcron
    nix
@@ -34,6 +33,7 @@
    wm:waybar
    packages
    (append
+    files
     lisp
     wm:misc
     base-services)))
