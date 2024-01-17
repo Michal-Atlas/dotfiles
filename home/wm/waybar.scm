@@ -3,6 +3,7 @@
   #:use-module (rde home services wm)
   #:use-module (guix gexp)
   #:use-module (gnu packages linux)
+  #:use-module (gnu packages audio)
   #:export (wm:waybar))
 
 (define wm:waybar
@@ -13,7 +14,7 @@
          (id . 0)
          (modules-left . #("sway/workspaces" "sway/mode"))
          (modules-center . #("mpris"))
-         (modules-right . #("idle_inhibitor" "pulseaudio" "network"
+         (modules-right . #("idle_inhibitor" "wireplumber" "network"
                             "cpu" "memory" "disk" "custom/unison"
                             "backlight" "battery"
                             "clock" "tray"))
@@ -24,9 +25,9 @@
          (tray . ((spacing . 10)))
          (mpris . ((dynamic-len . 80)
                    (title-len . 30)))
-         (pulseaudio . ((format . "{volume}% ")
-                        (format-muted . "--% ")
-                        (on-click . "swaymsg exec pavucontrol")))
+         (wireplumber . ((format . "{volume}% ")
+                         (format-muted . "--% ")
+                         (on-click . ,(file-append qpwgraph "/bin/qpwgraph"))))
          (network . ((format-wifi . "{essid} {ipaddr}/{cidr}")
                      (format-ethernet . "{ipaddr}/{cidr}")
                      (tooltip-format . "{signalStrength}%")))
@@ -68,7 +69,7 @@
                     (color . #{#fdf6e3}#)))
                   ((#{#workspaces}# button.focused)
                    ((color . #{#268bd2}#)))
-                  (#{#pulseaudio}# ((color . #{#268bd2}#)))
+                  (#{#wireplumber}# ((color . #{#268bd2}#)))
                   (#{#memory}# ((color . #{#2aa198}#)))
                   (#{#cpu}# ((color . #{#6c71c4}#)))
                   (#{#battery}# ((color . #{#859900}#)))
