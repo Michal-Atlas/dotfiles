@@ -93,6 +93,7 @@
             (private-key "/home/michal_atlas/.ssh/id_rsa")
             (host-key "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINAIrtjcu5p0bORlaVvkqGgeSxD+uUUp114CaXOBOgqQ"))))
        (btrbk-schedule "24h 7d")
+       (btrbk-path "/home/michal_atlas")
        (wireguard:keepalive 24))
     (parameterize
         ((services (append dagon:services
