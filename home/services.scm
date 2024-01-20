@@ -11,29 +11,22 @@
   #:use-module (home packages)
   #:use-module (home pass)
   #:use-module (home ssh)
-  #:use-module (home unison)
-  #:use-module (home wm misc)
-  #:use-module (home wm sway)
-  #:use-module (home wm waybar)
   #:use-module (rde home services bittorrent)
+  #:use-module (rde home services i2p)
   #:export (get-services))
 
 (define (get-services)
   (cons*
-   (&s home-transmission (auto-start? #t))
+   (&s home-i2pd)
    pass
-   (unison-get)
    bash
    git
    mcron
    nix
    nyxt
    ssh
-   wm:sway
-   wm:waybar
    packages
    (append
     files
     lisp
-    wm:misc
     base-services)))

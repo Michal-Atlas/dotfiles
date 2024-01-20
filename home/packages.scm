@@ -61,7 +61,6 @@
  irc
  kde
  kde-frameworks
- libreoffice
  linux
  lisp
  lisp-xyz
@@ -116,9 +115,11 @@
    `((tune . ,tuning-target))))
 
 (define trans
+  #;
   (match-lambda
     [(pkg output) (list (transform pkg) output)]
-    [pkg (transform pkg)]))
+    [pkg (transform pkg)])
+  identity)
 
 (define packages
   (+s home-profile system-packages
@@ -237,17 +238,6 @@
             fheroes2
             file
             firefox
-            font-adobe-source-han-sans
-            font-awesome
-            font-dejavu
-            font-fira-code
-            font-ghostscript
-            font-gnu-freefont
-            font-jetbrains-mono
-            font-sil-charis
-            font-tamzen
-            font-wqy-microhei
-            font-wqy-zenhei
             foot
             fzf
             gcc-toolchain
@@ -279,7 +269,6 @@
             krita
             lagrange
             lgogdownloader
-            libreoffice
             lsof
             lvm2
             mailutils
@@ -354,10 +343,6 @@
             tealdeer
             telegram-desktop
             texinfo
-            texlive
-            texlive-listings
-            texlive-scheme-basic
-            texlive-ulem
             translate-shell
             transmission-remote-gtk
             tree
