@@ -13,13 +13,4 @@
    (&s tlp
     (cpu-boost-on-ac? #t)
     (wifi-pwr-on-bat? #t))
-   (+s firmware intel (list intel-microcode))
-   (+s pam-mount-volume encrypted-home
-       (list (pam-mount-volume
-              (user-name "michal_atlas")
-              (file-system-type "crypt")
-              (file-name "/dev/mapper/rpool-home")
-              (mount-point "~")
-              (options
-               (alist->file-system-options
-                common-options)))))))
+   (+s firmware intel (list intel-microcode))))
