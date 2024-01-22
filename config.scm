@@ -24,6 +24,7 @@
   #:use-module (nongnu packages linux)
   #:use-module (nongnu system linux-initrd)
   #:use-module (system btrbk)
+  #:use-module (rde system services accounts)
   #:use-module (rde features)
   #:use-module (rde features base)
   #:use-module (rde features fontutils)
@@ -181,6 +182,9 @@
              (linedit:install-repl :wrap-current t :eof-quits t)
              (funcall (intern "INSTALL-REPL" :linedit) :wrap-current t)))))
     (feature-custom-services
+     #:system-services
+     (list (simple-service 'libvirt rde-account-service-type
+                    '("libvirt")))
      #:home-services
      (list
       (service home-zsh-plugin-manager-service-type
