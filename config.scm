@@ -104,16 +104,32 @@
     (feature-networking)
     (feature-gnupg
      #:gpg-primary-key "3EFBF2BBBB29B99E")
-    #;
     (feature-git
-    #:git-gpg-sign-key "3EFBF2BBBB29B99E")
+     #:git-gpg-sign-key "3EFBF2BBBB29B99E"
+     #:extra-config
+     `((pull
+        ((rebase . #t)))
+       (rebase
+        ((autostash . #t)))
+       (sendemail
+        ((smtpserver . "posteo.de")
+         (smtpserverport . 587)
+         (smtpencryption . "tls")
+         (smtpuser . ,(string-append
+                       "michal_atlas"
+                       "@"
+                       "posteo.net"))))
+       (filter "lfs"
+               ((process . "git-lfs filter-process")
+                (required . #t)
+                (clean . "git-lfs clean -- %f")
+                (smudge . "git-lfs smudge -- %f")))))
     (feature-direnv)
     (feature-zsh
-     #:rde-defaults? #f
      #:zshrc
      (map slurp-file-like
           (list
-           (plain-file "fasd" "eval \"$(fasd --init zsh)\"")
+           (plain-file "fasd" "eval \"$(fasd --init auto)\"")
            (mixed-text-file
             "bashrc-pp"
             "function pp() { "

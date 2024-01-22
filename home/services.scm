@@ -1,7 +1,6 @@
 (define-module (home services)
   #:use-module (atlas utils services)
   #:use-module (home files)
-  #:use-module (home git)
   #:use-module (home mcron)
   #:use-module (home packages)
   #:use-module (home pass)
@@ -29,7 +28,6 @@
          ("HISTCONROL" . "ignoredups")
          ("HISTSIZE" . "-1")))
    pass
-   git
    mcron
    (&s home-flatpak
        (packages
