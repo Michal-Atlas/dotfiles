@@ -1,0 +1,40 @@
+(define-module (emacs)
+  #:use-module (rde features emacs)
+  #:use-module (rde features emacs-xyz)
+  #:export (emacs))
+
+
+(define emacs
+  (list
+   (feature-emacs
+    #:default-application-launcher? #f)
+   (feature-emacs-appearance)
+   (feature-emacs-modus-themes
+    #:dark? #t)
+   (feature-emacs-which-key)
+   (feature-emacs-all-the-icons)
+   (feature-emacs-tramp)
+   (feature-emacs-dired)
+   (feature-emacs-eshell)
+   (feature-emacs-re-builder)
+   (feature-emacs-comint)
+   (feature-emacs-shell)
+   (feature-emacs-power-menu)
+   (feature-emacs-completion)
+   (feature-emacs-vertico)
+   (feature-emacs-tempel)
+   (feature-emacs-project)
+   (feature-emacs-smartparens
+    #:show-smartparens? #t)
+   (feature-emacs-eglot)
+   (feature-emacs-flymake)
+   (feature-emacs-elisp)
+   (feature-emacs-git)
+   (feature-emacs-guix)
+   (feature-emacs-xref)
+   (feature-emacs-help)
+   (feature-emacs-info)
+   (feature-emacs-org)
+   (feature-emacs-graphviz)
+   (feature-emacs-elpher)
+   (feature-emacs-nyxt)))

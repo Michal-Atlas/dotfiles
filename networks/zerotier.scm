@@ -1,4 +1,4 @@
-(define-module (system networks zerotier)
+(define-module (networks zerotier)
   #:use-module (atlas utils services)
   #:use-module (nongnu services vpn)
   #:use-module (guix gexp)

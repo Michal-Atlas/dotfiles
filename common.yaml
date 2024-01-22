@@ -7,16 +7,18 @@ wireguard:
 yggdrasil:
     hydra:
         PrivateKey: ENC[AES256_GCM,data:fBCibFLDP3xlWBCakOH0o0Y052olRUnfmMjsitbiOuscVkEA6FkGJwi5jdiV4qzuMuEkf6v4R1Mbs0icHw82GsFihY0T03Xw1atYBbWJRAnhf+kb5T6oYDdcp+DIUrmp2mIt1hSci+hbMUk7oLcE/loDNZPt6U3idXUyWob06cc=,iv:sUNav5n2MRtMuEAPBvZSKJQWCkALCI+yL8fXGT4giSc=,tag:Owx3HgCxmCB494sIn0t0mA==,type:str]
+        PublicKey: ENC[AES256_GCM,data:8juWv8qTvipW/CYpoSDhTeUdyTdOgHpmEELj2MAtz0d+vWifEYzssqyPiyDH8vkjlRrYvo32kTjlAV1ZMs6KgA==,iv:8KhGoZi73Ll65Tu7kNbffbeFjkRT0YwqpcWkYAPfd/Q=,tag:3sNkt3R7vLPMoFb+n/Yygg==,type:str]
     dagon:
         PrivateKey: ENC[AES256_GCM,data:lLN5PACHkDMV09LRzFaSYB4I9E2WX8UN75iRrPxvuxwEYxwgASeJe/ikP/1gLpcN+HxN3b84KxDOCmSvIM1I3pc9seC3WmDJaVqt/fxHSrAq8kXH7tWFXHvK62g5hYOf22dTr6FdKOCiwO2VchqreWh6L8mKrDRF9p0l5ruF+fQ=,iv:n8w5tpL8b+rIex/w3nePbfYQrffliCs9d8qDaRP2l+0=,tag:GEtrnk14se17oLOo9KSKlw==,type:str]
+        PublicKey: ENC[AES256_GCM,data:AhKSAtBgQYxu7ZhVhlE2EBbzlL3rcqd3geO1kmCJN0GfXuJCcrldtXnghBSFsR/c0qww/8uDZKpqnbNSD9snpw==,iv:SGC2qkmFoOorpHTGfVhLVK7al2df+H/ng8Xq9PuTfmE=,tag:KxEW0JfpcJQsuN6TFC0pfw==,type:str]
 sops:
     kms: []
     gcp_kms: []
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2024-01-10T23:33:04Z"
-    mac: ENC[AES256_GCM,data:PcsYQhjBgF2f8T4skVYHhOpR2oZayv7mGFOVAqCb1K0CzU8rPSjXj1eGbqa6YUfqxzTqCrekSKzdXoV7UC5puoTZvJDvkHlzds403JrZ5XtxrGuS+LHv+R5m59I/IY4Bk+Hx25WCwnQ3hNahJzgkdaaYsaqalrbAq6HmzLHEgHg=,iv:4PWdEq8Qz4APAHvMm1GdWWEhlHqAjP6+sCNv6eEH6zY=,tag:4eZCzk/48PlwVqISAXu0KA==,type:str]
+    lastmodified: "2024-01-21T23:12:24Z"
+    mac: ENC[AES256_GCM,data:rG0BrE2oQtWZ/LoQ80LOnrg6wwidRDcraGtEOIkiXc4+C6Frcep6SfEhxwh7ANkdD85TTzIfXodbzlTzRNIIGN2g5Yr036M7A4mN8R+3tzumC/N+/B62yubfT3w3LFmVDkx1HTxOvEVeCc+u6+aecsD2+o6ZA+pubGbLg1b9U8k=,iv:Nt6IFw79l/6aoLxgf2u/AAX2zHDpBC/2QM5BQDVev3k=,tag:K9iDuuV7I9mHx/ZAahq/XQ==,type:str]
     pgp:
         - created_at: "2024-01-10T23:12:35Z"
           enc: |-

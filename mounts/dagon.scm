@@ -1,5 +1,5 @@
-(define-module (system mounts dagon)
-  #:use-module (system mounts common)
+(define-module (mounts dagon)
+  #:use-module (mounts common)
   #:use-module (gnu system mapped-devices)
   #:use-module (gnu system file-systems)
   #:export (file-systems
@@ -24,7 +24,7 @@
       #:flags '(shared)))
 
 (define home
-  (fs "/dev/mapper/crypthome" "/home" (list unlock-home)))
+  (fs "/dev/mapper/crypthome" "/home/michal_atlas" (list unlock-home)))
 
 (define efi
   (file-system

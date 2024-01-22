@@ -1,4 +1,4 @@
-(define-module (system mounts common)
+(define-module (mounts common)
   #:use-module (ice-9 curried-definitions)
   #:use-module (gnu system mapped-devices)
   #:use-module (gnu system file-systems)

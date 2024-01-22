@@ -1,4 +1,4 @@
-(define-module (system mounts nfs)
+(define-module (mounts nfs)
   #:use-module (atlas utils services)
   #:use-module (gnu services nfs)
 

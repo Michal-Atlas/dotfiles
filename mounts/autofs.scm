@@ -1,4 +1,4 @@
-(define-module (system mounts autofs)
+(define-module (mounts autofs)
   #:use-module (atlas utils services)
   #:use-module (gnu packages file-systems)
   #:use-module (gnu services shepherd)

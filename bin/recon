@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
+exec sudo guix system reconfigure -L "$DOTFILE_ROOT" "$0" --verbosity=3 -M4 --on-error=stacktrace "${@:1}"
+# shellcheck disable=SC1072
+!#
 
-set -euox pipefail
+(use-modules
+ (rde features)
+ (config))
 
-recon-system "$@"
-recon-home "$@"
+(rde-config-operating-system
+ (config-for-host (gethostname)))

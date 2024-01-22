@@ -35,7 +35,6 @@
  dictionaries
  disk
  dns
- ed
  elf
  emacs
  emacs-xyz
@@ -76,13 +75,13 @@
  parallel
  password-utils
  perl
- prolog
  pkg-config
+ prolog
  pulseaudio
  python
  python-xyz
- readline
  rdesktop
+ readline
  rsync
  rust-apps
  samba
@@ -97,6 +96,7 @@
  tex
  texinfo
  texlive
+ text-editors
  tls
  version-control
  video
@@ -181,12 +181,9 @@
             emacs-flycheck
             emacs-flycheck-haskell
             emacs-gdscript-mode
-            emacs-geiser
-            emacs-geiser-guile
             emacs-gemini-mode
             emacs-git-gutter
             emacs-go-mode
-            emacs-guix
             emacs-hackles
             emacs-haskell-mode
             emacs-highlight-indentation

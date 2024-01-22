@@ -24,17 +24,14 @@
   #:use-module (gnu services nix)
   #:use-module (gnu services databases)
   #:use-module (gnu services home)
-  #:use-module (system account)
   #:use-module (system btrfs)
   #:use-module (system firmware)
   #:use-module (system packages)
-  #:use-module (system base)
-  #:use-module (system btrbk)
-  #:use-module (system mounts autofs)
-  #:use-module (system mounts nfs)
-  #:use-module (system networks wireguard)
-  #:use-module (system networks yggdrasil)
-  #:use-module (system networks zerotier)
+  #:use-module (mounts autofs)
+  #:use-module (mounts nfs)
+  #:use-module (networks wireguard)
+  #:use-module (networks yggdrasil)
+  #:use-module (networks zerotier)
   #:use-module (sops)
   #:export (get-services))
 
@@ -57,13 +54,6 @@
        (list
         (pam-limits-entry "*" 'both 'nofile 524288)))
 
-   (&s screen-locker
-       (name "swaylock")
-       (program (file-append swaylock
-                             "/bin/swaylock"))
-       (using-setuid? #f)
-       (using-pam? #t))
-
    (&s openssh)
    (&s gpm)
    (&s earlyoom)
@@ -85,23 +75,17 @@
        (advertise? #t))
    (&s nix (extra-config
             '("experimental-features = nix-command flakes\n"
-              "trusted-users = @wheel\n")))
-   (&s bluetooth)))
+              "trusted-users = @wheel\n")))))
 
 (define (get-services)
   (cons*
    (+s polkit gvfs (list gvfs))
-   accounts
    btrfs-maid
    firmware
    packages
-   (btrbk)
    (autofs:get)
    (nfs:get)
    sops-service
    (append
     (zerotier:get)
-    services
-    (wireguard:get)
-    (yggdrasil:get)
-    (base-services))))
+    services)))

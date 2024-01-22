@@ -2,6 +2,7 @@
   #:use-module (engstrand wallpapers)
   #:use-module (rde features wm)
   #:use-module (rde features xdisorg)
+  #:use-module (rde features linux)
   #:use-module (atlas utils download)
   #:use-module (guix gexp)
   #:use-module (gnu packages xorg)
@@ -33,10 +34,13 @@
       (exec ,(file-append xhost "/bin/xhost +si:localuser:root"))))
    (feature-sway-run-on-tty)
    (feature-sway-screenshot)
+   (feature-backlight)
+   (feature-pipewire)
    (feature-swaylock
     #:extra-config
     `((color . "000000")
       ,#~(string-append "image=" #$lock-wallpaper)))
+   (feature-swayidle)
    (feature-batsignal)
    (feature-swaynotificationcenter)
    (feature-waybar
@@ -52,7 +56,7 @@
      (waybar-disk)
      (waybar-disk
       #:name 'home
-      #:path "/home"
+      #:path "/home/michal_atlas"
       #:disk-icon "⌂")
      (waybar-custom
       #:icon "𝖀"
