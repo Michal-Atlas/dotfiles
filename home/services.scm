@@ -10,7 +10,6 @@
   #:use-module (channels)
   #:use-module (rde home services bittorrent)
   #:use-module (rde home services i2p)
-  #:use-module (atlas home services flatpak)
   #:export (get-services))
 
 (define (get-services)
@@ -29,16 +28,6 @@
          ("HISTSIZE" . "-1")))
    pass
    mcron
-   (&s home-flatpak
-       (packages
-        `(("flathub"
-           "com.sindresorhus.Caprine"
-           "com.discordapp.Discord"
-           "com.github.IsmaelMartinez.teams_for_linux"
-           "org.zotero.Zotero"
-           "im.riot.Riot"
-           "net.ankiweb.Anki"
-           "com.github.tchx84.Flatseal"))))
    ssh
    packages
    (&s home-channels #:config %channels)
