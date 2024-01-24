@@ -25,6 +25,7 @@
   #:use-module (nongnu system linux-initrd)
   #:use-module (system btrbk)
   #:use-module (rde system services accounts)
+  #:use-module (rde system services admin)
   #:use-module (rde features)
   #:use-module (rde features base)
   #:use-module (rde features fontutils)
@@ -102,7 +103,8 @@
     (feature-markdown #:headings-scaling? #t)
     (feature-foot)
     (feature-qemu)
-    (feature-networking)
+    (feature-networking
+     #:mdns? #t)
     (feature-gnupg
      #:gpg-primary-key "3EFBF2BBBB29B99E")
     (feature-git
