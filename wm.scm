@@ -40,7 +40,8 @@
     #:extra-config
     `((color . "000000")
       ,#~(string-append "image=" #$lock-wallpaper)))
-   (feature-swayidle)
+   (feature-swayidle
+    #:lock-timeout 900)
    (feature-batsignal)
    (feature-swaynotificationcenter)
    (feature-waybar
