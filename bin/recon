@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-exec sudo guix system reconfigure -L "$DOTFILE_ROOT" "$0" --verbosity=3 -M4 --on-error=stacktrace "${@:1}"
+exec sudo guix system reconfigure -L "$DOTFILE_ROOT" "$0" --verbosity=3 -M4 --on-error=backtrace "${@:1}"
 # shellcheck disable=SC1072
 !#
 
