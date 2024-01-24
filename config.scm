@@ -161,7 +161,9 @@
             "build) " nix "/bin/nix \"$1\" --no-link --print-out-paths \"${@:2}\";; "
             "*)" nix "/bin/nix \"${@:1}\";; "
             "esac;"
-            " }"))))
+            " }")
+           (mixed-text-file "prompt"
+                            "prompt adam2"))))
     (feature-nyxt
      #:extra-config-lisp
      '((define-configuration (web-buffer prompt-buffer panel-buffer
