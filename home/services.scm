@@ -26,13 +26,7 @@
          ("BAT_THEME" . "ansi")
          ("HISTFILESIZE" . "-1")
          ("HISTCONROL" . "ignoredups")
-         ("HISTSIZE" . "-1")
-         ("XDG_DATA_DIRS" .
-          "$XDG_DATA_DIRS:$HOME/.local/share/flatpak/exports/share")
-         ("XDG_DATA_DIRS" .
-          "$XDG_DATA_DIRS:/var/lib/flatpak/exports/share")
-         ("PATH" .
-          "$HOME/.local/share/flatpak/exports/bin:$PATH")))
+         ("HISTSIZE" . "-1")))
    pass
    mcron
    (&s home-flatpak
@@ -41,7 +35,10 @@
            "com.sindresorhus.Caprine"
            "com.discordapp.Discord"
            "com.github.IsmaelMartinez.teams_for_linux"
-           "org.zotero.Zotero"))))
+           "org.zotero.Zotero"
+           "im.riot.Riot"
+           "net.ankiweb.Anki"
+           "com.github.tchx84.Flatseal"))))
    ssh
    packages
    (&s home-channels #:config %channels)
