@@ -164,6 +164,8 @@
             "*)" nix "/bin/nix \"${@:1}\";; "
             "esac;"
             " }")
+           (mixed-text-file "flatpak"
+                            "eval \"$("flatpak" --print-updated-env)\"")
            (mixed-text-file "prompt"
                             "prompt adam2"))))
     (feature-nyxt
