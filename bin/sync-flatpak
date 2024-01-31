@@ -43,7 +43,10 @@
     "org.zotero.Zotero"
     "im.riot.Riot"
     "net.ankiweb.Anki"
-    "com.github.tchx84.Flatseal")))
+    "com.github.tchx84.Flatseal"
+    "com.jetbrains.CLion"
+    "com.jetbrains.IntelliJ-IDEA-Ultimate"
+    "io.github.mimbrero.WhatsAppDesktop")))
 
 ;; Local Variables:
 ;; mode: scheme
