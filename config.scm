@@ -166,7 +166,7 @@
             "esac;"
             " }")
            (mixed-text-file "flatpak"
-                            "eval \"$("flatpak" --print-updated-env)\"")
+                            "eval \"$("flatpak"/bin/flatpak --print-updated-env)\"")
            (mixed-text-file "prompt"
                             "prompt adam2"))))
     (feature-nyxt
