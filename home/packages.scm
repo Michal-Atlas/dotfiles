@@ -235,6 +235,7 @@
             fheroes2
             file
             firefox
+            flatpak
             foot
             fzf
             gcc-toolchain
