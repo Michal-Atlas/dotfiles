@@ -7,6 +7,7 @@
   #:use-module (guix gexp)
   #:use-module (gnu packages xorg)
   #:use-module (gnu packages linux)
+  #:use-module (gnu packages python-xyz)
   #:export (wm))
 
 (define wallpaper
@@ -31,7 +32,8 @@
       (output "*" ((bg ,wallpaper fill)))
       (output "HDMI-A-1" ((position "1920,0")))
       (output "DP-1" ((position "0,0")))
-      (exec ,(file-append xhost "/bin/xhost +si:localuser:root"))))
+      (exec ,(file-append xhost "/bin/xhost +si:localuser:root"))
+      (exec ,(file-append i3-autotiling "/bin/autotiling"))))
    (feature-sway-run-on-tty)
    (feature-sway-screenshot)
    (feature-backlight)
