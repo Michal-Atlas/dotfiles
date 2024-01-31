@@ -106,7 +106,8 @@
     (feature-networking
      #:mdns? #t)
     (feature-gnupg
-     #:gpg-primary-key "3EFBF2BBBB29B99E")
+     #:gpg-primary-key "3EFBF2BBBB29B99E"
+     #:gpg-ssh-agent? #f)
     (feature-git
      #:git-gpg-sign-key "3EFBF2BBBB29B99E"
      #:extra-config
