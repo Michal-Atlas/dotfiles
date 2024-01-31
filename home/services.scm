@@ -25,7 +25,13 @@
          ("BAT_THEME" . "ansi")
          ("HISTFILESIZE" . "-1")
          ("HISTCONROL" . "ignoredups")
-         ("HISTSIZE" . "-1")))
+         ("HISTSIZE" . "-1")
+         ("XDG_DATA_DIRS" .
+          "$XDG_DATA_DIRS:$HOME/.local/share/flatpak/exports/share")
+         ("XDG_DATA_DIRS" .
+          "$XDG_DATA_DIRS:/var/lib/flatpak/exports/share")
+         ("PATH" .
+          "$HOME/.local/share/flatpak/exports/bin:$PATH")))
    pass
    mcron
    ssh
