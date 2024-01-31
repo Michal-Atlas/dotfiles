@@ -218,7 +218,9 @@
          (feature-custom-services
           #:feature-name-prefix 'dagon-legacy
           #:system-services sys:dagon:services)
-         (feature-btrbk #:schedule "24h 7d")
+         (feature-btrbk
+          #:schedule "24h 7d"
+          #:path "/home/michal_atlas/")
          feature-common))
 
 (define hydra
