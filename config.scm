@@ -50,6 +50,7 @@
   #:use-module (rde features lisp)
   #:use-module (networks wireguard)
   #:use-module ((networks yggdrasil) #:prefix net:)
+  #:use-module (rde features linux)
   #:use-module (wm)
   #:use-module (emacs)
   #:export (config-for-host))
