@@ -37,7 +37,6 @@
    (feature-sway-run-on-tty)
    (feature-sway-screenshot)
    (feature-backlight)
-   (feature-pipewire)
    (feature-swaylock
     #:extra-config
     `((color . "000000")

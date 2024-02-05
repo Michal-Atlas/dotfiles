@@ -198,6 +198,7 @@
                (list zsh-syntax-highlighting
                      zsh-autopair))))
     (net:feature-yggdrasil)
+    (feature-pipewire)
     (feature-wireguard)
     (feature-user-info
      #:user-name "michal_atlas"
