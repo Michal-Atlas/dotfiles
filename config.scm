@@ -129,46 +129,6 @@
                 (clean . "git-lfs clean -- %f")
                 (smudge . "git-lfs smudge -- %f")))))
     (feature-direnv)
-    (feature-zsh
-     #:zshrc
-     (map slurp-file-like
-          (list
-           (plain-file "fasd" "eval \"$(fasd --init auto)\"")
-           (mixed-text-file
-            "bashrc-pp"
-            "function pp() { "
-            (program-file
-             "pp"
-             #~(begin
-                 (use-modules (ice-9 pretty-print))
-                 (call-with-input-file (cadr (command-line))
-                   (lambda (f)
-                     (let loop ((r (read f)))
-                       (unless (eof-object? r)
-                         (pretty-print r)
-                         (loop (read f))))))))
-            " $1 | "
-            bat "/bin/bat"
-            " -pl lisp; }")
-           (mixed-text-file "fzf-history"
-                            ". "
-                            (file-fetch "https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh"
-                                        "q2KdZrpVpetitWJpe/mzC5Cl2jfx42BMJ4wM0q6+2rM="))
-           (mixed-text-file "bashrc-cheat"
-                            "function cheat { "
-                            curl "/bin/curl"
-                            " \"cheat.sh/$@\"; }")
-           (mixed-text-file
-            "bashrc-nuix"
-            "function nix() { case \"$1\" in "
-            "build) " nix "/bin/nix \"$1\" --no-link --print-out-paths \"${@:2}\";; "
-            "*)" nix "/bin/nix \"${@:1}\";; "
-            "esac;"
-            " }")
-           (mixed-text-file "flatpak"
-                            "eval \"$("flatpak"/bin/flatpak --print-updated-env)\"")
-           (mixed-text-file "prompt"
-                            "prompt adam2"))))
     (feature-nyxt
      #:extra-config-lisp
      '((define-configuration (web-buffer prompt-buffer panel-buffer
