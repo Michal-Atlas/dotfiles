@@ -62,7 +62,7 @@
 
 (define feature-common
   (append
-   wm
+   ;; wm
    emacs
    (list
     feature-legacy-services
