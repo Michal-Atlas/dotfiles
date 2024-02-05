@@ -7,14 +7,19 @@
   #:use-module (home ssh)
   #:use-module (gnu home services)
   #:use-module (gnu home services guix)
+  #:use-module (gnu home services gnupg)
   #:use-module (channels)
   #:use-module (rde home services bittorrent)
   #:use-module (rde home services i2p)
+  #:use-module (home dconf)
+  #:use-module (home bash)
+#:use-module (atlas home services bash)
   #:export (get-services))
 
 (define (get-services)
   (cons*
    (&s home-i2pd)
+   (&s home-gpg-agent)
    (+s home-environment-variables 'extend
        `(("BROWSER" . "firefox")
          ("MOZ_ENABLE_WAYLAND" . "1")
@@ -33,8 +38,13 @@
          ("PATH" .
           "$HOME/.local/share/flatpak/exports/bin:$PATH")))
    pass
+   bash
+(&s home-direnv-bash)
+(&s home-fzf-history-bash)
+(&s home-fasd-bash)
    mcron
    ssh
    packages
+   dconf
    (&s home-channels #:config %channels)
    files))
