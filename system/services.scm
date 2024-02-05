@@ -2,6 +2,8 @@
   #:use-module (channels)
   #:use-module (atlas utils services)
   #:use-module (gnu services shepherd)
+  #:use-module (gnu services desktop)
+  #:use-module (gnu services xorg)
   #:use-module (guix gexp)
   #:use-module (gnu packages linux)
   #:use-module (gnu packages gnome)
@@ -37,6 +39,12 @@
 
 (define services
   (list
+   (&s gdm
+       (auto-login? #t)
+       (default-user "michal_atlas")
+       (auto-suspend? #f)
+       (wayland? #t))
+   (&s gnome-desktop)
    (&s file-database)
    (&s package-database)
    (+s etc podman-policy
