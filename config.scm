@@ -154,12 +154,7 @@
     (feature-custom-services
      #:system-services
      (list (simple-service 'libvirt rde-account-service-type
-                    '("libvirt")))
-     #:home-services
-     (list
-      (service home-zsh-plugin-manager-service-type
-               (list zsh-syntax-highlighting
-                     zsh-autopair))))
+                    '("libvirt"))))
     (net:feature-yggdrasil)
     (feature-pipewire)
     (feature-wireguard)
