@@ -7,7 +7,6 @@
   #:use-module (home ssh)
   #:use-module (gnu home services)
   #:use-module (gnu home services guix)
-  #:use-module (gnu home services gnupg)
   #:use-module (channels)
   #:use-module (rde home services bittorrent)
   #:use-module (rde home services i2p)
@@ -19,7 +18,6 @@
 (define (get-services)
   (cons*
    (&s home-i2pd)
-   (&s home-gpg-agent)
    (+s home-environment-variables 'extend
        `(("BROWSER" . "firefox")
          ("MOZ_ENABLE_WAYLAND" . "1")
