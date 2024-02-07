@@ -101,6 +101,8 @@
     (feature-gtk3 #:gtk-dark-theme? #t)
     (feature-bluetooth)
     (feature-transmission)
+    (feature-mpv)
+    (feature-yt-dlp)
     (feature-markdown #:headings-scaling? #t)
     (feature-foot)
     (feature-qemu)
