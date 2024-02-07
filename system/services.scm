@@ -39,12 +39,6 @@
 
 (define services
   (list
-   (&s gdm
-       (auto-login? #t)
-       (default-user "michal_atlas")
-       (auto-suspend? #f)
-       (wayland? #t))
-   (&s gnome-desktop)
    (&s file-database)
    (&s package-database)
    (+s etc podman-policy
