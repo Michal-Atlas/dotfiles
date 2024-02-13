@@ -59,7 +59,7 @@
         "50F3 3E2E 5B0C 3D90 0424  ABE8 9BDC F497 A4BB CC7F"))))
     (channel
      (name 'rde)
-     (url "/home/michal_atlas/cl/rde")
+     (url "https://git.sr.ht/~abcdw/rde")
      (introduction
       (make-channel-introduction
        "257cebd587b66e4d865b3537a9a88cccd7107c95"
