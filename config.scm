@@ -106,8 +106,7 @@
     (feature-markdown #:headings-scaling? #t)
     (feature-foot)
     (feature-qemu)
-    (feature-networking
-     #:mdns? #t)
+    (feature-networking)
     (feature-gnupg
      #:gpg-primary-key "3EFBF2BBBB29B99E"
      #:gpg-ssh-agent? #f)
