@@ -37,6 +37,16 @@
   #:use-module (sops)
   #:export (get-services))
 
+(define (common-rules-service vendor product)
+  (udev-rules-service
+   'quest (udev-rule "51-android-quest.rules"
+                     (string-join `("SUBSYSTEM==\"usb\""
+                                    ,(string-append "ATTR{idVendor}==\"" vendor "\"")
+                                    ,(string-append "ATTR{idProduct}==\"" product "\"")
+                                    "MODE=\"0666\""
+                                    "GROUP=\"users\"")
+                                  ", "))))
+
 (define services
   (list
    (&s file-database)
@@ -75,14 +85,8 @@
    (&s guix-publish
        (host "0.0.0.0")
        (advertise? #t))
-   (udev-rules-service
-    'quest (udev-rule "51-android-quest.rules"
-                      (string-join '("SUBSYSTEM==\"usb\""
-                                     "ATTR{idVendor}==\"2833\""
-                                     "ATTR{idProduct}==\"0186\""
-                                     "MODE=\"0666\""
-                                     "GROUP=\"users\"")
-                                   ", ")))
+   (common-rules-service "2833" "0186")
+   (common-rules-service "18d1" "4ee8")
    (&s nix (extra-config
             '("experimental-features = nix-command flakes\n"
               "trusted-users = @wheel\n")))))
