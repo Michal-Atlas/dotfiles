@@ -47,12 +47,12 @@
    packages
    dconf
    (&s home-channels #:config %channels)
-   files
-   (+s home-shepherd gnunet-service
+   (+s home-shepherd 'gnunet-service
        (list
         (shepherd-service
          (provision '(gnunet))
          (start #~(make-forkexec-constructor
                    (list (file-append gnunet "/bin/gnunet-arm")
                          "-a")))
-         (one-shot? #t))))))
+         (one-shot? #t))))
+   files))
