@@ -45,6 +45,7 @@
  gimp
  gnome
  gnome-xyz
+ gnunet
  gnuzilla
  graphviz
  haskell
@@ -142,6 +143,7 @@
         git-lfs
         gmnisrv
         gnu-make
+        gnunet
         gparted
         graphviz
         grim

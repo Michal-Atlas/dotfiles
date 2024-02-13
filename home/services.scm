@@ -7,12 +7,14 @@
   #:use-module (home ssh)
   #:use-module (gnu home services)
   #:use-module (gnu home services guix)
+  #:use-module (gnu home services shepherd)
+  #:use-module (guix gexp)
   #:use-module (channels)
   #:use-module (rde home services bittorrent)
   #:use-module (rde home services i2p)
   #:use-module (home dconf)
   #:use-module (home bash)
-#:use-module (atlas home services bash)
+  #:use-module (atlas home services bash)
   #:export (get-services))
 
 (define (get-services)
@@ -45,4 +47,12 @@
    packages
    dconf
    (&s home-channels #:config %channels)
-   files))
+   files
+   (+s home-shepherd gnunet-service
+       (list
+        (shepherd-service
+         (provision '(gnunet))
+         (start #~(make-forkexec-constructor
+                   (list (file-append gnunet "/bin/gnunet-arm")
+                         "-a")))
+         (one-shot? #t))))))
