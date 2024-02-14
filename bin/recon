@@ -4,9 +4,8 @@ exec sudo guix system reconfigure -L "$DOTFILE_ROOT" "$0" --verbosity=3 -M4 --on
 !#
 
 (use-modules
- (rde features))
-
-(load "../config.scm")
+ (rde features)
+ (config))
 
 (rde-config-operating-system
  (config-for-host (gethostname)))
