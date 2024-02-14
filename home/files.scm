@@ -6,6 +6,7 @@
   #:use-module (guix gexp)
   #:use-module (rde serializers ini)
   #:use-module (gnu packages terminals)
+  #:use-module (gnu packages password-utils)
   #:use-module (gnu packages video)
   #:use-module (atlas utils download)
   #:use-module (gnu packages containers)
@@ -25,6 +26,9 @@
           ,(file-fetch
             "https://git.sr.ht/~michal_atlas/www/blob/0d74b8802a0c9e820c38e41cfe920f1bdbb06746/assets/mlxan/carcass-mountain/portraits/weeping-priest.jpeg"
             "1MnHsYKJpI/h8zJa01MtPjgf/UMtSLZQ7YWcslj1Xxc="))
+         (".mozilla/native-messaging-hosts/com.github.browserpass.native.json"
+          ,(file-append browserpass-native
+                        "/lib/browserpass/hosts/firefox/com.github.browserpass.native.json"))
          (".bin/docker"
           ,(program-file "docker"
                          #~(apply execlp
