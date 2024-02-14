@@ -53,6 +53,6 @@
          (provision '(gnunet))
          (start #~(make-forkexec-constructor
                    (list (file-append gnunet "/bin/gnunet-arm")
-                         "-a")))
+                         "-s")))
          (one-shot? #t))))
    files))
