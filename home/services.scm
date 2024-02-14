@@ -51,6 +51,7 @@
        (list
         (shepherd-service
          (provision '(gnunet))
+         (auto-start? #f)
          (start #~(make-forkexec-constructor
                    (list (file-append gnunet "/bin/gnunet-arm")
                          "-s")))
