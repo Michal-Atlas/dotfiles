@@ -43,6 +43,7 @@
   #:use-module (rde features bittorrent)
   #:use-module (rde features virtualization)
   #:use-module (rde features gnupg)
+  #:use-module (rde features clojure)
   #:use-module (rde features version-control)
   #:use-module (rde features shells)
   #:use-module (rde features shellutils)
@@ -107,6 +108,7 @@
     (feature-foot)
     (feature-qemu)
     (feature-networking)
+    (feature-clojure)
     (feature-gnupg
      #:gpg-primary-key "3EFBF2BBBB29B99E"
      #:gpg-ssh-agent? #f)
