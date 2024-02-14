@@ -198,8 +198,12 @@
 
 (define (config-for-host host)
   (rde-config
-   (integrate-he-in-os? #t)
    (features
     (match host
       ("hydra" hydra)
       ("dagon" dagon)))))
+
+((match (getenv "OP")
+   ["home" rde-config-home-environment]
+   ["system" rde-config-operating-system])
+ (config-for-host (getenv "HOSTNAME")))
