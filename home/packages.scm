@@ -215,6 +215,7 @@
         sbcl-mcclim
         sbcl-parenscript
         sbcl-s-xml
+        sbcl-screamer
         sbcl-serapeum
         sbcl-series
         sbcl-tailrec
