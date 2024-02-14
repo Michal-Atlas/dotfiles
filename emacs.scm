@@ -18,6 +18,7 @@
    emacs-ace-window
    emacs-adaptive-wrap
    emacs-anzu
+   emacs-arei
    emacs-auctex
    emacs-avy
    emacs-bind-map

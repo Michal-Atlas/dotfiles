@@ -33,6 +33,7 @@
  dns
  elf
  emacs
+ guile-xyz
  emacs-xyz
  file
  fonts
@@ -159,6 +160,7 @@
         inkscape
         inotify-tools
         irssi
+        guile-ares-rs
         jq
         keepassxc
         kineto
