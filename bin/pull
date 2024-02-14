@@ -1,3 +1,0 @@
-set -euox pipefail
-
-guix pull -C <(ssh $1 guix describe -f channels) "${@:2}"
