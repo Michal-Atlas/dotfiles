@@ -2,7 +2,10 @@
   #:use-module (atlas utils services)
   #:use-module (gnu home services shells)
   #:use-module (guix gexp)
+  #:use-module (guix packages)
+  #:use-module (guix download)
   #:use-module (gnu packages base)
+  #:use-module (gnu packages shellutils)
   #:use-module (gnu packages version-control)
   #:use-module (gnu packages rust-apps)
   #:use-module (gnu packages package-management)
@@ -33,6 +36,19 @@
         "*)" nix "/bin/nix \"${@:1}\";; "
         "esac;"
         " }")
+       (mixed-text-file
+        "bashrc-zoxide"
+        "eval \"$(" (file-append zoxide "/bin/zoxide") " init bash --cmd cd)\"")
+       (mixed-text-file
+        "bashrc-direnv"
+        "eval \"$(" (file-append direnv "/bin/direnv") " hook bash)\"")
+       (mixed-text-file
+        "bashrc-fzf-history"
+        ". "
+        (origin
+          (method url-fetch)
+          (uri "https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.bash")
+          (sha256 (base32 "0s078va037r0pdjr7f50x7ksjppp63sqxxgzv8wxamvvhvlly251"))))
        (mixed-text-file
         "bashrc-pp"
         "function pp() { "
@@ -85,6 +101,5 @@
         ("e" . "$EDITOR")
         ("sw" . "swayhide")
         ("cat" . "bat -p")
-        ("cd" . "pushd")
         ("shen-scheme" . "rlwrap shen-scheme")
         ("u" . "unison")))))

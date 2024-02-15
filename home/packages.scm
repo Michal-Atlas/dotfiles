@@ -261,4 +261,5 @@
         xdot
         xonotic
         xxd
+        zoxide
         yt-dlp))))

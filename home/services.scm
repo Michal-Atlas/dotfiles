@@ -12,7 +12,6 @@
   #:use-module (channels)
   #:use-module (rde home services bittorrent)
   #:use-module (rde home services i2p)
-  #:use-module (home dconf)
   #:use-module (home bash)
   #:use-module (atlas home services bash)
   #:export (get-services))
@@ -39,9 +38,6 @@
           "$HOME/.local/share/flatpak/exports/bin:$PATH")))
    pass
    bash
-(&s home-direnv-bash)
-(&s home-fzf-history-bash)
-(&s home-fasd-bash)
    mcron
    ssh
    packages
