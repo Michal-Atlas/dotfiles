@@ -41,5 +41,6 @@
    mcron
    ssh
    packages
+   dconf
    (&s home-channels #:config %channels)
    files))
