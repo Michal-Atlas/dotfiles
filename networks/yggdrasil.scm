@@ -37,14 +37,14 @@
            (file common.yaml)
            (user "yggdrasil")
            (group "yggdrasil")
-           (output-type "json")
-           (path "/var/lib/yggdrasil/keys.json"))))))
-  (merge-features
-   (list
-    (rde:feature-yggdrasil
-     #:peers (vector-append
-              #("tls://37.205.14.171:993"
-	        "tls://[2a03:3b40:fe:ab::1]:993")
-              (@@ (rde features networking) yggdrasil-default-peers)))
-    (feature
-     (system-services-getter get-system-services)))))
+           (output-type "json"))))
+     (&s yggdrasil
+         (config-file "/run/secrets/yggdrasil.json")
+         (json-config
+          `((peers .
+                   ,(vector-append
+                    #("tls://37.205.14.171:993"
+                      "tls://[2a03:3b40:fe:ab::1]:993")
+                    (@@ (rde features networking) yggdrasil-default-peers))))))))
+  (feature
+   (system-services-getter get-system-services)))
