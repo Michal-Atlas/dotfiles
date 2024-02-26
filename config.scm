@@ -101,13 +101,13 @@
     (feature-xdg)
     (feature-gtk3 #:gtk-dark-theme? #t)
     (feature-bluetooth)
-    (feature-transmission)
+    ;; (feature-transmission)
     (feature-mpv)
     (feature-yt-dlp)
     (feature-markdown #:headings-scaling? #t)
     (feature-foot)
     (feature-qemu)
-    (feature-networking)
+    ;; (feature-networking)
     (feature-clojure)
     (feature-gnupg
      #:gpg-primary-key "3EFBF2BBBB29B99E"
