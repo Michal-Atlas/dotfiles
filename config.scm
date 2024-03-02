@@ -111,7 +111,8 @@
     (feature-clojure)
     (feature-gnupg
      #:gpg-primary-key "3EFBF2BBBB29B99E"
-     #:gpg-ssh-agent? #f)
+     #:gpg-ssh-agent? #f
+     #:pinentry-flavor 'gnome3)
     (feature-git
      #:git-gpg-sign-key "3EFBF2BBBB29B99E"
      #:extra-config
