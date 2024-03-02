@@ -16,6 +16,11 @@
 
 (define files
   (list
+   (+s home-xdg-configuration-files cl
+       `(("common-lisp/source-registry.conf"
+          ,(plain-file
+            "registry.conf"
+            "(:directory \"~/.local/share/common-lisp/source/\")"))))
    (+s home-files dotfiles
        ;; local-file being explicit allows earlier check for file existence
        `((".guile" ,(local-file "../files/guilerc"))
