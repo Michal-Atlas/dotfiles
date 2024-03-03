@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOs/nixpkgs/nixos-23.05";
     agenix.url = "github:ryantm/agenix";
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
+    emacs-overlay.url = "github:nix-community/emacs-overlay/aee5e8a427c8a942458d2bad7b97cbad30b75aec";
     home-manager = {
       url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";

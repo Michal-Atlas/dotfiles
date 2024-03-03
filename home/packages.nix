@@ -5,7 +5,6 @@ with pkgs;
   scala_3
   acl2-minimal
   arandr
-  atlas-emacs
   audacity
   bat
   bc
