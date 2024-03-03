@@ -2,6 +2,8 @@
 let
   prefix = "fd4c:16e4:7d9b:0";
   wgip = idx: "${prefix}::${idx}/128";
+  is_self = p: p.name == config.networking.hostName;
+  is_not_self = p: !(is_self p);
   peers = [
     {
       name = "hydra";
@@ -25,11 +27,11 @@ in
           (peer:
             { name = "wg-${peer.name}"; value = peer.allowedIPs; }
           )
-          peers);
+          (filter is_not_self peers));
     wg-quick.interfaces.wg0 = {
       privateKeyFile =
         config.age.secrets.wireguard.path;
-      address = [ (wgip "2") ];
+      address = [ (with builtins; elem (filter is_self peers) 0) ];
       inherit peers;
     };
   };
