@@ -29,7 +29,7 @@
 
   networking.hostName = "dagon";
   age.secrets = {
-    yggdrasil.file = ../../../secrets/yggdrasil/hydra.json;
-    wireguard.file = ../../../secrets/wireguard/hydra;
+    yggdrasil.file = ../../../secrets/yggdrasil/dagon.json;
+    wireguard.file = ../../../secrets/wireguard/dagon;
   };
 }
