@@ -1,6 +1,5 @@
 { config, ... }:
 {
-  age.secrets.yggdrasil.file = ../../../secrets/yggdrasil/${config.networking.hostName}.json;
   networking.hosts =
     let conc = l: [ (builtins.concatStringsSep ":" l) ]; in
     {

@@ -28,4 +28,8 @@
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   networking.hostName = "dagon";
+  age.secrets = {
+    yggdrasil.file = ../../../secrets/yggdrasil/hydra.json;
+    wireguard.file = ../../../secrets/wireguard/hydra;
+  };
 }

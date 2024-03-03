@@ -28,4 +28,8 @@
 
   networking.hostName = "hydra";
   services.spotifyd.enable = true;
+  age.secrets = {
+    yggdrasil.file = ../../../secrets/yggdrasil/hydra.json;
+    wireguard.file = ../../../secrets/wireguard/hydra;
+  };
 }
