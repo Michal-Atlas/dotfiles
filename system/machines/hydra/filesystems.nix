@@ -17,7 +17,7 @@
         device = "/dev/disk/by-uuid/C9ED-A99E";
         fsType = "vfat";
       };
-      "/" = btrfsMount "/dev/spool/root" "@nix";
+      "/" = btrfsMount "/dev/rpool/root" "@nix";
       "/home" = btrfsMount "/dev/rpool/home" "@home";
       "/home/michal_atlas/Games" = btrfsMount "/dev/rpool/vault" "@games";
       "/home/michal_atlas/Downloads" = btrfsMount "/dev/rpool/vault" "@tmp";
