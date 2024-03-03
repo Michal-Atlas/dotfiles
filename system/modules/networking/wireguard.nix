@@ -24,7 +24,7 @@ in
       builtins.listToAttrs
         (builtins.map
           (peer:
-            { name = "yg-${peer.name}"; value = peer.allowedIPs; }
+            { name = "wg-${peer.name}"; value = peer.allowedIPs; }
           )
           peers);
     wg-quick.interfaces.wg0 = {
