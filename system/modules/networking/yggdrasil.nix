@@ -1,9 +1,10 @@
-_:
+{ config, ... }:
 {
+  age.secrets.yggdrasil.file = ../../../secrets/yggdrasil/${config.networking.hostName}.json;
   services.yggdrasil = {
     enable = true;
-    persistentKeys = true;
     group = "wheel";
+    configFile = config.age.secrets.yggdrasil.path;
 
     settings.Peers = [
       # Czechia

@@ -29,6 +29,7 @@
     , pre-commit-hooks
     , stevenblackhosts
     , guix-overlay
+    , sops-nix
     , ...
     }@attrs:
     let
