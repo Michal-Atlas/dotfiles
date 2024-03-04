@@ -1,4 +1,4 @@
-{ self, nur, emacs-overlay, atlas-overlay, guix-overlay, ... }: {
+{ self, nur, emacs-overlay, atlas-overlay, ... }: {
   nix = {
     settings = {
       trusted-users = [ "root" "@wheel" ];
@@ -13,7 +13,6 @@
       emacs-overlay.overlays.default
       (import ../../overlays/atlas-emacs.nix)
       atlas-overlay.overlays.x86_64-linux.default
-      guix-overlay.overlays.default
     ];
   };
 }
