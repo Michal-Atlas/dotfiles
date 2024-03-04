@@ -24,9 +24,9 @@
     pinentryFlavor = "gnome3";
     enableSSHSupport = true;
   };
-  services.guix-binary = {
+  services.guix = {
     enable = true;
-    extraArgs = [ "--discover=yes" ];
+    gc.enable = true;
     publish.enable = true;
   };
   boot.kernel.sysctl."net.core.wmem_max" = 2500000;

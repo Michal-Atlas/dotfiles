@@ -232,24 +232,6 @@
         "type": "github"
       }
     },
-    "guix-overlay": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_5"
-      },
-      "locked": {
-        "lastModified": 1701658398,
-        "narHash": "sha256-6FLVX4bjpIxYc/MRTR0dKX4CODGZJS8ZKLyeWMLCgvc=",
-        "owner": "foo-dogsquared",
-        "repo": "nix-overlay-guix",
-        "rev": "67b3ddc7ccc0eda4cc095e59d56861309316277a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "foo-dogsquared",
-        "repo": "nix-overlay-guix",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -422,22 +404,6 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1665763903,
-        "narHash": "sha256-znGWY4x688cZ3Ii01qLnhl+mSKpQ9iCufGxfdV6oBOc=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "78a37aa630faa41944060a966607d4f1128ea94b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-22.05",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_6": {
-      "locked": {
         "lastModified": 1709309926,
         "narHash": "sha256-VZFBtXGVD9LWTecGi6eXrE0hJ/mVB3zGUlHImUs2Qak=",
         "owner": "NixOs",
@@ -452,7 +418,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_7": {
+    "nixpkgs_6": {
       "locked": {
         "lastModified": 1704842529,
         "narHash": "sha256-OTeQA+F8d/Evad33JMfuXC89VMetQbsU4qcaePchGr4=",
@@ -468,7 +434,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_8": {
+    "nixpkgs_7": {
       "locked": {
         "lastModified": 1709356872,
         "narHash": "sha256-mvxCirJbtkP0cZ6ABdwcgTk0u3bgLoIoEFIoYBvD6+4=",
@@ -542,7 +508,7 @@
         "flake-compat": "flake-compat_2",
         "flake-utils": "flake-utils_4",
         "gitignore": "gitignore_2",
-        "nixpkgs": "nixpkgs_7",
+        "nixpkgs": "nixpkgs_6",
         "nixpkgs-stable": "nixpkgs-stable_3"
       },
       "locked": {
@@ -564,9 +530,8 @@
         "agenix": "agenix",
         "atlas-overlay": "atlas-overlay",
         "emacs-overlay": "emacs-overlay",
-        "guix-overlay": "guix-overlay",
         "home-manager": "home-manager_2",
-        "nixpkgs": "nixpkgs_6",
+        "nixpkgs": "nixpkgs_5",
         "nur": "nur",
         "pre-commit-hooks": "pre-commit-hooks_2",
         "sops-nix": "sops-nix",
@@ -575,7 +540,7 @@
     },
     "sops-nix": {
       "inputs": {
-        "nixpkgs": "nixpkgs_8",
+        "nixpkgs": "nixpkgs_7",
         "nixpkgs-stable": "nixpkgs-stable_4"
       },
       "locked": {
