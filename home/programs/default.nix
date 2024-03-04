@@ -22,5 +22,6 @@
       extraPackages = with pkgs.bat-extras; [ batdiff batman batgrep batwatch ];
     };
     nix-index.enable = true;
+    password-store.enable = true;
   };
 }
