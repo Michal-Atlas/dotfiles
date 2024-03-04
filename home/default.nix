@@ -40,4 +40,6 @@
     "e /home/michal_atlas/Downloads - - - 2d"
     "e /home/michal_atlas/tmp - - - 2d"
   ];
+
+  manual.manpages.enable = false;
 }
