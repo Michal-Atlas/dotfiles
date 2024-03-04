@@ -23,7 +23,7 @@
     };
     # https://nixos.wiki/wiki/AMD_GPU
     tmpfiles.rules =
-      [ "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.hip}" ];
+      [ "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}" ];
   };
   programs.dconf.enable = true;
   hardware.opengl = {
