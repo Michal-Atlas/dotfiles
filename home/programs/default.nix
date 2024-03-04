@@ -11,7 +11,10 @@
       nix-direnv.enable = true;
       enable = true;
     };
-    autojump.enable = true;
+    zoxide = {
+      enable = true;
+      options = [ "--cmd" "cd" ];
+    };
     zsh = import ./zsh.nix;
     starship.enable = true;
     bat = {
