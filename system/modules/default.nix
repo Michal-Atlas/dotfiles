@@ -29,4 +29,5 @@
     extraArgs = [ "--discover=yes" ];
     publish.enable = true;
   };
+  boot.kernel.sysctl."net.core.rmem_max" = 2500000;
 }
