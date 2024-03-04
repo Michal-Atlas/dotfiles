@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ config, lib, ... }: {
   imports = [
     ./boot.nix
     ./fonts.nix
@@ -29,5 +29,5 @@
     extraArgs = [ "--discover=yes" ];
     publish.enable = true;
   };
-  boot.kernel.sysctl."net.core.rmem_max" = 2500000;
+  boot.kernel.sysctl."net.core.wmem_max" = 2500000;
 }
