@@ -2,7 +2,7 @@
   description = "Atlas' NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOs/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:NixOs/nixpkgs/nixos-23.11";
     agenix.url = "github:ryantm/agenix";
     emacs-overlay.url = "github:nix-community/emacs-overlay/aee5e8a427c8a942458d2bad7b97cbad30b75aec";
     home-manager = {
