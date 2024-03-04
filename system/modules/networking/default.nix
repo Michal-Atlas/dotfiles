@@ -4,7 +4,6 @@ _: {
     ./torrents.nix
     ./yggdrasil.nix
     ./morrowind.nix
-    ./wireguard.nix
     ./atlasnet.nix
   ];
   services = {
