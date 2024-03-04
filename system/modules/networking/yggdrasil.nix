@@ -2,7 +2,7 @@
   networking.hosts = (builtins.listToAttrs
     (lib.attrsets.mapAttrsToList
       (name: value: {
-        value = [ "yg-${name}" ];
+        value = [ name ];
         name = value;
       })
       config.atlasnet.yggdrasil));

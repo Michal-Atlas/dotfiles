@@ -5,7 +5,7 @@
         (lib.attrsets.mapAttrsToList
           (name: value: {
             name = value.address;
-            value = [ name "wg-${name}" ];
+            value = [ "wg-${name}" ];
           })
           config.atlasnet.wireguard));
     wireguard.interfaces.wg0 = {
