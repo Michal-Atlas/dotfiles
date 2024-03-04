@@ -27,11 +27,11 @@ in
           (peer:
             { name = "wg-${peer.name}"; value = peer.allowedIPs; }
           )
-          (filter is_not_self peers));
+          (builtins.filter is_not_self peers));
     wg.interfaces.wg0 = {
       privateKeyFile =
         config.age.secrets.wireguard.path;
-      ips = [ (with builtins; elem (filter is_self peers) 0) ];
+      ips = [ (with builtins; elem 0 (filter is_self peers)) ];
       inherit peers;
     };
   };
