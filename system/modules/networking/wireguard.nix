@@ -28,10 +28,10 @@ in
             { name = "wg-${peer.name}"; value = peer.allowedIPs; }
           )
           (filter is_not_self peers));
-    wg-quick.interfaces.wg0 = {
+    wg.interfaces.wg0 = {
       privateKeyFile =
         config.age.secrets.wireguard.path;
-      address = [ (with builtins; elem (filter is_self peers) 0) ];
+      ips = [ (with builtins; elem (filter is_self peers) 0) ];
       inherit peers;
     };
   };
