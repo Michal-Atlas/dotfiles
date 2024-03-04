@@ -94,7 +94,7 @@
       devShells.${system}.default = nixpkgs.legacyPackages.${system}.mkShell {
         nativeBuildInputs =
           let
-            rebuild-cmd = cmd: "nixos-rebuild ${cmd} --flake .#$(hostname) $@;";
+            rebuild-cmd = cmd: ''nixos-rebuild ${cmd} --flake . "$@";'';
             sudo-rebuild-cmd = cmd: "sudo ${rebuild-cmd cmd}";
           in
           [
