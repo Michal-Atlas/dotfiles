@@ -1,8 +1,10 @@
 { self, nur, emacs-overlay, atlas-overlay, guix-overlay, ... }: {
-  nix.settings = {
-    trusted-users = [ "root" "@wheel" ];
-    experimental-features = [ "nix-command" "flakes" ];
-    auto-optimise-store = true;
+  nix = {
+    settings = {
+      trusted-users = [ "root" "@wheel" ];
+      experimental-features = [ "nix-command" "flakes" ];
+      auto-optimise-store = true;
+    };
   };
   nixpkgs = {
     config.allowUnfree = true;
