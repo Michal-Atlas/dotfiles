@@ -37,6 +37,7 @@
   services.yggdrasil = {
     enable = true;
     group = "wheel";
+    openMulticastPort = true;
     configFile = config.age.secrets.yggdrasil.path;
 
     settings.Peers = [
