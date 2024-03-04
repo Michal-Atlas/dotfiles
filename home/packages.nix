@@ -157,6 +157,7 @@ with pkgs;
   espresso
   gnome-clipboard
   night-theme-switcher
+  paperwm
 ])
 ++ [
   (pkgs.python311.withPackages
