@@ -11,7 +11,7 @@ _: {
     relay.enable = false;
     openDefaultPorts = true;
     settings = {
-      options.urAccepted = true;
+      options.urAccepted = 1;
     devices = {
       "nox" = {
         id = "JBRYVQP-2GYSCCK-2M37T6I-KSETJHC-UY7ZUQ5-GW56FMG-LDRDFQC-YUH5EAY";
