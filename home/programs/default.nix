@@ -19,11 +19,5 @@
       extraPackages = with pkgs.bat-extras; [ batdiff batman batgrep batwatch ];
     };
     nix-index.enable = true;
-    exa = {
-      enable = true;
-      enableAliases = true;
-      git = true;
-      icons = true;
-    };
   };
 }
