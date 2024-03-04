@@ -1,10 +1,10 @@
 { config, pkgs, lib, ... }: {
   options.backups = with lib; {
     home-mount = mkOption {
-      type = types.string;
+      type = types.str;
     };
     preservation = mkOption {
-      type = types.string;
+      type = types.str;
     };
   };
 
