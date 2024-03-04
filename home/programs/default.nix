@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   programs = {
     git = import ./git.nix;
     ssh = import ./ssh.nix;
@@ -23,5 +22,12 @@
     };
     nix-index.enable = true;
     password-store.enable = true;
+    gpg.enable = true;
+  };
+  services = {
+    gpg-agent = {
+      enable = true;
+      pinentryFlavor = "gnome3";
+    };
   };
 }
