@@ -18,10 +18,6 @@ with lib;
         fsType = "vfat";
       };
     "/" = btrfsMount "/dev/rpool/root" "@nix";
-    "/home/michal_atlas" = {
-      device = "/dev/mapper/crypthome";
-      options = [ "noatime" ];
-      fsType = "btrfs";
-    };
+    "/home/michal_atlas" = btrfsMount "dev/mapper/crypthome" ".";
   };
 }
