@@ -10,6 +10,7 @@
 
   nix.settings = {
     flake-registry = "";
+    experimental-features = [ "nix-command" "flakes" ];
   };
 
   home = {
