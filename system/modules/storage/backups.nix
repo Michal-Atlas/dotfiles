@@ -1,16 +1,27 @@
-{ pkgs, ... }: {
+{ config, pkgs, lib, ... }: {
+  options.backups = with lib; {
+    home-mount = mkOption {
+      type = types.string;
+    };
+    preservation = mkOption {
+      type = types.string;
+    };
+  };
+
+  config = {
   services.btrbk.instances."btrbk" = {
     settings = {
-      volume."/home" = {
+      volume.${config.backups.home-mount} = {
         subvolume."." = {
           snapshot_dir = ".btrfs";
           snapshot_create = "onchange";
           timestamp_format = "long-iso";
           snapshot_preserve_min = "latest";
-          snapshot_preserve = "24h 31d 4w 12m";
+          snapshot_preserve = config.backups.preservation;
         };
       };
     };
     onCalendar = "hourly";
+  };
   };
 }

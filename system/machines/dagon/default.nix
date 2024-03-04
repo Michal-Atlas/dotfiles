@@ -32,4 +32,8 @@
     yggdrasil.file = ../../../secrets/yggdrasil/dagon.json;
     wireguard.file = ../../../secrets/wireguard/dagon;
   };
+    backups = {
+    preservation = "24h 7d";
+    home-mount = "/home/michal_atlas/";
+  };
 }

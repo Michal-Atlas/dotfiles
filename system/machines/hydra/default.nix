@@ -32,4 +32,8 @@
     yggdrasil.file = ../../../secrets/yggdrasil/hydra.json;
     wireguard.file = ../../../secrets/wireguard/hydra;
   };
+  backups = {
+    preservation = "24h 31d 4w 12m";
+    home-mount = "/home/";
+  };
 }
