@@ -12,6 +12,10 @@ _: {
       settings.GatewayPorts = "yes";
     };
     resolved.enable = true;
+    zerotierone = {
+      enable = true;
+      joinNetworks = [ "7d36f91fa2718c7c" ];
+    };
   };
   networking = {
     networkmanager.enable = true;
