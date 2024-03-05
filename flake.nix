@@ -99,9 +99,7 @@
         (pkgs.writeShellScriptBin "recdiff" ''
           build && ${pkgs.nix-diff}/bin/nix-diff /run/current-system result && rm result
         '')
-        (pkgs.writeShellScriptBin "commit" ''
-          ${pkgs.commitizen}/bin/cz c
-        '')
+        pkgs.commitizen
       ];
       inherit (self.checks.${system}.pre-commit-check) shellHook;
     };
