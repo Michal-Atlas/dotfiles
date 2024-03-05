@@ -69,6 +69,7 @@
           shfmt.enable = true;
           nil.enable = true;
           deadnix.enable = true;
+          commitizen.enable = true;
 
           elisp-autofmt = {
             enable = true;
