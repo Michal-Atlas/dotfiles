@@ -1,4 +1,4 @@
-{ config, lib, ... }: {
+_: {
   imports = [
     ./boot.nix
     ./fonts.nix
@@ -12,6 +12,7 @@
     ./user.nix
     ./virtualization.nix
     ./cachix.nix
+    ./fit-mount.nix
   ];
   system.stateVersion = "22.11";
   time.timeZone = "Europe/Prague";
