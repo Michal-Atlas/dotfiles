@@ -1,11 +1,4 @@
-{ config, lib, ... }: {
-  networking.hosts = (builtins.listToAttrs
-    (lib.attrsets.mapAttrsToList
-      (name: value: {
-        value = [ name ];
-        name = value;
-      })
-      config.atlasnet.yggdrasil));
+{config, ...}: {
   services.yggdrasil = {
     enable = true;
     group = "wheel";

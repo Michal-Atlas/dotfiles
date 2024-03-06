@@ -4,7 +4,6 @@ _: {
     ./torrents.nix
     ./yggdrasil.nix
     ./morrowind.nix
-    ./atlasnet.nix
   ];
   services = {
     openssh = {
@@ -14,7 +13,7 @@ _: {
     resolved.enable = true;
     zerotierone = {
       enable = true;
-      joinNetworks = [ "7d36f91fa2718c7c" ];
+      joinNetworks = ["7d36f91fa2718c7c"];
     };
   };
   networking = {
