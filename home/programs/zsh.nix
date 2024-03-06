@@ -2,7 +2,7 @@
   enable = true;
   enableVteIntegration = true;
   enableAutosuggestions = true;
-  enableSyntaxHighlighting = true;
+  syntaxHighlighting.enable = true;
   enableCompletion = true;
   autocd = true;
   history.ignoreDups = true;
