@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.adb.enable = true;
   services = {
     printing.enable = true;

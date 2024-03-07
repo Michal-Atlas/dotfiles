@@ -1,5 +1,8 @@
-{ config, lib, pkgs, modulesPath, ... }:
 {
+  config,
+  lib,
+  ...
+}: {
   imports = [
     ../../modules
     ./filesystems.nix
@@ -16,10 +19,10 @@
     "aesni_intel"
     "cryptd"
   ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = ["kvm-intel"];
+  boot.extraModulePackages = [];
+  boot.supportedFilesystems = ["ntfs"];
 
   networking.useDHCP = lib.mkDefault true;
 
@@ -29,8 +32,8 @@
 
   networking.hostName = "dagon";
   age.secrets = {
-    yggdrasil.file = ../../../secrets/yggdrasil/dagon.json;
-    wireguard.file = ../../../secrets/wireguard/dagon;
+    yggdrasil.file = ../../secrets/yggdrasil/dagon.json;
+    wireguard.file = ../../secrets/wireguard/dagon;
   };
   backups = {
     preservation = "24h 7d";

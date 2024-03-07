@@ -1,9 +1,9 @@
 {pkgs, ...}: {
   imports = [
-    ./programs
-    ./files
+    ../programs
+    ../files
     ./services.nix
-    ./dconf.nix
+    ../dconf.nix
     ./registry.nix
   ];
 
@@ -35,7 +35,7 @@
     [
       pkgs.atlas-emacs
     ]
-    ++ import ./packages.nix pkgs;
+    ++ import ../packages.nix pkgs;
 
   systemd.user.tmpfiles.rules = [
     "e /home/michal_atlas/Downloads - - - 2d"

@@ -1,9 +1,9 @@
-{ pkgs, ... }: {
+_: {
   nixpkgs.overlays = [
-    (final: prev: {
+    (_: prev: {
       steam = prev.steam.override (_: {
-        extraPkgs = pkgs': (with pkgs'; [
-        ]);
+        extraPkgs = _: [
+        ];
       });
     })
   ];
@@ -14,6 +14,6 @@
   };
 
   # TM Nations
-  networking.firewall.allowedTCPPorts = [ 2350 3450 ];
-  networking.firewall.allowedUDPPorts = [ 2350 3450 ];
+  networking.firewall.allowedTCPPorts = [2350 3450];
+  networking.firewall.allowedUDPPorts = [2350 3450];
 }

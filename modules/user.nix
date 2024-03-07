@@ -1,6 +1,6 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   users = {
-    groups.plugdev = { };
+    groups.plugdev = {};
     users.michal_atlas = {
       isNormalUser = true;
       shell = pkgs.zsh;
@@ -15,8 +15,7 @@
         "plugdev"
         "adbusers"
       ];
-      openssh.authorizedKeys.keys = with builtins;
-        (map (f: readFile ../../keys/${f}) (attrNames (readDir ../../keys)));
+      openssh.authorizedKeys.keys = with builtins; (map (f: readFile ../keys/${f}) (attrNames (readDir ../keys)));
     };
     mutableUsers = false;
     users.root.hashedPassword = "$y$j9T$BJgm2ampHrpbLgQhzXNw4.$xppBStrecndUWp4AHAdAt3vZ7.XHmuXvNTL3WgJ0NyC";

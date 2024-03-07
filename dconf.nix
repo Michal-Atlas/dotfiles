@@ -1,8 +1,6 @@
-{ lib, ... }:
-let
+{lib, ...}: let
   inherit (lib.hm.gvariant) mkTuple;
-in
-{
+in {
   dconf.settings = {
     "org/gnome/shell" = {
       disable-user-extensions = false;
@@ -18,7 +16,7 @@ in
         "gnome-clipboard@b00f.github.io"
       ];
     };
-    "org/gnome/desktop/peripherals/touchpad" = { tap-to-click = true; };
+    "org/gnome/desktop/peripherals/touchpad" = {tap-to-click = true;};
     "org/gnome/settings-daemon/plugins/media-keys" = {
       custom-keybindings = [
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/term/"
@@ -28,36 +26,31 @@ in
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/recon/"
       ];
     };
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/term" =
-      {
-        binding = "<Super>t";
-        command = "kgx";
-        name = "TERM";
-      };
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/emacs" =
-      {
-        binding = "<Super>Return";
-        command = "emacsclient -c";
-        name = "EMACS";
-      };
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/browser" =
-      {
-        binding = "<Super>f";
-        command = "nyxt";
-        name = "BROWSER";
-      };
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/files" =
-      {
-        binding = "<Super>n";
-        command = "nautilus";
-        name = "FILES";
-      };
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/recon" =
-      {
-        binding = "<Super>u";
-        command = "kgx -e 'cd $HOME/cl/dotfiles; nix develop -c recon'";
-        name = "RECON";
-      };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/term" = {
+      binding = "<Super>t";
+      command = "kgx";
+      name = "TERM";
+    };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/emacs" = {
+      binding = "<Super>Return";
+      command = "emacsclient -c";
+      name = "EMACS";
+    };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/browser" = {
+      binding = "<Super>f";
+      command = "nyxt";
+      name = "BROWSER";
+    };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/files" = {
+      binding = "<Super>n";
+      command = "nautilus";
+      name = "FILES";
+    };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/recon" = {
+      binding = "<Super>u";
+      command = "kgx -e 'cd $HOME/cl/dotfiles; nix develop -c recon'";
+      name = "RECON";
+    };
     "org/gnome/desktop/background" = {
       picture-uri = builtins.fetchurl {
         url = "https://www.gnu.org/graphics/o_espirito_da_liberdade.fondo.big.png";
@@ -69,16 +62,15 @@ in
       };
     };
     "org/gnome/desktop/input-sources" = {
-      sources = [ (mkTuple [ "xkb" "us" ]) (mkTuple [ "xkb" "cz+ucw" ]) ];
-      xkb-options =
-        [ "grp:caps_switch" "lv3:ralt_switch" "compose:rctrl-altgr" ];
+      sources = [(mkTuple ["xkb" "us"]) (mkTuple ["xkb" "cz+ucw"])];
+      xkb-options = ["grp:caps_switch" "lv3:ralt_switch" "compose:rctrl-altgr"];
     };
-    "org/gnome/system/location" = { enabled = true; };
+    "org/gnome/system/location" = {enabled = true;};
     "org/gnome/shell/extensions/nightthemeswitcher/time" = {
       manual-schedule = false;
     };
-    "org/gnome/desktop/wm/preferences" = { focus-mode = "sloppy"; };
-    "org/gnome/settings-daemon/plugins/color" = { night-light-enabled = true; };
+    "org/gnome/desktop/wm/preferences" = {focus-mode = "sloppy";};
+    "org/gnome/settings-daemon/plugins/color" = {night-light-enabled = true;};
     "org/gnome/shell" = {
       favorite-apps = [
         "firefox.desktop"
@@ -96,7 +88,6 @@ in
       workspaces-only-on-primary = true;
     };
 
-    "org/gnome/shell/app-switcher" =
-      { current-workspace-only = true; };
+    "org/gnome/shell/app-switcher" = {current-workspace-only = true;};
   };
 }

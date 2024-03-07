@@ -61,8 +61,8 @@
               ];
             };
         in {
-          hydra = makeSys ./system/machines/hydra;
-          dagon = makeSys ./system/machines/dagon;
+          hydra = makeSys ./machines/hydra;
+          dagon = makeSys ./machines/dagon;
         };
       };
       perSystem = {
