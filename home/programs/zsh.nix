@@ -1,4 +1,4 @@
-_: {
+{pkgs, ...}: {
   programs.zsh = {
     enable = true;
     enableVteIntegration = true;
@@ -12,7 +12,7 @@ _: {
       MOZ_USE_XINPUT2 = "1";
       GRIM_DEFAULT_DIR = "~/tmp";
       _JAVA_AWT_WM_NONREPARENTING = "1";
-      EDITOR = "$EDITOR -c -nw";
+      EDITOR = "${pkgs.vscodium}";
     };
   };
 }
