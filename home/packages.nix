@@ -1,16 +1,13 @@
 pkgs:
 with pkgs;
   [
-    nushell
-    scala_3
     acl2-minimal
+    alejandra
     arandr
     audacity
     bat
     bc
     blender
-    borgbackup
-    btop
     btrfs-progs
     caprine-bin
     ccls
@@ -19,15 +16,18 @@ with pkgs;
     cifs-utils
     cmake
     comma
+    compsize
     cryptsetup
     dejavu_fonts
     dina-font
     direnv
     discord
     dotnet-sdk
+    ed
     element-desktop
     fasd
     feh
+    ffmpeg
     file
     fira-code
     fira-code-symbols
@@ -74,6 +74,7 @@ with pkgs;
     libreoffice
     libtool
     maxima
+    meshlab
     meson
     minecraft
     mosh
