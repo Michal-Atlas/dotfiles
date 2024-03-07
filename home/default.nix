@@ -1,5 +1,4 @@
-{ pkgs, lib, ... }:
-{
+{pkgs, ...}: {
   imports = [
     ./programs
     ./files
@@ -10,7 +9,7 @@
 
   nix.settings = {
     flake-registry = "";
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = ["nix-command" "flakes"];
   };
 
   home = {
@@ -25,7 +24,8 @@
   home.shellAliases = {
     e = "$EDITOR -c -nw";
     g = "git";
-    z = "j";
+    cat = "bat";
+    code = "codium";
   };
   fonts.fontconfig.enable = true;
   xsession.numlock.enable = true;
@@ -34,7 +34,8 @@
   home.packages =
     [
       pkgs.atlas-emacs
-    ] ++ import ./packages.nix pkgs;
+    ]
+    ++ import ./packages.nix pkgs;
 
   systemd.user.tmpfiles.rules = [
     "e /home/michal_atlas/Downloads - - - 2d"
