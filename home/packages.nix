@@ -52,6 +52,7 @@ with pkgs;
     grim
     guile
     gzdoom
+    haskell-language-server
     heroic
     htop
     imagemagick
@@ -109,6 +110,7 @@ with pkgs;
     racket
     recutils
     rsync
+    rnix-lsp
     screen
     shotwell
     slurp
