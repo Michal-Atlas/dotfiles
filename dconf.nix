@@ -52,9 +52,10 @@ in {
       name = "RECON";
     };
     "org/gnome/desktop/background" = {
+      picture-options = "zoom";
       picture-uri = builtins.fetchurl {
-        url = "https://www.gnu.org/graphics/o_espirito_da_liberdade.fondo.big.png";
-        sha256 = "sha256:0ipqb8ssz2fs2cwdwp1cvbrsz27n40478bh8h9x9gpbdy2376nzw";
+        url = "https://pbs.twimg.com/media/EaOkegwX0Aww2WW.jpg";
+        sha256 = "sha256:0972r5d7k70ls87pjrx0s4jqmd2kmhc7f9r9ypa0d8ikqgwpnfhx";
       };
       picture-uri-dark = builtins.fetchurl {
         url = "https://www.gnu.org/graphics/techy-gnu-tux-bivouac-large.jpg";
