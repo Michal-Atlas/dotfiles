@@ -14,6 +14,7 @@
         haskell.haskell
         james-yu.latex-workshop
         jnoortheen.nix-ide
+        justusadam.language-haskell
         kahole.magit
         kamadorueda.alejandra
         llvm-org.lldb-vscode
@@ -33,6 +34,10 @@
       git.autofetch = true;
       nix.enableLanguageServer = true;
       files.autoSave = "afterDelay";
+      extensions.autoCheckUpdates = false;
+      update.mode = "none";
+      haskell.manageHLS = "PATH";
+      diffEditor.ignoreTrimWhitespace = false;
     };
   };
 }
