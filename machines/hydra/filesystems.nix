@@ -12,6 +12,5 @@ with lib; {
     "/home/michal_atlas/Games" = btrfsMount "/dev/rpool/vault" "@games";
     "/home/michal_atlas/Downloads" = btrfsMount "/dev/rpool/vault" "@tmp";
     "/home/michal_atlas/tmp" = btrfsMount "/dev/rpool/vault" "@tmp";
-    "/var/lib/ipfs" = btrfsMount "/dev/rpool/vault" "@ipfs";
   };
 }

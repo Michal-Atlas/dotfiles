@@ -58,7 +58,6 @@ with pkgs;
     imagemagick
     indent
     inkscape
-    ipfs
     isync
     jetbrains-mono
     jetbrains.clion
