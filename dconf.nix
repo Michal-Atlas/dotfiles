@@ -33,7 +33,7 @@ in {
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/emacs" = {
       binding = "<Super>Return";
-      command = "emacsclient -c";
+      command = "code";
       name = "EMACS";
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/browser" = {
