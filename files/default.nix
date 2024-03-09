@@ -1,4 +1,4 @@
-_: {
+{pkgs, ...}: {
   home.file = {
     ".guile".source = ./guile.scm;
     ".sbclrc".source = ./sbcl.lisp;
@@ -8,5 +8,6 @@ _: {
     };
     ".local/share/nyxt/bookmarks.lisp".source = ./nyxt/bookmarks.lisp;
     ".config/nyxt/config.lisp".source = ./nyxt/init.lisp;
+    ".mozilla/native-messaging-hosts/com.github.browserpass.native.json".source = "${pkgs.browserpass}/lib/browserpass/hosts/firefox/com.github.browserpass.native.json";
   };
 }

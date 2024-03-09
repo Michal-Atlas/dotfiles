@@ -8,6 +8,7 @@ with pkgs;
     bat
     bc
     blender
+    browserpass
     btrfs-progs
     caprine-bin
     ccls

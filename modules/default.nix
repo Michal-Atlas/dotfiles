@@ -31,6 +31,5 @@ _: {
     publish.enable = true;
   };
   boot.kernel.sysctl."net.core.wmem_max" = 2500000;
-  programs.firefox.nativeMessagingHosts.browserpass = true;
   programs.nix-ld.enable = true;
 }
