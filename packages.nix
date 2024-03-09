@@ -15,7 +15,6 @@ with pkgs;
     chicken
     cifs-utils
     cmake
-    comma
     compsize
     cryptsetup
     dejavu_fonts
