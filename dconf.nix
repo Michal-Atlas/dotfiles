@@ -33,7 +33,7 @@ in {
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/emacs" = {
       binding = "<Super>Return";
-      command = "code";
+      command = "codium";
       name = "EMACS";
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/browser" = {
@@ -81,6 +81,7 @@ in {
         "fi.skyjake.Lagrange.desktop"
         "zotero.desktop"
         "org.gnome.Nautilus.desktop"
+        "codium.desktop"
       ];
     };
     "org/gnome/mutter" = {
