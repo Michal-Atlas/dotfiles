@@ -1,12 +1,14 @@
 {
   config,
   lib,
+  nixos-hardware,
   ...
 }: {
   imports = [
     ../../modules
     ./filesystems.nix
     ./builds.nix
+    nixos-hardware.nixosModules.dell-inspiron-14-5420
   ];
   hardware.enableAllFirmware = true;
 
@@ -27,7 +29,6 @@
   networking.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   networking.hostName = "dagon";
@@ -42,5 +43,12 @@
   nix.gc = {
     automatic = true;
     dates = "weekly";
+  };
+  services.thermald.enable = true;
+  powerManagement = {
+    enable = true;
+    cpuFreqGovernor = "powersave";
+    scsiLinkPolicy = "min_power";
+    powertop.enable = true;
   };
 }
