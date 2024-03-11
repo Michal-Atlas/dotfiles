@@ -26,8 +26,5 @@
   in {
     hydra = makeSys ./hydra;
     dagon = makeSys ./dagon;
-    oracle = inputs.nixpkgs.lib.nixosSystem {
-      modules = [./oracle.nix];
-    };
   };
 }
