@@ -6,7 +6,12 @@ _: {
     syntaxHighlighting.enable = true;
     enableCompletion = true;
     autocd = true;
-    history.ignoreDups = true;
+    history = {
+      ignoreAllDups = true;
+      extended = true;
+      save = 100000;
+      size = 100000;
+    };
     localVariables = {
       MOZ_ENABLE_WAYLAND = "1";
       MOZ_USE_XINPUT2 = "1";
