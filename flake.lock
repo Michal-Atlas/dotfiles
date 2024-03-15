@@ -32,13 +32,13 @@
         "lastModified": 1698349803,
         "narHash": "sha256-7vYVAgPf780mi4YvdAO4HLWzvM0GOL8pqJDXIB2V+EA=",
         "owner": "~michal_atlas",
-        "repo": "nur-packages",
+        "repo": "flake",
         "rev": "1a53bd30e1278585e31538b42bc8bf178a6ac21e",
         "type": "sourcehut"
       },
       "original": {
         "owner": "~michal_atlas",
-        "repo": "nur-packages",
+        "repo": "flake",
         "type": "sourcehut"
       }
     },

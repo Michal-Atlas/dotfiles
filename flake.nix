@@ -12,7 +12,7 @@
     };
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
     nur.url = "github:nix-community/NUR";
-    atlas-overlay.url = "sourcehut:~michal_atlas/nur-packages";
+    atlas-overlay.url = "sourcehut:~michal_atlas/flake";
     stevenblackhosts = {
       url = "github:StevenBlack/hosts";
       inputs.nixpkgs.follows = "nixpkgs";
