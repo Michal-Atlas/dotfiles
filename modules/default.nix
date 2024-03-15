@@ -13,6 +13,7 @@ _: {
     ./virtualization.nix
     ./cachix.nix
     ./fit-mount.nix
+    ./zfs.nix
   ];
   system.stateVersion = "22.11";
   time.timeZone = "Europe/Prague";

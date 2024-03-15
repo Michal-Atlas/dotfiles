@@ -8,9 +8,5 @@ with lib; {
       fsType = "vfat";
     };
     "/" = btrfsMount "/dev/rpool/root" "@nix";
-    "/home" = btrfsMount "/dev/rpool/home" "@home";
-    "/home/michal_atlas/Games" = btrfsMount "/dev/rpool/vault" "@games";
-    "/home/michal_atlas/Downloads" = btrfsMount "/dev/rpool/vault" "@tmp";
-    "/home/michal_atlas/tmp" = btrfsMount "/dev/rpool/vault" "@tmp";
   };
 }

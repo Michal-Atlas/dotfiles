@@ -24,21 +24,20 @@
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
-  boot.supportedFilesystems = ["ntfs"];
+  boot.supportedFilesystems = ["ntfs" "zfs"];
 
   networking.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-  networking.hostName = "dagon";
+  networking = {
+    hostName = "dagon";
+    hostId = "253520d6";
+  };
   age.secrets = {
     yggdrasil.file = ../../secrets/yggdrasil/dagon.json;
     wireguard.file = ../../secrets/wireguard/dagon;
-  };
-  backups = {
-    preservation = "24h 7d";
-    home-mount = "/home/michal_atlas/";
   };
   nix.gc = {
     automatic = true;

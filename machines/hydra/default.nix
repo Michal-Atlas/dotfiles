@@ -10,12 +10,11 @@
   hardware.enableAllFirmware = true;
 
   services.morrowind-server.enable = true;
-
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usb_storage" "uas" "usbhid" "sd_mod"];
   boot.initrd.kernelModules = ["dm-snapshot" "dm-raid"];
   boot.kernelModules = ["kvm-amd" "amdgpu"];
   boot.extraModulePackages = [];
-  boot.supportedFilesystems = ["ntfs"];
+  boot.supportedFilesystems = ["ntfs" "zfs"];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -28,14 +27,14 @@
   hardware.cpu.amd.updateMicrocode =
     lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-  networking.hostName = "hydra";
+  networking = {
+    hostName = "hydra";
+    hostId = "44b7fc7c";
+  };
+
   services.spotifyd.enable = true;
   age.secrets = {
     yggdrasil.file = ../../secrets/yggdrasil/hydra.json;
     wireguard.file = ../../secrets/wireguard/hydra;
-  };
-  backups = {
-    preservation = "24h 31d 4w 12m";
-    home-mount = "/home/";
   };
 }
