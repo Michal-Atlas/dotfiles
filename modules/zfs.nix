@@ -8,5 +8,4 @@
     };
   };
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-  boot.zfs.extraPools = ["rpool"];
 }

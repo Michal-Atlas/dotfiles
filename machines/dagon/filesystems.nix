@@ -1,20 +1,16 @@
 {lib, ...}:
 with lib; {
-  swapDevices = [{device = "/dev/rpool/swap";}];
+  swapDevices = [{device = "/dev/sda2";}];
 
-  boot.initrd.luks.devices = {
-    crypthome = {
-      device = "/dev/rpool/home";
-      preLVM = false;
+  fileSystems =
+    zfsMounts {
+      "/" = "rpool/root";
+      "/home/michal_atlas" = "rpool/home/michal_atlas";
+    }
+    // {
+      "/boot/efi" = {
+        device = "/dev/disk/by-uuid/D762-6C63";
+        fsType = "vfat";
+      };
     };
-  };
-
-  fileSystems = {
-    "/boot/efi" = {
-      device = "/dev/disk/by-uuid/D762-6C63";
-      fsType = "vfat";
-    };
-    "/" = btrfsMount "/dev/rpool/root" "@nix";
-    "/home/michal_atlas" = btrfsMount "dev/mapper/crypthome" ".";
-  };
 }
