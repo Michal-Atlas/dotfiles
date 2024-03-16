@@ -25,7 +25,7 @@
     g = "git";
     cat = "bat";
     code = "codium";
-    bix = "nix --store=\"/bignix\"";
+    bix = "nix --store \"/bignix\"";
   };
   fonts.fontconfig.enable = true;
   xsession.numlock.enable = true;
