@@ -6,6 +6,8 @@ with lib; {
     zfsMounts {
       "/" = "rpool/root";
       "/home/michal_atlas" = "rpool/home/michal_atlas";
+      "/etc" = "rpool/etc";
+      "/var" = "rpool/var";
     }
     // {
       "/boot/efi" = {
