@@ -14,6 +14,7 @@
         "transmission"
         "plugdev"
         "adbusers"
+        "podman"
       ];
       openssh.authorizedKeys.keys = with builtins; (map (f: readFile ../keys/${f}) (attrNames (readDir ../keys)));
     };
