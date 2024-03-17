@@ -121,7 +121,6 @@ with pkgs;
     taisei
     telegram-desktop
     texlive.combined.scheme-full
-    thunderbird
     tldr
     transmission-remote-gtk
     tree

@@ -5,6 +5,7 @@
     ./services.nix
     ../dconf.nix
     ./registry.nix
+    ./mail.nix
   ];
 
   nix.settings = {
