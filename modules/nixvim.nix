@@ -13,6 +13,8 @@
       which-key.enable = true;
       auto-save.enable = true;
       cursorline.enable = true;
+      treesitter.enable = true;
+      telescope.enable = true;
       lsp = {
         enable = true;
         servers = {
@@ -44,6 +46,9 @@
       showmatch = true;
       scrolloff = 6;
     };
+    extraPlugins = with pkgs.vimPlugins; [
+      haskell-tools-nvim
+    ];
   };
   programs.neovim.vimAlias = true;
   programs.neovim.viAlias = true;
