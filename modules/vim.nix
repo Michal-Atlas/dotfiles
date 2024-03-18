@@ -16,6 +16,7 @@
       cursorline.enable = true;
       treesitter.enable = true;
       telescope.enable = true;
+      tmux-navigator.enable = true;
       lsp = {
         enable = true;
         servers = {

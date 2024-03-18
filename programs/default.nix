@@ -3,6 +3,7 @@
     ./zsh.nix
     ./git.nix
     ./ssh.nix
+    ./tmux.nix
   ];
   programs = {
     fzf.enable = true;
