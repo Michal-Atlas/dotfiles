@@ -13,24 +13,27 @@
       which-key.enable = true;
       auto-save.enable = true;
       cursorline.enable = true;
-      lsp.servers = {
-        nixd = {
-          enable = true;
-          settings.formatting.command = "${pkgs.alejandra}/bin/alejandra";
+      lsp = {
+        enable = true;
+        servers = {
+          nixd = {
+            enable = true;
+            settings.formatting.command = "${pkgs.alejandra}/bin/alejandra";
+          };
+          hls.enable = true;
+          bashls.enable = true;
+          ccls.enable = true;
+          lua-ls.enable = true;
+          # prolog-ls.enable = true;
+          pyright.enable = true;
+          rust-analyzer = {
+            enable = true;
+            installCargo = true;
+            installRustc = true;
+          };
+          texlab.enable = true;
+          zls.enable = true;
         };
-        hls.enable = true;
-        bashls.enable = true;
-        ccls.enable = true;
-        lua-ls.enable = true;
-        # prolog-ls.enable = true;
-        pyright.enable = true;
-        rust-analyzer = {
-          enable = true;
-          installCargo = true;
-          installRustc = true;
-        };
-        texlab.enable = true;
-        zls.enable = true;
       };
       nvim-autopairs.enable = true;
     };
