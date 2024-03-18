@@ -45,16 +45,6 @@ in {
       command = "nyxt";
       name = "BROWSER";
     };
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/files" = {
-      binding = "<Super>n";
-      command = "nautilus";
-      name = "FILES";
-    };
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/recon" = {
-      binding = "<Super>u";
-      command = "kgx -e 'cd $HOME/cl/dotfiles; nix develop -c recon'";
-      name = "RECON";
-    };
     "org/gnome/desktop/background" = {
       picture-options = "zoom";
       picture-uri = builtins.fetchurl {
