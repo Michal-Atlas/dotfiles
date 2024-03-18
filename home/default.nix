@@ -27,6 +27,7 @@
     cat = "bat";
     code = "codium";
     bix = "nix --store \"/bignix\"";
+    lah = "ls -lah";
   };
   fonts.fontconfig.enable = true;
   xsession.numlock.enable = true;
