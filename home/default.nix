@@ -22,10 +22,9 @@
   # Here goes the rest of your home-manager config, e.g. home.packages = [ pkgs.foo ];
 
   home.shellAliases = {
-    e = "$EDITOR -c -nw";
+    e = "$EDITOR";
     g = "git";
     cat = "bat";
-    code = "codium";
     bix = "nix --store \"/bignix\"";
     lah = "ls -lah";
   };

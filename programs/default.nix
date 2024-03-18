@@ -3,7 +3,6 @@
     ./zsh.nix
     ./git.nix
     ./ssh.nix
-    ./vscode.nix
   ];
   programs = {
     fzf.enable = true;
