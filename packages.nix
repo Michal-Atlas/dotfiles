@@ -68,6 +68,7 @@ with pkgs;
     kobodeluxe
     krita
     lagrange
+    lazygit
     legendary-gl
     liberation_ttf
     libgccjit
