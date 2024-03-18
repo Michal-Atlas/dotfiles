@@ -2,6 +2,12 @@
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
+    colorschemes = {
+      catppuccin = {
+        enable = true;
+        transparentBackground = true;
+      };
+    };
     plugins = {
       lightline.enable = true;
       nix.enable = true;
