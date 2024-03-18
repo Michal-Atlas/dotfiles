@@ -10,6 +10,7 @@
       vimtex.enable = true;
       markdown-preview.enable = true;
       # direnv.enable = true;
+      project-nvim.enable = true;
       which-key.enable = true;
       auto-save.enable = true;
       cursorline.enable = true;
