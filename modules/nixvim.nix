@@ -40,6 +40,7 @@
       nvim-autopairs.enable = true;
     };
     options = {
+      numbers = true;
       relativenumber = true;
       autoread = true;
       autoindent = true;
