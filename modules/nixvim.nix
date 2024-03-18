@@ -17,6 +17,19 @@
           enable = true;
           settings.formatting.command = "${pkgs.alejandra}/bin/alejandra";
         };
+        hls.enable = true;
+        bashls.enable = true;
+        ccls.enable = true;
+        lua-ls.enable = true;
+        # prolog-ls.enable = true;
+        pyright.enable = true;
+        rust-analyzer = {
+          enable = true;
+          installCargo = true;
+          installRustc = true;
+        };
+        texlab.enable = true;
+        zls.enable = true;
       };
       nvim-autopairs.enable = true;
     };
