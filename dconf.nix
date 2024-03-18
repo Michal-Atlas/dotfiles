@@ -37,7 +37,7 @@ in {
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/emacs" = {
       binding = "<Super>Return";
-      command = "${pkgs.neovide}/bin/neovide";
+      command = "${pkgs.kgx}/bin/kgx -- nvim";
       name = "EMACS";
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/browser" = {
