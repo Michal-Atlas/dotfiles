@@ -128,7 +128,6 @@ with pkgs;
     unzip
     uqm
     valgrind
-    vim
     virt-manager
     vlc
     wesnoth

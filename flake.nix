@@ -19,6 +19,7 @@
     };
     flake-parts.url = "github:hercules-ci/flake-parts";
     systems.url = "github:nix-systems/default";
+    nixvim.url = "github:nix-community/nixvim/nixos-23.11";
   };
 
   outputs = {
