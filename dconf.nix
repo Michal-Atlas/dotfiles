@@ -1,4 +1,8 @@
-{lib, ...}: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   inherit (lib.hm.gvariant) mkTuple;
 in {
   dconf.settings = {
@@ -33,7 +37,7 @@ in {
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/emacs" = {
       binding = "<Super>Return";
-      command = "codium";
+      command = "${pkgs.neovide}/bin/neovide";
       name = "EMACS";
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/browser" = {
