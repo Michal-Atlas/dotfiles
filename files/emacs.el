@@ -26,17 +26,11 @@
 ;; (setq user-full-name "Michal Žáček"
 ;;       user-mail-address "zacekmi2@fit.cvut.cz"
 
-(setq mastodon-instance-url "https://lgbtcz.social")
-(setq mastodon-active-user "michal_atlas")
 (setq-default indent-tabs-mode nil)
 
 (setq backup-directory-alist '((".*" . "~/.emacs.d/bkp")))
-(setq projectile-project-search-path
-      (list "~/Documents" "~/source" "~/cl"))
-(setq org-roam-directory "/home/michal_atlas/Documents/roam")
 (setq enable-local-variables :all)
 (setq calendar-week-start-day 1)
-(setq org-agenda-start-on-weekday 1)
 (setq find-function-C-source-directory "~/cl/emacs")
 (global-auto-revert-mode 1)
 (recentf-mode 1)
@@ -45,11 +39,8 @@
 (setq recentf-max-saved-items 25)
 (global-set-key (kbd "C-x C-r") 'recentf-open-files)
 (run-at-time nil (* 10 60) 'recentf-save-list)
-(global-prettify-symbols-mode +1)
-
 (defun yes-or-no-p (prompt)
   (y-or-n-p prompt))
-;(dired-async-mode 1)
 (setq auth-sources '("~/.authinfo.gpg"))
 
 ;;;; * Scrolling
@@ -152,48 +143,6 @@
  (setq undo-tree-history-directory-alist
        '(("." . "~/.emacs.d/undo"))))
 
-(use-package ace-window :bind ("M-o" . ace-window))
-
-;;;; * Eshell
-
-(use-package
- eshell-prompt-extras
- :config
- (with-eval-after-load "esh-opt"
-   (autoload 'epe-theme-lambda "eshell-prompt-extras")
-   (setq
-    eshell-highlight-prompt nil
-    eshell-prompt-function 'epe-theme-lambda)))
-
-(defun eshell-new ()
-  "Open a new instance of eshell."
-  (interactive)
-  (eshell 'N))
-
-
-(add-hook
- 'eshell-mode-hook
- (defun my-eshell-mode-hook ()
-   (require 'eshell-z)))
-
-(require 'eshell)
-(use-package
- eshell-syntax-highlighting
- :config (eshell-syntax-highlighting-global-mode 1))
-(setq eshell-review-quick-commands nil)
-(require 'esh-module) ; require modules
-(add-to-list 'eshell-modules-list 'eshell-tramp)
-;; (use-package
-;;  esh-autosuggest
-;;  :hook (eshell-mode . esh-autosuggest-mode))
-
-(use-package eat)
-(use-package eshell-fringe-status)
-(use-package eshell-vterm)
-(use-package eshell-info-banner)
-(use-package fish-completion)
-(use-package eshell-did-you-mean)
-
 ;;;; * Eglot
 
 (use-package
@@ -250,19 +199,6 @@
 
 (add-hook 'shell-script-mode 'prog-mode)
 
-;;;; * Elfeed
-
-(use-package
- elfeed
- :config
- (setq elfeed-feeds
-       '(("https://xkcd.com/rss.xml" comics)
-         ("https://the-dam.org/rss.xml" unix dam)
-         ("https://fsf.org/blogs/RSS" fsf)
-         ("https://blog.tecosaur.com/tmio/rss.xml" emacs)
-         ("https://guix.gnu.org/feeds/blog.atom" tech linux)
-         ("https://vkc.sh/feed/" tech linux))))
-
 ;;;; * Misc
 
 (use-package
@@ -277,13 +213,9 @@
  (if (not (boundp 'project-switch-commands))
      (setq project-switch-commands nil)))
 
-(use-package avy :bind ("C-c q" . avy-goto-char-timer))
 (use-package
  browse-kill-ring
  :config (browse-kill-ring-default-keybindings))
-
-(use-package embark :bind ("C-." . embark-act))
-(use-package embark-consult)
 
 ;;;; * Vertico
 
@@ -304,15 +236,6 @@
   completion-category-overrides '((file (styles partial-completion)))))
 
 (global-unset-key (kbd "C-r"))
-(use-package
- consult
- :bind
- (("C-x b" . consult-buffer)
-  ("C-t" . consult-goto-line)
-  ("C-s" . consult-line)
-  ("C-r l" . consult-register)
-  ("C-r s" . consult-register-store)
-  ("M-y" . consult-yank-from-kill-ring)))
 
 (defhydra
  hydra-buffer
@@ -323,59 +246,9 @@
 
 (global-unset-key (kbd "C-z"))
 
-(use-package pretty-sha-path :config (global-pretty-sha-path-mode))
-
-(use-package
- keychain-environment
- :config (keychain-refresh-environment))
-
 (use-package adaptive-wrap)
-(use-package all-the-icons)
-(use-package all-the-icons-dired)
-(use-package bind-map)
-(use-package calfw)
-(use-package cheat-sh)
-(use-package circe)
-(use-package consult-org-roam)
-(use-package consult-yasnippet)
 (use-package crux)
-(use-package csv)
-(use-package csv-mode)
-(use-package dashboard)
-(use-package debbugs)
-(use-package dmenu)
-(use-package docker)
-(use-package dockerfile-mode)
-(use-package ediprolog)
-(use-package elpher)
-(use-package ement)
-(use-package engrave-faces)
-(use-package flycheck)
-(use-package flycheck-haskell)
-(use-package gdscript-mode)
-(use-package geiser-guile)
-(use-package gemini-mode)
-(use-package go-mode)
-(use-package hackles)
-(use-package haskell-mode)
 (use-package htmlize)
-(use-package iedit)
-(use-package markdown-mode)
-(use-package multi-term)
-(use-package nix-mode)
-(use-package on-screen)
-(use-package org-roam-ui)
-(use-package org-superstar)
-(use-package ox-gemini)
-(use-package password-generator)
-(use-package password-store)
-(use-package password-store-otp)
 (use-package pdf-tools)
-(use-package realgud)
-(use-package rust-mode)
 (use-package sly)
 (use-package swiper)
-(use-package tldr)
-(use-package yaml-mode)
-(use-package yasnippet-snippets)
-(use-package scala-mode :interpreter ("scala" . scala-mode))
