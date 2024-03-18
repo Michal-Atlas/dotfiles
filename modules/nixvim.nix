@@ -5,6 +5,7 @@
     plugins = {
       lightline.enable = true;
       nix.enable = true;
+      neogit.enable = true;
       vim-slime.enable = true;
       vimtex.enable = true;
       markdown-preview.enable = true;
