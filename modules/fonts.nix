@@ -2,7 +2,6 @@
   fonts.packages = with pkgs; [
     (nerdfonts.override {
       fonts = [
-        "FiraCode"
         "Hack"
         "IBMPlexMono"
         "Iosevka"
@@ -11,5 +10,8 @@
       ];
     })
     font-awesome
+    source-code-pro
+    fira-code
+    fira-mono
   ];
 }
