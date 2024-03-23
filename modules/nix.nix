@@ -13,12 +13,17 @@
     };
   };
   nixpkgs = {
-    config.allowUnfree = true;
     overlays = with self.inputs; [
       nur.overlay
       emacs-overlay.overlays.default
       (import ../overlays/atlas-emacs.nix)
       atlas-overlay.overlays.x86_64-linux.default
     ];
+    config = {
+      allowUnfree = true;
+      permittedInsecurePackages = [
+        "nix-2.15.3"
+      ];
+    };
   };
 }
