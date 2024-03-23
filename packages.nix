@@ -83,7 +83,6 @@ with pkgs;
     mplus-outline-fonts.githubRelease
     mpv
     mu
-    mystic
     neofetch
     nix
     nixfmt
