@@ -1,6 +1,7 @@
 pkgs:
 with pkgs;
   [
+    acl
     acl2-minimal
     alejandra
     arandr
@@ -87,6 +88,7 @@ with pkgs;
     nix
     nixfmt
     nmap
+    nodejs
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
@@ -94,7 +96,6 @@ with pkgs;
     ocaml
     ocamlPackages.merlin
     octave
-    okular
     openmw-tes3mp
     p7zip
     pandoc
@@ -109,8 +110,9 @@ with pkgs;
     qt5.qtbase
     racket
     recutils
-    rsync
+    rlwrap
     rnix-lsp
+    rsync
     screen
     shotwell
     slurp
@@ -141,7 +143,9 @@ with pkgs;
     xdot
     xonotic
     xorg.xrandr
+    xxd
     yt-dlp
+    zathura
     zotero
   ]
   ++ (with gnomeExtensions; [
