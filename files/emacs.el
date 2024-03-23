@@ -10,13 +10,16 @@
 (use-package org-modern :hook (org-mode . org-modern-mode))
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((C . t) (scheme . t) (dot . t) (lisp . t) (octave . t)))
+ '((C . t) (scheme . t) (dot . t) (lisp . t) (octave . t) (js . t)))
 
-(setq org-latex-default-packages-alist
-      (cl-substitute-if
-       '("colorlinks=true" "hyperref" nil)
-       (lambda (entry) (string-equal (cl-second entry) "hyperref"))
-       org-latex-default-packages-alist))
+(setq
+ org-latex-compiler "lualatex"
+ org-latex-default-packages-alist
+ (cl-substitute-if
+  '("colorlinks=true" "hyperref" nil)
+  (lambda (entry)
+    (string-equal (cl-second entry) "hyperref"))
+  org-latex-default-packages-alist))
 
 ;;;; * Variable Init
 
