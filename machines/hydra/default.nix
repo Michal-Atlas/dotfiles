@@ -32,7 +32,18 @@
     hostId = "44b7fc7c";
   };
 
-  services.spotifyd.enable = true;
+  services.spotifyd = {
+    enable = true;
+    settings = {
+      global = {
+        zeroconf_port = 1234;
+      };
+    };
+  };
+  networking.firewall = {
+    allowedTCPPorts = [config.services.spotifyd.settings.global.zeroconf_port];
+    allowedUDPPorts = [5353];
+  };
   age.secrets = {
     yggdrasil.file = ../../secrets/yggdrasil/hydra.json;
     wireguard.file = ../../secrets/wireguard/hydra;
