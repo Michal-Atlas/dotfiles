@@ -23,19 +23,17 @@
       user = "zacekmi2";
       domain = "cvut.cz";
     in {
+      flavor = "outlook.office365.com";
       address = "${user}@fit.${domain}";
       userName = "${user}@${domain}";
-      imap = {
-        host = "outlook.office365.com";
-        port = 993;
-      };
       realName = "Michal Žáček";
-      smtp = {
-        host = "smtp.office365.com";
-        tls.useStartTls = true;
-        port = 587;
+      thunderbird = {
+        enable = true;
+        settings = id: {
+          "mail.smtpserver.smtp_${id}.authMethod" = 10;
+          "mail.server.server_${id}.authMethod" = 10;
+        };
       };
-      thunderbird.enable = true;
       passwordCommand = "${pkgs.pass}/bin/pass -c ${domain}/${user}";
     };
   };
