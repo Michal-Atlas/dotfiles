@@ -51,6 +51,7 @@
       number = true;
       relativenumber = true;
       autoread = true;
+      autochdir = true;
       autoindent = true;
       showmatch = true;
       scrolloff = 6;
