@@ -1,7 +1,12 @@
 {pkgs, ...}: {
   programs.thunderbird = {
     enable = true;
-    profiles."default".isDefault = true;
+    profiles."default" = {
+      isDefault = true;
+      settings = {
+        "mail.default_send_format" = 1;
+      };
+    };
   };
   accounts.email.accounts = {
     "posteo" = rec {
