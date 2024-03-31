@@ -126,7 +126,7 @@ with pkgs;
     tldr
     transmission-remote-gtk
     tree
-    unison
+    unison-ucm
     unzip
     uqm
     valgrind
