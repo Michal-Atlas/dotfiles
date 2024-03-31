@@ -34,4 +34,5 @@ _: {
   };
   boot.kernel.sysctl."net.core.wmem_max" = 2500000;
   programs.nix-ld.enable = true;
+  hardware.xone.enable = true;
 }
