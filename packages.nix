@@ -1,56 +1,43 @@
 pkgs:
 with pkgs;
   [
+    jq
+    (hiPrio gcc)
     acl
     acl2-minimal
     alejandra
-    arandr
     audacity
     bat
-    bc
     blender
     browserpass
     btrfs-progs
     caprine-bin
     ccls
     charis-sil
-    chicken
     cifs-utils
+    clang
     cmake
     compsize
     cryptsetup
-    dejavu_fonts
-    dina-font
     direnv
     discord
     dotnet-sdk
     ed
     element-desktop
-    fasd
     feh
     ffmpeg
     file
-    fira-code
-    fira-code-symbols
     firefox
-    font-awesome
-    foot
     fzf
-    gallery-dl
-    gcc
     gdb
-    gerbil
     ghc
     gimp
     git
     gnumake
     gnupg
-    gnuplot
-    godot_4
     gparted
     gprolog
     graphviz
-    grim
     guile
     gzdoom
     haskell-language-server
@@ -59,63 +46,46 @@ with pkgs;
     imagemagick
     indent
     inkscape
+    inotify-tools
     isync
-    jetbrains-mono
     jetbrains.clion
-    jetbrains.idea-ultimate
-    jetbrains.rider
-    jetbrains.webstorm
     keepassxc
     kobodeluxe
     krita
     lagrange
     lazygit
     legendary-gl
-    liberation_ttf
     libgccjit
     libreoffice
     libtool
+    linuxPackages.perf
+    logseq
     maxima
-    meshlab
-    meson
-    minecraft
     mosh
-    mplus-outline-fonts.githubRelease
     mpv
-    mu
     neofetch
     nix
     nixfmt
     nmap
     nodejs
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
     nyxt
-    ocaml
-    ocamlPackages.merlin
     octave
     openmw-tes3mp
     p7zip
     pandoc
     patchelf
-    pavucontrol
-    picard
     pinentry
     pinentry-curses
     pkg-config
     playerctl
     prismlauncher
     qt5.qtbase
-    racket
-    recutils
     rlwrap
     rnix-lsp
     rsync
     screen
     shotwell
     slurp
-    source-han-sans
     spotify
     steam-run
     superTux
@@ -137,7 +107,6 @@ with pkgs;
     wineWowPackages.stable
     wl-clipboard
     wxmaxima
-    xclip
     xdg-utils
     xdot
     xonotic
