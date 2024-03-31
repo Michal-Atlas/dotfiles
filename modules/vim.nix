@@ -58,6 +58,8 @@
     };
     extraPlugins = with pkgs.vimPlugins; [
       haskell-tools-nvim
+      unison
+      nvim-treesitter-parsers.unison
     ];
   };
   programs.neovim.vimAlias = true;
