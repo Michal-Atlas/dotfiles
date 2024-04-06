@@ -18,5 +18,8 @@ _: {
       GRIM_DEFAULT_DIR = "~/tmp";
       _JAVA_AWT_WM_NONREPARENTING = "1";
     };
+    initExtra = ''
+      setopt interactivecomments
+    '';
   };
 }
