@@ -21,5 +21,6 @@ _: {
     initExtra = ''
       setopt interactivecomments
     '';
+    defaultKeymap = "emacs";
   };
 }
