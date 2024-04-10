@@ -3,6 +3,7 @@
   nur,
   emacs-overlay,
   atlas-overlay,
+  unison-nix,
   ...
 }: {
   nix = {
@@ -18,6 +19,7 @@
       emacs-overlay.overlays.default
       (import ../overlays/atlas-emacs.nix)
       atlas-overlay.overlays.x86_64-linux.default
+      unison-nix.overlay
     ];
     config = {
       allowUnfree = true;
