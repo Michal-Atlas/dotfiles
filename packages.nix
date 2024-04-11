@@ -64,8 +64,8 @@ with pkgs;
     mosh
     mpv
     neofetch
+    nil
     nix
-    nixfmt
     nmap
     nodejs
     nyxt
@@ -81,7 +81,6 @@ with pkgs;
     prismlauncher
     qt5.qtbase
     rlwrap
-    rnix-lsp
     rsync
     screen
     shotwell

@@ -4,6 +4,7 @@
     ./git.nix
     ./ssh.nix
     ./tmux.nix
+    ./helix.nix
   ];
   programs = {
     fzf.enable = true;
