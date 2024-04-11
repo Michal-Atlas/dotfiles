@@ -35,6 +35,14 @@
   home.packages =
     [
       pkgs.atlas-emacs
+      (pkgs.writeShellScriptBin "srun"
+        (let
+          nix = "${pkgs.nix}/bin/nix";
+          fzf = "${pkgs.fzf}/bin/fzf";
+          jq = "${pkgs.jq}/bin/jq";
+        in ''
+          ${nix} run "nixpkgs#$(nix search --json nixpkgs "$@" | ${jq} 'keys[]' -r | ${fzf} --preview='${nix} search nixpkgs#{}')"
+        ''))
     ]
     ++ import ../packages.nix pkgs;
 
