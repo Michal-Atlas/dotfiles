@@ -7,6 +7,8 @@ _: {
   };
 
   networking.stevenBlackHosts = {
+    enable = true;
+    blockSocial = true;
     blockFakenews = true;
     blockGambling = true;
     blockPorn = true;
