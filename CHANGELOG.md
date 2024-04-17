@@ -1,3 +1,20 @@
+## 0.4.0 (2024-04-18)
+
+### Feat
+
+- **nextcloud**: Add
+- **pkgs**: Add clang-tools
+- **hosts**: Re-enable StevenBlackHosts
+- **helix**: Add
+- **scripts**: Added srun
+- **hardware**: Add XBox controller support
+- **zsh**: Allow comments
+
+### Fix
+
+- **zsh**: Use Emacs bindings
+- **fonts**: Re-add fonts into system
+
 ## 0.3.0 (2024-03-31)
 
 ### Feat
