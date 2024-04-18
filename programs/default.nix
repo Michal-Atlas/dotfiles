@@ -24,7 +24,10 @@
       enable = true;
       extraPackages = with pkgs.bat-extras; [batdiff batman batgrep batwatch];
     };
-    password-store.enable = true;
+    password-store = {
+      enable = true;
+      package = pkgs.pass.withExtensions (exts: [exts.pass-otp]);
+    };
     gpg.enable = true;
   };
   services = {
