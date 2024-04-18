@@ -44,14 +44,20 @@
     '';
     path = with pkgs; [config.services.nextcloud.phpPackage config.services.nextcloud.package];
   };
-  systemd.services."cloud-pagekite" = {
+  systemd.services."pagekite" = {
     wantedBy = ["multi-user.target"];
     wants = ["nginx.target"];
     script = ''${pkgs.python3}/bin/python ${builtins.fetchurl {
         url = "https://pagekite.net/pk/pagekite.py";
         sha256 = "sha256:06ycpssr8jsavq83h0bz5wgmxs6cwja5h9mnipaixrkqr9glv53h";
-      }} --optfile=${config.age.secrets.kite.path} 443 https://cloud.michal-atlas.cz'';
+      }} --optfile=${config.age.secrets.kite.path}'';
   };
+  services.kineto = {
+    enable = true;
+    port = 48253;
+    geminiDomain = "gemini://blog.michal-atlas.cz";
+  };
+
   services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
     forceSSL = true;
     enableACME = true;

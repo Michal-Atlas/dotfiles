@@ -21,6 +21,7 @@
     systems.url = "github:nix-systems/default";
     nixvim.url = "github:nix-community/nixvim/nixos-23.11";
     unison-nix.url = "github:ceedubs/unison-nix";
+    flake-gemini.url = "github:nix-community/flake-gemini";
   };
 
   outputs = {

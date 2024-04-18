@@ -22,6 +22,7 @@
           inputs.agenix.nixosModules.default
           inputs.nur.nixosModules.nur
           inputs.stevenblackhosts.nixosModule
+          inputs.flake-gemini.nixosModules.kineto
         ];
       };
   in {
