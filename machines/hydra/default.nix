@@ -42,4 +42,5 @@
     wireguard.file = ../../secrets/wireguard/hydra;
     kite.file = ../../secrets/kite;
   };
+  services.jellyfin.enable = true;
 }
