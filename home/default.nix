@@ -50,16 +50,4 @@
     "e /home/michal_atlas/Downloads - - - 2d"
     "e /home/michal_atlas/tmp - - - 2d"
   ];
-  services.spotifyd = {
-    enable = true;
-    settings = {
-      global = {
-        username = "michal_atlas+spotify@posteo.net";
-        password_cmd = "${pkgs.pass}/bin/pass spotify";
-        use_mpris = true;
-        volume_normalisation = true;
-        autoplay = true;
-      };
-    };
-  };
 }
