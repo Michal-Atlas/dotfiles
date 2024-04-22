@@ -70,4 +70,5 @@
       ${config.services.nextcloud.hostName}.email = "michal_atlas+le@posteo.net";
     };
   };
+  environment.systemPackages = [pkgs.matterbridge];
 }
