@@ -3,6 +3,7 @@
   pkgs,
   ...
 }: {
+  networking.firewall.allowedTCPPorts = [443];
   services.nextcloud = {
     enable = true;
     package = pkgs.nextcloud28;
