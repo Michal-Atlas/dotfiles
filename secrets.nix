@@ -13,4 +13,5 @@ in {
   "secrets/fit-vpn".publicKeys = dagon ++ hydra;
   "secrets/fit-mount".publicKeys = dagon ++ hydra;
   "secrets/kite".publicKeys = hydra;
+  "secrets/nextdav".publicKeys = dagon ++ hydra;
 }
