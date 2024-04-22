@@ -1,6 +1,7 @@
 pkgs:
 with pkgs;
   [
+    gitkraken
     clang-tools
     jq
     (hiPrio gcc)
