@@ -1,4 +1,4 @@
-{...}: let
+{config, ...}: let
   # https://wiki.nixos.org/wiki/Samba#Samba_Client
   automount_opts = [
     "x-systemd.automount"
@@ -20,4 +20,6 @@ in {
       options = automount_opts ++ ["_netdev" "user"];
     };
   };
+  services.davfs2.enable = true;
+  environment.etc."davfs2/secrets".source = config.age.secrets.webdav.path;
 }
