@@ -4,6 +4,7 @@ _: {
     ./torrents.nix
     ./yggdrasil.nix
     ./morrowind.nix
+    ./mounts.nix
   ];
   services = {
     openssh = {
