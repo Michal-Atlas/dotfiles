@@ -32,6 +32,7 @@
         cookbook
         bookmarks
         twofactor_nextcloud_notification
+        spreed
         ;
     };
     extraAppsEnable = true;
