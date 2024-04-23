@@ -1,3 +1,31 @@
+## 0.5.0 (2024-04-23)
+
+### Feat
+
+- **pkg**: Add racket
+- **atlasnet**: Bring back + Wireguard
+- **pkgs**: Add gitkraken
+- **nextcloud**: Add matterbridge
+- **secrets**: Add Nextcloud mount
+- **ssh**: Add fray
+- **nextcloud**: Add talks
+- **hosts**: Yggdrasil access to nextcloud
+- **kite**: Jellyfin https port
+- **jellyfin**: Allow local
+- **kite**: Add jellyfin
+- **jellyfin**: Add
+- **mount**: Add RouterDisk
+- **kineto**: Add
+
+### Fix
+
+- **mounts**: Add webdav secret
+- **hydra**: Remove router mount
+- **nextcloud**: Open firewall port
+- **mounts**: Centralize network mounts
+- **spotifyd**: Remove user
+- **pass**: Add otp
+
 ## 0.4.0 (2024-04-18)
 
 ### Feat
