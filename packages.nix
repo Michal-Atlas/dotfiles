@@ -1,6 +1,7 @@
 pkgs:
 with pkgs;
   [
+    racket
     gitkraken
     clang-tools
     jq
