@@ -1,4 +1,13 @@
 {config, ...}: {
+  networking.hosts = with builtins;
+    listToAttrs (
+      map
+      (value: {
+        name = config.atlasnet.yggdrasil.${value};
+        value = ["yg-${value}"];
+      })
+      (attrNames config.atlasnet.yggdrasil)
+    );
   services.yggdrasil = {
     enable = true;
     group = "wheel";

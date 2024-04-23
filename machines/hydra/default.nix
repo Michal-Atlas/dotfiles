@@ -46,4 +46,8 @@
     enable = true;
     openFirewall = true;
   };
+  services.onlyoffice = {
+    enable = true;
+    port = 13444;
+  };
 }
