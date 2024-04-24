@@ -11,9 +11,15 @@ in {
   services.nfs = {
     server = {
       enable = true;
-      exports = ''
-        / fd4c:16e4:7d9b::/64(rw,crossmnt,root_squash)
-      '';
+      exports = with builtins;
+        concatStringsSep "\n"
+        (map (dir: "${dir} fd4c:16e4:7d9b::/64(rw,nohide,crossmnt,root_squash,mp)")
+          [
+            "/"
+            "/var"
+            "/home/michal_atlas"
+            "/home/michal_atlas/Games"
+          ]);
     };
   };
   networking.firewall.allowedTCPPorts = [2049];
