@@ -1,0 +1,7 @@
+set keyseq-timeout 1200
+
+set colored-stats on
+set colored-completion-prefix on
+
+"\C-xP": print-last-kbd-macro
+"\e\C-o": dabbrev-expand

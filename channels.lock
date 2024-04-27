@@ -1,0 +1,110 @@
+(list (channel
+        (name 'guix)
+        (url "https://git.savannah.gnu.org/git/guix.git")
+        (branch "master")
+        (commit
+          "5d2302a1959d09e6d5a5f02ac199458095847a82")
+        (introduction
+          (make-channel-introduction
+            "9edb3f66fd807b096b48283debdcddccfea34bad"
+            (openpgp-fingerprint
+              "BBB0 2DDF 2CEA F6A8 0D1D  E643 A2A0 6DF2 A33A 54FA"))))
+      (channel
+        (name 'engstrand-wallpapers)
+        (url "https://github.com/engstrand-config/wallpapers")
+        (branch "main")
+        (commit
+          "484960a5e3a7386fc8d8ca7ffcb704c9b0efb9e9")
+        (introduction
+          (make-channel-introduction
+            "ef88c361750170ec80a0276767328961a5547533"
+            (openpgp-fingerprint
+              "C9BE B8A0 4458 FDDF 1268  1B39 029D 8EB7 7E18 D68C"))))
+      (channel
+        (name 'rde)
+        (url "https://git.sr.ht/~abcdw/rde")
+        (branch "master")
+        (commit
+          "72ae8364e4846172453c4ec05656bda2b495f2e3")
+        (introduction
+          (make-channel-introduction
+            "257cebd587b66e4d865b3537a9a88cccd7107c95"
+            (openpgp-fingerprint
+              "2841 9AC6 5038 7440 C7E9  2FFA 2208 D209 58C1 DEB0"))))
+      (channel
+        (name 'guix-gaming-games)
+        (url "https://gitlab.com/guix-gaming-channels/games.git")
+        (branch "master")
+        (commit
+          "38907aa88298870f483b5e6e8dbd966e942d00f1")
+        (introduction
+          (make-channel-introduction
+            "c23d64f1b8cc086659f8781b27ab6c7314c5cca5"
+            (openpgp-fingerprint
+              "50F3 3E2E 5B0C 3D90 0424  ABE8 9BDC F497 A4BB CC7F"))))
+      (channel
+        (name 'guix-past)
+        (url "https://gitlab.inria.fr/guix-hpc/guix-past")
+        (branch "master")
+        (commit
+          "ed18e18455c2f4e7b7f1019d09bdcc9b9c6d71de")
+        (introduction
+          (make-channel-introduction
+            "0c119db2ea86a389769f4d2b9c6f5c41c027e336"
+            (openpgp-fingerprint
+              "3CE4 6455 8A84 FDC6 9DB4  0CFB 090B 1199 3D9A EBB5"))))
+      (channel
+        (name 'atlas)
+        (url "https://git.sr.ht/~michal_atlas/guix-channel")
+        (branch "master")
+        (commit
+          "d4ad2b55f6b0f90b4aa4bb90f6a36213506907ef")
+        (introduction
+          (make-channel-introduction
+            "f0e838427c2d9c495202f1ad36cfcae86e3ed6af"
+            (openpgp-fingerprint
+              "D451 85A2 755D AF83 1F1C  3DC6 3EFB F2BB BB29 B99E"))))
+      (channel
+        (name 'guixrus)
+        (url "https://git.sr.ht/~whereiseveryone/guixrus")
+        (branch "master")
+        (commit
+          "daaa56be68b9946b444c5bdc5d98fd62d2bb3efb")
+        (introduction
+          (make-channel-introduction
+            "7c67c3a9f299517bfc4ce8235628657898dd26b2"
+            (openpgp-fingerprint
+              "CD2D 5EAA A98C CB37 DA91  D6B0 5F58 1664 7F8B E551"))))
+      (channel
+        (name 'emacs)
+        (url "https://github.com/babariviere/guix-emacs")
+        (branch "master")
+        (commit
+          "fe10f46bf6b5bb6f8fb18d63198305deff131340")
+        (introduction
+          (make-channel-introduction
+            "72ca4ef5b572fea10a4589c37264fa35d4564783"
+            (openpgp-fingerprint
+              "261C A284 3452 FB01 F6DF  6CF4 F9B7 864F 2AB4 6F18"))))
+      (channel
+        (name 'sops-guix)
+        (url "https://git.sr.ht/~fishinthecalculator/sops-guix")
+        (branch "main")
+        (commit
+          "66bc806da27cafadb3d6f7f7f82aa9d86a1169c2")
+        (introduction
+          (make-channel-introduction
+            "0bbaf1fdd25266c7df790f65640aaa01e6d2dbc9"
+            (openpgp-fingerprint
+              "8D10 60B9 6BB8 292E 829B  7249 AED4 1CC1 93B7 01E2"))))
+      (channel
+        (name 'nonguix)
+        (url "https://gitlab.com/nonguix/nonguix")
+        (branch "master")
+        (commit
+          "e4fe4809f88d91eda5a7dc29e44ee649ded7e830")
+        (introduction
+          (make-channel-introduction
+            "897c1a470da759236cc11798f4e0a5f7d4d59fbc"
+            (openpgp-fingerprint
+              "2A39 3FFF 68F4 EF7A 3D29  12AF 6F51 20A0 22FB B2D5")))))
