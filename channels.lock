@@ -3,7 +3,7 @@
         (url "https://git.savannah.gnu.org/git/guix.git")
         (branch "master")
         (commit
-          "5d2302a1959d09e6d5a5f02ac199458095847a82")
+          "4178eaf3b2eeea8f6c2e49b1d65cd60a1663c4a9")
         (introduction
           (make-channel-introduction
             "9edb3f66fd807b096b48283debdcddccfea34bad"
@@ -25,7 +25,7 @@
         (url "https://git.sr.ht/~abcdw/rde")
         (branch "master")
         (commit
-          "72ae8364e4846172453c4ec05656bda2b495f2e3")
+          "309db6a72a0b40ecfd7e3fd00cbe8672e32f42ba")
         (introduction
           (make-channel-introduction
             "257cebd587b66e4d865b3537a9a88cccd7107c95"
@@ -36,7 +36,7 @@
         (url "https://gitlab.com/guix-gaming-channels/games.git")
         (branch "master")
         (commit
-          "38907aa88298870f483b5e6e8dbd966e942d00f1")
+          "8ee992cb2e1a405667ef2709bd5233c6c6a00915")
         (introduction
           (make-channel-introduction
             "c23d64f1b8cc086659f8781b27ab6c7314c5cca5"
@@ -47,7 +47,7 @@
         (url "https://gitlab.inria.fr/guix-hpc/guix-past")
         (branch "master")
         (commit
-          "ed18e18455c2f4e7b7f1019d09bdcc9b9c6d71de")
+          "921f845dc0dec9f052dcda479a15e787f9fd5b0a")
         (introduction
           (make-channel-introduction
             "0c119db2ea86a389769f4d2b9c6f5c41c027e336"
@@ -69,7 +69,7 @@
         (url "https://git.sr.ht/~whereiseveryone/guixrus")
         (branch "master")
         (commit
-          "daaa56be68b9946b444c5bdc5d98fd62d2bb3efb")
+          "0d1b6e1d2d7d9db357a6a30796afe4b4aef5dc4e")
         (introduction
           (make-channel-introduction
             "7c67c3a9f299517bfc4ce8235628657898dd26b2"
@@ -80,7 +80,7 @@
         (url "https://github.com/babariviere/guix-emacs")
         (branch "master")
         (commit
-          "fe10f46bf6b5bb6f8fb18d63198305deff131340")
+          "6764b721bccd48b281ac2f5cd5d4a34b6d08bb2a")
         (introduction
           (make-channel-introduction
             "72ca4ef5b572fea10a4589c37264fa35d4564783"
@@ -91,7 +91,7 @@
         (url "https://git.sr.ht/~fishinthecalculator/sops-guix")
         (branch "main")
         (commit
-          "66bc806da27cafadb3d6f7f7f82aa9d86a1169c2")
+          "aa0fa07a673c632f64d584d730028c7605b649d4")
         (introduction
           (make-channel-introduction
             "0bbaf1fdd25266c7df790f65640aaa01e6d2dbc9"
@@ -102,7 +102,7 @@
         (url "https://gitlab.com/nonguix/nonguix")
         (branch "master")
         (commit
-          "e4fe4809f88d91eda5a7dc29e44ee649ded7e830")
+          "0018464a1f55586654d5a51b6ceb7a6e3c4fe2f3")
         (introduction
           (make-channel-introduction
             "897c1a470da759236cc11798f4e0a5f7d4d59fbc"

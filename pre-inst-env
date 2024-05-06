@@ -1,0 +1,2 @@
+set -euox pipefail
+guix time-machine -C "$LOCK_FILE" -- "${@:2}"

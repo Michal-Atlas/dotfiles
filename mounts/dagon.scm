@@ -6,44 +6,39 @@
             mapped-devices
             swap-devices))
 
-(define rpool (lvm "rpool"))
-
-(define rpool-root (rpool "root"))
-
-(define rpool-home (rpool "home"))
-
-(define unlock-home
-  (mapped-device
-   (source "/dev/mapper/rpool-home")
-   (target "crypthome")
-   (type luks-device-mapping)))
+(define unlock
+(mapped-device
+                          (source (uuid
+                                   "48a7d8c7-dd78-41ea-a54a-d168abbe8bab"))
+                          (target "ROOT")
+                          (type luks-device-mapping))
+  )
 
 (define root
-  (fs "/dev/mapper/rpool-root" "/" (list rpool-root)
-      #:subvol "@guix"
-      #:flags '(shared)))
+  (fs 
+     "/dev/mapper/ROOT"
+     "/"
+     (list unlock)
+     #:flags '(shared))
+  )
 
 (define home
-  (fs "/dev/mapper/crypthome" "/home/michal_atlas" (list unlock-home)))
+  (fs "/dev/mapper/crypthome" "/home/michal_atlas" (list unlock)))
 
 (define efi
   (file-system
     (mount-point "/boot/efi")
-    (device (uuid "D762-6C63" 'fat32))
+    (device (uuid "B08C-A8BE" 'fat32))
     (type "vfat")))
-
-(define rpool-swap (rpool "swap"))
 
 (define swap-devices
   (list
-   (swap-space (target "/dev/mapper/rpool-swap")
-               (dependencies (list rpool-swap)))))
+   (swap-space (target (uuid "1fa00e6c-108b-4116-a273-4938182493f4"))
+               )))
 
 (define mapped-devices
-  (list rpool-swap
-        unlock-home
-        rpool-home
-        rpool-root))
+  (list         unlock
+        ))
 
 (define file-systems
-  (list efi root home))
+  (list efi root))

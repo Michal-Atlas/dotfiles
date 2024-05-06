@@ -5,9 +5,11 @@
   #:use-module (home packages)
   #:use-module (home pass)
   #:use-module (home ssh)
+  #:use-module (home bash)
   #:use-module (gnu home services)
   #:use-module (gnu home services guix)
   #:use-module (gnu home services shepherd)
+  #:use-module (gnu home services syncthing)
   #:use-module (guix gexp)
   #:use-module (channels)
   #:use-module (rde home services bittorrent)
@@ -44,4 +46,5 @@
    packages
    dconf
    (&s home-channels #:config %channels)
+   (&s home-syncthing)
    files))

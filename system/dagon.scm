@@ -20,7 +20,7 @@
              (user "michal_atlas")
              (systems (list "x86_64-linux"))
              (private-key "/home/michal_atlas/.ssh/id_rsa")
-             (host-key "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINAIrtjcu5p0bORlaVvkqGgeSxD+uUUp114CaXOBOgqQ"))))))
+             (host-key "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHp5iggvaDE3rbzNRteh6ckWVKicSFbTYMp1SeQYnRQ2"))))))
    (&s tlp
        (cpu-boost-on-ac? #t)
        (wifi-pwr-on-bat? #t))

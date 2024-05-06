@@ -4,9 +4,6 @@
   #:use-module (gnu services vpn)
   #:use-module (gnu services base)
   #:use-module (ice-9 curried-definitions)
-  #:use-module (sops)
-  #:use-module (sops services sops)
-  #:use-module (sops secrets)
   #:use-module (rde features)
   #:export (feature-wireguard))
 
@@ -32,9 +29,14 @@
          (endpoint "yg-dagon:51820")
          (allowed-ips (list (wg-ip 2)))
          (public-key "VUk71x+wmwt//38RNT47ZNFJP0ZB2xB++4bAAtT6uEU="))
+	(wireguard-peer
+         (name "leviathan")
+         (endpoint "yg-leviathan:51820")
+         (allowed-ips (list (wg-ip 3)))
+         (public-key "tt3aPukVGsz3qYzg3bZofHz7L6EBohjf6FEgip44S3c="))
         (wireguard-peer
          (name "arc")
-         (allowed-ips (list (wg-ip 3)))
+         (allowed-ips (list (wg-ip 4)))
          (public-key "+i1Pv+p34kp/iEsPYeIj1mz/WkisdAUfQYlioRLbmxY=")))))
 
     (define ((peer-by-name name) peer)
@@ -61,14 +63,7 @@
          (peers
           (filter
            (negate (peer-by-name host-name))
-           (wireguard:peers)))
-         (private-key "/run/secrets/wireguard.key"))
-     (+s sops-secrets sops-wireguard
-         (list
-          (sops-secret
-           (key `("wireguard" ,host-name))
-           (file common.yaml)
-           (path "wireguard.key"))))))
+           (wireguard:peers))))))
   (feature
    (name 'wireguard)
    (system-services-getter get-system-services)))

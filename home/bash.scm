@@ -48,7 +48,7 @@
         (origin
           (method url-fetch)
           (uri "https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.bash")
-          (sha256 (base32 "0s078va037r0pdjr7f50x7ksjppp63sqxxgzv8wxamvvhvlly251"))))
+          (sha256 (base32 "16cxm00ch0hca86jh34cj8y6c9r05xvxh4213rg70g1rhgfnhs3m"))))
        (mixed-text-file
         "bashrc-pp"
         "function pp() { "

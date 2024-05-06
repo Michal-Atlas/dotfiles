@@ -39,17 +39,6 @@ in {
             "file_mode=0600"
           ];
       };
-      "/NX" = {
-        device = "https://cloud.michal-atlas.cz/remote.php/dav/files/michal_atlas";
-        fsType = "davfs";
-        options =
-          automount_opts
-          ++ [
-            "_netdev"
-            "uid=michal_atlas"
-            "use_locks=0"
-          ];
-      };
     }
     // (with builtins; (listToAttrs
       (map (name: {

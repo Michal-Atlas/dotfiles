@@ -19,7 +19,6 @@
   #:use-module ((system dagon) #:prefix sys:)
   #:use-module ((system hydra) #:prefix sys:)
   #:use-module (home hydra)
-  #:use-module (home unison)
   #:use-module (ice-9 match)
   #:use-module (nongnu packages linux)
   #:use-module (nongnu system linux-initrd)
@@ -64,7 +63,7 @@
 
 (define feature-common
   (append
-   ;; wm
+   wm
    emacs
    (list
     feature-legacy-services
@@ -80,14 +79,13 @@
          (inherit config)
          (discover? #t))))
      #:guix-substitute-urls
-     (list "https://guix.bordeaux.inria.fr"
-           "https://substitutes.nonguix.org")
+     '("https://substitutes.nonguix.org")
      #:guix-authorized-keys
      (list
       (plain-file "non-guix.pub"
-                  "(public-key (ecc (curve Ed25519) (q #926B78EBA9416220CA0AFA2EAEC8ED99FC9E9C03AF11CD08AE6F8192BCF68673#)))")
+                  "(public-key (ecc (curve Ed25519) (q #C1FD53E5D4CE971933EC50C9F307AE2171A2D3B52C804642A7A35F84F3A4EA98#)))")
       (plain-file "hydra.pub"
-                  "(public-key (ecc (curve Ed25519) (q #629C1EFAFAB6A1D70E0CBC221C3F164226EBF72E52401CACEA0444CACA89E0D2#)))")
+                  "(public-key (ecc (curve Ed25519) (q #C985859074C7CE6142ACF57349A175EB1DC86DB4CEDD9F7C62AD5DFDD885DF1D#)))")
       (plain-file "dagon.pub"
                   "(public-key (ecc (curve Ed25519) (q #F5E876A29802796DBA7BAD8B7C0FEE90BDD784A70CB2CC8A1365A47DA03AADBD#)))")
       (plain-file "past.pub"
@@ -101,20 +99,20 @@
     (feature-xdg)
     (feature-gtk3 #:gtk-dark-theme? #t)
     (feature-bluetooth)
-    ;; (feature-transmission)
+    (feature-transmission)
     (feature-mpv)
     (feature-yt-dlp)
     (feature-markdown #:headings-scaling? #t)
     (feature-foot)
     (feature-qemu)
-    ;; (feature-networking)
+    (feature-networking #:mdns? #t)
     (feature-clojure)
     (feature-gnupg
      #:gpg-primary-key "3EFBF2BBBB29B99E"
      #:gpg-ssh-agent? #f
      #:pinentry-flavor 'gnome3)
     (feature-git
-     #:git-gpg-sign-key "3EFBF2BBBB29B99E"
+     #:git-sign-key "3EFBF2BBBB29B99E"
      #:extra-config
      `((pull
         ((rebase . #t)))
@@ -171,8 +169,8 @@
                         "lv3:ralt_switch" "compose:rctrl-altgr"))))))
 
 (define dagon
-  (cons* (feature-unison #:peer "hydra")
-         (feature-host-info #:host-name "dagon")
+  (cons* 
+         (feature-host-info #:host-name "leviathan")
          (feature-file-systems
           #:mapped-devices dagon:mapped-devices
           #:swap-devices dagon:swap-devices
@@ -186,7 +184,7 @@
          feature-common))
 
 (define hydra
-  (cons* (feature-unison #:peer "dagon")
+  (cons* 
          (feature-host-info #:host-name "hydra")
          (feature-file-systems
           #:mapped-devices hydra:mapped-devices
@@ -201,9 +199,11 @@
 
 (define (config-for-host host)
   (rde-config
+   (integrate-he-in-os? #t)
    (features
     (match host
-      ("hydra" hydra)
+	   ("hydra" hydra)
+	   ("leviathan" dagon)
       ("dagon" dagon)))))
 
 ((match (getenv "OP")

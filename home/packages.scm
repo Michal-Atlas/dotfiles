@@ -132,7 +132,8 @@
         ffmpeg
         fheroes2
         file
-        firefox
+;        firefox
+        icecat
         flatpak
         foot
         fzf
@@ -145,27 +146,6 @@
         gmnisrv
         gnu-make
         gnunet
-        gnome-shell-extension-appindicator
-        gnome-shell-extension-blur-my-shell
-        gnome-shell-extension-burn-my-windows
-        gnome-shell-extension-clipboard-indicator
-        gnome-shell-extension-customize-ibus
-        gnome-shell-extension-dash-to-dock
-        gnome-shell-extension-dash-to-panel
-        gnome-shell-extension-gsconnect
-        gnome-shell-extension-hide-app-icon
-        gnome-shell-extension-jiggle
-        gnome-shell-extension-just-perfection
-        gnome-shell-extension-night-theme-switcher
-        gnome-shell-extension-noannoyance
-        gnome-shell-extension-paperwm
-        gnome-shell-extension-radio
-        gnome-shell-extension-sound-output-device-chooser
-        gnome-shell-extension-topicons-redux
-        gnome-shell-extension-transparent-window
-        gnome-shell-extension-unite-shell
-        gnome-shell-extension-vertical-overview
-        gnome-shell-extension-vitals
         gparted
         graphviz
         grim
@@ -185,7 +165,7 @@
         jq
         keepassxc
         kineto
-        krita
+;        krita
         lagrange
         lgogdownloader
         lsof
@@ -223,34 +203,10 @@
         recutils
         rlwrap
         rsync
-        sbcl
-        sbcl-alexandria
-        sbcl-cffi
-        sbcl-cl-yacc
-        sbcl-clingon
-        sbcl-coalton
-        sbcl-iterate
-        sbcl-linedit
-        sbcl-log4cl
-        sbcl-lparallel
-        sbcl-mcclim
-        sbcl-parenscript
-        sbcl-s-xml
-        sbcl-screamer
-        sbcl-serapeum
-        sbcl-series
-        sbcl-tailrec
-        sbcl-tar
-        sbcl-terminal-keypress
-        sbcl-terminal-size
-        sbcl-terminfo
-        sbcl-trees
-        sbcl-trial
-        sbcl-unix-opts
         screen
         shellcheck
         shen-c
-        shen-scheme
+        ;shen-scheme
         shotwell
         skribilo
         slurp

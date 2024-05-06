@@ -35,7 +35,6 @@
   #:use-module (networks wireguard)
   #:use-module (networks yggdrasil)
   #:use-module (networks zerotier)
-  #:use-module (sops)
   #:export (get-services))
 
 (define (common-rules-service vendor product)
@@ -50,16 +49,16 @@
 
 (define services
   (list
-   (&s gdm
+   #;(&s gdm
        (auto-login? #t)
        (default-user "michal_atlas")
        (auto-suspend? #f)
        (wayland? #t))
-   (&s gnome-desktop)
-   (&s wpa-supplicant)
-   (&s network-manager)
-   (&s modem-manager)
-   (&s transmission-daemon)
+   ;(&s gnome-desktop)
+   ;(&s wpa-supplicant)
+   ;(&s network-manager)
+   ;(&s modem-manager)
+   ;(&s transmission-daemon)
    (&s usb-modeswitch)
    (&s file-database)
    (&s package-database)
@@ -111,7 +110,6 @@
    packages
    (autofs:get)
    (nfs:get)
-   sops-service
    (append
     (zerotier:get)
     services)))

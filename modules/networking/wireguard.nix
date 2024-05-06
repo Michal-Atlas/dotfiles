@@ -15,7 +15,7 @@
     wireguard.interfaces.wg0 = rec {
       privateKeyFile = config.age.secrets.wireguard.path;
       ips = [config.atlasnet.wireguard.${config.networking.hostName}.address];
-      listenPort = 34034;
+      listenPort = 51820;
       peers =
         lib.attrsets.mapAttrsToList
         (name: value: {

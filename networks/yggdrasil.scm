@@ -3,9 +3,6 @@
   #:use-module (gnu services networking)
   #:use-module (gnu services base)
   #:use-module (ice-9 match)
-  #:use-module (sops)
-  #:use-module (sops services sops)
-  #:use-module (sops secrets)
   #:use-module (rde features)
   #:use-module ((rde features networking) #:prefix rde:)
   #:use-module (srfi srfi-43)
@@ -28,18 +25,12 @@
                   "7d15" "6c81" "2563" "62c"))
                 ("lana" .
                  ("200" "29bd" "a495" "4ad7"
-                  "f79e" "e29a" "181a" "3872")))))
-
-     (+s sops-secrets sops-wireguard
-         (list
-          (sops-secret
-           (key `("yggdrasil" ,(get-value 'host-name config)))
-           (file common.yaml)
-           (user "yggdrasil")
-           (group "yggdrasil")
-           (output-type "json"))))
+                  "f79e" "e29a" "181a" "3872"))
+                ("leviathan" .
+                 ("201" "a948" "e5b3" "2c4c"
+                  "378c" "5d3b" "54c6" "920f")))))
      (&s yggdrasil
-         (config-file "/run/secrets/yggdrasil.json")
+         ;(config-file "/run/secrets/yggdrasil.json")
          (json-config
           `((peers .
                    ,(vector-append
