@@ -24,7 +24,7 @@
    (feature-sway
     #:xwayland? #t
     #:extra-config
-    `((input "1739:32382:DELL0740:00_06CB:7E7E_Touchpad"
+    `((input type:touchpad
              ((dwt enabled)
               (tap enabled)
               (natural_scroll enabled)
