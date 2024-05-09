@@ -22,6 +22,7 @@
       };
       smtp = {
         inherit (imap) host;
+        port = 465;
       };
     };
     "ctu" = let
