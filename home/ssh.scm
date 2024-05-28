@@ -5,6 +5,8 @@
   #:use-module (gnu services vpn)
   #:export (ssh))
 
+(define home "/home/michal_atlas")
+
 (define ssh
  (&s home-openssh
      (hosts (append
@@ -25,7 +27,7 @@
                (user "atlas")
                (host-name "the-dam.org")
                (identity-file (string-append
-                               (getenv "HOME")
+                               home
                                "/.ssh/the-dam")))
               (openssh-host
                (name "metacentrum-plzen1")
@@ -35,7 +37,7 @@
 	       (host-name "130.61.54.212")
                (user "ubuntu")
                (identity-file (string-append
-                               (getenv "HOME")
+                               home
                                "/.ssh/oracle"))))
 	     (map (lambda (q)
 		    (openssh-host
