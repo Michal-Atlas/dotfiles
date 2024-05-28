@@ -130,6 +130,7 @@
    (feature-emacs-smartparens
     #:show-smartparens? #t)
    (feature-emacs-eglot)
+   (feature-emacs-geiser)
    (feature-emacs-flymake)
    (feature-emacs-elisp)
    (feature-emacs-git)
