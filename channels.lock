@@ -1,58 +1,47 @@
 (list (channel
-        (name 'guix)
-        (url "https://git.savannah.gnu.org/git/guix.git")
+        (name 'nonguix)
+        (url "https://gitlab.com/nonguix/nonguix")
         (branch "master")
         (commit
-          "4178eaf3b2eeea8f6c2e49b1d65cd60a1663c4a9")
+          "92f4921c6603e81693a01b0cd7c50977e0b92788")
         (introduction
           (make-channel-introduction
-            "9edb3f66fd807b096b48283debdcddccfea34bad"
+            "897c1a470da759236cc11798f4e0a5f7d4d59fbc"
             (openpgp-fingerprint
-              "BBB0 2DDF 2CEA F6A8 0D1D  E643 A2A0 6DF2 A33A 54FA"))))
+              "2A39 3FFF 68F4 EF7A 3D29  12AF 6F51 20A0 22FB B2D5"))))
       (channel
-        (name 'engstrand-wallpapers)
-        (url "https://github.com/engstrand-config/wallpapers")
+        (name 'sops-guix)
+        (url "https://git.sr.ht/~fishinthecalculator/sops-guix")
         (branch "main")
         (commit
-          "484960a5e3a7386fc8d8ca7ffcb704c9b0efb9e9")
+          "1572d1de1b4a54bf376dd4fc486652c5a940908a")
         (introduction
           (make-channel-introduction
-            "ef88c361750170ec80a0276767328961a5547533"
+            "0bbaf1fdd25266c7df790f65640aaa01e6d2dbc9"
             (openpgp-fingerprint
-              "C9BE B8A0 4458 FDDF 1268  1B39 029D 8EB7 7E18 D68C"))))
+              "8D10 60B9 6BB8 292E 829B  7249 AED4 1CC1 93B7 01E2"))))
       (channel
-        (name 'rde)
-        (url "https://git.sr.ht/~abcdw/rde")
+        (name 'emacs)
+        (url "https://github.com/babariviere/guix-emacs")
         (branch "master")
         (commit
-          "309db6a72a0b40ecfd7e3fd00cbe8672e32f42ba")
+          "7004c625fa8722cdd92d8f5452a4a012160e4170")
         (introduction
           (make-channel-introduction
-            "257cebd587b66e4d865b3537a9a88cccd7107c95"
+            "72ca4ef5b572fea10a4589c37264fa35d4564783"
             (openpgp-fingerprint
-              "2841 9AC6 5038 7440 C7E9  2FFA 2208 D209 58C1 DEB0"))))
+              "261C A284 3452 FB01 F6DF  6CF4 F9B7 864F 2AB4 6F18"))))
       (channel
-        (name 'guix-gaming-games)
-        (url "https://gitlab.com/guix-gaming-channels/games.git")
+        (name 'guixrus)
+        (url "https://git.sr.ht/~whereiseveryone/guixrus")
         (branch "master")
         (commit
-          "8ee992cb2e1a405667ef2709bd5233c6c6a00915")
+          "44ae14265bf9bad2a8094b26156ee7028821a5dc")
         (introduction
           (make-channel-introduction
-            "c23d64f1b8cc086659f8781b27ab6c7314c5cca5"
+            "7c67c3a9f299517bfc4ce8235628657898dd26b2"
             (openpgp-fingerprint
-              "50F3 3E2E 5B0C 3D90 0424  ABE8 9BDC F497 A4BB CC7F"))))
-      (channel
-        (name 'guix-past)
-        (url "https://gitlab.inria.fr/guix-hpc/guix-past")
-        (branch "master")
-        (commit
-          "921f845dc0dec9f052dcda479a15e787f9fd5b0a")
-        (introduction
-          (make-channel-introduction
-            "0c119db2ea86a389769f4d2b9c6f5c41c027e336"
-            (openpgp-fingerprint
-              "3CE4 6455 8A84 FDC6 9DB4  0CFB 090B 1199 3D9A EBB5"))))
+              "CD2D 5EAA A98C CB37 DA91  D6B0 5F58 1664 7F8B E551"))))
       (channel
         (name 'atlas)
         (url "https://git.sr.ht/~michal_atlas/guix-channel")
@@ -65,46 +54,57 @@
             (openpgp-fingerprint
               "D451 85A2 755D AF83 1F1C  3DC6 3EFB F2BB BB29 B99E"))))
       (channel
-        (name 'guixrus)
-        (url "https://git.sr.ht/~whereiseveryone/guixrus")
+        (name 'guix-gaming-games)
+        (url "https://gitlab.com/guix-gaming-channels/games.git")
         (branch "master")
         (commit
-          "0d1b6e1d2d7d9db357a6a30796afe4b4aef5dc4e")
+          "86fde8472dae038a59024252fdf4a1a88370ff84")
         (introduction
           (make-channel-introduction
-            "7c67c3a9f299517bfc4ce8235628657898dd26b2"
+            "c23d64f1b8cc086659f8781b27ab6c7314c5cca5"
             (openpgp-fingerprint
-              "CD2D 5EAA A98C CB37 DA91  D6B0 5F58 1664 7F8B E551"))))
+              "50F3 3E2E 5B0C 3D90 0424  ABE8 9BDC F497 A4BB CC7F"))))
       (channel
-        (name 'emacs)
-        (url "https://github.com/babariviere/guix-emacs")
+        (name 'rde)
+        (url "https://git.sr.ht/~abcdw/rde")
         (branch "master")
         (commit
-          "6764b721bccd48b281ac2f5cd5d4a34b6d08bb2a")
+          "e2e82e878973baee72b40b5b6b35d707f670fc58")
         (introduction
           (make-channel-introduction
-            "72ca4ef5b572fea10a4589c37264fa35d4564783"
+            "257cebd587b66e4d865b3537a9a88cccd7107c95"
             (openpgp-fingerprint
-              "261C A284 3452 FB01 F6DF  6CF4 F9B7 864F 2AB4 6F18"))))
+              "2841 9AC6 5038 7440 C7E9  2FFA 2208 D209 58C1 DEB0"))))
       (channel
-        (name 'sops-guix)
-        (url "https://git.sr.ht/~fishinthecalculator/sops-guix")
+        (name 'engstrand-wallpapers)
+        (url "https://github.com/engstrand-config/wallpapers")
         (branch "main")
         (commit
-          "aa0fa07a673c632f64d584d730028c7605b649d4")
+          "484960a5e3a7386fc8d8ca7ffcb704c9b0efb9e9")
         (introduction
           (make-channel-introduction
-            "0bbaf1fdd25266c7df790f65640aaa01e6d2dbc9"
+            "ef88c361750170ec80a0276767328961a5547533"
             (openpgp-fingerprint
-              "8D10 60B9 6BB8 292E 829B  7249 AED4 1CC1 93B7 01E2"))))
+              "C9BE B8A0 4458 FDDF 1268  1B39 029D 8EB7 7E18 D68C"))))
       (channel
-        (name 'nonguix)
-        (url "https://gitlab.com/nonguix/nonguix")
+        (name 'guix)
+        (url "https://git.savannah.gnu.org/git/guix.git")
         (branch "master")
         (commit
-          "0018464a1f55586654d5a51b6ceb7a6e3c4fe2f3")
+          "542b18709a46e361de8f25e3fece29860532743c")
         (introduction
           (make-channel-introduction
-            "897c1a470da759236cc11798f4e0a5f7d4d59fbc"
+            "9edb3f66fd807b096b48283debdcddccfea34bad"
             (openpgp-fingerprint
-              "2A39 3FFF 68F4 EF7A 3D29  12AF 6F51 20A0 22FB B2D5")))))
+              "BBB0 2DDF 2CEA F6A8 0D1D  E643 A2A0 6DF2 A33A 54FA"))))
+      (channel
+        (name 'guix-past)
+        (url "https://gitlab.inria.fr/guix-hpc/guix-past")
+        (branch "master")
+        (commit
+          "921f845dc0dec9f052dcda479a15e787f9fd5b0a")
+        (introduction
+          (make-channel-introduction
+            "0c119db2ea86a389769f4d2b9c6f5c41c027e336"
+            (openpgp-fingerprint
+              "3CE4 6455 8A84 FDC6 9DB4  0CFB 090B 1199 3D9A EBB5")))))
