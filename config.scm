@@ -179,7 +179,7 @@
           #:system-services sys:dagon:services)
          (feature-btrbk
           #:schedule "24h 7d"
-          #:path "/home/michal_atlas/")
+          #:path "/")
          feature-common))
 
 (define hydra
