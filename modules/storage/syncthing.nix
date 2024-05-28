@@ -21,6 +21,9 @@ _: {
         "dagon" = {
           id = "PBSLXD7-PGPCQBF-AEY4BGJ-HN63PWK-NOXVRKN-62A3AQB-MMWOHOO-VEW3SQN";
         };
+        "leviathan" = {
+          id = "N6RYEYH-E6J5LR4-6STY5F3-LDQ7NXN-RKKWP7F-MW4HAG5-RXSSJMT-DJ6WZQQ";
+        };
       };
       folders = with builtins; (
         listToAttrs
