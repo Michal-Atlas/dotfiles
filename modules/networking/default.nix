@@ -16,7 +16,7 @@ _: {
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
         PermitRootLogin = "no";
-      }
+      };
     };
     resolved.enable = true;
     zerotierone = {
