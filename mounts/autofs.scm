@@ -10,6 +10,8 @@
   (mixed-text-file
    "auto.shares"
    "router-disk -fstype=cifs,vers=1.0,password=1.0 ://192.168.0.1/sda1\n"
+   "nextdav -fstype=davfs https://cloud.michal-atlas.cz/remote.php/dav/files/michal_atlas\n"
+   "android -fstype=fuse,allow_other,umask=000 :mtpfs\n"
    "\n"))
 
 (define autofs-config
