@@ -47,7 +47,17 @@
     "com.jetbrains.CLion"
     "com.spotify.Client"
     "com.jetbrains.IntelliJ-IDEA-Ultimate"
-    "io.github.mimbrero.WhatsAppDesktop")))
+    "io.github.mimbrero.WhatsAppDesktop"
+    "com.felipekinoshita.Wildcard"
+    "com.github.johnfactotum.Foliate"
+    "com.usebottles.bottles"
+    "com.visualstudio.code"
+    "de.haeckerfelix.Shortwave"
+    "md.obsidian.Obsidian"
+    "org.geogebra.GeoGebra"
+    "org.ghidra_sre.Ghidra"
+    "rest.insomnia.Insomnia"
+    )))
 
 ;; Local Variables:
 ;; mode: scheme
