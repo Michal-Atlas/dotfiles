@@ -29,7 +29,14 @@ _: {
   };
   services.guix = {
     enable = true;
-    gc.enable = true;
+    gc = {
+      enable = true;
+      extraArgs = [
+        "--delete-generations=1m"
+        "--free-space=10G"
+        "--optimize"
+      ];
+    };
     publish.enable = true;
   };
   boot.kernel.sysctl."net.core.wmem_max" = 2500000;
