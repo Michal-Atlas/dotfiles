@@ -1,5 +1,10 @@
 (define-module (config)
   #:use-module (atlas utils download)
+  #:use-module (atlas utils services)
+  #:use-module (guix packages)
+  #:use-module (guix download)
+  #:use-module (gnu services shepherd)
+  #:use-module (gnu packages vpn)
   #:use-module (rde home services shellutils)
   #:use-module (gnu home services shells)
   #:use-module (gnu packages rust-apps)
@@ -153,7 +158,27 @@
     (feature-custom-services
      #:system-services
      (list (simple-service 'libvirt rde-account-service-type
-                    '("libvirt"))))
+                           '("libvirt"))
+           (+s shepherd-root fit-openvpn
+               (list
+                (shepherd-service
+                 (provision '(fit-openvpn))
+                 (requirement '(loopback))
+                 (auto-start? #f)
+                 (start
+                  #~(make-forkexec-constructor
+                     (list #$(file-append openvpn "/sbin/openvpn")
+                           "--config"
+                           #$(mixed-text-file "openvpn.conf"
+                              "config "
+                              (origin
+                                (uri "https://help.fit.cvut.cz/vpn/media/fit-vpn.ovpn")
+                                (method url-fetch)
+                                (sha256 (base32 "0n843652fxgczfhykavxca02x057q50g911yvyy82361daally4d")))
+                              "\n"
+                              "auth-user-pass /etc/fit/vpn\n"
+                              "script-security 2\n"))))
+                 (stop #~(make-kill-destructor)))))))
     (net:feature-yggdrasil)
     (feature-pipewire)
     (feature-wireguard)
