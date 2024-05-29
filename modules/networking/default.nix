@@ -11,7 +11,12 @@ _: {
   services = {
     openssh = {
       enable = true;
-      settings.GatewayPorts = "yes";
+      settings = {
+        GatewayPorts = "yes";
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+        PermitRootLogin = "no";
+      }
     };
     resolved.enable = true;
     zerotierone = {
