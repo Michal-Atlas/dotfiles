@@ -16,14 +16,6 @@
        (openpgp-fingerprint
         "2A39 3FFF 68F4 EF7A 3D29  12AF 6F51 20A0 22FB B2D5"))))
     (channel
-     (name 'emacs)
-     (url "https://github.com/babariviere/guix-emacs")
-     (introduction
-      (make-channel-introduction
-       "72ca4ef5b572fea10a4589c37264fa35d4564783"
-       (openpgp-fingerprint
-        "261C A284 3452 FB01 F6DF  6CF4 F9B7 864F 2AB4 6F18"))))
-    (channel
      (name 'guixrus)
      (url "https://git.sr.ht/~whereiseveryone/guixrus")
      (introduction

@@ -16,14 +16,14 @@ ecl
 ed
 emacs-ace-window
 emacs-adaptive-wrap
-emacs-all-the-icons
-emacs-all-the-icons-dired
 emacs-anzu
+emacs-arei
 emacs-auctex
 emacs-avy
 emacs-bind-map
 emacs-browse-kill-ring
 emacs-calfw
+emacs-carp
 emacs-cheat-sh
 emacs-circe
 emacs-company
@@ -78,10 +78,12 @@ emacs-on-screen
 emacs-orderless
 emacs-org
 emacs-org-modern
+emacs-org-re-reveal
 emacs-org-roam
 emacs-org-roam-ui
 emacs-org-superstar
 emacs-ox-gemini
+emacs-ox-reveal
 emacs-paredit
 emacs-password-generator
 emacs-password-store
@@ -131,7 +133,6 @@ git
 git-lfs
 git:send-email
 gmnisrv
-make
 gnunet
 gparted
 graphviz
@@ -158,6 +159,7 @@ lgogdownloader
 lsof
 lvm2
 mailutils
+make
 maxima
 mosh
 nautilus
@@ -220,7 +222,6 @@ shen-c
 shotwell
 skribilo
 slurp
-sops
 steam
 supertux
 supertuxkart

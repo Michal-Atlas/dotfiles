@@ -10,28 +10,6 @@
             (openpgp-fingerprint
               "2A39 3FFF 68F4 EF7A 3D29  12AF 6F51 20A0 22FB B2D5"))))
       (channel
-        (name 'sops-guix)
-        (url "https://git.sr.ht/~fishinthecalculator/sops-guix")
-        (branch "main")
-        (commit
-          "1572d1de1b4a54bf376dd4fc486652c5a940908a")
-        (introduction
-          (make-channel-introduction
-            "0bbaf1fdd25266c7df790f65640aaa01e6d2dbc9"
-            (openpgp-fingerprint
-              "8D10 60B9 6BB8 292E 829B  7249 AED4 1CC1 93B7 01E2"))))
-      (channel
-        (name 'emacs)
-        (url "https://github.com/babariviere/guix-emacs")
-        (branch "master")
-        (commit
-          "7004c625fa8722cdd92d8f5452a4a012160e4170")
-        (introduction
-          (make-channel-introduction
-            "72ca4ef5b572fea10a4589c37264fa35d4564783"
-            (openpgp-fingerprint
-              "261C A284 3452 FB01 F6DF  6CF4 F9B7 864F 2AB4 6F18"))))
-      (channel
         (name 'guixrus)
         (url "https://git.sr.ht/~whereiseveryone/guixrus")
         (branch "master")
