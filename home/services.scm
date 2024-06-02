@@ -15,7 +15,6 @@
   #:use-module (rde home services bittorrent)
   #:use-module (rde home services i2p)
   #:use-module (home bash)
-  #:use-module (home dconf)
   #:use-module (atlas home services bash)
   #:export (get-services))
 
@@ -44,7 +43,6 @@
    mcron
    ssh
    packages
-   dconf
    (&s home-channels #:config %channels)
    (&s home-syncthing)
    files))
