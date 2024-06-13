@@ -1,3 +1,23 @@
+## 0.6.0 (2024-06-13)
+
+### Feat
+
+- **pkgs**: Add coalton
+- **guix**: Auto-import known profiles
+- **users**: Add david
+- Intern Leviathan
+
+### Fix
+
+- **pkgs**: Coalton is not yet upstreamed
+- **syncthing**: Add leviathan
+- **nix**: Nix -> Guix
+- **nfs**: Separate mounts are required for nested filesystems
+
+### Refactor
+
+- Remove Guix
+
 ## 0.5.0 (2024-04-23)
 
 ### Feat
