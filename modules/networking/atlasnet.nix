@@ -11,7 +11,7 @@ in {
         "dagon" = "200:2b5a:7e80:7b31:7d15:6c81:2563:62c";
         "hydra" = "200:6229:6335:8721:7ae1:6b30:961e:c172";
         "lana" = "200:29bd:a495:4ad7:f79e:e29a:181a:3872";
-        "leviathan" = "201:a948:e5b3:2c4c:378c:5d3b:54c6:920f";
+        "leviathan" = "203:2eca:327e:415d:ab2e:ab9d:6ac3:8afd";
         "arc" = "203:8b30:62b9:24a4:4af3:20cf:b37b:c4fe";
       };
       wireguard = {
@@ -25,7 +25,7 @@ in {
         };
         "leviathan" = {
           address = wgip 3;
-          key = "tt3aPukVGsz3qYzg3bZofHz7L6EBohjf6FEgip44S3c=";
+          key = "X7oPoCCQRWm7uGesb3NvHnGDHd6Bjc2EOZSmg1a9vCA=";
         };
       };
     };
