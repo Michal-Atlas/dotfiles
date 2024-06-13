@@ -2,12 +2,12 @@
   description = "Atlas' NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOs/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:NixOs/nixpkgs/nixos-24.05";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     agenix.url = "github:ryantm/agenix";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
@@ -19,7 +19,6 @@
     };
     flake-parts.url = "github:hercules-ci/flake-parts";
     systems.url = "github:nix-systems/default";
-    nixvim.url = "github:nix-community/nixvim/nixos-23.11";
     unison-nix.url = "github:ceedubs/unison-nix";
     flake-gemini.url = "github:nix-community/flake-gemini";
   };

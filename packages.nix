@@ -126,7 +126,6 @@ with pkgs;
     bubblemail
     color-picker
     containers
-    cpudots
     disk-usage
     espresso
     gnome-clipboard

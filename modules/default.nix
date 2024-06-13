@@ -14,7 +14,6 @@ _: {
     ./cachix.nix
     ./fit-mount.nix
     ./zfs.nix
-    ./vim.nix
   ];
   system.stateVersion = "22.11";
   time.timeZone = "Europe/Prague";
@@ -24,7 +23,6 @@ _: {
   services.pcscd.enable = true;
   programs.gnupg.agent = {
     enable = true;
-    pinentryFlavor = "gnome3";
     enableSSHSupport = true;
   };
   services.guix = {

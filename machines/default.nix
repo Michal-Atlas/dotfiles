@@ -18,7 +18,6 @@
               users.michal_atlas = import ../home;
             };
           }
-          inputs.nixvim.nixosModules.nixvim
           inputs.agenix.nixosModules.default
           inputs.nur.nixosModules.nur
           inputs.stevenblackhosts.nixosModule
