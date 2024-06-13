@@ -27,6 +27,7 @@
       };
   in {
     hydra = makeSys ./hydra;
-    dagon = makeSys ./dagon;
+    dagon = makeSys ./dagon.nix;
+    leviathan = makeSys ./leviathan.nix;
   };
 }

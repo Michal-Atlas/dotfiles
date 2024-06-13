@@ -1,5 +1,6 @@
 {lib, ...}:
 with lib; {
+  imports = [./laptop.nix];
   swapDevices = [{device = "/dev/sda2";}];
 
   fileSystems =
@@ -15,4 +16,13 @@ with lib; {
         fsType = "vfat";
       };
     };
+  networking = {
+    hostName = "dagon";
+    hostId = "253520d6";
+  };
+
+  age.secrets = {
+    yggdrasil.file = ../secrets/yggdrasil/dagon.json;
+    wireguard.file = ../secrets/wireguard/dagon;
+  };
 }

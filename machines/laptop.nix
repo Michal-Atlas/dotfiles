@@ -5,8 +5,7 @@
   ...
 }: {
   imports = [
-    ../../modules
-    ./filesystems.nix
+    ../modules
     ./builds.nix
     nixos-hardware.nixosModules.dell-inspiron-14-5420
   ];
@@ -31,14 +30,6 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-  networking = {
-    hostName = "dagon";
-    hostId = "253520d6";
-  };
-  age.secrets = {
-    yggdrasil.file = ../../secrets/yggdrasil/dagon.json;
-    wireguard.file = ../../secrets/wireguard/dagon;
-  };
   nix.gc = {
     automatic = true;
     dates = "weekly";
