@@ -36,6 +36,7 @@ _: {
                 "nox"
                 "hydra"
                 "dagon"
+                "leviathan"
               ];
             };
           })
