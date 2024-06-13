@@ -157,6 +157,7 @@ with pkgs;
         cl-who
         clingon
         clsql
+        coalton
         coleslaw
         collectors
         dbd-sqlite3
