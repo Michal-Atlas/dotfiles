@@ -78,7 +78,6 @@ with pkgs;
     pandoc
     patchelf
     pinentry
-    pinentry-curses
     pkg-config
     playerctl
     prismlauncher
