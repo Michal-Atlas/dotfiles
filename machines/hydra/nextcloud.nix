@@ -54,11 +54,6 @@
         sha256 = "sha256:06ycpssr8jsavq83h0bz5wgmxs6cwja5h9mnipaixrkqr9glv53h";
       }} --optfile=${config.age.secrets.kite.path}'';
   };
-  services.kineto = {
-    enable = true;
-    port = 48253;
-    geminiDomain = "gemini://blog.michal-atlas.cz";
-  };
 
   services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
     forceSSL = true;
