@@ -1,19 +1,21 @@
 {pkgs, ...}: {
+  services.displayManager.autoLogin = {
+    enable = true;
+    user = "michal_atlas";
+  };
   services.xserver = {
     enable = true;
     videoDrivers = ["amdgpu"];
     displayManager = {
       gdm.enable = true;
-      autoLogin = {
-        enable = true;
-        user = "michal_atlas";
-      };
     };
     desktopManager.gnome.enable = true;
 
-    layout = "us,cz";
-    xkbVariant = ",ucw";
-    xkbOptions = "grp:caps_switch,lv3:ralt_switch,compose:rctrl-altgr";
+    xkb = {
+      layout = "us,cz";
+      variant = ",ucw";
+      options = "grp:caps_switch,lv3:ralt_switch,compose:rctrl-altgr";
+    };
   };
   # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
   systemd = {
