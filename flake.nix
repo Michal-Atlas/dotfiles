@@ -11,7 +11,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
-    nur.url = "github:nix-community/NUR";
+    #nur.url = "github:nix-community/NUR";
     atlas-overlay.url = "sourcehut:~michal_atlas/flake";
     stevenblackhosts = {
       url = "github:StevenBlack/hosts";
@@ -20,7 +20,6 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     systems.url = "github:nix-systems/default";
     unison-nix.url = "github:ceedubs/unison-nix";
-    flake-gemini.url = "github:nix-community/flake-gemini";
   };
 
   outputs = {
