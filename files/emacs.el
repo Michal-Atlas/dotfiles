@@ -10,7 +10,12 @@
 (use-package org-modern :hook (org-mode . org-modern-mode))
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((C . t) (scheme . t) (dot . t) (lisp . t) (octave . t) (latex  . t)))
+ '((C . t)
+   (scheme . t)
+   (lisp . t)
+   (octave . t)
+   (dot . t)
+   (latex . t)))
 
 (setq org-latex-default-packages-alist
       (cl-substitute-if
@@ -25,8 +30,7 @@
 (setq-default indent-tabs-mode nil)
 
 (setq backup-directory-alist '((".*" . "~/.local/state/emacs/bkp")))
-(setq projectile-project-search-path
-      (list "~/cl"))
+(setq projectile-project-search-path (list "~/cl"))
 (setq org-roam-directory "/home/michal_atlas/Documents/roam")
 (setq enable-local-variables :all)
 (setq calendar-week-start-day 1)

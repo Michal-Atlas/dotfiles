@@ -17,10 +17,9 @@ with lib; {
       };
     };
 
-
   networking = {
     hostName = "leviathan";
-	hostId = "80fd5bf2";
+    hostId = "80fd5bf2";
   };
 
   age.secrets = {

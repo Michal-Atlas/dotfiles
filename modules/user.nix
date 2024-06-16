@@ -23,10 +23,10 @@
       isNormalUser = true;
       shell = pkgs.bashInteractive;
       openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICdenk+u4qOiOnmZfN/Ro8V00B0C8tQOEFacRLna7qn9 dav@David3En"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICdenk+u4qOiOnmZfN/Ro8V00B0C8tQOEFacRLna7qn9 dav@David3En"
       ];
     };
-    
+
     mutableUsers = false;
     users.root.hashedPassword = "$y$j9T$BJgm2ampHrpbLgQhzXNw4.$xppBStrecndUWp4AHAdAt3vZ7.XHmuXvNTL3WgJ0NyC";
   };
