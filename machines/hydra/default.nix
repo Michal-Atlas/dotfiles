@@ -9,7 +9,7 @@
   ];
   hardware.enableAllFirmware = true;
 
-  services.morrowind-server.enable = true;
+  services.morrowind-server.enable = false;
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usb_storage" "uas" "usbhid" "sd_mod"];
   boot.initrd.kernelModules = ["dm-snapshot" "dm-raid"];
   boot.kernelModules = ["kvm-amd" "amdgpu"];
