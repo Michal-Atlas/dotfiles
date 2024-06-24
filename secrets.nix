@@ -16,5 +16,4 @@ in {
   "secrets/wireguard/leviathan".publicKeys = leviathan;
   "secrets/fit-vpn".publicKeys = dagon ++ hydra ++ leviathan;
   "secrets/fit-mount".publicKeys = dagon ++ hydra ++ leviathan;
-  "secrets/nextdav".publicKeys = dagon ++ hydra ++ leviathan;
 }
