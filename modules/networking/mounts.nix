@@ -49,8 +49,4 @@ in {
           options = automount_opts;
         };
       }) (attrNames config.atlasnet.wireguard))));
-  services.davfs2.enable =
-    true;
-  age.secrets.nextdav.file = ../../secrets/nextdav;
-  environment.etc."davfs2/secrets".source = config.age.secrets.nextdav.path;
 }

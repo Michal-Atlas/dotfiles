@@ -35,7 +35,6 @@
   age.secrets = {
     yggdrasil.file = ../../secrets/yggdrasil/hydra.json;
     wireguard.file = ../../secrets/wireguard/hydra;
-    kite.file = ../../secrets/kite;
   };
   services.jellyfin = {
     enable = true;
