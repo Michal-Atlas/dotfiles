@@ -1,3 +1,13 @@
+## 0.7.1 (2024-06-24)
+
+### Fix
+
+- **secrets**: Fix fit-vpn
+- **secrets**: Fix fit-mount
+- **repo**: Remove pre-inst-env
+- **hydra**: Remove dead code
+- **secrets**: Remove unused secrets
+
 ## 0.7.0 (2024-06-24)
 
 ### Feat
