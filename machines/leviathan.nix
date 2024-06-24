@@ -1,18 +1,39 @@
-{lib, ...}:
+{
+  lib,
+  nixos-hardware,
+  ...
+}:
 with lib; {
-  imports = [./laptop.nix];
+  imports = [
+    ./laptop.nix
+    nixos-hardware.nixosModules.dell-latitude-5520
+  ];
   swapDevices = [{device = "/dev/nvme0n1p2";}];
 
   fileSystems =
     zfsMounts {
       "/" = "rpool/nix";
-      "/home/michal_atlas" = "rpool/home/michal_atlas";
-      "/etc" = "rpool/nix/etc";
-      "/var" = "rpool/nix/var";
+    }
+    // {
+      "/home/michal_atlas" = {
+        fsType = "zfs";
+        device = "rpool/home/michal_atlas";
+        depends = [ "/" ];
+      };
+      "/etc" = {
+        fsType = "zfs";
+        device = "rpool/nix/etc";
+        depends = [ "/" ];
+      };
+      "/var" = {
+        fsType = "zfs";
+        device = "rpool/nix/var";
+        depends = [ "/" ];
+      };
     }
     // {
       "/boot/efi" = {
-        device = "/dev/disk/by-uuid/B08C-A8BE";
+        device = "/dev/nvme0n1p1";
         fsType = "vfat";
       };
     };

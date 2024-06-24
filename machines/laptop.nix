@@ -7,7 +7,6 @@
   imports = [
     ../modules
     ./builds.nix
-    nixos-hardware.nixosModules.dell-inspiron-14-5420
   ];
   hardware.enableAllFirmware = true;
 

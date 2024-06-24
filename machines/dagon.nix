@@ -1,6 +1,13 @@
-{lib, ...}:
+{
+  lib,
+  nixos-hardware,
+  ...
+}:
 with lib; {
-  imports = [./laptop.nix];
+  imports = [
+    ./laptop.nix
+    nixos-hardware.nixosModules.dell-inspiron-14-5420
+  ];
   swapDevices = [{device = "/dev/sda2";}];
 
   fileSystems =
