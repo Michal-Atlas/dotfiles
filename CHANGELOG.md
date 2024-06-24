@@ -1,3 +1,29 @@
+## 0.7.0 (2024-06-24)
+
+### Feat
+
+- **syncthing**: Sync around Pictures
+- **laptop**: Use specific nixos-hardware for each
+- **secrets**: Update secrets to know Leviathan
+- **fonts**: Add defaults
+
+### Fix
+
+- **files**: Remove Guix home files copy
+- **syncthing**: Update Leviathan ID
+- **flatpak**: Remove sync script
+- **guix**: Delete packages file
+- **flake**: Rename deprecated options
+- **yggdrasil**: Actually allow peering
+- **kineto**: Remove
+- **pkgs**: remove pinentry-curses
+- **net**: Update leviathan keys
+
+### Perf
+
+- **flake**: Remove unused inputs
+- **morrowind**: Disable tes3mp for now
+
 ## 0.6.0 (2024-06-13)
 
 ### Feat

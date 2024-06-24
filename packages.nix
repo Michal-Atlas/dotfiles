@@ -1,6 +1,7 @@
 pkgs:
 with pkgs;
   [
+      zapzap
     racket
     gitkraken
     clang-tools
