@@ -85,5 +85,10 @@ in {
     };
 
     "org/gnome/shell/app-switcher" = {current-workspace-only = true;};
+
+    "org/gnome/Console" = {
+      use-system-font = false;
+      custom-font = "Iosevka Nerd Font Mono 10";
+    };
   };
 }
