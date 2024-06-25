@@ -1,7 +1,7 @@
 pkgs:
 with pkgs;
   [
-      zapzap
+    whatsapp-for-linux
     racket
     gitkraken
     clang-tools
