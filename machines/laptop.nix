@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  nixos-hardware,
   ...
 }: {
   imports = [
@@ -40,4 +39,5 @@
     scsiLinkPolicy = "min_power";
     powertop.enable = true;
   };
+  hardware.sensor.iio.enable = true;
 }
