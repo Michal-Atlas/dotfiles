@@ -126,18 +126,8 @@ with pkgs;
     zotero
   ]
   ++ (with gnomeExtensions; [
-    all-ip-addresses
     appindicator
-    awesome-tiles
-    browser-tabs
-    bubblemail
-    color-picker
-    containers
-    disk-usage
-    espresso
-    gnome-clipboard
-    night-theme-switcher
-    paperwm
+    mpris-label
   ])
   ++ [
     (pkgs.python311.withPackages

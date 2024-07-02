@@ -9,17 +9,13 @@ in {
     "org/gnome/shell" = {
       disable-user-extensions = false;
       enabled-extensions = [
-        "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
+        "mprisLabel@moon-0xff.github.com"
         "drive-menu@gnome-shell-extensions.gcampax.github.com"
-        "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
+        "system-monitor@gnome-shell-extensions.gcampax.github.com"
         "appindicatorsupport@rgcjonas.gmail.com"
-        "nightthemeswitcher@romainvigier.fr"
-        "gnome-extension-all-ip-addresses@havekes.eu"
-        "color-picker@tuberry"
-        "espresso@coadmunkee.github.com"
-        "gnome-clipboard@b00f.github.io"
       ];
     };
+    "org/gnome/shell/extensions/mpris-label" = {auto-switch-to-most-recent = true;};
     "org/gnome/desktop/peripherals/touchpad" = {tap-to-click = true;};
     "org/gnome/settings-daemon/plugins/media-keys" = {
       custom-keybindings = [
