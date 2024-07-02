@@ -1,6 +1,12 @@
 pkgs:
 with pkgs;
   [
+    apostrophe
+    lsof
+    cht-sh
+    hut
+    wireshark
+    dig
     whatsapp-for-linux
     racket
     gitkraken
