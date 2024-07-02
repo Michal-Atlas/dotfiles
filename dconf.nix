@@ -9,10 +9,11 @@ in {
     "org/gnome/shell" = {
       disable-user-extensions = false;
       enabled-extensions = [
-        "mprisLabel@moon-0xff.github.com"
         "drive-menu@gnome-shell-extensions.gcampax.github.com"
         "system-monitor@gnome-shell-extensions.gcampax.github.com"
-        "appindicatorsupport@rgcjonas.gmail.com"
+        pkgs.gnomeExtensions.pano.extensionUuid
+        pkgs.gnomeExtensions.mpris-label.extensionUuid
+        pkgs.gnomeExtensions.appindicator.extensionUuid
       ];
     };
     "org/gnome/shell/extensions/mpris-label" = {auto-switch-to-most-recent = true;};

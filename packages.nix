@@ -128,6 +128,7 @@ with pkgs;
   ++ (with gnomeExtensions; [
     appindicator
     mpris-label
+    pano
   ])
   ++ [
     (pkgs.python311.withPackages

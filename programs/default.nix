@@ -29,6 +29,7 @@
       package = pkgs.pass.withExtensions (exts: [exts.pass-otp]);
     };
     gpg.enable = true;
+    spotify-player.enable = true;
   };
   services = {
     gpg-agent = {
