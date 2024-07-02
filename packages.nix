@@ -112,7 +112,8 @@ with pkgs;
     vlc
     wesnoth
     wget
-    wineWowPackages.stable
+    wineWowPackages.full
+    winetricks
     wl-clipboard
     wxmaxima
     xdg-utils
