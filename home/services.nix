@@ -10,5 +10,14 @@
       client.enable = true;
       socketActivation.enable = true;
     };
+
+    spotifyd = {
+      enable = true;
+      settings.global = rec {
+        username = "michal_atlas+spotify@posteo.net";
+        password_cmd = "pass spotify.com/${username}";
+        zeroconf_port = 1234;
+      };
+    };
   };
 }
