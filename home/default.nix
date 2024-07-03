@@ -58,7 +58,7 @@
     ++ import ../packages.nix pkgs;
 
   systemd.user.tmpfiles.rules = [
-    "e /home/michal_atlas/Downloads - - - 2d"
-    "e /home/michal_atlas/tmp - - - 2d"
+    "e /home/michal_atlas/Downloads - - - 5d"
+    "e /home/michal_atlas/tmp - - - 5d"
   ];
 }
