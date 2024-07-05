@@ -10,17 +10,15 @@
   }: {
     devShells.default = pkgs.mkShell {
       nativeBuildInputs = let
-        rebuild-cmd = cmd: ''nixos-rebuild ${cmd} --flake . "$@";'';
-        sudo-rebuild-cmd = cmd: "sudo ${rebuild-cmd cmd}";
+        rebuild-cmd = cmd: ''${pkgs.nh}/bin/nh os ${cmd} . "$@";'';
       in [
-        (pkgs.writeShellScriptBin "recon" (sudo-rebuild-cmd "switch"))
-        (pkgs.writeShellScriptBin "recboot" (sudo-rebuild-cmd "boot"))
-        (pkgs.writeShellScriptBin "check" "nix flake check \"$@\";")
+        pkgs.nh
+        (pkgs.writeShellScriptBin "switch" (rebuild-cmd "switch"))
+        (pkgs.writeShellScriptBin "boot" (rebuild-cmd "boot"))
+        (pkgs.writeShellScriptBin "test" (rebuild-cmd "test"))
         (pkgs.writeShellScriptBin "build" (rebuild-cmd "build"))
+        (pkgs.writeShellScriptBin "check" ''nix flake check . "$@"'')
         inputs.agenix.packages.${system}.default
-        (pkgs.writeShellScriptBin "recdiff" ''
-          build "$@" && ${pkgs.nix-diff}/bin/nix-diff /run/current-system result && rm result
-        '')
         pkgs.commitizen
         (pkgs.writeShellScriptBin "bootstrap-eduroam" ''
           ${pkgs.python3.withPackages (py: [
