@@ -9,6 +9,7 @@
           };
         modules = [
           file
+          inputs.nix-index-database.nixosModules.nix-index
           inputs.home-manager.nixosModules.home-manager
           {
             home-manager = {

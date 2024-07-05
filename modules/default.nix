@@ -21,13 +21,12 @@ _: {
   programs = {
     mtr.enable = true;
     zsh.enable = true;
-    nix-index.enable = true;
-    command-not-found.enable = false;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
     };
     nix-ld.enable = true;
+    nix-index-database.comma.enable = true;
   };
   services.pcscd.enable = true;
   services.guix = {
