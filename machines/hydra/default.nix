@@ -10,11 +10,15 @@
   hardware.enableAllFirmware = true;
 
   services.morrowind-server.enable = false;
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usb_storage" "uas" "usbhid" "sd_mod"];
-  boot.initrd.kernelModules = ["dm-snapshot" "dm-raid"];
-  boot.kernelModules = ["kvm-amd" "amdgpu"];
-  boot.extraModulePackages = [];
-  boot.supportedFilesystems = ["ntfs" "zfs"];
+  boot = {
+    initrd = {
+      availableKernelModules = ["xhci_pci" "ahci" "usb_storage" "uas" "usbhid" "sd_mod"];
+      kernelModules = ["dm-snapshot" "dm-raid"];
+    };
+    kernelModules = ["kvm-amd" "amdgpu"];
+    extraModulePackages = [];
+    supportedFilesystems = ["ntfs" "zfs"];
+  };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

@@ -7,26 +7,33 @@
     ../modules
     ./builds.nix
   ];
-  hardware.enableAllFirmware = true;
 
-  boot.initrd.availableKernelModules = [
-    "xhci_pci"
-    "ahci"
-    "usb_storage"
-    "sd_mod"
-    # Should speed up LUKS
-    "aesni_intel"
-    "cryptd"
-  ];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel"];
-  boot.extraModulePackages = [];
-  boot.supportedFilesystems = ["ntfs" "zfs"];
+  boot = {
+    initrd = {
+      availableKernelModules = [
+        "xhci_pci"
+        "ahci"
+        "usb_storage"
+        "sd_mod"
+        # Should speed up LUKS
+        "aesni_intel"
+        "cryptd"
+      ];
+      kernelModules = [];
+    };
+    kernelModules = ["kvm-intel"];
+    extraModulePackages = [];
+    supportedFilesystems = ["ntfs" "zfs"];
+  };
 
   networking.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware = {
+    enableAllFirmware = true;
+    cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    sensor.iio.enable = true;
+  };
 
   nix.gc = {
     automatic = true;
@@ -39,5 +46,4 @@
     scsiLinkPolicy = "min_power";
     powertop.enable = true;
   };
-  hardware.sensor.iio.enable = true;
 }

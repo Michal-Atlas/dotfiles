@@ -18,15 +18,18 @@ _: {
   system.stateVersion = "22.11";
   time.timeZone = "Europe/Prague";
 
-  programs.mtr.enable = true;
-  programs.zsh.enable = true;
-  programs.nix-index.enable = true;
-  programs.command-not-found.enable = false;
-  services.pcscd.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
+  programs = {
+    mtr.enable = true;
+    zsh.enable = true;
+    nix-index.enable = true;
+    command-not-found.enable = false;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+    nix-ld.enable = true;
   };
+  services.pcscd.enable = true;
   services.guix = {
     enable = true;
     gc = {
@@ -40,7 +43,6 @@ _: {
     publish.enable = true;
   };
   boot.kernel.sysctl."net.core.wmem_max" = 2500000;
-  programs.nix-ld.enable = true;
   hardware = {
     xpadneo.enable = true;
     xone.enable = true;
