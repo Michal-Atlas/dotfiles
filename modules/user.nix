@@ -12,7 +12,6 @@
           "wheel"
           "libvirtd"
           "kvm"
-          "transmission"
           "plugdev"
           "adbusers"
           "podman"

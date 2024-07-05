@@ -1,7 +1,6 @@
 _: {
   imports = [
     ./hosts.nix
-    ./torrents.nix
     ./yggdrasil.nix
     ./morrowind.nix
     ./mounts.nix
