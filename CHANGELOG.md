@@ -1,3 +1,16 @@
+## 0.9.0 (2024-07-06)
+
+### Feat
+
+- **flake**: Update
+- **zsh**: Complete aliases
+
+### Fix
+
+- **flake**: Remove obsolete flake input
+- **nom**: Not a complete drop-in sadly
+- **devShell**: Keep recdiff
+
 ## 0.8.0 (2024-07-06)
 
 ### Feat
