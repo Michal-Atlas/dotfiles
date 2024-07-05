@@ -1,3 +1,29 @@
+## 0.8.0 (2024-07-06)
+
+### Feat
+
+- **pkgs**: Add practical nix utils
+- **devShell**: Use nh for recon
+- **checks**: Finally enable statix again
+- **nix-index**: Add
+- **tmp**: Keep tmp for 5d
+- **gnome**: Clean extensions, integrate spotify and pano
+- **gnome**: Cleanup extensions add mpris
+- **spotifyd**: Enable locally at least
+- **pkgs**: Add more Wine
+- **pkgs**: Add from profile
+- **laptop**: Enable rotation sensor
+- **pkgs**: Add whatsapp
+- **font**: Set font for console
+
+### Fix
+
+- **checks**: Fix statix
+- **secrets**: Update CTU password
+- **secrets**: Fix leviathan yggdrasil
+- **fmt**: Format leviathan
+- **pre-commit**: Remove pre-commit from vc
+
 ## 0.7.1 (2024-06-24)
 
 ### Fix
