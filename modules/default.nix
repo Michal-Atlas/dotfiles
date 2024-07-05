@@ -20,6 +20,8 @@ _: {
 
   programs.mtr.enable = true;
   programs.zsh.enable = true;
+  programs.nix-index.enable = true;
+  programs.command-not-found.enable = false;
   services.pcscd.enable = true;
   programs.gnupg.agent = {
     enable = true;
