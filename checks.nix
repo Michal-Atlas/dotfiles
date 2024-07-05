@@ -12,6 +12,7 @@
         hooks = {
           alejandra.enable = true;
           shellcheck.enable = true;
+          statix.enable = true;
           shfmt.enable = true;
           nil.enable = true;
           deadnix.enable = true;
