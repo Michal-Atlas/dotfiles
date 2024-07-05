@@ -18,6 +18,9 @@
         (pkgs.writeShellScriptBin "test" (rebuild-cmd "test"))
         (pkgs.writeShellScriptBin "build" (rebuild-cmd "build"))
         (pkgs.writeShellScriptBin "check" ''nix flake check . "$@"'')
+        (pkgs.writeShellScriptBin "recdiff" ''
+          nixos-rebuild build --flake . "$@" && ${pkgs.nix-diff}/bin/nix-diff /run/current-system result && rm result
+        '')
         inputs.agenix.packages.${system}.default
         pkgs.commitizen
         (pkgs.writeShellScriptBin "bootstrap-eduroam" ''
