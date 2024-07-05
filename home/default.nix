@@ -27,6 +27,7 @@
     cat = "bat";
     bix = "nix --store \"/bignix\"";
     lah = "ls -lah";
+    nix = "${pkgs.nix-output-monitor}/bin/nom";
   };
   fonts.fontconfig.enable = true;
   xsession.numlock.enable = true;

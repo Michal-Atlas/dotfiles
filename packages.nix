@@ -1,6 +1,12 @@
 pkgs:
 with pkgs;
   [
+    nvd
+    nix-tree
+    nix-melt
+    nix-output-monitor
+    nurl
+    manix
     apostrophe
     lsof
     cht-sh
