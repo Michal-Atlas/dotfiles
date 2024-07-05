@@ -15,21 +15,17 @@ with pkgs;
     dig
     whatsapp-for-linux
     racket
-    gitkraken
     clang-tools
     jq
     (hiPrio gcc)
     acl
-    acl2-minimal
     alejandra
     audacity
     bat
     blender
     browserpass
     btrfs-progs
-    caprine-bin
     ccls
-    charis-sil
     cifs-utils
     clang
     cmake
@@ -37,7 +33,6 @@ with pkgs;
     cryptsetup
     direnv
     discord
-    dotnet-sdk
     ed
     element-desktop
     feh
@@ -56,7 +51,6 @@ with pkgs;
     graphviz
     guile
     gzdoom
-    haskell-language-server
     heroic
     htop
     imagemagick
@@ -70,36 +64,26 @@ with pkgs;
     krita
     lagrange
     lazygit
-    legendary-gl
-    libgccjit
     libreoffice
     libtool
     linuxPackages.perf
-    logseq
     maxima
     mosh
     mpv
-    neofetch
     nil
     nix
     nmap
     nodejs
-    nyxt
-    octave
-    openmw-tes3mp
+    openmw
     p7zip
     pandoc
     patchelf
-    pinentry
     pkg-config
     playerctl
     prismlauncher
-    qt5.qtbase
     rlwrap
     rsync
     screen
-    shotwell
-    slurp
     spotify
     steam-run
     superTux
@@ -108,7 +92,7 @@ with pkgs;
     telegram-desktop
     texlive.combined.scheme-full
     tldr
-    transmission-remote-gtk
+    fragments
     tree
     unison-ucm
     unzip
@@ -121,14 +105,12 @@ with pkgs;
     wineWowPackages.full
     winetricks
     wl-clipboard
-    wxmaxima
     xdg-utils
     xdot
     xonotic
-    xorg.xrandr
     xxd
     yt-dlp
-    zathura
+    okular
     zotero
   ]
   ++ (with gnomeExtensions; [
