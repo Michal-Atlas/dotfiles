@@ -1,7 +1,5 @@
 {
-  self,
   emacs-overlay,
-  atlas-overlay,
   unison-nix,
   ...
 }: {
@@ -13,10 +11,9 @@
     };
   };
   nixpkgs = {
-    overlays = with self.inputs; [
+    overlays = [
       emacs-overlay.overlays.default
       (import ../overlays/atlas-emacs.nix)
-      atlas-overlay.overlays.x86_64-linux.default
       unison-nix.overlay
     ];
     config = {
