@@ -40,7 +40,7 @@ _: {
               ];
             };
           })
-          ["cl" "Pictures" "Documents" "Sync" "Zotero"])
+          ["cl" "Pictures" "Music" "Documents" "Sync" "Zotero"])
       );
     };
   };
