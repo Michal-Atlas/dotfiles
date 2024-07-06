@@ -1,6 +1,17 @@
 pkgs:
 with pkgs;
   [
+    graphs
+    komikku
+    mousai
+    newsflash
+    gnome-podcasts
+    gnome.polari
+    gnome-secrets
+    textpieces
+    tangram
+    wike
+    boxes
     nvd
     nix-tree
     nix-melt
@@ -59,7 +70,6 @@ with pkgs;
     inotify-tools
     isync
     jetbrains.clion
-    keepassxc
     kobodeluxe
     krita
     lagrange
