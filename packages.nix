@@ -15,6 +15,7 @@ with pkgs;
     nvd
     nix-tree
     nix-melt
+    nix-diff
     nix-output-monitor
     nurl
     manix
