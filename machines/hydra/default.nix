@@ -46,7 +46,7 @@
     enable = true;
     openFirewall = true;
   };
-  systemd.services = {
+  systemd = {
     # https://nixos.wiki/wiki/AMD_GPU
     tmpfiles.rules = ["L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"];
   };
