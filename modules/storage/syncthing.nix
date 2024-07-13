@@ -22,7 +22,7 @@ _: {
           id = "PBSLXD7-PGPCQBF-AEY4BGJ-HN63PWK-NOXVRKN-62A3AQB-MMWOHOO-VEW3SQN";
         };
         "leviathan" = {
-          id = "IFCUV77-3KPKXMM-DYSXMFI-5QCWU4D-7IJWAXI-MH3RNUP-P64MWDY-O5UEPAI";
+          id = "GPPPAYX-ZR5DCE5-SPIVZIP-YGHHSBT-U2KT7VR-G4UWHLL-75T7C27-3ADY6AM";
         };
       };
       folders = with builtins; (
