@@ -1,14 +1,12 @@
-{
-  self,
-  inputs,
-  ...
-}: {
+{inputs, ...}: {
   perSystem = {
     system,
     pkgs,
+    config,
     ...
   }: {
     devShells.default = pkgs.mkShell {
+      builtInputs = [config.pre-commit.devShell];
       nativeBuildInputs = let
         rebuild-cmd = cmd: ''${pkgs.nh}/bin/nh os ${cmd} . "$@";'';
       in [
@@ -33,7 +31,6 @@
           }}
         '')
       ];
-      inherit (self.checks.${system}.pre-commit-check) shellHook;
     };
   };
 }

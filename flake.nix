@@ -27,6 +27,7 @@
   outputs = {
     flake-parts,
     systems,
+    pre-commit-hooks,
     ...
   } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;}
@@ -34,6 +35,7 @@
       systems = import systems;
       imports = [
         ./devShell.nix
+        pre-commit-hooks.flakeModule
         ./checks.nix
         ./machines
       ];
