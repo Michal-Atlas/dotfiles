@@ -1,13 +1,18 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: {
   imports = [
     ../../modules
     ./filesystems.nix
   ];
-  hardware.enableAllFirmware = true;
+  hardware = {
+    enableAllFirmware = true;
+    cpu.amd.updateMicrocode =
+      lib.mkDefault config.hardware.enableRedistributableFirmware;
+  };
 
   services.morrowind-server.enable = false;
   boot = {
@@ -28,9 +33,6 @@
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode =
-    lib.mkDefault config.hardware.enableRedistributableFirmware;
-
   networking = {
     hostName = "hydra";
     hostId = "44b7fc7c";
@@ -43,5 +45,19 @@
   services.jellyfin = {
     enable = true;
     openFirewall = true;
+  };
+  systemd.services = {
+    # https://nixos.wiki/wiki/AMD_GPU
+    tmpfiles.rules = ["L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"];
+  };
+  hardware.opengl = {
+    driSupport = true;
+    # For 32 bit applications
+    driSupport32Bit = true;
+    extraPackages = with pkgs; [rocm-opencl-icd rocm-opencl-runtime amdvlk];
+    # For 32 bit applications
+    # Only available on unstable
+    extraPackages32 = with pkgs; [driversi686Linux.amdvlk libva];
+    setLdLibraryPath = true;
   };
 }

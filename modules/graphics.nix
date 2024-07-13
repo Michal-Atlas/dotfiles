@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+_: {
   services.displayManager.autoLogin = {
     enable = true;
     user = "michal_atlas";
@@ -23,18 +23,6 @@
       "getty@tty1".enable = false;
       "autovt@tty1".enable = false;
     };
-    # https://nixos.wiki/wiki/AMD_GPU
-    tmpfiles.rules = ["L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"];
   };
   programs.dconf.enable = true;
-  hardware.opengl = {
-    driSupport = true;
-    # For 32 bit applications
-    driSupport32Bit = true;
-    extraPackages = with pkgs; [rocm-opencl-icd rocm-opencl-runtime amdvlk];
-    # For 32 bit applications
-    # Only available on unstable
-    extraPackages32 = with pkgs; [driversi686Linux.amdvlk libva];
-    setLdLibraryPath = true;
-  };
 }
