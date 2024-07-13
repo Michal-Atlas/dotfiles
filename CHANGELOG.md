@@ -1,3 +1,31 @@
+## 0.10.0 (2024-07-13)
+
+### Feat
+
+- **gnome**: Don't sleep on battery
+- **secrets**: Update leviathan keys
+- **syncthing**: Update leviathan keys
+- **leviathan**: Only use 2 datapools
+- **memtest**: Add
+- **checks**: Use flake module
+- **pkgs**: Add cachix
+- **pkgs**: Add ani-cli
+- **flake**: Update
+- **pkgs**: Add nix-diff
+- **keys**: Update arc
+- **syncthing**: Sync Music
+- **pkgs**: Swap some basic things for Canonical
+- **kdeconnect**: Disable
+- **pkgs**: cleanup
+- **torrents**: Remove global transmission daemon
+- **nix-index**: Use Database
+
+### Fix
+
+- **hydra**: Typo
+- **opengl**: Move amd stuff to hydra
+- **keys**: Why are these here?
+
 ## 0.9.0 (2024-07-06)
 
 ### Feat
