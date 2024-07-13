@@ -17,17 +17,7 @@ with lib; {
     // {
       "/home/michal_atlas" = {
         fsType = "zfs";
-        device = "rpool/home/michal_atlas";
-        depends = ["/"];
-      };
-      "/etc" = {
-        fsType = "zfs";
-        device = "rpool/nix/etc";
-        depends = ["/"];
-      };
-      "/var" = {
-        fsType = "zfs";
-        device = "rpool/nix/var";
+        device = "rpool/home";
         depends = ["/"];
       };
     }
