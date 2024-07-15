@@ -17,6 +17,12 @@ in {
       ];
     };
     "org/gnome/shell/extensions/mpris-label" = {auto-switch-to-most-recent = true;};
+    "org/gnome/desktop/session" = {
+      idle-delay = 600;
+    };
+    "org/gnome/desktop/interface" = {
+      show-battery-percentage = true;
+    };
     "org/gnome/desktop/peripherals/touchpad" = {tap-to-click = true;};
     "org/gnome/settings-daemon/plugins/power" = {sleep-inactive-ac-type = "nothing";};
     "org/gnome/settings-daemon/plugins/media-keys" = {
