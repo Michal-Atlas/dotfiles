@@ -6,7 +6,7 @@
     ...
   }: {
     devShells.default = pkgs.mkShell {
-      builtInputs = [config.pre-commit.devShell];
+      shellHook = config.pre-commit.installationScript;
       nativeBuildInputs = let
         rebuild-cmd = cmd: ''${pkgs.nh}/bin/nh os ${cmd} . "$@";'';
       in [
