@@ -1,6 +1,8 @@
 pkgs:
 with pkgs;
   [
+    caprine-bin
+    teams-for-linux
     cachix
     ani-cli
     graphs
