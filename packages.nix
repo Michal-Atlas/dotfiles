@@ -1,6 +1,16 @@
 pkgs:
 with pkgs;
   [
+    gnome-frog
+    hieroglyphic
+    halftone
+    citations
+    gnome-decoder
+    meld
+    lorem
+    ascii-draw
+    foliate
+    video-trimmer
     caprine-bin
     teams-for-linux
     cachix
