@@ -13,7 +13,6 @@
   nixpkgs = {
     overlays = [
       emacs-overlay.overlays.default
-      (import ../overlays/atlas-emacs.nix)
       unison-nix.overlay
     ];
     config = {

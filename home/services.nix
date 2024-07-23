@@ -1,12 +1,5 @@
 {pkgs, ...}: {
   services = {
-    emacs = {
-      enable = true;
-      package = pkgs.atlas-emacs;
-      client.enable = true;
-      socketActivation.enable = true;
-    };
-
     spotifyd = {
       enable = true;
       package = pkgs.spotifyd.override {withMpris = true;};

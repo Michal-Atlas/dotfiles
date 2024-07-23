@@ -1,6 +1,7 @@
 pkgs:
 with pkgs;
   [
+    haskell-language-server
     gnome-frog
     hieroglyphic
     halftone

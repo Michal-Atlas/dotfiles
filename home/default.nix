@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ../programs
+    ../emacs.nix
     ../files
     ./services.nix
     ../dconf.nix
@@ -52,21 +53,10 @@
   };
 
   home.packages =
-    [
-      pkgs.atlas-emacs
-      (pkgs.writeShellScriptBin "srun"
-        (let
-          nix = "${pkgs.nix}/bin/nix";
-          fzf = "${pkgs.fzf}/bin/fzf";
-          jq = "${pkgs.jq}/bin/jq";
-        in ''
-          ${nix} run "nixpkgs#$(nix search --json nixpkgs "$@" | ${jq} 'keys[]' -r | ${fzf} --preview='${nix} search nixpkgs#{}')"
-        ''))
-    ]
-    ++ import ../packages.nix pkgs;
+    import ../packages.nix pkgs;
 
   systemd.user.tmpfiles.rules = [
-    "e /home/michal_atlas/Downloads - - - 5d"
-    "e /home/michal_atlas/tmp - - - 5d"
+    "d /home/michal_atlas/Downloads - - - 5d"
+    "d /home/michal_atlas/tmp - - - 5d"
   ];
 }
