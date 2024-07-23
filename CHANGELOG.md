@@ -1,3 +1,21 @@
+## 0.11.0 (2024-07-23)
+
+### Feat
+
+- **emacs**: Enter shortcut
+- **emacs**: Reinstate as primary editor
+- **firefox**: Configure with hm
+- **hosts**: Enable black
+- **pkgs**: Add GNOME utils
+- **flake**: Update
+- **pkgs**: Add former flatpaks
+- **gnome**: Set baselines
+
+### Fix
+
+- **files**: Remove old files
+- **checks**: Fix pre-commit hook
+
 ## 0.10.0 (2024-07-13)
 
 ### Feat
