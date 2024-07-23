@@ -41,7 +41,7 @@ in {
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/emacs" = {
       binding = "<Super>Return";
-      command = "${pkgs.kgx}/bin/kgx -- nvim";
+      command = "emacsclient -c";
       name = "EMACS";
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/browser" = {
