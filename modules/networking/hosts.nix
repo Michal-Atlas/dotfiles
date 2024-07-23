@@ -5,9 +5,16 @@ _: {
       "media.michal-atlas.cz"
       "gem.michal-atlas.cz"
     ];
+    "127.0.0.1" = [
+      "youtu.be"
+      "youtube.com"
+      "www.youtube.com"
+      "m.youtube.com"
+    ];
   };
 
   networking.stevenBlackHosts = {
+    enable = true;
     blockSocial = true;
     blockFakenews = true;
     blockGambling = true;
