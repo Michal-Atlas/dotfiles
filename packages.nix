@@ -64,7 +64,6 @@ with pkgs;
     feh
     ffmpeg
     file
-    firefox
     fzf
     gdb
     ghc
