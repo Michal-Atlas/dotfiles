@@ -3,7 +3,6 @@
     ../programs
     ../emacs.nix
     ../files
-    ./services.nix
     ../dconf.nix
     ./registry.nix
     ./mail.nix

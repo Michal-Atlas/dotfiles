@@ -60,4 +60,16 @@
     extraPackages32 = with pkgs; [driversi686Linux.amdvlk libva];
     setLdLibraryPath = true;
   };
+  home-manager.users.michal_atlas.services = {
+    spotifyd = {
+      enable = true;
+      settings.global = {
+        zeroconf_port = 1234;
+        use_keyring = false;
+        use_mpris = false;
+        volume_normalisation = true;
+        autoplay = true;
+      };
+    };
+  };
 }
