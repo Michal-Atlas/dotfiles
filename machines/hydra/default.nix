@@ -36,6 +36,13 @@
   networking = {
     hostName = "hydra";
     hostId = "44b7fc7c";
+    firewall = {
+      allowedTCPPorts = [
+        1234 # spotify
+        57621
+      ];
+      allowedUDPPorts = [5353];
+    };
   };
 
   age.secrets = {

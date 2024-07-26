@@ -8,11 +8,4 @@ _: {
     pulse.enable = true;
     jack.enable = true;
   };
-  networking.firewall = {
-    allowedTCPPorts = [
-      1234 # spotify
-      57621
-    ];
-    allowedUDPPorts = [5353];
-  };
 }
