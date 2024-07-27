@@ -16,6 +16,10 @@ in {
         pkgs.gnomeExtensions.appindicator.extensionUuid
       ];
     };
+    "org/gnome/shell/extensions/pano" = {
+      play-audio-on-copy = false;
+      send-notification-on-copy = false;
+    };
     "org/gnome/shell/extensions/mpris-label" = {auto-switch-to-most-recent = true;};
     "org/gnome/desktop/session" = {
       idle-delay = 600;
