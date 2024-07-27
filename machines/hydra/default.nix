@@ -75,7 +75,6 @@
         use_keyring = false;
         use_mpris = false;
         volume_normalisation = true;
-        autoplay = true;
       };
     };
   };
