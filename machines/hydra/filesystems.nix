@@ -7,7 +7,6 @@ with lib; {
       "/home/michal_atlas/Games" = "rpool/games";
       "/home/michal_atlas" = "rpool/home/michal_atlas";
       "/var" = "rpool/var";
-      "/bignix" = "rpool/bignix";
     }
     // {
       "/boot/efi" = {

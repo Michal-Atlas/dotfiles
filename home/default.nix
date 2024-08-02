@@ -25,7 +25,6 @@
     e = "$EDITOR";
     g = "git";
     cat = "bat";
-    bix = "nix --store \"/bignix\"";
     lah = "ls -lah";
   };
   fonts.fontconfig.enable = true;
