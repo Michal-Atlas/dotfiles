@@ -1,6 +1,7 @@
 pkgs:
 with pkgs;
   [
+    ipfs
     haskell-language-server
     gnome-frog
     hieroglyphic
