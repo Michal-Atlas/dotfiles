@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   users = {
     groups.plugdev = {};
     users = {
@@ -15,6 +19,7 @@
           "plugdev"
           "adbusers"
           "podman"
+          config.services.kubo.group
         ];
         openssh.authorizedKeys.keys = with builtins; (map (f: readFile ../keys/${f}) (attrNames (readDir ../keys)));
         linger = true;
