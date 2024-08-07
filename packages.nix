@@ -1,6 +1,7 @@
 pkgs:
 with pkgs;
   [
+    xmlstarlet
     ipfs
     haskell-language-server
     gnome-frog
