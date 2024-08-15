@@ -10,7 +10,11 @@ _: {
     relay.enable = false;
     openDefaultPorts = true;
     settings = {
-      options.urAccepted = 1;
+      options = {
+        maxSendKbps = 4096;
+        limitBandwidthInLan = true;
+        urAccepted = 1;
+      };
       devices = {
         "nox" = {
           id = "AU5JJKW-3SMX2RX-SESG5T3-GN2IL4B-EWCQEXP-GCMDTCY-5W27SMJ-76I4DQL";
