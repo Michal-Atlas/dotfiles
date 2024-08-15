@@ -47,7 +47,7 @@ _: {
     xone.enable = true;
     bluetooth = {
       enable = true;
-      settings.General.Experimantal = true;
+      settings.General.Experimental = true;
     };
   };
 }
