@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   services.kubo = {
     enable = true;
     localDiscovery = true;
@@ -16,7 +20,15 @@
     };
   };
   networking.firewall = {
-    allowedTCPPorts = [4001];
+    allowedTCPPorts = [4001 9096];
     allowedUDPPorts = [4001];
+  };
+  systemd.user.services.ipfs-cluster = {
+    after = ["network.target"];
+    wantedBy = ["multi-user.target"];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.ipfs-cluster}/bin/ipfs-cluster-service daemon";
+    };
   };
 }

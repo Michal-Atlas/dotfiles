@@ -3,6 +3,7 @@ with pkgs;
   [
     xmlstarlet
     ipfs
+    ipfs-cluster
     haskell-language-server
     gnome-frog
     hieroglyphic
