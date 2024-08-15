@@ -16,6 +16,12 @@ in {
         pkgs.gnomeExtensions.appindicator.extensionUuid
       ];
     };
+    "org/gtk/settings/file-chooser" = {
+      clock-format = "24h";
+    };
+    "org/gnome/desktop/datetime" = {
+      automatic-timezone = true;
+    };
     "org/gnome/shell/extensions/pano" = {
       play-audio-on-copy = false;
       send-notification-on-copy = false;
