@@ -26,6 +26,12 @@
         };
         ResourceMgr.MaxMemory = "1GB";
         Import.CidVersion = 1;
+        Transports.Network = {
+          TCP = false;
+          Websocket = false;
+          WebTransport = false;
+          WebRTCDirect = false;
+        };
       };
     };
   };
