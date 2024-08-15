@@ -1,6 +1,8 @@
 pkgs:
 with pkgs;
   [
+    nix-prefetch
+    nurl
     nixfmt-rfc-style
     xmlstarlet
     ipfs
