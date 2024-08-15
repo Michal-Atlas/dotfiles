@@ -120,7 +120,7 @@ with pkgs;
     telegram-desktop
     texlive.combined.scheme-full
     tldr
-    fragments
+    qbittorrent
     tree
     unison-ucm
     unzip
