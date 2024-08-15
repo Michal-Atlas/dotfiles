@@ -26,9 +26,7 @@
   systemd.user.services.ipfs-cluster = {
     after = ["network.target"];
     wantedBy = ["multi-user.target"];
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "${pkgs.ipfs-cluster}/bin/ipfs-cluster-service daemon";
-    };
+    path = [pkgs.ipfs-cluster];
+    script = "ipfs-cluster-service daemon";
   };
 }
