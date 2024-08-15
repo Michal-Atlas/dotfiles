@@ -1,6 +1,7 @@
 pkgs:
 with pkgs;
   [
+    nixfmt-rfc-style
     xmlstarlet
     ipfs
     ipfs-cluster
