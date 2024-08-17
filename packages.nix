@@ -1,6 +1,7 @@
 pkgs:
 with pkgs;
   [
+    gmic
     nix-prefetch
     nurl
     nixfmt-rfc-style
