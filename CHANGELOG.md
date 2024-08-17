@@ -1,3 +1,37 @@
+## 0.12.0 (2024-08-17)
+
+### Feat
+
+- **pkgs**: Add gmic
+- **flake**: Update
+- **ipfs**: Only use QUIC transport
+- **pkgs**: Add prefetch and nurl
+- **networking**: Try to rate limit
+- **ipfs**: Prettier cluster unit
+- **pkgs**: Add nixfmt
+- **torrents**: Swap to qbittorrent
+- **dconf**: Automated time switching
+- **ipfs**: Test cluster
+- **flake**: Update
+- **ipfs**: Give up on NATing, publish Yggdrasil
+- **pkgs**: Add xml tools
+- **ipfs**: Open UDP
+- **ipfs**: Add
+- **bignix**: Remove
+- **pano**: Quiet
+- **spotifyd**: Unauthenticated and only on hydra
+- **flake**: Update
+
+### Fix
+
+- **bluetooth**: Typo
+- **ipfs**: Open port and add group
+- **pano**: Update to 23 alpha
+- **spotifyd**: No autoplay
+- **firewall**: Move spotify ports to hydra
+- **hosts**: Don't block youtube
+- **hosts**: Do not block social
+
 ## 0.11.0 (2024-07-23)
 
 ### Feat
