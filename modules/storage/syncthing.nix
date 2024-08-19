@@ -28,6 +28,9 @@ _: {
         "leviathan" = {
           id = "GPPPAYX-ZR5DCE5-SPIVZIP-YGHHSBT-U2KT7VR-G4UWHLL-75T7C27-3ADY6AM";
         };
+        "gandr" = {
+          id = "JGO3NNE-E4X4T7G-B554VB5-OONG7W3-INQHL7E-XAK2HED-3TNSV3S-6IXV2AQ";
+        };
       };
       folders = with builtins; (
         listToAttrs
@@ -41,6 +44,7 @@ _: {
                 "hydra"
                 "dagon"
                 "leviathan"
+                "gandr"
               ];
             };
           })
