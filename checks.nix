@@ -4,6 +4,7 @@ _: {
       check.enable = true;
       settings.hooks = {
         nixfmt.enable = true;
+        flake-checker.enable = true;
         shellcheck.enable = true;
         statix.enable = true;
         shfmt.enable = true;
