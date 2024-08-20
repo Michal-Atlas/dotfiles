@@ -1,3 +1,23 @@
+## 0.13.0 (2024-08-20)
+
+### Feat
+
+- **flake**: Add YAML linter
+- **nix**: Automate long-term GC
+- **flake**: Use module for NixOS
+- **guix**: GC fully
+- **flake**: flake-checker
+- **flake**: Add GitHub autobump
+- **syncthing**: Only limit upload on hydra
+- **flake**: Format to nixfmt instead of alejandra
+- **syncthing**: Add gandr
+
+### Fix
+
+- **ci**: Correct typo
+- **flake**: Remove flake-checker
+- **emacs**: Format
+
 ## 0.12.0 (2024-08-17)
 
 ### Feat
