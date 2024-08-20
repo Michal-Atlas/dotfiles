@@ -14,8 +14,8 @@
       "nix-command"
       "flakes"
     ];
-    allowUnfree = true;
   };
+  nixpkgs.config.allowUnfree = true;
 
   home = {
     username = "michal_atlas";
