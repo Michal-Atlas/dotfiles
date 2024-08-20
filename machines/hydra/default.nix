@@ -1,28 +1,28 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
-  imports = [
-    ../../modules
-    ./filesystems.nix
-  ];
+{ config, lib, pkgs, ... }: {
+  imports = [ ../../modules ./filesystems.nix ];
   hardware = {
     enableAllFirmware = true;
     cpu.amd.updateMicrocode =
       lib.mkDefault config.hardware.enableRedistributableFirmware;
   };
 
-  services.morrowind-server.enable = false;
+  services = {
+    morrowind-server.enable = false;
+    syncthing.settings.options.maxSendKbps = 4096;
+    jellyfin = {
+      enable = true;
+      openFirewall = true;
+    };
+  };
   boot = {
     initrd = {
-      availableKernelModules = ["xhci_pci" "ahci" "usb_storage" "uas" "usbhid" "sd_mod"];
-      kernelModules = ["dm-snapshot" "dm-raid"];
+      availableKernelModules =
+        [ "xhci_pci" "ahci" "usb_storage" "uas" "usbhid" "sd_mod" ];
+      kernelModules = [ "dm-snapshot" "dm-raid" ];
     };
-    kernelModules = ["kvm-amd" "amdgpu"];
-    extraModulePackages = [];
-    supportedFilesystems = ["ntfs" "zfs"];
+    kernelModules = [ "kvm-amd" "amdgpu" ];
+    extraModulePackages = [ ];
+    supportedFilesystems = [ "ntfs" "zfs" ];
   };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -41,7 +41,7 @@
         1234 # spotify
         57621
       ];
-      allowedUDPPorts = [5353];
+      allowedUDPPorts = [ 5353 ];
     };
   };
 
@@ -49,22 +49,19 @@
     yggdrasil.file = ../../secrets/yggdrasil/hydra.json;
     wireguard.file = ../../secrets/wireguard/hydra;
   };
-  services.jellyfin = {
-    enable = true;
-    openFirewall = true;
-  };
   systemd = {
     # https://nixos.wiki/wiki/AMD_GPU
-    tmpfiles.rules = ["L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"];
+    tmpfiles.rules =
+      [ "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}" ];
   };
   hardware.opengl = {
     driSupport = true;
     # For 32 bit applications
     driSupport32Bit = true;
-    extraPackages = with pkgs; [rocm-opencl-icd rocm-opencl-runtime amdvlk];
+    extraPackages = with pkgs; [ rocm-opencl-icd rocm-opencl-runtime amdvlk ];
     # For 32 bit applications
     # Only available on unstable
-    extraPackages32 = with pkgs; [driversi686Linux.amdvlk libva];
+    extraPackages32 = with pkgs; [ driversi686Linux.amdvlk libva ];
     setLdLibraryPath = true;
   };
   home-manager.users.michal_atlas.services = {
