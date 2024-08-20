@@ -25,7 +25,14 @@
     nixos-flake.url = "github:srid/nixos-flake";
   };
 
-  outputs = { flake-parts, systems, pre-commit-hooks, nixos-flake, ... }@inputs:
+  outputs =
+    {
+      flake-parts,
+      systems,
+      pre-commit-hooks,
+      nixos-flake,
+      ...
+    }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = import systems;
       imports = [

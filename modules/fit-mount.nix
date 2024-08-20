@@ -1,8 +1,5 @@
+{ pkgs, config, ... }:
 {
-  pkgs,
-  config,
-  ...
-}: {
   age.secrets.fit-mount.file = ../secrets/fit-mount;
   age.secrets.fit-vpn.file = ../secrets/fit-vpn;
   services.openvpn.servers.ctu-fit = {

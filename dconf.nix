@@ -1,6 +1,8 @@
 { pkgs, lib, ... }:
-let inherit (lib.hm.gvariant) mkTuple;
-in {
+let
+  inherit (lib.hm.gvariant) mkTuple;
+in
+{
   dconf.settings = {
     "org/gnome/shell" = {
       disable-user-extensions = false;
@@ -12,8 +14,12 @@ in {
         pkgs.gnomeExtensions.appindicator.extensionUuid
       ];
     };
-    "org/gtk/settings/file-chooser" = { clock-format = "24h"; };
-    "org/gnome/desktop/datetime" = { automatic-timezone = true; };
+    "org/gtk/settings/file-chooser" = {
+      clock-format = "24h";
+    };
+    "org/gnome/desktop/datetime" = {
+      automatic-timezone = true;
+    };
     "org/gnome/shell/extensions/pano" = {
       play-audio-on-copy = false;
       send-notification-on-copy = false;
@@ -21,9 +27,15 @@ in {
     "org/gnome/shell/extensions/mpris-label" = {
       auto-switch-to-most-recent = true;
     };
-    "org/gnome/desktop/session" = { idle-delay = 600; };
-    "org/gnome/desktop/interface" = { show-battery-percentage = true; };
-    "org/gnome/desktop/peripherals/touchpad" = { tap-to-click = true; };
+    "org/gnome/desktop/session" = {
+      idle-delay = 600;
+    };
+    "org/gnome/desktop/interface" = {
+      show-battery-percentage = true;
+    };
+    "org/gnome/desktop/peripherals/touchpad" = {
+      tap-to-click = true;
+    };
     "org/gnome/settings-daemon/plugins/power" = {
       sleep-inactive-ac-type = "nothing";
     };
@@ -46,12 +58,11 @@ in {
       command = "emacsclient -c";
       name = "EMACS";
     };
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/browser" =
-      {
-        binding = "<Super>f";
-        command = "nyxt";
-        name = "BROWSER";
-      };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/browser" = {
+      binding = "<Super>f";
+      command = "nyxt";
+      name = "BROWSER";
+    };
     "org/gnome/desktop/background" = {
       picture-options = "zoom";
       picture-uri = builtins.fetchurl {
@@ -64,16 +75,34 @@ in {
       };
     };
     "org/gnome/desktop/input-sources" = {
-      sources = [ (mkTuple [ "xkb" "us" ]) (mkTuple [ "xkb" "cz+ucw" ]) ];
-      xkb-options =
-        [ "grp:caps_switch" "lv3:ralt_switch" "compose:rctrl-altgr" ];
+      sources = [
+        (mkTuple [
+          "xkb"
+          "us"
+        ])
+        (mkTuple [
+          "xkb"
+          "cz+ucw"
+        ])
+      ];
+      xkb-options = [
+        "grp:caps_switch"
+        "lv3:ralt_switch"
+        "compose:rctrl-altgr"
+      ];
     };
-    "org/gnome/system/location" = { enabled = true; };
+    "org/gnome/system/location" = {
+      enabled = true;
+    };
     "org/gnome/shell/extensions/nightthemeswitcher/time" = {
       manual-schedule = false;
     };
-    "org/gnome/desktop/wm/preferences" = { focus-mode = "sloppy"; };
-    "org/gnome/settings-daemon/plugins/color" = { night-light-enabled = true; };
+    "org/gnome/desktop/wm/preferences" = {
+      focus-mode = "sloppy";
+    };
+    "org/gnome/settings-daemon/plugins/color" = {
+      night-light-enabled = true;
+    };
     "org/gnome/shell" = {
       favorite-apps = [
         "firefox.desktop"
@@ -92,7 +121,9 @@ in {
       workspaces-only-on-primary = true;
     };
 
-    "org/gnome/shell/app-switcher" = { current-workspace-only = true; };
+    "org/gnome/shell/app-switcher" = {
+      current-workspace-only = true;
+    };
 
     "org/gnome/Console" = {
       use-system-font = false;

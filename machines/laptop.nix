@@ -1,8 +1,5 @@
+{ config, lib, ... }:
 {
-  config,
-  lib,
-  ...
-}: {
   imports = [
     ../modules
     ./builds.nix
@@ -19,11 +16,14 @@
         "aesni_intel"
         "cryptd"
       ];
-      kernelModules = [];
+      kernelModules = [ ];
     };
-    kernelModules = ["kvm-intel"];
-    extraModulePackages = [];
-    supportedFilesystems = ["ntfs" "zfs"];
+    kernelModules = [ "kvm-intel" ];
+    extraModulePackages = [ ];
+    supportedFilesystems = [
+      "ntfs"
+      "zfs"
+    ];
   };
 
   networking.useDHCP = lib.mkDefault true;

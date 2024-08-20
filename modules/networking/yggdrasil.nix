@@ -1,14 +1,15 @@
-{config, ...}: let
+{ config, ... }:
+let
   multiCastPort = 123;
-in {
-  networking.hosts = with builtins;
+in
+{
+  networking.hosts =
+    with builtins;
     listToAttrs (
-      map
-      (value: {
+      map (value: {
         name = config.atlasnet.yggdrasil.${value};
-        value = ["yg-${value}"];
-      })
-      (attrNames config.atlasnet.yggdrasil)
+        value = [ "yg-${value}" ];
+      }) (attrNames config.atlasnet.yggdrasil)
     );
   services.yggdrasil = {
     enable = true;
@@ -36,7 +37,5 @@ in {
       ];
     };
   };
-  networking.firewall.allowedTCPPorts = [
-    multiCastPort
-  ];
+  networking.firewall.allowedTCPPorts = [ multiCastPort ];
 }

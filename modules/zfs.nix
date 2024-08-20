@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   boot.loader.grub.zfsSupport = true;
   services.zfs = {
     autoScrub.enable = true;

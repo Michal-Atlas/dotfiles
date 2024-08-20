@@ -1,9 +1,17 @@
-{ config, lib, pkgs, ... }: {
-  imports = [ ../../modules ./filesystems.nix ];
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
+  imports = [
+    ../../modules
+    ./filesystems.nix
+  ];
   hardware = {
     enableAllFirmware = true;
-    cpu.amd.updateMicrocode =
-      lib.mkDefault config.hardware.enableRedistributableFirmware;
+    cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   };
 
   services = {
@@ -16,13 +24,28 @@
   };
   boot = {
     initrd = {
-      availableKernelModules =
-        [ "xhci_pci" "ahci" "usb_storage" "uas" "usbhid" "sd_mod" ];
-      kernelModules = [ "dm-snapshot" "dm-raid" ];
+      availableKernelModules = [
+        "xhci_pci"
+        "ahci"
+        "usb_storage"
+        "uas"
+        "usbhid"
+        "sd_mod"
+      ];
+      kernelModules = [
+        "dm-snapshot"
+        "dm-raid"
+      ];
     };
-    kernelModules = [ "kvm-amd" "amdgpu" ];
+    kernelModules = [
+      "kvm-amd"
+      "amdgpu"
+    ];
     extraModulePackages = [ ];
-    supportedFilesystems = [ "ntfs" "zfs" ];
+    supportedFilesystems = [
+      "ntfs"
+      "zfs"
+    ];
   };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -51,17 +74,23 @@
   };
   systemd = {
     # https://nixos.wiki/wiki/AMD_GPU
-    tmpfiles.rules =
-      [ "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}" ];
+    tmpfiles.rules = [ "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}" ];
   };
   hardware.opengl = {
     driSupport = true;
     # For 32 bit applications
     driSupport32Bit = true;
-    extraPackages = with pkgs; [ rocm-opencl-icd rocm-opencl-runtime amdvlk ];
+    extraPackages = with pkgs; [
+      rocm-opencl-icd
+      rocm-opencl-runtime
+      amdvlk
+    ];
     # For 32 bit applications
     # Only available on unstable
-    extraPackages32 = with pkgs; [ driversi686Linux.amdvlk libva ];
+    extraPackages32 = with pkgs; [
+      driversi686Linux.amdvlk
+      libva
+    ];
     setLdLibraryPath = true;
   };
   home-manager.users.michal_atlas.services = {

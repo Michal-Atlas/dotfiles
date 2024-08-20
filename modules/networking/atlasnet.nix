@@ -1,9 +1,11 @@
-{lib, ...}: let
+{ lib, ... }:
+let
   prefix = "fd4c:16e4:7d9b:0";
   wgip = idx: "${prefix}::${builtins.toString idx}";
-in {
+in
+{
   options = {
-    atlasnet = lib.mkOption {};
+    atlasnet = lib.mkOption { };
   };
   config = {
     atlasnet = {

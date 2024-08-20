@@ -26,12 +26,15 @@ _: {
     languages = {
       language-server.ucm = {
         command = "ncat";
-        args = ["localhost" "5757"];
+        args = [
+          "localhost"
+          "5757"
+        ];
       };
       language = [
         {
           name = "unison";
-          language-servers = ["ucm"];
+          language-servers = [ "ucm" ];
         }
         {
           name = "nix";

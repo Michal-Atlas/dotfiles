@@ -1,14 +1,15 @@
-{pkgs, ...}: let
-  configFile =
-    files/emacs.el;
+{ pkgs, ... }:
+let
+  configFile = files/emacs.el;
   atlas-emacs = pkgs.emacsWithPackagesFromUsePackage {
     defaultInitFile = true;
     alwaysEnsure = true;
     config = configFile;
     package = pkgs.emacs-pgtk;
-    extraEmacsPackages = _: [];
+    extraEmacsPackages = _: [ ];
   };
-in {
+in
+{
   services.emacs = {
     enable = true;
     package = atlas-emacs;

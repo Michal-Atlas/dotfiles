@@ -1,10 +1,18 @@
 { flake, ... }:
-let GtoBString = g: builtins.toString (g * 1024 * 1024 * 1024);
-in {
+let
+  GtoBString = g: builtins.toString (g * 1024 * 1024 * 1024);
+in
+{
   nix = {
     settings = {
-      trusted-users = [ "root" "@wheel" ];
-      experimental-features = [ "nix-command" "flakes" ];
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       min-free = GtoBString 30;
       max-free = GtoBString 50;
       min-free-check-interval = 60 * 60;
@@ -21,6 +29,8 @@ in {
       emacs-overlay.overlays.default
       unison-nix.overlay
     ];
-    config = { allowUnfree = true; };
+    config = {
+      allowUnfree = true;
+    };
   };
 }

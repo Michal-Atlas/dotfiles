@@ -1,8 +1,9 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs = {
     tmux = {
       enable = true;
-      plugins = with pkgs.tmuxPlugins; [catppuccin];
+      plugins = with pkgs.tmuxPlugins; [ catppuccin ];
       baseIndex = 1;
       clock24 = true;
       mouse = true;

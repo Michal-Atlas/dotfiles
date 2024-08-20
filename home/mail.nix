@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.thunderbird = {
     enable = true;
     profiles."default" = {
@@ -25,22 +26,24 @@
         port = 465;
       };
     };
-    "ctu" = let
-      user = "zacekmi2";
-      domain = "cvut.cz";
-    in {
-      flavor = "outlook.office365.com";
-      address = "${user}@fit.${domain}";
-      userName = "${user}@${domain}";
-      realName = "Michal Žáček";
-      thunderbird = {
-        enable = true;
-        settings = id: {
-          "mail.smtpserver.smtp_${id}.authMethod" = 10;
-          "mail.server.server_${id}.authMethod" = 10;
+    "ctu" =
+      let
+        user = "zacekmi2";
+        domain = "cvut.cz";
+      in
+      {
+        flavor = "outlook.office365.com";
+        address = "${user}@fit.${domain}";
+        userName = "${user}@${domain}";
+        realName = "Michal Žáček";
+        thunderbird = {
+          enable = true;
+          settings = id: {
+            "mail.smtpserver.smtp_${id}.authMethod" = 10;
+            "mail.server.server_${id}.authMethod" = 10;
+          };
         };
+        passwordCommand = "${pkgs.pass}/bin/pass -c ${domain}/${user}";
       };
-      passwordCommand = "${pkgs.pass}/bin/pass -c ${domain}/${user}";
-    };
   };
 }

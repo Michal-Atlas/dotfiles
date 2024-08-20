@@ -20,7 +20,7 @@ _: {
     resolved.enable = true;
     zerotierone = {
       enable = true;
-      joinNetworks = ["7d36f91fa2718c7c"];
+      joinNetworks = [ "7d36f91fa2718c7c" ];
     };
   };
   networking = {

@@ -4,9 +4,11 @@
   lib,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.services.morrowind-server;
-in {
+in
+{
   options.services.morrowind-server.enable = mkOption {
     type = types.bool;
     default = false;
@@ -16,9 +18,12 @@ in {
   };
   config = mkIf cfg.enable {
     systemd.services."tes3mp-server" = {
-      wants = ["network.target"];
-      after = ["syslog.target" "network-online.target"];
-      wantedBy = ["multi-user.target"];
+      wants = [ "network.target" ];
+      after = [
+        "syslog.target"
+        "network-online.target"
+      ];
+      wantedBy = [ "multi-user.target" ];
       environment = {
         XDG_CONFIG_HOME = "/var/lib/tes3mp/config";
         XDG_DATA_HOME = "/var/lib/tes3mp/data";
@@ -26,6 +31,6 @@ in {
       script = "${pkgs.openmw-tes3mp}/bin/tes3mp-server";
     };
 
-    networking.firewall.allowedTCPPorts = [25565];
+    networking.firewall.allowedTCPPorts = [ 25565 ];
   };
 }

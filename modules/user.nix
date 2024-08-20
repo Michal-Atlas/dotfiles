@@ -1,10 +1,7 @@
+{ pkgs, config, ... }:
 {
-  pkgs,
-  config,
-  ...
-}: {
   users = {
-    groups.plugdev = {};
+    groups.plugdev = { };
     users = {
       michal_atlas = {
         isNormalUser = true;
@@ -21,7 +18,9 @@
           "podman"
           config.services.kubo.group
         ];
-        openssh.authorizedKeys.keys = with builtins; (map (f: readFile ../keys/${f}) (attrNames (readDir ../keys)));
+        openssh.authorizedKeys.keys =
+          with builtins;
+          (map (f: readFile ../keys/${f}) (attrNames (readDir ../keys)));
         linger = true;
       };
       david = {

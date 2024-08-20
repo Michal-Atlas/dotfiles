@@ -1,10 +1,10 @@
 {
-  zfsMounts =
-    builtins.mapAttrs
-    (_: device: {
+  zfsMounts = builtins.mapAttrs (
+    _: device: {
       fsType = "zfs";
       inherit device;
-    });
+    }
+  );
   btrfsMount = dev: subvol: {
     device = dev;
     options = [

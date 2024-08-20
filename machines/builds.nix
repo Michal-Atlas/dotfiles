@@ -9,8 +9,13 @@ _: {
         # systems = ["x86_64-linux" "aarch64-linux"];
         maxJobs = 12;
         speedFactor = 2;
-        supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
-        mandatoryFeatures = [];
+        supportedFeatures = [
+          "nixos-test"
+          "benchmark"
+          "big-parallel"
+          "kvm"
+        ];
+        mandatoryFeatures = [ ];
         sshUser = "michal_atlas";
         sshKey = "/home/michal_atlas/.ssh/id_rsa";
       }

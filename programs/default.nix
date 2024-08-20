@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   imports = [
     ./zsh.nix
     ./git.nix
@@ -17,16 +18,24 @@
     };
     zoxide = {
       enable = true;
-      options = ["--cmd" "cd"];
+      options = [
+        "--cmd"
+        "cd"
+      ];
     };
     starship.enable = true;
     bat = {
       enable = true;
-      extraPackages = with pkgs.bat-extras; [batdiff batman batgrep batwatch];
+      extraPackages = with pkgs.bat-extras; [
+        batdiff
+        batman
+        batgrep
+        batwatch
+      ];
     };
     password-store = {
       enable = true;
-      package = pkgs.pass.withExtensions (exts: [exts.pass-otp]);
+      package = pkgs.pass.withExtensions (exts: [ exts.pass-otp ]);
     };
     gpg.enable = true;
     spotify-player.enable = true;
