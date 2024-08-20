@@ -28,7 +28,7 @@
 (setq
  user-full-name "Michal Atlas"
  user-mail-address "michal_atlas+emacs@posteo.net")
- 
+
 (setq mastodon-instance-url "https://lgbtcz.social")
 (setq mastodon-active-user "michal_atlas")
 (setq-default indent-tabs-mode nil)
@@ -330,8 +330,7 @@
 (use-package gemini-mode)
 (use-package go-mode)
 ;(use-package hackles)
-(use-package haskell-mode
-  :hook (haskell-mode . eglot-ensure))
+(use-package haskell-mode :hook (haskell-mode . eglot-ensure))
 (use-package htmlize)
 (use-package iedit)
 (use-package markdown-mode)
