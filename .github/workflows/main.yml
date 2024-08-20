@@ -22,7 +22,7 @@ jobs:
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: feat(flake): Update
+          commit_message: 'feat(flake): Update'
           branch: master
           commit_options: '--no-verify --signoff'
           file_pattern: flake.lock
