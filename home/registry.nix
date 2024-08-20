@@ -1,9 +1,3 @@
-{
-  self,
-  lib,
-  ...
-}: {
-  nix.registry =
-    lib.mapAttrs (_: value: {flake = value;})
-    self.inputs;
+{ flake, lib, ... }: {
+  nix.registry = lib.mapAttrs (_: value: { flake = value; }) flake.inputs;
 }

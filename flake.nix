@@ -22,22 +22,19 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-flake.url = "github:srid/nixos-flake";
   };
 
-  outputs = {
-    flake-parts,
-    systems,
-    pre-commit-hooks,
-    ...
-  } @ inputs:
-    flake-parts.lib.mkFlake {inherit inputs;}
-    {
+  outputs = { flake-parts, systems, pre-commit-hooks, nixos-flake, ... }@inputs:
+    flake-parts.lib.mkFlake { inherit inputs; } {
       systems = import systems;
       imports = [
         ./devShell.nix
         pre-commit-hooks.flakeModule
+        nixos-flake.flakeModule
         ./checks.nix
         ./machines
       ];
+      flake.lib = import ./lib;
     };
 }

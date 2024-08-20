@@ -238,6 +238,21 @@
         "type": "github"
       }
     },
+    "nixos-flake": {
+      "locked": {
+        "lastModified": 1721140942,
+        "narHash": "sha256-iEqZGdnkG+Hm0jZhS59NJwEyB6z9caVnudWPGHZ/FAE=",
+        "owner": "srid",
+        "repo": "nixos-flake",
+        "rev": "5734c1d9a5fe0bc8e8beaf389ad6227392ca0108",
+        "type": "github"
+      },
+      "original": {
+        "owner": "srid",
+        "repo": "nixos-flake",
+        "type": "github"
+      }
+    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1723310128,
@@ -406,6 +421,7 @@
         "flake-parts": "flake-parts",
         "home-manager": "home-manager_2",
         "nix-index-database": "nix-index-database",
+        "nixos-flake": "nixos-flake",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_3",
         "pre-commit-hooks": "pre-commit-hooks",
