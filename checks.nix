@@ -8,6 +8,7 @@ _: {
         statix.enable = true;
         shfmt.enable = true;
         nil.enable = true;
+        check-yaml.enable = true;
         deadnix.enable = true;
         commitizen.enable = true;
 
