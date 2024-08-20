@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   imports = [
     ../programs
     ../emacs.nix
@@ -8,9 +8,7 @@
     ./mail.nix
   ];
 
-  nix.settings = {
-    experimental-features = ["nix-command" "flakes"];
-  };
+  nix.settings = { experimental-features = [ "nix-command" "flakes" ]; };
 
   home = {
     username = "michal_atlas";
@@ -46,12 +44,16 @@
     browserpass.enable = true;
     firefox = {
       enable = true;
-      nativeMessagingHosts = [pkgs.gnome-browser-connector];
+      nativeMessagingHosts = [ pkgs.gnome-browser-connector ];
     };
+    gh = {
+      enable = true;
+      extensions = with pkgs; [ gh-copilot ];
+    };
+    gh-dash.enable = true;
   };
 
-  home.packages =
-    import ../packages.nix pkgs;
+  home.packages = import ../packages.nix pkgs;
 
   systemd.user.tmpfiles.rules = [
     "d /home/michal_atlas/Downloads - - - 5d"
