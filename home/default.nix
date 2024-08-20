@@ -53,11 +53,6 @@
       enable = true;
       nativeMessagingHosts = [ pkgs.gnome-browser-connector ];
     };
-    gh = {
-      enable = true;
-      extensions = with pkgs; [ gh-copilot ];
-    };
-    gh-dash.enable = true;
   };
 
   home.packages = import ../packages.nix pkgs;
