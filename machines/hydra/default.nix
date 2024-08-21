@@ -16,7 +16,7 @@
 
   services = {
     morrowind-server.enable = false;
-    syncthing.settings.options.maxSendKbps = 4096;
+    syncthing.settings.options.maxSendKbps = 4096 * 20;
     jellyfin = {
       enable = true;
       openFirewall = true;
