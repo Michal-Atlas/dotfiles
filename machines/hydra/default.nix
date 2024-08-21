@@ -104,4 +104,8 @@
       };
     };
   };
+  services.kubo.settings = {
+    Routing.Type = "auto";
+    Reprovider.Interval = "22h";
+  };
 }

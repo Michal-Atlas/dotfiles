@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 {
   services.kubo = {
     enable = true;
@@ -11,9 +16,12 @@
           "/ip6/${builtins.getAttr config.networking.hostName config.atlasnet.yggdrasil}/tcp/4001"
         ];
       };
-      Routing.Type = "autoclient";
+      Routing.Type = lib.mkOverride "autoclient";
       AutoNAT.ServiceMode = "disabled";
-      Reprovider.Strategy = "pinned";
+      Reprovider = {
+        Strategy = "pinned";
+        Interval = lib.mkOverride 0;
+      };
       Swarm = {
         RelayService.Enabled = false;
         ConnMgr = {
