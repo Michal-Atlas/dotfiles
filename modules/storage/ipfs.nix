@@ -16,11 +16,11 @@
           "/ip6/${builtins.getAttr config.networking.hostName config.atlasnet.yggdrasil}/tcp/4001"
         ];
       };
-      Routing.Type = lib.mkOverride "autoclient";
+      Routing.Type = lib.mkDefault "autoclient";
       AutoNAT.ServiceMode = "disabled";
       Reprovider = {
         Strategy = "pinned";
-        Interval = lib.mkOverride 0;
+        Interval = lib.mkDefault 0;
       };
       Swarm = {
         RelayService.Enabled = false;
