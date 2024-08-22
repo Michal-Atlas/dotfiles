@@ -15,7 +15,6 @@
       "flakes"
     ];
   };
-  nixpkgs.config.allowUnfree = true;
 
   home = {
     username = "michal_atlas";
