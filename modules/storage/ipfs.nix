@@ -48,6 +48,7 @@
     allowedUDPPorts = [ 4001 ];
   };
   systemd.user.services.ipfs-cluster = {
+    enable = false;
     after = [ "network.target" ];
     wantedBy = [ "default.target" ];
     path = [ pkgs.ipfs-cluster ];
