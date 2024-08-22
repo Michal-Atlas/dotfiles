@@ -10,6 +10,23 @@
     };
   };
   accounts.email.accounts = {
+    "proton" = rec {
+      address = "me@michal-atlas.cz";
+      userName = address;
+      realName = "Michal Atlas";
+      thunderbird.enable = true;
+      imap = {
+        host = "localhost";
+        port = 1143;
+        tls.useStartTls = true;
+      };
+      smtp = {
+        inherit (imap) host;
+        port = 1025;
+        tls.useStartTls = true;
+      };
+
+    };
     "posteo" = rec {
       address = "michal_atlas@posteo.net";
       primary = true;
@@ -45,5 +62,13 @@
         };
         passwordCommand = "${pkgs.pass}/bin/pass -c ${domain}/${user}";
       };
+  };
+  systemd.user.services.protonmail-bridge = {
+    Unit.Description = "Protonmail Bridge";
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+      After = [ "network.target" ];
+    };
+    Service.ExecStart = "${pkgs.protonmail-bridge}/bin/protonmail-bridge --noninteractive";
   };
 }
