@@ -57,7 +57,6 @@ with pkgs;
   audacity
   bat
   blender
-  browserpass
   btrfs-progs
   ccls
   cifs-utils

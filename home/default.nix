@@ -47,7 +47,6 @@
         setopt completealiases
       '';
     };
-    browserpass.enable = true;
     firefox = {
       enable = true;
       nativeMessagingHosts = [ pkgs.gnome-browser-connector ];
