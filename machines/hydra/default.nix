@@ -22,6 +22,7 @@
       openFirewall = true;
     };
   };
+  services.xserver.videoDrivers = [ "amdgpu" ];
   boot = {
     initrd = {
       availableKernelModules = [
