@@ -1,4 +1,7 @@
 _: {
-  imports = [ ./syncthing.nix ];
+  imports = [
+    ./syncthing.nix
+    ./ipfs.nix
+  ];
   services.gvfs.enable = true;
 }
