@@ -352,3 +352,4 @@
 (use-package yaml-mode)
 (use-package yasnippet-snippets)
 (use-package scala-mode :interpreter ("scala" . scala-mode))
+(use-package elm-mode)
