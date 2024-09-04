@@ -1,9 +1,4 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 {
   services.kubo = {
     enable = true;
@@ -46,12 +41,5 @@
       9096
     ];
     allowedUDPPorts = [ 4001 ];
-  };
-  systemd.user.services.ipfs-cluster = {
-    enable = false;
-    after = [ "network.target" ];
-    wantedBy = [ "default.target" ];
-    path = [ pkgs.ipfs-cluster ];
-    script = "ipfs-cluster-service daemon";
   };
 }

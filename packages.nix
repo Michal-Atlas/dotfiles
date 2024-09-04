@@ -9,7 +9,6 @@ with pkgs;
   nixfmt-rfc-style
   xmlstarlet
   ipfs
-  ipfs-cluster
   haskell-language-server
   gnome-frog
   hieroglyphic
