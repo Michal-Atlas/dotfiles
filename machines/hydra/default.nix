@@ -106,7 +106,10 @@
     };
   };
   services.kubo.settings = {
-    Routing.Type = "auto";
+    Routing = {
+      AcceleratedDHTClient = true;
+      Type = "auto";
+    };
     Reprovider.Interval = "22h";
     Swarm.ConnMgr = {
       LowWater = 32;
