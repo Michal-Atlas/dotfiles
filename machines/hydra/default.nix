@@ -108,5 +108,9 @@
   services.kubo.settings = {
     Routing.Type = "auto";
     Reprovider.Interval = "22h";
+    Swarm.ConnMgr = {
+      LowWater = 32;
+      HighWater = 96;
+    };
   };
 }

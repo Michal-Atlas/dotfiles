@@ -21,8 +21,8 @@
         RelayService.Enabled = false;
         ConnMgr = {
           GracePeriod = "1m0s";
-          LowWater = 20;
-          HighWater = 40;
+          LowWater = lib.mkDefault 20;
+          HighWater = lib.mkDefault 40;
         };
         ResourceMgr.MaxMemory = "1GB";
         Import.CidVersion = 1;
