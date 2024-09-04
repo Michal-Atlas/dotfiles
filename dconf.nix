@@ -106,6 +106,7 @@ in
     "org/gnome/shell" = {
       favorite-apps = [
         "firefox.desktop"
+        "brave-browser.desktop"
         "spotify.desktop"
         "discord.desktop"
         "org.keepassxc.KeePassXC.desktop"
