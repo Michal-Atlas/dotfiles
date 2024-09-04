@@ -23,6 +23,10 @@ _: {
       joinNetworks = [ "7d36f91fa2718c7c" ];
     };
   };
+  systemd.network = {
+    # enable = true;
+    wait-online.enable = false;
+  };
   networking = {
     networkmanager.enable = true;
     nameservers = [
