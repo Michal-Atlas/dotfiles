@@ -20,7 +20,10 @@
         ];
         openssh.authorizedKeys.keys =
           with builtins;
-          (map (f: readFile ../keys/${f}) (attrNames (readDir ../keys)));
+          [
+            "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBNQ0k3zschT19QUx3wl822/1V3Txts22+NBJyCuzuJNhJQPDGw5HOkvDXZejR65jS+amHuhLx+HjJDCnmeSbfY4="
+          ]
+          ++ (map (f: readFile ../keys/${f}) (attrNames (readDir ../keys)));
         linger = true;
       };
       david = {
