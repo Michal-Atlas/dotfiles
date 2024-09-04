@@ -1,6 +1,8 @@
 pkgs:
 with pkgs;
 [
+  protonvpn-gui
+  brave
   gmic
   nix-prefetch
   nurl
