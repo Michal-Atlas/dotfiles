@@ -35,6 +35,7 @@ in
           Password = "";
         }
       ];
+      IfName = "ygg0";
     };
   };
   networking.firewall.allowedTCPPorts = [ multiCastPort ];
