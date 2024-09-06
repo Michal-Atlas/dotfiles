@@ -111,7 +111,10 @@
       AcceleratedDHTClient = true;
       Type = "auto";
     };
-    Reprovider.Interval = "22h";
+    Reprovider = {
+      Interval = "24h";
+      Strategy = "all";
+    };
     Swarm.ConnMgr = {
       LowWater = 32;
       HighWater = 96;

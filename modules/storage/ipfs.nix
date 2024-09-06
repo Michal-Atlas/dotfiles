@@ -14,7 +14,7 @@
       Routing.Type = lib.mkDefault "autoclient";
       AutoNAT.ServiceMode = "disabled";
       Reprovider = {
-        Strategy = "pinned";
+        Strategy = lib.mkDefault "pinned";
         Interval = lib.mkDefault 0;
       };
       Swarm = {
