@@ -35,10 +35,6 @@
     sensor.iio.enable = true;
   };
 
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-  };
   services.thermald.enable = true;
   powerManagement = {
     enable = true;
