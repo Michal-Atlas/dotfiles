@@ -2,6 +2,7 @@ pkgs:
 with pkgs;
 [
   protonvpn-gui
+  nethogs
   brave
   gmic
   nix-prefetch
