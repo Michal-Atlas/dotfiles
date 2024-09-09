@@ -1,3 +1,54 @@
+## 0.14.0 (2024-09-09)
+
+### Feat
+
+- **syncthing**: Add windows
+- **hydra**: Don't lock
+- **flake**: Update
+- **ipfs**: Tweak around
+- **protonvpn**: Move to wireguard
+- **pkgs**: Add nethogs
+- **yggdrasil**: Properly name interface
+- **nix**: Clear history more often
+- **vpn**: Add ad-hoc protonvpn to hydra
+- **dconf**: Add Brave to bar
+- **ipfs**: Use accelerated dht on Hydra
+- **ipfs**: Set Standard HighWater on Hydra
+- **ipfs**: Remove cluster
+- **keys**: Add biometric
+- **pkgs**: Add protonvpn and brave
+- **emacs**: Add unison mode
+- **ipfs**: Remove
+- **emacs**: Add elm-mode
+- **pass**: Remove browserpass
+- **flake**: Update
+- **flake**: Update
+- **mail**: Add protonmail
+- **ipfs**: Disable cluster
+- **flake**: Add np flake to more easily access up-to-date nonFree
+- **ipfs**: Hydra as Node, rest as Clients
+- **syncthing**: Raise send limit
+- **ipfs**: Set correct target for cluster
+- **flake**: Update weekly
+- **gh**: Remove
+- **flake**: Lock emacs-overlay in place
+- **repo**: link Changelog as readme
+- **flake**: Update
+- **nix**: Capitulate on allowUnfree
+- **gh**: Add
+
+### Fix
+
+- **secrets**: Accidentally used old key
+- **dconf**: Idle delay needs type annotation
+- **flake**: Use nixfmt-rfc directly
+- **nix-gc**: Remove from laptop configured globally
+- **network**: Disable wait-online
+- **drivers**: Move amdgpu to hydra only
+- **nixpkgs**: Wrong config
+- **fmt**: Reformat to RFC-style
+- **fmt**: dconf and secrets
+
 ## 0.13.0 (2024-08-20)
 
 ### Feat
