@@ -31,6 +31,9 @@
         "gandr" = {
           id = "JGO3NNE-E4X4T7G-B554VB5-OONG7W3-INQHL7E-XAK2HED-3TNSV3S-6IXV2AQ";
         };
+        "windows" = {
+          id = "KVMAQRH-BKGJNQ2-2XUUQLI-YBA4O5F-UFF2Y7I-CZ6J2ZY-KKGLUXB-3LRPNQE";
+        };
       };
       folders =
         with builtins;
@@ -46,6 +49,7 @@
                   "dagon"
                   "leviathan"
                   "gandr"
+                  "windows"
                 ];
               };
             })
