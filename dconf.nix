@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 let
-  inherit (lib.hm.gvariant) mkTuple;
+  inherit (lib.hm.gvariant) mkTuple mkUint32;
 in
 {
   dconf.settings = {
@@ -28,7 +28,7 @@ in
       auto-switch-to-most-recent = true;
     };
     "org/gnome/desktop/session" = {
-      idle-delay = 600;
+      idle-delay = mkUint32 600;
     };
     "org/gnome/desktop/interface" = {
       show-battery-percentage = true;
