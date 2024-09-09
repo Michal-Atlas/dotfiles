@@ -95,15 +95,21 @@
     ];
     setLdLibraryPath = true;
   };
-  home-manager.users.michal_atlas.services = {
-    spotifyd = {
-      enable = true;
-      settings.global = {
-        zeroconf_port = 1234;
-        use_keyring = false;
-        use_mpris = false;
-        volume_normalisation = true;
+  home-manager.users.michal_atlas = {
+    services = {
+      spotifyd = {
+        enable = true;
+        settings.global = {
+          zeroconf_port = 1234;
+          use_keyring = false;
+          use_mpris = false;
+          volume_normalisation = true;
+        };
       };
+    };
+    dconf.settings = {
+      "org/gnome/desktop/screensaver".lock-enabled = false;
+      "org/gnome/desktop/notifications".show-in-lock-screen = false;
     };
   };
   services.kubo.settings = {
