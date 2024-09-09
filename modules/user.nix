@@ -21,7 +21,7 @@
         openssh.authorizedKeys.keys =
           with builtins;
           [
-            "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBNQ0k3zschT19QUx3wl822/1V3Txts22+NBJyCuzuJNhJQPDGw5HOkvDXZejR65jS+amHuhLx+HjJDCnmeSbfY4="
+            "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBG/E3kHQNwdu1YQpARofBF/dSNKasoVDc04m4Aip3nrRSKR1YJtJWUmlOtW5YAU2vKt80Iwve1kEeffge3P+Ugw="
           ]
           ++ (map (f: readFile ../keys/${f}) (attrNames (readDir ../keys)));
         linger = true;
