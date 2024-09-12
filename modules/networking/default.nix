@@ -27,6 +27,7 @@ _: {
     # enable = true;
     wait-online.enable = false;
   };
+  services.resolved.dnssec = "true";
   networking = {
     networkmanager.enable = true;
     nameservers = [
