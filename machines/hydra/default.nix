@@ -67,7 +67,6 @@
       ];
       allowedUDPPorts = [ 5353 ];
     };
-    # wg-quick.interfaces.protonvpn.configFile = "/root/hydra-CZ-35.conf";
   };
 
   age.secrets = {

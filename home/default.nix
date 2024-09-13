@@ -59,4 +59,9 @@
     "d /home/michal_atlas/Downloads - - - 5d"
     "d /home/michal_atlas/tmp - - - 5d"
   ];
+  systemd.user.services.protonvpn = {
+    Unit.Description = "The ProtonVPN Tray App";
+    Install.WantedBy = [ "graphical-session.target" ];
+    Service.ExecStart = "${pkgs.protonvpn-gui}/bin/protonvpn-app";
+  };
 }
