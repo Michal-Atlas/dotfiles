@@ -1,6 +1,7 @@
 pkgs:
 with pkgs;
 [
+  openssl
   protonvpn-gui
   nethogs
   brave
