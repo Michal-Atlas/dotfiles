@@ -94,6 +94,7 @@ with pkgs;
   inotify-tools
   isync
   jetbrains.clion
+  jetbrains.idea-ultimate
   kobodeluxe
   krita
   lagrange
