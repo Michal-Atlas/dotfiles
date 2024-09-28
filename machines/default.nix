@@ -5,11 +5,10 @@
       let
         makeSys =
           file:
-          self.nixos-flake.lib.mkLinuxSystem {
+          self.nixos-flake.lib.mkLinuxSystem { home-manager = true; } {
             imports = [
               file
               inputs.nix-index-database.nixosModules.nix-index
-              self.nixosModules.home-manager
               {
                 home-manager = {
                   useGlobalPkgs = true;
