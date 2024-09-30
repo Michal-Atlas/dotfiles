@@ -63,9 +63,16 @@
         passwordCommand = "${pkgs.pass}/bin/pass -c ${domain}/${user}";
       };
   };
-  systemd.user.services.protonmail-bridge = {
-    Unit.Description = "Protonmail Bridge";
-    Install.WantedBy = [ "default.target" ];
-    Service.ExecStart = "${pkgs.protonmail-bridge}/bin/protonmail-bridge --noninteractive";
+  systemd.user.services = {
+    protonmail-bridge = {
+      Unit.Description = "Protonmail Bridge";
+      Install.WantedBy = [ "default.target" ];
+      Service.ExecStart = "${pkgs.protonmail-bridge}/bin/protonmail-bridge --noninteractive";
+    };
+    protonmail-gui = {
+      Unit.Description = "Protonmail GUI";
+      Install.WantedBy = [ "default.target" ];
+      Service.ExecStart = "${pkgs.protonmail-desktop}/bin/proton-mail";
+    };
   };
 }
