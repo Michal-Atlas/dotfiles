@@ -1,6 +1,7 @@
 pkgs:
 with pkgs;
 [
+  rclone
   protonmail-desktop
   openssl
   protonvpn-gui
