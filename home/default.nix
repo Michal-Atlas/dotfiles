@@ -30,6 +30,7 @@
     g = "git";
     cat = "bat";
     lah = "ls -lah";
+    nix = "nix -L";
   };
   fonts.fontconfig.enable = true;
   xsession.numlock.enable = true;
