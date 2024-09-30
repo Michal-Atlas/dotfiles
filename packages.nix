@@ -1,6 +1,7 @@
 pkgs:
 with pkgs;
 [
+  protonmail-desktop
   openssl
   protonvpn-gui
   nethogs
