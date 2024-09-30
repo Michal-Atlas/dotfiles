@@ -65,7 +65,7 @@
   };
   systemd.user.services.protonmail-bridge = {
     Unit.Description = "Protonmail Bridge";
-    Install.WantedBy = [ "graphical-session.target" ];
+    Install.WantedBy = [ "default.target" ];
     Service.ExecStart = "${pkgs.protonmail-bridge}/bin/protonmail-bridge --noninteractive";
   };
 }

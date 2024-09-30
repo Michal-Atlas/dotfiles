@@ -61,7 +61,7 @@
   ];
   systemd.user.services.protonvpn = {
     Unit.Description = "The ProtonVPN Tray App";
-    Install.WantedBy = [ "graphical-session.target" ];
+    Install.WantedBy = [ "default.target" ];
     Service.ExecStart = "${pkgs.protonvpn-gui}/bin/protonvpn-app";
   };
 }
