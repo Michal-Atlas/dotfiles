@@ -60,9 +60,18 @@
     "d /home/michal_atlas/Downloads - - - 5d"
     "d /home/michal_atlas/tmp - - - 5d"
   ];
-  systemd.user.services.protonvpn = {
-    Unit.Description = "The ProtonVPN Tray App";
-    Install.WantedBy = [ "default.target" ];
-    Service.ExecStart = "${pkgs.protonvpn-gui}/bin/protonvpn-app";
-  };
+  systemd.user.services =
+    let
+      simpleUnit = description: exec: {
+        Unit.Description = description;
+        Install.WantedBy = [ "default.target" ];
+        Service.ExecStart = exec;
+      };
+    in
+    {
+      protonvpn = simpleUnit "The ProtonVPN Tray App" "${pkgs.protonvpn-gui}/bin/protonvpn-app";
+      thunderbird = simpleUnit "Thunderbird" "${pkgs.thunderbird}/bin/thunderbird";
+      discord = simpleUnit "Discord" "${pkgs.discord}/bin/discord";
+      telegram = simpleUnit "Telegram" "${pkgs.telegram-desktop}/bin/telegram-desktop";
+    };
 }
