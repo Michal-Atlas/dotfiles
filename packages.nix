@@ -175,47 +175,58 @@ with pkgs;
       scipy
     ]
   ))
-  (pkgs.sbcl.withPackages (
-    ps: with ps; [
-      alexandria
-      cffi
-      cl-autowrap
-      cl-conspack
-      cl-css
-      cl-fuse-meta-fs
-      cl-strings
-      cl-who
-      clingon
-      clsql
-      coleslaw
-      collectors
-      dbd-sqlite3
-      eclector
-      generators
-      harmony
-      hunchentoot
-      iterate
-      linedit
-      log4cl
-      lparallel
-      mcclim
-      mcclim-layouts
-      mito
-      optima
-      parenscript
-      parser-combinators
-      s-xml
-      screamer
-      serapeum
-      series
-      str
-      sycamore
-      tailrec
-      tar
-      terminfo
-      trees
-      unix-opts
-      yacc
-    ]
-  ))
 ]
+++ (
+  let
+    packageSet =
+      ps: with ps; [
+        alexandria
+        cffi
+        cl-autowrap
+        cl-conspack
+        cl-css
+        cl-fuse-meta-fs
+        cl-strings
+        cl-who
+        clingon
+        clsql
+        coleslaw
+        collectors
+        dbd-sqlite3
+        eclector
+        generators
+        harmony
+        hunchentoot
+        iterate
+        linedit
+        log4cl
+        lparallel
+        mcclim
+        mcclim-layouts
+        mito
+        optima
+        parenscript
+        parser-combinators
+        s-xml
+        screamer
+        serapeum
+        series
+        str
+        sycamore
+        tailrec
+        tar
+        terminfo
+        trees
+        unix-opts
+        yacc
+      ];
+
+  in
+
+  (builtins.map (lisp: lisp.withPackages packageSet) (with pkgs; [ sbcl ]))
+  ++ [
+    ecl
+    abcl
+  ]
+
+)
