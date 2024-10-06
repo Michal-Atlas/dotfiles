@@ -97,6 +97,7 @@ with pkgs;
   isync
   jetbrains.clion
   jetbrains.idea-ultimate
+  jetbrains.rust-rover
   kobodeluxe
   krita
   lagrange
@@ -227,6 +228,7 @@ with pkgs;
   ++ [
     ecl
     abcl
+    chez
   ]
 
 )
