@@ -29,7 +29,7 @@
       "sec=ntlmv2i"
       "file_mode=0700"
       "dir_mode=0700"
-      "uid=1000"
+      "uid=${builtins.toString config.users.users.michal_atlas.uid}"
       "credentials=${config.age.secrets.fit-mount.path}"
       "x-systemd.automount"
       "noauto"

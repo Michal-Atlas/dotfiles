@@ -5,6 +5,7 @@
     users = {
       michal_atlas = {
         isNormalUser = true;
+        uid = 1000;
         shell = pkgs.zsh;
         description = "Michal Atlas";
         hashedPassword = "$y$j9T$BJgm2ampHrpbLgQhzXNw4.$xppBStrecndUWp4AHAdAt3vZ7.XHmuXvNTL3WgJ0NyC";
@@ -28,6 +29,7 @@
       };
       david = {
         isNormalUser = true;
+        uid = 1002;
         shell = pkgs.bashInteractive;
         openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICdenk+u4qOiOnmZfN/Ro8V00B0C8tQOEFacRLna7qn9 dav@David3En"
