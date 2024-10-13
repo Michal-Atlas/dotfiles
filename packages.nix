@@ -98,6 +98,7 @@ with pkgs;
   jetbrains.clion
   jetbrains.idea-ultimate
   jetbrains.rust-rover
+  jetbrains.pycharm-professional
   kobodeluxe
   krita
   lagrange
@@ -174,6 +175,8 @@ with pkgs;
       pygments
       python
       scipy
+      pytorch
+      transformers
     ]
   ))
 ]
