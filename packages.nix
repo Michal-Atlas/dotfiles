@@ -1,6 +1,7 @@
 pkgs:
 with pkgs;
 [
+  onedrive
   rclone
   protonmail-desktop
   openssl
