@@ -1,0 +1,8 @@
+#!/bin/sh
+set -euox pipefail
+
+LINK_FARM="$HOME/cl/link-farm"
+
+mkdir -p "$LINK_FARM"
+find "$LINK_FARM" -xtype l -delete -print
+find ~/cl -path "$LINK_FARM" -prune -o -name '*.asd' -exec ln -sf {} "$LINK_FARM/" \; -print
