@@ -7,6 +7,9 @@ install-patterns:
 install-flatpaks:
 	<flatpaks xargs flatpak install -yu flathub
 
+services:
+	systemctl enable --now syncthing systemd-tmpfiles-clean.timer systemd-tmpfiles-setup.service
+
 bootstrap-spotify:
 	which spotify || spotify-easyrpm
 
