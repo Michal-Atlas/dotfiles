@@ -1,4 +1,4 @@
-SHNAME="${SHELL#/bin/}"
+SHNAME="$(basename "$SHELL")"
 
 eval "$(starship init "$SHNAME")"
 eval "$(zoxide init --cmd cd "$SHNAME")"
