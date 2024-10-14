@@ -4,6 +4,9 @@ install-pkgs:
 install-patterns:
 	<patterns xargs sudo zypper --non-interactive in -t pattern
 
+install-flatpaks:
+	<flatpaks xargs flatpak install -yu flathub
+
 bootstrap-spotify:
 	which spotify || spotify-easyrpm
 
