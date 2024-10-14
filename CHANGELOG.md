@@ -1,3 +1,38 @@
+## 0.15.0 (2024-10-14)
+
+### Feat
+
+- **pkgs**: Add Onedrive
+- **pkgs**: Add python features
+- **flake**: Update
+- **users**: Set UIDs explicitly so they can be referenced
+- **pkgs**: Add chez and RustRover
+- **flake**: Update
+- **pkgs**: Add ecl and abcl
+- **services**: Try autostarting all often used apps
+- **pkgs**: Add rclone
+- **nix**: Verbose logs
+- **protonmail**: Add service for GUI
+- **pkgs**: Add protonmail GUI
+- **flake**: Update
+- **pkgs**: Add IDEA
+- **flake**: Update
+- **pkgs**: Add packages
+- **flake**: Update
+- **vpn**: Swapping wg-quick for app
+- **dns**: Add CZ.NIC IPv6
+- **dns**: Enable DNSSec
+- **ipfs**: Really remove
+
+### Fix
+
+- **secrets**: Update CTU
+- **nixos-flake**: Update fixup
+- **services**: Remove random startup stuff
+- **protonmail**: Use valid target for bridge
+- **flake**: nixos-flake added home-manager option
+- **mail**: Install.After is invalid?
+
 ## 0.14.0 (2024-09-09)
 
 ### Feat
