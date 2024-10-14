@@ -1,7 +1,12 @@
-export EDITOR="emacsclient -c"
-export ALTERNATE_EDITOR=""
-export PATH="$PATH:$HOME/.config/emacs/bin"
+SHNAME="${SHELL#/bin/}"
 
-eval "$(starship init bash)"
+eval "$(starship init "$SHNAME")"
+eval "$(zoxide init "$SHNAME")"
 
 alias zy=zypper
+alias e=$EDITOR
+
+if [ ! -z ZSH_VERSION ]; then
+   source ~/.local/share/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+   source ~/.local/share/zsh-plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+fi;
