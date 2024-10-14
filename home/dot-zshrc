@@ -1,1 +1,12 @@
-dot-bashrc
+source /etc/zshrc
+
+eval "$(starship init zsh)"
+eval "$(zoxide init --cmd cd zsh)"
+eval "$(direnv hook zsh)"
+
+alias zy=zypper
+alias ls="ls $LS_OPTIONS "
+alias e=$EDITOR
+
+source ~/.local/share/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+source ~/.local/share/zsh-plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
