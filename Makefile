@@ -10,9 +10,6 @@ install-flatpaks:
 	flatpak remote-add -u --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 	<flatpaks xargs flatpak install -yu flathub
 
-services:
-	systemctl enable --user --now syncthing systemd-tmpfiles-clean.timer systemd-tmpfiles-setup.service
-
 bootstrap-proton:
 	which proton-mail || sudo zypper in 'https://proton.me/download/mail/linux/1.2.4/ProtonMail-desktop-beta.rpm'
 
