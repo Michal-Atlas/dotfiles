@@ -17,9 +17,11 @@ racket
 ripgrep
 sbcl
 shfmt
-spotify-easyrpm
 starship
 steam
 stow
 symbols-only-nerd-fonts
 telegram-desktop
+wireguard-tools
+xpadneo
+zsh
