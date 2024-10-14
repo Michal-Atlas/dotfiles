@@ -1,0 +1,7 @@
+export EDITOR="emacsclient -c"
+export ALTERNATE_EDITOR=""
+export PATH="$PATH:$HOME/.config/emacs/bin"
+
+eval "$(starship init bash)"
+
+alias zy=zypper
