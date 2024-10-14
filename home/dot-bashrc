@@ -2,6 +2,7 @@ SHNAME="${SHELL#/bin/}"
 
 eval "$(starship init "$SHNAME")"
 eval "$(zoxide init --cmd cd "$SHNAME")"
+eval "$(direnv hook "$SHNAME")"
 
 alias zy=zypper
 alias e=$EDITOR
