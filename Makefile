@@ -1,3 +1,5 @@
+install: install-pkgs install-patterns install-flatpaks
+
 install-pkgs:
 	<packages xargs sudo zypper --non-interactive in
 
