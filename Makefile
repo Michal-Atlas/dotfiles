@@ -13,9 +13,6 @@ install-flatpaks:
 services:
 	systemctl enable --now syncthing systemd-tmpfiles-clean.timer systemd-tmpfiles-setup.service
 
-bootstrap-spotify:
-	which spotify || spotify-easyrpm
-
 bootstrap-proton:
 	which proton-mail || sudo zypper in 'https://proton.me/download/mail/linux/1.2.4/ProtonMail-desktop-beta.rpm'
 
