@@ -5,6 +5,7 @@ install-patterns:
 	<patterns xargs sudo zypper --non-interactive in -t pattern
 
 install-flatpaks:
+	flatpak remote-add -u --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 	<flatpaks xargs flatpak install -yu flathub
 
 services:
