@@ -1,0 +1,80 @@
+[org/gnome/Console]
+custom-font='Iosevka Nerd Font Mono 10'
+use-system-font=false
+
+[org/gnome/desktop/background]
+picture-options='zoom'
+picture-uri='/nix/store/ml8zs2wi5lm0jkg39x5gdlqw8zja7g9j-EaOkegwX0Aww2WW.jpg'
+picture-uri-dark='/nix/store/bv0gq32cgzbjg6cwr8sm60frapgqirvv-techy-gnu-tux-bivouac-large.jpg'
+
+[org/gnome/desktop/datetime]
+automatic-timezone=true
+
+[org/gnome/desktop/input-sources]
+sources=@a(ss) [@(ss) ('xkb','us'),@(ss) ('xkb','cz+ucw')]
+xkb-options=@as ['grp:caps_switch','lv3:ralt_switch','compose:rctrl-altgr']
+
+[org/gnome/desktop/interface]
+show-battery-percentage=true
+
+[org/gnome/desktop/peripherals/touchpad]
+tap-to-click=true
+
+[org/gnome/desktop/session]
+idle-delay=600
+
+[org/gnome/desktop/wm/preferences]
+focus-mode='sloppy'
+
+[org/gnome/mutter]
+dynamic-workspaces=true
+edge-tiling=true
+workspaces-only-on-primary=true
+
+[org/gnome/settings-daemon/plugins/color]
+night-light-enabled=true
+
+[org/gnome/settings-daemon/plugins/media-keys]
+custom-keybindings=@as ['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/term/','/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/emacs/','/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/browser/','/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/files/','/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/recon/']
+
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/browser]
+binding='<Super>f'
+command='nyxt'
+name='BROWSER'
+
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/emacs]
+binding='<Super>Return'
+command='emacsclient -c'
+name='EMACS'
+
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/term]
+binding='<Super>t'
+command='kgx'
+name='TERM'
+
+[org/gnome/settings-daemon/plugins/power]
+sleep-inactive-ac-type='nothing'
+
+[org/gnome/shell]
+disable-user-extensions=false
+enabled-extensions=@as ['drive-menu@gnome-shell-extensions.gcampax.github.com','system-monitor@gnome-shell-extensions.gcampax.github.com','pano@elhan.io','mprisLabel@moon-0xff.github.com','appindicatorsupport@rgcjonas.gmail.com']
+favorite-apps=@as ['firefox.desktop','spotify.desktop','discord.desktop','org.keepassxc.KeePassXC.desktop','fi.skyjake.Lagrange.desktop','zotero.desktop','org.gnome.Nautilus.desktop','codium.desktop']
+
+[org/gnome/shell/app-switcher]
+current-workspace-only=true
+
+[org/gnome/shell/extensions/mpris-label]
+auto-switch-to-most-recent=true
+
+[org/gnome/shell/extensions/nightthemeswitcher/time]
+manual-schedule=false
+
+[org/gnome/shell/extensions/pano]
+play-audio-on-copy=false
+send-notification-on-copy=false
+
+[org/gnome/system/location]
+enabled=true
+
+[org/gtk/settings/file-chooser]
+clock-format='24h'

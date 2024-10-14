@@ -3,3 +3,6 @@ install-pkgs:
 
 stow-home:
 	stow --target=${HOME} --dotfiles home
+
+dconf:
+	dconf load < dconf
