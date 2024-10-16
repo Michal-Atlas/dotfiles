@@ -10,3 +10,4 @@ alias e=$EDITOR
 
 source ~/.local/share/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 source ~/.local/share/zsh-plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+source ~/.local/share/zsh-plugins/zsh-fzf-history-search/zsh-fzf-history-search.plugin.zsh
