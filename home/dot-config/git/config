@@ -1,3 +1,5 @@
 [user]
 	name = Michal Atlas
 	email = me+git@michal-atlas.cz
+[pull]
+	rebase = true
