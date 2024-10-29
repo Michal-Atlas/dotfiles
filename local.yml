@@ -65,6 +65,7 @@
         disable_recommends: false
         name:
           - ani-cli
+          - ansible
           - avahi-utils
           - cabal-install
           - clang
@@ -80,16 +81,17 @@
           - ghc
           - gnome-font-viewer
           - graphviz
+          - maxima
           - mystic
           - npm
           - onedrive
           - osc
           - podman
           - proton-vpn
-          - proton-vpn
+          - rpmdevtools
+          - rpm-build
           - qbittorrent
           - racket
-          - ripgrep
           - ripgrep
           - sbcl
           - ShellCheck
@@ -100,7 +102,7 @@
           - stow
           - symbols-only-nerd-fonts
           - syncthing
-          # - telegram-desktop
+          - telegram-desktop
           - texlive
           - texlive-collection-basic
           - texlive-collection-langczechslovak
@@ -108,7 +110,9 @@
           - texlive-collection-latexrecommended
           - texlive-optex
           - texlive-optex
+          - wesnoth
           - wireguard-tools
+          - xonotic
           - xpadneo
           - yggdrasil
           - yt-dlp
@@ -175,7 +179,6 @@
       flatpak:
         name:
           - com.spotify.Client
-          - org.telegram.desktop
     - name: Enable system units
       ansible.builtin.systemd_service:
         name: "{{ item }}"
