@@ -1,0 +1,15 @@
+[Unit]
+Description=Jellyfin container
+
+[Service]
+Restart=always
+
+[Container]
+Image=jellyfin/jellyfin:latest
+Volume=/srv/jellyfin/config:/config
+Volume=/srv/jellyfin/cache:/cache
+Volume=/RouterDisk:/media
+Network=host
+
+[Install]
+WantedBy=multi-user.target

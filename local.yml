@@ -1,0 +1,185 @@
+- hosts: localhost
+  become: true
+  tasks:
+    - name: Add Zypper repos
+      community.general.zypper_repository:
+        auto_import_keys: true
+        priority: 103
+        name: "{{ item.name }}"
+        repo: "{{ item.repo }}"
+      with_items:
+        - name: zerotier
+          repo: https://download.zerotier.com/redhat/el/7
+        - name: ani-cli
+          repo: https://download.copr.fedorainfracloud.org/results/derisis13/ani-cli/opensuse-tumbleweed-x86_64/
+        - name: yggdrasil
+          repo: https://download.copr.fedorainfracloud.org/results/neilalexander/yggdrasil-go/opensuse-tumbleweed-x86_64/
+        - name: jdupak
+          repo: https://download.opensuse.org/repositories/home:/jdupak/openSUSE_Tumbleweed/
+        - name: MaxxedSUSE
+          repo: https://download.opensuse.org/repositories/home:/MaxxedSUSE/openSUSE_Tumbleweed/
+        - name: michal_atlas
+          repo: https://download.opensuse.org/repositories/home:/michal_atlas/openSUSE_Tumbleweed/
+        - name: tecosaur
+          repo: https://download.opensuse.org/repositories/home:/tecosaur/openSUSE_Tumbleweed/
+        - name: multimedia
+          repo: https://download.opensuse.org/repositories/multimedia:/apps/openSUSE_Tumbleweed/
+    - name: Install protonmail
+      command: zypper in https://proton.me/download/mail/linux/1.2.4/ProtonMail-desktop-beta.rpm
+      args:
+        creates: /bin/proton-mail
+
+    - name: Install patterns
+      zypper:
+        type: pattern
+        disable_recommends: false
+        name:
+          - devel_basis
+          - devel_C_C++
+          - devel_java
+          - devel_mono
+          - devel_python3
+          - games
+          - gnome
+          - network_admin
+          - kvm_server
+          - yast2_basis
+
+    - name: Install packages
+      zypper:
+        disable_recommends: false
+        name:
+          - ani-cli
+          - avahi-utils
+          - cabal-install
+          - clang
+          - clang-tools
+          - direnv
+          - discord
+          - emacs
+          - fd
+          - fira-code-fonts
+          - fzf
+          - gdouros-symbola-fonts
+          - ghc
+          - graphviz
+          - mystic
+          - npm
+          - onedrive
+          - osc
+          - podman
+          - proton-vpn
+          - proton-vpn
+          - qbittorrent
+          - racket
+          - ripgrep
+          - ripgrep
+          - sbcl
+          - ShellCheck
+          - shfmt
+          - shfmt
+          - starship
+          - steam
+          - stow
+          - symbols-only-nerd-fonts
+          - syncthing
+          # - telegram-desktop
+          - texlive
+          - texlive-collection-basic
+          - texlive-collection-langczechslovak
+          - texlive-collection-latex
+          - texlive-collection-latexrecommended
+          - texlive-optex
+          - texlive-optex
+          - wireguard-tools
+          - xpadneo
+          - yggdrasil
+          - yt-dlp
+          - zerotier-one
+          - zotero
+          - zsh
+    - name: copy jellyfin
+      copy:
+        src: jellyfin.container
+        dest: /etc/containers/systemd/jellyfin.container
+        owner: root
+        group: root
+        mode: 0440
+
+    - name: Join ZeroTier network
+      command: zerotier-cli join {{ zerotier_network_id }}
+      args:
+        creates: /var/lib/zerotier-one/networks.d/{{ zerotier_network_id }}.conf
+      vars:
+        zerotier_network_id: c7c8172af19f63d7
+
+    - name: Set sudoers
+      copy: src=sudoers dest=/etc/sudoers.d/conf owner=root group=root mode=0440
+
+    - name: Stow dotfiles
+      become: true
+      become_user: michal_atlas
+      command: stow --dir={{ home }}/cl/dotfiles --target={{ home }} --dotfiles home
+      vars:
+        home: /home/michal_atlas
+
+    - name: Get CTU FIT OpenVPN config
+      get_url:
+        dest: /usr/share/fit-vpn.ovpn
+        owner: root
+        group: root
+        mode: 0440
+        url: https://help.fit.cvut.cz/vpn/media/fit-vpn.ovpn
+
+    - name: Get Quicklisp installer
+      get_url:
+        dest: /usr/share/quicklisp.lisp
+        owner: root
+        group: root
+        mode: 0440
+        url: https://beta.quicklisp.org/quicklisp.lisp
+    - name: Install quicklisp
+      become: true
+      become_user: michal_atlas
+      command: sbcl --load /usr/share/quicklisp.lisp --eval '(quicklisp-quickstart:install)' --quit
+      args:
+        creates: /home/michal_atlas/quicklisp/setup.lisp
+    - name: Clone Emacs DOOM
+      become: true
+      become_user: michal_atlas
+      git:
+        depth: 1
+        repo: https://github.com/doomemacs/doomemacs
+        dest: /home/michal_atlas/.config/emacs
+
+    - name: Flatpak remotes
+      flatpak_remote:
+        name: flathub
+        flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    - name: Flatpak installs
+      flatpak:
+        name:
+          - com.spotify.Client
+          - org.telegram.desktop
+    - name: Enable system units
+      ansible.builtin.systemd_service:
+        name: "{{ item }}"
+        daemon_reload: true
+        enabled: true
+      with_items:
+        - jellyfin
+        - cron
+        - zerotier-one
+    - name: Enable user units
+      become: true
+      become_user: michal_atlas
+      ansible.builtin.systemd_service:
+        scope: user
+        name: "{{ item }}"
+        daemon_reload: true
+        enabled: true
+      with_items:
+        - systemd-tmpfiles-setup
+        - systemd-tmpfiles-clean.timer
+        - emacs
+        - syncthing
