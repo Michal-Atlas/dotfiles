@@ -12,10 +12,10 @@
     - name: Hosts
       copy:
         src: hosts
-        dest: hosts
+        dest: /etc/hosts
         owner: root
         group: root
-        mode: 0440
+        mode: 0444
     - name: Add Zypper repos
       community.general.zypper_repository:
         auto_import_keys: true
@@ -78,6 +78,7 @@
           - fzf
           - gdouros-symbola-fonts
           - ghc
+          - gnome-font-viewer
           - graphviz
           - mystic
           - npm
@@ -120,7 +121,7 @@
         dest: /etc/containers/systemd/jellyfin.container
         owner: root
         group: root
-        mode: 0440
+        mode: 0444
 
     - name: Join ZeroTier network
       command: zerotier-cli join {{ zerotier_network_id }}
@@ -142,7 +143,7 @@
         dest: /usr/share/fit-vpn.ovpn
         owner: root
         group: root
-        mode: 0440
+        mode: 0444
         url: https://help.fit.cvut.cz/vpn/media/fit-vpn.ovpn
 
     - name: Get Quicklisp installer
@@ -150,7 +151,7 @@
         dest: /usr/share/quicklisp.lisp
         owner: root
         group: root
-        mode: 0440
+        mode: 0444
         url: https://beta.quicklisp.org/quicklisp.lisp
     - name: Install quicklisp
       become: true
@@ -188,7 +189,7 @@
         url: https://git.sr.ht/~michal_atlas/www/blob/992dbc2f5dc9b1ca5324ec644059c11537e7462b/assets/mlxan/carcass-mountain/portraits/weeping-priest.jpeg
         owner: michal_atlas
         group: michal_atlas
-        mode: 0440
+        mode: 0444
         dest: "{{ home }}/.face"
     - name: Enable user units
       become: true
