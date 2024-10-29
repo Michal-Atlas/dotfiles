@@ -4,9 +4,9 @@ eval "$(starship init zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(direnv hook zsh)"
 
-alias zy=zypper
+alias zy="sudo zypper"
 alias ls="ls $LS_OPTIONS "
-alias e=$EDITOR
+alias e="$EDITOR"
 
 for plugin in ~/.local/share/zsh-plugins/*/*.plugin.zsh; do
 	source "$plugin"
