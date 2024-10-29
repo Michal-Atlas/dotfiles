@@ -1,6 +1,14 @@
-- hosts: localhost
+- vars:
+    user: michal_atlas
+    home: "/home/{{ user }}"
+  hosts: localhost
   become: true
   tasks:
+    - name: adding existing user '{{ user }}' to group sudo
+      user:
+        name: '{{ user }}'
+        groups: wheel
+        append: yes
     - name: Add Zypper repos
       community.general.zypper_repository:
         auto_import_keys: true
@@ -54,6 +62,7 @@
           - cabal-install
           - clang
           - clang-tools
+          - cron
           - direnv
           - discord
           - emacs
@@ -118,10 +127,8 @@
 
     - name: Stow dotfiles
       become: true
-      become_user: michal_atlas
+      become_user: "{{ user }}"
       command: stow --dir={{ home }}/cl/dotfiles --target={{ home }} --dotfiles home
-      vars:
-        home: /home/michal_atlas
 
     - name: Get CTU FIT OpenVPN config
       get_url:
@@ -140,17 +147,17 @@
         url: https://beta.quicklisp.org/quicklisp.lisp
     - name: Install quicklisp
       become: true
-      become_user: michal_atlas
+      become_user: "{{ user }}"
       command: sbcl --load /usr/share/quicklisp.lisp --eval '(quicklisp-quickstart:install)' --quit
       args:
-        creates: /home/michal_atlas/quicklisp/setup.lisp
+        creates: "{{ home }}/quicklisp/setup.lisp"
     - name: Clone Emacs DOOM
       become: true
-      become_user: michal_atlas
+      become_user: "{{ user }}"
       git:
         depth: 1
         repo: https://github.com/doomemacs/doomemacs
-        dest: /home/michal_atlas/.config/emacs
+        dest: "{{ home }}/.config/emacs"
 
     - name: Flatpak remotes
       flatpak_remote:
@@ -171,7 +178,7 @@
         - zerotier-one
     - name: Enable user units
       become: true
-      become_user: michal_atlas
+      become_user: "{{ user }}"
       ansible.builtin.systemd_service:
         scope: user
         name: "{{ item }}"
