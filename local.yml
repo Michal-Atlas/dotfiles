@@ -167,7 +167,6 @@
         daemon_reload: true
         enabled: true
       with_items:
-        - jellyfin
         - cron
         - zerotier-one
     - name: Enable user units
