@@ -9,6 +9,13 @@
         name: '{{ user }}'
         groups: wheel
         append: yes
+    - name: Hosts
+      copy:
+        src: hosts
+        dest: hosts
+        owner: root
+        group: root
+        mode: 0440
     - name: Add Zypper repos
       community.general.zypper_repository:
         auto_import_keys: true
