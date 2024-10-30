@@ -166,6 +166,15 @@
         path: /ctu
         src: //drive.in.fit.cvut.cz/home/zacekmi2
         state: present
+    - name: Add home NAS Mount
+      mount:
+        backup: true
+        boot: false
+        fstype: cifs
+        opts: defaults,x-systemd.automount,x-systemd.idle-timeout=120s,username=guest,password="",vers=1.0
+        path: /RouterDisk
+        src: //192.168.0.1/sda1
+        state: present
 
     - name: Get Quicklisp installer
       get_url:
