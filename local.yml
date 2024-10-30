@@ -149,6 +149,14 @@
         group: root
         mode: 0444
         url: https://help.fit.cvut.cz/vpn/media/fit-vpn.ovpn
+    - name: Import CTU FIT OpenVPN config into NetworkManager
+      command:
+        nmcli connection import type openvpn file fit-vpn.ovpn
+        nmcli connection modify fit-vpn connection.permissions user:{{ user }}
+        nmcli connection modify fit-vpn +ipv4.never-default true +ipv6.never-default true
+        nmcli connection modify fit-vpn +vpn.data username=zacekmi2
+      args:
+        creates: /etc/NetworkManager/system-connections/fit-vpn.nmconnection
 
     - name: Get Quicklisp installer
       get_url:
