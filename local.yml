@@ -212,6 +212,7 @@
       with_items:
         - cron
         - zerotier-one
+        - RouterDisk.automount
     - name: .face
       get_url:
         url: https://git.sr.ht/~michal_atlas/www/blob/992dbc2f5dc9b1ca5324ec644059c11537e7462b/assets/mlxan/carcass-mountain/portraits/weeping-priest.jpeg
