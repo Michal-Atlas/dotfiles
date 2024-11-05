@@ -8,6 +8,10 @@ alias zy="sudo zypper"
 alias ls="ls $LS_OPTIONS "
 alias e="$EDITOR"
 
+function cheat() {
+	curl "cheat.sh/$@"
+}
+
 for plugin in ~/.local/share/zsh-plugins/*/*.plugin.zsh; do
 	source "$plugin"
 done;
