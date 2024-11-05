@@ -81,6 +81,7 @@
           - ghc
           - gnome-font-viewer
           - graphviz
+          - kubo
           - libvirt-daemon
           - maxima
           - mystic
@@ -195,7 +196,16 @@
         depth: 1
         repo: https://github.com/doomemacs/doomemacs
         dest: "{{ home }}/.config/emacs"
-
+    - name: IPFS Init
+      become: true
+      become_user: "{{ user }}"
+      command: ipfs init
+      args:
+        creates: "{{ home }}/.ipfs"
+    - name: IPFS Set low power
+      become: true
+      become_user: "{{ user }}"
+      command: ipfs config profile apply lowpower
     - name: Flatpak remotes
       flatpak_remote:
         name: flathub
@@ -234,3 +244,4 @@
         - systemd-tmpfiles-clean.timer
         - emacs
         - syncthing
+        - ipfs
