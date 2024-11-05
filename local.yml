@@ -205,7 +205,8 @@
     - name: IPFS Set low power
       become: true
       become_user: "{{ user }}"
-      command: ipfs config profile apply lowpower
+      shell: ipfs config profile apply lowpower;
+             ipfs config profile apply announce-off
     - name: Flatpak remotes
       flatpak_remote:
         name: flathub
