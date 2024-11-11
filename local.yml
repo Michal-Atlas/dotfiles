@@ -231,6 +231,17 @@
       flatpak:
         name:
           - com.spotify.Client
+    - name: "Postgres: disable authentication for local connections"
+      tags: db
+      community.postgresql.postgresql_pg_hba:
+        backup: true
+        address: "{{ item }}"
+        contype: host
+        dest: /var/lib/pgsql/data/pg_hba.conf
+        method: trust
+      with_items:
+        - "::1"
+        - "127.0.0.1"
     - name: Enable system units
       ansible.builtin.systemd_service:
         name: "{{ item }}"
@@ -239,8 +250,16 @@
       with_items:
         - cron
         - zerotier-one
-        - RouterDisk.automount
         - libvirtd
+        - postgresql
+    - name: "Postgres: create my role"
+      tags: db
+      community.postgresql.postgresql_user:
+        name: "{{ user }}"
+        password: ""
+        role_attr_flags: "SUPERUSER"
+      become: true
+      become_user: postgres
     - name: .face
       get_url:
         url: https://git.sr.ht/~michal_atlas/www/blob/992dbc2f5dc9b1ca5324ec644059c11537e7462b/assets/mlxan/carcass-mountain/portraits/weeping-priest.jpeg
