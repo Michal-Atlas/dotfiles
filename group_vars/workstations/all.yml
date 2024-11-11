@@ -1,0 +1,3 @@
+nasAutomount: true
+user: michal_atlas
+home: "/home/{{ user }}"
