@@ -39,12 +39,16 @@
           repo: https://download.opensuse.org/repositories/home:/tecosaur/openSUSE_Tumbleweed/
         - name: multimedia
           repo: https://download.opensuse.org/repositories/multimedia:/apps/openSUSE_Tumbleweed/
+        - name: games
+          repo: https://download.opensuse.org/repositories/games/openSUSE_Tumbleweed/
     - name: Install protonmail
       command: zypper in https://proton.me/download/mail/linux/1.2.4/ProtonMail-desktop-beta.rpm
       args:
         creates: /bin/proton-mail
 
     - name: Install patterns
+      tags:
+        - pkgs
       zypper:
         type: pattern
         disable_recommends: false
@@ -61,6 +65,8 @@
           - yast2_basis
 
     - name: Install packages
+      tags:
+        - pkgs
       zypper:
         disable_recommends: false
         name:
@@ -73,6 +79,7 @@
           - cron
           - direnv
           - discord
+          - dust
           - emacs
           - fd
           - fira-code-fonts
@@ -80,23 +87,33 @@
           - gdouros-symbola-fonts
           - ghc
           - gnome-font-viewer
+          - go
           - graphviz
+          - krita
           - kubo
           - libvirt-daemon
           - maxima
+          - maven
+          - mpv
           - mystic
           - npm
           - onedrive
           - osc
+          - pagekite
           - podman
+          - postgresql-server
+          - python312-fanficfare
+          - python312-psycopg2
           - rpmdevtools
           - rpm-build
+          - rsync
+          - rustup
           - qbittorrent
           - racket
+          - rclone
           - ripgrep
           - sbcl
           - ShellCheck
-          - shfmt
           - shfmt
           - starship
           - steam
@@ -111,6 +128,8 @@
           - texlive-collection-latexrecommended
           - texlive-optex
           - texlive-optex
+          - vcmi
+          - vlc
           - wesnoth
           - wireguard-tools
           - xonotic
