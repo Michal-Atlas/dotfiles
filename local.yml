@@ -168,6 +168,7 @@
         group: root
         mode: 0444
         url: https://help.fit.cvut.cz/vpn/media/fit-vpn.ovpn
+        checksum: sha256:8d784a956ac10c81bcdf3e84f440c1a7802e80627dabe9a1fbec75278a190459
     - name: Import CTU FIT OpenVPN config into NetworkManager
       shell:
         nmcli connection import type openvpn file /usr/share/fit-vpn.ovpn;
@@ -270,6 +271,7 @@
         group: michal_atlas
         mode: 0444
         dest: "{{ home }}/.face"
+        checksum: sha256:d4c9c7b18289a48fe1f3325ad3532d3e381ffd432d48b650ed859cb258f55f17
     - name: Enable user units
       become: true
       become_user: "{{ user }}"
