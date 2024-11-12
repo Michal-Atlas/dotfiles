@@ -1,4 +1,4 @@
 source /etc/zprofile
 
 export EDITOR="emacsclient -c"
-export PATH="$PATH:$HOME/.config/emacs/bin"
+export PATH="$PATH:$HOME/.config/emacs/bin:$HOME/.cargo/bin:$HOME/go/bin"
