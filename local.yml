@@ -70,6 +70,7 @@
           - ani-cli
           - ansible
           - avahi-utils
+          - btrbk
           - cabal-install
           - clang
           - clang-tools
@@ -85,6 +86,7 @@
           - ghc
           - gnome-font-viewer
           - go
+          - gparted
           - graphviz
           - krita
           - kubo
@@ -248,6 +250,7 @@
         daemon_reload: true
         enabled: true
       with_items:
+        - btrbk.timer
         - cron
         - zerotier-one
         - libvirtd
