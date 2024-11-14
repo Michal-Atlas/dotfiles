@@ -75,6 +75,7 @@
           - ani-cli
           - ansible
           - avahi-utils
+          - bat
           - btrbk
           - cabal-install
           - clang

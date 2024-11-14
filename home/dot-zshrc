@@ -7,6 +7,7 @@ eval "$(direnv hook zsh)"
 alias zy="sudo zypper"
 alias ls="ls $LS_OPTIONS "
 alias e="$EDITOR"
+alias cat="bat"
 
 function cheat() {
 	curl "cheat.sh/$@"
