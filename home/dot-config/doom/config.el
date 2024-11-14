@@ -74,3 +74,6 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+(setq lsp-ui-doc-position 'top
+      lsp-ui-doc-delay 0.2
+      lsp-ui-doc-show-with-cursor t)
