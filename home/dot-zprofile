@@ -4,3 +4,5 @@ export EDITOR="emacsclient -c"
 export PATH="$PATH:$HOME/.config/emacs/bin:$HOME/.cargo/bin:$HOME/go/bin"
 export BAT_STYLE='header,header-filesize,rule,numbers'
 
+[ -f "/home/michal_atlas/.ghcup/env" ] && . "/home/michal_atlas/.ghcup/env" # ghcup-env
+
