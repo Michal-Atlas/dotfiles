@@ -6,10 +6,11 @@
         name: '{{ user }}'
         groups: wheel
         append: yes
-    - name: Hosts
+    - name: Copy etc
+      tags: etc
       copy:
-        src: hosts
-        dest: /etc/hosts
+        src: etc/
+        dest: /etc/
         owner: root
         group: root
         mode: 0444
@@ -138,13 +139,6 @@
           - zerotier-one
           - zotero
           - zsh
-    - name: copy jellyfin
-      copy:
-        src: jellyfin.container
-        dest: /etc/containers/systemd/jellyfin.container
-        owner: root
-        group: root
-        mode: 0444
 
     - name: Join ZeroTier network
       command: zerotier-cli join {{ zerotier_network_id }}
@@ -152,9 +146,6 @@
         creates: /var/lib/zerotier-one/networks.d/{{ zerotier_network_id }}.conf
       vars:
         zerotier_network_id: c7c8172af19f63d7
-
-    - name: Set sudoers
-      copy: src=sudoers dest=/etc/sudoers.d/conf owner=root group=root mode=0440
 
     - name: Stow dotfiles
       tags: stow
