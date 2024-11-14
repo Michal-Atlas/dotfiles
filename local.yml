@@ -221,7 +221,7 @@
         url: https://get-ghcup.haskell.org
         dest: /usr/bin/bootstrap-ghcup
         checksum: sha256:f9beb3ccb45cf209d142c44aa748a190a82b5b3cb7ace177888f83675b9babcd
-        mode: 555
+        mode: 0555
     - name: IPFS Init
       become: true
       become_user: "{{ user }}"
