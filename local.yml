@@ -99,6 +99,7 @@
           - libvirt-daemon
           - maxima
           - maven
+          - meld
           - mpv
           - mystic
           - npm
