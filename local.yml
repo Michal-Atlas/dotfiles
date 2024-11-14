@@ -190,7 +190,7 @@
         backup: true
         boot: false
         fstype: cifs
-        opts: "defaults{{ ',x-systemd.automount,x-systemd.idle-timeout=120s' if nasAutomount else '' }},username=guest,password=\"\",vers=1.0"
+        opts: "defaults,x-systemd.automount{{ '' if nasDisableTimeout else ',x-systemd.idle-timeout=120s' }},username=guest,password=\"\",vers=1.0"
         path: /RouterDisk
         src: //192.168.0.1/sda1
         state: present
