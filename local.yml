@@ -157,9 +157,12 @@
       copy: src=sudoers dest=/etc/sudoers.d/conf owner=root group=root mode=0440
 
     - name: Stow dotfiles
+      tags: stow
       become: true
       become_user: "{{ user }}"
-      command: stow --dir={{ home }}/cl/dotfiles --target={{ home }} --dotfiles home
+      shell: stow --verbose=2 --dir={{ home }}/cl/dotfiles --target={{ home }} --dotfiles home
+      register: result 
+      changed_when: 'result.stderr is search("LINK: ")'
 
     - name: Get CTU FIT OpenVPN config
       get_url:
