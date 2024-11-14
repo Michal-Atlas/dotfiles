@@ -181,7 +181,7 @@
       mount:
         backup: true
         fstype: cifs
-        opts: defaults,x-systemd.automount,x-systemd.idle-timeout=10s,username=zacekmi2,sec=ntlmv2i,file_mode=0700,dir_mode=0700,uid=1000
+        opts: defaults,x-systemd.automount,x-systemd.idle-timeout=10s,credentials=/root/ctu.mount,username=zacekmi2,sec=ntlmv2i,file_mode=0700,dir_mode=0700,uid=1000
         path: /ctu
         src: //drive.in.fit.cvut.cz/home/zacekmi2
         state: present
