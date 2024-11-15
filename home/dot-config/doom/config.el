@@ -78,4 +78,5 @@
       lsp-ui-doc-delay 0.2
       lsp-ui-doc-show-with-cursor t
       lsp-ui-doc-max-width 75
-      lsp-ui-doc-max-height 16)
+      lsp-ui-doc-max-height 16
+      lsp-ui-doc-position 'top)
