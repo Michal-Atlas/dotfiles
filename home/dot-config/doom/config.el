@@ -74,9 +74,12 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
-(setq lsp-ui-doc-position 'top
-      lsp-ui-doc-delay 0.2
-      lsp-ui-doc-show-with-cursor t
-      lsp-ui-doc-max-width 75
-      lsp-ui-doc-max-height 16
-      lsp-ui-doc-position 'top)
+(after! lsp-ui
+  (setq
+   lsp-ui-doc-enable t
+   lsp-ui-doc-show-with-cursor t
+   lsp-ui-doc-position 'top
+   lsp-ui-doc-delay 0.2
+   lsp-ui-doc-max-width 75
+   lsp-ui-doc-max-height 16
+   lsp-ui-doc-text-scale-level 2))
