@@ -2,12 +2,12 @@
   description = "Atlas' NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOs/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOs/nixpkgs/nixos-24.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     agenix.url = "github:ryantm/agenix";
-    emacs-overlay.url = "github:nix-community/emacs-overlay/cd1f4c419ab3f3dd981de94fd1dda5a450dbcadf";
+    emacs-overlay.url = "github:nix-community/emacs-overlay/2118e2829ef4b6dd969684cf9a4e0e771c943761";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";

@@ -290,8 +290,6 @@
 (use-package dashboard)
 (use-package debbugs)
 (use-package dmenu)
-(use-package docker)
-(use-package dockerfile-mode)
 (use-package ediprolog)
 (use-package elpher)
 (use-package ement)

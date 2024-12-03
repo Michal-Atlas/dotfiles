@@ -77,23 +77,6 @@
     # https://nixos.wiki/wiki/AMD_GPU
     tmpfiles.rules = [ "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}" ];
   };
-  hardware.opengl = {
-    driSupport = true;
-    # For 32 bit applications
-    driSupport32Bit = true;
-    extraPackages = with pkgs; [
-      rocm-opencl-icd
-      rocm-opencl-runtime
-      amdvlk
-    ];
-    # For 32 bit applications
-    # Only available on unstable
-    extraPackages32 = with pkgs; [
-      driversi686Linux.amdvlk
-      libva
-    ];
-    setLdLibraryPath = true;
-  };
   home-manager.users.michal_atlas = {
     services = {
       spotifyd = {
