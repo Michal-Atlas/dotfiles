@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+_: {
   programs.git = {
     enable = true;
     userName = "Michal Atlas";
@@ -22,13 +21,5 @@
       };
     };
     delta.enable = true;
-  };
-  services.git-sync = {
-    enable = true;
-    repositories."password-store" = {
-      interval = 60 * 60 * 4;
-      path = config.programs.password-store.settings.PASSWORD_STORE_DIR;
-      uri = "git@git.sr.ht:~michal_atlas/pass";
-    };
   };
 }
