@@ -12,6 +12,10 @@
   hardware = {
     enableAllFirmware = true;
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    amdgpu = {
+      initrd.enable = true;
+      opencl.enable = true;
+    };
   };
 
   services = {
