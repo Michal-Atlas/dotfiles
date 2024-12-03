@@ -1,19 +1,9 @@
-{ pkgs, lib, ... }:
+{ lib, ... }:
 let
   inherit (lib.hm.gvariant) mkTuple mkUint32;
 in
 {
   dconf.settings = {
-    "org/gnome/shell" = {
-      disable-user-extensions = false;
-      enabled-extensions = [
-        "drive-menu@gnome-shell-extensions.gcampax.github.com"
-        "system-monitor@gnome-shell-extensions.gcampax.github.com"
-        pkgs.gnomeExtensions.pano.extensionUuid
-        pkgs.gnomeExtensions.mpris-label.extensionUuid
-        pkgs.gnomeExtensions.appindicator.extensionUuid
-      ];
-    };
     "org/gtk/settings/file-chooser" = {
       clock-format = "24h";
     };

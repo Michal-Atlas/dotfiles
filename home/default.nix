@@ -7,6 +7,7 @@
     ../dconf.nix
     ./registry.nix
     ./mail.nix
+    ./gnome.nix
   ];
 
   nix.settings = {
