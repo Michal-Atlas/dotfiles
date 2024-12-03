@@ -48,4 +48,10 @@ _: {
       settings.General.Experimental = true;
     };
   };
+  programs = {
+    java = {
+      enable = true;
+      binfmt = true;
+    };
+  };
 }
