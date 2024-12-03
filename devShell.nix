@@ -31,7 +31,7 @@
                 builtins.fetchurl {
                   name = "cateduroam.py";
                   url = "https://cat.eduroam.org/user/API.php?action=downloadInstaller&lang=en&profile=2904&device=linux&generatedfor=user&openroaming=0";
-                  sha256 = "sha256:0nrpqal4lxfs264r68fx9285vv4wkzc0r4ipza7sizazvawxm4i9";
+                  sha256 = "sha256:1lnbzbxfwlqzdrsrdkba5rnqwm6aijkw4xjn56rjqyyjib9h2295";
                 }
               }
             '')
