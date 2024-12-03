@@ -53,6 +53,14 @@
       enable = true;
       nativeMessagingHosts = [ pkgs.gnome-browser-connector ];
     };
+    htop = {
+      enable = true;
+      settings = {
+        highlight_base_name = 1;
+        hide_userland_threads = 1;
+        show_program_path = 0;
+      };
+    };
   };
 
   home.packages = import ../packages.nix pkgs;

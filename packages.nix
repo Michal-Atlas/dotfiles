@@ -90,7 +90,6 @@ with pkgs;
   guile
   gzdoom
   heroic
-  htop
   imagemagick
   indent
   inkscape
