@@ -113,11 +113,11 @@
   };
   services.kubo.settings = {
     Routing = {
-      AcceleratedDHTClient = true;
+      AcceleratedDHTClient = false;
       Type = "auto";
     };
     Reprovider = {
-      Interval = "24h";
+      Interval = "0h";
       Strategy = "all";
     };
     Swarm.ConnMgr = {
