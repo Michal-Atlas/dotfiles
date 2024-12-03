@@ -7,7 +7,6 @@ with pkgs;
   openssl
   protonvpn-gui
   nethogs
-  brave
   gmic
   nix-prefetch
   nurl
