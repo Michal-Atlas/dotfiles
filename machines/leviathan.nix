@@ -42,8 +42,4 @@ with flake.self.lib;
     hostId = "80fd5bf2";
   };
 
-  age.secrets = {
-    yggdrasil.file = ../secrets/yggdrasil/leviathan.json;
-    wireguard.file = ../secrets/wireguard/leviathan;
-  };
 }

@@ -28,9 +28,4 @@ with flake.self.lib;
     hostName = "dagon";
     hostId = "253520d6";
   };
-
-  age.secrets = {
-    yggdrasil.file = ../secrets/yggdrasil/dagon.json;
-    wireguard.file = ../secrets/wireguard/dagon;
-  };
 }

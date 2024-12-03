@@ -1,21 +1,13 @@
-{ config, ... }:
+_:
 let
   multiCastPort = 123;
 in
 {
-  networking.hosts =
-    with builtins;
-    listToAttrs (
-      map (value: {
-        name = config.atlasnet.yggdrasil.${value};
-        value = [ "yg-${value}" ];
-      }) (attrNames config.atlasnet.yggdrasil)
-    );
   services.yggdrasil = {
     enable = true;
     group = "wheel";
     openMulticastPort = true;
-    configFile = config.age.secrets.yggdrasil.path;
+    persistentKeys = true;
 
     settings = {
       Peers = [

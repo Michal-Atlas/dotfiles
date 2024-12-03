@@ -73,10 +73,6 @@
     };
   };
 
-  age.secrets = {
-    yggdrasil.file = ../../secrets/yggdrasil/hydra.json;
-    wireguard.file = ../../secrets/wireguard/hydra;
-  };
   systemd = {
     # https://nixos.wiki/wiki/AMD_GPU
     tmpfiles.rules = [ "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}" ];

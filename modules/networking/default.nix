@@ -4,8 +4,6 @@ _: {
     ./yggdrasil.nix
     ./morrowind.nix
     ./mounts.nix
-    ./atlasnet.nix
-    ./wireguard.nix
   ];
   services = {
     openssh = {
