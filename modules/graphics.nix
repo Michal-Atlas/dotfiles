@@ -1,4 +1,8 @@
 _: {
+  xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+  };
   services.displayManager.autoLogin = {
     enable = true;
     user = "michal_atlas";
