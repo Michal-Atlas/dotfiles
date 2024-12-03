@@ -8,11 +8,25 @@ with flake.self.lib;
   swapDevices = [ { device = "/dev/nvme0n1p2"; } ];
 
   fileSystems =
-    zfsMounts { "/" = "rpool/nix"; }
+    zfsMounts { "/" = "rpool/root"; }
     // {
       "/home/michal_atlas" = {
         fsType = "zfs";
         device = "rpool/home";
+        depends = [ "/" ];
+      };
+    }
+    // {
+      "/var" = {
+        fsType = "zfs";
+        device = "rpool/var";
+        depends = [ "/" ];
+      };
+    }
+    // {
+      "/nix" = {
+        fsType = "zfs";
+        device = "rpool/store";
         depends = [ "/" ];
       };
     }
