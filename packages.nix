@@ -33,7 +33,7 @@ with pkgs;
   mousai
   newsflash
   gnome-podcasts
-  gnome.polari
+  polari
   gnome-secrets
   textpieces
   tangram
