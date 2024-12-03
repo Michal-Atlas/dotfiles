@@ -5,6 +5,7 @@ _: {
     ./morrowind.nix
     ./mounts.nix
   ];
+  programs.mosh.enable = true;
   services = {
     openssh = {
       enable = true;
