@@ -2,7 +2,7 @@ _: {
   programs.git = {
     enable = true;
     userName = "Michal Atlas";
-    userEmail = "michal_atlas+git@posteo.net";
+    userEmail = "me+git@michal-atlas.cz";
     extraConfig = {
       filter.lfs = {
         clean = "git-lfs clean -- %f";
