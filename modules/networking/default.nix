@@ -43,4 +43,23 @@ _: {
       "302:db60::53"
     ];
   };
+  services.kubo = {
+    #  enable = true;
+    autoMount = true;
+    settings = {
+      Routing = {
+        AcceleratedDHTClient = false;
+        Type = "auto";
+      };
+      Reprovider = {
+        Interval = "0h";
+        Strategy = "all";
+      };
+      Swarm.ConnMgr = {
+        LowWater = 32;
+        HighWater = 96;
+      };
+      Discovery.MDNS.Enabled = true;
+    };
+  };
 }

@@ -94,18 +94,4 @@
       "org/gnome/desktop/notifications".show-in-lock-screen = false;
     };
   };
-  services.kubo.settings = {
-    Routing = {
-      AcceleratedDHTClient = false;
-      Type = "auto";
-    };
-    Reprovider = {
-      Interval = "0h";
-      Strategy = "all";
-    };
-    Swarm.ConnMgr = {
-      LowWater = 32;
-      HighWater = 96;
-    };
-  };
 }
