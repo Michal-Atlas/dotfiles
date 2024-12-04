@@ -3,6 +3,7 @@
   services.syncthing = {
     enable = true;
     user = "michal_atlas";
+    group = "users";
     configDir = "/home/michal_atlas/.config/syncthing";
     overrideDevices = true;
     overrideFolders = true;
