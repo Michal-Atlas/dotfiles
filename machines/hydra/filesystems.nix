@@ -15,4 +15,19 @@ with flake.self.lib;
       "/DISKA" = btrfsMount "/dev/disk/by-uuid/880d14ef-f964-4956-84a7-e457db80a5ad" "/";
       "/DISKB" = btrfsMount "/dev/disk/by-uuid/65920de2-b793-4480-bda7-4e04c4d9eb59" "/";
     };
+  services.btrbk.instances."main".settings = {
+    timestamp_format = "long-iso";
+    snapshot_preserve_min = "1w";
+    snapshot_preserve = "7d 4w 12m *y";
+
+    target_preserve_min = "1w";
+    target_preserve = "7d 4w 12m *y";
+
+    volume."/DISKA" = {
+      subvolume = "@home";
+      snapshot_dir = "snaps";
+      snapshot_create = "onchange";
+      target = "/DISKB/snap_backups";
+    };
+  };
 }
