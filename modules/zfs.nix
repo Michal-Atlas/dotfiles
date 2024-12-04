@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+_: {
   boot.loader.grub.zfsSupport = true;
   services.zfs = {
     autoScrub.enable = true;
@@ -8,5 +7,4 @@
       flags = "-k -p --utc";
     };
   };
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
 }
