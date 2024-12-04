@@ -23,6 +23,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-flake.url = "github:srid/nixos-flake";
+    nur.url = "github:nix-community/NUR";
   };
 
   outputs =

@@ -8,6 +8,7 @@
     ./registry.nix
     ./mail.nix
     ./gnome.nix
+    ./firefox.nix
   ];
 
   nix.settings = {
@@ -48,10 +49,6 @@
         done;
         setopt completealiases
       '';
-    };
-    firefox = {
-      enable = true;
-      nativeMessagingHosts = [ pkgs.gnome-browser-connector ];
     };
     htop = {
       enable = true;

@@ -27,7 +27,10 @@
         leviathan = makeSys ./leviathan.nix;
       };
     homeModules.default = {
-      imports = [ ../home ];
+      imports = [
+        ../home
+        inputs.nur.hmModules.nur
+      ];
     };
   };
 }
