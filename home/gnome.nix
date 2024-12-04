@@ -11,6 +11,7 @@
         removable-drive-menu
         resource-monitor
         caffeine
+        tailscale-status
       ];
   };
 }

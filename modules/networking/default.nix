@@ -5,6 +5,7 @@ _: {
     ./morrowind.nix
     ./mounts.nix
   ];
+  networking.nftables.enable = true;
   programs.mosh.enable = true;
   services = {
     openssh = {
@@ -20,6 +21,11 @@ _: {
     zerotierone = {
       enable = true;
       joinNetworks = [ "7d36f91fa2718c7c" ];
+    };
+    tailscale = {
+      enable = true;
+      useRoutingFeatures = "both";
+      openFirewall = true;
     };
   };
   systemd.network = {
