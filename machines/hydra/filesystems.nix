@@ -12,5 +12,7 @@ with flake.self.lib;
         fsType = "vfat";
       };
       "/" = btrfsMount "/dev/disk/by-uuid/65920de2-b793-4480-bda7-4e04c4d9eb59" "@nix";
+      "/DISKA" = btrfsMount "/dev/disk/by-uuid/880d14ef-f964-4956-84a7-e457db80a5ad" "/";
+      "/DISKB" = btrfsMount "/dev/disk/by-uuid/65920de2-b793-4480-bda7-4e04c4d9eb59" "/";
     };
 }
