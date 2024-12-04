@@ -14,6 +14,7 @@ _: {
     ./cachix.nix
     ./fit-mount.nix
     ./zfs.nix
+    ./postgres.nix
   ];
   system.stateVersion = "22.11";
   time.timeZone = "Europe/Prague";
