@@ -116,8 +116,11 @@ in
     };
 
     "org/gnome/Console" = {
-      use-system-font = false;
-      custom-font = "Iosevka Nerd Font Mono 10";
+      use-system-font = true;
+      # Bat is unreadable
+      # theme = "auto";
+      ignore-scrollback-limit = true;
+      audible-bell = false;
     };
   };
 }
