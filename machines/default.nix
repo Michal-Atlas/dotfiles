@@ -7,6 +7,7 @@
           {
             root,
             enableHM ? true,
+            extraImports ? [ ],
           }:
           self.nixos-unified.lib.mkLinuxSystem { home-manager = true; } {
             imports = [
@@ -27,7 +28,7 @@
               inputs.agenix.nixosModules.default
               inputs.stevenblackhosts.nixosModule
               inputs.disko.nixosModules.default
-            ];
+            ] ++ extraImports;
           };
       in
       {
@@ -37,6 +38,13 @@
         oracle = makeSys {
           root = ./oracle.nix;
           enableHM = false;
+        };
+        vpsFree = makeSys {
+          root = ./vpsFree.nix;
+          enableHM = false;
+          extraImports = [
+            inputs.vpsfreecz.nixosConfigurations.container
+          ];
         };
       };
     homeModules.default = {

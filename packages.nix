@@ -1,6 +1,7 @@
 pkgs:
 with pkgs;
 [
+  vpsfree-client
   onedrive
   rclone
   protonmail-desktop

@@ -460,7 +460,8 @@
         "pre-commit-hooks": "pre-commit-hooks",
         "stevenblackhosts": "stevenblackhosts",
         "systems": "systems_2",
-        "unison-nix": "unison-nix"
+        "unison-nix": "unison-nix",
+        "vpsfreecz": "vpsfreecz"
       }
     },
     "stevenblackhosts": {
@@ -562,6 +563,21 @@
       "original": {
         "owner": "ceedubs",
         "repo": "unison-nix",
+        "type": "github"
+      }
+    },
+    "vpsfreecz": {
+      "locked": {
+        "lastModified": 1733157322,
+        "narHash": "sha256-lN6AY1zxZ0mQzpvLIfpdHdZ7oThHOlWFb2HUeOVcCJQ=",
+        "owner": "vpsfreecz",
+        "repo": "vpsadminos",
+        "rev": "8ba8b0885526f484da44c0aeb4894dbaf548e61f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vpsfreecz",
+        "repo": "vpsadminos",
         "type": "github"
       }
     }
