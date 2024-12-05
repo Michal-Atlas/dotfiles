@@ -27,14 +27,17 @@
     dconf.enable = lib.mkForce false;
   };
   services.yggdrasil.settings = {
-    Peers = [
+    Peers = lib.mkForce [
       # Czechia
       "tls://[2a03:3b40:fe:ab::1]:993"
       "tls://37.205.14.171:993"
       # Germany
       "tcp://193.107.20.230:7743"
     ];
-    MulticastInterfaces = [ ];
+    Listen = [
+      "tls://0.0.0.0:993"
+    ];
+    MulticastInterfaces = lib.mkForce [ ];
   };
   networking.firewall.allowedTCPPorts = [
     993

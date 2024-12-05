@@ -11,7 +11,7 @@ in
 
     settings = {
       Peers = [
-        "tls://vorpal:993"
+        "tls://vorpal.ip4:993"
       ];
       MulticastInterfaces = [
         {
