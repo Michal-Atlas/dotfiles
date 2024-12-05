@@ -52,7 +52,7 @@ in
               position: fixed;
               top: 0;
               left: 0;
-              background #f9a no-repeat url(${
+              background: #f9a no-repeat url(${
                 builtins.fetchurl {
                   url = "https://wallpapers.com/images/hd/d-gray-man-seu3ez22l0pv05ho.jpg";
                   sha256 = "sha256:1g5pa6mk1kz5yyjh20y3s5hlxfh0sm24x3m33yj9593f6rha8h8r";
