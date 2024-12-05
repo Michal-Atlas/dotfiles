@@ -24,6 +24,7 @@
     };
     nixos-flake.url = "github:srid/nixos-flake";
     nur.url = "github:nix-community/NUR";
+    disko.url = "github:nix-community/disko";
   };
 
   outputs =

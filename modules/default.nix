@@ -5,6 +5,7 @@ _: {
     ./graphics.nix
     ./interfacing.nix
     ./networking
+    ./networking/personal.nix
     ./nix.nix
     ./sound.nix
     ./steam.nix

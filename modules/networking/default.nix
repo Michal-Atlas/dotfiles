@@ -1,9 +1,6 @@
 _: {
   imports = [
-    ./hosts.nix
     ./yggdrasil.nix
-    ./morrowind.nix
-    ./mounts.nix
   ];
   programs.mosh.enable = true;
   services = {
@@ -23,7 +20,6 @@ _: {
     };
     tailscale = {
       enable = true;
-      useRoutingFeatures = "both";
       openFirewall = true;
     };
   };

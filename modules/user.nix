@@ -1,5 +1,6 @@
 { pkgs, config, ... }:
 {
+  programs.zsh.enable = true;
   users = {
     groups.plugdev = { };
     users = {

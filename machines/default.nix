@@ -4,27 +4,40 @@
     nixosConfigurations =
       let
         makeSys =
-          file:
+          {
+            root,
+            enableHM ? true,
+          }:
           self.nixos-unified.lib.mkLinuxSystem { home-manager = true; } {
             imports = [
-              file
+              root
               inputs.nix-index-database.nixosModules.nix-index
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  users.michal_atlas.imports = [ self.homeModules.default ];
-                };
-              }
+              (
+                if enableHM then
+                  {
+                    home-manager = {
+                      useGlobalPkgs = true;
+                      useUserPackages = true;
+                      users.michal_atlas.imports = [ self.homeModules.default ];
+                    };
+                  }
+                else
+                  { }
+              )
               inputs.agenix.nixosModules.default
               inputs.stevenblackhosts.nixosModule
+              inputs.disko.nixosModules.default
             ];
           };
       in
       {
-        hydra = makeSys ./hydra;
-        dagon = makeSys ./dagon.nix;
-        leviathan = makeSys ./leviathan.nix;
+        hydra = makeSys { root = ./hydra; };
+        dagon = makeSys { root = ./dagon.nix; };
+        leviathan = makeSys { root = ./leviathan.nix; };
+        oracle = makeSys {
+          root = ./oracle.nix;
+          enableHM = false;
+        };
       };
     homeModules.default = {
       imports = [
