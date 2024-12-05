@@ -41,7 +41,7 @@
         };
         vpsFree = makeSys {
           root = ./vpsFree.nix;
-          enableHM = false;
+          enableHM = true;
           extraImports = [
             inputs.vpsfreecz.nixosConfigurations.container
           ];
