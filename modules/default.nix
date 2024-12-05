@@ -16,6 +16,7 @@ _: {
     ./fit-mount.nix
     ./zfs.nix
     ./postgres.nix
+    ./registry.nix
   ];
   security.sudo.wheelNeedsPassword = false;
   system.stateVersion = "22.11";

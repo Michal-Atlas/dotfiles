@@ -5,7 +5,6 @@
     ../emacs.nix
     ../files
     ../dconf.nix
-    ./registry.nix
     ./mail.nix
     ./gnome.nix
     ./firefox.nix
