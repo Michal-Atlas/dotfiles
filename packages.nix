@@ -1,6 +1,9 @@
 pkgs:
 with pkgs;
 [
+  bmaptool
+  dust
+  sshfs
   vpsfree-client
   onedrive
   rclone
