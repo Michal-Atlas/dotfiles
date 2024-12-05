@@ -9,9 +9,9 @@
         mpris-label
         pano
         removable-drive-menu
-        resource-monitor
+        vitals
         caffeine
-        tailscale-status
+        night-theme-switcher
       ];
   };
 }
