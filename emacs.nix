@@ -1,12 +1,9 @@
 { pkgs, ... }:
+with (import ./lib);
 let
-  configFile = files/emacs.el;
-  atlas-emacs = pkgs.emacsWithPackagesFromUsePackage {
-    defaultInitFile = true;
-    alwaysEnsure = true;
-    config = configFile;
+  atlas-emacs = mkEmacsPackage {
+    inherit pkgs;
     package = pkgs.emacs-pgtk;
-    extraEmacsPackages = _: [ ];
   };
 in
 {
@@ -22,5 +19,5 @@ in
     enable = true;
     package = atlas-emacs;
   };
-  home.file.".emacs.d/init.el".source = configFile;
+  home.file.".emacs.d/init.el".source = emacsConfigFile;
 }
