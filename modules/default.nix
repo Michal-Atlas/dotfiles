@@ -16,6 +16,7 @@ _: {
     ./zfs.nix
     ./postgres.nix
   ];
+  security.sudo.wheelNeedsPassword = false;
   system.stateVersion = "22.11";
   time.timeZone = "Europe/Prague";
 
