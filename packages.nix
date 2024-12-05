@@ -1,6 +1,7 @@
 pkgs:
 with pkgs;
 [
+  multipath-tools
   bmaptool
   dust
   sshfs
