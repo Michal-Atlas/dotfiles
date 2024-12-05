@@ -1,10 +1,8 @@
 {
-  pkgs,
   config,
   lib,
   ...
 }:
-with (import ../../lib);
 {
   imports = [
     ../modules/user.nix
@@ -24,10 +22,9 @@ with (import ../../lib);
       gnome-shell.enable = lib.mkForce false;
       thunderbird.enable = lib.mkForce false;
     };
-    services.emacs.package = mkEmacsPackage {
-      inherit pkgs;
-      package = pkgs.emacs-nox;
-    };
+    services.emacs.enable = lib.mkForce false;
+    programs.emacs.enable = lib.mkForce false;
+    dconf.enable = lib.mkForce false;
   };
   services.yggdrasil.settings = {
     Peers = [
