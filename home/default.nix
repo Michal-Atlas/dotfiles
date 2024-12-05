@@ -42,10 +42,6 @@
         source /etc/profile
       '';
       initExtra = ''
-        ${pkgs.guix}/bin/guix package --list-profiles | while read -r prof; do
-         GUIX_PROFILE="$prof"
-         . "$GUIX_PROFILE/etc/profile"
-        done;
         setopt completealiases
       '';
     };

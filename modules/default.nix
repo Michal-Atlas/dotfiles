@@ -34,14 +34,6 @@ _: {
   };
   services = {
     pcscd.enable = true;
-    guix = {
-      enable = true;
-      gc = {
-        enable = true;
-        extraArgs = [ "--delete-generations=1w" ];
-      };
-      publish.enable = true;
-    };
   };
   boot.kernel.sysctl."net.core.wmem_max" = 2500000;
   hardware = {
