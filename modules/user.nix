@@ -18,6 +18,7 @@
           "plugdev"
           "adbusers"
           "podman"
+          "dialout"
           config.services.kubo.group
         ];
         openssh.authorizedKeys.keys =
