@@ -54,6 +54,7 @@
         };
       in
       {
+        enable = true;
         virtualHosts = {
           "fin.michal-atlas.cz" = defaults // {
             locations."/".proxyPass = "http://hydra:8096";
