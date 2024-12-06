@@ -39,7 +39,7 @@
           root = ./oracle.nix;
           enableHM = false;
         };
-        vpsFree = makeSys {
+        vorpal = makeSys {
           root = ./vpsFree.nix;
           enableHM = true;
           extraImports = [
