@@ -35,7 +35,7 @@ _: {
     ];
   };
   services.kubo = {
-    #  enable = true;
+    enable = true;
     autoMount = true;
     settings = {
       Routing = {
