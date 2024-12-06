@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   programs.thunderbird = {
-    enable = true;
+    enable = lib.mkDefault true;
     profiles."default" = {
       isDefault = true;
       settings = {

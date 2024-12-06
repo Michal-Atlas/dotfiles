@@ -30,4 +30,5 @@ with flake.self.lib;
       target = "/DISKB/snap_backups";
     };
   };
+  atlas.routerDisk.enable = true;
 }

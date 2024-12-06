@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 with (import ./lib);
 let
   atlas-emacs = mkEmacsPackage {
@@ -7,17 +12,27 @@ let
   };
 in
 {
-  services.emacs = {
-    enable = true;
-    package = atlas-emacs;
-    client.enable = true;
-    socketActivation.enable = true;
-    defaultEditor = true;
-    startWithUserSession = true;
+  options = {
+    emacs.enable = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+    };
   };
-  programs.emacs = {
-    enable = true;
-    package = atlas-emacs;
+  config = lib.mkIf config.emacs.enable {
+    services.emacs = {
+      enable = true;
+      package = atlas-emacs;
+      client.enable = true;
+      socketActivation.enable = true;
+      defaultEditor = true;
+      startWithUserSession = true;
+    };
+    programs.emacs = {
+      enable = true;
+      package = atlas-emacs;
+    };
+    home.file = {
+      ".emacs.d/init.el".source = emacsConfigFile;
+    };
   };
-  home.file.".emacs.d/init.el".source = emacsConfigFile;
 }

@@ -42,4 +42,12 @@ with flake.self.lib;
     hostId = "80fd5bf2";
   };
 
+  boot.loader.grub.zfsSupport = true;
+  services.zfs = {
+    autoScrub.enable = true;
+    autoSnapshot = {
+      enable = true;
+      flags = "-k -p --utc";
+    };
+  };
 }

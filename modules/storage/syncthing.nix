@@ -1,7 +1,7 @@
 { lib, ... }:
 {
   services.syncthing = {
-    enable = true;
+    enable = lib.mkDefault true;
     user = "michal_atlas";
     group = "users";
     configDir = "/home/michal_atlas/.config/syncthing";

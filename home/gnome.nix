@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   programs.gnome-shell = {
-    enable = true;
+    enable = lib.mkDefault true;
     extensions =
       with pkgs.gnomeExtensions;
       builtins.map (package: { inherit package; }) [

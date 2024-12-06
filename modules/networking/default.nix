@@ -1,6 +1,10 @@
-_: {
+{ lib, ... }:
+{
   imports = [
     ./yggdrasil.nix
+    ./hosts.nix
+    ./morrowind.nix
+    ./mounts.nix
   ];
   programs.mosh.enable = true;
   services = {
@@ -35,7 +39,7 @@ _: {
     ];
   };
   services.kubo = {
-    enable = true;
+    enable = lib.mkDefault true;
     autoMount = true;
     settings = {
       Routing = {

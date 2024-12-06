@@ -1,4 +1,5 @@
-_: {
+{ lib, ... }:
+{
   nixpkgs.overlays = [
     (_: prev: {
       steam = prev.steam.override (_: {
@@ -7,7 +8,7 @@ _: {
     })
   ];
   programs.steam = {
-    enable = true;
+    enable = lib.mkDefault true;
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
   };

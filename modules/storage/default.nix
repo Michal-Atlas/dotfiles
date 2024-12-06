@@ -1,4 +1,5 @@
-_: {
+{ lib, ... }:
+{
   imports = [ ./syncthing.nix ];
-  services.gvfs.enable = true;
+  services.gvfs.enable = lib.mkDefault true;
 }

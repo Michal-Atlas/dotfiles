@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 # https://discourse.nixos.org/t/declare-firefox-extensions-and-settings/36265
 let
   lock-false = {
@@ -40,7 +45,7 @@ in
       ];
     in
     {
-      enable = true;
+      enable = lib.mkDefault true;
       nativeMessagingHosts = [ pkgs.gnome-browser-connector ];
       profiles."default" = {
         inherit extensions;

@@ -5,9 +5,7 @@
 }:
 {
   imports = [
-    ../modules/user.nix
-    ../modules/networking
-    ../modules/nix.nix
+    ../modules
   ];
   networking.hostName = "vorpal";
   nixpkgs = {
@@ -16,28 +14,34 @@
   };
   system.stateVersion = "24.11";
   home-manager.users."michal_atlas" = {
-    home.packages = [ ];
+    home.defaultPackages = false;
     programs = {
-      firefox.enable = lib.mkForce false;
-      gnome-shell.enable = lib.mkForce false;
-      thunderbird.enable = lib.mkForce false;
+      firefox.enable = false;
+      gnome-shell.enable = false;
+      thunderbird.enable = false;
     };
-    services.emacs.enable = lib.mkForce false;
-    programs.emacs.enable = lib.mkForce false;
-    dconf.enable = lib.mkForce false;
+    emacs.enable = false;
+    dconf.enable = false;
   };
-  services.yggdrasil.settings = {
-    Peers = lib.mkForce [
-      # Czechia
-      "tls://[2a03:3b40:fe:ab::1]:993"
-      "tls://37.205.14.171:993"
-      # Germany
-      "tcp://193.107.20.230:7743"
-    ];
-    Listen = [
-      "tls://0.0.0.0:993"
-    ];
-    MulticastInterfaces = lib.mkForce [ ];
+
+  hardware.enable = false;
+  programs.steam.enable = false;
+  services = {
+    yggdrasil.settings = {
+      Peers = lib.mkForce [
+        # Czechia
+        "tls://[2a03:3b40:fe:ab::1]:993"
+        "tls://37.205.14.171:993"
+        # Germany
+        "tcp://193.107.20.230:7743"
+      ];
+      Listen = [
+        "tls://0.0.0.0:993"
+      ];
+      MulticastInterfaces = lib.mkForce [ ];
+    };
+    syncthing.enable = false;
+    gvfs.enable = false;
   };
   networking.firewall.allowedTCPPorts = [
     993
