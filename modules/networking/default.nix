@@ -1,10 +1,11 @@
-{ lib, ... }:
+{ ... }:
 {
   imports = [
     ./yggdrasil.nix
     ./hosts.nix
     ./morrowind.nix
     ./mounts.nix
+    ./ipfs.nix
   ];
   programs.mosh.enable = true;
   services = {
@@ -37,24 +38,5 @@
       "2001:148f:fffe::1"
       "302:db60::53"
     ];
-  };
-  services.kubo = {
-    enable = lib.mkDefault true;
-    autoMount = true;
-    settings = {
-      Routing = {
-        AcceleratedDHTClient = false;
-        Type = "auto";
-      };
-      Reprovider = {
-        Interval = "0h";
-        Strategy = "all";
-      };
-      Swarm.ConnMgr = {
-        LowWater = 32;
-        HighWater = 96;
-      };
-      Discovery.MDNS.Enabled = true;
-    };
   };
 }
