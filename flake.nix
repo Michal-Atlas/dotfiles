@@ -26,6 +26,7 @@
     nur.url = "github:nix-community/NUR";
     disko.url = "github:nix-community/disko";
     vpsfreecz.url = "github:vpsfreecz/vpsadminos";
+    book-dagon.url = "git+https://gitlab.fit.cvut.cz/zacekmi2/book-daemon.git";
   };
 
   outputs =

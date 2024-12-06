@@ -46,8 +46,9 @@
   networking.firewall.allowedTCPPorts = [
     993
   ];
+
   services = {
-    kubo.enable = lib.mkForce false;
+    book-dagon.enable = true;
     nginx =
       let
         defaults = {
@@ -68,6 +69,9 @@
               proxyPass = "http://hydra:8080";
               extraConfig = "proxy_read_timeout = 1h;";
             };
+          };
+          "fff.michal-atlas.cz" = defaults // {
+            locations."/".proxyPass = "http://localhost:${builtins.toString config.services.book-dagon.port}";
           };
         };
       };

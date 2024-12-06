@@ -43,6 +43,7 @@
           root = ./vpsFree.nix;
           enableHM = true;
           extraImports = [
+            inputs.book-dagon.nixosModules.default
             inputs.vpsfreecz.nixosConfigurations.container
           ];
         };
