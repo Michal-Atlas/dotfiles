@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   imports = [
     ../programs
@@ -55,7 +55,7 @@
     };
   };
 
-  home.packages = import ../packages.nix pkgs;
+  home.packages = lib.mkDefault (import ../packages.nix pkgs);
 
   systemd.user.tmpfiles.rules = [
     "d /home/michal_atlas/Downloads - - - 5d"

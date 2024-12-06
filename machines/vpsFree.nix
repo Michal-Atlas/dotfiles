@@ -16,7 +16,7 @@
   };
   system.stateVersion = "24.11";
   home-manager.users."michal_atlas" = {
-    home.packages = lib.mkForce [ ];
+    home.packages = [ ];
     programs = {
       firefox.enable = lib.mkForce false;
       gnome-shell.enable = lib.mkForce false;
