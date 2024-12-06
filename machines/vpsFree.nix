@@ -42,28 +42,31 @@
   networking.firewall.allowedTCPPorts = [
     993
   ];
-  services.nginx =
-    let
-      defaults = {
-        enableACME = true;
-        forceSSL = true;
-        http2 = true;
-        http3 = true;
-      };
-    in
-    {
-      virtualHosts = {
-        "fin.michal-atlas.cz" = defaults // {
-          locations."/".proxyPass = "http://hydra:8096";
+  services = {
+    kubo.enable = lib.mkForce false;
+    nginx =
+      let
+        defaults = {
+          enableACME = true;
+          forceSSL = true;
+          http2 = true;
+          http3 = true;
         };
-        "ipfs.michal-atlas.cz" = defaults // {
-          locations."/" = {
-            proxyPass = "http://hydra:8080";
-            extraConfig = "proxy_read_timeout = 1h;";
+      in
+      {
+        virtualHosts = {
+          "fin.michal-atlas.cz" = defaults // {
+            locations."/".proxyPass = "http://hydra:8096";
+          };
+          "ipfs.michal-atlas.cz" = defaults // {
+            locations."/" = {
+              proxyPass = "http://hydra:8080";
+              extraConfig = "proxy_read_timeout = 1h;";
+            };
           };
         };
       };
-    };
+  };
   security.acme = {
     acceptTerms = true;
     defaults = {
