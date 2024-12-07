@@ -28,7 +28,7 @@
         Type = "auto";
       };
       Reprovider = {
-        Interval = "0h";
+        Interval = lib.mkDefault "0h";
         Strategy = "all";
       };
       Swarm.ConnMgr = {
