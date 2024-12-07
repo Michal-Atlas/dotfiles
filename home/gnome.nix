@@ -5,6 +5,7 @@
     extensions =
       with pkgs.gnomeExtensions;
       builtins.map (package: { inherit package; }) [
+        gsconnect
         appindicator
         mpris-label
         pano

@@ -9,6 +9,7 @@
       enable = true;
       user = "michal_atlas";
     };
+    programs.kdeconnect.enable = true;
     services.xserver = {
       enable = true;
       displayManager = {
