@@ -49,8 +49,6 @@
   };
   networking.firewall.allowedTCPPorts = [
     993
-    80
-    443
   ];
 
   services = {
@@ -72,13 +70,8 @@
           };
           "ipfs.michal-atlas.cz" = defaults // {
             locations."/" = {
-              proxyPass = "http://localhost:8080";
-              extraConfig = ''
-                proxy_read_timeout 1h;
-                proxy_set_header Host $host;
-                proxy_set_header X-Real-IP $remote_addr;
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-              '';
+              proxyPass = "http://hydra:8080";
+              extraConfig = "proxy_read_timeout = 1h;";
             };
           };
           "fff.michal-atlas.cz" = defaults // {
