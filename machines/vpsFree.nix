@@ -27,10 +27,13 @@
   hardware.enable = false;
   programs.steam.enable = false;
   services = {
-    kubo.settings.Addresses.Announce = [
-      "/ip4/37.205.15.189/udp/4001/quic-v1"
-      "/ip6/2a03:3b40:fe:833::1/udp/4001/quic-v1"
-    ];
+    kubo.settings = {
+      Addresses.Announce = [
+        "/ip4/37.205.15.189/udp/4001/quic-v1"
+        "/ip6/2a03:3b40:fe:833::1/udp/4001/quic-v1"
+      ];
+      Reprovider.Interval = "22h";
+    };
     yggdrasil.settings = {
       Peers = lib.mkForce [
         # Czechia
