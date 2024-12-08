@@ -32,6 +32,13 @@
         "/ip4/37.205.15.189/udp/4001/quic-v1"
         "/ip6/2a03:3b40:fe:833::1/udp/4001/quic-v1"
       ];
+      Gateway.PublicGateways."ipfs.michal-atlas.cz" = {
+        Paths = [
+          "/ipfs"
+          "/ipns"
+        ];
+        UseSubdomains = false;
+      };
       Reprovider.Interval = "22h";
     };
     yggdrasil.settings = {
@@ -81,6 +88,8 @@
                 proxy_set_header Host $host;
                 proxy_set_header X-Real-IP $remote_addr;
                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto "https";
+                proxy_set_header X-Forwarded-Host $host;
               '';
             };
           };
@@ -94,8 +103,6 @@
     acceptTerms = true;
     defaults = {
       email = "me+acme@michal-atlas.cz";
-      # Staging environment
-      server = "https://acme-staging-v02.api.letsencrypt.org/directory";
     };
   };
 }

@@ -29,11 +29,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1733520845,
-        "narHash": "sha256-bBPOJpjdJPuAAqlhyZMdIl3eQtmKBA5YZ/J3tl/yHh8=",
+        "lastModified": 1733621912,
+        "narHash": "sha256-oy9MbksTrcamWSxItkxrj07tfTeriBO9pTMDSLRvneA=",
         "ref": "refs/heads/master",
-        "rev": "61dda67988a34d5aa6adb2909b84075ba2e179cb",
-        "revCount": 16,
+        "rev": "af8eb671c55e37f771b2274b13ee6d735b0119ca",
+        "revCount": 19,
         "type": "git",
         "url": "https://gitlab.fit.cvut.cz/zacekmi2/book-daemon.git"
       },
