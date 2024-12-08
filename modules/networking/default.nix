@@ -39,4 +39,10 @@
       "302:db60::53"
     ];
   };
+  services.nginx = {
+    recommendedGzipSettings = true;
+    recommendedProxySettings = true;
+    recommendedTlsSettings = true;
+    statusPage = true;
+  };
 }
