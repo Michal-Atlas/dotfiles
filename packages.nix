@@ -103,6 +103,7 @@ with pkgs;
   jetbrains.idea-ultimate
   jetbrains.rust-rover
   jetbrains.pycharm-professional
+  jetbrains.webstorm
   kobodeluxe
   krita
   lagrange
