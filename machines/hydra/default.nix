@@ -8,7 +8,6 @@
   imports = [
     ../../modules
     ./filesystems.nix
-    ./nginx.nix
   ];
   hardware = {
     enableAllFirmware = true;
