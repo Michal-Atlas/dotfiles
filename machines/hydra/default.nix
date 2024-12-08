@@ -26,8 +26,9 @@
       enable = true;
       openFirewall = true;
     };
+    xserver.videoDrivers = [ "amdgpu" ];
+    tftpd.enable = true;
   };
-  services.xserver.videoDrivers = [ "amdgpu" ];
   boot = {
     initrd = {
       availableKernelModules = [
