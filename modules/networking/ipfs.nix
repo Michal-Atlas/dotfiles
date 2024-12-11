@@ -19,14 +19,16 @@
           Addrs = [ "/dnsaddr/hydra/udp/4001/quic-v1" ];
         }
       ];
-      Addresses.API = [
-        "/ip6/::1/tcp/5001"
-        "/ip4/127.0.0.1/tcp/5001"
-      ];
-      Addresses.Gateway = [
-        "/ip6/::1/tcp/8080"
-        "/ip4/127.0.0.1/tcp/8080"
-      ];
+      Addresses = {
+        API = [
+          "/ip6/::1/tcp/5001"
+          "/ip4/127.0.0.1/tcp/5001"
+        ];
+        Gateway = [
+          "/ip6/::1/tcp/8080"
+          "/ip4/127.0.0.1/tcp/8080"
+        ];
+      };
       Routing = {
         AcceleratedDHTClient = false;
         Type = "auto";
