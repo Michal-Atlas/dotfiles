@@ -1,6 +1,7 @@
 pkgs:
 with pkgs;
 [
+  xournalpp
   dust
   sshfs
   vpsfree-client
@@ -102,6 +103,7 @@ with pkgs;
   jetbrains.rust-rover
   jetbrains.pycharm-professional
   jetbrains.webstorm
+  jetbrains.goland
   kobodeluxe
   krita
   lagrange
