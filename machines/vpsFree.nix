@@ -1,4 +1,5 @@
 {
+  pkgs,
   config,
   lib,
   ...
@@ -6,6 +7,7 @@
 {
   imports = [
     ../modules
+    #    ./mailman.nix
   ];
   networking.hostName = "vorpal";
   nixpkgs = {
@@ -30,7 +32,9 @@
     kubo.settings = {
       Addresses.Announce = [
         "/ip4/37.205.15.189/udp/4001/quic-v1"
+        "/ip4/37.205.15.189/udp/4001/quic-v1/webtransport"
         "/ip6/2a03:3b40:fe:833::1/udp/4001/quic-v1"
+        "/ip6/2a03:3b40:fe:833::1/udp/4001/quic-v1/webtransport"
       ];
       Gateway.PublicGateways."ipfs.michal-atlas.cz" = {
         Paths = [
@@ -61,10 +65,32 @@
     993
     80
     443
+    1965
   ];
 
   services = {
     book-dagon.enable = true;
+    kineto = {
+      enable = true;
+      port = 4859;
+      geminiDomain = "gemini://blog.michal-atlas.cz";
+    };
+    molly-brown =
+      let
+        dir = config.security.acme.certs."blog.michal-atlas.cz".directory;
+      in
+      {
+        enable = true;
+        hostName = "blog.michal-atlas.cz";
+        certPath = "${dir}/cert.pem";
+        keyPath = "${dir}/key.pem";
+        docBase = pkgs.fetchFromSourcehut {
+          owner = "~michal_atlas";
+          repo = "www";
+          rev = "992dbc2f5dc9b1ca5324ec644059c11537e7462b";
+          hash = "sha256-CtZdgsfA4YI7S5gd9opSaxNoPEaDX5Ydaa9mW7G2mfc=";
+        };
+      };
     nginx =
       let
         defaults = {
@@ -80,6 +106,13 @@
           "fin.michal-atlas.cz" = defaults // {
             locations."/".proxyPass = "http://hydra:8096";
           };
+          "blog.michal-atlas.cz" = defaults // {
+            locations."/".proxyPass =
+              let
+                cfg = config.services.kineto;
+              in
+              "http://${cfg.address}:${builtins.toString cfg.port}";
+          };
           "ipfs.michal-atlas.cz" = defaults // {
             locations."/" = {
               proxyPass = "http://localhost:8080";
@@ -94,6 +127,9 @@
         };
       };
   };
+  systemd.services.molly-brown.serviceConfig.SupplementaryGroups = [
+    config.security.acme.certs."blog.michal-atlas.cz".group
+  ];
   security.acme = {
     acceptTerms = true;
     defaults = {

@@ -25,6 +25,7 @@
                 else
                   { }
               )
+              inputs.gemini.nixosModules.kineto
               inputs.agenix.nixosModules.default
               inputs.stevenblackhosts.nixosModule
               inputs.disko.nixosModules.default
