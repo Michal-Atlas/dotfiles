@@ -26,7 +26,13 @@
       openFirewall = true;
     };
     xserver.videoDrivers = [ "amdgpu" ];
-    tftpd.enable = true;
+    atftpd = {
+      enable = true;
+      extraOptions = [
+        "--bind-address 192.168.0.60"
+        "--verbose=7"
+      ];
+    };
   };
   boot = {
     initrd = {
@@ -70,7 +76,10 @@
         1234 # spotify
         57621
       ];
-      allowedUDPPorts = [ 5353 ];
+      allowedUDPPorts = [
+        69 # tftp
+        5353
+      ];
     };
   };
 
