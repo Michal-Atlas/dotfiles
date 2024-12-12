@@ -1,4 +1,5 @@
 {
+  pkgs,
   config,
   lib,
   ...
@@ -22,6 +23,10 @@
   config = lib.mkIf config.hardware.enable {
     services = {
       pcscd.enable = true;
+      protonmail-bridge = {
+        enable = true;
+        path = with pkgs; [ gnome-keyring ];
+      };
     };
     boot.kernel.sysctl."net.core.wmem_max" = 2500000;
     hardware = {
