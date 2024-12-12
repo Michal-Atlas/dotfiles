@@ -43,6 +43,7 @@
     recommendedGzipSettings = true;
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
+    recommendedOptimisation = true;
     statusPage = true;
   };
 }
