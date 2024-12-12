@@ -1,26 +1,19 @@
 # https://github.com/reckenrode/nixos-configs/blob/bf580bf0563a6a0ae401245c2ef373338f9022aa/.github/workflows/main.yml
 name: Bump flake.lock
-
 on:
   schedule:
     - cron: "0 0 * * 6"
-
   workflow_dispatch:
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-
       - uses: cachix/install-nix-action@v20
-
       - run: nix flake update
       - run: nix run nixpkgs#commitizen -- bump
-
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: 'feat(flake): Update'

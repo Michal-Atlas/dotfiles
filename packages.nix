@@ -1,174 +1,178 @@
 pkgs:
 with pkgs;
 [
-  xournalpp
-  dust
-  sshfs
-  vpsfree-client
-  onedrive
-  rclone
-  protonmail-desktop
-  openssl
-  protonvpn-gui
-  nethogs
-  gmic
-  nix-prefetch
-  nurl
-  nixfmt-rfc-style
-  xmlstarlet
-  ipfs
-  haskell-language-server
-  gnome-frog
-  hieroglyphic
-  halftone
-  citations
-  gnome-decoder
-  meld
-  lorem
-  ascii-draw
-  foliate
-  video-trimmer
-  caprine-bin
-  teams-for-linux
-  cachix
-  ani-cli
-  graphs
-  komikku
-  mousai
-  newsflash
-  gnome-podcasts
-  polari
-  gnome-secrets
-  textpieces
-  tangram
-  wike
-  boxes
-  nvd
-  nix-tree
-  nix-melt
-  nix-diff
-  nix-output-monitor
-  nurl
-  manix
-  apostrophe
-  lsof
-  cht-sh
-  hut
-  wireshark
-  dig
-  whatsapp-for-linux
-  racket
-  clang-tools
-  jq
+  # keep-sorted start
   (hiPrio gcc)
   acl
   alejandra
+  ani-cli
+  apostrophe
+  ascii-draw
   audacity
   bat
   blender
+  boxes
   btrfs-progs
+  cachix
+  caprine-bin
   ccls
+  cht-sh
   cifs-utils
+  citations
   clang
+  clang-tools
   cmake
   compsize
   cryptsetup
+  dig
   direnv
   discord
+  dust
   ed
   element-desktop
   feh
   ffmpeg
   file
+  foliate
   fzf
   gdb
   ghc
   gimp
   git
+  gmic
+  gnome-decoder
+  gnome-frog
+  gnome-podcasts
+  gnome-secrets
   gnumake
   gnupg
   gparted
   gprolog
+  graphs
   graphviz
   guile
   gzdoom
+  halftone
+  haskell-language-server
   heroic
+  hieroglyphic
+  hut
   imagemagick
   indent
   inkscape
   inotify-tools
+  ipfs
   isync
   jetbrains.clion
-  jetbrains.idea-ultimate
-  jetbrains.rust-rover
-  jetbrains.pycharm-professional
-  jetbrains.webstorm
+  jetbrains.datagrip
   jetbrains.goland
+  jetbrains.idea-ultimate
+  jetbrains.pycharm-professional
+  jetbrains.rust-rover
+  jetbrains.webstorm
+  jq
   kobodeluxe
+  komikku
   krita
   lagrange
   lazygit
   libreoffice
   libtool
   linuxPackages.perf
+  lorem
+  lsof
+  manix
   maxima
+  meld
   mosh
+  mousai
   mpv
+  nethogs
+  newsflash
   nil
   nix
+  nix-diff
+  nix-melt
+  nix-output-monitor
+  nix-prefetch
+  nix-tree
+  nixfmt-rfc-style
   nmap
   nodejs
+  nurl
+  nvd
+  okular
+  onedrive
   openmw
+  openssl
   p7zip
   pandoc
   patchelf
   pkg-config
   playerctl
+  polari
   prismlauncher
+  protonmail-desktop
+  protonvpn-gui
+  qbittorrent
+  racket
+  rclone
   rlwrap
   rsync
   screen
   spotify
+  sshfs
   steam-run
   superTux
   superTuxKart
   taisei
+  tangram
+  teams-for-linux
   telegram-desktop
   texlive.combined.scheme-full
+  textpieces
   tldr
-  qbittorrent
   tree
   unison-ucm
   unzip
   uqm
   valgrind
+  video-trimmer
   virt-manager
   vlc
+  vpsfree-client
   wesnoth
   wget
+  whatsapp-for-linux
+  wike
   wineWowPackages.full
   winetricks
+  wireshark
   wl-clipboard
   xdg-utils
   xdot
+  xmlstarlet
   xonotic
+  xournalpp
   xxd
   yt-dlp
-  okular
   zotero
+  # keep-sorted end
 ]
 ++ [
   (pkgs.python311.withPackages (
     ps: with ps; [
+      # keep-sorted start
       dbus-python
       ipython
       matplotlib
       numpy
       pygments
       python
-      scipy
       pytorch
+      scipy
       transformers
+      # keep-sorted end
     ]
   ))
 ]
@@ -176,6 +180,7 @@ with pkgs;
   let
     packageSet =
       ps: with ps; [
+        # keep-sorted start
         alexandria
         cffi
         cl-autowrap
@@ -215,6 +220,7 @@ with pkgs;
         trees
         unix-opts
         yacc
+        # keep-sorted end
       ];
 
   in

@@ -28,6 +28,7 @@
     vpsfreecz.url = "github:vpsfreecz/vpsadminos";
     book-dagon.url = "git+https://gitlab.fit.cvut.cz/zacekmi2/book-daemon.git";
     gemini.url = "github:Michal-Atlas/flake-gemini";
+    treefmt.url = "github:numtide/treefmt-nix";
   };
 
   outputs =
@@ -36,6 +37,7 @@
       systems,
       pre-commit-hooks,
       nixos-flake,
+      treefmt,
       ...
     }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -44,6 +46,7 @@
         ./devShell.nix
         pre-commit-hooks.flakeModule
         nixos-flake.flakeModule
+        treefmt.flakeModule
         ./checks.nix
         ./machines
       ];

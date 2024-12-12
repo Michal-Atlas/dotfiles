@@ -1,7 +1,7 @@
 (use-package
- bind-key
- :config
- (add-to-list 'same-window-buffer-names "*Personal Keybindings*"))
+  bind-key
+  :config
+  (add-to-list 'same-window-buffer-names "*Personal Keybindings*"))
 
 (use-package hydra)
 
@@ -51,7 +51,7 @@
 
 (defun yes-or-no-p (prompt)
   (y-or-n-p prompt))
-;(dired-async-mode 1)
+					;(dired-async-mode 1)
 (setq auth-sources '("~/.authinfo.gpg"))
 
 ;;;; * WindMove
@@ -77,9 +77,9 @@
 (global-hl-line-mode 1)
 
 (use-package
- highlight-indentation
- :hook (prog-mode . highlight-indentation-mode)
- :custom (highlight-indent-guides-method 'bitmap))
+  highlight-indentation
+  :hook (prog-mode . highlight-indentation-mode)
+  :custom (highlight-indent-guides-method 'bitmap))
 
 (defvar font-code "Fira Code 12")
 (set-frame-font font-code nil t)
@@ -87,9 +87,9 @@
 (use-package fira-code-mode :config (global-fira-code-mode t))
 
 (use-package
- highlight-indentation
- :hook (prog-mode . highlight-indentation-mode)
- :custom (highlight-indent-guides-method 'bitmap))
+  highlight-indentation
+  :hook (prog-mode . highlight-indentation-mode)
+  :custom (highlight-indent-guides-method 'bitmap))
 
 (setq custom-file (locate-user-emacs-file "custom-vars.el"))
 (load custom-file 'noerror 'nomessage)
@@ -113,36 +113,36 @@
 ;;;; * Packages
 
 (use-package
- rainbow-identifiers
- :hook (prog-mode . rainbow-identifiers-mode))
+  rainbow-identifiers
+  :hook (prog-mode . rainbow-identifiers-mode))
 (use-package
- rainbow-delimiters
- :hook (prog-mode . rainbow-delimiters-mode))
+  rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
 
 (set-default 'preview-scale-function 1.5)
 
 (repeat-mode 1)
 
 (use-package
- undo-tree
- :config
- (global-undo-tree-mode 1)
- (setq undo-tree-auto-save-history t)
- (setq undo-tree-history-directory-alist
-       '(("." . "~/.local/state/emacs/undo"))))
+  undo-tree
+  :config
+  (global-undo-tree-mode 1)
+  (setq undo-tree-auto-save-history t)
+  (setq undo-tree-history-directory-alist
+	'(("." . "~/.local/state/emacs/undo"))))
 
 (use-package ace-window :bind ("M-o" . ace-window))
 
 ;;;; * Eshell
 
 (use-package
- eshell-prompt-extras
- :config
- (with-eval-after-load "esh-opt"
-   (autoload 'epe-theme-lambda "eshell-prompt-extras")
-   (setq
-    eshell-highlight-prompt nil
-    eshell-prompt-function 'epe-theme-lambda)))
+  eshell-prompt-extras
+  :config
+  (with-eval-after-load "esh-opt"
+    (autoload 'epe-theme-lambda "eshell-prompt-extras")
+    (setq
+     eshell-highlight-prompt nil
+     eshell-prompt-function 'epe-theme-lambda)))
 
 (defun eshell-new ()
   "Open a new instance of eshell."
@@ -157,8 +157,8 @@
 
 (require 'eshell)
 (use-package
- eshell-syntax-highlighting
- :config (eshell-syntax-highlighting-global-mode 1))
+  eshell-syntax-highlighting
+  :config (eshell-syntax-highlighting-global-mode 1))
 (setq eshell-review-quick-commands nil)
 (require 'esh-module) ; require modules
 (add-to-list 'eshell-modules-list 'eshell-tramp)
@@ -176,56 +176,56 @@
 ;; Configure directory extension.
 
 (use-package
- anzu
- :config (global-anzu-mode +1)
- :bind
- (("M-%" . anzu-query-replace) ("C-M-%" . anzu-query-replace-regexp)))
+  anzu
+  :config (global-anzu-mode +1)
+  :bind
+  (("M-%" . anzu-query-replace) ("C-M-%" . anzu-query-replace-regexp)))
 
 (setq org-agenda-files '("~/Documents/roam/todo.org"))
 
 (use-package
- paredit
- :hook
- ((emacs-lisp-mode . paredit-mode)
-  ;; (eval-expression-minibuffer-setup . paredit-mode)
-  (scheme-mode . paredit-mode) (lisp-mode . paredit-mode)))
+  paredit
+  :hook
+  ((emacs-lisp-mode . paredit-mode)
+   ;; (eval-expression-minibuffer-setup . paredit-mode)
+   (scheme-mode . paredit-mode) (lisp-mode . paredit-mode)))
 
 (setq inferior-lisp-program "sbcl")
 
 (use-package
- multiple-cursors
- :bind
- (("C-S-c C-S-c" . mc/edit-lines)
-  ("C->" . mc/mark-next-like-this)
-  ("C-<" . mc/mark-previous-like-this)
-  ("C-c C-<" . mc/mark-all-like-this)))
+  multiple-cursors
+  :bind
+  (("C-S-c C-S-c" . mc/edit-lines)
+   ("C->" . mc/mark-next-like-this)
+   ("C-<" . mc/mark-previous-like-this)
+   ("C-c C-<" . mc/mark-all-like-this)))
 
 ;;;; * Eglot
 
 (use-package
- eglot
- :bind ("C-c c" . compile) ("C-c l =" . eglot-format-buffer))
+  eglot
+  :bind ("C-c c" . compile) ("C-c l =" . eglot-format-buffer))
 
 (add-hook 'c-mode-hook 'eglot-ensure)
 (add-hook 'c++-mode-hook 'eglot-ensure)
 
 (use-package git-gutter :config (global-git-gutter-mode +1))
 
-;(use-package savehist :init (savehist-mode))
+					;(use-package savehist :init (savehist-mode))
 (use-package company :config (global-company-mode 1))
 
 ;;;; * Elfeed
 
 (use-package
- elfeed
- :config
- (setq elfeed-feeds
-       '(("https://xkcd.com/rss.xml" comics)
-         ("https://the-dam.org/rss.xml" unix dam)
-         ("https://fsf.org/blogs/RSS" fsf)
-         ("https://blog.tecosaur.com/tmio/rss.xml" emacs)
-         ("https://guix.gnu.org/feeds/blog.atom" tech linux)
-         ("https://vkc.sh/feed/" tech linux))))
+  elfeed
+  :config
+  (setq elfeed-feeds
+	'(("https://xkcd.com/rss.xml" comics)
+          ("https://the-dam.org/rss.xml" unix dam)
+          ("https://fsf.org/blogs/RSS" fsf)
+          ("https://blog.tecosaur.com/tmio/rss.xml" emacs)
+          ("https://guix.gnu.org/feeds/blog.atom" tech linux)
+          ("https://vkc.sh/feed/" tech linux))))
 
 (use-package avy :bind ("C-c q" . avy-goto-char-timer))
 
@@ -235,32 +235,32 @@
 ;;;; * Vertico
 
 (use-package
- vertico
- :config (vertico-mode)
- :custom
- (vertico-count 20)
- (vertico-resize t)
- (enable-recursive-minibuffers t))
+  vertico
+  :config (vertico-mode)
+  :custom
+  (vertico-count 20)
+  (vertico-resize t)
+  (enable-recursive-minibuffers t))
 
 (use-package
- orderless
- :init
- (setq
-  completion-styles '(orderless basic)
-  completion-category-defaults nil
-  completion-category-overrides '((file (styles partial-completion)))))
+  orderless
+  :init
+  (setq
+   completion-styles '(orderless basic)
+   completion-category-defaults nil
+   completion-category-overrides '((file (styles partial-completion)))))
 
 (global-unset-key (kbd "C-z"))
 (global-unset-key (kbd "C-r"))
 (use-package
- consult
- :bind
- (("C-x b" . consult-buffer)
-  ("C-t" . consult-goto-line)
-  ("C-s" . consult-line)
-  ("C-r l" . consult-register)
-  ("C-r s" . consult-register-store)
-  ("M-y" . consult-yank-from-kill-ring)))
+  consult
+  :bind
+  (("C-x b" . consult-buffer)
+   ("C-t" . consult-goto-line)
+   ("C-s" . consult-line)
+   ("C-r l" . consult-register)
+   ("C-r s" . consult-register-store)
+   ("M-y" . consult-yank-from-kill-ring)))
 
 (defhydra
  hydra-buffer
@@ -272,8 +272,8 @@
 (global-unset-key (kbd "C-z"))
 
 (use-package
- keychain-environment
- :config (keychain-refresh-environment))
+  keychain-environment
+  :config (keychain-refresh-environment))
 
 (use-package adaptive-wrap)
 (use-package all-the-icons)
@@ -305,21 +305,21 @@
 ;;;; * Misc
 
 (use-package
- magit
- :bind
- (("C-c v s" . magit-stage)
-  ("C-c v p" . magit-push)
-  ("C-c v f" . magit-pull)
-  ("C-c v c" . magit-commit)
-  ("C-x g" . magit))
- :init
- (if (not (boundp 'project-switch-commands))
-     (setq project-switch-commands nil)))
+  magit
+  :bind
+  (("C-c v s" . magit-stage)
+   ("C-c v p" . magit-push)
+   ("C-c v f" . magit-pull)
+   ("C-c v c" . magit-commit)
+   ("C-x g" . magit))
+  :init
+  (if (not (boundp 'project-switch-commands))
+      (setq project-switch-commands nil)))
 
 (use-package avy :bind ("C-c q" . avy-goto-char-timer))
 (use-package
- browse-kill-ring
- :config (browse-kill-ring-default-keybindings))
+  browse-kill-ring
+  :config (browse-kill-ring-default-keybindings))
 
 (use-package embark :bind ("C-." . embark-act))
 (use-package embark-consult)
@@ -327,7 +327,7 @@
 
 (use-package gemini-mode)
 (use-package go-mode)
-;(use-package hackles)
+					;(use-package hackles)
 (use-package haskell-mode :hook (haskell-mode . eglot-ensure))
 (use-package htmlize)
 (use-package iedit)
