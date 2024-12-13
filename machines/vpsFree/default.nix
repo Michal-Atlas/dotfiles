@@ -6,10 +6,13 @@
 }:
 {
   imports = [
-    ../modules
-    #    ./mailman.nix
+    ../../modules
+    ./sourcehut.nix
   ];
-  networking.hostName = "vorpal";
+  networking = {
+    hostName = "vorpal";
+    domain = "michal-atlas.cz";
+  };
   nixpkgs = {
     config.allowUnfree = true;
     hostPlatform = "x86_64-linux";
@@ -89,6 +92,10 @@
           repo = "www";
           rev = "992dbc2f5dc9b1ca5324ec644059c11537e7462b";
           hash = "sha256-CtZdgsfA4YI7S5gd9opSaxNoPEaDX5Ydaa9mW7G2mfc=";
+        };
+        settings = {
+          # CGIPaths = ["/var/gemini/cgi"];
+          AllowTLS12 = false;
         };
       };
     nginx =

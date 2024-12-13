@@ -41,7 +41,7 @@
           enableHM = false;
         };
         vorpal = makeSys {
-          root = ./vpsFree.nix;
+          root = ./vpsFree;
           enableHM = true;
           extraImports = [
             inputs.book-dagon.nixosModules.default
