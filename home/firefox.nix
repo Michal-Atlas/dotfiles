@@ -18,7 +18,7 @@ in
 {
   programs.firefox =
     let
-      extensions = with config.nur.repos.rycee.firefox-addons; [
+      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         ublock-origin
         auto-tab-discard
         awesome-rss

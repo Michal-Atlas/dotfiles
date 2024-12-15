@@ -29,6 +29,7 @@
               inputs.agenix.nixosModules.default
               inputs.stevenblackhosts.nixosModule
               inputs.disko.nixosModules.default
+        inputs.nur.modules.nixos.default
             ] ++ extraImports;
           };
       in
@@ -52,7 +53,6 @@
     homeModules.default = {
       imports = [
         ../home
-        inputs.nur.hmModules.nur
       ];
     };
   };

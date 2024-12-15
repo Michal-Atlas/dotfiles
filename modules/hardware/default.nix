@@ -37,5 +37,20 @@
         settings.General.Experimental = true;
       };
     };
+    services.nginx = {
+      enable = true;
+      virtualHosts."127.0.0.1" = {
+        listen = [
+          {
+            port = 8091;
+            addr = "127.0.0.1";
+          }
+        ];
+        locations = {
+          "/".proxyPass = "http://127.0.0.1:3000";
+          "/api".proxyPass = "http://127.0.0.1:8090";
+        };
+      };
+    };
   };
 }

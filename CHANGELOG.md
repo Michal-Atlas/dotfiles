@@ -1,3 +1,123 @@
+## 0.15.0 (2024-12-15)
+
+### Feat
+
+- **srht**: Almost works, DKIM is dodgy
+- **mail**: Enable protonmail bridge
+- **nginx**: Use recommended Optimisation
+- **flake**: Use treefmt-nix
+- **lock**: Added gemini
+- **pkgs**: Add GoLand and Xournalpp
+- **hydra/tftp**: Add
+- **registry**: Allow self
+- **vorpal**: Add Blog servers for Gemini and HTTP
+- **ipfs**: Gateway enable IPv6
+- **nginx**: remove from hydra
+- **nginx**: Enable recommended settings globally
+- **pkgs**: Add webstorm
+- **tftpd**: Add on hydra
+- **vorpal**: Enable reprovide
+- **cz**: Autobump
+- **ipfs**: Start chaining
+- **kdeConnect**: Add
+- **flake**: Update
+- **flake**: Update
+- **book-dagon**: First attempt at setup
+- **ipfs**: Listen on IP
+- **nix-diff**: Reduce context
+- **vorpal**: Actually enable nginx
+- **vpsFree**: Rename to vorpal
+- **ipfs**: Disable on vorpal
+- **ipfs**: Enable
+- **nginx**: Move to vorpal
+- **guix**: Remove
+- **vpsFree**: Disable Emacs and Dconf
+- **atlasnet**: Start building new scheme
+- **emacs**: Make package overrideable
+- **pkgs**: Add multipath-tools
+- **registry**: Move to system
+- **vpsFree**: Use hm without packages
+- **user**: Add to dialout group
+- **term**: Infinite scrollback, default font
+- **tailscale**: Remove
+- **gnome**: Update extensions
+- **pkgs**: Add dust, bmaptool and sshfs
+- **vpsFree**: Add
+- **oracle**: Add
+- **nginx**: Serve gallery
+- **sudo**: NOPASSWD
+- **firefox**: Add options search
+- **firefox**: More declarations
+- **postgres**: Add
+- **firefox**: Declare policies and addons
+- **ipfs**: Move to networking don't enable yet
+- **btrbk**: Add on hydra
+- **filesystems**: hydra add global raw mounts
+- **zfs**: Deprecated linux kernel
+- **tailscale**: Add
+- **nixpkgs**: allowUnfree in config
+- **gnome**: Use up-to-date pano
+- **pkgs**: Remove Brave
+- **mosh**: Add
+- **htop**: Add config
+- **amdgpu**: Start using 24.11 features
+- **hydra**: Filesystems
+- **leviathan**: Filesystems
+- **java**: Add and binfmt
+- **pkgs**: Add Onedrive
+- **pkgs**: Add python features
+- **flake**: Update
+- **users**: Set UIDs explicitly so they can be referenced
+- **pkgs**: Add chez and RustRover
+- **flake**: Update
+- **pkgs**: Add ecl and abcl
+- **services**: Try autostarting all often used apps
+- **pkgs**: Add rclone
+- **nix**: Verbose logs
+- **protonmail**: Add service for GUI
+- **pkgs**: Add protonmail GUI
+- **flake**: Update
+- **pkgs**: Add IDEA
+- **flake**: Update
+- **pkgs**: Add packages
+- **flake**: Update
+- **vpn**: Swapping wg-quick for app
+- **dns**: Add CZ.NIC IPv6
+- **dns**: Enable DNSSec
+- **ipfs**: Really remove
+
+### Fix
+
+- **flake**: ci
+- **ipfs**: Merge attrsets
+- **pkgs**: Move these packages to their own project's repo
+- **vpsFree**: extraConfig duplicated headers
+- **check**: Use emacs-nox
+- **bookDagon**: Don't proxy IPFS over self
+- **flake**: Make stuff overridable options
+- **vpsFree**: Accidentally overrode all packages to empty
+- **atlasnet**: Separate IP versions and listen
+- **mail**: Remove old protonmail units
+- **firefox**: Typo in userChrome
+- **nftables**: Stuff presumes iptables
+- **flake**: Remove self from registry, FOR NOW
+- **syncthing**: Run with users group
+- **pkgs**: gnome-setting-daemon is now toplevel
+- **git-sync**: Deprecated
+- **pkgs**: Polari is now toplevel
+- **xdg**: Use portals
+- **secrets**: Cleanup, rethink
+- **syncthing**: Update leviathan key
+- **ipfs**: Disable ADHTC
+- **eduroam**: Update hash
+- **gnome**: Move extensions to their option
+- **secrets**: Update CTU
+- **nixos-flake**: Update fixup
+- **services**: Remove random startup stuff
+- **protonmail**: Use valid target for bridge
+- **flake**: nixos-flake added home-manager option
+- **mail**: Install.After is invalid?
+
 ## 0.14.0 (2024-09-09)
 
 ### Feat
