@@ -4,14 +4,20 @@ on:
     - cron: "0 0 * * 6"
   workflow_dispatch:
 jobs:
-  build:
+  version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: commitizen-tools/commitizen-action@master
+  flake:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - uses: DeterminateSystems/nix-installer-action@v16
-      - uses: commitizen-tools/commitizen-action@master
         with: 
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - uses: DeterminateSystems/update-flake-lock@v24
