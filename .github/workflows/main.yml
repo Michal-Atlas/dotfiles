@@ -1,4 +1,3 @@
-# https://github.com/reckenrode/nixos-configs/blob/bf580bf0563a6a0ae401245c2ef373338f9022aa/.github/workflows/main.yml
 name: Bump flake.lock
 on:
   schedule:
@@ -11,16 +10,6 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: cachix/install-nix-action@v20
-      - run: nix flake update
-      - run: nix run nixpkgs#commitizen -- bump
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: 'feat(flake): Update'
-          branch: master
-          commit_options: '--no-verify --signoff'
-          file_pattern: flake.lock
-          commit_user_name: Flake Bot # defaults to "GitHub Actions"
-          commit_author: Flake Bot <actions@github.com>
-          skip_dirty_check: false
-          skip_fetch: true
+      - uses: DeterminateSystems/nix-installer-action@v1
+      - uses: commitizen-tools/commitizen-action@master
+      - uses: DeterminateSystems/update-flake-lock@vX
