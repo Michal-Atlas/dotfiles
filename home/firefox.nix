@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  config,
   ...
 }:
 # https://discourse.nixos.org/t/declare-firefox-extensions-and-settings/36265
@@ -19,13 +18,6 @@ in
   programs.firefox =
     let
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-        ublock-origin
-        auto-tab-discard
-        awesome-rss
-        # copywebtables
-        # headingsmap
-        ipfs-companion
-        old-reddit-redirect
         (buildFirefoxXpiAddon rec {
           pname = "progtest-theme";
           version = "1.2.0";
@@ -34,14 +26,22 @@ in
           sha256 = "sha256-er6Apr8wG8VS0znkzadqngGic6Kgf95WPttyMzC2aR4=";
           meta = { };
         })
+        # keep-sorted start
+        auto-tab-discard
+        awesome-rss
+        geminize
+        ipfs-companion
+        old-reddit-redirect
         proton-pass
         proton-vpn
         react-devtools
         search-by-image
+        substitoot
         tree-style-tab
+        ublock-origin
         wayback-machine
         zotero-connector
-        geminize
+        # keep-sorted end
       ];
     in
     {

@@ -1,4 +1,5 @@
 {
+  flake,
   pkgs,
   config,
   lib,
@@ -8,6 +9,7 @@
   imports = [
     ../../modules
     ./sourcehut.nix
+    ./social.nix
   ];
   networking = {
     hostName = "vorpal";
@@ -100,12 +102,7 @@
       };
     nginx =
       let
-        defaults = {
-          enableACME = true;
-          forceSSL = true;
-          http2 = true;
-          http3 = true;
-        };
+        defaults = flake.self.lib.nginxDefaults;
       in
       {
         enable = true;
@@ -137,10 +134,4 @@
   systemd.services.molly-brown.serviceConfig.SupplementaryGroups = [
     config.security.acme.certs."blog.michal-atlas.cz".group
   ];
-  security.acme = {
-    acceptTerms = true;
-    defaults = {
-      email = "me+acme@michal-atlas.cz";
-    };
-  };
 }

@@ -32,4 +32,10 @@ rec {
     ];
     fsType = "btrfs";
   };
+  nginxDefaults = {
+    enableACME = true;
+    forceSSL = true;
+    http2 = true;
+    http3 = true;
+  };
 }

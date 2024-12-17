@@ -18,22 +18,42 @@
     };
   };
 
-  services = {
-    morrowind-server.enable = false;
-    syncthing.settings.options.maxSendKbps = 4096 * 20;
-    jellyfin = {
-      enable = true;
-      openFirewall = true;
+  services =
+    let
+      domain = "michal-atlas.cz";
+    in
+    {
+      morrowind-server.enable = false;
+      syncthing.settings.options.maxSendKbps = 4096 * 20;
+      jellyfin = {
+        enable = true;
+        openFirewall = true;
+      };
+      xserver.videoDrivers = [ "amdgpu" ];
+      atftpd = {
+        enable = true;
+        extraOptions = [
+          "--bind-address 192.168.0.60"
+          "--verbose=7"
+        ];
+      };
+      peertube = {
+        enable = true;
+        localDomain = "tube.${domain}";
+        redis.createLocally = true;
+        database.createLocally = true;
+        smtp.createLocally = true;
+        listenWeb = 443;
+        configureNginx = true;
+        enableWebHttps = true;
+        secrets.secretsFile = "/var/lib/peertube/secrets";
+        settings = {
+          listen.hostname = "::";
+          instance.name = "Moonlight Xanadu";
+        };
+      };
     };
-    xserver.videoDrivers = [ "amdgpu" ];
-    atftpd = {
-      enable = true;
-      extraOptions = [
-        "--bind-address 192.168.0.60"
-        "--verbose=7"
-      ];
-    };
-  };
+
   boot = {
     initrd = {
       availableKernelModules = [
@@ -75,6 +95,7 @@
       allowedTCPPorts = [
         1234 # spotify
         57621
+        9000 # peertube
       ];
       allowedUDPPorts = [
         69 # tftp

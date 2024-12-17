@@ -44,6 +44,13 @@
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
     recommendedOptimisation = true;
+    recommendedZstdSettings = true;
     statusPage = true;
+  };
+  security.acme = {
+    acceptTerms = true;
+    defaults = {
+      email = "me+acme@michal-atlas.cz";
+    };
   };
 }

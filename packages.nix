@@ -117,6 +117,7 @@ with pkgs;
   p7zip
   pandoc
   patchelf
+  peertube.cli
   pkg-config
   playerctl
   polari
