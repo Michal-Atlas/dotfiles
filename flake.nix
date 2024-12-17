@@ -22,7 +22,7 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-flake.url = "github:srid/nixos-flake";
+    nixos-flake.url = "github:srid/nixos-unified";
     nur.url = "github:nix-community/NUR";
     disko.url = "github:nix-community/disko";
     vpsfreecz.url = "github:vpsfreecz/vpsadminos";
