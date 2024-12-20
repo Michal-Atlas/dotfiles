@@ -32,14 +32,6 @@
       smtp.fromAddress = "noreply@social.michal-atlas.cz";
       extraConfig.SINGLE_USER_MODE = "true";
     };
-    nginx.virtualHosts."tube.michal-atlas.cz" = {
-      forceSSL = true;
-      enableACME = true;
-      locations."/" = {
-        proxyPass = "http://hydra:9000";
-        extraConfig = ''
-          proxy_set_header Host tube.${config.networking.domain};
-        '';
     pixelfed = {
       enable = true;
       domain = "pixel.${config.networking.domain}";
@@ -53,6 +45,16 @@
       };
       maxUploadSize = "50M";
     };
+    nginx.virtualHosts = {
+      "tube.michal-atlas.cz" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/" = {
+          proxyPass = "http://hydra:9000";
+          extraConfig = ''
+            client_max_body_size 2G;
+          '';
+        };
       };
     };
   };

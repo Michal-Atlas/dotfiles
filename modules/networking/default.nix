@@ -40,6 +40,7 @@
     ];
   };
   services.nginx = {
+    clientMaxBodySize = "2G";
     recommendedGzipSettings = true;
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
