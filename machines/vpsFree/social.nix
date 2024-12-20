@@ -4,8 +4,9 @@
 }:
 {
   services = {
-    mastodon = {
       enable = true;
+    mastodon = {
+      #      enable = true;
       localDomain = "social.${config.networking.domain}";
       configureNginx = true;
       streamingProcesses = 2;
