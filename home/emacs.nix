@@ -1,10 +1,11 @@
 {
+  flake,
   config,
   pkgs,
   lib,
   ...
 }:
-with (import ./lib);
+with flake.self.lib;
 let
   atlas-emacs = mkEmacsPackage {
     inherit pkgs;

@@ -1,5 +1,5 @@
 rec {
-  emacsConfigFile = ../files/emacs.el;
+  emacsConfigFile = ../home/files/emacs.el;
   mkEmacsPackage =
     {
       package,

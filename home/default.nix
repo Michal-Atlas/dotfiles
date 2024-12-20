@@ -1,15 +1,14 @@
 {
-  config,
-  pkgs,
   lib,
   ...
 }:
 {
   imports = [
-    ../programs
-    ../emacs.nix
-    ../files
-    ../dconf.nix
+    ./programs
+    ./emacs.nix
+    ./files
+    ./dconf.nix
+    ./packages
     ./mail.nix
     ./gnome.nix
     ./firefox.nix
@@ -65,8 +64,6 @@
         };
       };
     };
-
-    home.packages = if config.home.defaultPackages then (import ../packages.nix pkgs) else [ ];
 
     systemd.user.tmpfiles.rules = [
       "d /home/michal_atlas/Downloads - - - 5d"
