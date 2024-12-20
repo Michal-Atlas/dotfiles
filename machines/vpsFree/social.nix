@@ -3,8 +3,27 @@
   ...
 }:
 {
+  networking.firewall.allowedTCPPorts = [
+    config.services.writefreely.settings.server.gopher_port
+  ];
   services = {
+    writefreely = {
       enable = true;
+      admin.name = "root";
+      host = "text.${config.networking.domain}";
+      acme.enable = true;
+      nginx = {
+        enable = true;
+        forceSSL = true;
+      };
+      settings = {
+        server.gopher_port = 70;
+        app = {
+          single_user = true;
+          federation = true;
+        };
+      };
+    };
     mastodon = {
       #      enable = true;
       localDomain = "social.${config.networking.domain}";
