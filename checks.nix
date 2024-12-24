@@ -40,6 +40,7 @@ _: {
           nil.enable = true;
           check-yaml.enable = true;
           commitizen.enable = true;
+          treefmt.enable = true;
         };
       };
     };
