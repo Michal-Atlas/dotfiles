@@ -62,6 +62,7 @@
       ];
       Listen = [
         "tls://0.0.0.0:993"
+        "tls://[::]:993"
       ];
       MulticastInterfaces = lib.mkForce [ ];
     };
