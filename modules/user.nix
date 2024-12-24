@@ -7,6 +7,18 @@
       michal_atlas = {
         isNormalUser = true;
         uid = 1000;
+        subUidRanges = [
+          {
+            count = 64000;
+            startUid = 1000001;
+          }
+        ];
+        subGidRanges = [
+          {
+            count = 64000;
+            startGid = 1000001;
+          }
+        ];
         shell = pkgs.zsh;
         description = "Michal Atlas";
         hashedPassword = "$y$j9T$BJgm2ampHrpbLgQhzXNw4.$xppBStrecndUWp4AHAdAt3vZ7.XHmuXvNTL3WgJ0NyC";
