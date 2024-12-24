@@ -33,6 +33,7 @@
 
   hardware.enable = false;
   programs.steam.enable = false;
+  systemd.services.ipfs.environment.GOMEMLIMIT = "1GiB";
   services = {
     kubo.settings = {
       Addresses.Announce = [
@@ -49,6 +50,7 @@
         UseSubdomains = false;
       };
       Reprovider.Interval = "22h";
+      Swarm.ResourceMgr.MaxMemory = "68719476736";
     };
     yggdrasil.settings = {
       Peers = lib.mkForce [
