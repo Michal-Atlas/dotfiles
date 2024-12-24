@@ -114,6 +114,7 @@
         git
         gmic
         gnome-decoder
+        gnome-feeds
         gnome-frog
         gnome-podcasts
         gnome-secrets
@@ -161,7 +162,6 @@
         mousai
         mpv
         nethogs
-        newsflash
         nil
         nix
         nix-diff
