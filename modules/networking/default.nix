@@ -9,6 +9,7 @@
   ];
   programs.mosh.enable = true;
   services = {
+    vnstat.enable = true;
     openssh = {
       enable = true;
       settings = {
