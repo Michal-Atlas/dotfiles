@@ -710,31 +710,10 @@
         "nixpkgs": "nixpkgs_7",
         "nur": "nur",
         "pre-commit-hooks": "pre-commit-hooks_2",
-        "stevenblackhosts": "stevenblackhosts",
         "systems": "systems_3",
         "treefmt": "treefmt",
         "unison-nix": "unison-nix",
         "vpsfreecz": "vpsfreecz"
-      }
-    },
-    "stevenblackhosts": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1734719418,
-        "narHash": "sha256-POs74yWI2f7F5XQmqM8FSbR20f+Nr6pJDLhSAIzYUAE=",
-        "owner": "StevenBlack",
-        "repo": "hosts",
-        "rev": "aec12830201056810883861de874e66060a911b1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "StevenBlack",
-        "repo": "hosts",
-        "type": "github"
       }
     },
     "systems": {

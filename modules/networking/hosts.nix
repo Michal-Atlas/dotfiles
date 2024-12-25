@@ -12,9 +12,5 @@ _: {
     "200:8c2a:3279:eb5d:f3eb:eb7f:d3a3:29d4" = [ "hydra" ];
   };
 
-  networking.stevenBlackHosts = {
-    blockFakenews = true;
-    blockGambling = true;
-    blockPorn = true;
-  };
+  networking.stevenblack.enable = true;
 }

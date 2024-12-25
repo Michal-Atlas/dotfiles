@@ -11,10 +11,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
-    stevenblackhosts = {
-      url = "github:StevenBlack/hosts";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     flake-parts.url = "github:hercules-ci/flake-parts";
     systems.url = "github:nix-systems/default";
     unison-nix.url = "github:ceedubs/unison-nix";
