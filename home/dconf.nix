@@ -36,12 +36,18 @@ in
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/browser/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/files/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/recon/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/spotify/"
       ];
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/term" = {
       binding = "<Super>t";
       command = "alacritty -e tmux";
       name = "TERM";
+    };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/spotify" = {
+      binding = "<Super><Shift>s";
+      command = "spotify";
+      name = "SPOTIFY";
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/emacs" = {
       binding = "<Super>Return";
@@ -52,17 +58,6 @@ in
       binding = "<Super>f";
       command = "nyxt";
       name = "BROWSER";
-    };
-    "org/gnome/desktop/background" = {
-      picture-options = "zoom";
-      picture-uri = builtins.fetchurl {
-        url = "https://pbs.twimg.com/media/EaOkegwX0Aww2WW.jpg";
-        sha256 = "sha256:0972r5d7k70ls87pjrx0s4jqmd2kmhc7f9r9ypa0d8ikqgwpnfhx";
-      };
-      picture-uri-dark = builtins.fetchurl {
-        url = "https://www.gnu.org/graphics/techy-gnu-tux-bivouac-large.jpg";
-        sha256 = "sha256:13934pa275b6s27gja545bwic6fzhjb2y6x5bvpn30vmyva09rm0";
-      };
     };
     "org/gnome/desktop/input-sources" = {
       sources = [
@@ -98,11 +93,9 @@ in
         "firefox.desktop"
         "spotify.desktop"
         "discord.desktop"
-        "org.keepassxc.KeePassXC.desktop"
         "fi.skyjake.Lagrange.desktop"
         "zotero.desktop"
         "org.gnome.Nautilus.desktop"
-        "codium.desktop"
       ];
     };
     "org/gnome/mutter" = {

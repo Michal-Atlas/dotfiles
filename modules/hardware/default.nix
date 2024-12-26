@@ -1,4 +1,5 @@
 {
+  flake,
   pkgs,
   config,
   lib,
@@ -52,5 +53,66 @@
         };
       };
     };
+    stylix = {
+      enable = true;
+      image = builtins.fetchurl {
+        url = "https://www.gnu.org/graphics/techy-gnu-tux-bivouac-large.jpg";
+        sha256 = "sha256:13934pa275b6s27gja545bwic6fzhjb2y6x5bvpn30vmyva09rm0";
+      };
+      polarity = "dark";
+      targets = {
+        grub.enable = true;
+        gtk.enable = true;
+        nixos-icons.enable = true;
+        spicetify.enable = true;
+      };
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/monokai.yaml";
+      fonts = with pkgs; {
+        serif = {
+          package =
+            pkgs.runCommand "coelacanth-font"
+              {
+                src = texlivePackages.coelacanth.tex;
+              }
+              ''
+                install -D $src/fonts/opentype/public/coelacanth/* -t $out/share/fonts/opentype
+              '';
+          name = "Coelacanth";
+        };
+        sansSerif = {
+          package = the-neue-black;
+          name = "TheNeue-Black";
+        };
+        monospace = {
+          package = fira-code;
+          name = "Fira Code";
+        };
+        # sizes = {
+        #   desktop = 8;
+        #   applications = 12;
+        # };
+      };
+    };
+    programs.spicetify =
+      let
+        spicePkgs = flake.inputs.spicetify-nix.legacyPackages.${pkgs.system};
+      in
+      {
+        enable = true;
+        enabledExtensions = with spicePkgs.extensions; [
+          #keep-sorted start
+          history
+          phraseToPlaylist
+          playNext
+          popupLyrics
+          sectionMarker
+          shuffle
+          skipStats
+          songStats
+          volumePercentage
+          wikify
+          #keep-sorted end
+        ];
+      };
   };
 }

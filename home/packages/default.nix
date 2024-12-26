@@ -195,7 +195,6 @@
         rlwrap
         rsync
         screen
-        spotify
         sshfs
         steam-run
         superTux

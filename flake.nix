@@ -25,6 +25,14 @@
     book-dagon.url = "git+https://gitlab.fit.cvut.cz/zacekmi2/book-daemon.git";
     gemini.url = "github:Michal-Atlas/flake-gemini";
     treefmt.url = "github:numtide/treefmt-nix";
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
