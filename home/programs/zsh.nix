@@ -45,14 +45,5 @@
         };
       }
     ];
-    # prezto = {
-    #   enable = true;
-    #   terminal.autoTitle = true;
-    #   tmux = {
-    #     autoStartLocal = true;
-    #     autoStartRemote = true;
-    #   };
-
-    # };
   };
 }
