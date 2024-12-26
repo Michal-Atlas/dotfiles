@@ -9,6 +9,7 @@
   ];
   programs = {
     fzf.enable = true;
+    alacritty.enable = true;
     dircolors.enable = true;
     keychain.enable = true;
     navi.enable = true;

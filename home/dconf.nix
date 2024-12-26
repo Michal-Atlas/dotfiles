@@ -40,7 +40,7 @@ in
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/term" = {
       binding = "<Super>t";
-      command = "kgx";
+      command = "alacritty -e tmux";
       name = "TERM";
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/emacs" = {

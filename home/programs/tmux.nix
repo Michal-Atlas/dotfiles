@@ -1,16 +1,22 @@
 { pkgs, ... }:
 {
   programs = {
+    fzf.tmux.enableShellIntegration = true;
     tmux = {
       enable = true;
-      plugins = with pkgs.tmuxPlugins; [ catppuccin ];
       baseIndex = 1;
       clock24 = true;
       mouse = true;
-      prefix = "C-Space";
-      tmuxp.enable = true;
-      keyMode = "vi";
+      disableConfirmationPrompt = true;
+      # focusEvents = true;
+      historyLimit = 100000;
+      newSession = true;
+      # shortcut = "f";
+      sensibleOnTop = true;
+      plugins = with pkgs.tmuxPlugins; [
+        extrakto
+        better-mouse-mode
+      ];
     };
-    fzf.tmux.enableShellIntegration = true;
   };
 }
