@@ -5,6 +5,7 @@
     enable = lib.mkDefault true;
     autoMount = true;
     settings = {
+      Experimental.FilestoreEnabled = true;
       Peering.Peers = [
         {
           ID = "12D3KooWRrLK1fnBwC5iWLERwhQpbMroBxJcnkPVksfN3Tvq95Su";
