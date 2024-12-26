@@ -1,5 +1,6 @@
 { pkgs, ... }:
 {
+  home.shellAliases.ssh = "alacritty -e ssh";
   programs.zsh = {
     enable = true;
     enableVteIntegration = true;
