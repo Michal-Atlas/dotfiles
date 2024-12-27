@@ -30,7 +30,6 @@
               inputs.disko.nixosModules.default
               inputs.nur.modules.nixos.default
               inputs.stylix.nixosModules.stylix
-              inputs.spicetify-nix.nixosModules.default
             ] ++ extraImports;
           };
       in

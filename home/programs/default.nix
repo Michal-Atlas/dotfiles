@@ -13,6 +13,18 @@
     dircolors.enable = true;
     keychain.enable = true;
     navi.enable = true;
+    spotify-player = {
+      package = pkgs.spotify-player.override {
+        withAudioBackend = "";
+        withDaemon = false;
+        withStreaming = false;
+      };
+      settings = {
+        client_id = "aa7781362ed442e2a9476bad98f86eeb";
+        default_device = "Spotifyd@hydra";
+      };
+      enable = true;
+    };
     direnv = {
       nix-direnv.enable = true;
       enable = true;
