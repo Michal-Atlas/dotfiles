@@ -36,7 +36,6 @@ in
         proton-vpn
         react-devtools
         search-by-image
-        substitoot
         tree-style-tab
         ublock-origin
         wayback-machine
