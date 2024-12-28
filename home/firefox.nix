@@ -36,7 +36,6 @@ in
         proton-vpn
         react-devtools
         search-by-image
-        tree-style-tab
         ublock-origin
         wayback-machine
         zotero-connector
@@ -70,6 +69,8 @@ in
         settings = {
           "extensions.autoDisableScopes" = 0;
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+          "sidebar.verticalTabs" = true;
+          "reader.toolbar.vertical" = true;
         };
         search = {
           default = "DuckDuckGo";
