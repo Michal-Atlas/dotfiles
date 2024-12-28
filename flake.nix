@@ -29,6 +29,10 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    www = {
+      url = "sourcehut:~michal_atlas/www";
+      flake = false;
+    };
   };
 
   outputs =

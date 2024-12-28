@@ -1,6 +1,5 @@
 {
   flake,
-  pkgs,
   config,
   lib,
   ...
@@ -92,12 +91,7 @@
         hostName = "blog.michal-atlas.cz";
         certPath = "${dir}/cert.pem";
         keyPath = "${dir}/key.pem";
-        docBase = pkgs.fetchFromSourcehut {
-          owner = "~michal_atlas";
-          repo = "www";
-          rev = "992dbc2f5dc9b1ca5324ec644059c11537e7462b";
-          hash = "sha256-CtZdgsfA4YI7S5gd9opSaxNoPEaDX5Ydaa9mW7G2mfc=";
-        };
+        docBase = flake.inputs.www;
         settings = {
           # CGIPaths = ["/var/gemini/cgi"];
           AllowTLS12 = false;

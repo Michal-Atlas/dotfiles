@@ -333,11 +333,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1733950433,
-        "narHash": "sha256-cp+OpPXevLtczlNPyoaRaoQJby2CNT3IRfoM1bd3Kmw=",
+        "lastModified": 1735351398,
+        "narHash": "sha256-IVt8t98IprSoiVsCLLjGNNwNP9oNGdoDe3IzWYXx7fM=",
         "owner": "Michal-Atlas",
         "repo": "flake-gemini",
-        "rev": "cfbfa1603bd9a9ae0974cc9907382677c441f8e1",
+        "rev": "398abd80a2f90705374376b2433615749bd5582e",
         "type": "github"
       },
       "original": {
@@ -871,7 +871,8 @@
         "systems": "systems_4",
         "treefmt": "treefmt",
         "unison-nix": "unison-nix",
-        "vpsfreecz": "vpsfreecz"
+        "vpsfreecz": "vpsfreecz",
+        "www": "www"
       }
     },
     "stylix": {
@@ -1120,6 +1121,22 @@
         "owner": "vpsfreecz",
         "repo": "vpsadminos",
         "type": "github"
+      }
+    },
+    "www": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1716477454,
+        "narHash": "sha256-CtZdgsfA4YI7S5gd9opSaxNoPEaDX5Ydaa9mW7G2mfc=",
+        "owner": "~michal_atlas",
+        "repo": "www",
+        "rev": "992dbc2f5dc9b1ca5324ec644059c11537e7462b",
+        "type": "sourcehut"
+      },
+      "original": {
+        "owner": "~michal_atlas",
+        "repo": "www",
+        "type": "sourcehut"
       }
     }
   },
