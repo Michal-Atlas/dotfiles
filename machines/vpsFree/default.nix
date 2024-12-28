@@ -8,7 +8,6 @@
   imports = [
     ../../modules
     ./sourcehut.nix
-    ./social.nix
   ];
   networking = {
     hostName = "vorpal";
