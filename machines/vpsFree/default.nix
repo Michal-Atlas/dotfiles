@@ -81,6 +81,10 @@
       enable = true;
       port = 4859;
       geminiDomain = "gemini://blog.michal-atlas.cz";
+      extraArgs = [
+        "-e"
+        "/assets/style.css"
+      ];
     };
     molly-brown =
       let
