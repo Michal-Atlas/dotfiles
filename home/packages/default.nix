@@ -58,6 +58,7 @@
             optima
             parenscript
             parser-combinators
+            rustup
             s-xml
             screamer
             serapeum

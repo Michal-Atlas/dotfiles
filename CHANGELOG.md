@@ -1,3 +1,23 @@
+## 0.17.0 (2024-12-28)
+
+### Feat
+
+- **shell**: SSH in new terminal window
+- **ipfs**: Allow Filestore
+- **stylix**: Add
+- **tmux**: Use alacritty+tmux as TERM
+- **hosts**: Use upstream Steven Black
+- **checks**: pre-commit treefmt
+- **yggdrasil/vpsFree**: Allow IPv6 directs
+- **users**: Widen subUid ranges
+- **peertube**: Remove
+- **vnstat**: Add
+- **rss**: Use gnome-feeds
+
+### Fix
+
+- **vpsFree/ipfs**: Memory limit
+
 ## 0.16.0 (2024-12-21)
 
 ### Feat

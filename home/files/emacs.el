@@ -48,6 +48,7 @@
 (global-set-key (kbd "C-x C-r") 'recentf-open-files)
 (run-at-time nil (* 10 60) 'recentf-save-list)
 (global-prettify-symbols-mode +1)
+(setq-default cursor-type 'bar)
 
 (defun yes-or-no-p (prompt)
   (y-or-n-p prompt))
