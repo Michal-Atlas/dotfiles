@@ -1,5 +1,6 @@
 {
   flake,
+  pkgs,
   config,
   lib,
   ...
@@ -85,21 +86,24 @@
         "/assets/style.css"
       ];
     };
-    molly-brown =
-      let
-        dir = config.security.acme.certs."blog.michal-atlas.cz".directory;
-      in
-      {
-        enable = true;
-        hostName = "blog.michal-atlas.cz";
-        certPath = "${dir}/cert.pem";
-        keyPath = "${dir}/key.pem";
-        docBase = flake.inputs.www;
-        settings = {
-          # CGIPaths = ["/var/gemini/cgi"];
-          AllowTLS12 = false;
-        };
-      };
+    stargazer = {
+      enable = true;
+      ipLog = true;
+      routes = [
+        {
+          route = "blog.michal-atlas.cz";
+          root = "${flake.inputs.www.packages.${pkgs.system}.blog}";
+        }
+        {
+          route = "ipfs.michal-atlas.cz";
+          root = "/ipfs";
+        }
+        {
+          route = "ipns.michal-atlas.cz";
+          root = "/ipns";
+        }
+      ];
+    };
     nginx =
       let
         defaults = flake.self.lib.nginxDefaults;
