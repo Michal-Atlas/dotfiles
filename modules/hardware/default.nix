@@ -65,7 +65,7 @@
         nixos-icons.enable = true;
         spicetify.enable = true;
       };
-      base16Scheme = "${pkgs.base16-schemes}/share/themes/monokai.yaml";
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
       fonts = with pkgs; {
         serif = {
           package =
