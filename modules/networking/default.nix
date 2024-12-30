@@ -30,16 +30,7 @@
     wait-online.enable = false;
   };
   services.resolved.dnssec = "true";
-  networking = {
-    networkmanager.enable = true;
-    nameservers = [
-      "193.17.47.1"
-      "185.43.135.1"
-      "2001:148f:ffff::1"
-      "2001:148f:fffe::1"
-      "302:db60::53"
-    ];
-  };
+  networking.networkmanager.enable = true;
   services.nginx = {
     clientMaxBodySize = "2G";
     recommendedGzipSettings = true;
