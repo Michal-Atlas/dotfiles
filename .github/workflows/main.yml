@@ -11,7 +11,7 @@ jobs:
         with:
           fetch-depth: 0
       - uses: commitizen-tools/commitizen-action@master
-        with: 
+        with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
   flake:
     runs-on: ubuntu-latest
