@@ -1,4 +1,5 @@
 {
+  flake,
   pkgs,
   config,
   lib,
@@ -100,5 +101,26 @@
         # };
       };
     };
+    programs.spicetify =
+      let
+        spicePkgs = flake.inputs.spicetify-nix.legacyPackages.${pkgs.system};
+      in
+      {
+        enable = true;
+        enabledExtensions = with spicePkgs.extensions; [
+          #keep-sorted start
+          history
+          phraseToPlaylist
+          playNext
+          popupLyrics
+          sectionMarker
+          shuffle
+          skipStats
+          songStats
+          volumePercentage
+          wikify
+          #keep-sorted end
+        ];
+      };
   };
 }

@@ -29,9 +29,10 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    www = {
-      url = "sourcehut:~michal_atlas/www";
-      flake = false;
+    www.url = "sourcehut:~michal_atlas/www";
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
