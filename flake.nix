@@ -26,7 +26,7 @@
     gemini.url = "github:Michal-Atlas/flake-gemini";
     treefmt.url = "github:numtide/treefmt-nix";
     stylix = {
-      url = "github:danth/stylix";
+      url = "github:danth/stylix/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     www.url = "sourcehut:~michal_atlas/www";
