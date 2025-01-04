@@ -21,6 +21,14 @@
   };
 
   config = lib.mkIf config.hardware.enable {
+    networking.firewall.allowedTCPPorts = [
+      # chromecast start
+      5353
+      8009
+      8010
+      53292
+      # chromecast end
+    ];
     services = {
       pcscd.enable = true;
       protonmail-bridge = {
