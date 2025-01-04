@@ -110,6 +110,7 @@
         foliate
         fzf
         gdb
+        gh
         ghc
         gimp
         git
