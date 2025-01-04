@@ -19,10 +19,26 @@ in
       "/DISKA" = btrfsMount "/dev/disk/by-uuid/${DISKA_UUID}" "/";
       "/DISKB" = btrfsMount "/dev/disk/by-uuid/${DISKB_UUID}" "/";
     };
-  services.beesd.filesystems = {
-    "DISKB".spec = "UUID=${DISKB_UUID}";
-    "DISKA".spec = "UUID=${DISKA_UUID}";
-  };
+  services.beesd.filesystems =
+    let
+      common = {
+        hashTableSizeMB = 128;
+        extraOptions = [
+          "--workaround-btrfs-send"
+          "--loadavg-target"
+          "4"
+        ];
+        verbosity = "crit";
+      };
+    in
+    {
+      "DISKB" = {
+        spec = "UUID=${DISKB_UUID}";
+      } // common;
+      "DISKA" = {
+        spec = "UUID=${DISKA_UUID}";
+      } // common;
+    };
   services.btrbk.instances."main".settings = {
     timestamp_format = "long-iso";
     snapshot_preserve_min = "1w";
