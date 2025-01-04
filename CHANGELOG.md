@@ -1,3 +1,19 @@
+## 0.19.0 (2025-01-04)
+
+### Feat
+
+- **ipfs**: Remove
+- **bees**: Add on hydra
+- **spotifyd**: Use high bitrate
+- **pkgs**: Add Usbutils
+- **pkgs**: Add github CLI
+
+### Fix
+
+- **firewall**: Fix chromecast connection
+- **ci**: Format
+- **tmux**: Don't open in all shells, bad idea
+
 ## 0.18.0 (2025-01-04)
 
 ### Feat
