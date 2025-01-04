@@ -1,3 +1,25 @@
+## 0.18.0 (2025-01-04)
+
+### Feat
+
+- **networking**: Remove nameservers
+- **stylix**: Set color scheme to gruvbox
+- **gemini**: molly-brown -> stargazer
+- **firefox**: Use native vertical tabs
+- **blog**: Use my own css
+- **blog**: Use flake input for www repo
+- **pkgs**: Add rustup
+- **firefox**: Remove substitoot
+- **term**: Use pipe symbol
+- **nix**: Optimise live
+- **spotify**: Replace spicetify with spotify-player
+
+### Fix
+
+- **mastodon**: Remove
+- **vpsFree**: Remove socials since they're on blog
+- **flake**: Remove spicetify from lock
+
 ## 0.17.0 (2024-12-28)
 
 ### Feat
