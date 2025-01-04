@@ -98,6 +98,7 @@
           use_keyring = false;
           use_mpris = false;
           volume_normalisation = true;
+          bitrate = 320;
         };
       };
     };
