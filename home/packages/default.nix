@@ -212,6 +212,7 @@
         unison-ucm
         unzip
         uqm
+        usbutils
         valgrind
         vcmi
         video-trimmer
