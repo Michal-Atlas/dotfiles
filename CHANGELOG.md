@@ -1,3 +1,13 @@
+## 0.20.0 (2025-01-06)
+
+### Feat
+
+- **bees**: Configure with smaller table and lower load
+
+### Fix
+
+- **stylix**: Lock to current release
+
 ## 0.19.0 (2025-01-04)
 
 ### Feat
