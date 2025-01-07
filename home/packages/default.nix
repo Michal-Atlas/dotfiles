@@ -138,6 +138,7 @@
         inkscape
         inotify-tools
         ipfs
+        ipscan
         isync
         jetbrains.clion
         jetbrains.datagrip
