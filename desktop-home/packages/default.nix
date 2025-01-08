@@ -180,6 +180,7 @@
     p7zip
     pandoc
     patchelf
+    pavucontrol
     peertube.cli
     pkg-config
     playerctl
@@ -188,6 +189,7 @@
     protonmail-desktop
     protonvpn-gui
     qbittorrent
+    qpwgraph
     racket
     rclone
     rlwrap

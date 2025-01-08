@@ -1,8 +1,7 @@
 _: {
   services.xserver = {
-    enable = true;
-    displayManager.gdm.enable = true;
   };
+  programs.light.enable = true;
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
@@ -20,4 +19,12 @@ _: {
     };
   };
   programs.dconf.enable = true;
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
+  systemd = {
+    services = {
+      "getty@tty1".enable = false;
+      "autovt@tty1".enable = false;
+    };
+  };
 }

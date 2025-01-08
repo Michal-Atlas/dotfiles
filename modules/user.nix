@@ -31,6 +31,7 @@
           "adbusers"
           "podman"
           "dialout"
+          "video"
           config.services.kubo.group
         ];
         openssh.authorizedKeys.keys =
