@@ -1,11 +1,8 @@
 { lib, ... }:
 {
   imports = [
-    ./hardware
     ./networking
     ./nix.nix
-    ./steam.nix
-    ./storage
     ./user.nix
     ./cachix.nix
     ./postgres.nix

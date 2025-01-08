@@ -6,7 +6,6 @@
 }:
 {
   imports = [
-    ../../modules
     ./filesystems.nix
   ];
   hardware = {

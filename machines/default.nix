@@ -6,31 +6,32 @@
         makeSys =
           {
             root,
-            enableHM ? true,
             extraImports ? [ ],
+            desktop ? true,
           }:
           self.nixos-unified.lib.mkLinuxSystem { home-manager = true; } {
             imports = [
-              root
-              inputs.nix-index-database.nixosModules.nix-index
-              (
-                if enableHM then
-                  {
-                    home-manager = {
-                      useGlobalPkgs = true;
-                      useUserPackages = true;
-                      users.michal_atlas.imports = [ self.homeModules.default ];
-                    };
-                  }
-                else
-                  { }
-              )
-              inputs.gemini.nixosModules.kineto
+              (if desktop then ../desktop-modules else { })
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  users.michal_atlas.imports = [
+                    (if desktop then self.homeModules.desktop else self.homeModules.default)
+                  ];
+                };
+              }
+              # keep-sorted start
+              ../modules
               inputs.agenix.nixosModules.default
               inputs.disko.nixosModules.default
+              inputs.gemini.nixosModules.kineto
+              inputs.nix-index-database.nixosModules.nix-index
               inputs.nur.modules.nixos.default
-              inputs.stylix.nixosModules.stylix
               inputs.spicetify-nix.nixosModules.default
+              inputs.stylix.nixosModules.stylix
+              root
+              # keep-sorted end
             ] ++ extraImports;
           };
       in
@@ -40,17 +41,25 @@
         leviathan = makeSys { root = ./leviathan.nix; };
         vorpal = makeSys {
           root = ./vpsFree;
-          enableHM = true;
+          desktop = false;
           extraImports = [
             inputs.book-dagon.nixosModules.default
             inputs.vpsfreecz.nixosConfigurations.container
           ];
         };
       };
-    homeModules.default = {
-      imports = [
-        ../home
-      ];
+    homeModules = {
+      default = {
+        imports = [
+          ../home
+        ];
+      };
+      desktop = {
+        imports = [
+          ../home
+          ../desktop-home
+        ];
+      };
     };
   };
 }

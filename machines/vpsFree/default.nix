@@ -7,7 +7,6 @@
 }:
 {
   imports = [
-    ../../modules
     ./sourcehut.nix
   ];
   networking = {
@@ -19,19 +18,6 @@
     hostPlatform = "x86_64-linux";
   };
   system.stateVersion = "24.11";
-  home-manager.users."michal_atlas" = {
-    home.defaultPackages = false;
-    programs = {
-      firefox.enable = false;
-      gnome-shell.enable = false;
-      thunderbird.enable = false;
-    };
-    emacs.enable = false;
-    dconf.enable = false;
-  };
-
-  hardware.enable = false;
-  programs.steam.enable = false;
   systemd.services.ipfs.environment.GOMEMLIMIT = "1GiB";
   services = {
     kubo.settings = {
@@ -65,8 +51,6 @@
       ];
       MulticastInterfaces = lib.mkForce [ ];
     };
-    syncthing.enable = false;
-    gvfs.enable = false;
   };
   networking.firewall.allowedTCPPorts = [
     993
@@ -76,7 +60,7 @@
   ];
 
   services = {
-    book-dagon.enable = true;
+    book-dagon.enable = false;
     kineto = {
       enable = true;
       port = 4859;
@@ -135,7 +119,4 @@
         };
       };
   };
-  systemd.services.molly-brown.serviceConfig.SupplementaryGroups = [
-    config.security.acme.certs."blog.michal-atlas.cz".group
-  ];
 }

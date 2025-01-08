@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   config,
   ...
 }:
@@ -21,7 +20,7 @@ in
       "meta.${domain}".useACMEHost = "${domain}";
     };
     sourcehut = {
-      enable = true;
+      enable = false;
       postfix.enable = true;
       redis.enable = true;
       postgresql.enable = true;
@@ -59,7 +58,7 @@ in
         cfg = config.services.opendkim;
       in
       {
-        enable = true;
+        enable = false;
         domains = "csl:lists.${domain}";
         selector = "lists";
         settings = rec {
@@ -98,11 +97,11 @@ in
       hostname = "lists.${domain}";
     };
   };
-  systemd.services.opendkim.serviceConfig.ExecStart =
-    let
-      cfg = config.services.opendkim;
-    in
-    lib.mkForce "${pkgs.opendkim}/bin/opendkim -f -l -p ${cfg.socket} -x ${cfg.configFile}";
+  # systemd.services.opendkim.serviceConfig.ExecStart =
+  #   let
+  #     cfg = config.services.opendkim;
+  #   in
+  #   lib.mkForce "${pkgs.opendkim}/bin/opendkim -f -l -p ${cfg.socket} -x ${cfg.configFile}";
   environment.systemPackages = with pkgs; [ sourcehut.coresrht ];
   security.acme.certs."${domain}" = {
     # server = "https://acme-staging-v02.api.letsencrypt.org/directory";
