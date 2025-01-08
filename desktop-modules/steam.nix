@@ -22,4 +22,8 @@
     2350
     3450
   ];
+  programs.gamemode = {
+    enable = true;
+    enableRenice = true;
+  };
 }
