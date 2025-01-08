@@ -95,7 +95,6 @@
     cryptsetup
     dig
     direnv
-    discord
     dust
     ecl
     ed
@@ -216,6 +215,7 @@
     virt-manager
     vlc
     vpsfree-client
+    webcord
     wesnoth
     wget
     whatsapp-for-linux

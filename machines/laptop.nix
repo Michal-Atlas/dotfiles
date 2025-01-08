@@ -1,9 +1,13 @@
-{ config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 {
   imports = [
     ./builds.nix
   ];
-
   boot = {
     initrd = {
       availableKernelModules = [
@@ -38,7 +42,7 @@
   powerManagement = {
     enable = true;
     cpuFreqGovernor = "powersave";
-    scsiLinkPolicy = "min_power";
     powertop.enable = true;
   };
+  environment.systemPackages = [ pkgs.powertop ];
 }

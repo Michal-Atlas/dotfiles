@@ -7,5 +7,6 @@
     ./gnome.nix
     ./mail.nix
     ./packages
+    ./hyprland.nix
   ];
 }
