@@ -9,7 +9,7 @@ _: {
       "vorpal.ip6"
     ];
     "200:299c:6b1a:c8ac:bc4d:d2be:cbd:6014" = [ "leviathan" ];
-    "200:8c2a:3279:eb5d:f3eb:eb7f:d3a3:29d4" = [ "hydra" ];
+    "201:876c:b6b:3561:f064:c3d6:5135:36e6" = [ "hydra" ];
   };
 
   networking.stevenblack.enable = true;
