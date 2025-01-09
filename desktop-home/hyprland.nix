@@ -43,9 +43,13 @@ in
     enable = true;
     systemd.enable = true;
     style = ''
-      .modules-right .module {
+      .modules-right > label.module {
         margin: 6px 3px;
-        border-radius: 8px;
+      }
+
+      .modules-right > box.module {
+        border-radius: 4px;
+        padding: 6px 12px;
         background-color: @base05;
         color: @base00;
       }
