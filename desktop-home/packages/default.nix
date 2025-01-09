@@ -217,6 +217,7 @@
     virt-manager
     vlc
     vpsfree-client
+    wdisplays
     webcord
     wesnoth
     wget
