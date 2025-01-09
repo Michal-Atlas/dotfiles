@@ -185,6 +185,8 @@ in
         ", XF86AudioPlay,        exec, ${uwsm} app -- playerctl play-pause"
         ", XF86AudioPrev,        exec, ${uwsm} app -- playerctl previous"
         ", XF86AudioNext,        exec, ${uwsm} app -- playerctl next"
+
+        ", PRINT,         exec, ${uwsm} app -- ${pkgs.hyprshot}/bin/hyprshot -m region -z"
       ];
 
       binds = {
