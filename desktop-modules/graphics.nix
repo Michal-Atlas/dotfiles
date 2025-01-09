@@ -2,9 +2,12 @@ _: {
   services.xserver = {
   };
   programs.light.enable = true;
-  xdg.portal = {
-    enable = true;
-    xdgOpenUsePortal = true;
+  xdg = {
+    icons.enable = true;
+    portal = {
+      enable = true;
+      xdgOpenUsePortal = true;
+    };
   };
   services.displayManager.autoLogin = {
     enable = true;
