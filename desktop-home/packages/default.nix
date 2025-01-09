@@ -54,7 +54,6 @@
         optima
         parenscript
         parser-combinators
-        rustup
         s-xml
         screamer
         serapeum
@@ -194,6 +193,7 @@
     rclone
     rlwrap
     rsync
+    rustup
     screen
     sshfs
     steam-run
