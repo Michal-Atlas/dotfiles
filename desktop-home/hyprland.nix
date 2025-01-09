@@ -42,6 +42,14 @@ in
   programs.waybar = {
     enable = true;
     systemd.enable = true;
+    style = ''
+      .modules-right .module {
+        margin: 6px 3px;
+        border-radius: 8px;
+        background-color: @base05;
+        color: @base00;
+      }
+    '';
     settings.mainBar = {
       modules-left = [
         "hyprland/workspaces"
@@ -65,15 +73,14 @@ in
           deactivated = "";
         };
       };
-      disk.format = "{used}/{total}";
       tray.spacing = 10;
       mpris = {
         dynamic-len = 80;
         title-len = 30;
       };
       wireplumber = {
-        format = "{volume}";
-        format-muted = "--";
+        format = "{volume} ";
+        format-muted = "-- ";
         on-click = "${uwsm} app -- ${pkgs.pavucontrol}/bin/pavucontrol";
       };
       network = {
@@ -82,10 +89,10 @@ in
         tooltip-format = "{ipaddr}/{cidr} {signalStrength}%";
       };
       clock.format = "{:%FT%TZ}";
-      cpu.format = "{usage}";
-      memory.format = "{}";
-      battery.format = "{}🔋";
-      backlight.format = "{percent}";
+      cpu.format = "{usage} ";
+      memory.format = "{} ";
+      battery.format = "{} 🔋";
+      backlight.format = "{percent} ";
     };
   };
   wayland.windowManager.hyprland = {
