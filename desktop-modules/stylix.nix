@@ -27,8 +27,8 @@
         name = "Coelacanth";
       };
       sansSerif = {
-        package = the-neue-black;
-        name = "TheNeue-Black";
+        package = jetbrains-mono;
+        name = "Jetbrains Mono";
       };
       monospace = {
         package = fira-code;

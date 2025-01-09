@@ -16,8 +16,8 @@
         ];
       })
       font-awesome
+      fira
       fira-code
-      fira-mono
       fira-code-symbols
       jetbrains-mono
       mplus-outline-fonts.githubRelease
