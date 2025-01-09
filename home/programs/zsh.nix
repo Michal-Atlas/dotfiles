@@ -33,6 +33,16 @@
         file = "share/fzf-tab/fzf-tab.plugin.zsh";
         src = zsh-fzf-tab;
       }
+      {
+        name = "auto-notify";
+        file = "auto-notify.plugin.zsh";
+        src = pkgs.fetchFromGitHub {
+          owner = "MichaelAquilina";
+          repo = "zsh-auto-notify";
+          rev = "0.10.1";
+          hash = "sha256-l5nXzCC7MT3hxRQPZv1RFalXZm7uKABZtfEZSMdVmro=";
+        };
+      }
     ];
   };
 }
