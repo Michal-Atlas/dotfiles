@@ -44,6 +44,7 @@ in
     systemd.enable = true;
     style = ''
       .modules-right .module {
+        margin: 6px;
         border-radius: 4px;
         background-color: @base05;
         color: @base00;
