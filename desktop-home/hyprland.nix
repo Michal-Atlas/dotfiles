@@ -43,13 +43,8 @@ in
     enable = true;
     systemd.enable = true;
     style = ''
-      .modules-right > label.module {
-        margin: 6px 3px;
-      }
-
-      .modules-right > box.module {
+      .modules-right .module {
         border-radius: 4px;
-        padding: 6px 12px;
         background-color: @base05;
         color: @base00;
       }
@@ -83,8 +78,8 @@ in
         title-len = 30;
       };
       wireplumber = {
-        format = "{volume} ";
-        format-muted = "-- ";
+        format = "{volume}  ";
+        format-muted = "--  ";
         on-click = "${uwsm} app -- ${pkgs.pavucontrol}/bin/pavucontrol";
       };
       network = {
@@ -93,15 +88,19 @@ in
         tooltip-format = "{ipaddr}/{cidr} {signalStrength}%";
       };
       clock.format = "{:%FT%TZ}";
-      cpu.format = "{usage} ";
-      memory.format = "{} ";
-      battery.format = "{} 🔋";
-      backlight.format = "{percent} ";
+      cpu.format = "{usage}  ";
+      memory.format = "{}  ";
+      battery = {
+        format-charging = "{} 🔌 ";
+        format = "{} 🔋 ";
+      };
+      backlight.format = "{percent}  ";
     };
   };
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
+      exec-once = "systemctl --user start waybar.service";
       monitor = [
         ", preferred, auto, 1"
       ];
@@ -142,7 +141,7 @@ in
           # "$mainMod,      F, exec, ${pkgs.firefox}/bin/firefox"
           "$mainMod,      M, exit,"
           "$mainMod,      Return, exec, ${uwsm} app -- ${config.programs.emacs.package}/bin/emacsclient -c"
-          "$mainMod,      C, exec, ${uwsm} app -- ${pkgs.fuzzel}/bin/fuzzel"
+          "$mainMod,      D, exec, ${uwsm} app -- ${pkgs.fuzzel}/bin/fuzzel"
 
           "$mainMod, L, exec, swaylock"
           "CTRL SHIFT, Escape, exec, wlogout"
