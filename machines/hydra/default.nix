@@ -89,6 +89,9 @@
     tmpfiles.rules = [ "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}" ];
   };
   home-manager.users.michal_atlas = {
+    wayland.windowManager.hyprland.settings.monitor = [
+      "DP-2, preferred, auto-right, 1"
+    ];
     services = {
       spotifyd = {
         enable = true;
