@@ -195,6 +195,7 @@
     rsync
     rustup
     screen
+    snapshot
     sshfs
     steam-run
     superTux
