@@ -203,4 +203,27 @@ in
       };
     };
   };
+
+  gtk.iconTheme = {
+    package = pkgs.gnome.adwaita-icon-theme;
+    name = "Adwaita";
+
+    # package =
+    #   pkgs.runCommandLocal "Memphis98"
+    #     {
+    #       pname = "memphis98-icons";
+    #       version = "1.2";
+    #       src = pkgs.fetchFromGitHub {
+    #         owner = "Stanton731";
+    #         repo = "Memphis98";
+    #         rev = "1.2";
+    #         hash = "sha256-Xn17X1NSbm0E5XhCLQTd6aiKrm8XJ3mfMoanlgP1rVc=";
+    #       };
+    #     }
+    #     ''
+    #       mkdir -p $out/share/icons/
+    #       ln -s $src $out/share/icons/Memphis98
+    #     '';
+    # name = "Memphis98";
+  };
 }
