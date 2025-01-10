@@ -8,7 +8,6 @@
     };
     polarity = "dark";
     targets = {
-      grub.enable = true;
       gtk.enable = true;
       nixos-icons.enable = true;
       spicetify.enable = true;
