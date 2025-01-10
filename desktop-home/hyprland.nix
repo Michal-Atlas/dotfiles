@@ -154,12 +154,12 @@ in
           ", Print, exec, grimblast copy area"
 
         ]
-        ++ builtins.map (n: "bind = $mainMod, ${builtins.toString n}, workspace, ${builtins.toString n}") (
-          lib.range 1 9
-        )
-        ++ builtins.map (
-          n: "bind = $mainMod SHIFT, ${builtins.toString n}, movetoworkspace, ${builtins.toString n}"
-        ) (lib.range 1 9);
+        ++ builtins.concatLists (
+          builtins.map (n: [
+            "$mainMod, ${builtins.toString n}, workspace, ${builtins.toString n}"
+            "$mainMod SHIFT, ${builtins.toString n}, movetoworkspace, ${builtins.toString n}"
+          ]) (lib.range 1 9)
+        );
 
       bindm = [
         # Move/resize windows with mainMod + LMB/RMB and dragging
