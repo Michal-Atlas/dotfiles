@@ -3,6 +3,9 @@ _: {
     enable = true;
     daemon.enable = true;
   };
+  security = {
+    soteria.enable = true;
+  };
   programs.hyprland = {
     enable = true;
     withUWSM = true; # recommended for most users
