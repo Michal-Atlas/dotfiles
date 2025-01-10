@@ -8,6 +8,7 @@ let
   uwsm = "${pkgs.uwsm}/bin/uwsm";
 in
 {
+  wayland.windowManager.hyprland.systemd.variables = [ "--all" ];
   services.wlsunset = {
     enable = true;
     latitude = 50.08804;
