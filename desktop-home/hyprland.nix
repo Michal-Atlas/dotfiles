@@ -104,10 +104,49 @@ in
       backlight.format = "{percent}  ";
     };
   };
+  # Stylix can disable in next release
+  services.hyprpaper.enable = lib.mkForce false;
+  programs.wpaperd = {
+    enable = true;
+    settings.any = {
+      path = lib.mkForce (
+        pkgs.linkFarm "wallpapers" {
+          "nixos-art" = "${
+            pkgs.fetchFromGitHub {
+              owner = "NixOS";
+              repo = "nixos-artwork";
+              rev = "63f68a917f4e8586c5d35e050cdaf1309832272d";
+              hash = "sha256-XquSEijNYtGDkW35bibT2ki18qicENCsIcDzDxrgQkM=";
+            }
+          }/wallpapers";
+          "lisp-alien-wallpapers" = pkgs.fetchFromGitHub {
+            owner = "t-sin";
+            repo = "lisp-alien-wallpapers";
+            rev = "91b9097fbaa3957c00e346e4e74bd285beb746c0";
+            hash = "sha256-woWLx6nt47LiAd+tKU4MWZ+4c0ucFL2hi/XtMSK02vA=";
+          };
+          "gnu.jpg" = config.stylix.image;
+          "starship.jpg" = builtins.fetchurl {
+            url = "https://pbs.twimg.com/media/EaOkegwX0Aww2WW.jpg";
+            sha256 = "sha256:0972r5d7k70ls87pjrx0s4jqmd2kmhc7f9r9ypa0d8ikqgwpnfhx";
+          };
+          "walkman.jpg" = pkgs.fetchurl {
+            url = "https://vistapointe.net/images/gnu-10.jpg";
+            hash = "sha256-2ncr45o8P0BX7CDC5oWH9bc2TjFNC/jcb5T4hKXqfAM=";
+          };
+        }
+      );
+      duration = "4s";
+      mode = "center";
+    };
+  };
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
-      exec-once = "systemctl --user start waybar.service";
+      exec-once = [
+        "systemctl --user start waybar.service"
+        "wpaperd"
+      ];
       monitor = [
         ", preferred, auto, 1"
       ];
@@ -206,25 +245,7 @@ in
   };
 
   gtk.iconTheme = {
-    package = pkgs.gnome.adwaita-icon-theme;
+    package = pkgs.adwaita-icon-theme;
     name = "Adwaita";
-
-    # package =
-    #   pkgs.runCommandLocal "Memphis98"
-    #     {
-    #       pname = "memphis98-icons";
-    #       version = "1.2";
-    #       src = pkgs.fetchFromGitHub {
-    #         owner = "Stanton731";
-    #         repo = "Memphis98";
-    #         rev = "1.2";
-    #         hash = "sha256-Xn17X1NSbm0E5XhCLQTd6aiKrm8XJ3mfMoanlgP1rVc=";
-    #       };
-    #     }
-    #     ''
-    #       mkdir -p $out/share/icons/
-    #       ln -s $src $out/share/icons/Memphis98
-    #     '';
-    # name = "Memphis98";
   };
 }
