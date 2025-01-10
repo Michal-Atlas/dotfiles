@@ -136,7 +136,7 @@ in
           };
         }
       );
-      duration = "4s";
+      duration = "23m";
       mode = "center";
     };
   };
