@@ -1,3 +1,41 @@
+## 0.21.0 (2025-01-11)
+
+### Feat
+
+- **hyprland**: Remove gaps and therefore fancy wallpaper
+- **stylix**: Don't use grub
+- **hyprland**: Use wpaperd instead of hyprpaper for switching
+- **hyprland**: Inherit env
+- **pkgs**: Keep nautilus
+- **polkit**: NOPASSWD
+- **soteria**: Add
+- **wlsunset**: Add
+- **waybar**: Margins are necessary
+- **otd**: Add
+- **zsh**: Add auto-notify
+- **pkgs**: Add snapshot
+- **hyprland**: Enable screenshots
+- **xdg**: Enable icons something???
+- **pkgs**: Add wdisplays
+- **fonts**: Use Jetbrains Mono for sansSerif
+- **waybar**: Styling
+- **gamemode**: Add
+- **hydra/filesystems**: Place root on SSD
+- **hyprland**: Use instead of Gnome
+- **pkgs**: Add ipscan
+
+### Fix
+
+- **wpaperd**: Correct duration
+- **hyprland**: factor out iteration
+- **gtk**: Declare icon theme
+- **waybar**: Margins and charging
+- **pkgs**: Rustup was in wrong section
+- **hydra/monitors**: Place on right
+- **bootstrap-eduroam**: Script hash changed again
+- **hyprland**: Startup issues
+- **flake**: Reorganize modules to separate out desktop features
+
 ## 0.20.0 (2025-01-06)
 
 ### Feat
