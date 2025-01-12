@@ -199,7 +199,7 @@ in
         ", XF86AudioPrev,        exec, ${uwsm} app -- playerctl previous"
         ", XF86AudioNext,        exec, ${uwsm} app -- playerctl next"
 
-        ", PRINT,         exec, ${uwsm} app -- ${pkgs.hyprshot}/bin/hyprshot -m region -z"
+        ", PRINT,         exec, ${uwsm} app -- ${pkgs.hyprshot}/bin/hyprshot -o ${config.home.homeDirectory}/Pictures/Screenshots -m region -z"
       ];
 
       binds = {
