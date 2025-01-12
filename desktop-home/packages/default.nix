@@ -147,6 +147,7 @@
     krita
     lagrange
     lazygit
+    libnotify
     libreoffice
     libtool
     linuxPackages.perf
