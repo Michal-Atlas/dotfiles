@@ -18,11 +18,6 @@ in
   programs.fuzzel.enable = true;
   programs.hyprlock.enable = true;
   services.dunst.enable = true;
-  programs.zsh.initExtra = ''
-    if uwsm check may-start; then
-        exec uwsm start hyprland.desktop
-    fi
-  '';
   # wayland.systemd.target = "hyprland-session.target";
   services.hypridle = {
     enable = true;
@@ -108,7 +103,7 @@ in
     enable = true;
     settings = {
       exec-once = [
-        "systemctl --user start waybar.service"
+        "${uwsm} app -- ${pkgs.systemd}/bin/systemctl --user start waybar.service"
       ];
       general = {
         gaps_in = 0;

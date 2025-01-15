@@ -40,7 +40,6 @@
             "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBG/E3kHQNwdu1YQpARofBF/dSNKasoVDc04m4Aip3nrRSKR1YJtJWUmlOtW5YAU2vKt80Iwve1kEeffge3P+Ugw="
           ]
           ++ (map (f: readFile ../keys/${f}) (attrNames (readDir ../keys)));
-        linger = true;
       };
       david = {
         isNormalUser = true;
