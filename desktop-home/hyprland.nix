@@ -42,7 +42,10 @@ in
   };
   programs.waybar = {
     enable = true;
-    systemd.enable = true;
+    systemd = {
+      enable = true;
+      target = "default.target";
+    };
     style = ''
       .modules-right .module {
         margin: 6px;
@@ -102,9 +105,6 @@ in
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
-      exec-once = [
-        "${uwsm} app -- ${pkgs.systemd}/bin/systemctl --user start waybar.service"
-      ];
       general = {
         gaps_in = 0;
         gaps_out = 0;
