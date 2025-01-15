@@ -119,6 +119,8 @@ in
         kb_options = "grp:caps_switch,lv3:ralt_switch,compose:rctrl-altgr";
         follow_mouse = true;
         touchpad.natural_scroll = true;
+        numlock_by_default = true;
+        mouse_refocus = false;
       };
       "$mainMod" = "SUPER";
       bind =
@@ -147,7 +149,6 @@ in
 
           # Basic apps
           "$mainMod,      T, exec, ${uwsm} app -- ${pkgs.alacritty}/bin/alacritty -e tmux"
-          # "$mainMod,      F, exec, ${pkgs.firefox}/bin/firefox"
           "$mainMod,      M, exit,"
           "$mainMod,      Return, exec, ${uwsm} app -- ${config.programs.emacs.package}/bin/emacsclient -c"
           "$mainMod,      D, exec, ${uwsm} app -- ${pkgs.fuzzel}/bin/fuzzel"
@@ -160,7 +161,7 @@ in
         ++ builtins.concatLists (
           builtins.map (n: [
             "$mainMod, ${builtins.toString n}, workspace, ${builtins.toString n}"
-            "$mainMod SHIFT, ${builtins.toString n}, movetoworkspace, ${builtins.toString n}"
+            "$mainMod SHIFT, ${builtins.toString n}, movetoworkspacesilent, ${builtins.toString n}"
           ]) (lib.range 1 9)
         );
 
