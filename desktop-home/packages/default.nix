@@ -230,6 +230,7 @@
     winetricks
     wireshark
     wl-clipboard
+    wl-mirror
     xdg-utils
     xdot
     xmlstarlet
