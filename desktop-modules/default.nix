@@ -5,17 +5,18 @@
 }:
 {
   imports = [
-    # keep-sorted begin
-    ./graphics.nix
-    ./virtualization.nix
-    ./interfacing.nix
+    # keep-sorted start
     ./boot.nix
     ./fonts.nix
-    ./sound.nix
+    ./graphics.nix
     ./hyprland.nix
+    ./interfacing.nix
+    ./sound.nix
     ./steam.nix
     ./storage
     ./stylix.nix
+    ./virtualization.nix
+    # keep-sorted end
   ];
   networking.firewall.allowedTCPPorts = [
     # chromecast start
@@ -56,25 +57,28 @@
       };
     };
   };
-  programs.spicetify =
-    let
-      spicePkgs = flake.inputs.spicetify-nix.legacyPackages.${pkgs.system};
-    in
-    {
-      enable = true;
-      enabledExtensions = with spicePkgs.extensions; [
-        #keep-sorted start
-        history
-        phraseToPlaylist
-        playNext
-        popupLyrics
-        sectionMarker
-        shuffle
-        skipStats
-        songStats
-        volumePercentage
-        wikify
-        #keep-sorted end
-      ];
-    };
+  programs = {
+    spicetify =
+      let
+        spicePkgs = flake.inputs.spicetify-nix.legacyPackages.${pkgs.system};
+      in
+      {
+        enable = true;
+        enabledExtensions = with spicePkgs.extensions; [
+          #keep-sorted start
+          history
+          phraseToPlaylist
+          playNext
+          popupLyrics
+          sectionMarker
+          shuffle
+          skipStats
+          songStats
+          volumePercentage
+          wikify
+          #keep-sorted end
+        ];
+      };
+    sniffnet.enable = true;
+  };
 }
