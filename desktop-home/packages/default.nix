@@ -78,6 +78,7 @@
     audacity
     bat
     blender
+    bluetuith
     boxes
     btrfs-progs
     cachix
