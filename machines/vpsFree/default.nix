@@ -20,22 +20,37 @@
   system.stateVersion = "24.11";
   systemd.services.ipfs.environment.GOMEMLIMIT = "1GiB";
   services = {
-    kubo.settings = {
-      Addresses.Announce = [
-        "/ip4/37.205.15.189/udp/4001/quic-v1"
-        "/ip4/37.205.15.189/udp/4001/quic-v1/webtransport"
-        "/ip6/2a03:3b40:fe:833::1/udp/4001/quic-v1"
-        "/ip6/2a03:3b40:fe:833::1/udp/4001/quic-v1/webtransport"
-      ];
-      Gateway.PublicGateways."ipfs.michal-atlas.cz" = {
-        Paths = [
-          "/ipfs"
-          "/ipns"
+    kubo = {
+      localDiscovery = false;
+      autoMount = false;
+      enableGC = true;
+      settings = {
+        Routing = {
+          Type = "autoclient";
+          AcceleratedDHTClient = false;
+        };
+        Addresses.Announce = [
+          "/ip4/37.205.15.189/udp/4001/quic-v1"
+          "/ip4/37.205.15.189/udp/4001/quic-v1/webtransport"
+          "/ip6/2a03:3b40:fe:833::1/udp/4001/quic-v1"
+          "/ip6/2a03:3b40:fe:833::1/udp/4001/quic-v1/webtransport"
         ];
-        UseSubdomains = false;
+        Gateway = {
+          NoFetch = true;
+          PublicGateways."ipfs.michal-atlas.cz" = {
+            Paths = [
+              "/ipfs"
+              "/ipns"
+            ];
+            UseSubdomains = false;
+          };
+        };
+        # Reprovider.Interval = "0h";
+        Swarm = {
+          RelayService.Enabled = false;
+          ResourceMgr.MaxMemory = "68719476736";
+        };
       };
-      Reprovider.Interval = "22h";
-      Swarm.ResourceMgr.MaxMemory = "68719476736";
     };
     yggdrasil.settings = {
       Peers = lib.mkForce [
