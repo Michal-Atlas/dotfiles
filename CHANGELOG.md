@@ -1,3 +1,20 @@
+## 0.22.0 (2025-01-18)
+
+### Feat
+
+- **ipfs/vpsFree**: Reduce config
+- **pkgs**: Add bluetuith
+- **pkgs**: Add sniffnet
+- **pkgs**: Add wl-mirror
+- **gdm**: Use for startup
+- **pkgs**: Add libnotify
+
+### Fix
+
+- **hyprland**: Bring closer to Sway behaviour
+- **waybar**: Start with default target
+- **hyprland**: Place screenshots in folder
+
 ## 0.21.0 (2025-01-11)
 
 ### Feat
