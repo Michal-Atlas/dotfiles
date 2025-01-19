@@ -34,6 +34,7 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixified-ai.url = "github:nixified-ai/flake/2";
   };
 
   outputs =

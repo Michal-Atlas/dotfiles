@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  flake,
   ...
 }:
 {
@@ -109,4 +110,7 @@
       "org/gnome/desktop/notifications".show-in-lock-screen = false;
     };
   };
+  environment.systemPackages = [
+    flake.inputs.nixified-ai.packages.${pkgs.system}.invokeai-amd
+  ];
 }
