@@ -31,10 +31,10 @@ in
   };
   services.btrbk.instances."home".settings = {
     timestamp_format = "long-iso";
-    snapshot_preserve_min = "1w";
+    snapshot_preserve_min = "2d";
     snapshot_preserve = "7d 4w 12m *y";
 
-    target_preserve_min = "1w";
+    target_preserve_min = "2d";
     target_preserve = "7d 4w 12m *y";
 
     volume."/DISKA" = {
