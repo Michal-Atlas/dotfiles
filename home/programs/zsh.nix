@@ -1,6 +1,5 @@
 { pkgs, ... }:
 {
-  home.shellAliases.ssh = "alacritty -e ssh tmux";
   programs.zsh = {
     enable = true;
     enableVteIntegration = true;
@@ -25,6 +24,10 @@
     };
     initExtra = ''
       setopt interactivecomments
+
+      function ash () {
+               alacritty -e ssh "$1" tmux
+      };
     '';
     defaultKeymap = "emacs";
     plugins = with pkgs; [
