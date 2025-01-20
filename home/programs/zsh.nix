@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  home.shellAliases.ssh = "alacritty -e ssh";
+  home.shellAliases.ssh = "alacritty -e ssh tmux";
   programs.zsh = {
     enable = true;
     enableVteIntegration = true;
