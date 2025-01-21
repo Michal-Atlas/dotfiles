@@ -24,10 +24,6 @@
     };
     initExtra = ''
       setopt interactivecomments
-
-      function ash () {
-               alacritty -e ssh "$1" tmux
-      };
     '';
     defaultKeymap = "emacs";
     plugins = with pkgs; [

@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  osConfig,
   config,
   ...
 }:
@@ -152,6 +153,10 @@ in
           "$mainMod,      M, exit,"
           "$mainMod,      Return, exec, ${uwsm} app -- ${config.programs.emacs.package}/bin/emacsclient -c"
           "$mainMod,      D, exec, ${uwsm} app -- ${pkgs.fuzzel}/bin/fuzzel"
+          "$mainMod,      S, exec, ${uwsm} app -- ${pkgs.writeShellScript "select-ssh.sh" ''
+            HOST="$(${pkgs.fuzzel}/bin/fuzzel -d < ${pkgs.writeText "hosts" (lib.concatLines (lib.lists.unique (builtins.concatLists (builtins.attrValues osConfig.networking.hosts))))})";
+            ${pkgs.alacritty}/bin/alacritty -e ssh "$HOST" tmux;
+          ''}"
 
           "$mainMod, L, exec, swaylock"
           "CTRL SHIFT, Escape, exec, wlogout"
@@ -185,7 +190,7 @@ in
           ", XF86AudioMicMute,     exec, ${uwsm} app -- wpctl set-mute   @DEFAULT_AUDIO_SOURCE@ toggle"
 
           # backlight
-          ", XF86MonBrightnessUp,   exec, ${uwsm} app -- ${light} -A 1.6"
+          ", XF86MonBrightnessUp,   exec, ${uwsm} app -- ${light} -A 0.6"
           ", XF86MonBrightnessDown, exec, ${uwsm} app -- ${light} -T 0.6"
         ];
 
