@@ -4,6 +4,7 @@ let
 in
 {
   nix = {
+    channel.enable = false;
     settings = {
       trusted-users = [
         "root"
