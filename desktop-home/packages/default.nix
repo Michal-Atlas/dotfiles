@@ -191,6 +191,7 @@
     prismlauncher
     protonmail-desktop
     protonvpn-gui
+    pulsemixer
     qbittorrent
     qpwgraph
     racket
