@@ -113,4 +113,12 @@
   environment.systemPackages = [
     flake.inputs.nixified-ai.packages.${pkgs.system}.invokeai-amd
   ];
+  nix = {
+    settings.trusted-users = [ "nix-ssh" ];
+    sshServe = {
+      enable = true;
+      inherit (config.users.users.michal_atlas.openssh.authorizedKeys) keys;
+      write = true;
+    };
+  };
 }
