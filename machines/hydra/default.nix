@@ -105,10 +105,6 @@
         };
       };
     };
-    dconf.settings = {
-      "org/gnome/desktop/screensaver".lock-enabled = false;
-      "org/gnome/desktop/notifications".show-in-lock-screen = false;
-    };
   };
   environment.systemPackages = [
     flake.inputs.nixified-ai.packages.${pkgs.system}.invokeai-amd
