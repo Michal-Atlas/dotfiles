@@ -1255,19 +1255,6 @@
         "type": "github"
       }
     },
-    "pic-a-day": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1736132715,
-        "narHash": "sha256-MUQGsSLY641yVZEJJ8okAUTrKfPNuC8c4ryzNeeLz5Q=",
-        "path": "/home/michal_atlas/Documents/pic-a-day",
-        "type": "path"
-      },
-      "original": {
-        "path": "/home/michal_atlas/Documents/pic-a-day",
-        "type": "path"
-      }
-    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -1682,17 +1669,16 @@
         "flake-parts": "flake-parts_7",
         "gemini": "gemini_2",
         "nixpkgs": "nixpkgs_15",
-        "pic-a-day": "pic-a-day",
         "pre-commit-hooks": "pre-commit-hooks_3",
         "systems": "systems_6",
         "treefmt": "treefmt_2"
       },
       "locked": {
-        "lastModified": 1736543932,
-        "narHash": "sha256-M5u13iz+lyYzEj53ck/KO2896khQ7kfg8yX7FOhvPxE=",
+        "lastModified": 1737580697,
+        "narHash": "sha256-b0k6HCkVUcFx0pnIwSjQpyTtjkGyKCLPb9MgRz62+Jc=",
         "owner": "~michal_atlas",
         "repo": "www",
-        "rev": "0195bad93be53897f460dceab4c2c198dd75d2b2",
+        "rev": "8be2f0e14b1308b5769e2db3d36dd295e418e386",
         "type": "sourcehut"
       },
       "original": {
