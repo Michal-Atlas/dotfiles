@@ -17,15 +17,6 @@ in
       max-free = GtoBString 50;
       min-free-check-interval = 60 * 60;
       auto-optimise-store = true;
-      allowed-uris = [
-        "github:"
-        "git+https://github.com/"
-        "https://github.com/"
-        "git+ssh://github.com/"
-        "sourcehut:"
-        "git+https://git.sr.ht/"
-        "git+ssh://git.sr.ht/"
-      ];
     };
     gc = {
       automatic = true;
