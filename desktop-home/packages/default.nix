@@ -128,6 +128,7 @@
     heroic
     hieroglyphic
     hut
+    hyperfine
     imagemagick
     indent
     inkscape
