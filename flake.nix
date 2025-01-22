@@ -39,6 +39,7 @@
 
   outputs =
     {
+      self,
       flake-parts,
       systems,
       pre-commit-hooks,
@@ -56,6 +57,9 @@
         ./checks.nix
         ./machines
       ];
-      flake.lib = import ./lib;
+      flake = {
+        hydraJobs = builtins.mapAttrs (_: os: os.config.system.build.toplevel) self.nixosConfigurations;
+        lib = import ./lib;
+      };
     };
 }
