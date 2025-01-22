@@ -6,9 +6,6 @@
   ...
 }:
 {
-  imports = [
-    ./sourcehut.nix
-  ];
   networking = {
     hostName = "vorpal";
     domain = "michal-atlas.cz";
@@ -20,6 +17,38 @@
   system.stateVersion = "24.11";
   systemd.services.ipfs.environment.GOMEMLIMIT = "1GiB";
   services = {
+    kubo = {
+      localDiscovery = false;
+      autoMount = false;
+      enableGC = true;
+      settings = {
+        Routing = {
+          Type = "autoclient";
+          AcceleratedDHTClient = false;
+        };
+        Addresses.Announce = [
+          "/ip4/37.205.15.189/udp/4001/quic-v1"
+          "/ip4/37.205.15.189/udp/4001/quic-v1/webtransport"
+          "/ip6/2a03:3b40:fe:833::1/udp/4001/quic-v1"
+          "/ip6/2a03:3b40:fe:833::1/udp/4001/quic-v1/webtransport"
+        ];
+        Gateway = {
+          # NoFetch = true;
+          PublicGateways."ipfs.michal-atlas.cz" = {
+            Paths = [
+              "/ipfs"
+              "/ipns"
+            ];
+            UseSubdomains = false;
+          };
+        };
+        Reprovider.Interval = "0h";
+        Swarm = {
+          RelayService.Enabled = false;
+          ResourceMgr.MaxMemory = "68719476736";
+        };
+      };
+    };
     yggdrasil.settings = {
       Peers = lib.mkForce [
         # Czechia
@@ -43,7 +72,7 @@
   ];
 
   services = {
-    book-dagon.enable = false;
+    book-dagon.enable = true;
     kineto = {
       enable = true;
       port = 4859;
@@ -73,15 +102,20 @@
           "fin.michal-atlas.cz" = defaults // {
             locations."/".proxyPass = "http://hydra:8096";
           };
-          "drv.michal-atlas.cz" = defaults // {
-            locations."/".root = "/srv/http";
-          };
           "blog.michal-atlas.cz" = defaults // {
             locations."/".proxyPass =
               let
                 cfg = config.services.kineto;
               in
               "http://${cfg.address}:${builtins.toString cfg.port}";
+          };
+          "ipfs.michal-atlas.cz" = defaults // {
+            locations."/" = {
+              proxyPass = "http://localhost:8080";
+              extraConfig = ''
+                proxy_read_timeout 1h;
+              '';
+            };
           };
           "fff.michal-atlas.cz" = defaults // {
             locations."/".proxyPass = "http://localhost:${builtins.toString config.services.book-dagon.port}";

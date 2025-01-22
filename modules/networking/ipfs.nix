@@ -1,8 +1,8 @@
 { lib, ... }:
 {
   networking.firewall.allowedUDPPorts = [ 4001 ];
-  services.kubo = {
-    enable = lib.mkDefault false;
+  services.kubo = lib.mkDefault {
+    enable = true;
     autoMount = true;
     settings = {
       Experimental.FilestoreEnabled = true;
