@@ -19,6 +19,10 @@ in
       min-free-check-interval = 60 * 60;
       auto-optimise-store = true;
     };
+    optimise = {
+      automatic = true;
+      dates = [ "weekly" ];
+    };
     gc = {
       automatic = true;
       dates = "daily";
