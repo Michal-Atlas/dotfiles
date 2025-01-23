@@ -26,6 +26,22 @@ in
           sha256 = "sha256-er6Apr8wG8VS0znkzadqngGic6Kgf95WPttyMzC2aR4=";
           meta = { };
         })
+        (buildFirefoxXpiAddon rec {
+          pname = "accumulate";
+          version = "0.1.11resigned1";
+          addonId = "{61e10dd2-44fa-4cdc-a264-5cf23cee66ae}";
+          url = "https://addons.mozilla.org/firefox/downloads/file/4273844/${pname}-${version}.xpi";
+          sha256 = "sha256-/I/K3e7YZ0Y1KkUX9ZyRZa7hR2lrvVT43whLkjjomKQ=";
+          meta = { };
+        })
+        (buildFirefoxXpiAddon rec {
+          pname = "10ten_ja_reader";
+          version = "1.22.0";
+          addonId = "{59812185-ea92-4cca-8ab7-cfcacee81281}";
+          url = "https://addons.mozilla.org/firefox/downloads/file/4371439/${pname}-${version}.xpi";
+          sha256 = "sha256-1vMZe34zg/JyO5N22T4D/lFeXGEPnAcj2WGLENPMS/E=";
+          meta = { };
+        })
         # keep-sorted start
         auto-tab-discard
         awesome-rss
@@ -37,6 +53,7 @@ in
         react-devtools
         search-by-image
         ublock-origin
+        untrap-for-youtube
         wayback-machine
         zotero-connector
         # keep-sorted end
@@ -47,28 +64,8 @@ in
       nativeMessagingHosts = [ pkgs.gnome-browser-connector ];
       profiles."default" = {
         inherit extensions;
-        userChrome = ''
-          @-moz-document url(about:home), url(about:newtab) {
-            body::before {
-              content: "";
-              z-index: -1;
-              position: fixed;
-              top: 0;
-              left: 0;
-              background: #f9a no-repeat url(${
-                builtins.fetchurl {
-                  url = "https://wallpapers.com/images/hd/d-gray-man-seu3ez22l0pv05ho.jpg";
-                  sha256 = "sha256:1g5pa6mk1kz5yyjh20y3s5hlxfh0sm24x3m33yj9593f6rha8h8r";
-                }
-              }) center;
-              width: 100vw;
-              height: 100vh;
-            }
-          }      
-        '';
         settings = {
           "extensions.autoDisableScopes" = 0;
-          "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
           "sidebar.verticalTabs" = true;
           "reader.toolbar.vertical" = true;
         };
