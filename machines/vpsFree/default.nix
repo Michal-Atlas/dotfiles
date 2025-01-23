@@ -19,7 +19,6 @@
   services = {
     kubo = {
       localDiscovery = false;
-      autoMount = false;
       enableGC = true;
       settings = {
         Routing = {
