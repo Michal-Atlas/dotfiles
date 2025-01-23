@@ -115,6 +115,7 @@
     gnome-frog
     gnome-podcasts
     gnome-secrets
+    gnugo
     gnumake
     gnupg
     gparted
