@@ -1,9 +1,10 @@
 { lib, ... }:
 {
   networking.firewall.allowedUDPPorts = [ 4001 ];
-  services.kubo = lib.mkDefault {
+  services.kubo = {
     enable = true;
     settings = {
+      Import.CidVersion = 1;
       Experimental.FilestoreEnabled = true;
       Peering.Peers = [
         {
@@ -31,7 +32,7 @@
       };
       Routing = {
         AcceleratedDHTClient = false;
-        Type = "auto";
+        Type = "autoclient";
       };
       Reprovider = {
         Interval = lib.mkDefault "0h";
