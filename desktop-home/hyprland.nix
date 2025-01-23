@@ -9,6 +9,17 @@ let
   uwsm = "${pkgs.uwsm}/bin/uwsm";
 in
 {
+  i18n = {
+    inputMethod = {
+      enabled = "fcitx5";
+      fcitx5.addons = with pkgs; [
+        fcitx5-gtk
+        fcitx5-configtool
+        fcitx5-with-addons
+        fcitx5-mozc
+      ];
+    };
+  };
   wayland.windowManager.hyprland.systemd.variables = [ "--all" ];
   services.wlsunset = {
     enable = true;
@@ -48,7 +59,7 @@ in
       target = "default.target";
     };
     style = ''
-      .modules-right .module {
+      .modules-right .module, #language {
         margin: 6px;
         border-radius: 4px;
         background-color: @base05;
@@ -58,6 +69,7 @@ in
     settings.mainBar = {
       modules-left = [
         "hyprland/workspaces"
+        "hyprland/language"
       ];
       modules-center = [ "mpris" ];
       modules-right = [
@@ -69,8 +81,16 @@ in
         "backlight"
         "battery"
         "clock"
+        "systemd-failed-units"
         "tray"
       ];
+      "hyprland/workspaces" = {
+        all-outputs = true;
+        show-special = true;
+        move-to-monitor = true;
+      };
+      "hyprland/language".on-click =
+        "${uwsm} app -- ${pkgs.hyprland}/bin/hyprctl switchxkblayout at-translated-set-2-keyboard next";
       idle_inhibitor = {
         format = "{icon}";
         format-icons = {
@@ -87,6 +107,7 @@ in
         format = "{volume}  ";
         format-muted = "--  ";
         on-click = "${uwsm} app -- ${pkgs.pavucontrol}/bin/pavucontrol";
+        on-click-right = "${uwsm} app -- ${pkgs.qpwgraph}/bin/qpwgraph";
       };
       network = {
         format-wifi = "{essid}";
@@ -115,8 +136,8 @@ in
         ", preferred, auto, 1"
       ];
       input = {
-        kb_layout = "us,cz";
-        kb_variant = ",ucw";
+        kb_layout = "us,cz,ru";
+        kb_variant = ",ucw,";
         kb_options = "grp:caps_switch,lv3:ralt_switch,compose:rctrl-altgr";
         follow_mouse = true;
         touchpad.natural_scroll = true;
