@@ -178,6 +178,7 @@
     nvd
     okular
     onedrive
+    openai-whisper
     openmw
     openra
     openssl
