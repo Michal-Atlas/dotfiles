@@ -45,4 +45,5 @@
     powertop.enable = true;
   };
   environment.systemPackages = [ pkgs.powertop ];
+  home-manager.users.michal_atlas.services.hypridle.settings.lock_cmd = "hyprlock";
 }
