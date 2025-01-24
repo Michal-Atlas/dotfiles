@@ -6,6 +6,7 @@
   ...
 }:
 {
+  imports = [ ./social.nix ];
   networking = {
     hostName = "vorpal";
     domain = "michal-atlas.cz";
