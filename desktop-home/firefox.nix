@@ -52,6 +52,7 @@ in
         proton-vpn
         react-devtools
         search-by-image
+        simple-translate
         ublock-origin
         untrap-for-youtube
         wayback-machine
