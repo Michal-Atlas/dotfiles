@@ -1,3 +1,40 @@
+## 0.23.0 (2025-01-25)
+
+### Feat
+
+- **firefox**: Readd simple-translate
+- **hyprland**: Only lock laptops
+- **social**: Transitive Mastodon -> Gotosocial
+- **firefox**: Add language learning extensions
+- **hyprland**: Add additional input methods for Jap and Ru
+- **stylix**: Monokai
+- **pkgs**: Add whisper
+- **pkgs**: Add gnugo
+- **ipfs**: Reenable
+- **nix**: Ocassionally run optimise as well
+- **nix**: Remove channels completely
+- **vpsFree**: Add drive nginx
+- **vpsFree**: Remove obsolete stuff
+- **flake**: Update lock removing pic-a-day
+- **nix**: Allow Git fetches in restricted mode
+- **flake**: Add hydraJobs for nixosConfigurations
+- **pkgs**: Add pulsemixer
+- **btrbk**: Don't preserve past a year
+- **pkgs**: Add hyperfine
+- **ssh**: Use keybind to open tmux ssh session terminals
+- **btrbk**: Reduce min preserve time
+- **invokeai**: Add
+
+### Fix
+
+- **ipfs**: Apparently wrapping the whole thing in default breaks
+- **ipfs**: Disable autoMount
+- **nix**: Remove allowed-uris
+- **dconf**: Remove forgotten hydra config
+- **hydra**: scrap
+- **flake**: Lock nixified
+- **tmux**: Open with alias, RemoteCommand breaks things
+
 ## 0.22.0 (2025-01-18)
 
 ### Feat
