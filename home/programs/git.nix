@@ -13,6 +13,7 @@ _: {
       user.signingKey = "3EFBF2BBBB29B99E";
       commit.gpgSign = true;
       pull.rebase = true;
+      rebase.autoStash = true;
       sendEmail = {
         smtpServer = "posteo.de";
         smtpServerPort = 587;
