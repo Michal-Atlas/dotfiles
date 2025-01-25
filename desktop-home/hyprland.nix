@@ -83,11 +83,6 @@ in
         "systemd-failed-units"
         "tray"
       ];
-      "hyprland/workspaces" = {
-        all-outputs = true;
-        show-special = true;
-        move-to-monitor = true;
-      };
       "hyprland/language".on-click =
         "${uwsm} app -- ${pkgs.hyprland}/bin/hyprctl switchxkblayout at-translated-set-2-keyboard next";
       idle_inhibitor = {
