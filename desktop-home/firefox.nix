@@ -141,20 +141,16 @@ in
           Fingerprinting = true;
         };
         ExtensionUpdate = true;
-        ExtensionSettings =
-          {
-            "*".installation_mode = "blocked";
-          }
-          // builtins.listToAttrs (
-            builtins.map (pkg: {
-              name = pkg.addonId;
-              value = {
-                install_url = pkg.src.url;
-                installation_mode = "force_installed";
-                updates_disabled = false;
-              };
-            }) extensions
-          );
+        ExtensionSettings = builtins.listToAttrs (
+          builtins.map (pkg: {
+            name = pkg.addonId;
+            value = {
+              install_url = pkg.src.url;
+              installation_mode = "force_installed";
+              updates_disabled = false;
+            };
+          }) extensions
+        );
         DisablePocket = true;
         DisableFirefoxAccounts = false;
         DisableAccounts = false;
