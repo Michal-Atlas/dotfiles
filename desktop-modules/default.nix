@@ -32,6 +32,12 @@
       enable = true;
       path = with pkgs; [ gnome-keyring ];
     };
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      ipv6 = true;
+    };
+
   };
   boot.kernel.sysctl."net.core.wmem_max" = 2500000;
   hardware = {
