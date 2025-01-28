@@ -140,6 +140,7 @@ in
           Cryptomining = true;
           Fingerprinting = true;
         };
+        ExtensionUpdate = true;
         ExtensionSettings =
           {
             "*".installation_mode = "blocked";
@@ -150,6 +151,7 @@ in
               value = {
                 install_url = pkg.src.url;
                 installation_mode = "force_installed";
+                updates_disabled = false;
               };
             }) extensions
           );
