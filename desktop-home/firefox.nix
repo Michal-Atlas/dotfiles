@@ -42,6 +42,14 @@ in
           sha256 = "sha256-1vMZe34zg/JyO5N22T4D/lFeXGEPnAcj2WGLENPMS/E=";
           meta = { };
         })
+        (buildFirefoxXpiAddon rec {
+          pname = "query_amo";
+          version = "0.1";
+          addonId = "queryamoid@kaply.com";
+          url = "https://github.com/mkaply/queryamoid/releases/download/v${version}/${pname}_addon_id-${version}-fx.xpi";
+          sha256 = "sha256-8qFfB41cUWRO6yHI2uFRYp56tA7SwLvDdsbEm4ThGks=";
+          meta = { };
+        })
         # keep-sorted start
         auto-tab-discard
         awesome-rss
