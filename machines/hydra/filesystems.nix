@@ -32,10 +32,10 @@ in
   services.btrbk.instances."home".settings = {
     timestamp_format = "long-iso";
     snapshot_preserve_min = "2d";
-    snapshot_preserve = "7d 4w 12m";
+    snapshot_preserve = "7d 4w 1m";
 
     target_preserve_min = "2d";
-    target_preserve = "7d 4w 12m";
+    target_preserve = "7d 4w 1m";
 
     volume."/DISKA" = {
       subvolume = "@home";
