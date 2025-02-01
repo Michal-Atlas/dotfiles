@@ -1,3 +1,16 @@
+## 0.24.0 (2025-02-01)
+
+### Feat
+
+- **vpsFree/mastodon**: Remove
+- **hydra**: Reduce snapshot storage
+- **firefox**: Disable extension blocking
+- **firefox**: Try getting extensions to update
+- **firefox**: Add query_amo extension
+- **avahi**: Add
+- **git**: autoStash
+- **hyprland**: Only have workspaces on one monitor
+
 ## 0.23.0 (2025-01-25)
 
 ### Feat
