@@ -93,6 +93,7 @@
     cmake
     compsize
     cryptsetup
+    diffoscope
     dig
     direnv
     dust
