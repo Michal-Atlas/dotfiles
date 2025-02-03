@@ -5,7 +5,6 @@
     ./hosts.nix
     ./morrowind.nix
     ./mounts.nix
-    ./ipfs.nix
   ];
   programs.mosh.enable = true;
   services = {

@@ -54,7 +54,6 @@ in
         auto-tab-discard
         awesome-rss
         geminize
-        ipfs-companion
         old-reddit-redirect
         proton-pass
         proton-vpn
