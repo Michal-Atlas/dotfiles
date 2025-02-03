@@ -61,7 +61,6 @@ in
         search-by-image
         simple-translate
         ublock-origin
-        untrap-for-youtube
         wayback-machine
         zotero-connector
         # keep-sorted end
