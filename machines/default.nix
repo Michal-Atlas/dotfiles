@@ -43,6 +43,7 @@
           root = ./vpsFree;
           desktop = false;
           extraImports = [
+            inputs.book-dagon.nixosModules.default
             inputs.vpsfreecz.nixosConfigurations.container
           ];
         };
