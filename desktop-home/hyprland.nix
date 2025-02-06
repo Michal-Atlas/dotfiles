@@ -121,6 +121,9 @@ in
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
+      exec-once = [
+        "${pkgs.networkmanagerapplet}/bin/nm-applet"
+      ];
       general = {
         gaps_in = 0;
         gaps_out = 0;
