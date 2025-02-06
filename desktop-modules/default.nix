@@ -7,6 +7,7 @@
   imports = [
     # keep-sorted start
     ./boot.nix
+    ./ctu.nix
     ./fonts.nix
     ./graphics.nix
     ./hyprland.nix
