@@ -1,3 +1,15 @@
+## 0.25.0 (2025-02-08)
+
+### Feat
+
+- **ssh**: Reattach same tmux session
+- **nm-applet**: Add
+- **ctu**: Readd VPN and Mount
+- **firefox**: Remove untrap-yt
+- **beesd**: Enable
+- **ipfs**: Goodbye for now
+- **pkgs**: Add diffoscope
+
 ## 0.24.0 (2025-02-01)
 
 ### Feat
