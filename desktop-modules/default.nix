@@ -38,7 +38,10 @@
       nssmdns4 = true;
       ipv6 = true;
     };
-
+    locate = {
+      enable = true;
+      package = pkgs.plocate;
+    };
   };
   boot.kernel.sysctl."net.core.wmem_max" = 2500000;
   hardware = {
