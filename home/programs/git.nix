@@ -3,6 +3,7 @@ _: {
     enable = true;
     userName = "Michal Atlas";
     userEmail = "me+git@michal-atlas.cz";
+    lfs.enable = true;
     extraConfig = {
       filter.lfs = {
         clean = "git-lfs clean -- %f";
