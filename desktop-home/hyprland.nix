@@ -30,7 +30,6 @@ in
   programs.fuzzel.enable = true;
   programs.hyprlock.enable = true;
   services.dunst.enable = true;
-  # wayland.systemd.target = "hyprland-session.target";
   services.hypridle = {
     enable = true;
     settings = {
@@ -55,7 +54,7 @@ in
     enable = true;
     systemd = {
       enable = true;
-      target = "default.target";
+      target = "hyprland-session.target";
     };
     style = ''
       .modules-right .module, #language {
@@ -120,6 +119,7 @@ in
   };
   wayland.windowManager.hyprland = {
     enable = true;
+    systemd.enable = true;
     settings = {
       exec-once = [
         "${pkgs.networkmanagerapplet}/bin/nm-applet"

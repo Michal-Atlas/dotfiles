@@ -11,13 +11,10 @@ _: {
       enable = true;
       user = "michal_atlas";
     };
-    xserver = {
-      displayManager.gdm.enable = true;
-      xkb = {
-        layout = "us,cz";
-        variant = ",ucw";
-        options = "grp:caps_switch,lv3:ralt_switch,compose:rctrl-altgr";
-      };
+    xserver.xkb = {
+      layout = "us,cz";
+      variant = ",ucw";
+      options = "grp:caps_switch,lv3:ralt_switch,compose:rctrl-altgr";
     };
   };
   programs = {

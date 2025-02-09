@@ -14,11 +14,12 @@ _: {
         });
       '';
     };
+    pam.services.hyprlock = { };
   };
   programs.hyprland = {
     enable = true;
-    withUWSM = true; # recommended for most users
     xwayland.enable = true; # Xwayland can be disabled.
+    systemd.setPath.enable = true;
   };
-  security.pam.services.hyprlock = { };
+  services.getty.autologinUser = "username";
 }
