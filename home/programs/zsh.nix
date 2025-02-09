@@ -24,8 +24,9 @@
     };
     initExtra = ''
       setopt interactivecomments
-
-      if [ -z "''${WAYLAND_DISPLAY}" ] && [ "''${XDG_VTNR}" -eq 1 ]; then
+    '';
+    loginExtra = ''
+      if [ -z "''${WAYLAND_DISPLAY}" ] && [ "''${XDG_VTNR}" -eq 2 ]; then
         dbus-run-session Hyprland
       fi
     '';
