@@ -6,6 +6,7 @@
     users = {
       michal_atlas = {
         isNormalUser = true;
+        linger = true;
         uid = 1000;
         subUidRanges = [
           {
