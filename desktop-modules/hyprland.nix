@@ -1,4 +1,5 @@
-_: {
+{ config, ... }:
+{
   hardware.opentabletdriver = {
     enable = true;
     daemon.enable = true;
@@ -21,5 +22,5 @@ _: {
     xwayland.enable = true; # Xwayland can be disabled.
     systemd.setPath.enable = true;
   };
-  services.getty.autologinUser = "username";
+  services.getty.autologinUser = config.users.users.michal_atlas.name;
 }
