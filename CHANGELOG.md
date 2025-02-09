@@ -1,3 +1,14 @@
+## 0.26.0 (2025-02-09)
+
+### Feat
+
+- **hyprland**: Start manually and with systemd!
+- **users**: Linger
+
+### Fix
+
+- **secrets**: Rekey for Hydra
+
 ## 0.25.0 (2025-02-08)
 
 ### Feat
