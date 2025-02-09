@@ -163,7 +163,6 @@
     mosh
     mousai
     mpv
-    nautilus
     nethogs
     nil
     nix
