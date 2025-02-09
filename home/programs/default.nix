@@ -47,15 +47,10 @@
         batwatch
       ];
     };
-    password-store = {
-      enable = true;
-      package = pkgs.pass.withExtensions (exts: [ exts.pass-otp ]);
-    };
     gpg.enable = true;
   };
-  services = {
-    gpg-agent = {
-      enable = true;
-    };
+  services.gpg-agent = {
+    enable = true;
+    pinentryPackage = pkgs.pinentry-all;
   };
 }
