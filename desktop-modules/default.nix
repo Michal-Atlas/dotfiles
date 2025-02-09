@@ -41,6 +41,7 @@
     locate = {
       enable = true;
       package = pkgs.plocate;
+      localuser = null;
     };
   };
   boot.kernel.sysctl."net.core.wmem_max" = 2500000;
