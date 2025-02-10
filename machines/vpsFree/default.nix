@@ -27,6 +27,12 @@
           Type = "autoclient";
           AcceleratedDHTClient = false;
         };
+        Addresses.Announce = [
+          "/ip4/37.205.15.189/udp/4001/quic-v1"
+          "/ip4/37.205.15.189/udp/4001/quic-v1/webtransport"
+          "/ip6/2a03:3b40:fe:833::1/udp/4001/quic-v1"
+          "/ip6/2a03:3b40:fe:833::1/udp/4001/quic-v1/webtransport"
+        ];
         Gateway = {
           # NoFetch = true;
           PublicGateways."ipfs.michal-atlas.cz" = {
