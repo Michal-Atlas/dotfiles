@@ -17,6 +17,7 @@
   };
   system.stateVersion = "24.11";
   systemd.services.ipfs.environment.GOMEMLIMIT = "1GiB";
+  services.fail2ban.enable = true;
   services = {
     kubo = {
       localDiscovery = false;
