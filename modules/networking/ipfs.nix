@@ -9,15 +9,22 @@
       Peering.Peers = [
         {
           ID = "12D3KooWRrLK1fnBwC5iWLERwhQpbMroBxJcnkPVksfN3Tvq95Su";
-          Addrs = [ "/dnsaddr/vorpal/udp/4001/quic-v1" ];
+          # Vorpal
+          Addrs = [
+            "/ip4/37.205.15.189/udp/4001/quic-v1"
+            "/ip6/2a03:3b40:fe:833::1/udp/4001/quic-v1"
+            "/ip6/201:df2c:b49a:7f3d:d54d:5d26:18c9:fc54/udp/4001/quic-v1"
+          ];
         }
         {
           ID = "12D3KooWKAJGUfGYmwVwVTXWZvcfX9GXTTxMj9Wo4MJXp16jJeuM";
-          Addrs = [ "/dnsaddr/leviathan/udp/4001/quic-v1" ];
+          # Leviathan
+          Addrs = [ "/ip6/200:299c:6b1a:c8ac:bc4d:d2be:cbd:6014/udp/4001/quic-v1" ];
         }
         {
           ID = "12D3KooWAReeVpS5j3heFbgPHKXKLfepYywawmV5cHBQXRQb3x8y";
-          Addrs = [ "/dnsaddr/hydra/udp/4001/quic-v1" ];
+          # Hydra
+          Addrs = [ "/ip6/201:876c:b6b:3561:f064:c3d6:5135:36e6/udp/4001/quic-v1" ];
         }
       ];
       Addresses = {
