@@ -178,7 +178,7 @@ in
             fi;
           ''}"
 
-          "$mainMod, L, exec, swaylock"
+          "$mainMod, L, exec, hyprlock"
           "CTRL SHIFT, Escape, exec, wlogout"
           ", Print, exec, grimblast copy area"
 
