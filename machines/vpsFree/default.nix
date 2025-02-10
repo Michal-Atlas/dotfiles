@@ -45,6 +45,7 @@
         };
         Reprovider.Interval = "0h";
         Swarm = {
+          RelayClient.Enabled = false;
           RelayService.Enabled = false;
           ResourceMgr.MaxMemory = "68719476736";
         };
