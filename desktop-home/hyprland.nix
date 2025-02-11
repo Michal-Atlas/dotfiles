@@ -210,8 +210,8 @@ in
           ", XF86AudioMicMute,     exec, ${uwsm} app -- wpctl set-mute   @DEFAULT_AUDIO_SOURCE@ toggle"
 
           # backlight
-          ", XF86MonBrightnessUp,   exec, ${uwsm} app -- ${light} -A 0.6"
-          ", XF86MonBrightnessDown, exec, ${uwsm} app -- ${light} -T 0.6"
+          ", XF86MonBrightnessUp,   exec, ${uwsm} app -- ${light} -A 5"
+          ", XF86MonBrightnessDown, exec, ${uwsm} app -- ${light} -U 5"
         ];
 
       bindl = [
