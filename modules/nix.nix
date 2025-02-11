@@ -1,4 +1,4 @@
-{ flake, ... }:
+{ config, flake, ... }:
 let
   GtoBString = g: builtins.toString (g * 1024 * 1024 * 1024);
 in
@@ -8,6 +8,7 @@ in
     settings = {
       trusted-users = [
         "root"
+        "nix-ssh"
         "@wheel"
       ];
       experimental-features = [
@@ -27,6 +28,11 @@ in
       automatic = true;
       dates = "daily";
       options = "--delete-older-than 14d --max-freed 0";
+    };
+    sshServe = {
+      enable = true;
+      inherit (config.users.users.michal_atlas.openssh.authorizedKeys) keys;
+      write = true;
     };
   };
   nixpkgs = {
