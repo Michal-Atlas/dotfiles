@@ -5,6 +5,9 @@
   lib,
   ...
 }:
+let
+  wwwPkgs = flake.inputs.www.packages.${pkgs.system};
+in
 {
   imports = [ ./social.nix ];
   networking = {
@@ -95,7 +98,7 @@
       routes = [
         {
           route = "blog.michal-atlas.cz";
-          root = "${flake.inputs.www.packages.${pkgs.system}.blog}";
+          root = "${wwwPkgs.blog}";
         }
         {
           route = "ipfs.michal-atlas.cz";
@@ -115,6 +118,11 @@
             locations."/".proxyPass = "http://hydra:8096";
           };
           "blog.michal-atlas.cz" = defaults // {
+            # For some reason Kineto returns 404 on this
+            locations."/favicon.ico" = {
+              root = wwwPkgs.blog;
+              index = "favicon.ico";
+            };
             locations."/".proxyPass =
               let
                 cfg = config.services.kineto;
