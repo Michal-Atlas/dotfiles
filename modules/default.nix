@@ -4,7 +4,6 @@
     ./networking
     ./nix.nix
     ./user.nix
-    ./cachix.nix
     ./postgres.nix
     ./registry.nix
   ];
