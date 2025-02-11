@@ -72,7 +72,12 @@
     443
     1965
   ];
-
+  systemd.services.ipfs-gemini-gateway = {
+    script = "${
+      flake.inputs.ipfs-gemini-gateway.packages.${pkgs.system}.default
+    }/bin/ipfs-gemini-gateway";
+    wantedBy = [ "multi-user.target" ];
+  };
   services = {
     book-dagon.enable = true;
     kineto = {
@@ -91,6 +96,11 @@
         {
           route = "blog.michal-atlas.cz";
           root = "${flake.inputs.www.packages.${pkgs.system}.blog}";
+        }
+        {
+          route = "ipfs.michal-atlas.cz";
+          scgi = true;
+          scgi-address = "127.0.0.1:1966";
         }
       ];
     };

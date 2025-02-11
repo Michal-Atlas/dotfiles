@@ -35,6 +35,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixified-ai.url = "github:nixified-ai/flake/2";
+    ipfs-gemini-gateway.url = "sourcehut:~michal_atlas/ipfs-gemini-gateway";
   };
 
   outputs =
