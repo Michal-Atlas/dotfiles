@@ -121,7 +121,7 @@ in
           "blog.michal-atlas.cz" = defaults // {
             # For some reason Kineto returns 404 on this
             locations."/favicon.ico" = {
-              root = wwwPkgs.blog;
+              root = "${wwwPkgs.blog}/assets";
               index = "favicon.ico";
             };
             locations."/".proxyPass =
