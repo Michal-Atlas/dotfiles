@@ -10,6 +10,7 @@ let
 in
 {
   imports = [ ./social.nix ];
+  nix.gc.options = "--delete-older-than 4d";
   networking = {
     hostName = "vorpal";
     domain = "michal-atlas.cz";
