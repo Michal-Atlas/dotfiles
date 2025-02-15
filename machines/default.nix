@@ -1,4 +1,8 @@
-{ self, inputs, ... }:
+{
+  self,
+  inputs,
+  ...
+}:
 {
   flake = {
     nixosConfigurations =
@@ -48,17 +52,16 @@
           ];
         };
       };
-    homeModules = {
+    homeModules = rec {
       default = {
         imports = [
           ../home
+          inputs.nixvim.homeManagerModules.nixvim
         ];
       };
       desktop = {
-        imports = [
-          ../home
+        imports = default.imports ++ [
           ../desktop-home
-          inputs.nixvim.homeManagerModules.nixvim
         ];
       };
     };
