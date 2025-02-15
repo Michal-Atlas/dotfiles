@@ -3,8 +3,11 @@
 }:
 {
   imports = [
-    ./programs
+    # keep-sorted start
     ./files
+    ./programs
+    ./vim.nix
+    # keep-sorted end
   ];
   nix.settings = {
     experimental-features = [

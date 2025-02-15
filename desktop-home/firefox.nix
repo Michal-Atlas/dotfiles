@@ -61,6 +61,7 @@ in
         react-devtools
         search-by-image
         simple-translate
+        tridactyl
         ublock-origin
         wayback-machine
         zotero-connector

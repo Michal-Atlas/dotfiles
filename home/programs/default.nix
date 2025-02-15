@@ -1,11 +1,12 @@
 { pkgs, ... }:
 {
   imports = [
-    ./zsh.nix
+    # keep-sorted start
     ./git.nix
     ./ssh.nix
     ./tmux.nix
-    ./helix.nix
+    ./zsh.nix
+    # keep-sorted end
   ];
   programs = {
     fzf.enable = true;

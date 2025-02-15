@@ -176,6 +176,7 @@
     nodejs
     nurl
     nvd
+    okular
     onedrive
     openai-whisper
     openmw

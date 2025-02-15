@@ -58,6 +58,7 @@
         imports = [
           ../home
           ../desktop-home
+          inputs.nixvim.homeManagerModules.nixvim
         ];
       };
     };

@@ -1,11 +1,13 @@
 { lib, ... }:
 {
   imports = [
+    # keep-sorted start
     ./networking
     ./nix.nix
-    ./user.nix
     ./postgres.nix
     ./registry.nix
+    ./user.nix
+    # keep-sorted end
   ];
   security.sudo.wheelNeedsPassword = false;
   system.stateVersion = lib.mkDefault "22.11";
