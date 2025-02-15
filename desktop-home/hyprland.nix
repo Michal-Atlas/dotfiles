@@ -26,7 +26,6 @@ in
     latitude = 50.08804;
     longitude = 14.42076;
   };
-  programs.zathura.enable = true;
   programs.fuzzel.enable = true;
   programs.hyprlock.enable = true;
   services.dunst.enable = true;
