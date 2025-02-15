@@ -20,7 +20,6 @@ _: {
         "fakenews"
         "gambling"
         "porn"
-        "social"
       ];
     };
   };
