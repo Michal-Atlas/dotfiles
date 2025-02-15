@@ -76,6 +76,13 @@ in
     443
     1965
   ];
+  services.terraria = {
+    enable = true;
+    openFirewall = true;
+    noUPnP = true;
+    password = "milacek";
+  };
+  systemd.services.terraria.enable = false;
   systemd.services.ipfs-gemini-gateway = {
     script = "${
       flake.inputs.ipfs-gemini-gateway.packages.${pkgs.system}.default
