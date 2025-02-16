@@ -16,7 +16,6 @@
         matplotlib
         numpy
         pygments
-        python
         pytorch
         scipy
         transformers
