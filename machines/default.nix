@@ -20,6 +20,7 @@
                 home-manager = {
                   useGlobalPkgs = true;
                   useUserPackages = true;
+                  backupFileExtension = ".hm-delete";
                   users.michal_atlas.imports = [
                     (if desktop then self.homeModules.desktop else self.homeModules.default)
                   ];
