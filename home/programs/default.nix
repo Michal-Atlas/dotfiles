@@ -10,6 +10,7 @@
   ];
   programs = {
     fzf.enable = true;
+    ripgrep.enable = true;
     dircolors.enable = true;
     keychain.enable = true;
     navi.enable = true;

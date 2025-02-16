@@ -36,6 +36,7 @@
   xsession.numlock.enable = true;
   programs = {
     home-manager.enable = true;
+    lf.enable = true;
     zsh = {
       profileExtra = ''
         source /etc/profile
