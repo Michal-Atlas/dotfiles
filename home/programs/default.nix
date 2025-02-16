@@ -10,20 +10,6 @@
   ];
   programs = {
     fzf.enable = true;
-    alacritty = {
-      enable = true;
-      settings = {
-        window = {
-          decorations_theme_variant = "Dark";
-          dynamic_padding = true;
-        };
-        cursor.style = {
-          shape = "Beam";
-          blinking = "On";
-        };
-        mouse.hide_when_typing = true;
-      };
-    };
     dircolors.enable = true;
     keychain.enable = true;
     navi.enable = true;
