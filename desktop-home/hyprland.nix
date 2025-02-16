@@ -169,7 +169,7 @@ in
           "$mainMod,      S, exec, ${uwsm} app -- ${pkgs.writeShellScript "select-ssh.sh" ''
             HOST="$(${pkgs.fuzzel}/bin/fuzzel -d < ${pkgs.writeText "hosts" (lib.concatLines (lib.lists.unique (builtins.concatLists (builtins.attrValues osConfig.networking.hosts))))})";
             if [[ ! -z "$HOST" ]]; then
-              ${pkgs.alacritty}/bin/alacritty -e mosh "$HOST" tmux new-session -At ssh;
+              ${pkgs.alacritty}/bin/alacritty -e ${pkgs.mosh}/bin/mosh -- "$HOST" tmux new-session -At ssh;
             fi;
           ''}"
 
