@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  flake,
   ...
 }:
 {
@@ -106,7 +105,4 @@
       };
     };
   };
-  environment.systemPackages = [
-    flake.inputs.nixified-ai.packages.${pkgs.system}.invokeai-amd
-  ];
 }
