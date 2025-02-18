@@ -5,20 +5,23 @@ _: {
     defaultEditor = true;
     keymaps = [
       {
-        action = "<cmd>!nix fmt %:p<CR>";
+        action = "<cmd>w<CR><cmd>!nix fmt %:p<CR>";
         key = "<C-M-l>";
         mode = "n";
         options.desc = "Format given file with Nix";
       }
     ];
     opts = {
-      number = true;
-      relativenumber = true;
-      autoread = true;
+      # keep-sorted start
       autochdir = true;
       autoindent = true;
-      showmatch = true;
+      autoread = true;
+      number = true;
+      relativenumber = true;
       scrolloff = 6;
+      showmatch = true;
+      undofile = true;
+      # keep-sorted end
     };
     vimAlias = true;
     viAlias = true;
