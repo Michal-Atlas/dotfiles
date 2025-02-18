@@ -81,6 +81,7 @@
     boxes
     btrfs-progs
     cachix
+    calibre
     caprine-bin
     ccls
     chez
