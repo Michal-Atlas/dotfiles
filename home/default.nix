@@ -1,4 +1,5 @@
 {
+  pkgs,
   ...
 }:
 {
@@ -36,7 +37,26 @@
   xsession.numlock.enable = true;
   programs = {
     home-manager.enable = true;
-    lf.enable = true;
+    lf = {
+      enable = true;
+      settings = {
+        # keep-sorted start
+        drawboxes = true;
+        hidden = true;
+        icons = true;
+        incfilter = true;
+        incsearch = true;
+        mouse = true;
+        relativenumber = true;
+        roundbox = true;
+        scrolloff = 5;
+        sixel = true;
+        watch = true;
+        # keep-sorted end
+      };
+      previewer.source = "${pkgs.pistol}/bin/pistol";
+    };
+    pistol.enable = true;
     zsh = {
       profileExtra = ''
         source /etc/profile
