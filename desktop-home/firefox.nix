@@ -70,7 +70,6 @@ in
     in
     {
       enable = lib.mkDefault true;
-      nativeMessagingHosts = [ pkgs.gnome-browser-connector ];
       profiles."default" = {
         inherit extensions;
         settings = {

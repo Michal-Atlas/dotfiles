@@ -243,7 +243,6 @@
     xournalpp
     xxd
     yt-dlp
-    zotero
     # keep-sorted end
   ];
 }

@@ -60,7 +60,6 @@
               "Music"
               "Documents"
               "Sync"
-              "Zotero"
             ]
         ));
     };
