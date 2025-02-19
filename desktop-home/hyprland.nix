@@ -176,6 +176,11 @@ in
               ${pkgs.alacritty}/bin/alacritty -e ${pkgs.mosh}/bin/mosh -- "$HOST" tmux new-session -At ssh;
             fi;
           ''}"
+          "$mainMod,      N, exec, ${uwsm} app -- ${pkgs.writeShellScript "recall-notifs.sh" ''
+            for _ in {0..10}; do 
+              ${pkgs.dunst}/bin/dunstctl history-pop;
+            done
+          ''}"
 
           "$mainMod, L, exec, hyprlock"
           "CTRL SHIFT, Escape, exec, wlogout"
