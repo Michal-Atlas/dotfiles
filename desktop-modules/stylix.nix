@@ -1,10 +1,13 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  ...
+}:
 {
   stylix = {
     enable = true;
     image = builtins.fetchurl {
-      url = "https://www.gnu.org/graphics/techy-gnu-tux-bivouac-large.jpg";
-      sha256 = "sha256:13934pa275b6s27gja545bwic6fzhjb2y6x5bvpn30vmyva09rm0";
+      url = "https://raw.githubusercontent.com/Michaelangel007/vim_cheat_sheet/refs/heads/master/vim_cheat_sheet_for_programmers_print_150dpi.png";
+      sha256 = "sha256:1llk3w5q51gzwa88i5q2lssmcx1v39csj14h4qqhiax0kfb9ah6j";
     };
     polarity = "dark";
     targets = {

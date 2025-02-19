@@ -9,6 +9,9 @@ let
   uwsm = "${pkgs.uwsm}/bin/uwsm";
 in
 {
+  services.hyprpaper.settings.wallpaper = lib.mkForce [
+    ",contain:${config.stylix.image}"
+  ];
   # i18n = {
   #   inputMethod = {
   #     enabled = "fcitx5";
