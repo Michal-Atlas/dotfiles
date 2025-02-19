@@ -22,5 +22,16 @@
     xwayland.enable = true; # Xwayland can be disabled.
     systemd.setPath.enable = true;
   };
-  services.getty.autologinUser = config.users.users.michal_atlas.name;
+  services = {
+    greetd = {
+      enable = true;
+      settings = rec {
+        default_session = initial_session;
+        initial_session = {
+          command = "Hyprland";
+          user = config.users.users.michal_atlas.name;
+        };
+      };
+    };
+  };
 }

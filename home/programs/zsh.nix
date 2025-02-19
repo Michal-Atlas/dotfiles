@@ -25,11 +25,6 @@
     initExtra = ''
       setopt interactivecomments
     '';
-    loginExtra = ''
-      if [ -z "''${WAYLAND_DISPLAY}" ] && [ "''${XDG_VTNR}" -eq 2 ]; then
-        dbus-run-session Hyprland
-      fi
-    '';
     defaultKeymap = "viins";
     plugins = with pkgs; [
       {
