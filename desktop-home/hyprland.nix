@@ -9,45 +9,46 @@ let
   uwsm = "${pkgs.uwsm}/bin/uwsm";
 in
 {
-  services.hyprpaper.settings.wallpaper = lib.mkForce [
-    ",contain:${config.stylix.image}"
-  ];
-  # i18n = {
-  #   inputMethod = {
-  #     enabled = "fcitx5";
-  #     fcitx5.addons = with pkgs; [
-  #       fcitx5-gtk
-  #       fcitx5-configtool
-  #       fcitx5-with-addons
-  #       fcitx5-mozc
-  #     ];
-  #   };
-  # };
-  wayland.windowManager.hyprland.systemd.variables = [ "--all" ];
-  services.wlsunset = {
-    enable = true;
-    latitude = 50.08804;
-    longitude = 14.42076;
+  xdg.desktopEntries.lf = {
+    name = "LF (window)";
+    mimeType = [ "inode/directory" ];
+    exec = "alacritty -e lf";
   };
-  programs.fuzzel.enable = true;
-  programs.hyprlock.enable = true;
-  services.dunst.enable = true;
-  services.hypridle = {
-    enable = true;
-    settings = {
-      general = {
-        after_sleep_cmd = "hyprctl dispatch dpms on";
-        ignore_dbus_inhibit = false;
+  services = {
+    hyprpaper.settings.wallpaper = lib.mkForce [
+      ",contain:${config.stylix.image}"
+    ];
+    dunst.enable = true;
+    hypridle = {
+      enable = true;
+      settings = {
+        general = {
+          after_sleep_cmd = "hyprctl dispatch dpms on";
+          ignore_dbus_inhibit = false;
+        };
+        listener = [
+          {
+            timeout = 1200;
+            on-timeout = "hyprctl dispatch dpms off";
+            on-resume = "hyprctl dispatch dpms on";
+          }
+        ];
       };
-      listener = [
-        {
-          timeout = 1200;
-          on-timeout = "hyprctl dispatch dpms off";
-          on-resume = "hyprctl dispatch dpms on";
-        }
-      ];
+    };
+    network-manager-applet.enable = true;
+    blueman-applet.enable = true;
+    pasystray.enable = true;
+    udiskie.enable = true;
+    gammastep = {
+      enable = true;
+      tray = true;
+      latitude = 50.08804;
+      longitude = 14.42076;
     };
   };
+  # wayland.windowManager.hyprland.systemd.variables = [ "--all" ];
+  programs.fuzzel.enable = true;
+  programs.hyprlock.enable = true;
   programs.waybar = {
     enable = true;
     systemd = {
@@ -120,7 +121,7 @@ in
     systemd.enable = true;
     settings = {
       exec-once = [
-        "${pkgs.networkmanagerapplet}/bin/nm-applet"
+        "${pkgs.xorg.xhost}/bin/xhost si:localuser:root"
       ];
       general = {
         gaps_in = 0;
