@@ -30,7 +30,7 @@
         dbus-run-session Hyprland
       fi
     '';
-    defaultKeymap = "emacs";
+    defaultKeymap = "viins";
     plugins = with pkgs; [
       {
         name = "fzf-tab";
