@@ -5,10 +5,17 @@
 {
   stylix = {
     enable = true;
-    image = builtins.fetchurl {
-      url = "https://raw.githubusercontent.com/Michaelangel007/vim_cheat_sheet/refs/heads/master/vim_cheat_sheet_for_programmers_print_150dpi.png";
-      sha256 = "sha256:1llk3w5q51gzwa88i5q2lssmcx1v39csj14h4qqhiax0kfb9ah6j";
-    };
+    image =
+      pkgs.runCommandLocal "invert.png"
+        {
+          src = builtins.fetchurl {
+            url = "https://raw.githubusercontent.com/Michaelangel007/vim_cheat_sheet/refs/heads/master/vim_cheat_sheet_for_programmers_print_150dpi.png";
+            sha256 = "sha256:1llk3w5q51gzwa88i5q2lssmcx1v39csj14h4qqhiax0kfb9ah6j";
+          };
+        }
+        ''
+          ${pkgs.imagemagick}/bin/convert -channel RGB -negate $src $out
+        '';
     polarity = "dark";
     targets = {
       gtk.enable = true;
