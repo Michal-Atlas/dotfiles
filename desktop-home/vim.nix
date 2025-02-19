@@ -17,7 +17,6 @@
       haskell-scope-highlighting.enable = true;
       lastplace.enable = true;
       lightline.enable = true;
-      lsp-format.enable = true;
       lsp-lines.enable = true;
       lsp-signature.enable = true;
       lsp-status.enable = true;
@@ -34,6 +33,10 @@
       web-devicons.enable = true;
       which-key.enable = true;
       # keep-sorted end
+      lsp-format = {
+        enable = true;
+        settings.tex.exclude = [ "all" ];
+      };
       telescope = {
         enable = true;
         extensions = {
