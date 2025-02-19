@@ -25,7 +25,7 @@
     initExtra = ''
       setopt interactivecomments
     '';
-    defaultKeymap = "viins";
+    defaultKeymap = "emacs";
     plugins = with pkgs; [
       {
         name = "fzf-tab";
