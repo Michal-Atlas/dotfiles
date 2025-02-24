@@ -1,3 +1,67 @@
+## 0.26.0 (2025-02-24)
+
+### Feat
+
+- **wallpaper**: Negate
+- **zsh**: I can't do this, for now
+- **hyprland**: Add notification history button
+- **hyprland**: A bunch of tray stuff
+- **lf**: Customize preview and basic options
+- **hyprland**: Swap to activation with greetd
+- **wallpaper**: Temporarily set the vi cheatsheet
+- **zsh**: Try using vi mappings
+- **hosts**: Disable StevenBlack
+- **vi**: Add plugins
+- **vi**: Disable formatting for TeX
+- **papis**: Replace Zotero
+- **pkgs**: Add calibre
+- **vim**: Tweaks, many of them
+- **pkgs**: Add lf and ripgrep
+- **vim**: Move plugins to desktop
+- **hm**: Allow overwriting files
+- **term**: Move to desktop
+- **pkgs**: Remove invokeai
+- **hosts**: Remove social from StevenBlack
+- **vpsFree**: Add disabled Terraria server
+- **ssh**: Use mosh for when the laptop closes
+- **pkgs**: Remove zathura
+- **vpsFree**: AutoGC
+- **blog**: Fix favicon
+- **gemini/ipfs**: Add gateway
+- **hyprlock**: Remove random laptop thing
+- **cachix**: Remove
+- **stevenblackhosts**: Block all
+- **nix**: Move ssh-serve to general
+- **hyprland**: Remove locking for now
+- **hosts**: Add vorpal yggdrasil address
+- **ipfs**: Seems dnsaddr doesn't resolve
+- **vpsFree/ipfs**: Disable RelayClient
+- **fail2ban**: Add
+- **vpsFree/kubo**: Close off public addresses due to DOS
+- **pkgs**: Remove okular
+- **i18n**: Remove the inputmethod temporarily
+- **gpg**: Fix after removing GNOME features
+- **locate**: Add
+- **pkgs**: Remove nautilus
+- **git**: Enable LFS
+- **hyprland**: Start manually and with systemd
+- **users**: Linger
+
+### Fix
+
+- **nginx**: Remove old setup
+- **pkgs**: Remove python from python?
+- **ssh**: mosh misinterpreted flags
+- **flake**: Reference basic homeManagerModules in desktop
+- **nginx**: Favicon on blog
+- **editor**: Switch from Helix and Emacs to Vim orientation
+- **hyprland**: Fix light increments
+- **hyprland**: Correct lock program
+- **autologin**: How??
+- **hyprland**: Startup should be after all else is loaded
+- **locate**: Explicitly unset localuser
+- **secrets**: Rekey for Hydra
+
 ## 0.25.0 (2025-02-08)
 
 ### Feat
