@@ -145,6 +145,7 @@
     jetbrains.pycharm-professional
     jetbrains.rust-rover
     jetbrains.webstorm
+    jmtpfs
     jq
     kobodeluxe
     komikku
