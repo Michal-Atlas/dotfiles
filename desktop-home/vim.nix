@@ -18,7 +18,6 @@
       diffview.enable = true;
       direnv.enable = true;
       # gitgutter.enable = true;
-      haskell-scope-highlighting.enable = true;
       hex.enable = true;
       lastplace.enable = true;
       lightline.enable = true;
