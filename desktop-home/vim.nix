@@ -61,7 +61,7 @@
         servers = {
           hls = {
             enable = true;
-            installGhc = true;
+            installGhc = false;
           };
           bashls.enable = true;
           # keep-sorted start
