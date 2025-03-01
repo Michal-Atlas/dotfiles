@@ -1,3 +1,16 @@
+## 0.27.0 (2025-03-01)
+
+### Feat
+
+- **pkgs**: Add mtp
+- **flake**: Update
+- **vim**: Don't install GHC with nixvim
+- **vim**: Remove Haskell Scope Highlighting
+
+### Fix
+
+- **flake**: WWW from remote
+
 ## 0.26.0 (2025-02-24)
 
 ### Feat
