@@ -27,14 +27,6 @@ in
           meta = { };
         })
         (buildFirefoxXpiAddon rec {
-          pname = "accumulate";
-          version = "0.1.11resigned1";
-          addonId = "{61e10dd2-44fa-4cdc-a264-5cf23cee66ae}";
-          url = "https://addons.mozilla.org/firefox/downloads/file/4273844/${pname}-${version}.xpi";
-          sha256 = "sha256-/I/K3e7YZ0Y1KkUX9ZyRZa7hR2lrvVT43whLkjjomKQ=";
-          meta = { };
-        })
-        (buildFirefoxXpiAddon rec {
           pname = "10ten_ja_reader";
           version = "1.22.0";
           addonId = "{59812185-ea92-4cca-8ab7-cfcacee81281}";
