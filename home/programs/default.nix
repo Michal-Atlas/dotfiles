@@ -28,6 +28,7 @@
     starship.enable = true;
     bat = {
       enable = true;
+      config.style = "header-filename,header-filesize,grid";
       extraPackages = with pkgs.bat-extras; [
         batdiff
         batman
