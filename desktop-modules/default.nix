@@ -43,6 +43,8 @@
       package = pkgs.plocate;
       localuser = null;
     };
+    zfs.autoScrub.enable = true;
+    btrfs.autoScrub.enable = true;
   };
   boot.kernel.sysctl."net.core.wmem_max" = 2500000;
   hardware = {
