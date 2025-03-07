@@ -1,73 +1,29 @@
 { flake, ... }:
 with flake.self.lib;
 let
-  DISKA_UUID = "880d14ef-f964-4956-84a7-e457db80a5ad";
-  DISKB_UUID = "65920de2-b793-4480-bda7-4e04c4d9eb59";
   DISKN_UUID = "00061528-79fc-4dce-8e9e-3d78b23cd7a6";
 in
 {
   swapDevices = [ { device = "/dev/disk/by-uuid/1a20f616-635b-46af-bf07-ff09cf461504"; } ];
+  boot.zfs.extraPools = [ "blackpool" ];
+  systemd.tmpfiles.rules = [
+    "e /DISKN/@cache/cache - - - 60d"
+  ];
 
   fileSystems =
 
     {
-      "/home/michal_atlas" = btrfsMount "/dev/disk/by-uuid/${DISKA_UUID}" "@home";
+      "/home/michal_atlas" = {
+        device = "liverpool/home";
+        fsType = "zfs";
+      };
       "/boot/efi" = {
         device = "/dev/disk/by-uuid/C9ED-A99E";
         fsType = "vfat";
       };
       "/" = btrfsMount "/dev/disk/by-uuid/${DISKN_UUID}" "@nix";
-      "/DISKA" = btrfsMount "/dev/disk/by-uuid/${DISKA_UUID}" "/";
-      "/DISKB" = btrfsMount "/dev/disk/by-uuid/${DISKB_UUID}" "/";
       "/DISKN" = btrfsMount "/dev/disk/by-uuid/${DISKN_UUID}" "/";
     };
-  services.beesd.filesystems =
-    let
-      common = {
-        hashTableSizeMB = 128;
-        extraOptions = [
-          "--workaround-btrfs-send"
-          "--loadavg-target"
-          "4"
-        ];
-        verbosity = "crit";
-      };
-    in
-    {
-      "DISKB" = {
-        spec = "UUID=${DISKB_UUID}";
-      } // common;
-      "DISKA" = {
-        spec = "UUID=${DISKA_UUID}";
-      } // common;
-    };
-  services.btrbk.instances."home".settings = {
-    timestamp_format = "long-iso";
-    snapshot_preserve_min = "2d";
-    snapshot_preserve = "7d 4w 1m";
-
-    target_preserve_min = "2d";
-    target_preserve = "7d 4w 1m";
-
-    volume."/DISKA" = {
-      subvolume = "@home";
-      snapshot_dir = "snaps";
-      snapshot_create = "onchange";
-      target = "/DISKB/snap_backups";
-    };
-  };
+  services.btrfs.autoScrub.enable = true;
   atlas.routerDisk.enable = true;
-  # services.nfs = {
-  #   server = {
-  #     enable = true;
-  #     exports =
-  #       with builtins;
-  #       concatStringsSep "\n" (
-  #         map (dir: "${dir} 192.168.0.0/24(rw,nohide,crossmnt,root_squash,mp)") [
-  #           "/DISKA"
-  #           "/DISKB"
-  #         ]
-  #       );
-  #   };
-  # };
 }
