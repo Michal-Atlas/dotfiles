@@ -47,7 +47,6 @@ in
         awesome-rss
         geminize
         ipfs-companion
-        old-reddit-redirect
         proton-pass
         proton-vpn
         react-devtools
