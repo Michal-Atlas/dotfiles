@@ -1,3 +1,14 @@
+## 0.28.0 (2025-03-08)
+
+### Feat
+
+- **hydra/fileSystems**: to ZFS
+- **firefox**: Remove old-reddit-redirect
+- **zfs**: Move to desktop
+- **filesystems**: For god's sake run scrubs
+- **firefox**: Remove accumulate
+- **bat**: Leave out numbers
+
 ## 0.27.0 (2025-03-01)
 
 ### Feat
