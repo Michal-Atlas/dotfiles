@@ -352,5 +352,4 @@
 (use-package yasnippet-snippets)
 (use-package scala-mode :interpreter ("scala" . scala-mode))
 (use-package elm-mode)
-(use-package unison-ts-mode)
 (use-package gnugo)

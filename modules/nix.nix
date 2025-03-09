@@ -38,7 +38,6 @@ in
   nixpkgs = {
     overlays = with flake.inputs; [
       emacs-overlay.overlays.default
-      unison-nix.overlay
     ];
     config = {
       allowUnfree = true;
