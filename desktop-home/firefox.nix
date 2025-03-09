@@ -55,7 +55,6 @@ in
         tridactyl
         ublock-origin
         wayback-machine
-        zotero-connector
         # keep-sorted end
       ];
     in
