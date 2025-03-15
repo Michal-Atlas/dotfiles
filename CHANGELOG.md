@@ -1,3 +1,12 @@
+## 0.29.0 (2025-03-15)
+
+### Feat
+
+- **firefox**: Remove zotero
+- **unison**: Remove
+- **hyprland**: Lower screen timeout
+- **hydra/fileSystems**: Finalize root, remove BTRFS
+
 ## 0.28.0 (2025-03-08)
 
 ### Feat
